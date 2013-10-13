@@ -1,8 +1,26 @@
+Version 1.5.0 for webtrees 1.5.0 Development version
+
+* Class WT_Person is changed to WT_Individual.
+* Function WT_Person::CanDisplayDetails is changed to WT_Individual::CanShow.
+* WT_Fact::getDetail is changed to WT_Fact::getValue.
+* Function indis_array is changed. Copied the new function from branches.php (only changed $surn in $surname because this is what we use)
+* WT_Fact::getType is now WT_Fact::getAttribute('TYPE'). No consequences in this module.
+* Function WT_Family::isNotMarried() is deprecated. Now use WT_Family::getMarriage(). This returns true if the family is married. This is the same as $family->getFirstFact('MARR').
+* Function WT_Family::isDivorced() is deprecated. Now use $family->getFirstFact('DIV').
+* Functions safe_GET() and safe_POST() are deprecated. Now use the new WT_Filter::functions.
+  See library/Filter.php from line 132 for an overview of the new functions. 
+* Javascript function 'include_css' no longer exists. Added this function to the module internal javascript to keep using it.  
+* Function getMarriagePlace is changed in WT_Family. Now it returns an object. To return a string use ->getGedcomName();
+  Added an extra variable $marrplace = $family->getMarriagePlace() to achieve this. The call is changed to $this->print_place($marrplace->getGedcomName());
+  so far this change doesn't effect birth and death places.
+
+========================================================================================================================
 Version 1.2.1 - 09-10-2013
 * Bug fix. If there is not a lot of text in a family entry and the image size is larger than the min-height, the subsequent sibling-family slides into that entry. So the layout gets destroyed. Fixed.
 
 =========================================================================================================================
 Version 1.2 - 08-10-2013
+
 * Bug fix pointer to base/menu.css removed. There is no menu.css in the base folder.
 * Added German translation for 'were divorced' (wurden geschieden).
 * New feature: Added options for thumbnails (thumb size and square thumbs as option)
