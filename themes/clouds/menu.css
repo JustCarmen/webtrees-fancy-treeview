@@ -1,0 +1,12 @@
+/* Theme style for the Fancy Tree View Pages to load the menu icons
+** Copyright (C) 2013 JustCarmen.
+*/
+
+/* Menu */
+#main-menu li#menu-fancy_treeview, #main-menu li#menu-fancy_treeview ul li:not(:first-child) {background-image:url(menu-ftv.png);background-repeat:no-repeat;background-size:22px}
+#main-menu li#menu-fancy_treeview {background-position:50% 50%}
+#main-menu li#menu-fancy_treeview ul li {background-position:1% 2%}
+html[dir=rtl] #main-menu li#menu-fancy_treeview ul li {background-position:99% 0}
+
+
+

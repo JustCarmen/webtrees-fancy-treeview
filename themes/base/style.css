@@ -1,0 +1,42 @@
+/* Basic style for the Fancy Tree View Pages - this css file is needed for all other themes
+/* Do not delete this folder and files.
+** Copyright (C) 2013 JustCarmen.
+*/
+
+/* Page */
+#fancy_treeview-page{margin-left:auto;margin-right:auto;width:80%;max-width:960px}
+#fancy_treeview-page #page-header{text-align:center}
+#fancy_treeview-page h2 {padding-bottom:10px}
+#fancy_treeview-page #page-body{line-height:1.5em}
+#fancy_treeview-page #page-body form{text-align:right}
+#fancy_treeview-page #page-body form label{font-size:11px;font-weight:normal}
+#fancy_treeview-page #error {margin:10px 0 10px 40px;padding:0 10px}
+#fancy_treeview-page .generation-block{margin-bottom:20px; padding:0}
+#fancy_treeview-page .generation-block.hidden{display:none}
+
+/* Blockheaders */
+#fancy_treeview-page .blockheader{border:none; border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:0}
+
+/* List */
+#fancy_treeview-page ol {counter-reset: item}
+#fancy_treeview-page li {position: relative;display: block}
+#fancy_treeview-page li:before {counter-increment: item; content: counters(item, ".") ". ";margin-left: -4em;float:left} /* second dot between quotes needed for the browser Opera. */
+#fancy_treeview-page li.generation-block:before{content:""}
+#fancy_treeview-page li.child:before {left:-4em}
+#fancy_treeview-page li.child {margin-left:3em}
+
+/* family-block */
+#fancy_treeview-page .blockcontent {padding:20px 0 20px 40px}
+#fancy_treeview-page li.family{padding:10px 20px}
+#fancy_treeview-page div.parents {margin-bottom:10px}
+#fancy_treeview-page div.children{clear:both;padding:5px 0 10px 0}
+#fancy_treeview-page ol.children{margin-top:-5px}	
+#fancy_treeview-page .date{font-size:13px;font-weight:normal}
+#fancy_treeview-page .private{padding:10px}	
+#fancy_treeview-page div.private{padding:10px 20px}
+#fancy_treeview-page img{float:left;margin:5px 10px 5px 0}
+#fancy_treeview-page li.child .lifespan{font-size:9px}
+#fancy_treeview-page .tooltip-text{display:none}
+
+/* button */
+#fancy_treeview-page #btn_next {text-align:right}

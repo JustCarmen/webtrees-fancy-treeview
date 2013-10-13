@@ -1,0 +1,21 @@
+/* Theme style for the Fancy Tree View Pages
+** Copyright (C) 2013 JustCarmen.
+*/
+
+#fancy_treeview-config #top {margin-bottom:30px}
+#fancy_treeview-config #top .field {margin-top:15px}
+#fancy_treeview-config .label {display:inline-block; width:280px}
+#fancy_treeview-config input {vertical-align:middle}
+#fancy_treeview-config .modules_table th {text-align:left}
+#fancy_treeview-config .modules_table th:not(:last-child), #fancy_treeview-config .modules_table td:not(:last-child) {padding-right:20px}
+#fancy_treeview-config .showname {cursor:text}
+#fancy_treeview-config .editname {display:none}
+#fancy_treeview-config .editname input {width:150px}
+#fancy_treeview-config hr {margin:20px 0}
+#fancy_treeview-config #bottom .field {padding-top:5px}
+#fancy_treeview-config .edit_page_link {display:block;margin: 0 0 10px 0}
+#fancy_treeview-config .edit_page_link.first {margin-left:0}
+#fancy_treeview-config .edit_page_link select {margin-left:20px}
+#fancy_treeview-config .default_link {font-size:11px; padding-left:10px}
+#fancy_treeview-config input[type="submit"] {margin-left:0;margin-top:0.5em}
+#fancy_treeview-config #error {display:none}

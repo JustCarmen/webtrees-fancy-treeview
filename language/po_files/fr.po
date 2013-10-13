@@ -1,0 +1,385 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fancy Tree View 1.2\n"
+"POT-Creation-Date: 2013-10-08 07:56+0100\n"
+"PO-Revision-Date: 2013-10-08 08:15+0100\n"
+"Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translate_c:2,1c\n"
+"X-Poedit-Basepath: c:\\xampp\\htdocs\\webtrees_1.4.4_build\\\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: modules_v3\\fancy_treeview\n"
+
+#: modules_v3\fancy_treeview/help_text.php:34
+#: modules_v3\fancy_treeview/module.php:473
+msgid "Add a surname"
+msgstr "Ajouter un nom"
+
+#: modules_v3\fancy_treeview/help_text.php:35
+msgid ""
+"<p>Here you can enter a surname. The script will automatically search for "
+"the oldest person with this surname.</p><p>This person will act as the root "
+"person for this family branch. Potential you can perform a phonetic search "
+"by placing a check mark in one or both phonetic algorithms.</p><p>After the "
+"search is complete, it is possible to change the ID of the root person. You "
+"can enter as much surnames as you like. There will be a menu-link and page "
+"created for each surname.</p><p>By dragging and dropping the table entries "
+"which will appear after you have set the first surname, you can sort the "
+"pages in any way you want.</p>"
+msgstr ""
+"<p>Ici vous pouvez entrer un nom de famille. L'application recherchera "
+"automatiquement la personne la plus âgée portant ce nom de famille. </ "
+"p><p>Cette personne sera la personne racine de cette branche. Vous pouvez "
+"aussi effectuer une recherche phonétique en plaçant une coche dans l'un des "
+"deux algorithmes phonétiques. </p><p>Une fois la recherche terminée, il est "
+"possible de modifier l'identifiant de la personne racine. Vous pouvez "
+"utiliser autant de noms que vous voulez. Un menu de liens sera créé ainsi "
+"qu'une page pour chaque patronyme.</p><p>Vous pouvez trier les liens de ce "
+"menu comme vous le désirez en faisant glisser les entrées du tableau qui "
+"apparaîtra après la définition du premier nom de famille."
+
+#: modules_v3\fancy_treeview/help_text.php:41
+msgid "Edit the surname (for display in the menu)"
+msgstr "Modifier le nom (pour l'affichage dans le menu)"
+
+#: modules_v3\fancy_treeview/help_text.php:44
+#: modules_v3\fancy_treeview/module.php:528
+msgid "Use fullname in menu"
+msgstr "Utiliser le nom et le prénom dans le menu"
+
+# %s = the menu option 'Use fullname in menu'
+#: modules_v3\fancy_treeview/help_text.php:42
+#, php-format
+msgid ""
+"<p>The displayed surname is the surname used in the menu. It is possible to "
+"change the displayed surname to a more appropriate name.</p><p>If you click "
+"on the surname, an 'edit'-field appears where you can change the surname. "
+"Click on the 'save' button to save your input.</p><p>Note: this option is "
+"not available when the option '%s' is checked.</p>"
+msgstr ""
+"<p>Le nom affiché est le nom utilisé dans le menu. Il est possible de "
+"modifier le nom affiché pour un nom plus approprié.</p><p>Si vous cliquez "
+"sur le nom de famille, un champ modifiable apparaît dans lequel vous pouvez "
+"changer ce nom de famille. Cliquez sur le bouton 'Enregistrer' pour "
+"sauvegarder votre saisie.</p><p>Remarque: cette option n'est pas disponible "
+"lorsque l'option  '%s' est cochée.</p>"
+
+#: modules_v3\fancy_treeview/help_text.php:47
+#: modules_v3\fancy_treeview/module.php:531
+msgid "Number of generation blocks to show"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:48
+msgid ""
+"<p>This option is especially usefull for large trees. When you notice a slow "
+"page load, here you can set the number of generation blocks to load at once "
+"to a lower level.</p><p>Below the last generation block a button will appear "
+"to add the next set of generation blocks. The new blocks will be added to "
+"the blocks already loaded.</p><p>Clicking on a 'follow' link in the last "
+"visible generation block, will also load the next set of generation blocks.</"
+"p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:53
+#: modules_v3\fancy_treeview/module.php:535
+msgid "Check relationship between partners"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:54
+msgid ""
+"<p>With this option turned on, the script checks if a (married) couple has "
+"the same ancestors.</p><p>If a relationship between the partners is found, a "
+"text will appear between brackets after the spouses' name to indicate the "
+"relationship.</p><p>Note: this option can cause slower page loading, "
+"especially on large trees. If you notice such a behavior, reduce the number "
+"of generation blocks to load at once (see the previous option).</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:59
+#: modules_v3\fancy_treeview/module.php:539
+msgid "Show single persons"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:60
+msgid ""
+"<p>Turn this option on if you want to show single persons in the generation "
+"blocks. Single persons are persons without partner and children.</p><p>With "
+"this option turned on, every child of a family will be shown in a detailed "
+"way in the next generation block.</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:64
+#: modules_v3\fancy_treeview/module.php:546
+msgid "Select your country"
+msgstr "Sélectionnez votre pays"
+
+#: modules_v3\fancy_treeview/help_text.php:65
+msgid ""
+"<p>If you have ticked the 'Show places' option, here you can set your own "
+"country. Full places will be listed on the Fancy Tree View pages, but when a "
+"place includes the name of your own country, this name will be left out.</"
+"p><p>If you don't select a country then all countries will be shown, "
+"including your own.</p>"
+msgstr ""
+"<p>Si vous avez coché l'option 'Afficher les lieux', vous pouvez "
+"sélectionner votre propre pays. Les lieux seront listés sur les pages de "
+"descendance avec indication du pays sauf pour votre propre pays.</p><p>Si "
+"vous ne sélectionnez pas de pays, tous les pays seront affichés, y compris "
+"le vôtre.</p>"
+
+#: modules_v3\fancy_treeview/module.php:66
+msgid ""
+"A Fancy overview of the descendants of one family(branch) in a narrative way"
+msgstr ""
+"Aperçu des descendants d'une même famille (branche) de manière narrative"
+
+#: modules_v3\fancy_treeview/module.php:264
+msgid "Error: The surname you entered doesn't exist in this tree."
+msgstr "Erreur : Ce nom est inconnu."
+
+#: modules_v3\fancy_treeview/module.php:273
+#: modules_v3\fancy_treeview/module.php:343
+msgid ""
+"Error: The root person you are trying to add has no partner and/or children. "
+"It is not possible to set this individual as root person."
+msgstr ""
+"Erreur: La personne racine que vous tentez d'ajouter n'a pas de partenaire "
+"et/ou d'enfants. Il n'est pas possible de mettre cet individu comme personne "
+"racine."
+
+#: modules_v3\fancy_treeview/module.php:280
+#: modules_v3\fancy_treeview/module.php:353
+#, php-format
+msgid "Error: An individual with ID %s doesn't exist in this tree."
+msgstr "Erreur: Cet individu ID%s n'existe pas dans cet arbre."
+
+#: modules_v3\fancy_treeview/module.php:307
+msgid "Error: The root person belonging to this surname already exists"
+msgstr "Erreur: La personne racine de ce nom est déjà utilisée."
+
+#: modules_v3\fancy_treeview/module.php:310
+msgid "Error: The root person you are trying to add already exists"
+msgstr "Erreur : La personne racine que vous essayer d'ajouter existe déjà."
+
+#: modules_v3\fancy_treeview/module.php:479
+msgid "Or manually add a root person"
+msgstr "Ou ajouter manuellement une personne racine"
+
+#: modules_v3\fancy_treeview/module.php:489
+msgid "Root person"
+msgstr "Personne racine"
+
+#: modules_v3\fancy_treeview/module.php:491
+msgid "Edit Root person"
+msgstr "Choisir la personne racine"
+
+#: modules_v3\fancy_treeview/module.php:509
+#: modules_v3\fancy_treeview/module.php:1374
+#: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:41
+#, php-format
+msgid "Descendants of the %s family"
+msgstr "Descendants de la famille %s"
+
+#: modules_v3\fancy_treeview/module.php:525
+msgid "General Options"
+msgstr "Options générales"
+
+#: modules_v3\fancy_treeview/module.php:543
+msgid "Show places?"
+msgstr "Affichage des lieux"
+
+#: modules_v3\fancy_treeview/module.php:551
+msgid "Show occupations"
+msgstr "Affichage des professions"
+
+#: modules_v3\fancy_treeview/module.php:555
+msgid "Thumbnail size"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:559
+msgid "Use square thumbnails"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:563
+msgid "Show form to change start person"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:570
+msgid ""
+"The settings will be reset to default (for all trees). Are you sure you want "
+"to do this?"
+msgstr ""
+"Les réglages seront remis aux valeurs par défaut (pour tous les arbres). "
+"Etes-vous certain de vouloir faire cela?"
+
+#: modules_v3\fancy_treeview/module.php:607
+#: modules_v3\fancy_treeview/module.php:610
+msgid "follow"
+msgstr "Voir"
+
+#: modules_v3\fancy_treeview/module.php:769
+msgid "Change root person"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:772
+msgid "Go"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:778
+msgid "generation"
+msgid_plural "generations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules_v3\fancy_treeview/module.php:857
+msgid "The details of this generation are private."
+msgstr "Les détails de cette génération sont privés."
+
+#: modules_v3\fancy_treeview/module.php:941
+msgid "first"
+msgstr "première"
+
+#: modules_v3\fancy_treeview/module.php:942
+msgid "second"
+msgstr "deuxième"
+
+#: modules_v3\fancy_treeview/module.php:943
+msgid "third"
+msgstr "troisième"
+
+#: modules_v3\fancy_treeview/module.php:944
+msgid "fourth"
+msgstr "quatrième"
+
+#: modules_v3\fancy_treeview/module.php:945
+msgid "fifth"
+msgstr "cinquième"
+
+#: modules_v3\fancy_treeview/module.php:948
+#, php-format
+msgid "He married %s times"
+msgstr "Il se marie %s fois"
+
+#: modules_v3\fancy_treeview/module.php:948
+#, php-format
+msgid "She married %s times"
+msgstr "Elle se marie %s fois"
+
+#: modules_v3\fancy_treeview/module.php:951
+#, php-format
+msgid "The %s time he married"
+msgstr "La %s fois, il a épousé"
+
+#: modules_v3\fancy_treeview/module.php:951
+#, php-format
+msgid "The %s time she married"
+msgstr "La %s fois, elle a épousé"
+
+#: modules_v3\fancy_treeview/module.php:971
+#: modules_v3\fancy_treeview/module.php:984
+#: modules_v3\fancy_treeview/module.php:994
+#: modules_v3\fancy_treeview/module.php:1045
+#: modules_v3\fancy_treeview/module.php:1082
+msgid "and"
+msgstr "et"
+
+#: modules_v3\fancy_treeview/module.php:971
+msgid "were divorced"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:984
+msgctxt "PLURAL"
+msgid "had"
+msgstr "ont"
+
+#: modules_v3\fancy_treeview/module.php:987
+msgctxt "SINGULAR"
+msgid "had"
+msgstr "a"
+
+#: modules_v3\fancy_treeview/module.php:989
+#, php-format
+msgid "%s child"
+msgid_plural "%s children"
+msgstr[0] "%s enfant"
+msgstr[1] "%s enfants"
+
+#: modules_v3\fancy_treeview/module.php:1064
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Elle est née"
+
+#: modules_v3\fancy_treeview/module.php:1064
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Il est né"
+
+#: modules_v3\fancy_treeview/module.php:1067
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Elle est née"
+
+#: modules_v3\fancy_treeview/module.php:1067
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Il est né"
+
+#: modules_v3\fancy_treeview/module.php:1071
+msgctxt "PAST"
+msgid "was born"
+msgstr "a vu le jour"
+
+#: modules_v3\fancy_treeview/module.php:1071
+msgctxt "PRESENT"
+msgid "was born"
+msgstr "a vu le jour"
+
+#: modules_v3\fancy_treeview/module.php:1082
+msgid "died"
+msgstr "a perdu la vie"
+
+#: modules_v3\fancy_treeview/module.php:1092
+#, php-format
+msgid "at the age of %s"
+msgstr "à l'âge de %s ans"
+
+#: modules_v3\fancy_treeview/module.php:1191
+msgctxt "before dateformat dd-mm-yyyy"
+msgid "on"
+msgstr "le"
+
+#: modules_v3\fancy_treeview/module.php:1194
+#, fuzzy
+msgctxt "before dateformat mmm yyyy"
+msgid "in"
+msgstr "en"
+
+#: modules_v3\fancy_treeview/module.php:1197
+msgctxt "before dateformat yyyy"
+msgid "in"
+msgstr "en"
+
+#: modules_v3\fancy_treeview/module.php:1231
+msgctxt "before placesnames"
+msgid "in"
+msgstr "à"
+
+#: modules_v3\fancy_treeview/module.php:1367
+msgid "Tree view"
+msgstr "Descendances"
+
+#~ msgid "Changing the page link"
+#~ msgstr "Changer le lien de la page"
+
+#~ msgid ""
+#~ "<p>The text in this column appears as a submenu link in the Tree View "
+#~ "menu. Click on the text to change it.</p>"
+#~ msgstr ""
+#~ "<p>Le texte dans cette colonne apparaît comme un lien de sous-menu dans "
+#~ "le menu descendances. Cliquez sur le texte pour le modifier.</p>"

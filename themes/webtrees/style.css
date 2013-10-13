@@ -1,0 +1,10 @@
+/* Theme style for the Fancy Tree View Pages
+** Copyright (C) 2013 JustCarmen.
+*/
+
+/* blockheaders */
+#fancy_treeview-page .blockheader {border-bottom-color:#81A9CB;padding:5px 20px}
+
+/* family-block */
+#fancy_treeview-page .blockcontent {margin:0}
+#fancy_treeview-page a.tooltip {text-decoration:underline}
