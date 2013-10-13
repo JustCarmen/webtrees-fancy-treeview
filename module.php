@@ -2,7 +2,7 @@
 // Classes and libraries for module system
 //
 // webtrees: Web based Family History software
-// Copyright (C) 2011 webtrees development team.
+// Copyright (C) 2013 webtrees development team.
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ if (!defined('WT_WEBTREES')) {
 	exit;
 }
 
-// Update database for version 1.2
+// Update database for version 1.5 (not changed since version 1.2)
 try {
 	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 5);
 } catch (PDOException $ex) {
@@ -68,7 +68,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	private function options($value = '') {
 		$FTV_OPTIONS = unserialize(get_module_setting($this->getName(), 'FTV_OPTIONS'));
 		
-		$key = WT_TREE::getIdFromName(safe_GET('ged'));
+		$key = WT_TREE::getIdFromName(WT_Filter::get('ged'));
 		if(empty($key)) $key = WT_GED_ID; 
 		
 		if (empty($FTV_OPTIONS) || (is_array($FTV_OPTIONS) && !array_key_exists($key, $FTV_OPTIONS))) {
@@ -94,20 +94,20 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	// Get Indis from surname input
 	private function indis_array($surname, $soundex_std, $soundex_dm) {
 		$sql=
-			"SELECT DISTINCT 'INDI' AS type, i_id AS xref, i_file AS ged_id, i_gedcom AS gedrec".
+			"SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom".
 			" FROM `##individuals`".
 			" JOIN `##name` ON (i_id=n_id AND i_file=n_file)".
 			" WHERE n_file=?".
 			" AND n_type!=?".
 			" AND (n_surn=? OR n_surname=?";
-		$args=array(WT_GED_ID, '_MARNM', $surname, $surname);	
-		if($soundex_std) {	
+		$args=array(WT_GED_ID, '_MARNM', $surname, $surname);
+		if ($soundex_std) {
 			foreach (explode(':', WT_Soundex::soundex_std($surname)) as $value) {
 				$sql .= " OR n_soundex_surn_std LIKE CONCAT('%', ?, '%')";
 				$args[]=$value;
 			}
 		}
-		if($soundex_dm) {
+		if ($soundex_dm) {
 			foreach (explode(':', WT_Soundex::soundex_dm($surname)) as $value) {
 				$sql .= " OR n_soundex_surn_dm LIKE CONCAT('%', ?, '%')";
 				$args[]=$value;
@@ -117,10 +117,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$rows=
 			WT_DB::prepare($sql)
 			->execute($args)
-			->fetchAll(PDO::FETCH_ASSOC);
+			->fetchAll();
 		$data=array();
 		foreach ($rows as $row) {
-			$data[]=WT_Person::getInstance($row);
+			$data[]=WT_Individual::getInstance($row->xref, $row->gedcom_id, $row->gedcom);
 		}
 		return $data;
 	}
@@ -224,7 +224,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	// Delete item
 	private function delete() {
 		$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
-		unset($FTV_SETTINGS[safe_GET('key')]);
+		unset($FTV_SETTINGS[WT_Filter::getInteger('key')]);
 		$NEW_FTV_SETTINGS = array_merge($FTV_SETTINGS);
 		set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));				
 		AddToLog($this->getTitle().' item deleted', 'config');	
@@ -241,19 +241,19 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			->setPageTitle('Fancy Tree View')
 			->pageHeader();
 			
-		$update = safe_POST('update');
+		$update = WT_Filter::postBool('update');
 		
 		if (isset($update)) {			
 						
-			$surname = safe_POST('NEW_FTV_SURNAME');
-			$root_id = strtoupper(safe_POST('NEW_FTV_ROOTID'));
+			$surname = WT_Filter::post('NEW_FTV_SURNAME', WT_REGEX_ALPHA);
+			$root_id = strtoupper(WT_Filter::post('NEW_FTV_ROOTID', WT_REGEX_XREF));
 			if($surname || $root_id) {
 				if($surname) {
-					$soundex_std = safe_POST('soundex_std');
-					$soundex_dm = safe_POST('soundex_dm');
+					$soundex_std = WT_Filter::post('soundex_std');
+					$soundex_dm = WT_Filter::post('soundex_dm');
 					
 					$indis = $this->indis_array($surname, $soundex_std, $soundex_dm);
-					usort($indis, array('WT_Person', 'CompareBirtDate'));
+					usort($indis, array('WT_Individual', 'CompareBirtDate'));
 					
 					if (isset($indis) && count($indis) > 0) {
 						$pid = $indis[0]->getXref();
@@ -285,7 +285,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					if(!empty($FTV_SETTINGS)) {	
 						$i = 0;
 						foreach ($FTV_SETTINGS as $FTV_ITEM) {
-							if ($FTV_ITEM['TREE'] == safe_POST('NEW_FTV_TREE')) {
+							if ($FTV_ITEM['TREE'] == WT_Filter::postInteger('NEW_FTV_TREE')) {
 								if($FTV_ITEM['PID'] == $pid) {		
 									$error = true;
 									break;
@@ -311,7 +311,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					else {					
 						$NEW_FTV_SETTINGS = $FTV_SETTINGS;
 						$NEW_FTV_SETTINGS[] = array(
-							'TREE' 			=> safe_POST('NEW_FTV_TREE'),
+							'TREE' 			=> WT_Filter::postInteger('NEW_FTV_TREE'),
 							'SURNAME' 		=> $this->getSurname($pid),
 							'DISPLAY_NAME'	=> $this->getSurname($pid),
 							'PID'			=> $pid,					
@@ -324,7 +324,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}				
 			}			
 			
-			$new_pids = safe_POST('NEW_FTV_PID'); $new_display_name = safe_POST('NEW_FTV_DISPLAY_NAME'); $new_access_level = safe_POST('NEW_FTV_ACCESS_LEVEL'); $new_sort = safe_POST('NEW_FTV_SORT'); 
+			$new_pids = WT_Filter::postArray('NEW_FTV_PID'); $new_display_name = WT_Filter::postArray('NEW_FTV_DISPLAY_NAME'); $new_access_level = WT_Filter::postArray('NEW_FTV_ACCESS_LEVEL'); $new_sort = WT_Filter::postArray('NEW_FTV_SORT'); 
 			
 			if($new_pids || $new_display_name || $new_access_level || $new_sort) {
 				// retrieve the array again from the database because it could have been changed due to an add action.
@@ -371,17 +371,17 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}				
 			// retrieve the current options from the database				
 			$FTV_OPTIONS = unserialize(get_module_setting($this->getName(), 'FTV_OPTIONS'));
-			$key = safe_POST('NEW_FTV_TREE');
+			$key = WT_Filter::postInteger('NEW_FTV_TREE');
 			// check if options are not empty and if the options for the tree are already set. If not add them to the array.
 			if ($FTV_OPTIONS) {
 				// check if options are changed for the specific key (tree_id)
-				if(!array_key_exists($key, $FTV_OPTIONS) || $FTV_OPTIONS[$key] != safe_POST('NEW_FTV_OPTIONS')) {
+				if(!array_key_exists($key, $FTV_OPTIONS) || $FTV_OPTIONS[$key] != WT_Filter::postArray('NEW_FTV_OPTIONS')) {
 					$NEW_FTV_OPTIONS = $FTV_OPTIONS;
-					$NEW_FTV_OPTIONS[safe_POST('NEW_FTV_TREE')] = safe_POST('NEW_FTV_OPTIONS');
+					$NEW_FTV_OPTIONS[WT_Filter::postInteger('NEW_FTV_TREE')] = WT_Filter::postArray('NEW_FTV_OPTIONS');
 				}					
 			}
 			else {
-				$NEW_FTV_OPTIONS[safe_POST('NEW_FTV_TREE')] = safe_POST('NEW_FTV_OPTIONS');					
+				$NEW_FTV_OPTIONS[WT_Filter::postInteger('NEW_FTV_TREE')] = WT_Filter::postArray('NEW_FTV_OPTIONS');					
 			}
 			if(isset($NEW_FTV_OPTIONS)) {
 				set_module_setting($this->getName(), 'FTV_OPTIONS',  serialize($NEW_FTV_OPTIONS));					
@@ -394,6 +394,14 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		
 		// inline javascript
 		$controller->addInlineJavascript('
+			function include_css(css_file) {
+				var html_doc = document.getElementsByTagName("head")[0];
+				var css = document.createElement("link");
+				css.setAttribute("rel", "stylesheet");
+				css.setAttribute("type", "text/css");
+				css.setAttribute("href", css_file);
+				html_doc.appendChild(css);
+			}
 			include_css("'.WT_MODULES_DIR.$this->getName().'/'.WT_THEME_URL.'style.css");		
 			var pastefield; function paste_id(value) { pastefield.value=value; } // For the \'find indi\' link
 			
@@ -497,11 +505,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 								<span class="showname">'.$FTV_ITEM['DISPLAY_NAME'].'</span>
 								<span class="editname"><input type="text" name="NEW_FTV_DISPLAY_NAME['.$key.']" id="NEW_FTV_DISPLAY_NAME['.$key.']" value="'.$FTV_ITEM['DISPLAY_NAME'].'"/></span>
 							</td>
-							<td>'.WT_Person::getInstance($FTV_ITEM['PID'])->getFullName().' ('.$FTV_ITEM['PID'].')</td>
+							<td>'.WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName().' ('.$FTV_ITEM['PID'].')</td>
 							<td>
 								<a href="module.php?mod='.$this->getName().'&amp;mod_action=show&amp;ged='.$WT_TREE->tree_name.'&amp;rootid='.($FTV_ITEM['PID']).'" target="_blank">';
 								if($this->options('use_fullname') == true) {
-									$html .= WT_I18N::translate('Descendants of %s', WT_Person::getInstance($FTV_ITEM['PID'])->getFullName());
+									$html .= WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName());
 								}
 								else {
 									$html .= WT_I18N::translate('Descendants of the %s family', $FTV_ITEM['DISPLAY_NAME']);
@@ -548,7 +556,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$html .= '	<div class="field">	
 						<label class="label">'.WT_I18N::translate('Show occupations').'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')).'
-					</div>	
+					</div>					
 					<div class="field">	
 						<label class="label">'.WT_I18N::translate('Thumbnail size').'</label>
 						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="'.$this->options('thumb_size').'" />&nbsp;px
@@ -556,12 +564,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					<div class="field">	
 						<label class="label">'.WT_I18N::translate('Use square thumbnails').'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $this->options('use_square_thumbs')).'
-					</div>
+					</div>					
 					<div class="field">	
 						<label class="label">'.WT_I18N::translate('Show form to change start person').'</label>'.
 						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform')).'
 					</div>						
-				</div>										
+				</div>							
 				<hr/>';		
 		$html .='<div class="buttons">
 					<input type="submit" name="update" value="'.WT_I18N::translate('Save').'" />
@@ -581,11 +589,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	// Show
 	private function show() {
 		global $controller;
-		$root = safe_GET('rootid'); // the first pid
+		$root = WT_Filter::get('rootid', WT_REGEX_XREF); // the first pid
 		$root_person = $this->get_person($root);
 		
 		$controller=new WT_Controller_Page;
-		if($root_person) {			
+		if($root_person) {
 			$controller
 				->setPageTitle(/* I18N: %s is the surname of the root individual */ WT_I18N::translate('Descendants of %s', $root_person->getFullName()))
 				->pageHeader()					
@@ -620,7 +628,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						if (jQuery(".generation-block.hidden").length == 0) { // if there is no hidden block there is no next generation.
 							jQuery("#btn_next").remove();
 						}
-					}
+					}				
 					
 					// set style dynamically on parents blocks with an image
 					function setImageBlock() {
@@ -633,7 +641,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					}
 					
 					// Hide last generation block (only needed in the DOM for scroll reference. Must be set before calling addScrollNumbers function.)
-					var numBlocks = '.$this->options('numblocks').';					
+					var numBlocks = '.$this->options('numblocks').';
 					var lastBlock = jQuery(".generation-block:last");
 					if(numBlocks > 0 && lastBlock.data("gen") > numBlocks) {				
 						lastBlock.addClass("hidden").hide();
@@ -643,7 +651,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					addScrollNumbers();
 					
 					// Remove button if there are no more generations to catch
-					btnRemove();
+					btnRemove();									
 					
 					// Set css class on parents blocks with an image
 					setImageBlock();									
@@ -654,14 +662,14 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						if(family.length>1){
 							i = 1;													  					  
 							family.each(function(){							 
-								famID = jQuery(this).attr("id");	
-								anchor = jQuery("#fancy_treeview a.scroll[href$="+this.id+"]:first");
-								anchor.attr("href", "#" + famID + "_" + i);							 
-								jQuery(this).attr("id", famID + "_" + i);
-								i++;
+							 	famID = jQuery(this).attr("id");	
+							  	anchor = jQuery("#fancy_treeview a.scroll[href$="+this.id+"]:first");
+							  	anchor.attr("href", "#" + famID + "_" + i);							 
+							  	jQuery(this).attr("id", famID + "_" + i);
+							 	i++;
 							});
 						}						
-					});						
+					});	
 					
 					// scroll to anchors
 					jQuery("#fancy_treeview-page").on("click", ".scroll", function(event){		
@@ -685,7 +693,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							 return text;
 						   }
 						});	
-					});					
+					});
 					
 					//button or link to retrieve next generations
 					jQuery("#fancy_treeview-page").on("click", "#btn_next, .link_next", function(event){
@@ -730,7 +738,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 								setImageBlock();
 								
 							});												
-					});
+					});	
 				');
 				
 			if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
@@ -763,28 +771,28 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 				
 			// add theme js
-			$html = $this->js();				
-			
-			// Start page content	
-			$html .= '
-			<div id="fancy_treeview-page">										
-				<div id="page-header"><h2>'.$controller->getPageTitle().'</h2></div>
+				$html = $this->js();				
+				
+				// Start page content	
+				$html .= '
+					<div id="fancy_treeview-page">										
+						<div id="page-header"><h2>'.$controller->getPageTitle().'</h2></div>
 				<div id="page-body">';
 				if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
 					$html .= '						
-						<form id="change_root">
-							<label class="label">'.WT_I18N::translate('Change root person').'</label>
-							<input type="text" name="new_rootid" id="new_rootid" size="5" maxlength="20"/>'.
-							print_findindi_link('new_rootid').'
-							<input type="submit" id="btn_go" value="'.WT_I18N::translate('Go').'" />
-						</form>
+							<form id="change_root">
+								<label class="label">'.WT_I18N::translate('Change root person').'</label>
+								<input type="text" name="new_rootid" id="new_rootid" size="5" maxlength="20"/>'.
+								print_findindi_link('new_rootid').'
+								<input type="submit" id="btn_go" value="'.WT_I18N::translate('Go').'" />
+							</form>
 						<div id="error"></div>';
 				}
 				$html .= '								
-					<ol id="fancy_treeview">'.$this->print_page().'</ol>		
-					<div id="btn_next"><input type="button" name="next" value="'.WT_I18N::translate('next').' '.WT_I18N::plural('generation', 'generations', $this->options('numblocks')).'"/></div>
-				</div>
-			</div>';
+							<ol id="fancy_treeview">'.$this->print_page().'</ol>		
+							<div id="btn_next"><input type="button" name="next" value="'.WT_I18N::translate('next').' '.WT_I18N::plural('generation', 'generations', $this->options('numblocks')).'"/></div>
+						</div>
+					</div>';
 			
 			// output
 			ob_start();			
@@ -801,9 +809,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	
 	// Print functions
 	private function print_page() {			
-		$root 		= safe_GET('rootid');
-		$gen  		= safe_GET('gen');
-		$pids 		= safe_GET('pids');
+		$root 		= WT_Filter::get('rootid', WT_REGEX_XREF);
+		$gen  		= WT_Filter::get('gen', WT_REGEX_INTEGER);
+		$pids 		= WT_Filter::get('pids');
 		$numblocks  = $this->options('numblocks');
 		
 		if($numblocks == 0) $numblocks = 99;
@@ -890,7 +898,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}	
 	
 	private function print_person($person) {
-		if($person->canDisplayDetails()) {				
+		if($person->CanShow()) {				
 			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs')).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'">'.$person->getFullName().'</a>';
 			if($this->options('show_occu') == true) $html .= $this->print_fact($person, 'OCCU');
 			
@@ -903,7 +911,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
             $spousecount = 0;
             foreach ($person->getSpouseFamilies() as $i => $family) {
                 $spouse = $family->getSpouse($person);
-                if ($spouse && !$family->isNotMarried()) $spousecount++;
+                if ($spouse && $family->getMarriage()) $spousecount++;
             }
             /*
              * Now iterate thru spouses
@@ -915,7 +923,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				$spouseindex = 0;
 				foreach ($person->getSpouseFamilies() as $i => $family) {
 					$spouse = $family->getSpouse($person);
-					if ($spouse && !$family->isNotMarried()) {
+					if ($spouse && $family->getMarriage()) {
 						$html .= $this->print_spouse($family, $person, $spouse, $spouseindex, $spousecount);
 						$spouseindex++;
 					}
@@ -939,6 +947,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		
 	private function print_spouse($family, $person, $spouse, $i, $count) {
 		$marrdate = $family->getMarriageDate();		
+		$marrplace = $family->getMarriagePlace();
 		
 		$html = ' ';
 		
@@ -961,7 +970,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$person->getSex() == 'M' ? $html .= WT_I18N::translate('He married') : $html .= WT_I18N::translate('She married');	
 		}
 			
-		$spouse->canDisplayDetails() ? $html .= ' <a href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>' : $html .= $spouse->getFullName();
+		$spouse->CanShow() ? $html .= ' <a href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>' : $html .= $spouse->getFullName();
 		
 		// Add relationship note
 		if($this->options('check_relationship')) {
@@ -971,11 +980,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		
 		$html .= $this->print_parents($spouse);
 		
-		if($marrdate && $marrdate->isOK()) $html .= $this->print_date($marrdate);		
-		if(!is_null($family->getMarriagePlace())) $html .= $this->print_place($family->getMarriagePlace());
+		if($marrdate && $marrdate->isOK()) $html .= $this->print_date($marrdate);	
+		if($marrplace->getGedcomName()) $html .= $this->print_place($marrplace->getGedcomName());
 		$html .= $this->print_lifespan($spouse, true);	
 		
-		if($family->isDivorced()) $html .= $person->getFullName() . ' ' . WT_I18N::translate('and') . ' ' . $spouse->getFullName() .  ' ' . WT_I18N::translate('were divorced') . $this->print_divorce_date($family) . '.';
+		$div = $family->getFirstFact('DIV');
+		if($div) $html .= $person->getFullName() . ' ' . WT_I18N::translate('and') . ' ' . $spouse->getFullName() .  ' ' . WT_I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
 		
 		return $html;	
 	}		
@@ -987,7 +997,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		if($children) {
 			if ($this->check_privacy($children) == true) {
 				$html .= '<div class="children">'.$person->getFullName();					
-				if($spouse && $spouse->canDisplayDetails()) {
+				if($spouse && $spouse->CanShow()) {
 					$html .= ' '.WT_I18N::translate('and').' '.$spouse->getFullName().' '.WT_I18N::translate_c('PLURAL', 'had');
 				}
 				else {
@@ -997,9 +1007,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			else {
 				$html .= '<div class="children">'. WT_I18N::translate('Children of ').$person->getFullName();					
-				if($spouse && $spouse->canDisplayDetails()) {					
+				if($spouse && $spouse->CanShow()) {					
 					$html .= ' '.WT_I18N::translate('and').' ';
-					if ($family->isNotMarried()) {
+					if (!$family->getMarriage()) {
 						// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
 						if($this->options('check_relationship')) $relationship = $this->check_relationship($person, $spouse, $family);
 						if(isset($relationship) && $relationship) {
@@ -1020,10 +1030,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				
 				foreach ($children as $child) {		
 					$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName();
-					if($child->canDisplayDetails()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span></a>';
+					if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span></a>';
 					if ($this->has_family($child)) {
 						$child_family = $this->get_family($child);
-						if ($child_family->canDisplayDetails()) {
+						if ($child_family->CanShow()) {
 							$html .= ' - <a class="scroll" href="#'.$child_family->getXref().'"></a>';
 						}
 					}
@@ -1146,13 +1156,13 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 			   
 			    if($square == true) {
-					if ($thumbwidth/$thumbheight > $ratio_orig) {
-					   $new_height = $thumbwidth/$ratio_orig;
-					   $new_width = $thumbwidth;
-					} else {
-					   $new_width = $thumbheight*$ratio_orig;
-					   $new_height = $thumbheight;
-					}
+				if ($thumbwidth/$thumbheight > $ratio_orig) {
+				   $new_height = $thumbwidth/$ratio_orig;
+				   $new_width = $thumbwidth;
+				} else {
+				   $new_width = $thumbheight*$ratio_orig;
+				   $new_height = $thumbheight;
+				}		   
 				}
 				else {
 					if ($width_orig > $height_orig) {
@@ -1175,17 +1185,17 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			
 				@imagedestroy($process);
 				@imagedestroy($image);			
-				
+			
 				$square == true ? $obje_height = round($thumbheight) : $obje_height = round($new_height);
 				ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean();			
 				$html = '<a' .
-						' class="'          	. 'gallery'                          		. '"' .
-						' href="'           	. $mediaobject->getHtmlUrlDirect('main')    . '"' .
-						' type="'           	. $mediaobject->mimeType()                 	. '"' .
-						' data-obje-url="'  	. $mediaobject->getHtmlUrl()                . '"' .
-						' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote()) . '"' .
+						' class="'          . 'gallery'                          . '"' .
+						' href="'           . $mediaobject->getHtmlUrlDirect('main')    . '"' .
+						' type="'           . $mediaobject->mimeType()                  . '"' .
+						' data-obje-url="'  . $mediaobject->getHtmlUrl()                . '"' .
+						' data-obje-note="' . htmlspecialchars($mediaobject->getNote()) . '"' .
 						' data-obje-height="'	. $obje_height								. '"' .
-						' data-title="'     	. strip_tags($mediaobject->getFullName())   . '"' .
+						' data-title="'     . strip_tags($mediaobject->getFullName())   . '"' .
 						'><img src="data:image/jpeg;base64,'.base64_encode($thumb).'" title="'.$mediatitle.'" alt="'.$mediatitle.'"/></a>';
 				return $html;	
 			}		
@@ -1207,12 +1217,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 	}
 	
-	private function print_divorce_date($family) {
-		foreach ($family->getAllFactsByType(explode('|', WT_EVENTS_DIV)) as $event) {
-			// Only display if it has a date
-			if ($event->getDate()->isOK() && $event->canShow()) {
-				return $this->print_date($event->getDate());
-			}
+	private function print_divorce_date($div) {
+		// Only display if it has a date
+		if ($div->getDate()->isOK() && $div->canShow()) {
+			return $this->print_date($div->getDate());
 		}		
 	}	
 	
@@ -1220,7 +1228,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$facts = $person->getFacts();
 		foreach ($facts as $fact) {
 			if ($fact->getTag()== $tag) {
-				$str = $fact->getDetail();
+				$str = $fact->getValue();
 				$str = rtrim($str, ".");
 				$html = ', '.$str;
 				return $html;
@@ -1244,7 +1252,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	
 	// Other functions
 	private function get_person($pid) {
-		$person=WT_Person::getInstance($pid);
+		$person=WT_Individual::getInstance($pid);
 		return $person;
 	}
 
@@ -1340,7 +1348,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$count = 0;
 		foreach ($persons as $pid) {
 			$xref == true ? $person = $this->get_person($pid) : $person = $pid;
-			if($person->canDisplayDetails()) {
+			if($person->CanShow()) {
 				$count++;		
 			}
 		}
@@ -1377,7 +1385,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				
 				foreach($FTV_GED_SETTINGS as $FTV_ITEM) {
 					if($this->options('use_fullname') == true) {
-						$submenu = new WT_Menu(WT_I18N::translate('Descendants of %s', WT_Person::getInstance($FTV_ITEM['PID'])->getFullName()), 'module.php?mod='.$this->getName().'&amp;mod_action=show&amp;rootid='.$FTV_ITEM['PID'], 'menu-fancy_treeview-'.$FTV_ITEM['PID']);
+						$submenu = new WT_Menu(WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName()), 'module.php?mod='.$this->getName().'&amp;mod_action=show&amp;rootid='.$FTV_ITEM['PID'], 'menu-fancy_treeview-'.$FTV_ITEM['PID']);
 					}
 					else {
 						$submenu = new WT_Menu(WT_I18N::translate('Descendants of the %s family', $FTV_ITEM['DISPLAY_NAME']), 'module.php?mod='.$this->getName().'&amp;mod_action=show&amp;rootid='.$FTV_ITEM['PID'], 'menu-fancy_treeview-'.$FTV_ITEM['PID']);
@@ -1398,7 +1406,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		else {
 			return false;
 		}
-		if(safe_GET('mod') == $this->getName()) {
+		if(WT_Filter::get('mod') == $this->getName()) {
 			$css .= $this->getScript($module_dir.'themes/base/style.css');
 			if (file_exists($module_dir.WT_THEME_URL.'style.css')) {
 				$css .= $this->getScript($module_dir.WT_THEME_URL.'style.css');
@@ -1429,5 +1437,5 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				newSheet.setAttribute("href","'.$css.'");
 				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			}';
-	}	
+	}		
 }
