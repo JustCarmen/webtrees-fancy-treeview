@@ -56,7 +56,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		
 	// Extend WT_Module
 	public function getTitle() {
-		return /* I18N: Name of a module  */ 'Fancy Tree View';
+		return /* Name of a module (not translatable) */ 'Fancy Tree View';
 	}
 
 	// Extend WT_Module
