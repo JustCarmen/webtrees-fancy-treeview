@@ -1279,12 +1279,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		if (isset($ng)) return $ng;
 	}
 	
-	private function has_family($person){ // not checking for children to retrieve married couples without known children in next generation
-		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {	
-			return $family->getXref();
-		}
-	}
-	
 	// check if a person has parents in the same generation
 	private function has_parents_in_same_generation($person, $generation) {
 		$parents = $person->getPrimaryChildFamily();
