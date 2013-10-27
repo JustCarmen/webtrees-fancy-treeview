@@ -910,7 +910,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
             $spousecount = 0;
             foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
                 $spouse = $family->getSpouse($person);
-                if ($spouse && $this->getMarriage($family)) $spousecount++;
+                if ($spouse && $spouse->canShow() && $this->getMarriage($family)) $spousecount++;
             }
             /*
              * Now iterate thru spouses
@@ -922,7 +922,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				$spouseindex = 0;
 				foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
 					$spouse = $family->getSpouse($person);
-					if ($spouse && $this->getMarriage($family)) {
+					if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 						$html .= $this->print_spouse($family, $person, $spouse, $spouseindex, $spousecount);
 						$spouseindex++;
 					}
@@ -996,7 +996,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		
 	private function print_children($family, $person, $spouse) {
 		
-		$children = $family->getChildren(WT_PRIV_HIDE);	
+		$children = $family->getChildren();	
 		$html = '';	
 		if($children) {
 			if ($this->check_privacy($children)) {
@@ -1035,11 +1035,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				foreach ($children as $child) {		
 					$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName();
 					if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span></a>';
-					if ($this->has_family($child)) {
-						$child_family = $this->get_family($child);
-						if ($child_family->CanShow()) {
+					
+					$child_family = $this->get_family($child);
+					if ($child->canShow() && $child_family) {
 							$html .= ' - <a class="scroll" href="#'.$child_family->getXref().'"></a>';
-						}
 					}
 					else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
 						if($this->options('show_singles') == true) $html .= ' - <a class="scroll" href="#S'.$child->getXref().'"></a>';
@@ -1261,7 +1260,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 
 	private function get_family($person) {
-		foreach ($person->getSpouseFamilies() as $family) {
+		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
 			return $family;
 		}
 	}
@@ -1281,11 +1280,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 	
 	private function has_family($person){ // not checking for children to retrieve married couples without known children in next generation
-		foreach ($person->getSpouseFamilies() as $family) {	
-			$pid = $person->getXref();
-			break;
-		}		
-		if(isset($pid)) return $pid;
+		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {	
+			return $family->getXref();
+		}
 	}
 	
 	// check if a person has parents in the same generation
