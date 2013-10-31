@@ -23,9 +23,9 @@ if (!defined('WT_WEBTREES')) {
 	exit;
 }
 
-// Update database for version 1.5 (not changed since version 1.2)
+// Update database for version 1.5
 try {
-	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 5);
+	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 6);
 } catch (PDOException $ex) {
 	// The schema update scripts should never fail.  If they do, there is no clean recovery.
 	die($ex);
@@ -51,6 +51,19 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					new Zend_Translate('csv', WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.csv', WT_LOCALE)
 				);
 			}
+		}
+		
+		// delete the temporary files from the pdf/tmp folder on startup
+		$path =  WT_MODULES_DIR.$this->getName().'/pdf/tmp';
+		if(is_dir($path)) {
+			if ($handle = @opendir($path)) {		
+				while (false !== ($file = @readdir($handle))) {
+					if ((time()-filectime($path.'/'.$file)) > 86400) {  // 86400 = 60*60*24	(s*m*h)
+						@unlink($path.'/'.$file);
+					}
+				}
+			}
+			@rmdir($path);
 		}
 	}
 		
@@ -82,7 +95,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				'SHOW_OCCU' 			=> '1',
 				'THUMB_SIZE'			=> '60',
 				'USE_SQUARE_THUMBS'		=> '1',
-				'SHOW_USERFORM'			=> '2'
+				'SHOW_USERFORM'			=> '2',
+				'SHOW_PDF_ICON'			=> '2'
 			);
 			$key = 0;
 		};
@@ -202,8 +216,17 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$this->delete();
 			$this->config();
 			break;	
-		case 'show':
+		case 'show':			
 			$this->show();
+			break;
+		case 'pdf_image':
+			include('pdf/image.php');
+			break;
+		case 'pdf_data':
+			include('pdf/data.php');
+			break;
+		case 'show_pdf':
+			include('pdf/dompdf.php');
 			break;
 		default:
 			header('HTTP/1.0 404 Not Found');
@@ -568,6 +591,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					<div class="field">	
 						<label class="label">'.WT_I18N::translate('Show form to change start person').'</label>'.
 						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform')).'
+					</div>	
+					<div class="field">	
+						<label class="label">'.WT_I18N::translate('Show PDF Icon?').'</label>'.
+						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon')).'
 					</div>						
 				</div>							
 				<hr/>';		
@@ -596,7 +623,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		if($root_person) {
 			$controller
 				->setPageTitle(/* I18N: %s is the surname of the root individual */ WT_I18N::translate('Descendants of %s', $root_person->getFullName()))
-				->pageHeader()					
+				->pageHeader()
 				->addInlineJavascript('	
 					var pastefield; function paste_id(value) { pastefield.value=value; } // For the \'find indi\' link
 					// setup numbers for scroll reference	
@@ -634,7 +661,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					function setImageBlock() {
 						jQuery(".parents").each(function(){
 							if(jQuery(this).find(".gallery").length > 0) {
-								var height = jQuery(this).find(".gallery").data("obje-height") + 10 + "px";
+								var height = jQuery(this).find(".gallery img").height() + 10 + "px";
 								jQuery(this).css({"min-height" : height});
 							}					
 						});		
@@ -654,7 +681,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					btnRemove();									
 					
 					// Set css class on parents blocks with an image
-					setImageBlock();									
+					setImageBlock();
+					
+					// remove the empty hyphen on childrens lifespan if death date is unknown.
+					jQuery("li.child .lifespan").html(function(index, html){
+						return html.replace("–<span title=\"&nbsp;\"></span>", "");
+					});							
 					
 					// prevent duplicate id\'s
 					jQuery("li.family[id]").each(function(){
@@ -735,48 +767,114 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 								btnRemove();
 								
 								// check for parents blocks with images
-								setImageBlock();
-								
-							});												
+								setImageBlock();								
+							}
+						);												
 					});	
 				');
 				
-			if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
-				$controller->addInlineJavascript('				
-					// submit form to change root id
-					jQuery( "form#change_root" ).submit(function(e) {
-						e.preventDefault();
-						var new_rootid = jQuery("form #new_rootid").val();						
-						var url = jQuery(location).attr("pathname") + "?mod='.$this->getName().'&mod_action=show&rootid=" + new_rootid;
-						jQuery.ajax({
-							url: url,						
-							success: function() {  
-								window.location = url;	    
-						  	},
-							statusCode: {
-								404: function() {
-									var msg = "'.WT_I18N::translate('This individual does not exist or you do not have permission to view it.').'";
-									jQuery("#error").text(msg).addClass("ui-state-error").show();
-									setTimeout(function() {
-										jQuery("#error").fadeOut("slow");
-									}, 3000);
-									jQuery("form #new_rootid")
-										.val("")
-										.focus();
-								}
+				if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL) {
+					$controller->addInlineJavascript('			
+						// convert page to pdf
+						jQuery("#pdf").click(function(e){
+							if (jQuery("#btn_next").length > 0) var msg = confirm("'.WT_I18N::translate('The pdf contains only visible generation blocks.').'");
+							if (msg == true || jQuery("#btn_next").length == 0) {
+								var content = jQuery("#content").clone();					
+								
+								// replace the default lifespan hyphen with a shorter one with a space before so dompdf can render it. 
+								// Remove the title spans at the same time by just returning the text (in stead of the html).
+								jQuery("li.child .lifespan", content).text(function(index, text){
+									return text.replace("–", " -");
+								});
+								
+								//dompdf does not support ordered list, so we make our own
+								jQuery(".generation-block", content).each(function(index) {
+									var main = (index+1);
+									jQuery(this).find(".generation").each(function(){
+										jQuery(this).find("li.family").each(function(index){
+											var i = (index+1)
+											jQuery(this).find(".parents").prepend("<span class=\"index\">" + main + "." + i + ".</span>");	
+											jQuery(this).find("li.child").each(function(index) {
+												jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");	
+											});
+										});						
+									});
+								});
+								
+								// save base64 image on the server for use in pdf									
+								jQuery("a.gallery img", content).each(function(){
+									var src = jQuery(this).attr("src");								
+									var filename = jQuery(this).parent().data("obje-xref") + ".jpg";									
+									jQuery.ajax({
+										type: "POST",
+										url: "module.php?mod='.$this->getName().'&mod_action=pdf_image",
+										data: { "image": src, "filename": filename },
+										async: false
+									});							
+									var url = "'.WT_SERVER_NAME.WT_SCRIPT_PATH.WT_MODULES_DIR.$this->getName().'/pdf/tmp/" + filename;								
+									jQuery(this).attr("src", url).css({"width":jQuery(this).width(), "height":jQuery(this).height()}); // need size as style attribute to  prevent resampling.							
+								});
+									
+								// remove or unwrap all elements we do not need in pdf display
+								jQuery("#pdf, form, #btn_next, #error, .hidden, .tooltip-text", content).remove();
+								jQuery("a, span.date", content).contents().unwrap();		
+											
+								var newContent = content.html();
+																
+								jQuery.ajax({
+									type: "POST",
+									url: "module.php?mod='.$this->getName().'&mod_action=pdf_data",
+									data: { "pdfContent": newContent },
+									success: function() {
+										window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
+									}
+								});	
 							}
-						});						
-					});
-				');
-			}
+							else {
+								return false;
+							}
+						});
+					');
+				}
 				
-			// add theme js
+				if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+					$controller->addInlineJavascript('				
+						// submit form to change root id
+						jQuery( "form#change_root" ).submit(function(e) {
+							e.preventDefault();
+							var new_rootid = jQuery("form #new_rootid").val();						
+							var url = jQuery(location).attr("pathname") + "?mod='.$this->getName().'&mod_action=show&rootid=" + new_rootid;
+							jQuery.ajax({
+								url: url,						
+								success: function() {  
+									window.location = url;	    
+								},
+								statusCode: {
+									404: function() {
+										var msg = "'.WT_I18N::translate('This individual does not exist or you do not have permission to view it.').'";
+										jQuery("#error").text(msg).addClass("ui-state-error").show();
+										setTimeout(function() {
+											jQuery("#error").fadeOut("slow");
+										}, 3000);
+										jQuery("form #new_rootid")
+											.val("")
+											.focus();
+									}
+								}
+							});						
+						});
+					');
+				}
+					
+				// add theme js
 				$html = $this->js();				
 				
 				// Start page content	
 				$html .= '
 					<div id="fancy_treeview-page">										
-						<div id="page-header"><h2>'.$controller->getPageTitle().'</h2></div>
+						<div id="page-header"><h2>'.$controller->getPageTitle().'</h2>';
+						if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL) $html .= '<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
+						$html .= '</div>
 				<div id="page-body">';
 				if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
 					$html .= '						
@@ -866,7 +964,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					<div class="blockheader ui-state-default">'.WT_I18N::translate('Generation').' '.$i.'</div>';
 							
 		if ($this->check_privacy($generation, true)) {
-			$html .= '<div class="blockcontent private">'.WT_I18N::translate('The details of this generation are private.').'</div>';	
+			$html .= '<div class="blockcontent generation private">'.WT_I18N::translate('The details of this generation are private.').'</div>';	
 		}
 		
 		else {
@@ -885,8 +983,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					}
 					else {
 						if ($this->options('show_singles') == true || !$person->getSpouseFamilies()) $id = 'S'.$pid; // Added prefix (S = Single) to prevent double id's.
-					}				
-					$html .= '<li id="'.$id.'" class="family">'.$this->print_person($person).'</li>';	
+					}	
+					$class = $person->canShow() ? 'family' : 'family private';		
+					$html .= '<li id="'.$id.'" class="'.$class.'">'.$this->print_person($person).'</li>';	
 				}
 			}
 			$html .= '</ol></li>';		
@@ -1007,10 +1106,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				else {
 					$html .= ' '.WT_I18N::translate_c('SINGULAR', 'had'); 
 				}
-				$html .= ' './* I18N: %s is a number */ WT_I18N::plural('%s child', '%s children', count($children), count($children)).'.</div>';
+				$html .= ' './* I18N: %s is a number */ WT_I18N::plural('%s child', '%s children', count($children), count($children)).'.</p></div>';
 			}
 			else {
-				$html .= '<div class="children">'. WT_I18N::translate('Children of ').$person->getFullName();					
+				$html .= '<div class="children"><p>'. WT_I18N::translate('Children of ').$person->getFullName();					
 				if($spouse && $spouse->CanShow()) {					
 					$html .= ' '.WT_I18N::translate('and').' ';
 					if (!$family->getMarriage()) {
@@ -1030,11 +1129,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						$html .= $spouse->getFullName();
 					}
 				}
-				$html .= ':</div><ol class="children">';
+				$html .= ':<ol>';
 				
 				foreach ($children as $child) {		
-					$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName();
-					if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span></a>';
+					$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
+					if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span>';
 					
 					$child_family = $this->get_family($child);
 					if ($child->canShow() && $child_family) {
@@ -1045,7 +1144,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					}
 					$html .= '</li>';
 				}
-				$html .= '</ol>';
+				$html .= '</ol></div>';
 			}
 		}
 		return $html;
@@ -1136,7 +1235,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		return $html;
 	}
 	
-	private function print_thumbnail($person, $thumbsize, $square) {	
+	private function print_thumbnail($person, $thumbsize, $square) {
 	
 		$mediaobject=$person->findHighlightedMedia();
 		
@@ -1188,18 +1287,19 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			
 				@imagedestroy($process);
 				@imagedestroy($image);			
-			
-				$square == true ? $obje_height = round($thumbheight) : $obje_height = round($new_height);
+				
+				$square == true ? $width = round($thumbwidth) : $width = round($new_width);
+				$square == true ? $height = round($thumbheight) : $height = round($new_height);
 				ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean();			
 				$html = '<a' .
-						' class="'          . 'gallery'                          . '"' .
-						' href="'           . $mediaobject->getHtmlUrlDirect('main')    . '"' .
-						' type="'           . $mediaobject->mimeType()                  . '"' .
-						' data-obje-url="'  . $mediaobject->getHtmlUrl()                . '"' .
-						' data-obje-note="' . htmlspecialchars($mediaobject->getNote()) . '"' .
-						' data-obje-height="'	. $obje_height								. '"' .
-						' data-title="'     . strip_tags($mediaobject->getFullName())   . '"' .
-						'><img src="data:image/jpeg;base64,'.base64_encode($thumb).'" title="'.$mediatitle.'" alt="'.$mediatitle.'"/></a>';
+						' class="'          	. 'gallery'                         			 	. '"' .
+						' href="'           	. $mediaobject->getHtmlUrlDirect('main')    		. '"' .
+						' type="'           	. $mediaobject->mimeType()                  		. '"' .
+						' data-obje-url="'  	. $mediaobject->getHtmlUrl()                		. '"' .
+						' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
+						' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
+						' data-title="'     	. strip_tags($mediaobject->getFullName())   		. '"' .
+						'><img src="data:image/jpeg;base64,'.base64_encode($thumb).'" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
 				return $html;	
 			}		
 		}
@@ -1432,5 +1532,5 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				newSheet.setAttribute("href","'.$css.'");
 				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			}';
-	}		
+	}
 }
