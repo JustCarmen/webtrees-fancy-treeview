@@ -834,26 +834,23 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			unset($generation);
 			
 			foreach ($pids as $pid) {
-				$descendants[] = $this->get_next_gen($pid);
+				$next_gen[] = $this->get_next_gen($pid);
 			}
 			
-			foreach($descendants as $value) {
-				if (!empty($value)) {
-					if(is_array($value)) {
-						foreach ($value as $pid) {
-							$generation[] = $pid;
+			foreach($next_gen as $descendants) {
+				if(count($descendants) > 0) {
+					foreach ($descendants as $descendant) {
+						if($this->options('show_singles') == true || $descendant['desc'] == 1) {
+							$generation[] = $descendant['pid'];
 						}
 					}
-					else {
-						$generation[] = $value;	
-					}	
 				}
 			}
-			
+				
 			if(!empty($generation)) {
 				$gen++;
 				$html .= $this->print_generation($generation, $gen);
-				unset($pids, $descendants);
+				unset($next_gen, $descendants, $pids);
 			}
 			else {
 				break;
@@ -868,7 +865,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$html = '<li class="block generation-block" data-gen="'.$i.'" data-pids="'.implode('|', $generation).'"> 
 					<div class="blockheader ui-state-default">'.WT_I18N::translate('Generation').' '.$i.'</div>';
 							
-		if ($this->check_privacy($generation, true) == true) {
+		if ($this->check_privacy($generation, true)) {
 			$html .= '<div class="blockcontent private">'.WT_I18N::translate('The details of this generation are private.').'</div>';	
 		}
 		
@@ -898,6 +895,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}	
 	
 	private function print_person($person) {
+		global $SHOW_PRIVATE_RELATIONSHIPS; 
+		
 		if($person->CanShow()) {				
 			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs')).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'">'.$person->getFullName().'</a>';
 			if($this->options('show_occu') == true) $html .= $this->print_fact($person, 'OCCU');
@@ -909,9 +908,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
          	* First, determine the true number of spouses by checking the family gedcom
         	*/
             $spousecount = 0;
-            foreach ($person->getSpouseFamilies() as $i => $family) {
+            foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
                 $spouse = $family->getSpouse($person);
-                if ($spouse && $family->getMarriage()) $spousecount++;
+                if ($spouse && $spouse->canShow() && $this->getMarriage($family)) $spousecount++;
             }
             /*
              * Now iterate thru spouses
@@ -921,9 +920,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
              */
 			if($spousecount > 0) {
 				$spouseindex = 0;
-				foreach ($person->getSpouseFamilies() as $i => $family) {
+				foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
 					$spouse = $family->getSpouse($person);
-					if ($spouse && $family->getMarriage()) {
+					if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 						$html .= $this->print_spouse($family, $person, $spouse, $spouseindex, $spousecount);
 						$spouseindex++;
 					}
@@ -933,7 +932,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$html .= '</div>';	
 			
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
-			foreach ($person->getSpouseFamilies() as $family) {
+			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
 				$spouse = $family->getSpouse($person);
 				$html .= $this->print_children($family, $person, $spouse);
 			}
@@ -941,13 +940,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			return $html;
 		} 
 		else {
-			return WT_I18N::translate('The details of this family are private.');
+			if ($SHOW_PRIVATE_RELATIONSHIPS) return WT_I18N::translate('The details of this family are private.');
 		}
 	}
 		
-	private function print_spouse($family, $person, $spouse, $i, $count) {
-		$marrdate = $family->getMarriageDate();		
-		$marrplace = $family->getMarriagePlace();
+	private function print_spouse($family, $person, $spouse, $i, $count) {		
 		
 		$html = ' ';
 		
@@ -970,7 +967,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$person->getSex() == 'M' ? $html .= WT_I18N::translate('He married') : $html .= WT_I18N::translate('She married');	
 		}
 			
-		$spouse->CanShow() ? $html .= ' <a href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>' : $html .= $spouse->getFullName();
+		$html .= ' <a href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>';
 		
 		// Add relationship note
 		if($this->options('check_relationship')) {
@@ -980,13 +977,20 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		
 		$html .= $this->print_parents($spouse);
 		
-		if($marrdate && $marrdate->isOK()) $html .= $this->print_date($marrdate);	
-		if($marrplace->getGedcomName()) $html .= $this->print_place($marrplace->getGedcomName());
-		$html .= $this->print_lifespan($spouse, true);	
-		
-		$div = $family->getFirstFact('DIV');
-		if($div) $html .= $person->getFullName() . ' ' . WT_I18N::translate('and') . ' ' . $spouse->getFullName() .  ' ' . WT_I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
-		
+		if(!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
+			$html .= '.';
+		}
+		else {		
+		// use the facts below only on none private records.
+			$marrdate = $family->getMarriageDate();		
+			$marrplace = $family->getMarriagePlace();
+			if($marrdate && $marrdate->isOK()) $html .= $this->print_date($marrdate);	
+			if($marrplace->getGedcomName()) $html .= $this->print_place($marrplace->getGedcomName());
+			$html .= $this->print_lifespan($spouse, true);	
+			
+			$div = $family->getFirstFact('DIV');
+			if($div) $html .= $person->getFullName() . ' ' . WT_I18N::translate('and') . ' ' . $spouse->getFullName() .  ' ' . WT_I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
+		};		
 		return $html;	
 	}		
 		
@@ -995,7 +999,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$children = $family->getChildren();	
 		$html = '';	
 		if($children) {
-			if ($this->check_privacy($children) == true) {
+			if ($this->check_privacy($children)) {
 				$html .= '<div class="children">'.$person->getFullName();					
 				if($spouse && $spouse->CanShow()) {
 					$html .= ' '.WT_I18N::translate('and').' '.$spouse->getFullName().' '.WT_I18N::translate_c('PLURAL', 'had');
@@ -1031,11 +1035,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				foreach ($children as $child) {		
 					$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName();
 					if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span></a>';
-					if ($this->has_family($child)) {
-						$child_family = $this->get_family($child);
-						if ($child_family->CanShow()) {
+					
+					$child_family = $this->get_family($child);
+					if ($child->canShow() && $child_family) {
 							$html .= ' - <a class="scroll" href="#'.$child_family->getXref().'"></a>';
-						}
 					}
 					else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
 						if($this->options('show_singles') == true) $html .= ' - <a class="scroll" href="#S'.$child->getXref().'"></a>';
@@ -1257,38 +1260,23 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 
 	private function get_family($person) {
-		foreach ($person->getSpouseFamilies() as $family) {
+		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
 			return $family;
 		}
 	}
 	
 	private function get_next_gen($pid) {
-		$person = $this->get_person($pid);	
+		$person = $this->get_person($pid);
 		foreach($person->getSpouseFamilies() as $family) {
 			$children = $family->getChildren();
 			if($children) {
-				foreach ($children as $child) {
-					$descendants = $this->has_family($child);
-					if(!empty($descendants)) {
-						$c[] = $descendants;			
-					}
-					else {
-						if($this->options('show_singles') == true) {
-							$c[] = $child->getXref(); 
-						}
-					}
+				foreach ($children as $key => $child) {
+					$ng[$key]['pid'] = $child->getXref();
+					$child->getSpouseFamilies(WT_PRIV_HIDE) ? $ng[$key]['desc'] = 1 : $ng[$key]['desc'] = 0;
 				}
 			}
 		};
-		if (isset($c)) return $c;
-	}
-	
-	private function has_family($person){ // not checking for children to retrieve married couples without known children in next generation
-		foreach ($person->getSpouseFamilies() as $family) {	
-			$pid = $person->getXref();
-			break;
-		}		
-		if(isset($pid)) return $pid;
+		if (isset($ng)) return $ng;
 	}
 	
 	// check if a person has parents in the same generation
@@ -1344,16 +1332,23 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}		
 	}
 		
-	private function check_privacy($persons, $xref = false) {
+	private function check_privacy($record, $xrefs = false) {
 		$count = 0;
-		foreach ($persons as $pid) {
-			$xref == true ? $person = $this->get_person($pid) : $person = $pid;
+		foreach ($record as $person) {
+			if($xrefs) $person = $this->get_person($person);
 			if($person->CanShow()) {
 				$count++;		
 			}
 		}
 		if ($count < 1) return true;
-		else return false;
+	}
+	
+	// Determine if the family parents are married. Don't use the default function because we want to privatize the record but display the name and the parents of the spouse if the spouse him/herself is not private.
+	public function getMarriage($family) {
+		$record = WT_GedcomRecord::getInstance($family->getXref());
+		foreach ($record->getFacts('MARR', false, WT_PRIV_HIDE) as $fact) {
+			return true;	
+		}
 	}
 	
 	// ************************************************* START OF MENU ********************************* //
