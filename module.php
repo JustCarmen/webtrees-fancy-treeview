@@ -41,16 +41,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					new Zend_Translate('gettext', WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.mo', WT_LOCALE)
 				);
 			}
-			if (file_exists(WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.php')) {
-				Zend_Registry::get('Zend_Translate')->addTranslation(
-					new Zend_Translate('array', WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.php', WT_LOCALE)
-				);
-			}
-			if (file_exists(WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.csv')) {
-				Zend_Registry::get('Zend_Translate')->addTranslation(
-					new Zend_Translate('csv', WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.csv', WT_LOCALE)
-				);
-			}
 		}
 		
 		// delete the temporary files from the pdf/tmp folder on startup
