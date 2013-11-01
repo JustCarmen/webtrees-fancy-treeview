@@ -857,7 +857,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 					
 				// add theme js
-				$html = $this->js();				
+				$html = $this->includeJs();				
 				
 				// Start page content	
 				$html .= '
@@ -1458,7 +1458,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			if ($SEARCH_SPIDER) return null;
 			
 			// Quick loading of css to prevent page flickering.
-			echo $this->css();
+			$this->IncludeCss();
 			
 			foreach ($FTV_SETTINGS as $FTV_ITEM) {
 				if($FTV_ITEM['TREE'] == WT_GED_ID && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
@@ -1483,7 +1483,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 	}
 	
-	private function css() {
+	private function includeCss() {
 		$module_dir = WT_STATIC_URL.WT_MODULES_DIR.$this->getName().'/';
 		if (file_exists($module_dir.WT_THEME_URL.'menu.css')) {
 			$css = $this->getScript($module_dir.WT_THEME_URL.'menu.css');
@@ -1497,10 +1497,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				$css .= $this->getScript($module_dir.WT_THEME_URL.'style.css');
 			}		
 		}			
-		return '<script>'.$css.'</script>';
+		echo $css;
 	}
 	
-	private function js() {
+	private function includeJs() {
 		global $controller;
 		// some files needs an extra js script
 		$theme = basename(WT_THEME_DIR);
@@ -1510,17 +1510,17 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 	
 	private function getScript($css) {
-		// To prevent page flickering we must load the css asap. So we cannot use jQuery("head").append(<link rel="stylesheet" ... 
-		// as jQuery is not loaded at this time
 		return
-			'if (document.createStyleSheet) {
-				document.createStyleSheet("'.$css.'"); // For Internet Explorer
-			} else {
-				var newSheet=document.createElement("link");
-				newSheet.setAttribute("rel","stylesheet");
-				newSheet.setAttribute("type","text/css");
-				newSheet.setAttribute("href","'.$css.'");
-				document.getElementsByTagName("head")[0].appendChild(newSheet);
-			}';
+			'<script>
+				if (document.createStyleSheet) {
+					document.createStyleSheet("'.$css.'"); // For Internet Explorer
+				} else {
+					var newSheet=document.createElement("link");
+					newSheet.setAttribute("rel","stylesheet");
+					newSheet.setAttribute("type","text/css");
+					newSheet.setAttribute("href","'.$css.'");
+					document.getElementsByTagName("head")[0].appendChild(newSheet);
+				}
+			</script>';
 	}
 }
