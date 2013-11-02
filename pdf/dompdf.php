@@ -22,8 +22,8 @@ $html =
   
 
 $dompdf = new DOMPDF();
-$dompdf->set_base_path(WT_MODULES_DIR.$this->getName().'/'); // works only on the template file (set absolute links for images and all other links)
-$dompdf->set_paper('a3', 'portrait');
+$dompdf->set_base_path(WT_MODULES_DIR.$this->getName().'/'); // works only for the template file (set absolute links for images and all other links)
+$dompdf->set_paper('a4', 'portrait');
 $dompdf->load_html($html);
 $dompdf->render();
 
@@ -35,4 +35,4 @@ $headerpos_right	= $canvas->get_width() - $canvas->get_text_width($headertext_ri
 
 $canvas->page_text(20, 10, $headertext_left, $font, 9, array(0,0,0));
 $canvas->page_text($headerpos_right, 10, $headertext_right, $font, 9, array(0,0,0));
-$dompdf->stream(WT_Filter::get('title'),array('Attachment'=>0));	
+$dompdf->stream(WT_Filter::get('title'));	

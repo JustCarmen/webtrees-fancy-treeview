@@ -767,9 +767,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					$controller->addInlineJavascript('			
 						// convert page to pdf
 						jQuery("#pdf").click(function(e){
-							if (jQuery("#btn_next").length > 0) var msg = confirm("'.WT_I18N::translate('The pdf contains only visible generation blocks.').'");
-							if (msg == true || jQuery("#btn_next").length == 0) {
-								var content = jQuery("#content").clone();					
+							var msg = confirm("'.WT_I18N::translate('A pdf file will be created from the current page.\nThis process may take a few moments.').'");
+							if (msg == true) {
+								var content = jQuery("#content").clone();
 								
 								// replace the default lifespan hyphen with a shorter one with a space before so dompdf can render it. 
 								// Remove the title spans at the same time by just returning the text (in stead of the html).
@@ -818,7 +818,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 									success: function() {
 										window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
 									}
-								});	
+								});
 							}
 							else {
 								return false;
