@@ -23,4 +23,5 @@ if (!file_exists($filename)) {
 	
 	// upload the images to the tmp direcotry
 	file_put_contents($filename, $data);
+	@chmod($filename, WT_PERM_FILE);
 }

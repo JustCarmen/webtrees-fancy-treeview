@@ -18,8 +18,6 @@ $html =
 	</head>
 	<body>'.file_get_contents($filename).'</body>
   </html>';
-  
-  
 
 $dompdf = new DOMPDF();
 $dompdf->set_base_path(WT_MODULES_DIR.$this->getName().'/'); // works only for the template file (set absolute links for images and all other links)
@@ -27,6 +25,7 @@ $dompdf->set_paper('a4', 'portrait');
 $dompdf->load_html($html);
 $dompdf->render();
 
+// create the page
 $canvas				= $dompdf->get_canvas();
 $font 				= Font_Metrics::get_font("helvetica", "normal");
 $headertext_left 	= WT_SERVER_NAME.substr(WT_SCRIPT_PATH, 0, -1);
@@ -35,4 +34,6 @@ $headerpos_right	= $canvas->get_width() - $canvas->get_text_width($headertext_ri
 
 $canvas->page_text(20, 10, $headertext_left, $font, 9, array(0,0,0));
 $canvas->page_text($headerpos_right, 10, $headertext_right, $font, 9, array(0,0,0));
+
+// pdf output
 $dompdf->stream(WT_Filter::get('title'));	

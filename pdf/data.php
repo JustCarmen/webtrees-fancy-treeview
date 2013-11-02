@@ -19,7 +19,7 @@ if (!is_dir(dirname($filename))) {
 if(!file_exists($filename)) {
 	$handle = fopen($filename, 'w');
 	fclose($handle);
-	chmod($filename, WT_PERM_FILE);
+	@chmod($filename, WT_PERM_FILE);
 }
 
 // Let's make sure the file exists and is writable first.
