@@ -767,9 +767,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					$controller->addInlineJavascript('			
 						// convert page to pdf
 						jQuery("#pdf").click(function(e){
-							var msg = confirm("'.WT_I18N::translate('A pdf file will be created from the current page.\nThis process may take a few moments.').'");
-							if (msg == true) {
-								var content = jQuery("#content").clone();
+							if (jQuery("#btn_next").length > 0) var msg = confirm("'.WT_I18N::translate('The pdf contains only visible generation blocks.').'");
+							if (msg == true || jQuery("#btn_next").length == 0) {
+								var content = jQuery("#content").clone();					
 								
 								// replace the default lifespan hyphen with a shorter one with a space before so dompdf can render it. 
 								// Remove the title spans at the same time by just returning the text (in stead of the html).
@@ -818,7 +818,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 									success: function() {
 										window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
 									}
-								});
+								});	
 							}
 							else {
 								return false;
@@ -1457,8 +1457,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		if(!empty($FTV_SETTINGS)) {			
 			if ($SEARCH_SPIDER) return null;
 			
-			// Quick loading of css to prevent page flickering.
-			$this->IncludeCss();
+			// load the module stylesheets
+			echo $this->getStylesheet();
 			
 			foreach ($FTV_SETTINGS as $FTV_ITEM) {
 				if($FTV_ITEM['TREE'] == WT_GED_ID && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
@@ -1483,21 +1483,21 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 	}
 	
-	private function includeCss() {
+	private function getStylesheet() {
 		$module_dir = WT_STATIC_URL.WT_MODULES_DIR.$this->getName().'/';
 		if (file_exists($module_dir.WT_THEME_URL.'menu.css')) {
-			$css = $this->getScript($module_dir.WT_THEME_URL.'menu.css');
+			$stylesheet = $this->includeCss($module_dir.WT_THEME_URL.'menu.css');
 		}
 		else {
 			return false;
 		}
 		if(WT_Filter::get('mod') == $this->getName()) {
-			$css .= $this->getScript($module_dir.'themes/base/style.css');
+			$stylesheet .= $this->includeCss($module_dir.'themes/base/style.css');
 			if (file_exists($module_dir.WT_THEME_URL.'style.css')) {
-				$css .= $this->getScript($module_dir.WT_THEME_URL.'style.css');
+				$stylesheet .= $this->includeCss($module_dir.WT_THEME_URL.'style.css');
 			}		
 		}			
-		echo $css;
+		return $stylesheet;
 	}
 	
 	private function includeJs() {
@@ -1509,16 +1509,16 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 	}
 	
-	private function getScript($css) {
+	private function includeCss($css) {
 		return
 			'<script>
 				if (document.createStyleSheet) {
 					document.createStyleSheet("'.$css.'"); // For Internet Explorer
 				} else {
 					var newSheet=document.createElement("link");
-					newSheet.setAttribute("rel","stylesheet");
-					newSheet.setAttribute("type","text/css");
 					newSheet.setAttribute("href","'.$css.'");
+					newSheet.setAttribute("type","text/css");
+					newSheet.setAttribute("rel","stylesheet");
 					document.getElementsByTagName("head")[0].appendChild(newSheet);
 				}
 			</script>';
