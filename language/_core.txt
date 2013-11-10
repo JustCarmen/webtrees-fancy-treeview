@@ -92,6 +92,10 @@ msgstr ""
 msgid "He died"
 msgstr ""
 
+#: modules_v3\fancy_treeview/module.php:881
+msgid "next"
+msgstr ""
+
 #: modules_v3\fancy_treeview/module.php:1047
 msgid "Birth"
 msgstr ""
@@ -106,4 +110,12 @@ msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1055
 msgid "Mother"
+msgstr ""
+
+#: modules_v3\fancy_treeview/pdf/dompdf.php:33
+msgid "Page"
+msgstr ""
+
+#: modules_v3\fancy_treeview/pdf/dompdf.php:33
+msgid "of"
 msgstr ""

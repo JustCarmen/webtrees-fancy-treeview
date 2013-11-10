@@ -583,7 +583,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform')).'
 					</div>	
 					<div class="field">	
-						<label class="label">'.WT_I18N::translate('Show PDF Icon?').'</label>'.
+						<label class="label">'.WT_I18N::translate('Show PDF icon?').'</label>'.
 						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon')).'
 					</div>						
 				</div>							
