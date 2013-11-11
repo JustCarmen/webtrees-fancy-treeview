@@ -272,7 +272,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						$pid = $indis[0]->getXref();
 					}
 					else {
-						$this->addMessage($controller, 'error', WT_I18N::translate('Error: The surname you entered doesn\'t exist in this tree.'));
+						$this->addMessage($controller, 'error', WT_I18N::translate('Error: The surname you entered doesn’t exist in this tree.'));
 					}
 				}
 				
@@ -288,7 +288,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						}
 					}
 					else {
-						$this->addMessage($controller, 'error', WT_I18N::translate('Error: An individual with ID %s doesn\'t exist in this tree.', $root_id));
+						$this->addMessage($controller, 'error', WT_I18N::translate('Error: An individual with ID %s doesn’t exist in this tree.', $root_id));
 					}							
 				}
 				
@@ -361,7 +361,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 									}
 								}
 								else {
-									$this->addMessage($controller, 'error', WT_I18N::translate('Error: An individual with ID %s doesn\'t exist in this tree.', $new_pid));
+									$this->addMessage($controller, 'error', WT_I18N::translate('Error: An individual with ID %s doesn’t exist in this tree.', $new_pid));
 								}
 							}
 						}

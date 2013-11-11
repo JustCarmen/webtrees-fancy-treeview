@@ -27,7 +27,7 @@ if (!defined('WT_WEBTREES') || !defined('WT_SCRIPT_NAME') || WT_SCRIPT_NAME!='he
 }
 
 switch ($help) {
-	
+	 
 case 'add_surname':
 	$title=WT_I18N::translate('Add a surname');
 	$text=WT_I18N::translate(	'<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p>'.
@@ -38,19 +38,19 @@ case 'add_surname':
 case 'edit_surname':
 	$title=WT_I18N::translate('Edit the surname (for display in the menu)');
 	$text=WT_I18N::translate(	'<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p>'.
-								'<p>If you click on the surname, an \'edit\'-field appears where you can change the surname. Click on the \'save\' button to save your input.</p>'.
-								'<p>Note: this option is not available when the option \'%s\' is checked.</p>', WT_I18N::translate('Use fullname in menu'));
+								'<p>If you click on the surname, an “edit”-field appears where you can change the surname. Click on the “save” button to save your input.</p>'.
+								'<p>Note: this option is not available when the option “%s” is checked.</p>', WT_I18N::translate('Use fullname in menu'));
 	break;
 case 'numblocks':
 	$title=WT_I18N::translate('Number of generation blocks to show');
 	$text=WT_I18N::translate(	'<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p>'.
 								'<p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p>'.
-								'<p>Clicking on a \'follow\' link in the last visible generation block, will also load the next set of generation blocks.</p>' );
+								'<p>Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.</p>' );
 	break;
 case 'check_relationship':
 	$title=WT_I18N::translate('Check relationship between partners');
 	$text=WT_I18N::translate(	'<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p>'.
-								'<p>If a relationship between the partners is found, a text will appear between brackets after the spouses\' name to indicate the relationship.</p>'.
+								'<p>If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship.</p>'.
 								'<p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>');
 	break;
 case 'show_singles':
@@ -60,7 +60,7 @@ case 'show_singles':
 	break;	
 case 'select_country':
 	$title=WT_I18N::translate('Select your country');
-	$text=WT_I18N::translate(	'<p>If you have ticked the \'Show places\' option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.
-								'<p>If you don\'t select a country then all countries will be shown, including your own.</p>');
+	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.
+								'<p>If you don’t select a country then all countries will be shown, including your own.</p>');
 	break;
 }
