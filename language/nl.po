@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.2\n"
-"POT-Creation-Date: 2013-11-10 13:37+0100\n"
-"PO-Revision-Date: 2013-11-10 13:49+0100\n"
+"POT-Creation-Date: 2013-11-11 23:31+0100\n"
+"PO-Revision-Date: 2013-11-12 00:36+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -28,26 +28,26 @@ msgid "<p>Here you can enter a surname. The script will automatically search for
 msgstr "<p>Hier kunt u een achternaam invoeren. Het script zoekt automatisch de oudste persoon met die achternaam.</p><p>Deze persoon fungeert als root persoon voor deze familietak. Optioneel kunt u een fonetische zoekopdracht uitvoeren door één of beide fonetische algoritmes aan te vinken.</p><p>Nadat het zoeken is voltooid, heeft u de mogelijkheid om het ID van de root persoon te wijzigen. U kunt zoveel achternamen invoeren als u wilt. Voor iedere achternaam wordt een menu-link en pagina aangemaakt.</p><p>Met de methode slepen en loslaten van de tabelrijen, die verschijnt nadat u de eerste achternaam heeft ingevoerd, kunt u de paginavolgorde wijzigen."
 
 #: modules_v3\fancy_treeview/help_text.php:63
-msgid "<p>If you have ticked the 'Show places' option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don't select a country then all countries will be shown, including your own.</p>"
-msgstr "<p>Wanneer u de 'Toon plaatsen' optie heeft aangevinkt, kunt u hier uw eigen land invoeren. De volledige plaatsnamen worden getoond op de Fancy Tree View pagina's, maar waneer een plaats de naam van uw thuisland bevat, wordt deze naam weggelaten.</p><p>Als u hier geen keuze maakt voor een bepaald land, worden alle landen getoond, inclusief uw thuisland."
+msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
+msgstr "<p>Wanneer u de “Toon plaatsen” optie heeft aangevinkt, kunt u hier uw eigen land invoeren. De volledige plaatsnamen worden getoond op de Fancy Tree View pagina’s, maar waneer een plaats de naam van uw thuisland bevat, wordt deze naam weggelaten.</p><p>Als u hier geen keuze maakt voor een bepaald land, worden alle landen getoond, inclusief uw thuisland."
 
 # %s = the menu option 'Use fullname in menu'
 #: modules_v3\fancy_treeview/help_text.php:40
 #, php-format
-msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an 'edit'-field appears where you can change the surname. Click on the 'save' button to save your input.</p><p>Note: this option is not available when the option '%s' is checked.</p>"
-msgstr "<p>De getoonde achternaam is de achternaam die wordt gebruikt in het menu. Het is mogelijk om de getoonde achternaam te wijzigen in een beter geschikte naam.</p><p>Als u op de achternaam klikt, verschijnt er een 'wijzig'-veld waarin u de achternaam kunt aanpassen. Klik op de button 'opslaan' om uw invoer op te slaan.</p><p>Let op: Deze optie is niet beschikbaar als de optie '%s' is aangevinkt.</p>"
+msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an “edit”-field appears where you can change the surname. Click on the “save” button to save your input.</p><p>Note: this option is not available when the option “%s” is checked.</p>"
+msgstr "<p>De getoonde achternaam is de achternaam die wordt gebruikt in het menu. Het is mogelijk om de getoonde achternaam te wijzigen in een beter geschikte naam.</p><p>Als u op de achternaam klikt, verschijnt er een “wijzig”-veld waarin u de achternaam kunt aanpassen. Klik op de button “opslaan” om uw invoer op te slaan.</p><p>Let op: Deze optie is niet beschikbaar als de optie “%s” is aangevinkt.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:46
-msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a 'follow' link in the last visible generation block, will also load the next set of generation blocks.</p>"
-msgstr "<p>Deze optie is vooral handig voor grote stambomen. Wanneer u merkt dat pagina's traag laden, kunt u hier het aantal generaties dat tegelijkertijd wordt geladen op een lager niveau instellen.</p><p>Onder het laatste generatie block verschijnt een knop om de volgende set generatie blokken toe te voegen. De nieuwe blokken worden toegevoegd aan de al geladen blokken.</p><p>De volgende set generatie blokken wordt ook geladen wanneer u klikt op een 'volg' link in het laatste zichtbare generatie blok.</p>"
+msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.</p>"
+msgstr "<p>Deze optie is vooral handig voor grote stambomen. Wanneer u merkt dat pagina’s traag laden, kunt u hier het aantal generaties dat tegelijkertijd wordt geladen op een lager niveau instellen.</p><p>Onder het laatste generatie block verschijnt een knop om de volgende set generatie blokken toe te voegen. De nieuwe blokken worden toegevoegd aan de al geladen blokken.</p><p>De volgende set generatie blokken wordt ook geladen wanneer u klikt op een “volg” link in het laatste zichtbare generatie blok.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:58
 msgid "<p>Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children.</p><p>With this option turned on, every child of a family will be shown in a detailed way in the next generation block.</p>"
 msgstr "<p>Zet deze optie aan als u alleenstaande personen wilt tonen in de generatie blokken. Alleenstaande personen zijn personen zonder partner en kinderen.</p><p>Wanneer deze optie is aangevinkt wordt elk kind uit een familie in het volgende generatie blok getoond op een gedetailleerde manier.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:52
-msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses' name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
-msgstr "<p>Wanneer u deze optie aanzet, controleert het script of een (getrouwd) koppel dezelfde voorouders heeft.</p><p>Als een verwantschap tussen de partners is gevonden, verschijnt er een tekst tussen haakjes achter de naam van de partner om de relatie aan te geven.</p><p>Let op: Deze optie kan er voor zorgen dat pagina's trager laden. Wanneer u dit merkt, stel dan het aantal generatie blokken dat tegelijkertijd moet worden geladen in op een lager niveau (zie de vorige optie).</p>"
+msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
+msgstr "<p>Wanneer u deze optie aanzet, controleert het script of een (getrouwd) koppel dezelfde voorouders heeft.</p><p>Als een verwantschap tussen de partners is gevonden, verschijnt er een tekst tussen haakjes achter de naam van de partner om de relatie aan te geven.</p><p>Let op: Deze optie kan er voor zorgen dat pagina’s trager laden. Wanneer u dit merkt, stel dan het aantal generatie blokken dat tegelijkertijd moet worden geladen in op een lager niveau (zie de vorige optie).</p>"
 
 #: modules_v3\fancy_treeview/module.php:67
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way"
@@ -85,7 +85,7 @@ msgstr "Wijzig de achternaam (voor weergave in het menu)"
 #: modules_v3\fancy_treeview/module.php:291
 #: modules_v3\fancy_treeview/module.php:364
 #, php-format
-msgid "Error: An individual with ID %s doesn't exist in this tree."
+msgid "Error: An individual with ID %s doesn’t exist in this tree."
 msgstr "Fout: Een persoon met ID %s bestaat niet in deze stamboom."
 
 #: modules_v3\fancy_treeview/module.php:318
@@ -102,7 +102,7 @@ msgid "Error: The root person you are trying to add has no partner and/or childr
 msgstr "Fout: De startpersoon die u probeert toe te voegen heeft geen partner en/of kinderen. Het is niet mogelijk om deze persoon als startpersoon in te stellen."
 
 #: modules_v3\fancy_treeview/module.php:275
-msgid "Error: The surname you entered doesn't exist in this tree."
+msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Fout: De achternaam die u heeft ingevoerd komt niet voor in deze stamboom."
 
 #: modules_v3\fancy_treeview/module.php:544
@@ -314,7 +314,7 @@ msgid "were divorced"
 msgstr "zijn gescheiden"
 
 #~ msgid "<p>The text in this column appears as a submenu link in the Tree View menu. Click on the text to change it.</p>"
-#~ msgstr "<p>De tekst in deze kolom verschijnt als submenu link in het menu 'Stamboom overzicht'. Klik op de tekst om deze te wijzigen.</p>"
+#~ msgstr "<p>De tekst in deze kolom verschijnt als submenu link in het menu “Stamboom overzicht”. Klik op de tekst om deze te wijzigen.</p>"
 
 #~ msgid "All generations"
 #~ msgstr "Alle generaties"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.2\n"
-"POT-Creation-Date: 2013-11-10 13:37+0100\n"
-"PO-Revision-Date: 2013-11-10 13:50+0100\n"
+"POT-Creation-Date: 2013-11-11 23:31+0100\n"
+"PO-Revision-Date: 2013-11-12 00:34+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -28,17 +28,17 @@ msgid "<p>Here you can enter a surname. The script will automatically search for
 msgstr "<p>Hier müssen Sie den Nachnamen eintragen. Das Skript sucht automatisch nach der ältesten Person mit diesem Namen.</p><p>Diese Person dient dann als Startperson für den gewünschten Familienzweig. Sie können durch die entsprechende Auswahl auch eine oder beide der phonetischen Suchmethoden benutzen.</p><p>Nach erfolgreicher Suche können Sie die ID für die Startperson auch noch ändern; Sie können beliebig viele Namen eintragen. Für jeden Namen wird eine Auswahl im Menu und eine eigene Seite erzeugt. </p><p>Die angezeigten Menueinträge können durch einfaches Verschieben mit dem Kreuz beliebig umsortiert werden.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:63
-msgid "<p>If you have ticked the 'Show places' option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don't select a country then all countries will be shown, including your own.</p>"
-msgstr "<p>Wenn Sie die Auswahl 'Orte ausgeben' markiert haben, können Sie hier ein Land (in der Regel das Heimatland) angeben. Dessen Ausgabe wird dann bei der Ortsanzeige unterdrückt; bei allen anderen Ländern wird aber weiterhin das Land mit ausgegeben.</p><p>Wenn Sie kein Land auswählen, werden alle Länder ausgegeben.</p>"
+msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
+msgstr "<p>Wenn Sie die Auswahl “Orte ausgeben” markiert haben, können Sie hier ein Land (in der Regel das Heimatland) angeben. Dessen Ausgabe wird dann bei der Ortsanzeige unterdrückt; bei allen anderen Ländern wird aber weiterhin das Land mit ausgegeben.</p><p>Wenn Sie kein Land auswählen, werden alle Länder ausgegeben.</p>"
 
 # %s = the menu option 'Use fullname in menu'
 #: modules_v3\fancy_treeview/help_text.php:40
 #, php-format
-msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an 'edit'-field appears where you can change the surname. Click on the 'save' button to save your input.</p><p>Note: this option is not available when the option '%s' is checked.</p>"
-msgstr "<p>Der angezeigte Nachname wird im Menü verwendet und kann von Ihnen angepasst werden.</p><p>Wenn Sie auf den Nachnamen klicken, öffnet sich ein 'Bearbeitungs'-Feld zur Änderung. Klicken Sie auf die 'Speichern' Schaltfläche, um Ihre Eingabe zu speichern.</p><p>Achtung: Diese Option ist nicht verfügbar, wenn die Option '%s' ausgewählt ist.</p>"
+msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an “edit”-field appears where you can change the surname. Click on the “save” button to save your input.</p><p>Note: this option is not available when the option “%s” is checked.</p>"
+msgstr "<p>Der angezeigte Nachname wird im Menü verwendet und kann von Ihnen angepasst werden.</p><p>Wenn Sie auf den Nachnamen klicken, öffnet sich ein “Bearbeitungs”-Feld zur Änderung. Klicken Sie auf die “Speichern” Schaltfläche, um Ihre Eingabe zu speichern.</p><p>Achtung: Diese Option ist nicht verfügbar, wenn die Option “%s” ausgewählt ist.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:46
-msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a 'follow' link in the last visible generation block, will also load the next set of generation blocks.</p>"
+msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.</p>"
 msgstr ""
 
 #: modules_v3\fancy_treeview/help_text.php:58
@@ -46,7 +46,7 @@ msgid "<p>Turn this option on if you want to show single persons in the generati
 msgstr "<p>Aktivieren Sie diese Option, wenn Sie Einzelpersonen im Generationen-Block anzeigen wollen. Einzelpersonen sind Personen ohne Partner und Kinder.</p><p>Wenn diese Option aktiviert ist, wird jedes Kind einer Familie in detaillierter Weise im Block der nächsten Generation angezeigt.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:52
-msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses' name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
+msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:67
@@ -85,7 +85,7 @@ msgstr "Nachname bearbeiten (zur Anzeige im Menü)"
 #: modules_v3\fancy_treeview/module.php:291
 #: modules_v3\fancy_treeview/module.php:364
 #, php-format
-msgid "Error: An individual with ID %s doesn't exist in this tree."
+msgid "Error: An individual with ID %s doesn’t exist in this tree."
 msgstr "Fehler: Die von Ihnen eingegebene ID %s existiert in diesem Stammbaum nicht."
 
 #: modules_v3\fancy_treeview/module.php:318
@@ -102,7 +102,7 @@ msgid "Error: The root person you are trying to add has no partner and/or childr
 msgstr "Fehler: Die eingegebene Startperson hat keinen Partner und/oder Kinder. Sie kann nicht als Startperson verwendet werden."
 
 #: modules_v3\fancy_treeview/module.php:275
-msgid "Error: The surname you entered doesn't exist in this tree."
+msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Fehler: Der gesuchte Name existiert in diesem Stammbaum nicht."
 
 #: modules_v3\fancy_treeview/module.php:544
