@@ -8,6 +8,12 @@ if (!defined('WT_WEBTREES')) {
 require_once(WT_MODULES_DIR.$this->getName().'/pdf/dompdf-0.6.0/dompdf_config.inc.php');
 Zend_Loader_Autoloader::getInstance()->pushAutoloader('DOMPDF_autoload','');
 
+// be sure the font directory is writable
+$fontsDir = WT_MODULES_DIR.$this->getName().'/pdf/dompdf-0.6.0/lib/fonts';
+if (is_dir($fontsDir) && !is_writable($fontsDir)) {
+	@chmod($fontsDir, WT_PERM_EXE);
+}
+
 $filename = WT_MODULES_DIR.$this->getName().'/pdf/tmp/data.txt';
 
 $html =
