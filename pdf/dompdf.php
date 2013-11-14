@@ -27,7 +27,7 @@ $dompdf->render();
 
 // create the page
 $canvas				= $dompdf->get_canvas();
-$font 				= Font_Metrics::get_font("helvetica", "normal");
+$font 				= Font_Metrics::get_font("DejaVu Sans", "normal");
 $headertext_left 	= WT_SERVER_NAME.substr(WT_SCRIPT_PATH, 0, -1);
 $headertext_right 	= WT_I18N::translate('Page')." {PAGE_NUM} ".WT_I18N::translate('of')." {PAGE_COUNT} ";
 $headerpos_right	= $canvas->get_width() - $canvas->get_text_width($headertext_right, $font, 9, 0) + 100;

@@ -4,7 +4,7 @@
 */
 
 /* Font */
-body{font-family:'Helvetica';font-size:13pt}
+body{font-family: DejaVu Sans, Helvetica, sans-serif;font-size:13pt}
 
 /* Page */
 #fancy_treeview-page{margin:40px auto; width:90%}
