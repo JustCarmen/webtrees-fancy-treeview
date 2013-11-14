@@ -32,6 +32,7 @@
 #fancy_treeview-page li.family{padding:10px 20px}
 #fancy_treeview-page li.family.private{padding:5px 20px}
 #fancy_treeview-page .parents {margin-bottom:10px}
+#fancy_treeview-page .parents p{margin:0}
 #fancy_treeview-page .children{clear:both}
 #fancy_treeview-page .children p {margin:5px 0}
 #fancy_treeview-page .date{font-size:13px;font-weight:normal}
