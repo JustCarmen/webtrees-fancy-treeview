@@ -769,21 +769,15 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						jQuery("#pdf").click(function(e){
 							if (jQuery("#btn_next").length > 0) var msg = confirm("'.WT_I18N::translate('The pdf contains only visible generation blocks.').'");
 							if (msg == true || jQuery("#btn_next").length == 0) {
-								var content = jQuery("#content").clone();					
-								
-								// replace the default lifespan hyphen with a shorter one with a space before so dompdf can render it. 
-								// Remove the title spans at the same time by just returning the text (in stead of the html).
-								jQuery("li.child .lifespan", content).text(function(index, text){
-									return text.replace("–", " -");
-								});
-								
+								var content = jQuery("#content").clone();
+																						
 								//dompdf does not support ordered list, so we make our own
 								jQuery(".generation-block", content).each(function(index) {
 									var main = (index+1);
 									jQuery(this).find(".generation").each(function(){
 										jQuery(this).find("li.family").each(function(index){
 											var i = (index+1)
-											jQuery(this).find(".parents").prepend("<span class=\"index\">" + main + "." + i + ".</span>");	
+											jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");	
 											jQuery(this).find("li.child").each(function(index) {
 												jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");	
 											});
@@ -802,13 +796,23 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 										async: false
 									});							
 									var url = "'.WT_SERVER_NAME.WT_SCRIPT_PATH.WT_MODULES_DIR.$this->getName().'/pdf/tmp/" + filename;								
-									jQuery(this).attr("src", url).css({"width":jQuery(this).width(), "height":jQuery(this).height()}); // need size as style attribute to  prevent resampling.							
+									jQuery(this).attr("src", url).css({"width":jQuery(this).width(), "height":jQuery(this).height()}); // need size as style attribute to  prevent resampling.					
 								});
-									
+																		
 								// remove or unwrap all elements we do not need in pdf display
 								jQuery("#pdf, form, #btn_next, #error, .hidden, .tooltip-text", content).remove();
-								jQuery("a, span.date", content).contents().unwrap();		
-											
+								jQuery(".generation.private", content).parents(".generation-block").remove();
+								jQuery("a, span.SURN, span.date", content).contents().unwrap();
+								jQuery("a", content).remove() //left-overs	
+								
+								// Turn family blocks into a table for better display in pdf
+								jQuery("li.family", content).each(function(){
+									var obj = jQuery(this);
+									obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
+									obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
+									obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
+								});
+																
 								var newContent = content.html();
 																
 								jQuery.ajax({
@@ -987,7 +991,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		global $SHOW_PRIVATE_RELATIONSHIPS; 
 		
 		if($person->CanShow()) {				
-			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs')).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'">'.$person->getFullName().'</a>';
+			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs')).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'"><p class="desc">'.$person->getFullName().'</a>';
 			if($this->options('show_occu') == true) $html .= $this->print_fact($person, 'OCCU');
 			
 			$html .= $this->print_parents($person).$this->print_lifespan($person);	
@@ -1018,7 +1022,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 			}
 			
-			$html .= '</div>';	
+			$html .= '</p></div>';	
 			
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
 			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
@@ -1089,7 +1093,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$html = '';	
 		if($children) {
 			if ($this->check_privacy($children)) {
-				$html .= '<div class="children">'.$person->getFullName();					
+				$html .= '<div class="children"><p>'.$person->getFullName();					
 				if($spouse && $spouse->CanShow()) {
 					$html .= ' '.WT_I18N::translate('and').' '.$spouse->getFullName().' '.WT_I18N::translate_c('PLURAL', 'had');
 				}
