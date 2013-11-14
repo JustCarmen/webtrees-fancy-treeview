@@ -5,7 +5,7 @@ if (!defined('WT_WEBTREES')) {
 	exit;
 }
 
-require_once(WT_MODULES_DIR.$this->getName().'/pdf/dompdf_0.5.2/dompdf_config.inc.php');
+require_once(WT_MODULES_DIR.$this->getName().'/pdf/dompdf-0.6.0/dompdf_config.inc.php');
 Zend_Loader_Autoloader::getInstance()->pushAutoloader('DOMPDF_autoload','');
 
 $filename = WT_MODULES_DIR.$this->getName().'/pdf/tmp/data.txt';
