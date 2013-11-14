@@ -27,7 +27,7 @@ $html =
 
 $dompdf = new DOMPDF();
 $dompdf->set_base_path(WT_MODULES_DIR.$this->getName().'/'); // works only for the template file (set absolute links for images and all other links)
-$dompdf->set_paper('a4', 'portrait');
+$dompdf->set_paper('a3', 'portrait');
 $dompdf->load_html($html);
 $dompdf->render();
 
