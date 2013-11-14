@@ -1,38 +1,31 @@
-/* Basic style for the Fancy Tree View Pages - this css file is needed for all other themes
+/* Print style for the Fancy Tree View Pages - this css file is used for pdf layout and to print pages.
 /* Do not delete this folder and files.
 ** Copyright (C) 2013 JustCarmen.
 */
 
 /* Font */
-body{font-family: DejaVu Sans, Helvetica, sans-serif;font-size:13pt}
+body{font-family: "DejaVu Sans", Helvetica, sans-serif;font-size:12pt}
 
 /* Page */
-#fancy_treeview-page{margin:40px auto; width:90%}
+#fancy_treeview-page{margin:2em}
 #fancy_treeview-page #page-header{text-align:center}
-#fancy_treeview-page h2 {padding-bottom:10px}
-#fancy_treeview-page #page-body{line-height:1.5em}
-#fancy_treeview-page .generation-block{padding:0}
+#fancy_treeview-page h2 {font-size:16pt}
 
 /* Blockheaders */
-#fancy_treeview-page .blockheader{border:none; border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:0;font-size:16px;font-weight:bold; page-break-after:avoid}
+#fancy_treeview-page .blockheader{border:none; border-bottom-width:1px;border-bottom-style:solid;font-size:14pt;font-weight:bold;margin-top:1.5em;page-break-after:avoid}
 
 /* List */
-#fancy_treeview-page ol {list-style-type:none}
-#fancy_treeview-page li {position: relative;display: block}
-#fancy_treeview-page li:before {margin-left: -4em}
-#fancy_treeview-page li.child {margin-left:1em}
+#fancy_treeview-page ol {list-style-type:none;margin:0;padding:0}
 
 /* family-block */
-#fancy_treeview-page .blockcontent {margin-left:3em;padding:10px 0 10px 40px}
-#fancy_treeview-page .generation.private{padding:10px}
-#fancy_treeview-page li.family{padding:10px 20px}
-#fancy_treeview-page li.family.private{padding:5px 20px}
-#fancy_treeview-page .parents {margin-bottom:10px;text-indent:2em;page-break-inside: avoid}
-#fancy_treeview-page .parents .index {margin-left:-5em;margin-right:1.4em}
-#fancy_treeview-page .parents span.NAME, #fancy_treeview-page .parents span.SURN {font-weight:bold} 
-#fancy_treeview-page .children{clear:both;page-break-inside: avoid}
-#fancy_treeview-page .children p {margin:5px 0}
-#fancy_treeview-page ol.children{margin-top:-5px}
-#fancy_treeview-page .child .index {margin-right:0.8em}	
-#fancy_treeview-page .date{font-size:13px;font-weight:normal}
-#fancy_treeview-page img{margin:5px 10px 5px 0}
+#fancy_treeview-page .family.private{display:none}
+#fancy_treeview-page table.parents {margin-top:10px}
+#fancy_treeview-page .parents td.index {vertical-align:top;width:50px}
+#fancy_treeview-page .parents td.desc {vertical-align:top} 
+#fancy_treeview-page .parents span.NAME {font-weight:bold;} 
+#fancy_treeview-page .parents span.NAME:before{content:" "} /* correction, no space is rendered before name */
+#fancy_treeview-page .children{margin-left:60px;margin-bottom:10px;page-break-inside:avoid}
+#fancy_treeview-page .children p {margin:10px 0 5px 0}
+#fancy_treeview-page .child {margin-left:30px}
+#fancy_treeview-page .child .index {margin-right:20px}	
+#fancy_treeview-page td.image{padding-top:5px;padding-right:10px;vertical-align:top}
