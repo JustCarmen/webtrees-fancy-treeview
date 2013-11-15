@@ -610,7 +610,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$root_person = $this->get_person($root);
 		
 		$controller=new WT_Controller_Page;
-		if($root_person) {
+		if($root_person && $root_person->canShowName()) {
 			$controller
 				->setPageTitle(/* I18N: %s is the surname of the root individual */ WT_I18N::translate('Descendants of %s', $root_person->getFullName()))
 				->pageHeader()
