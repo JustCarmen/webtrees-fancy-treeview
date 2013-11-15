@@ -1,3 +1,7 @@
+Version 1.5.0.1 for webtrees 1.5.0 - 15-11-2013
+* Bugfix: Support for special characters in pdf. See forum topic: http://www.webtrees.net/index.php/en/forum/4-customising/28425-fancy-treeview-module-updated-for-webtrees-1-5-0#42445
+========================================================================================================================
+
 Version 1.5.0 for webtrees 1.5.0 - 10-11-2013
 
 * Updated several functions in order to use this module with webtrees 1.5.0
