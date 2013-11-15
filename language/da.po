@@ -1,0 +1,310 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fancy Tree View 1.5\n"
+"POT-Creation-Date: 2013-11-11 23:31+0100\n"
+"PO-Revision-Date: 2013-11-15 19:17+0100\n"
+"Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translate_c:2,1c\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: modules_v3\fancy_treeview/module.php:1099
+#, php-format
+msgid "%s child"
+msgid_plural "%s children"
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules_v3\fancy_treeview/help_text.php:33
+msgid "<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p><p>This person will act as the root person for this family branch. Potential you can perform a phonetic search by placing a check mark in one or both phonetic algorithms.</p><p>After the search is complete, it is possible to change the ID of the root person. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.</p><p>By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:63
+msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:40
+#, php-format
+msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an “edit”-field appears where you can change the surname. Click on the “save” button to save your input.</p><p>Note: this option is not available when the option “%s” is checked.</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:46
+msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:58
+msgid "<p>Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children.</p><p>With this option turned on, every child of a family will be shown in a detailed way in the next generation block.</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:52
+msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:67
+msgid "A Fancy overview of the descendants of one family(branch) in a narrative way"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:32
+#: modules_v3\fancy_treeview/module.php:492
+msgid "Add a surname"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:872
+msgid "Change root person"
+msgstr "Vælg anden proband"
+
+#: modules_v3\fancy_treeview/help_text.php:51
+#: modules_v3\fancy_treeview/module.php:554
+msgid "Check relationship between partners"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:528
+#: modules_v3\fancy_treeview/module.php:1476
+#: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:39
+#, php-format
+msgid "Descendants of the %s family"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:510
+msgid "Edit Root person"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:39
+msgid "Edit the surname (for display in the menu)"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:291
+#: modules_v3\fancy_treeview/module.php:364
+#, php-format
+msgid "Error: An individual with ID %s doesn’t exist in this tree."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:318
+msgid "Error: The root person belonging to this surname already exists"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:321
+msgid "Error: The root person you are trying to add already exists"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:284
+#: modules_v3\fancy_treeview/module.php:354
+msgid "Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:275
+msgid "Error: The surname you entered doesn’t exist in this tree."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:544
+msgid "General Options"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:875
+msgid "Go"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1050
+#, php-format
+msgid "He married %s times"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1173
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Han var født"
+
+#: modules_v3\fancy_treeview/module.php:1176
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:45
+#: modules_v3\fancy_treeview/module.php:550
+msgid "Number of generation blocks to show"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:498
+msgid "Or manually add a root person"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:508
+msgid "Root person"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:62
+#: modules_v3\fancy_treeview/module.php:565
+msgid "Select your country"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1050
+#, php-format
+msgid "She married %s times"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1173
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Hun var født"
+
+#: modules_v3\fancy_treeview/module.php:1176
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:586
+msgid "Show PDF icon?"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:582
+msgid "Show form to change start person"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:570
+msgid "Show occupations"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:562
+msgid "Show places?"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:57
+#: modules_v3\fancy_treeview/module.php:558
+msgid "Show single persons"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1053
+#, php-format
+msgid "The %s time he married"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1053
+#, php-format
+msgid "The %s time she married"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:957
+msgid "The details of this generation are private."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:770
+msgid "The pdf contains only visible generation blocks."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:593
+msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:574
+msgid "Thumbnail size"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1469
+msgid "Tree view"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:42
+#: modules_v3\fancy_treeview/module.php:547
+msgid "Use fullname in menu"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:578
+msgid "Use square thumbnails"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1081
+#: modules_v3\fancy_treeview/module.php:1094
+#: modules_v3\fancy_treeview/module.php:1104
+#: modules_v3\fancy_treeview/module.php:1154
+#: modules_v3\fancy_treeview/module.php:1191
+msgid "and"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1201
+#, php-format
+msgid "at the age of %s"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1191
+msgid "died"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1047
+msgid "fifth"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1043
+msgid "first"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:630
+#: modules_v3\fancy_treeview/module.php:633
+msgid "follow"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1046
+msgid "fourth"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:881
+msgid "generation"
+msgid_plural "generations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules_v3\fancy_treeview/module.php:1094
+msgctxt "PLURAL"
+msgid "had"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1097
+msgctxt "SINGULAR"
+msgid "had"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1306
+msgctxt "before dateformat mmm yyyy"
+msgid "in"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1309
+msgctxt "before dateformat yyyy"
+msgid "in"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1341
+msgctxt "before placesnames"
+msgid "in"
+msgstr "i/på"
+
+#: modules_v3\fancy_treeview/module.php:1303
+msgctxt "before dateformat dd-mm-yyyy"
+msgid "on"
+msgstr "den"
+
+#: modules_v3\fancy_treeview/module.php:1044
+msgid "second"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1045
+msgid "third"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1180
+msgctxt "PAST"
+msgid "was born"
+msgstr "var født"
+
+#: modules_v3\fancy_treeview/module.php:1180
+msgctxt "PRESENT"
+msgid "was born"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1081
+msgid "were divorced"
+msgstr ""
