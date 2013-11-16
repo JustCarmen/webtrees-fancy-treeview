@@ -20,13 +20,13 @@ $html =
   '<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<link type="text/css" href="themes/base/print.css" rel="stylesheet" />
+		<link type="text/css" href="style.css" rel="stylesheet" />
 	</head>
 	<body>'.file_get_contents($filename).'</body>
   </html>';
 
 $dompdf = new DOMPDF();
-$dompdf->set_base_path(WT_MODULES_DIR.$this->getName().'/'); // works only for the template file (set absolute links for images and all other links)
+$dompdf->set_base_path(WT_MODULES_DIR.$this->getName().'/pdf/'); // works only for the template file (set absolute links for images and all other links)
 $dompdf->set_paper('a3', 'portrait');
 $dompdf->load_html($html);
 $dompdf->render();
