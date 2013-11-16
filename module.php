@@ -216,7 +216,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			include('pdf/data.php');
 			break;
 		case 'show_pdf':
-			include('pdf/dompdf.php');
+			include('pdf/pdf.php');
 			break;
 		default:
 			header('HTTP/1.0 404 Not Found');
