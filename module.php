@@ -1491,15 +1491,16 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	private function getStylesheet() {
 		$module_dir = WT_STATIC_URL.WT_MODULES_DIR.$this->getName().'/';
 		if (file_exists($module_dir.WT_THEME_URL.'menu.css')) {
-			$stylesheet = $this->includeCss($module_dir.WT_THEME_URL.'menu.css');
+			$stylesheet = $this->includeCss($module_dir.WT_THEME_URL.'menu.css', 'screen');
 		}
 		else {
 			return false;
 		}
 		if(WT_Filter::get('mod') == $this->getName()) {
 			$stylesheet .= $this->includeCss($module_dir.'themes/base/style.css');
+			$stylesheet .= $this->includeCss($module_dir.'themes/base/print.css', 'print');
 			if (file_exists($module_dir.WT_THEME_URL.'style.css')) {
-				$stylesheet .= $this->includeCss($module_dir.WT_THEME_URL.'style.css');
+				$stylesheet .= $this->includeCss($module_dir.WT_THEME_URL.'style.css', 'screen');
 			}		
 		}			
 		return $stylesheet;
@@ -1514,7 +1515,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 	}
 	
-	private function includeCss($css) {
+	private function includeCss($css, $type = 'all') {
 		return
 			'<script>
 				if (document.createStyleSheet) {
@@ -1524,6 +1525,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					newSheet.setAttribute("href","'.$css.'");
 					newSheet.setAttribute("type","text/css");
 					newSheet.setAttribute("rel","stylesheet");
+					newSheet.setAttribute("media","'.$type.'");
 					document.getElementsByTagName("head")[0].appendChild(newSheet);
 				}
 			</script>';
