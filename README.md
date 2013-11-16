@@ -10,7 +10,7 @@ On the Fancy Tree View configuration page you have some options. To start using 
 The package comes with a language file to translate the module into your own language. The translated Dutch, French, German and Norwegian language files are already added. Also stylesheets for all the core webtrees themes and the JustBlack theme are added to the module package.
 
 Download the latest stable release for webtrees 1.5.0 here:
-https://github.com/JustCarmen/fancy_treeview/tree/1.5.0
+https://github.com/JustCarmen/fancy_treeview/tree/1.5.0.2
 
 Download the latest stable relase for webtrees 1.4.x here:
 https://github.com/JustCarmen/fancy_treeview/tree/1.2.1
