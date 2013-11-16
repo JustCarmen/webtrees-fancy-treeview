@@ -1365,6 +1365,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$children = $family->getChildren();
 			if($children) {
 				foreach ($children as $key => $child) {
+					$key = $family->getXref().'-'.$key; // be sure the key is unique.
 					$ng[$key]['pid'] = $child->getXref();
 					$child->getSpouseFamilies(WT_PRIV_HIDE) ? $ng[$key]['desc'] = 1 : $ng[$key]['desc'] = 0;
 				}
