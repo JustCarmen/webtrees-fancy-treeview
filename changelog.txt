@@ -1,3 +1,10 @@
+Version 1.5.0.2 for webtrees 1.5.0 - 16-11-2013
+* Added Danish translation. Only a few strings are translated at the moment.
+* Bugfix: Extended privacy restrictions for the root person. Whether to show the name in the title or only the privacy message depends on gedcom settings.
+* Bugfix: If there are more familes involved for one individual only the descendants of the last family where shown completely.
+
+========================================================================================================================
+
 Version 1.5.0.1 for webtrees 1.5.0 - 15-11-2013
 * Bugfix: Support for special characters in pdf. See forum topic: http://www.webtrees.net/index.php/en/forum/4-customising/28425-fancy-treeview-module-updated-for-webtrees-1-5-0#42445
 ========================================================================================================================
