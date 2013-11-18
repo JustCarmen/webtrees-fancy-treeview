@@ -1181,7 +1181,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 			} else {
 				$this->print_parents($person) || $this->print_fact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
-				$person->isDead() ? $html .= WT_I18N::translate_c('PAST', 'was born') : $html .= WT_I18N::translate_c('PRESENT', 'was born');	
+				if ($person->isDead()) {
+					$person->getSex() == 'F' ? $html .= WT_I18N::translate_c('PAST (FEMALE)', 'was born') : $html .= WT_I18N::translate_c('PAST (MALE)', 'was born');					
+				}
+				else {					
+				 	$person->getSex() == 'F' ? $html .= WT_I18N::translate_c('PRESENT (FEMALE)', 'was born') : $html .= WT_I18N::translate_c('PRESENT (MALE)', 'was born');	
+				}
 			}
 			if ($birthdate->isOK()) $html .= $this->print_date($birthdate);
 			if ($person->getBirthPlace() != '') $html .= $this->print_place($person->getBirthPlace());
@@ -1192,7 +1197,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$deathdata = true;
 			
 			if($birthdata) {
-				$html .= ' '.WT_I18N::translate('and').' '. WT_I18N::translate('died');
+				$html .= ' '.WT_I18N::translate('and').' ';
+				$person->getSex() == 'F' ? $html .= WT_I18N::translate_c('FEMALE', 'died') : $html .= WT_I18N::translate_c('MALE', 'died');
 			}
 			else {
 				$person->getSex() == 'F' ? $html .= '. '.WT_I18N::translate('She died') : $html .= '. '.WT_I18N::translate('He died');
