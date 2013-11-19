@@ -583,7 +583,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform')).'
 					</div>	
 					<div class="field">	
-						<label class="label">'.WT_I18N::translate('Show PDF icon?').'</label>'.
+						<label class="label">'.WT_I18N::translate('Show PDF icon?').help_link('show_pdf', $this->getName()).'</label>'.
 						edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon')).'
 					</div>						
 				</div>							
@@ -605,7 +605,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	// Show
 	private function show() {
-		global $controller;
+		global $controller, $TEXT_DIRECTION;
 		$root = WT_Filter::get('rootid', WT_REGEX_XREF); // the first pid
 		$root_person = $this->get_person($root);
 		
@@ -763,7 +763,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					});	
 				');
 				
-				if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL) {
+				if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && $TEXT_DIRECTION == 'ltr') {
 					$controller->addInlineJavascript('			
 						// convert page to pdf
 						jQuery("#pdf").click(function(e){
@@ -867,7 +867,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				$html .= '
 					<div id="fancy_treeview-page">										
 						<div id="page-header"><h2>'.$controller->getPageTitle().'</h2>';
-						if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL) $html .= '<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
+						if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && $TEXT_DIRECTION == 'ltr') {
+							$html .= '<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
+						}
 						$html .= '</div>
 				<div id="page-body">';
 				if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {

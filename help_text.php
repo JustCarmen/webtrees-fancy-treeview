@@ -63,4 +63,8 @@ case 'select_country':
 	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.
 								'<p>If you don’t select a country then all countries will be shown, including your own.</p>');
 	break;
+case 'show_pdf':
+	$title=WT_I18N::translate('PDF not supported on RTL-pages');
+	$text=WT_I18N::translate(	'<p>Currently the PDF option is only supported on LTR-pages. The pdf icon will be disabled when the user selects a RTL language</p>');
+	break;
 }
