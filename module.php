@@ -1225,14 +1225,14 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$deathdate = $person->getDeathdate();
 		$html = '';
 		if($birthdate->isOK()) $html .= '<strong>'.WT_I18N::translate('Birth').':</strong> '.strip_tags($birthdate->Display());
-		if($deathdate->isOK()) $html .= '<br/><strong>'.WT_I18N::translate('Death').':</strong> '.strip_tags($deathdate->Display());
+		if($deathdate->isOK()) $html .= '<br><strong>'.WT_I18N::translate('Death').':</strong> '.strip_tags($deathdate->Display());
 		
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
 			$father = $parents->getHusband();
 			$mother = $parents->getWife();
-			if($father) $html .= '<br/><strong>'.WT_I18N::translate('Father').':</strong> '.strip_tags($father->getFullName());
-			if($mother) $html .= '<br/><strong>'.WT_I18N::translate('Mother').':</strong> '.strip_tags($mother->getFullName());
+			if($father) $html .= '<br><strong>'.WT_I18N::translate('Father').':</strong> '.strip_tags($father->getFullName());
+			if($mother) $html .= '<br><strong>'.WT_I18N::translate('Mother').':</strong> '.strip_tags($mother->getFullName());
 		}
 		return $html;
 	}
