@@ -882,7 +882,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 				$html .= '								
 							<ol id="fancy_treeview">'.$this->print_page().'</ol>		
-							<div id="btn_next"><input type="button" name="next" value="'.WT_I18N::translate('next').' '.WT_I18N::plural('generation', 'generations', $this->options('numblocks')).'"/></div>
+							<div id="btn_next"><input type="button" name="next" value="'.WT_I18N::translate('next').'"/></div>
 						</div>
 					</div>';
 			
