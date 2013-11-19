@@ -13,4 +13,4 @@ Download the latest stable release for webtrees 1.5.0 here:
 https://github.com/JustCarmen/fancy_treeview/tree/1.5.0.2
 
 Download the latest stable relase for webtrees 1.4.x here:
-https://github.com/JustCarmen/fancy_treeview/tree/1.2.1
+https://github.com/JustCarmen/fancy_treeview/tree/1.4.4
