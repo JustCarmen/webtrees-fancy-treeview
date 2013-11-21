@@ -5,11 +5,12 @@
 
 
 /* General */
+@page{size:auto;margin:20mm 0}
 body{background:none;font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;font-size:12pt;margin:0}
 .divider, #pdf, .tooltip {display:none}
 
 /* Page */
-#fancy_treeview-page{margin:0;padding:0;width:100%}
+#fancy_treeview-page{margin:0;padding:0;width:100%;max-width:100%}
 #fancy_treeview-page .block, #fancy_treeview-page .blockheader, #fancy_treeview-page .blockcontent {background:none;border:none;box-shadow:none;color:#000}
 #fancy_treeview-page h2, #fancy_treeview-page .blockheader {color:#000;font-family: "DejaVu Sans", Helvetica, Arial, sans-serif}
 #fancy_treeview-page .blockheader {border-bottom-width:1px;border-bottom-style:solid;font-size:14pt}
