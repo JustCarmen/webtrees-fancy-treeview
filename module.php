@@ -1526,16 +1526,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	private function includeCss($css, $type = 'all') {
 		return
 			'<script>
-				if (document.createStyleSheet) {
-					document.createStyleSheet("'.$css.'"); // For Internet Explorer
-				} else {
-					var newSheet=document.createElement("link");
-					newSheet.setAttribute("href","'.$css.'");
-					newSheet.setAttribute("type","text/css");
-					newSheet.setAttribute("rel","stylesheet");
-					newSheet.setAttribute("media","'.$type.'");
-					document.getElementsByTagName("head")[0].appendChild(newSheet);
-				}
+				var newSheet=document.createElement("link");
+				newSheet.setAttribute("href","'.$css.'");
+				newSheet.setAttribute("type","text/css");
+				newSheet.setAttribute("rel","stylesheet");
+				newSheet.setAttribute("media","'.$type.'");
+				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			</script>';
 	}
 }
