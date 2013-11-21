@@ -14,17 +14,22 @@
 #fancy_treeview-page #error {margin:10px 0 10px 40px;padding:0 10px}
 #fancy_treeview-page .generation-block{margin-bottom:20px; padding:0}
 #fancy_treeview-page .generation-block.hidden{display:none}
+html[dir=rtl] #fancy_treeview-page #page-body form{text-align:left}
+html[dir=rtl] #fancy_treeview-page #error {margin:10px 40px 10px 0}
 
 /* Blockheaders */
 #fancy_treeview-page .blockheader{border:none; border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:0}
 
 /* List */
-#fancy_treeview-page ol {counter-reset: item}
+#fancy_treeview-page ol#fancy_treeview {counter-reset: first-level}
+#fancy_treeview-page li.generation-block {counter-reset: second-level}
+#fancy_treeview-page li.family {counter-reset: third-level}
 #fancy_treeview-page li {position: relative;display: block}
-#fancy_treeview-page li:before {counter-increment: item; content: counters(item, ".") ". ";margin-left: -4em;float:left} /* second dot between quotes needed for the browser Opera. */
-#fancy_treeview-page li.generation-block:before{content:""}
-#fancy_treeview-page li.child:before {left:-4em}
-#fancy_treeview-page li.child {margin-left:3em}
+#fancy_treeview-page li.generation-block:before{counter-increment: first-level; content:""}
+#fancy_treeview-page li.family:before {counter-increment: second-level; content: counter(first-level) "." counter(second-level) ".";margin-left: -4em;float:left} /* last dot between quotes needed for the browser Opera. */
+#fancy_treeview-page li.child:before {counter-increment: third-level; content: counter(first-level) "." counter(second-level) "." counter(third-level) ".";display:inline-block;width:4em}
+html[dir=rtl] #fancy_treeview-page li.family:before {content: counter(second-level) "." counter(first-level) ".";margin-right: -4em;float:right}
+html[dir=rtl] #fancy_treeview-page li.child:before {content: counter(third-level) "." counter(second-level) "." counter(first-level) "."}
 
 /* family-block */
 #fancy_treeview-page .blockcontent {padding:20px 0 20px 40px}
@@ -39,6 +44,9 @@
 #fancy_treeview-page img{float:left;margin:5px 10px 5px 0}
 #fancy_treeview-page li.child .lifespan{font-size:9px}
 #fancy_treeview-page .tooltip-text{display:none}
+html[dir=rtl] #fancy_treeview-page .blockcontent {padding:20px 40px 20px 0}
+html[dir=rtl] #fancy_treeview-page img{float:right;margin:5px 0 5px 10px}
 
 /* button */
 #fancy_treeview-page #btn_next {text-align:right}
+html[dir=rtl] #fancy_treeview-page #btn_next {text-align:left}
