@@ -1084,7 +1084,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$html .= $this->print_lifespan($spouse, true);	
 			
 			$div = $family->getFirstFact('DIV');
-			if($div) $html .= $person->getFullName() . ' ' . WT_I18N::translate('and') . ' ' . $spouse->getFullName() .  ' ' . WT_I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
+			if($div) $html .= $person->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ') . $spouse->getFullName() .  ' ' . WT_I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
 		};		
 		return $html;	
 	}		
@@ -1097,7 +1097,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			if ($this->check_privacy($children)) {
 				$html .= '<div class="children"><p>'.$person->getFullName();					
 				if($spouse && $spouse->CanShow()) {
-					$html .= ' '.WT_I18N::translate('and').' '.$spouse->getFullName().' '.WT_I18N::translate_c('PLURAL', 'had');
+					$html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ').$spouse->getFullName().' '.WT_I18N::translate_c('PLURAL', 'had');
 				}
 				else {
 					$html .= ' '.WT_I18N::translate_c('SINGULAR', 'had');
@@ -1107,7 +1107,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			else {
 				$html .= '<div class="children"><p>'. WT_I18N::translate('Children of ').$person->getFullName();					
 				if($spouse && $spouse->CanShow()) {					
-					$html .= ' '.WT_I18N::translate('and').' ';
+					$html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
 					if (!$family->getMarriage()) {
 						// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
 						if($this->options('check_relationship')) $relationship = $this->check_relationship($person, $spouse, $family);
@@ -1157,7 +1157,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			else $html .= ', '.WT_I18N::translate('daughter of').' ';
 			
 			if($father) $html .= $father->getFullName();
-			if($father && $mother) $html .= ' '.WT_I18N::translate('and').' ';
+			if($father && $mother) $html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
 			if($mother) $html .= $mother->getFullName();
 			
 			return $html;
@@ -1199,7 +1199,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$deathdata = true;
 			
 			if($birthdata) {
-				$html .= ' '.WT_I18N::translate('and').' ';
+				$html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
 				$person->getSex() == 'F' ? $html .= WT_I18N::translate_c('FEMALE', 'died') : $html .= WT_I18N::translate_c('MALE', 'died');
 			}
 			else {
@@ -1312,13 +1312,13 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			return ' '.$date->Display();
 		}
 		if($date->MinDate()->d > 0) {			
-			return ' '.WT_I18N::translate_c('before dateformat dd-mm-yyyy', 'on').' '.$date->Display();
+			return ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate_c('before dateformat dd-mm-yyyy', 'on ').$date->Display();
 		}
 		if($date->MinDate()->m > 0) {			
-			return ' '.WT_I18N::translate_c('before dateformat mmm yyyy', 'in').' '.$date->Display();
+			return ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate_c('before dateformat mmm yyyy', 'in ').$date->Display();
 		}
 		if($date->MinDate()->y > 0) {
-			return ' '.WT_I18N::translate_c('before dateformat yyyy', 'in').' '.$date->Display();
+			return ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate_c('before dateformat yyyy', 'in ').$date->Display();
 		}
 	}
 	
@@ -1350,7 +1350,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			$place = implode(', ', array_reverse($places));
 				
-			$html = ' '.WT_I18N::translate_c('before placesnames', 'in').' '.$place;	
+			$html = ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate_c('before placesnames', 'in ').$place;	
 			return $html;
 		}
 	}	
