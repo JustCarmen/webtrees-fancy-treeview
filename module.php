@@ -25,7 +25,7 @@ if (!defined('WT_WEBTREES')) {
 
 // Update database for version 1.5
 try {
-	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 6);
+	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 7);
 } catch (PDOException $ex) {
 	// The schema update scripts should never fail.  If they do, there is no clean recovery.
 	die($ex);
@@ -83,6 +83,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				'SHOW_PLACES' 			=> '1',				
 				'COUNTRY' 				=> '',
 				'SHOW_OCCU' 			=> '1',
+				'USE_FTV_THUMBS'		=> '1',
 				'THUMB_SIZE'			=> '60',
 				'USE_SQUARE_THUMBS'		=> '1',
 				'SHOW_USERFORM'			=> '2',
@@ -470,7 +471,29 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						value.value = index+1;
 					}
 				);
-			});					
+			});	
+			
+			function toggleFields(checkbox, field, reverse) {
+				var checkbox = jQuery(checkbox).find("input[type=checkbox]");
+				var field = jQuery(field)
+				if(!reverse) {
+					if ((checkbox).is(":checked")) field.show();
+					else field.hide();							
+					checkbox.click(function(){
+						if (this.checked) field.show();
+						else field.hide();															    
+					});	
+				}
+				else {
+					if ((checkbox).is(":checked")) field.hide();
+					else field.show();							
+					checkbox.click(function(){
+						if (this.checked) field.hide();
+						else field.show();															    
+					});	
+				}
+			}	
+			toggleFields("#ftv_thumbs", "#thumb_size, #square_thumbs");						
 		');	
 		
 		// Admin page content			
@@ -569,12 +592,16 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$html .= '	<div class="field">	
 						<label class="label">'.WT_I18N::translate('Show occupations').'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')).'
+					</div>	
+					<div id="ftv_thumbs" class="field">	
+						<label class="label">'.WT_I18N::translate('Use FTV thumbnails').help_link('ftv_thumbs', $this->getName()).'</label>'.
+						two_state_checkbox('NEW_FTV_OPTIONS[USE_FTV_THUMBS]', $this->options('use_ftv_thumbs')).'
 					</div>					
-					<div class="field">	
+					<div id="thumb_size" class="field">	
 						<label class="label">'.WT_I18N::translate('Thumbnail size').'</label>
 						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="'.$this->options('thumb_size').'" />&nbsp;px
 					</div>	
-					<div class="field">	
+					<div id="square_thumbs" class="field">	
 						<label class="label">'.WT_I18N::translate('Use square thumbnails').'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $this->options('use_square_thumbs')).'
 					</div>					
@@ -992,8 +1019,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	private function print_person($person) {
 		global $SHOW_PRIVATE_RELATIONSHIPS;
 		
-		if($person->CanShow()) {				
-			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs')).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'"><p class="desc">'.$person->getFullName().'</a>';
+		if($person->CanShow()) {
+			$this->options('use_ftv_thumbs') == 1 ? $ftv_thumb = true : $ftv_thumb = false;		
+			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs'), $ftv_thumb).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'"><p class="desc">'.$person->getFullName().'</a>';
 			if($this->options('show_occu') == true) $html .= $this->print_fact($person, 'OCCU');
 			
 			$html .= $this->print_parents($person).$this->print_lifespan($person);	
@@ -1237,73 +1265,79 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		return $html;
 	}
 	
-	private function print_thumbnail($person, $thumbsize, $square) {
+	private function print_thumbnail($person, $thumbsize, $square, $ftv_thumb) {
 	
 		$mediaobject=$person->findHighlightedMedia();
 		
-		if ($mediaobject) {
-			$mediasrc = $mediaobject->getServerFilename();
-			$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
-			$mediatitle = strip_tags($person->getFullName());
+		if ($mediaobject) {	
 			
-			if($mediaobject->mimeType() == 'image/jpeg') {				
+			if($ftv_thumb == true) {				
+				$mediasrc = $mediaobject->getServerFilename();
+				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
+				$mediatitle = strip_tags($person->getFullName());
 				
-				list($width_orig, $height_orig) = @getimagesize($mediasrc);
-				$image = @imagecreatefromjpeg($mediasrc);
-				
-				// fallback if image is in the database but not on the server
-				if(isset($width_orig) && isset($height_orig)) {
-					$ratio_orig = $width_orig/$height_orig;
-				}
-				else {
-					$ratio_orig = 1;
-				}
-			
-			    if($square == true) {
-					if ($thumbwidth/$thumbheight > $ratio_orig) {
-					   $new_height = $thumbwidth/$ratio_orig;
-					   $new_width = $thumbwidth;
-					} else {
-					   $new_width = $thumbheight*$ratio_orig;
-					   $new_height = $thumbheight;
-					}
-				}
-				else {
-					if ($width_orig > $height_orig) {
-						$new_height = $thumbheight/$ratio_orig;
-						$new_width 	= $thumbwidth;
-					} elseif ($height_orig > $width_orig) {
-					   $new_width 	= $thumbheight*$ratio_orig;
-					   $new_height 	= $thumbheight;
-					} else {
-						$new_width 	= $thumbwidth;
-						$new_height = $thumbheight;
-					}
-				}
+				if($mediaobject->mimeType() == 'image/jpeg') {				
 					
-				$process = @imagecreatetruecolor(round($new_width), round($new_height));
-			
-				@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
-				$square == true ? $thumb = imagecreatetruecolor($thumbwidth, $thumbheight) : $thumb = imagecreatetruecolor($new_width, $new_height); 					
-				@imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
-			
-				@imagedestroy($process);
-				@imagedestroy($image);			
+					list($width_orig, $height_orig) = @getimagesize($mediasrc);
+					$image = @imagecreatefromjpeg($mediasrc);
+					
+					// fallback if image is in the database but not on the server
+					if(isset($width_orig) && isset($height_orig)) {
+						$ratio_orig = $width_orig/$height_orig;
+					}
+					else {
+						$ratio_orig = 1;
+					}
 				
-				$square == true ? $width = round($thumbwidth) : $width = round($new_width);
-				$square == true ? $height = round($thumbheight) : $height = round($new_height);
-				ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean();			
-				$html = '<a' .
-						' class="'          	. 'gallery'                         			 	. '"' .
-						' href="'           	. $mediaobject->getHtmlUrlDirect('main')    		. '"' .
-						' type="'           	. $mediaobject->mimeType()                  		. '"' .
-						' data-obje-url="'  	. $mediaobject->getHtmlUrl()                		. '"' .
-						' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
-						' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
-						' data-title="'     	. strip_tags($mediaobject->getFullName())   		. '"' .
-						'><img src="data:image/jpeg;base64,'.base64_encode($thumb).'" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
-				return $html;	
-			}		
+					if($square == true) {
+						if ($thumbwidth/$thumbheight > $ratio_orig) {
+						   $new_height = $thumbwidth/$ratio_orig;
+						   $new_width = $thumbwidth;
+						} else {
+						   $new_width = $thumbheight*$ratio_orig;
+						   $new_height = $thumbheight;
+						}
+					}
+					else {
+						if ($width_orig > $height_orig) {
+							$new_height = $thumbheight/$ratio_orig;
+							$new_width 	= $thumbwidth;
+						} elseif ($height_orig > $width_orig) {
+						   $new_width 	= $thumbheight*$ratio_orig;
+						   $new_height 	= $thumbheight;
+						} else {
+							$new_width 	= $thumbwidth;
+							$new_height = $thumbheight;
+						}
+					}
+						
+					$process = @imagecreatetruecolor(round($new_width), round($new_height));
+				
+					@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
+					$square == true ? $thumb = imagecreatetruecolor($thumbwidth, $thumbheight) : $thumb = imagecreatetruecolor($new_width, $new_height); 					
+					@imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
+				
+					@imagedestroy($process);
+					@imagedestroy($image);			
+					
+					$square == true ? $width = round($thumbwidth) : $width = round($new_width);
+					$square == true ? $height = round($thumbheight) : $height = round($new_height);
+					ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean();			
+					$html = '<a' .
+							' class="'          	. 'gallery'                         			 	. '"' .
+							' href="'           	. $mediaobject->getHtmlUrlDirect('main')    		. '"' .
+							' type="'           	. $mediaobject->mimeType()                  		. '"' .
+							' data-obje-url="'  	. $mediaobject->getHtmlUrl()                		. '"' .
+							' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
+							' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
+							' data-title="'     	. strip_tags($mediaobject->getFullName())   		. '"' .
+							'><img src="data:image/jpeg;base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
+				}					
+			}
+			else {
+				$html = $mediaobject->displayImage();
+			}
+			return $html;		
 		}
 	}	
 	
