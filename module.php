@@ -1123,12 +1123,16 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$html = '';
 		if($children) {
 			if ($this->check_privacy($children)) {
-				$html .= '<div class="children"><p>'.$person->getFullName();
+				$html .= '<div class="children"><p>'.$person->getFullName().' ';
+				// needs multiple translations for the word 'had' to serve different languages.
 				if($spouse && $spouse->CanShow()) {
-					$html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ').$spouse->getFullName().' '.WT_I18N::translate_c('PLURAL', 'had');
+					$html .= /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ').$spouse->getFullName().' ';
+					if (count($children) > 1) $html .= WT_I18N::translate_c('Two parents/multiple children', 'had');
+					else $html .= WT_I18N::translate_c('Two parents/one child', 'had');
 				}
 				else {
-					$html .= ' '.WT_I18N::translate_c('SINGULAR', 'had');
+					if (count($children) > 1) $html .= WT_I18N::translate_c('One parent/multiple children', 'had');
+					else $html .= WT_I18N::translate_c('One parent/one child', 'had');
 				}
 				$html .= ' './* I18N: %s is a number */ WT_I18N::plural('%s child', '%s children', count($children), count($children)).'.</p></div>';
 			}
