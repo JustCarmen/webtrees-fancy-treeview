@@ -15,12 +15,12 @@ if (!file_exists($filename)) {
 	if (!is_dir(dirname($filename))) {
 		mkdir(dirname($filename), WT_PERM_EXE);
 	}
-	
+
 	// strip of the unneccessary parts of the datastring.
 	list($type, $data) = explode(';', $data);
 	list(, $data)      = explode(',', $data);
 	$data = base64_decode($data);
-	
+
 	// upload the images to the tmp direcotry
 	file_put_contents($filename, $data);
 	@chmod($filename, WT_PERM_FILE);

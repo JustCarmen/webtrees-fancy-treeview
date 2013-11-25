@@ -33,8 +33,8 @@ if (!defined('WT_WEBTREES')) {
 
 $options = unserialize(get_module_setting('fancy_treeview', 'FTV_OPTIONS'));
 if(!empty($options)) {
-	foreach($options as $option) {	
-		$option['THUMB_SIZE'] = '60';	
+	foreach($options as $option) {
+		$option['THUMB_SIZE'] = '60';
 		$option['USE_SQUARE_THUMBS'] = '1';
 		$option['SHOW_USERFORM'] = '2';
 		$new_options[] = $option;

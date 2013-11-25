@@ -1,7 +1,7 @@
 Fancy Tree View
 ===============
 
-Fancy Tree View module for webtrees. 
+Fancy Tree View module for webtrees.
 
 With this module it is possible to add multiple pages for several branches in your family tree. The branches will be listed from the first generation down to the last one in a narrative way. It gives your users a quick overview of your family tree. Of course privacy rules are respected.
 

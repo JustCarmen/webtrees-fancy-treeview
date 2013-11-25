@@ -27,7 +27,7 @@ if (!defined('WT_WEBTREES') || !defined('WT_SCRIPT_NAME') || WT_SCRIPT_NAME!='he
 }
 
 switch ($help) {
-	 
+
 case 'add_surname':
 	$title=WT_I18N::translate('Add a surname');
 	$text=WT_I18N::translate(	'<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p>'.
@@ -57,7 +57,7 @@ case 'show_singles':
 	$title=WT_I18N::translate('Show single persons');
 	$text=WT_I18N::translate(	'<p>Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children.</p>'.
 								'<p>With this option turned on, every child of a family will be shown in a detailed way in the next generation block.</p>');
-	break;	
+	break;
 case 'select_country':
 	$title=WT_I18N::translate('Select your country');
 	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.

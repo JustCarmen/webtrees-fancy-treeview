@@ -16,5 +16,5 @@ jQuery(document).ready(function($){
 	setStyle();
 	$(document).ajaxComplete(function() {
 		setStyle();
-	})	
+	})
 });

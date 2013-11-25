@@ -33,7 +33,7 @@ if (!defined('WT_WEBTREES')) {
 
 $options = unserialize(get_module_setting('fancy_treeview', 'FTV_OPTIONS'));
 if(!empty($options)) {
-	foreach($options as $option) {			
+	foreach($options as $option) {
 		$option['SHOW_PDF_ICON'] = '2';
 		$new_options[] = $option;
 	}

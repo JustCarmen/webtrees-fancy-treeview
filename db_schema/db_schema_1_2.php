@@ -45,9 +45,9 @@ if(!empty($settings)) {
 
 $settings = unserialize(get_module_setting('fancy_treeview', 'FTV_SETTINGS'));
 if(!empty($settings)) {
-	foreach ($settings as $setting) {		
+	foreach ($settings as $setting) {
 		if(!array_key_exists('DISPLAY_NAME', $setting)) {
-			$setting['DISPLAY_NAME'] = $setting['SURNAME'];	
+			$setting['DISPLAY_NAME'] = $setting['SURNAME'];
 			$new_settings[] = $setting;
 		}
 	}
@@ -58,7 +58,7 @@ if(!empty($settings)) {
 
 $options = unserialize(get_module_setting('fancy_treeview', 'FTV_OPTIONS'));
 if(!empty($options)) {
-	foreach($options as $option) {		
+	foreach($options as $option) {
 		$option['USE_FULLNAME'] = '0';
 		$new_options[] = $option;
 	}

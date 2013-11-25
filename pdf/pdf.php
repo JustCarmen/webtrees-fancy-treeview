@@ -42,4 +42,4 @@ $canvas->page_text(20, 10, $headertext_left, $font, 9, array(0,0,0));
 $canvas->page_text($headerpos_right, 10, $headertext_right, $font, 9, array(0,0,0));
 
 // pdf output
-$dompdf->stream(WT_Filter::get('title'));	
+$dompdf->stream(WT_Filter::get('title'));

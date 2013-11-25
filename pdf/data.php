@@ -24,7 +24,7 @@ if(!file_exists($filename)) {
 
 // Let's make sure the file exists and is writable first.
 if (is_writable($filename)) {
-    
+
     if (!$handle = fopen($filename, 'w')) {
          exit;
     }

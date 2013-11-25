@@ -21,11 +21,11 @@ body{font-family: "DejaVu Sans", Helvetica, sans-serif;font-size:12pt}
 #fancy_treeview-page .family.private{display:none}
 #fancy_treeview-page table.parents {margin-top:10px}
 #fancy_treeview-page .parents td.index {vertical-align:top;width:50px}
-#fancy_treeview-page .parents td.desc {vertical-align:top} 
-#fancy_treeview-page .parents span.NAME {font-weight:bold;} 
+#fancy_treeview-page .parents td.desc {vertical-align:top}
+#fancy_treeview-page .parents span.NAME {font-weight:bold;}
 #fancy_treeview-page .parents span.NAME:before{content:" "} /* correction, no space is rendered before name */
 #fancy_treeview-page .children{margin-left:60px;margin-bottom:10px;page-break-inside:avoid}
 #fancy_treeview-page .children p {margin:10px 0 5px 0}
 #fancy_treeview-page .child {margin-left:30px}
-#fancy_treeview-page .child .index {margin-right:20px}	
+#fancy_treeview-page .child .index {margin-right:20px}
 #fancy_treeview-page td.image{padding-top:5px;padding-right:10px;vertical-align:top}
