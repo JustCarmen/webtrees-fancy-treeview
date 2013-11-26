@@ -63,6 +63,10 @@ case 'select_country':
 	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.
 								'<p>If you don’t select a country then all countries will be shown, including your own.</p>');
 	break;
+case 'ftv_thumbs':
+	$title=WT_I18N::translate('Use custom thumbnails');
+	$text=WT_I18N::translate(	'<p>Here you can choose wether to use custom thumbnails especially for the Fancy Tree View pages, with a different size then the default thumbnails used elsewhere on your webtrees site. In this case you can also choose for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used and taken from the thumbnail folder. If the latter is chosen the thumbnails on your Fancy Tree View pages will have the same width and height as the thumbnails used elsewhere on your site.</p>');
+	break;
 case 'show_pdf':
 	$title=WT_I18N::translate('PDF not supported on RTL-pages');
 	$text=WT_I18N::translate(	'<p>Currently the PDF option is only supported on LTR-pages. The pdf icon will be disabled when the user selects a RTL language</p>');

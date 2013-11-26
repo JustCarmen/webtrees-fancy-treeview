@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
-"POT-Creation-Date: 2013-11-26 07:39+0100\n"
-"PO-Revision-Date: 2013-11-26 07:40+0100\n"
+"POT-Creation-Date: 2013-11-26 08:06+0100\n"
+"PO-Revision-Date: 2013-11-26 08:06+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -23,8 +23,12 @@ msgid_plural "%s children"
 msgstr[0] ""
 msgstr[1] ""
 
-#: modules_v3\fancy_treeview/help_text.php:68
+#: modules_v3\fancy_treeview/help_text.php:72
 msgid "<p>Currently the PDF option is only supported on LTR-pages. The pdf icon will be disabled when the user selects a RTL language</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:68
+msgid "<p>Here you can choose wether to use custom thumbnails especially for the Fancy Tree View pages, with a different size then the default thumbnails used elsewhere on your webtrees site. In this case you can also choose for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used and taken from the thumbnail folder. If the latter is chosen the thumbnails on your Fancy Tree View pages will have the same width and height as the thumbnails used elsewhere on your site.</p>"
 msgstr ""
 
 #: modules_v3\fancy_treeview/help_text.php:33
@@ -140,7 +144,7 @@ msgstr ""
 msgid "Or manually add a root person"
 msgstr ""
 
-#: modules_v3\fancy_treeview/help_text.php:67
+#: modules_v3\fancy_treeview/help_text.php:71
 msgid "PDF not supported on RTL-pages"
 msgstr ""
 
@@ -219,8 +223,9 @@ msgstr ""
 msgid "Tree view"
 msgstr ""
 
+#: modules_v3\fancy_treeview/help_text.php:67
 #: modules_v3\fancy_treeview/module.php:597
-msgid "Use FTV thumbnails"
+msgid "Use custom thumbnails"
 msgstr ""
 
 #: modules_v3\fancy_treeview/help_text.php:42

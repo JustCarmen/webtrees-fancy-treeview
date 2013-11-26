@@ -594,7 +594,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						two_state_checkbox('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')).'
 					</div>
 					<div id="ftv_thumbs" class="field">
-						<label class="label">'.WT_I18N::translate('Use FTV thumbnails').help_link('ftv_thumbs', $this->getName()).'</label>'.
+						<label class="label">'.WT_I18N::translate('Use custom thumbnails').help_link('ftv_thumbs', $this->getName()).'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[USE_FTV_THUMBS]', $this->options('use_ftv_thumbs')).'
 					</div>
 					<div id="thumb_size" class="field">
