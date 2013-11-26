@@ -28,8 +28,8 @@ html[dir=rtl] #fancy_treeview-page #error {margin:10px 40px 10px 0}
 #fancy_treeview-page li.generation-block:before{counter-increment: first-level; content:""}
 #fancy_treeview-page li.family:before {counter-increment: second-level; content: counter(first-level) "." counter(second-level) ".";margin-left: -4em;float:left} /* last dot between quotes needed for the browser Opera. */
 #fancy_treeview-page li.child:before {counter-increment: third-level; content: counter(first-level) "." counter(second-level) "." counter(third-level) ".";display:inline-block;width:4em}
-html[dir=rtl] #fancy_treeview-page li.family:before {content: counter(second-level) "." counter(first-level) ".";margin-right: -4em;float:right}
-html[dir=rtl] #fancy_treeview-page li.child:before {content: counter(third-level) "." counter(second-level) "." counter(first-level) "."}
+html[dir=rtl] #fancy_treeview-page li.family:before {content: "." counter(first-level) "." counter(second-level);margin-right: -4em;float:right}
+html[dir=rtl] #fancy_treeview-page li.child:before {content: "." counter(first-level) "." counter(second-level) "." counter(third-level)}
 
 /* family-block */
 #fancy_treeview-page .blockcontent {padding:20px 0 20px 40px}
