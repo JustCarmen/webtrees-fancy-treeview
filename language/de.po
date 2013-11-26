@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.2\n"
-"POT-Creation-Date: 2013-11-11 23:31+0100\n"
-"PO-Revision-Date: 2013-11-12 00:34+0100\n"
+"POT-Creation-Date: 2013-11-10 13:37+0100\n"
+"PO-Revision-Date: 2013-11-26 23:28+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: English\n"
@@ -25,7 +25,7 @@ msgstr[1] "%s Kinder"
 
 #: modules_v3\fancy_treeview/help_text.php:33
 msgid "<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p><p>This person will act as the root person for this family branch. Potential you can perform a phonetic search by placing a check mark in one or both phonetic algorithms.</p><p>After the search is complete, it is possible to change the ID of the root person. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.</p><p>By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.</p>"
-msgstr "<p>Hier müssen Sie den Nachnamen eintragen. Das Skript sucht automatisch nach der ältesten Person mit diesem Namen.</p><p>Diese Person dient dann als Startperson für den gewünschten Familienzweig. Sie können durch die entsprechende Auswahl auch eine oder beide der phonetischen Suchmethoden benutzen.</p><p>Nach erfolgreicher Suche können Sie die ID für die Startperson auch noch ändern; Sie können beliebig viele Namen eintragen. Für jeden Namen wird eine Auswahl im Menu und eine eigene Seite erzeugt. </p><p>Die angezeigten Menueinträge können durch einfaches Verschieben mit dem Kreuz beliebig umsortiert werden.</p>"
+msgstr "<p>Hier müssen Sie den Nachnamen eintragen. Das Skript sucht automatisch nach der ältesten Person mit diesem Namen.</p><p>Diese Person dient dann als Startperson für den gewünschten Familienzweig. Sie können durch die entsprechende Auswahl auch eine oder beide der phonetischen Suchmethoden benutzen.</p><p>Nach erfolgreicher Suche können Sie die ID für die Startperson auch noch ändern. Sie können beliebig viele Namen eintragen. Für jeden Namen wird eine Auswahl im Menu und eine eigene Seite erzeugt.</p><p>Die angezeigten Menueinträge können durch einfaches Verschieben mit dem Kreuz beliebig umsortiert werden.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:63
 msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
@@ -35,11 +35,11 @@ msgstr "<p>Wenn Sie die Auswahl “Orte ausgeben” markiert haben, können Sie 
 #: modules_v3\fancy_treeview/help_text.php:40
 #, php-format
 msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an “edit”-field appears where you can change the surname. Click on the “save” button to save your input.</p><p>Note: this option is not available when the option “%s” is checked.</p>"
-msgstr "<p>Der angezeigte Nachname wird im Menü verwendet und kann von Ihnen angepasst werden.</p><p>Wenn Sie auf den Nachnamen klicken, öffnet sich ein “Bearbeitungs”-Feld zur Änderung. Klicken Sie auf die “Speichern” Schaltfläche, um Ihre Eingabe zu speichern.</p><p>Achtung: Diese Option ist nicht verfügbar, wenn die Option “%s” ausgewählt ist.</p>"
+msgstr "<p>Der angezeigte Nachname wird im Menü verwendet und kann von Ihnen angepasst werden.</p><p>Wenn Sie auf den Nachnamen klicken, öffnet sich ein “Bearbeitungsfeld” zur Änderung. Klicken Sie auf die “Speichern” Schaltfläche, um Ihre Eingabe zu speichern.</p><p>Achtung: Diese Option ist nicht verfügbar, wenn die Option “%s” ausgewählt ist.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:46
 msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.</p>"
-msgstr ""
+msgstr "<p>Diese Option ist besonders bei großen Bäume nützlich . Wenn Sie einen zu langsamen Aufbau der Seite feststellen, können Sie hier die Anzahl der Generation reduzieren, die auf einmal geladen werden.</p><p>Unter der letzten Generation wird dann eine Taste erscheinen, die die nächsten Generationen hinzufügt . Die neuen Blöcke werden dann zu den bereits geladenen Generationen hinzugefügt.</p><p>Ein Klick auf einen “weiter bei”-Link im letzten sichtbaren Block, wird ebenfalls die nächste Generation laden.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:58
 msgid "<p>Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children.</p><p>With this option turned on, every child of a family will be shown in a detailed way in the next generation block.</p>"
@@ -47,7 +47,7 @@ msgstr "<p>Aktivieren Sie diese Option, wenn Sie Einzelpersonen im Generationen-
 
 #: modules_v3\fancy_treeview/help_text.php:52
 msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
-msgstr ""
+msgstr "<p>Wenn diese Option aktiviert ist, dann überprüft das Skript ob ein (Ehe-) Paar die gleichen Vorfahren hat.</ p><p>Wenn eine Beziehung zwischen den Partnern gefunden wird, so wird hinter dem Namen der Ehegatten in Klammern ein Text erscheinen, der die Beziehung beschreibt.</p><p>Hinweis: Diese Option kann besonders bei großen Bäumen bewirken, dass sich die Seite sehr langsam aufbaut. Wenn Sie ein solches Verhalten feststellen, reduzieren die Anzahl der auf einmal anzuzeigenden Generationen (siehe vorherige Option).</p>"
 
 #: modules_v3\fancy_treeview/module.php:67
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way"
@@ -60,12 +60,12 @@ msgstr "Nachnamen eintragen"
 
 #: modules_v3\fancy_treeview/module.php:872
 msgid "Change root person"
-msgstr ""
+msgstr "Ändern der Startperson"
 
 #: modules_v3\fancy_treeview/help_text.php:51
 #: modules_v3\fancy_treeview/module.php:554
 msgid "Check relationship between partners"
-msgstr ""
+msgstr "Überprüfe die Beziehung zwischen Partnern"
 
 #: modules_v3\fancy_treeview/module.php:528
 #: modules_v3\fancy_treeview/module.php:1476
@@ -111,7 +111,7 @@ msgstr "Allgemeine Optionen"
 
 #: modules_v3\fancy_treeview/module.php:875
 msgid "Go"
-msgstr ""
+msgstr "Los"
 
 #: modules_v3\fancy_treeview/module.php:1050
 #, php-format
@@ -131,7 +131,7 @@ msgstr "Er wurde geboren"
 #: modules_v3\fancy_treeview/help_text.php:45
 #: modules_v3\fancy_treeview/module.php:550
 msgid "Number of generation blocks to show"
-msgstr ""
+msgstr "Anzahl der anzuzeigenden Generationen"
 
 #: modules_v3\fancy_treeview/module.php:498
 msgid "Or manually add a root person"
@@ -163,11 +163,11 @@ msgstr "Sie wurde geboren"
 
 #: modules_v3\fancy_treeview/module.php:586
 msgid "Show PDF icon?"
-msgstr ""
+msgstr "PDF Icon anzeigen?"
 
 #: modules_v3\fancy_treeview/module.php:582
 msgid "Show form to change start person"
-msgstr ""
+msgstr "Zeige das Feld zur Änderung der Startperson"
 
 #: modules_v3\fancy_treeview/module.php:570
 msgid "Show occupations"
@@ -206,7 +206,7 @@ msgstr "Die Einstellungen (für alle Bäume) werden auf Standardwerte zurückges
 
 #: modules_v3\fancy_treeview/module.php:574
 msgid "Thumbnail size"
-msgstr ""
+msgstr "Bildgröße"
 
 #: modules_v3\fancy_treeview/module.php:1469
 msgid "Tree view"
@@ -219,7 +219,7 @@ msgstr "Ganzen Namen im Menu verwenden"
 
 #: modules_v3\fancy_treeview/module.php:578
 msgid "Use square thumbnails"
-msgstr ""
+msgstr "Benutze quadratische Bilder"
 
 #: modules_v3\fancy_treeview/module.php:1081
 #: modules_v3\fancy_treeview/module.php:1094
@@ -258,8 +258,8 @@ msgstr "vierte"
 #: modules_v3\fancy_treeview/module.php:881
 msgid "generation"
 msgid_plural "generations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Generation"
+msgstr[1] "Generationen"
 
 #: modules_v3\fancy_treeview/module.php:1094
 msgctxt "PLURAL"
