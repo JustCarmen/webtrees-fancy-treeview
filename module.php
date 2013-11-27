@@ -867,6 +867,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							var url = jQuery(location).attr("pathname") + "?mod='.$this->getName().'&mod_action=show&rootid=" + new_rootid;
 							jQuery.ajax({
 								url: url,
+								csrf:   WT_CSRF_TOKEN,
 								success: function() {
 									window.location = url;
 								},
