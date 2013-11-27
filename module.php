@@ -259,12 +259,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 		if (isset($update)) {
 
-			$surname = WT_Filter::post('NEW_FTV_SURNAME', WT_REGEX_ALPHA);
+			$surname = WT_Filter::post('NEW_FTV_SURNAME');
 			$root_id = strtoupper(WT_Filter::post('NEW_FTV_ROOTID', WT_REGEX_XREF));
 			if($surname || $root_id) {
 				if($surname) {
-					$soundex_std = WT_Filter::post('soundex_std');
-					$soundex_dm = WT_Filter::post('soundex_dm');
+					$soundex_std = WT_Filter::postBool('soundex_std');
+					$soundex_dm = WT_Filter::postBool('soundex_dm');
 
 					$indis = $this->indis_array($surname, $soundex_std, $soundex_dm);
 					usort($indis, array('WT_Individual', 'CompareBirtDate'));
