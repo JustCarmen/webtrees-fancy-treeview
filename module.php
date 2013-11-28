@@ -1276,15 +1276,25 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 		if ($mediaobject) {
 
+			$html = '';
 			if($ftv_thumb == true) {
 				$mediasrc = $mediaobject->getServerFilename();
 				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
 				$mediatitle = strip_tags($person->getFullName());
 
-				if($mediaobject->mimeType() == 'image/jpeg') {
+				$type = $mediaobject->mimeType();
+				if($type == 'image/jpeg' || $type == 'image/png') {
 
 					list($width_orig, $height_orig) = @getimagesize($mediasrc);
-					$image = @imagecreatefromjpeg($mediasrc);
+
+					switch ($type) {
+						case 'image/jpeg':
+							$image = @imagecreatefromjpeg($mediasrc);
+							break;
+						case 'image/png':
+							$image = @imagecreatefrompng($mediasrc);
+							break;
+					}
 
 					// fallback if image is in the database but not on the server
 					if(isset($width_orig) && isset($height_orig)) {
@@ -1327,7 +1337,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 					$square == true ? $width = round($thumbwidth) : $width = round($new_width);
 					$square == true ? $height = round($thumbheight) : $height = round($new_height);
-					ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean();
+					ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean(); // the thumbnails are always of the type jpeg.
 					$html = '<a' .
 							' class="'          	. 'gallery'                         			 	. '"' .
 							' href="'           	. $mediaobject->getHtmlUrlDirect('main')    		. '"' .
