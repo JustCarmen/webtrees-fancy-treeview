@@ -3,5 +3,6 @@
 */
 
 /* blockheaders */
+#fancy_treeview-page {padding-top:20px}
 #fancy_treeview-page .blockheader {border-bottom-color:#555; padding:5px 20px}
 #fancy_treeview-page a.tooltip {text-decoration:underline}
