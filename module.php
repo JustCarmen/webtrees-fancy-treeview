@@ -106,16 +106,20 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			" AND n_type!=?".
 			" AND (n_surn=? OR n_surname=?";
 		$args=array(WT_GED_ID, '_MARNM', $surname, $surname);
-		if ($soundex_std) {
+		if ($soundex_std) { // works only with latin letters. For other letters it outputs the code '0000'.
 			foreach (explode(':', WT_Soundex::soundex_std($surname)) as $value) {
-				$sql .= " OR n_soundex_surn_std LIKE CONCAT('%', ?, '%')";
-				$args[]=$value;
+				if ($value != '0000') {
+					$sql .= " OR n_soundex_surn_std LIKE CONCAT('%', ?, '%')";
+					$args[]=$value;
+				}
 			}
 		}
-		if ($soundex_dm) {
+		if ($soundex_dm) { // works only with predefined letters and lettercombinations. Fot other letters it outputs the code '000000'.
 			foreach (explode(':', WT_Soundex::soundex_dm($surname)) as $value) {
-				$sql .= " OR n_soundex_surn_dm LIKE CONCAT('%', ?, '%')";
-				$args[]=$value;
+				if ($value != '000000') {
+					$sql .= " OR n_soundex_surn_dm LIKE CONCAT('%', ?, '%')";
+					$args[]=$value;
+				}
 			}
 		}
 		$sql .= ')';
