@@ -1551,12 +1551,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	private function getStylesheet() {
 		$module_dir = WT_STATIC_URL.WT_MODULES_DIR.$this->getName().'/';
+		$stylesheet = '';
 		if (file_exists($module_dir.WT_THEME_URL.'menu.css')) {
-			$stylesheet = $this->includeCss($module_dir.WT_THEME_URL.'menu.css', 'screen');
+			$stylesheet .= $this->includeCss($module_dir.WT_THEME_URL.'menu.css', 'screen');
 		}
-		else {
-			return false;
-		}
+		
 		if(WT_Filter::get('mod') == $this->getName()) {
 			$stylesheet .= $this->includeCss($module_dir.'themes/base/style.css');
 			$stylesheet .= $this->includeCss($module_dir.'themes/base/print.css', 'print');
