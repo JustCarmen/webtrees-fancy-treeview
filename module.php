@@ -1190,8 +1190,16 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$mother = $parents->getWife();
 
 			$html = '';
-			if($person->getSex() == 'M') $html .= ', '.WT_I18N::translate('son of').' ';
-			else $html .= ', '.WT_I18N::translate('daughter of').' ';
+			switch($person->getSex()) {
+				case 'M':
+					$html .= ', '.WT_I18N::translate('son of').' ';
+					break;
+				case 'F':
+					$html .= ', '.WT_I18N::translate('daughter of').' ';
+					break;
+				default:
+					$html .= ', '.WT_I18N::translate('child').' '.WT_I18N::translate('of').' ';
+			}					
 
 			if($father) $html .= $father->getFullName();
 			if($father && $mother) $html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
