@@ -1247,7 +1247,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			if ($person->getDeathPlace() != '') $html .= $this->print_place($person->getDeathPlace());
 
 			if ($birthdate->isOK() && $deathdate->isOK()) {
-				$html .= ' './* I18N: %s is the age of death */  WT_I18N::translate('at the age of %s', $ageOfdeath);
+				if (WT_Date::getAge($birthdate, $deathdate, 0) < 2) {
+					$html .= ' './* I18N: %s is the age of death in days/months */  WT_I18N::translate_c('age in days/months', 'at the age of %s', $ageOfdeath);
+				}
+				else {					
+					$html .= ' './* I18N: %s is the age of death in years */  WT_I18N::translate_c('age in years', 'at the age of %s', $ageOfdeath);
+				}
 			}
 		}
 
