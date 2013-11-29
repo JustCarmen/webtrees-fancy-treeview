@@ -112,6 +112,13 @@ msgstr ""
 msgid "Mother"
 msgstr ""
 
+#: modules_v3\fancy_treeview/module.php:1142
+#, php-format
+msgid "%s child"
+msgid_plural "%s children"
+msgstr[0] ""
+msgstr[1] ""
+
 #: modules_v3\fancy_treeview/pdf/dompdf.php:33
 msgid "Page"
 msgstr ""
