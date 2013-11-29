@@ -908,7 +908,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					$html .= '
 							<form id="change_root">
 								<label class="label">'.WT_I18N::translate('Change root person').'</label>
-								<input type="text" name="new_rootid" id="new_rootid" size="5" maxlength="20"/>'.
+								<input type="text" name="new_rootid" id="new_rootid" size="5" maxlength="20" placeholder="'.WT_I18N::translate('ID').'"/>'.
 								print_findindi_link('new_rootid').'
 								<input type="submit" id="btn_go" value="'.WT_I18N::translate('Go').'" />
 							</form>
