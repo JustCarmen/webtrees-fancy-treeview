@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Fancy Tree View 1.5\n"
+"Project-Id-Version: Fancy Tree View 1.2\n"
 "POT-Creation-Date: 2013-11-10 13:37+0100\n"
-"PO-Revision-Date: 2013-11-17 19:39+0200\n"
+"PO-Revision-Date: 2013-11-28 14:50+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -22,6 +22,14 @@ msgid "%s child"
 msgid_plural "%s children"
 msgstr[0] "%s lapsi"
 msgstr[1] "%s lasta"
+
+#: modules_v3\fancy_treeview/help_text.php:68
+msgid "<p>Currently the PDF option is only supported on LTR-pages. The pdf icon will be disabled when the user selects a RTL language</p>"
+msgstr ""
+
+#: modules_v3\fancy_treeview/help_text.php:68
+msgid "<p>Here you can choose wether to use custom thumbnails especially for the Fancy Tree View pages, with a different size then the default thumbnails used elsewhere on your webtrees site. In this case you can also choose for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used and taken from the thumbnail folder. If the latter is chosen the thumbnails on your Fancy Tree View pages will have the same width and height as the thumbnails used elsewhere on your site.</p>"
+msgstr ""
 
 #: modules_v3\fancy_treeview/help_text.php:33
 msgid "<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p><p>This person will act as the root person for this family branch. Potential you can perform a phonetic search by placing a check mark in one or both phonetic algorithms.</p><p>After the search is complete, it is possible to change the ID of the root person. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.</p><p>By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.</p>"
@@ -136,6 +144,10 @@ msgstr "Näytettävien sukupolvilohkojen lukumäärä"
 msgid "Or manually add a root person"
 msgstr "Tai lisää käsin alkuhenkilö"
 
+#: modules_v3\fancy_treeview/help_text.php:67
+msgid "PDF not supported on RTL-pages"
+msgstr ""
+
 #: modules_v3\fancy_treeview/module.php:508
 msgid "Root person"
 msgstr "Alkuhenkilö"
@@ -162,7 +174,7 @@ msgstr "Hän syntyi"
 
 #: modules_v3\fancy_treeview/module.php:586
 msgid "Show PDF icon?"
-msgstr "Näytä PDF kuvake"
+msgstr "Näytä PDF kuvake?"
 
 #: modules_v3\fancy_treeview/module.php:582
 msgid "Show form to change start person"
@@ -211,6 +223,11 @@ msgstr "Pienoiskuvan koko"
 msgid "Tree view"
 msgstr "Puunäkymä"
 
+#: modules_v3\fancy_treeview/help_text.php:67
+#: modules_v3\fancy_treeview/module.php:597
+msgid "Use custom thumbnails"
+msgstr "Käytä erikoispikkukuvia"
+
 #: modules_v3\fancy_treeview/help_text.php:42
 #: modules_v3\fancy_treeview/module.php:547
 msgid "Use fullname in menu"
@@ -225,15 +242,25 @@ msgstr "Käytä neliö-pienoiskuvia"
 #: modules_v3\fancy_treeview/module.php:1104
 #: modules_v3\fancy_treeview/module.php:1154
 #: modules_v3\fancy_treeview/module.php:1191
-msgid "and"
-msgstr "ja"
+msgid "and "
+msgstr "ja "
 
 #: modules_v3\fancy_treeview/module.php:1201
 #, php-format
 msgid "at the age of %s"
 msgstr "- ikä: %s"
 
-#: modules_v3\fancy_treeview/module.php:1191
+#: modules_v3\fancy_treeview/module.php:1155
+msgid "daughter of"
+msgstr "jonka vanhemmat olivat"
+
+#: modules_v3\fancy_treeview/module.php:1201
+msgctxt "FEMALE"
+msgid "died"
+msgstr "kuoli"
+
+#: modules_v3\fancy_treeview/module.php:1201
+msgctxt "MALE"
 msgid "died"
 msgstr "kuoli"
 
@@ -254,40 +281,44 @@ msgstr "seuraa"
 msgid "fourth"
 msgstr "Neljännellä"
 
-#: modules_v3\fancy_treeview/module.php:881
-msgid "generation"
-msgid_plural "generations"
-msgstr[0] "sukupolvi"
-msgstr[1] "sukupolvet"
-
-#: modules_v3\fancy_treeview/module.php:1094
-msgctxt "PLURAL"
+#: modules_v3\fancy_treeview/module.php:1100
+msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "-"
 
-#: modules_v3\fancy_treeview/module.php:1097
-msgctxt "SINGULAR"
+#: modules_v3\fancy_treeview/module.php:1103
+msgctxt "One parent/one child"
+msgid "had"
+msgstr "-"
+
+#: modules_v3\fancy_treeview/module.php:1130
+msgctxt "Two parents/multiple children"
+msgid "had"
+msgstr "-"
+
+#: modules_v3\fancy_treeview/module.php:1131
+msgctxt "Two parents/one child"
 msgid "had"
 msgstr "-"
 
 #: modules_v3\fancy_treeview/module.php:1306
 msgctxt "before dateformat mmm yyyy"
-msgid "in"
-msgstr "kuukakautena"
+msgid "in "
+msgstr "kuukakautena "
 
 #: modules_v3\fancy_treeview/module.php:1309
 msgctxt "before dateformat yyyy"
-msgid "in"
-msgstr "vuonna"
+msgid "in "
+msgstr "vuonna "
 
 #: modules_v3\fancy_treeview/module.php:1341
 msgctxt "before placesnames"
-msgid "in"
-msgstr "paikassa"
+msgid "in "
+msgstr "paikassa "
 
 #: modules_v3\fancy_treeview/module.php:1303
 msgctxt "before dateformat dd-mm-yyyy"
-msgid "on"
+msgid "on "
 msgstr " "
 
 #: modules_v3\fancy_treeview/module.php:1044
@@ -298,13 +329,23 @@ msgstr "Toisella"
 msgid "third"
 msgstr "Kolmnnella"
 
-#: modules_v3\fancy_treeview/module.php:1180
-msgctxt "PAST"
+#: modules_v3\fancy_treeview/module.php:1185
+msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "syntyi"
 
-#: modules_v3\fancy_treeview/module.php:1180
-msgctxt "PRESENT"
+#: modules_v3\fancy_treeview/module.php:1185
+msgctxt "PAST (MALE)"
+msgid "was born"
+msgstr "syntyi"
+
+#: modules_v3\fancy_treeview/module.php:1188
+msgctxt "PRESENT (FEMALE)"
+msgid "was born"
+msgstr "syntyi"
+
+#: modules_v3\fancy_treeview/module.php:1188
+msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "syntyi"
 
