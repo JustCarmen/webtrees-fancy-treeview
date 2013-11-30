@@ -65,10 +65,10 @@ case 'select_country':
 	break;
 case 'ftv_thumbs':
 	$title=WT_I18N::translate('Use custom thumbnails');
-	$text=WT_I18N::translate(	'<p>Here you can choose wether to use custom thumbnails especially for the Fancy Tree View pages, with a different size then the default thumbnails used elsewhere on your webtrees site. In this case you can also choose for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used and taken from the thumbnail folder. If the latter is chosen the thumbnails on your Fancy Tree View pages will have the same width and height as the thumbnails used elsewhere on your site.</p>');
+	$text=WT_I18N::translate(	'<p>Here you can choose to use custom thumbnails especially for the Fancy Tree View pages. You can set a custom size and/or opt for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you set on the tree configuration page.</p>');
 	break;
 case 'show_pdf':
-	$title=WT_I18N::translate('PDF not supported on RTL-pages');
-	$text=WT_I18N::translate(	'<p>Currently the PDF option is only supported on LTR-pages. The pdf icon will be disabled when the user selects a RTL language</p>');
+	$title=WT_I18N::translate('PDF not supported for RTL-languages');
+	$text=WT_I18N::translate(	'<p>Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left.</p>');
 	break;
 }

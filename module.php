@@ -59,7 +59,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	// Extend WT_Module
 	public function getTitle() {
-		return /* Name of a module */ WT_I18N::translate('Fancy Tree View');
+		return /* I18N: Name of the module */ WT_I18N::translate('Fancy Tree View');
 	}
 
 	// Extend WT_Module
@@ -1256,10 +1256,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 			if ($birthdate->isOK() && $deathdate->isOK()) {
 				if (WT_Date::getAge($birthdate, $deathdate, 0) < 2) {
-					$html .= ' './* I18N: %s is the age of death in days/months */  WT_I18N::translate_c('age in days/months', 'at the age of %s', $ageOfdeath);
+					$html .= ' './* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */  WT_I18N::translate_c('age in days/months', 'at the age of %s', $ageOfdeath);
 				}
 				else {					
-					$html .= ' './* I18N: %s is the age of death in years */  WT_I18N::translate_c('age in years', 'at the age of %s', $ageOfdeath);
+					$html .= ' './* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */  WT_I18N::translate_c('age in years', 'at the age of %s', $ageOfdeath);
 				}
 			}
 		}
