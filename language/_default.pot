@@ -16,13 +16,6 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: modules_v3\\fancy_treeview\n"
 
-#: modules_v3\fancy_treeview/module.php:1142
-#, php-format
-msgid "%s child"
-msgid_plural "%s children"
-msgstr[0] ""
-msgstr[1] ""
-
 #: modules_v3\fancy_treeview/help_text.php:72
 msgid "<p>Currently the PDF option is only supported on LTR-pages. The pdf icon will be disabled when the user selects a RTL language</p>"
 msgstr ""
@@ -259,10 +252,6 @@ msgstr ""
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:1194
-msgid "daughter of"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1240
