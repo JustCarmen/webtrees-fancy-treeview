@@ -92,6 +92,10 @@ msgstr ""
 msgid "He died"
 msgstr ""
 
+#: modules_v3\fancy_treeview/module.php:811
+msgid "Cancel"
+msgstr ""
+
 #: modules_v3\fancy_treeview/module.php:881
 msgid "next"
 msgstr ""

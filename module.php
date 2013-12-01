@@ -798,67 +798,83 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					$controller->addInlineJavascript('
 						// convert page to pdf
 						jQuery("#pdf").click(function(e){
-							if (jQuery("#btn_next").length > 0) var msg = confirm("'.WT_I18N::translate('The pdf contains only visible generation blocks.').'");
-							if (msg == true || jQuery("#btn_next").length == 0) {
-								var content = jQuery("#content").clone();
-
-								//dompdf does not support ordered list, so we make our own
-								jQuery(".generation-block", content).each(function(index) {
-									var main = (index+1);
-									jQuery(this).find(".generation").each(function(){
-										jQuery(this).find("li.family").each(function(index){
-											var i = (index+1)
-											jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");
-											jQuery(this).find("li.child").each(function(index) {
-												jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");
-											});
-										});
-									});
-								});
-
-								// save base64 image on the server for use in pdf
-								jQuery("a.gallery img", content).each(function(){
-									var src = jQuery(this).attr("src");
-									var filename = jQuery(this).parent().data("obje-xref") + ".jpg";
-									jQuery.ajax({
-										type: "POST",
-										url: "module.php?mod='.$this->getName().'&mod_action=pdf_image",
-										data: { "image": src, "filename": filename },
-										async: false
-									});
-									var url = "'.WT_SERVER_NAME.WT_SCRIPT_PATH.WT_MODULES_DIR.$this->getName().'/pdf/tmp/" + filename;
-									jQuery(this).attr("src", url).css({"width":jQuery(this).width(), "height":jQuery(this).height()}); // need size as style attribute to  prevent resampling.
-								});
-
-								// remove or unwrap all elements we do not need in pdf display
-								jQuery("#pdf, form, #btn_next, #error, .hidden, .tooltip-text", content).remove();
-								jQuery(".generation.private", content).parents(".generation-block").remove();
-								jQuery("a, span.SURN, span.date", content).contents().unwrap();
-								jQuery("a", content).remove() //left-overs
-
-								// Turn family blocks into a table for better display in pdf
-								jQuery("li.family", content).each(function(){
-									var obj = jQuery(this);
-									obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
-									obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
-									obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
-								});
-
-								var newContent = content.html();
-
-								jQuery.ajax({
-									type: "POST",
-									url: "module.php?mod='.$this->getName().'&mod_action=pdf_data",
-									data: { "pdfContent": newContent },
-									success: function() {
-										window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
+							if (jQuery("#btn_next").length > 0) {
+								jQuery("#dialog-confirm").dialog({
+									resizable: false,
+									width: 300,
+						  			modal: true,
+									buttons : {
+										"'.WT_I18N::translate('OK').'" : function() {
+											getPDF();
+											jQuery(this).dialog("close");
+										},
+										"'.WT_I18N::translate('Cancel').'" : function() {
+											jQuery(this).dialog("close");
+										}
 									}
 								});
 							}
 							else {
-								return false;
+								getPDF();
 							}
 						});
+
+						function getPDF() {
+							var content = jQuery("#content").clone();
+
+							//dompdf does not support ordered list, so we make our own
+							jQuery(".generation-block", content).each(function(index) {
+								var main = (index+1);
+								jQuery(this).find(".generation").each(function(){
+									jQuery(this).find("li.family").each(function(index){
+										var i = (index+1)
+										jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");
+										jQuery(this).find("li.child").each(function(index) {
+											jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");
+										});
+									});
+								});
+							});
+
+							// save base64 image on the server for use in pdf
+							jQuery("a.gallery img", content).each(function(){
+								var src = jQuery(this).attr("src");
+								var filename = jQuery(this).parent().data("obje-xref") + ".jpg";
+								jQuery.ajax({
+									type: "POST",
+									url: "module.php?mod='.$this->getName().'&mod_action=pdf_image",
+									data: { "image": src, "filename": filename },
+									async: false
+								});
+								var url = "'.WT_SERVER_NAME.WT_SCRIPT_PATH.WT_MODULES_DIR.$this->getName().'/pdf/tmp/" + filename;
+								jQuery(this).attr("src", url).css({"width":jQuery(this).width(), "height":jQuery(this).height()}); // need size as style attribute to  prevent resampling.
+							});
+
+							// remove or unwrap all elements we do not need in pdf display
+							jQuery("#pdf, form, #btn_next, #error, .hidden, .tooltip-text", content).remove();
+							jQuery(".generation.private", content).parents(".generation-block").remove();
+							jQuery("a, span.SURN, span.date", content).contents().unwrap();
+							jQuery("a", content).remove() //left-overs
+
+							// Turn family blocks into a table for better display in pdf
+							jQuery("li.family", content).each(function(){
+								var obj = jQuery(this);
+								obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
+								obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
+								obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
+							});
+
+							var newContent = content.html();
+
+							jQuery.ajax({
+								type: "POST",
+								url: "module.php?mod='.$this->getName().'&mod_action=pdf_data",
+								data: { "pdfContent": newContent },
+								success: function() {
+									window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
+								}
+							});
+						}
 					');
 				}
 
@@ -900,7 +916,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					<div id="fancy_treeview-page">
 						<div id="page-header"><h2>'.$controller->getPageTitle().'</h2>';
 						if($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && $TEXT_DIRECTION == 'ltr') {
-							$html .= '<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
+							$html .= '
+									<div id="dialog-confirm" title="'.WT_I18N::translate('Generate PDF').'" style="display:none">
+										<p>'.WT_I18N::translate('The pdf contains only visible generation blocks.').'</p>
+									</div>
+									<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
 						}
 						$html .= '</div>
 				<div id="page-body">';
@@ -1199,7 +1219,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					break;
 				default:
 					$html .= ', '.WT_I18N::translate('child').' '.WT_I18N::translate('of').' ';
-			}					
+			}
 
 			if($father) $html .= $father->getFullName();
 			if($father && $mother) $html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
@@ -1258,7 +1278,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				if (WT_Date::getAge($birthdate, $deathdate, 0) < 2) {
 					$html .= ' './* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */  WT_I18N::translate_c('age in days/months', 'at the age of %s', $ageOfdeath);
 				}
-				else {					
+				else {
 					$html .= ' './* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */  WT_I18N::translate_c('age in years', 'at the age of %s', $ageOfdeath);
 				}
 			}
@@ -1568,7 +1588,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		if (file_exists($module_dir.WT_THEME_URL.'menu.css')) {
 			$stylesheet .= $this->includeCss($module_dir.WT_THEME_URL.'menu.css', 'screen');
 		}
-		
+
 		if(WT_Filter::get('mod') == $this->getName()) {
 			$stylesheet .= $this->includeCss($module_dir.'themes/base/style.css');
 			$stylesheet .= $this->includeCss($module_dir.'themes/base/print.css', 'print');
