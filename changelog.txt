@@ -1,3 +1,16 @@
+Version 1.5.1 for webtrees 1.5x
+* New: Print stylesheet added.
+* New: support for RTL-languages. Thanks to Meliza for all her help and good suggestions.
+* New: Finish, Swedisch and Hebrew translations added.
+* New: support for png-images.
+* Updated Danish translation.
+* Bugfix: Surnames with special characters in it were not recognized at the module config page.
+* Bugfix: error messages were not shown at the module config page.
+* Bugfix: stylesheets not loading on the fab and minimal theme.
+* Several languages strings changed for better support in multiple languages.
+
+========================================================================================================================
+
 Version 1.5.0.2 for webtrees 1.5.0 - 16-11-2013
 * Added Danish translation. Only a few strings are translated at the moment.
 * Bugfix: Extended privacy restrictions for the root person. Whether to show the name in the title or only the privacy message depends on gedcom settings.
