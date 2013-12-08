@@ -1,4 +1,8 @@
-Version 1.5.1 for webtrees 1.5x
+Version 1.5.1.1 for webtrees 1.5x - 08-12-2013
+* French, German, Danish and Dutch language files updated.
+========================================================================================================================
+
+Version 1.5.1 for webtrees 1.5x - 03-12-2013
 * New: Print stylesheet added.
 * New: support for RTL-languages. Thanks to Meliza for all her help and good suggestions.
 * New: Finish, Swedisch and Hebrew translations added.
