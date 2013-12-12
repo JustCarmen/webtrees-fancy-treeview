@@ -1143,61 +1143,74 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 
 	private function print_children($family, $person, $spouse) {
-
-		$children = $family->getChildren();
 		$html = '';
-		if($children) {
-			if ($this->check_privacy($children)) {
-				$html .= '<div class="children"><p>'.$person->getFullName().' ';
-				// needs multiple translations for the word 'had' to serve different languages.
-				if($spouse && $spouse->CanShow()) {
-					$html .= /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ').$spouse->getFullName().' ';
-					if (count($children) > 1) $html .= WT_I18N::translate_c('Two parents/multiple children', 'had');
-					else $html .= WT_I18N::translate_c('Two parents/one child', 'had');
-				}
-				else {
-					if (count($children) > 1) $html .= WT_I18N::translate_c('One parent/multiple children', 'had');
-					else $html .= WT_I18N::translate_c('One parent/one child', 'had');
-				}
-				$html .= ' './* I18N: %s is a number */ WT_I18N::plural('%s child', '%s children', count($children), count($children)).'.</p></div>';
-			}
-			else {
-				$html .= '<div class="children"><p>'. WT_I18N::translate('Children of ').$person->getFullName();
-				if($spouse && $spouse->CanShow()) {
-					$html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
-					if (!$family->getMarriage()) {
-						// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
-						if($this->options('check_relationship')) $relationship = $this->check_relationship($person, $spouse, $family);
-						if(isset($relationship) && $relationship) {
-							$html .= $spouse->getFullName().' ('.$relationship.')';
-						}
-						else {
-							// the non-married spouse is not mentioned in the parents div text or elsewhere on the page. So put a link behind the name.
-							$html .= '<a class="tooltip" title="" href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>';
-							// Print info of the non-married spouse in a tooltip
-							$html .= '<span class="tooltip-text">'.$this->print_tooltip($spouse).'</span>';
-						}
+		
+		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1]==0) {
+			$html .= '<div class="children"><p>'.$person->getFullName().' ';
+					if($spouse && $spouse->CanShow()) {
+						$html .= /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ').$spouse->getFullName().' ';
+						$html .= WT_I18N::translate_c('Two parents/one child', 'had');
 					}
 					else {
-						$html .= $spouse->getFullName();
+						$html .= WT_I18N::translate_c('One parent/one child', 'had');
 					}
+					$html .= ' '.WT_I18N::translate('none').' '.WT_I18N::translate('children').'.</p></div>';
+		}		
+		else {
+			$children = $family->getChildren();		
+			if($children) {
+				if ($this->check_privacy($children)) {
+					$html .= '<div class="children"><p>'.$person->getFullName().' ';
+					// needs multiple translations for the word 'had' to serve different languages.
+					if($spouse && $spouse->CanShow()) {
+						$html .= /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ').$spouse->getFullName().' ';
+						if (count($children) > 1) $html .= WT_I18N::translate_c('Two parents/multiple children', 'had');
+						else $html .= WT_I18N::translate_c('Two parents/one child', 'had');
+					}
+					else {
+						if (count($children) > 1) $html .= WT_I18N::translate_c('One parent/multiple children', 'had');
+						else $html .= WT_I18N::translate_c('One parent/one child', 'had');
+					}
+					$html .= ' './* I18N: %s is a number */ WT_I18N::plural('%s child', '%s children', count($children), count($children)).'.</p></div>';
 				}
-				$html .= ':<ol>';
-
-				foreach ($children as $child) {
-					$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
-					if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span>';
-
-					$child_family = $this->get_family($child);
-					if ($child->canShow() && $child_family) {
-							$html .= ' - <a class="scroll" href="#'.$child_family->getXref().'"></a>';
+				else {
+					$html .= '<div class="children"><p>'. WT_I18N::translate('Children of ').$person->getFullName();
+					if($spouse && $spouse->CanShow()) {
+						$html .= ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate('and ');
+						if (!$family->getMarriage()) {
+							// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
+							if($this->options('check_relationship')) $relationship = $this->check_relationship($person, $spouse, $family);
+							if(isset($relationship) && $relationship) {
+								$html .= $spouse->getFullName().' ('.$relationship.')';
+							}
+							else {
+								// the non-married spouse is not mentioned in the parents div text or elsewhere on the page. So put a link behind the name.
+								$html .= '<a class="tooltip" title="" href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>';
+								// Print info of the non-married spouse in a tooltip
+								$html .= '<span class="tooltip-text">'.$this->print_tooltip($spouse).'</span>';
+							}
+						}
+						else {
+							$html .= $spouse->getFullName();
+						}
 					}
-					else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
-						if($this->options('show_singles') == true) $html .= ' - <a class="scroll" href="#S'.$child->getXref().'"></a>';
+					$html .= ':<ol>';
+	
+					foreach ($children as $child) {
+						$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
+						if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span>';
+	
+						$child_family = $this->get_family($child);
+						if ($child->canShow() && $child_family) {
+								$html .= ' - <a class="scroll" href="#'.$child_family->getXref().'"></a>';
+						}
+						else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
+							if($this->options('show_singles') == true) $html .= ' - <a class="scroll" href="#S'.$child->getXref().'"></a>';
+						}
+						$html .= '</li>';
 					}
-					$html .= '</li>';
+					$html .= '</ol></div>';
 				}
-				$html .= '</ol></div>';
 			}
 		}
 		return $html;
