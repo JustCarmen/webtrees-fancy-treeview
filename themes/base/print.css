@@ -16,6 +16,9 @@ body{background:none;font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;fo
 #fancy_treeview-page .blockheader {border-bottom-width:1px;border-bottom-style:solid;font-size:14pt}
 #fancy_treeview-page .blockcontent {margin:0;padding:0 0 0 10mm}
 
+/* Blockheaders */
+#fancy_treeview-page .blockheader .header-link {display:none}
+
 /* Family block */
 #fancy_treeview-page .family.private{display:none}
 #fancy_treeview-page .parents span.NAME {font-weight:bold;}

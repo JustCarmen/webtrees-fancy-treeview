@@ -4,5 +4,9 @@
 
 /* blockheaders */
 #fancy_treeview-page .blockheader {border-bottom-color:#A9A9A9; padding:5px 20px}
+#fancy_treeview-page .blockheader .header-link{right:20px}
+html[dir=rtl] #fancy_treeview-page .blockheader .header-link{left:20px}
+
+/* family-block */
 #fancy_treeview-page .blockcontent {margin-left:10px}
 

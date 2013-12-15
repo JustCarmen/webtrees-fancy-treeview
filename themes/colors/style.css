@@ -4,4 +4,8 @@
 
 /* blockheaders */
 #fancy_treeview-page .blockheader {border-bottom:none}
+#fancy_treeview-page .blockheader .header-link{right:11px}
+html[dir=rtl] #fancy_treeview-page .blockheader .header-link{left:11px}
+
+/* family-block */
 #fancy_treeview-page a.tooltip {text-decoration:underline}

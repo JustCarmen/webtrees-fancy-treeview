@@ -667,7 +667,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							});
 						});
 						if (jQuery(".generation-block.hidden").length > 0) { // there are next generations so prepare the links
-							jQuery(".generation-block.hidden").prev().find("a.scroll").addClass("link_next").removeClass("scroll");
+							jQuery(".generation-block.hidden").prev().find("a.scroll").not(".header-link").addClass("link_next").removeClass("scroll");
 						}
 					}
 
@@ -851,7 +851,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							});
 
 							// remove or unwrap all elements we do not need in pdf display
-							jQuery("#pdf, form, #btn_next, #error, .hidden, .tooltip-text", content).remove();
+							jQuery("#pdf, form, #btn_next, #error, .header-link, .hidden, .tooltip-text", content).remove();
 							jQuery(".generation.private", content).parents(".generation-block").remove();
 							jQuery("a, span.SURN, span.date", content).contents().unwrap();
 							jQuery("a", content).remove() //left-overs
@@ -1009,7 +1009,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="'.$i.'" data-pids="'.implode('|', $generation).'">
-					<div class="blockheader ui-state-default">'.WT_I18N::translate('Generation').' '.$i.'</div>';
+					<div class="blockheader ui-state-default"><span class="header-title">'.WT_I18N::translate('Generation').' '.$i.'</span><a href="#body" class="header-link scroll">'.WT_I18N::translate('back to top').'</a></div>';
 
 		if ($this->check_privacy($generation, true)) {
 			$html .= '<div class="blockcontent generation private">'.WT_I18N::translate('The details of this generation are private.').'</div>';

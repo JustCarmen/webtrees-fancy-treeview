@@ -19,6 +19,8 @@ html[dir=rtl] #fancy_treeview-page #error {margin:10px 40px 10px 0}
 
 /* Blockheaders */
 #fancy_treeview-page .blockheader{border:none; border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:0}
+#fancy_treeview-page .blockheader .header-link{font-size:11px;position:absolute;left:auto}
+html[dir=rtl] #fancy_treeview-page .blockheader .header-link{right:auto}
 
 /* List */
 #fancy_treeview-page ol#fancy_treeview {counter-reset: first-level}
