@@ -6,10 +6,8 @@ jQuery.noConflict();
 
 jQuery(document).ready(function($){
 	function setStyle() {
-		$('li.generation-block').each(function(){
-			var blockheader = $(this).find(".blockheader").addClass("remove");
-			$(this).prepend('<table class="blockheader" cellspacing="0" cellpadding="0"><tbody><tr><td class="blockh1"></td><td class="blockh2"><div class="blockhc">' + blockheader.text() + '</div></td><td class="blockh3"></td>')
-			$('.blockheader.remove').remove();
+		$('li.generation-block div.blockheader').each(function(){
+			$(this).replaceWith('<table class="blockheader" cellspacing="0" cellpadding="0"><tbody><tr><td class="blockh1"></td><td class="blockh2"><div class="blockhc">' + $(this).html() + '</div></td><td class="blockh3"></td>');
 		});
 	}
 	setStyle();
