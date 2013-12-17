@@ -1,0 +1,19 @@
+/* Theme style for the Fancy Tree View Pages
+** Copyright (C) 2013 JustCarmen.
+*/
+
+/* The generation-block and blockheader css is equal to css #index_main_blocks .block (not loaded because of too specific css in the Rural theme)
+
+/* Page - */
+#fancy_treeview-page {margin-top:20px}
+#fancy_treeview-page li.generation-block{background-color: #F3EFEF;background-image: url("block_bg.png");background-repeat: repeat-y;color:#000000;margin-bottom: 10px;padding: 1px 4px 4px 46px;vertical-align: top}
+
+/* Blockheaders */
+#fancy_treeview-page .blockheader {border-bottom: 1px dashed #CCCCCC;color: #8C847A;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;margin: 0 0 5px;padding: 5px 0 3px;}
+#fancy_treeview-page .blockheader .header-link{float:right;padding-right:10px;position:relative}
+html[dir=rtl] #fancy_treeview-page .blockheader .header-title{padding-right:10px}
+html[dir=rtl] #fancy_treeview-page .blockheader .header-link{float:left;padding-left:10px}
+
+/* family-block */
+#fancy_treeview-page .date {font-size:10px}
+#fancy_treeview-page li.child .lifespan {font-size:10px}
