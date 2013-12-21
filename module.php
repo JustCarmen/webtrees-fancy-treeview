@@ -260,10 +260,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			->setPageTitle('Fancy Tree View')
 			->pageHeader();
 
-		$update = WT_Filter::postBool('update');
-
-		if (isset($update)) {
-
+		if (WT_Filter::postBool('save')) {
 			$surname = WT_Filter::post('NEW_FTV_SURNAME');
 			$root_id = strtoupper(WT_Filter::post('NEW_FTV_ROOTID', WT_REGEX_XREF));
 			if($surname || $root_id) {
@@ -505,6 +502,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$html = '
 			<div id="fancy_treeview-config"><div id="error"></div><h2>'.$this->getTitle().'</h2>
 			<form method="post" name="configform" action="'.$this->getConfigLink().'">
+				<input type="hidden" name="save" value="1">
 				<div id="top">
 					<label for="NEW_FTV_TREE" class="label">'.WT_I18N::translate('Family tree').'</label>
 					<select name="NEW_FTV_TREE" id="NEW_FTV_TREE" class="tree">';
@@ -621,8 +619,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				</div>
 				<hr/>';
 		$html .='<div class="buttons">
-					<input type="submit" name="update" value="'.WT_I18N::translate('Save').'" />
-				 	<input type="button" name="reset" value="'.WT_I18N::translate('Reset').'" onclick="if (confirm(\''.WT_I18N::translate('The settings will be reset to default (for all trees). Are you sure you want to do this?').'\')) window.location.href=\'module.php?mod='.$this->getName().'&amp;mod_action=admin_reset\';"/>
+					<input type="submit" value="'.WT_I18N::translate('Save').'" />
+				 	<input type="reset" value="'.WT_I18N::translate('Reset').'" onclick="if (confirm(\''.WT_I18N::translate('The settings will be reset to default (for all trees). Are you sure you want to do this?').'\')) window.location.href=\'module.php?mod='.$this->getName().'&amp;mod_action=admin_reset\';"/>
 				</div>
 			</form>
 			</div>';
