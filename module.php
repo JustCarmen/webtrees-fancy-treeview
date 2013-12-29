@@ -1197,7 +1197,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	
 					foreach ($children as $child) {
 						$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
-						if($child->CanShow()) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span>';
+						if($child->CanShow() && ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK())) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span>';
 	
 						$child_family = $this->get_family($child);
 						if ($child->canShow() && $child_family) {
