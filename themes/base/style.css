@@ -29,7 +29,7 @@ html[dir=rtl] #fancy_treeview-page .blockheader .header-link{right:auto}
 #fancy_treeview-page li {position: relative;display: block}
 #fancy_treeview-page li.generation-block:before{counter-increment: first-level; content:""}
 #fancy_treeview-page li.family:before {counter-increment: second-level; content: counter(first-level) "." counter(second-level);margin-left: -4em;float:left} 
-#fancy_treeview-page li.child:before {counter-increment: third-level; content: counter(first-level) "." counter(second-level) "." counter(third-level);display:inline-block;width:4em}
+#fancy_treeview-page li.child:before {counter-increment: third-level; content: counter(first-level) "." counter(second-level) "." counter(third-level);display:inline-block;width:4.75em}
 html[dir=rtl] #fancy_treeview-page li.family:before {counter(first-level) "." counter(second-level);margin-right: -4em;float:right}
 html[dir=rtl] #fancy_treeview-page li.child:before {counter(first-level) "." counter(second-level) "." counter(third-level)}
 
