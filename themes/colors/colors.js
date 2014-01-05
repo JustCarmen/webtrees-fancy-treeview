@@ -1,6 +1,6 @@
 /* Script file for the Fancy Tree View Pages
 /* Extra js file for this theme to set some special styles
-** Copyright (C) 2013 JustCarmen.
+** Copyright (C) 2014 JustCarmen.
 */
 
 jQuery.noConflict();
