@@ -539,29 +539,43 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					</tr>';
 					foreach ($FTV_SETTINGS as $key=>$FTV_ITEM):
 						if($FTV_ITEM['TREE'] == WT_GED_ID):
-		$html .= '		<tr class="sortme">
-							<td><input type="hidden" name="NEW_FTV_SORT['.$key.']" id="NEW_FTV_SORT['.$key.']" value="'.$FTV_ITEM['SORT'].'" />
-								<span class="showname">'.$FTV_ITEM['DISPLAY_NAME'].'</span>
-								<span class="editname"><input type="text" name="NEW_FTV_DISPLAY_NAME['.$key.']" id="NEW_FTV_DISPLAY_NAME['.$key.']" value="'.$FTV_ITEM['DISPLAY_NAME'].'"/></span>
-							</td>
-							<td>'.WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName().' ('.$FTV_ITEM['PID'].')</td>
-							<td>
-								<a href="module.php?mod='.$this->getName().'&amp;mod_action=show&amp;ged='.$WT_TREE->tree_name.'&amp;rootid='.($FTV_ITEM['PID']).'" target="_blank">';
-								if($this->options('use_fullname') == true) {
-									$html .= WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName());
-								}
-								else {
-									$html .= WT_I18N::translate('Descendants of the %s family', $FTV_ITEM['DISPLAY_NAME']);
-								}
-		$html .=				'</a>
-							</td>
-							<td class="wrap">
-								<input type="text" name="NEW_FTV_PID['.$key.']" id="NEW_FTV_PID['.$key.']" value="'.$FTV_ITEM['PID'].'" size="5" maxlength="20"/>'.
-								print_findindi_link('NEW_FTV_PID['.$key.']');
-		$html .= '			</td>
-							<td>'.edit_field_access_level('NEW_FTV_ACCESS_LEVEL['.$key.']', $FTV_ITEM['ACCESS_LEVEL']).'</td>
-							<td><a href="module.php?mod='.$this->getName().'&amp;mod_action=admin_delete&amp;key='.$key.'"><img src="'.$WT_IMAGES['remove'].'" alt="icon-delete"/></a></td>
-						</tr>';
+							if(WT_Individual::getInstance($FTV_ITEM['PID'])):
+		$html .= '				<tr class="sortme">
+									<td><input type="hidden" name="NEW_FTV_SORT['.$key.']" id="NEW_FTV_SORT['.$key.']" value="'.$FTV_ITEM['SORT'].'" />
+										<span class="showname">'.$FTV_ITEM['DISPLAY_NAME'].'</span>
+										<span class="editname"><input type="text" name="NEW_FTV_DISPLAY_NAME['.$key.']" id="NEW_FTV_DISPLAY_NAME['.$key.']" value="'.$FTV_ITEM['DISPLAY_NAME'].'"/></span>
+									</td>
+									<td>'.WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName().' ('.$FTV_ITEM['PID'].')</td>
+									<td>
+										<a href="module.php?mod='.$this->getName().'&amp;mod_action=show&amp;ged='.$WT_TREE->tree_name.'&amp;rootid='.($FTV_ITEM['PID']).'" target="_blank">';
+										if($this->options('use_fullname') == true) {
+											$html .= WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName());
+										}
+										else {
+											$html .= WT_I18N::translate('Descendants of the %s family', $FTV_ITEM['DISPLAY_NAME']);
+										}
+		$html .=						'</a>
+									</td>
+									<td class="wrap">
+										<input type="text" name="NEW_FTV_PID['.$key.']" id="NEW_FTV_PID['.$key.']" value="'.$FTV_ITEM['PID'].'" size="5" maxlength="20">'.
+											print_findindi_link('NEW_FTV_PID['.$key.']');
+		$html .= '					</td>
+									<td>'.edit_field_access_level('NEW_FTV_ACCESS_LEVEL['.$key.']', $FTV_ITEM['ACCESS_LEVEL']).'</td>
+									<td><a href="module.php?mod='.$this->getName().'&amp;mod_action=admin_delete&amp;key='.$key.'"><img src="'.$WT_IMAGES['remove'].'" alt="icon-delete"/></a></td>
+								</tr>';
+							else:
+		$html .= '				<tr>
+									<td class="error">
+										<input type="hidden" name="NEW_FTV_PID['.$key.']" value="'.$FTV_ITEM['PID'].'">
+										<input type="hidden" name="NEW_FTV_ACCESS_LEVEL['.$key.']" value="'.WT_PRIV_HIDE.'">
+										<input type="hidden" name="NEW_FTV_DISPLAY_NAME['.$key.']" value="'.$FTV_ITEM['DISPLAY_NAME'].'">
+										'.$FTV_ITEM['DISPLAY_NAME'].'</td>							
+									<td colspan="4" class="error">
+										'.WT_I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $FTV_ITEM['PID']).'
+									</td>								
+									<td><a href="module.php?mod='.$this->getName().'&amp;mod_action=admin_delete&amp;key='.$key.'"><img src="'.$WT_IMAGES['remove'].'" alt="icon-delete"/></a></td>';						
+		$html .= '				</tr>';
+							endif;
 						endif;
 					endforeach;
 		$html .='</table>';
