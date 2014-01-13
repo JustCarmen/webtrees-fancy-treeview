@@ -858,6 +858,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 									type: "POST",
 									url: "module.php?mod='.$this->getName().'&mod_action=pdf_image",
 									data: { "image": src, "filename": filename },
+									csrf: WT_CSRF_TOKEN,
 									async: false
 								});
 								var url = "'.WT_SERVER_NAME.WT_SCRIPT_PATH.WT_MODULES_DIR.$this->getName().'/pdf/tmp/" + filename;
@@ -884,6 +885,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 								type: "POST",
 								url: "module.php?mod='.$this->getName().'&mod_action=pdf_data",
 								data: { "pdfContent": newContent },
+								csrf: WT_CSRF_TOKEN,
 								success: function() {
 									window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
 								}
@@ -901,7 +903,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							var url = jQuery(location).attr("pathname") + "?mod='.$this->getName().'&mod_action=show&rootid=" + new_rootid;
 							jQuery.ajax({
 								url: url,
-								csrf:   WT_CSRF_TOKEN,
+								csrf: WT_CSRF_TOKEN,
 								success: function() {
 									window.location = url;
 								},
