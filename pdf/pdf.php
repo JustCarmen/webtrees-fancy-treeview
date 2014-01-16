@@ -16,11 +16,11 @@ if (is_dir($fontsDir) && !is_writable($fontsDir)) {
 
 $filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
 
-if(!$filename) {
+if(!$filename || !is_writable($fontsDir)) {
 	header('Location: module.php?mod='.$this->getName().'&mod_action=show&rootid='.WT_Filter::get('rootid'));
 	WT_FlashMessages::addMessage(WT_I18N::translate('The pdf could not be generated.'));
 	if (WT_USER_GEDCOM_ADMIN) {
-		WT_FlashMessages::addMessage(WT_I18N::translate('Make sure the folders %s are writable.', dirname($filename).' and '.WT_MODULES_DIR.$this->getName().'/pdf/dompdf/lib/fonts'));
+		WT_FlashMessages::addMessage(WT_I18N::translate('Make sure the folders %s exists and are writable.', dirname($filename).' and '.WT_MODULES_DIR.$this->getName().'/pdf/dompdf/lib/fonts'));
 	}	
 }
 else {

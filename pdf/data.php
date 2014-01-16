@@ -10,11 +10,6 @@ Zend_Session::writeClose();
 $filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
 $content = $_POST['pdfContent'];
 
-// check if the pdf/tmp directory exists on the server, otherwise make it.
-if (!is_dir(dirname($filename))) {
-	@mkdir(dirname($filename), WT_PERM_EXE);
-}
-
 // make our datafile if it does not exist.
 if(!file_exists($filename)) {
 	$handle = fopen($filename, 'w');
