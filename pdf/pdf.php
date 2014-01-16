@@ -22,7 +22,7 @@ $html =
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<link type="text/css" href="style.css" rel="stylesheet" />
 	</head>
-	<body>'.file_get_contents($filename).'</body>
+	<body>'.@file_get_contents($filename).'</body>
   </html>';
 
 $dompdf = new DOMPDF();
