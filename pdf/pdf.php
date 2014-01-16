@@ -5,11 +5,11 @@ if (!defined('WT_WEBTREES')) {
 	exit;
 }
 
-require_once(WT_MODULES_DIR.$this->getName().'/pdf/dompdf-0.6.0/dompdf_config.inc.php');
+require_once(WT_MODULES_DIR.$this->getName().'/pdf/dompdf/dompdf_config.inc.php');
 Zend_Loader_Autoloader::getInstance()->pushAutoloader('DOMPDF_autoload','');
 
 // be sure the font directory is writable
-$fontsDir = WT_MODULES_DIR.$this->getName().'/pdf/dompdf-0.6.0/lib/fonts';
+$fontsDir = WT_MODULES_DIR.$this->getName().'/pdf/dompdf/lib/fonts';
 if (is_dir($fontsDir) && !is_writable($fontsDir)) {
 	@chmod($fontsDir, WT_PERM_EXE);
 }
