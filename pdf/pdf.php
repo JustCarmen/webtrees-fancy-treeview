@@ -20,7 +20,7 @@ if(!$filename) {
 	header('Location: module.php?mod='.$this->getName().'&mod_action=show&rootid='.WT_Filter::get('rootid'));
 	WT_FlashMessages::addMessage(WT_I18N::translate('The pdf could not be generated.'));
 	if (WT_USER_GEDCOM_ADMIN) {
-		WT_FlashMessages::addMessage(WT_I18N::translate('Make sure the folder %s is writable.', dirname($filename)));
+		WT_FlashMessages::addMessage(WT_I18N::translate('Make sure the folders %s are writable.', dirname($filename).' and '.WT_MODULES_DIR.$this->getName().'/pdf/dompdf/lib/fonts'));
 	}	
 }
 else {
