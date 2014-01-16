@@ -7,7 +7,7 @@ if (!defined('WT_WEBTREES')) {
 
 Zend_Session::writeClose();
 
-$filename = WT_MODULES_DIR.$this->getName().'/pdf/tmp/data.txt';
+$filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
 $content = $_POST['pdfContent'];
 
 // check if the pdf/tmp directory exists on the server, otherwise make it.
