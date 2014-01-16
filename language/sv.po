@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
 "POT-Creation-Date: 2013-12-01 10:37+0100\n"
-"PO-Revision-Date: 2013-11-30 18:10+0100\n"
+"PO-Revision-Date: 2013-12-31 01:33+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -108,7 +108,7 @@ msgstr ""
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:62
 msgid "Fancy Tree View"
-msgstr ""
+msgstr "Fantasiträdvy"
 
 #: modules_v3\fancy_treeview/module.php:571
 msgid "General Options"
@@ -116,7 +116,7 @@ msgstr "Allmänna Alternativ"
 
 #: modules_v3\fancy_treeview/module.php:920
 msgid "Generate PDF"
-msgstr ""
+msgstr "Generera PDF"
 
 #: modules_v3\fancy_treeview/module.php:933
 msgid "Go"
@@ -140,7 +140,7 @@ msgstr "Han var född"
 
 #: modules_v3\fancy_treeview/module.php:931
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: modules_v3\fancy_treeview/help_text.php:45
 #: modules_v3\fancy_treeview/module.php:577
@@ -149,7 +149,7 @@ msgstr "Antal generationsblock att visa"
 
 #: modules_v3\fancy_treeview/module.php:807
 msgid "OK"
-msgstr ""
+msgstr "Okej"
 
 #: modules_v3\fancy_treeview/module.php:525
 msgid "Or manually add a root person"
@@ -157,7 +157,7 @@ msgstr "Eller lägg till en startperson manuellt"
 
 #: modules_v3\fancy_treeview/help_text.php:71
 msgid "PDF not supported for RTL-languages"
-msgstr ""
+msgstr "PDF stöds inte för RTL-språk"
 
 #: modules_v3\fancy_treeview/module.php:535
 msgid "Root person"
@@ -260,17 +260,17 @@ msgstr "och "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: modules_v3\fancy_treeview/module.php:1279
-#, fuzzy, php-format
+#, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "vid %s års ålder"
+msgstr "vid en ålder av %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: modules_v3\fancy_treeview/module.php:1282
-#, fuzzy, php-format
+#, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr "vid %s års ålder"
+msgstr "vid en ålder av %s"
 
 #: modules_v3\fancy_treeview/module.php:1268
 msgctxt "FEMALE"
