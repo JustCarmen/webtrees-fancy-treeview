@@ -1146,6 +1146,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 		else {
 		// use the facts below only on none private records.
+			if ($this->print_parents($spouse)) $html .= ',';
 			$marrdate = $family->getMarriageDate();
 			$marrplace = $family->getMarriagePlace();
 			if($marrdate && $marrdate->isOK()) $html .= $this->print_date($marrdate);
