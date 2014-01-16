@@ -43,19 +43,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				);
 			}
 		}
-
-		// delete the temporary files from the pdf/tmp folder on startup
-		$path =  WT_MODULES_DIR.$this->getName().'/pdf/tmp';
-		if(is_dir($path)) {
-			if ($handle = @opendir($path)) {
-				while (false !== ($file = @readdir($handle))) {
-					if ((time()-filectime($path.'/'.$file)) > 86400) {  // 86400 = 60*60*24	(s*m*h)
-						@unlink($path.'/'.$file);
-					}
-				}
-			}
-			@rmdir($path);
-		}
 	}
 
 	// Extend WT_Module
