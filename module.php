@@ -855,7 +855,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 								data: { "pdfContent": newContent },
 								csrf: WT_CSRF_TOKEN,
 								success: function() {
-									window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
+									window.location.href = "module.php?mod='.$this->getName().'&mod_action=show_pdf&rootid='.WT_Filter::get('rootid').'&title='.urlencode(strip_tags($controller->getPageTitle())).'#page=1";
 								}
 							});
 						}
