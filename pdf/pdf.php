@@ -14,7 +14,7 @@ if (is_dir($fontsDir) && !is_writable($fontsDir)) {
 	@chmod($fontsDir, WT_PERM_EXE);
 }
 
-$filename = WT_MODULES_DIR.$this->getName().'/pdf/tmp/data.txt';
+$filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
 
 $html =
   '<html>
