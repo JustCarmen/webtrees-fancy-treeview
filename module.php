@@ -216,9 +216,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		case 'show':
 			$this->show();
 			break;
-		case 'pdf_image':
-			include('pdf/image.php');
-			break;
 		case 'pdf_data':
 			include('pdf/data.php');
 			break;
@@ -848,21 +845,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 										});
 									});
 								});
-							});
-
-							// save base64 image on the server for use in pdf
-							jQuery("a.gallery img", content).each(function(){
-								var src = jQuery(this).attr("src");
-								var filename = jQuery(this).parent().data("obje-xref") + ".jpg";
-								jQuery.ajax({
-									type: "POST",
-									url: "module.php?mod='.$this->getName().'&mod_action=pdf_image",
-									data: { "image": src, "filename": filename },
-									csrf: WT_CSRF_TOKEN,
-									async: false
-								});
-								var url = "'.WT_SERVER_NAME.WT_SCRIPT_PATH.WT_MODULES_DIR.$this->getName().'/pdf/tmp/" + filename;
-								jQuery(this).attr("src", url).css({"width":jQuery(this).width(), "height":jQuery(this).height()}); // need size as style attribute to  prevent resampling.
 							});
 
 							// remove or unwrap all elements we do not need in pdf display
