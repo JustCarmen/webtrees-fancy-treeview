@@ -12,27 +12,27 @@ $content = $_POST['pdfContent'];
 
 // check if the pdf/tmp directory exists on the server, otherwise make it.
 if (!is_dir(dirname($filename))) {
-	mkdir(dirname($filename), WT_PERM_EXE);
+	@mkdir(dirname($filename), WT_PERM_EXE);
 }
 
 // make our datafile if it does not exist.
 if(!file_exists($filename)) {
 	$handle = fopen($filename, 'w');
-	fclose($handle);
+	@fclose($handle);
 	@chmod($filename, WT_PERM_FILE);
 }
 
 // Let's make sure the file exists and is writable first.
 if (is_writable($filename)) {
 
-    if (!$handle = fopen($filename, 'w')) {
+    if (!$handle = @fopen($filename, 'w')) {
          exit;
     }
 
     // Write the pdfContent to our data.txt file.
-    if (fwrite($handle, $content) === FALSE) {
+    if (@fwrite($handle, $content) === FALSE) {
         exit;
     }
 
-    fclose($handle);
+    @fclose($handle);
 }
