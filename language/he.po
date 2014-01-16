@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
 "POT-Creation-Date: 2013-12-01 10:37+0100\n"
-"PO-Revision-Date: 2013-11-30 18:07+0100\n"
+"PO-Revision-Date: 2013-12-31 01:33+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -108,7 +108,7 @@ msgstr ""
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:62
 msgid "Fancy Tree View"
-msgstr ""
+msgstr "צוגת עץ מפוארת"
 
 #: modules_v3\fancy_treeview/module.php:571
 msgid "General Options"
@@ -140,7 +140,7 @@ msgstr "הוא נולד"
 
 #: modules_v3\fancy_treeview/module.php:931
 msgid "ID"
-msgstr ""
+msgstr "קוד זיהי"
 
 #: modules_v3\fancy_treeview/help_text.php:45
 #: modules_v3\fancy_treeview/module.php:577
@@ -156,7 +156,6 @@ msgid "Or manually add a root person"
 msgstr "או הוסף ידנית אדם מוצא"
 
 #: modules_v3\fancy_treeview/help_text.php:71
-#, fuzzy
 msgid "PDF not supported for RTL-languages"
 msgstr "PDF אינו נתמך על דפי RTL"
 
@@ -261,17 +260,17 @@ msgstr "ו"
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: modules_v3\fancy_treeview/module.php:1279
-#, fuzzy, php-format
+#, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr "בגיל %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: modules_v3\fancy_treeview/module.php:1282
-#, fuzzy, php-format
+#, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr "בגיל %s"
+msgstr "בגיל %s שנים"
 
 #: modules_v3\fancy_treeview/module.php:1268
 msgctxt "FEMALE"
@@ -342,7 +341,7 @@ msgstr "ב-"
 #: modules_v3\fancy_treeview/module.php:1401
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
-msgstr " "
+msgstr "ב-"
 
 #: modules_v3\fancy_treeview/module.php:1103
 msgid "second"

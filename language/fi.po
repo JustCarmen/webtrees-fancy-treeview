@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
 "POT-Creation-Date: 2013-12-01 10:37+0100\n"
-"PO-Revision-Date: 2013-11-30 18:03+0100\n"
+"PO-Revision-Date: 2014-01-02 13:19+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -64,7 +64,7 @@ msgstr "Muuta aloitushenkilö"
 #: modules_v3\fancy_treeview/help_text.php:51
 #: modules_v3\fancy_treeview/module.php:581
 msgid "Check relationship between partners"
-msgstr "Tarkista kumppanien väliset suhteet"
+msgstr "Tarkista puolisoiden väliset suhteet"
 
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/module.php:555
@@ -108,7 +108,7 @@ msgstr "Virhe: lisäämäsi sukunimi ei ole tässä puussa."
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:62
 msgid "Fancy Tree View"
-msgstr ""
+msgstr "Hieno puunäkymä"
 
 #: modules_v3\fancy_treeview/module.php:571
 msgid "General Options"
@@ -116,7 +116,7 @@ msgstr "Yleiset asetukset"
 
 #: modules_v3\fancy_treeview/module.php:920
 msgid "Generate PDF"
-msgstr ""
+msgstr "Luo PDF"
 
 #: modules_v3\fancy_treeview/module.php:933
 msgid "Go"
@@ -131,16 +131,16 @@ msgstr "Hän avioitui %s kertaa"
 #: modules_v3\fancy_treeview/module.php:1244
 msgctxt "PAST"
 msgid "He was born"
-msgstr "Hän syntyi"
+msgstr "Puoliso syntyi"
 
 #: modules_v3\fancy_treeview/module.php:1247
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Hän syntyi"
+msgstr "Puoliso syntyi"
 
 #: modules_v3\fancy_treeview/module.php:931
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: modules_v3\fancy_treeview/help_text.php:45
 #: modules_v3\fancy_treeview/module.php:577
@@ -149,7 +149,7 @@ msgstr "Näytettävien sukupolvilohkojen lukumäärä"
 
 #: modules_v3\fancy_treeview/module.php:807
 msgid "OK"
-msgstr ""
+msgstr "Okei"
 
 #: modules_v3\fancy_treeview/module.php:525
 msgid "Or manually add a root person"
@@ -157,7 +157,7 @@ msgstr "Tai lisää käsin alkuhenkilö"
 
 #: modules_v3\fancy_treeview/help_text.php:71
 msgid "PDF not supported for RTL-languages"
-msgstr ""
+msgstr "PDF:iä ei tueta RTL-kielillä"
 
 #: modules_v3\fancy_treeview/module.php:535
 msgid "Root person"
@@ -176,12 +176,12 @@ msgstr "Hän meni naimisiin %s kertaa"
 #: modules_v3\fancy_treeview/module.php:1244
 msgctxt "PAST"
 msgid "She was born"
-msgstr "Hän syntyi"
+msgstr "Puoliso syntyi"
 
 #: modules_v3\fancy_treeview/module.php:1247
 msgctxt "PRESENT"
 msgid "She was born"
-msgstr "Hän syntyi"
+msgstr "Puoliso syntyi"
 
 #: modules_v3\fancy_treeview/module.php:617
 msgid "Show PDF icon?"
@@ -208,12 +208,12 @@ msgstr "Näytä naimattomat henkilöt"
 #: modules_v3\fancy_treeview/module.php:1112
 #, php-format
 msgid "The %s time he married"
-msgstr "%s kerralla hän avioitui seuraavan henkilön kanssa:"
+msgstr "%s kerralla puoliso:"
 
 #: modules_v3\fancy_treeview/module.php:1112
 #, php-format
 msgid "The %s time she married"
-msgstr "%s kerralla hän avioitui seuraavan henkilön kanssa:"
+msgstr "%s kerralla puoliso:"
 
 #: modules_v3\fancy_treeview/module.php:1015
 msgid "The details of this generation are private."
@@ -243,7 +243,7 @@ msgstr "Käytä erikoispikkukuvia"
 #: modules_v3\fancy_treeview/help_text.php:42
 #: modules_v3\fancy_treeview/module.php:574
 msgid "Use fullname in menu"
-msgstr "Käytä koko nimeä valikossa"
+msgstr "Käytä valikossa koko nimi"
 
 #: modules_v3\fancy_treeview/module.php:609
 msgid "Use square thumbnails"
@@ -260,17 +260,17 @@ msgstr "ja "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: modules_v3\fancy_treeview/module.php:1279
-#, fuzzy, php-format
+#, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "- ikä: %s"
+msgstr "%s vanhana"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: modules_v3\fancy_treeview/module.php:1282
-#, fuzzy, php-format
+#, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr "- ikä: %s"
+msgstr "%s vuotiaana"
 
 #: modules_v3\fancy_treeview/module.php:1268
 msgctxt "FEMALE"
@@ -323,7 +323,7 @@ msgstr "-"
 #: modules_v3\fancy_treeview/module.php:1404
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "kuukakautena "
+msgstr " "
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1407
@@ -335,7 +335,7 @@ msgstr "vuonna "
 #: modules_v3\fancy_treeview/module.php:1439
 msgctxt "before placesnames"
 msgid "in "
-msgstr "paikassa "
+msgstr " "
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1401
