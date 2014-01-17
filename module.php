@@ -202,6 +202,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		case 'show':
 			$this->show();
 			break;
+		case 'image_data':
+			$this->getImageData();
+			break;
 		case 'pdf_data':
 			include('pdf/data.php');
 			break;
@@ -817,8 +820,40 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						});
 
 						function getPDF() {
+							// get image source for default webtrees thumbs
+							if(jQuery(".ftv-thumb").length == 0) {
+								function qstring(key, url) {
+									KeysValues = url.split(/[\?&]+/);
+									for (i = 0; i < KeysValues.length; i++) {
+										KeyValue= KeysValues[i].split("=");
+										if (KeyValue[0] == key) {
+											return KeyValue[1];
+										}
+									}
+								}							
+								jQuery("a.gallery img").each(function(){
+									var obj = jQuery(this);
+									var src = obj.attr("src");
+									var mid = qstring("mid", src);
+									jQuery.ajax({
+										type: "GET",
+										url: "module.php?mod='.$this->getName().'&mod_action=image_data&mid=" + mid,
+										async: false,
+										success: function(data) {
+											obj.addClass("wt-thumb").attr("src", data);
+										}										
+									});				
+								});
+							}	
+							
+							// clone the content now												
 							var content = jQuery("#content").clone();
-
+							
+							//put image back behind the mediafirewall
+							jQuery(".wt-thumb").each(function(){
+								jQuery(this).attr("src", jQuery(this).parent().data("obje-url") + "&thumb=1");							
+							});
+							
 							//dompdf does not support ordered list, so we make our own
 							jQuery(".generation-block", content).each(function(index) {
 								var main = (index+1);
@@ -1381,7 +1416,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
 							' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
 							' data-title="'     	. strip_tags($mediaobject->getFullName())   		. '"' .
-							'><img src="data:image/jpeg;base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
+							'><img class="ftv-thumb" src="data:image/jpeg;base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
 				}
 			}
 			else {
@@ -1531,13 +1566,21 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 
 	// Determine if the family parents are married. Don't use the default function because we want to privatize the record but display the name and the parents of the spouse if the spouse him/herself is not private.
-	public function getMarriage($family) {
+	private function getMarriage($family) {
 		$record = WT_GedcomRecord::getInstance($family->getXref());
 		foreach ($record->getFacts('MARR', false, WT_PRIV_HIDE) as $fact) {
 			return true;
 		}
 	}
-
+	
+	private function getImageData() {
+		Zend_Session::writeClose();
+		header('Content-type: text/html; charset=UTF-8');
+		$xref = WT_Filter::get('mid');
+		$mediaobject = WT_Media::getInstance($xref);
+		if($mediaobject) echo $mediaobject->getServerFilename();	
+	}
+	
 	// ************************************************* START OF MENU ********************************* //
 
 	// Implement WT_Module_Menu
