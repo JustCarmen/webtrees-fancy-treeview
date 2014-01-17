@@ -8,7 +8,7 @@ if (!defined('WT_WEBTREES')) {
 Zend_Session::writeClose();
 
 $filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
-$content = $_POST['pdfContent'];
+$content = WT_Filter::post('pdfContent');
 
 // make our datafile if it does not exist.
 if(!file_exists($filename)) {
