@@ -645,6 +645,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$controller
 				->setPageTitle(/* I18N: %s is the surname of the root individual */ WT_I18N::translate('Descendants of %s', $root_person->getFullName()))
 				->pageHeader()
+				->addExternalJavascript(WT_STATIC_URL.'js/autocomplete.js')
 				->addInlineJavascript('
 					var pastefield; function paste_id(value) { pastefield.value=value; } // For the \'find indi\' link
 					// setup numbers for scroll reference
@@ -899,6 +900,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 				if($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
 					$controller->addInlineJavascript('
+						jQuery("#new_rootid").autocomplete({
+							source: "autocomplete.php?field=INDI",
+							html: true
+						});
+						
 						// submit form to change root id
 						jQuery( "form#change_root" ).submit(function(e) {
 							e.preventDefault();
@@ -947,7 +953,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					$html .= '
 							<form id="change_root">
 								<label class="label">'.WT_I18N::translate('Change root person').'</label>
-								<input type="text" name="new_rootid" id="new_rootid" size="5" maxlength="20" placeholder="'.WT_I18N::translate('ID').'"/>'.
+								<input type="text" name="new_rootid" id="new_rootid" size="10" maxlength="20" placeholder="'.WT_I18N::translate('ID').'"/>'.
 								print_findindi_link('new_rootid').'
 								<input type="submit" id="btn_go" value="'.WT_I18N::translate('Go').'" />
 							</form>
