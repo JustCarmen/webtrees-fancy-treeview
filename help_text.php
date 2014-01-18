@@ -64,9 +64,9 @@ case 'select_country':
 	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.
 								'<p>If you don’t select a country then all countries will be shown, including your own.</p>');
 	break;
-case 'ftv_thumbs':
-	$title=WT_I18N::translate('Use custom thumbnails');
-	$text=WT_I18N::translate(	'<p>Here you can choose to use custom thumbnails especially for the Fancy Tree View pages. You can set a custom size and/or opt for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you set on the tree configuration page.</p>');
+case 'resize_thumbs':
+	$title=WT_I18N::translate('Resize thumbnails');
+	$text=WT_I18N::translate(	'<p>Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels.</p><dl><dt>Size in percentage</dt><dd>The original thumbnails will be proportionally resized. This may result in a different width and height for each thumbnail.</dd><dt>Size in pixels</dt><dd>The longest side of the image will be resized to match the size in pixels. The other side will be resized proportionally.</dd><dt>Square thumbs</dt><dd>When you use a square thumbnail, all thumbnails will have the same width and height. In this case the thumbnails will be cropped.</dd></dl><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.</p>');
 	break;
 case 'show_pdf':
 	$title=WT_I18N::translate('PDF not supported for RTL-languages');
