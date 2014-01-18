@@ -1,6 +1,6 @@
 <?php
-// Update the Fancy Tree View module database schema from version 4 to 5
-// - new options added
+// Update the Fancy Tree View module database schema from version 7 to 8
+// - one option renamed and one new option added
 //
 // The script should assume that it can be interrupted at
 // any point, and be able to continue by re-running the script.
