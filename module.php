@@ -69,7 +69,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				'CHECK_RELATIONSHIP' 	=> '0',
 				'SHOW_SINGLES'			=> '0',
 				'SHOW_PLACES' 			=> '1',
-				'COUNTRY' 				=> '',
+				'USE_GEDCOM_PLACES'		=> '1',
 				'SHOW_OCCU' 			=> '1',
 				'RESIZE_THUMBS'			=> '1',
 				'THUMB_SIZE'			=> '60',
@@ -467,23 +467,24 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				var checkbox = jQuery(checkbox).find("input[type=checkbox]");
 				var field = jQuery(field)
 				if(!reverse) {
-					if ((checkbox).is(":checked")) field.show();
-					else field.hide();
+					if ((checkbox).is(":checked")) field.show("slow");
+					else field.hide("slow");
 					checkbox.click(function(){
-						if (this.checked) field.show();
-						else field.hide();
+						if (this.checked) field.show("slow");
+						else field.hide("slow");
 					});
 				}
 				else {
-					if ((checkbox).is(":checked")) field.hide();
-					else field.show();
+					if ((checkbox).is(":checked")) field.hide("slow");
+					else field.show("slow");
 					checkbox.click(function(){
-						if (this.checked) field.hide();
-						else field.show();
+						if (this.checked) field.hide("slow");
+						else field.show("slow");
 					});
 				}
 			}
 			toggleFields("#resize_thumbs", "#thumb_size, #square_thumbs");
+			toggleFields("#places", "#gedcom_places");
 		');
 
 		// Admin page content
@@ -584,17 +585,14 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					</div>
 					<div class="field">
 						<label class="label">'.WT_I18N::translate('Show single persons').help_link('show_singles', $this->getName()).'</label>'.two_state_checkbox('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles')).'
-					</div>';
-				if($this->getCountrylist()) {
-		$html .= '	<div class="field">
+					</div>				
+					<div id="places" class="field">
 						<label class="label">'.WT_I18N::translate('Show places?').'</label>'.two_state_checkbox('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places')).'
 					</div>
+					<div id="gedcom_places" class="field">
+						<label class="label">'.WT_I18N::translate('Use default Gedcom settings to abbreviate place names?').help_link('gedcom_places', $this->getName()).'</label>'.two_state_checkbox('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $this->options('use_gedcom_places')).'
+					</div>
 					<div class="field">
-						<label class="label">'.WT_I18N::translate('Select your country').help_link('select_country', $this->getName()).'</label>'.
-						select_edit_control('NEW_FTV_OPTIONS[COUNTRY]', $this->getCountryList(), '', $this->options('country')).'
-					</div>';
-				}
-		$html .= '	<div class="field">
 						<label class="label">'.WT_I18N::translate('Show occupations').'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')).'
 					</div>
@@ -1474,14 +1472,13 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	private function print_place($place) {
 		if($this->options('show_places') == true) {
-			$places = array_reverse(explode(", ", $place));
-			$country = $this->options('country');
-			if (!empty($country) && $places[0] == $country) {
-				unset($places[0]);
+			$place = new WT_Place($place, WT_GED_ID);
+			$html = ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate_c('before placesnames', 'in ');
+			if	($this->options('use_gedcom_places') == true) {				
+				$html .= $place->getShortName();
+			} else {
+				$html .= $place->getFullName();
 			}
-			$place = implode(', ', array_reverse($places));
-
-			$html = ' '. /* I18N: Note the space at the end of the string */ WT_I18N::translate_c('before placesnames', 'in ').$place;
 			return $html;
 		}
 	}

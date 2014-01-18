@@ -59,10 +59,9 @@ case 'show_singles':
 	$text=WT_I18N::translate(	'<p>Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children.</p>'.
 								'<p>With this option turned on, every child of a family will be shown in a detailed way in the next generation block.</p>');
 	break;
-case 'select_country':
-	$title=WT_I18N::translate('Select your country');
-	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p>'.
-								'<p>If you don’t select a country then all countries will be shown, including your own.</p>');
+case 'gedcom_places':
+	$title=WT_I18N::translate('Place settings');
+	$text=WT_I18N::translate(	'<p>If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.</p>');
 	break;
 case 'resize_thumbs':
 	$title=WT_I18N::translate('Resize thumbnails');
