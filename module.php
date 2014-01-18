@@ -26,7 +26,7 @@ if (!defined('WT_WEBTREES')) {
 
 // Update database for version 1.5
 try {
-	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 7);
+	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 8);
 } catch (PDOException $ex) {
 	// The schema update scripts should never fail.  If they do, there is no clean recovery.
 	die($ex);
@@ -71,8 +71,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				'SHOW_PLACES' 			=> '1',
 				'COUNTRY' 				=> '',
 				'SHOW_OCCU' 			=> '1',
-				'USE_FTV_THUMBS'		=> '1',
+				'RESIZE_THUMBS'			=> '1',
 				'THUMB_SIZE'			=> '60',
+				'THUMB_RESIZE_FORMAT'	=> '2',
 				'USE_SQUARE_THUMBS'		=> '1',
 				'SHOW_USERFORM'			=> '2',
 				'SHOW_PDF_ICON'			=> '2'
@@ -482,7 +483,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					});
 				}
 			}
-			toggleFields("#ftv_thumbs", "#thumb_size, #square_thumbs");
+			toggleFields("#resize_thumbs", "#thumb_size, #square_thumbs");
 		');
 
 		// Admin page content
@@ -597,13 +598,13 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						<label class="label">'.WT_I18N::translate('Show occupations').'</label>'.
 						two_state_checkbox('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')).'
 					</div>
-					<div id="ftv_thumbs" class="field">
-						<label class="label">'.WT_I18N::translate('Use custom thumbnails').help_link('ftv_thumbs', $this->getName()).'</label>'.
-						two_state_checkbox('NEW_FTV_OPTIONS[USE_FTV_THUMBS]', $this->options('use_ftv_thumbs')).'
+					<div id="resize_thumbs" class="field">
+						<label class="label">'.WT_I18N::translate('Resize thumbnails').help_link('resize_thumbs', $this->getName()).'</label>'.
+						two_state_checkbox('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $this->options('resize_thumbs')).'
 					</div>
 					<div id="thumb_size" class="field">
 						<label class="label">'.WT_I18N::translate('Thumbnail size').'</label>
-						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="'.$this->options('thumb_size').'" />&nbsp;px
+						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="'.$this->options('thumb_size').'" />&nbsp;'.select_edit_control('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => WT_I18N::translate('percent'), '2' => WT_I18N::translate('pixels')), null, $this->options('thumb_resize_format')).'
 					</div>
 					<div id="square_thumbs" class="field">
 						<label class="label">'.WT_I18N::translate('Use square thumbnails').'</label>'.
@@ -1070,8 +1071,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		global $SHOW_PRIVATE_RELATIONSHIPS;
 
 		if($person->CanShow()) {
-			$this->options('use_ftv_thumbs') == 1 ? $ftv_thumb = true : $ftv_thumb = false;
-			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('use_square_thumbs'), $ftv_thumb).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'"><p class="desc">'.$person->getFullName().'</a>';
+			$this->options('resize_thumbs') == 1 ? $resize = true : $resize = false;
+			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'"><p class="desc">'.$person->getFullName().'</a>';
 			if($this->options('show_occu') == true) $html .= $this->print_fact($person, 'OCCU');
 
 			$html .= $this->print_parents($person).$this->print_lifespan($person);
@@ -1346,22 +1347,19 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		return $html;
 	}
 
-	private function print_thumbnail($person, $thumbsize, $square, $ftv_thumb) {
-
+	private function print_thumbnail($person, $thumbsize, $resize_format, $square, $resize) {
 		$mediaobject=$person->findHighlightedMedia();
-
 		if ($mediaobject) {
-
 			$html = '';
-			if($ftv_thumb == true) {
-				$mediasrc = $mediaobject->getServerFilename();
+			if($resize == true) {
+				$mediasrc = $resize_format == 1 ? $mediaobject->getServerFilename('thumb') : $mediaobject->getServerFilename('main');
 				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
 				$mediatitle = strip_tags($person->getFullName());
 
 				$type = $mediaobject->mimeType();
 				if($type == 'image/jpeg' || $type == 'image/png') {
 
-					list($width_orig, $height_orig) = @getimagesize($mediasrc);
+					if(!list($width_orig, $height_orig) = @getimagesize($mediasrc)) return null;
 
 					switch ($type) {
 						case 'image/jpeg':
@@ -1379,9 +1377,15 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					else {
 						$ratio_orig = 1;
 					}
-
+					
+					if($resize_format == 1) {
+						$thumbwidth = $thumbwidth/100 * $width_orig;
+						$thumbheight = $thumbheight/100 * $height_orig;
+					}
+					
 					if($square == true) {
-						if ($thumbwidth/$thumbheight > $ratio_orig) {
+						$thumbheight = $thumbwidth;
+						if ($ratio_orig < 1) {
 						   $new_height = $thumbwidth/$ratio_orig;
 						   $new_width = $thumbwidth;
 						} else {
@@ -1390,7 +1394,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						}
 					}
 					else {
-						if ($width_orig > $height_orig) {
+						if($resize_format == 1) {
+							$new_width = $thumbwidth;
+							$new_height = $thumbheight;	
+						} elseif ($width_orig > $height_orig) {
 							$new_height = $thumbheight/$ratio_orig;
 							$new_width 	= $thumbwidth;
 						} elseif ($height_orig > $width_orig) {
@@ -1401,7 +1408,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							$new_height = $thumbheight;
 						}
 					}
-
 					$process = @imagecreatetruecolor(round($new_width), round($new_height));
 
 					@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
