@@ -25,11 +25,7 @@ Installation, updating and translations
 ---------------------------------------
 For more information about these subjects go to the JustCarmen help pages: http://www.justcarmen.nl/help
 
-Configuration
--------------
-On the Fancy Tree View configuration page you have some options. To start using the module enter a surname in the textfield. The script will automatically search for the oldest person with this surname. After the search is complete, it is possible to change the ID of the root person and set several other options. You can enter as much surnames as you like. There will be a menu-link and page created for each surname. By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.
-
 Bugs and feature requests
 -------------------------
-If you experience any bugs or have a feature request for this module you can [create a new issue](../issues?state=open) or [use the webtrees subforum 'customising'](http://www.webtrees.net/index.php/en/forum/4-customising) to contact me.
+If you experience any bugs or have a feature request for this module you can [create a new issue](https://github.com/JustCarmen/fancy_treeview/issues?state=open) or [use the webtrees subforum 'customising'](http://www.webtrees.net/index.php/en/forum/4-customising) to contact me.
 
