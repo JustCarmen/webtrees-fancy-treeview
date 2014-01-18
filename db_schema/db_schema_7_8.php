@@ -1,6 +1,5 @@
 <?php
 // Update the Fancy Tree View module database schema from version 7 to 8
-// - one option renamed and one new option added
 //
 // The script should assume that it can be interrupted at
 // any point, and be able to continue by re-running the script.
@@ -39,8 +38,11 @@ if(!empty($options)) {
 		   if($key == 'USE_FTV_THUMBS'){
 			  $new_option['RESIZE_THUMBS'] = $value;
 		   }else{
-			  $new_option[$key] = $value;
+			  if($key !== 'COUNTRY') {
+			  	$new_option[$key] = $value;
+			  }
 		   }
+		   $new_option['USE_GEDCOM_PLACES'] = '1';
 		   $new_option['THUMB_RESIZE_FORMAT'] = '2';
 		}		
 		$new_options[$tree] = $new_option;
