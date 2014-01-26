@@ -39,7 +39,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		// Load any local user translations
 		if (is_dir(WT_MODULES_DIR.$this->getName().'/language')) {
 			if (file_exists(WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.mo')) {
-				Zend_Registry::get('Zend_Translate')->addTranslation(
+				WT_I18N::addTranslation(
 					new Zend_Translate('gettext', WT_MODULES_DIR.$this->getName().'/language/'.WT_LOCALE.'.mo', WT_LOCALE)
 				);
 			}
