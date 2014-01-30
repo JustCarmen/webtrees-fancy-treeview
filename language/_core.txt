@@ -130,3 +130,20 @@ msgstr ""
 #: modules_v3\fancy_treeview/pdf/dompdf.php:33
 msgid "of"
 msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1260
+msgid "child"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1183
+msgid "children"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1183
+msgid "none"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:921
+#: modules_v3\fancy_treeview/module.php:976
+msgid "This individual does not exist or you do not have permission to view it."
+msgstr ""
