@@ -1,19 +1,22 @@
-Version 1.5.2 for webtrees 1.5.2 - not released yet.
+Version 1.5.1.2 for webtrees 1.5.1 - 08-02-2014
+
 * Arabic and Polish translations added.
 * Add text when we know the family remains childless.
 * Added 'back to top'-link in blockheader.
 * Added support for Rural theme.
 * Added support for RTL languages on the config page
-* Updated dompdf library to the latest version.
-* Images for pdf's no longer needs to be saved in a temporarily location on the server.
+* Dompdf library updated to the latest version.
+* Images for pdf's no longer need to be saved in a temporarily location on the server.
 * Better error handling.
-* Better protection for the datafolder which contains the temporarily text file that is needed to generate the pdf.
+* Use the default webtrees DATA directory to store the temporarily text file that is needed to generate the pdf.
 * Add autocomplete to 'change root person' form field.
 * Improved thumbnail settings on the config page.
 * Add option to use default Gedcom settings for place names.
-And several bugfixes. For a complete overview of all the changes look at: https://github.com/JustCarmen/fancy_treeview/commits/master
+* Dutch, Finnish, German, Hebrew and Swedish language files updated.
 
+And several bugfixes. For a complete overview of all the changes look at: https://github.com/JustCarmen/fancy_treeview/commits/master
 ========================================================================================================================
+
 Version 1.5.1.1 for webtrees 1.5x - 08-12-2013
 * French, German, Danish and Dutch language files updated.
 ========================================================================================================================
