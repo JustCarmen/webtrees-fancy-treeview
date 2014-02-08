@@ -144,7 +144,7 @@ msgstr "ID"
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:23
 #, php-format
-msgid "Make sure the folders %s exists and are writable."
+msgid "Make sure the folders %s exist and are writable."
 msgstr ""
 
 #: modules_v3\fancy_treeview/help_text.php:46
