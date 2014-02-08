@@ -486,6 +486,23 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			toggleFields("#resize_thumbs", "#thumb_size, #square_thumbs");
 			toggleFields("#places", "#gedcom_places");
+			
+			jQuery("input[type=reset]").click(function(e){
+				jQuery("#dialog-confirm").dialog({
+					resizable: false,
+					width: 400,
+					modal: true,
+					buttons : {
+						"'.WT_I18N::translate('OK').'" : function() {
+							window.location.href= "module.php?mod='.$this->getName().'&mod_action=admin_reset";
+							jQuery(this).dialog("close");
+						},
+						"'.WT_I18N::translate('Cancel').'" : function() {
+							jQuery(this).dialog("close");
+						}
+					}
+				});
+			});
 		');
 
 		// Admin page content
@@ -620,9 +637,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				</div>
 				<hr/>';
 		$html .='<div class="buttons">
-					<input type="submit" value="'.WT_I18N::translate('Save').'" />
-				 	<input type="reset" value="'.WT_I18N::translate('Reset').'" onclick="if (confirm(\''.WT_I18N::translate('The settings will be reset to default (for all trees). Are you sure you want to do this?').'\')) window.location.href=\'module.php?mod='.$this->getName().'&amp;mod_action=admin_reset\';"/>
-				</div>
+					<input type="submit" value="'.WT_I18N::translate('Save').'">					
+					<input type="reset" value="'.WT_I18N::translate('Reset').'">
+					<div id="dialog-confirm" title="'.WT_I18N::translate('Reset').'" style="display:none">
+						<p>'.WT_I18N::translate('The settings will be reset to default (for all trees). Are you sure you want to do this?').'</p>
+					</div>
+	 			</div>
 			</form>
 			</div>';
 
