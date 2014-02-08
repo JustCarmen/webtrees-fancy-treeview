@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 15\n"
 "POT-Creation-Date: 2014-01-30 19:25+0100\n"
-"PO-Revision-Date: 2014-01-14 07:49+0100\n"
-"Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
+"PO-Revision-Date: 2014-02-06 11:19+0100\n"
+"Last-Translator: Bogie\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,11 @@ msgstr ""
 
 #: modules_v3\fancy_treeview/help_text.php:72
 msgid "<p>Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left.</p>"
-msgstr "Aktuell  gibt es die PDF Option nur für LTR Sprachen. LTR steht für alle Sprachen, die von links nach rechts (Left To Right) gelesen werden. Die PDF-Schaltfläche ist inaktiv, wenn eine RTL Sprache (Right To Left) aktiv ist. .</p>"
+msgstr "Aktuell  gibt es die PDF Option nur für LTR Sprachen. LTR steht für alle Sprachen, die von links nach rechts (Left To Right) gelesen werden. Die PDF-Schaltfläche ist inaktiv, wenn eine RTL Sprache (Right To Left) aktiv ist.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:68
 msgid "<p>Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels.</p><dl><dt>Size in percentage</dt><dd>The original thumbnails will be proportionally resized. This may result in a different width and height for each thumbnail.</dd><dt>Size in pixels</dt><dd>The longest side of the image will be resized to match the size in pixels. The other side will be resized proportionally.</dd><dt>Square thumbs</dt><dd>When you use a square thumbnail, all thumbnails will have the same width and height. In this case the thumbnails will be cropped.</dd></dl><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.</p>"
-msgstr ""
+msgstr "<p>Hier können Sie einstellen, ob die Standard webtrees Miniaturbilder an die Seiten der Baumansicht angepasst werden sollen. Sie können eine eigene Größe in Prozent oder Pixel einstellen.</p><dl><dt>Größe in Prozent</dt><dd>Die ursprünglichen Miniaturbilder werden proportional skaliert. Dies kann zu einer abweichenden Breite und Höhe für jedes Miniaturbild führen.</dd><dt>Größe in Pixeln</dt><dd>Die längere Seite des Bildes wird verkleinert, um der Pixelgröße zu entsprechen. Die andere Seite wird proportional zur Größe angepasst.</dd><dt>Quadratische Miniaturbilder</dt><dd>Wenn Sie ein quadratisches Miniaturbild verwenden, werden alle Miniaturbilder die gleiche Breite und Höhe haben. In diesem Fall wird das Miniaturbild beschnitten.</dd></dl><p>Wenn Sie die Option deaktivieren, werden die Standard webtrees Miniaturbilder mit den Formaten, die Sie auf der Stammbaum-Konfigurationsseite eingestellt haben, verwendet.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:34
 msgid "<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p><p>This person will act as the root person for this family branch. Potential you can perform a phonetic search by placing a check mark in one or both phonetic algorithms.</p><p>After the search is complete, it is possible to change the ID of the root person. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.</p><p>By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.</p>"
@@ -30,7 +30,7 @@ msgstr "<p>Hier können Sie einen Nachnamen eintragen. Das Skript sucht automati
 
 #: modules_v3\fancy_treeview/help_text.php:64
 msgid "<p>If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.</p>"
-msgstr ""
+msgstr "<p>Wenn Sie die Option “Ortsangaben ausgeben” aktiviert haben, können Sie wählen, ob die GEDCOM Einstellungen zur Abkürzung von Ortsnamen verwendet werden sollen. Wenn Sie diese Option nicht aktivieren, werden volle Ortsnamen ausgegeben.</p>"
 
 # %s = the menu option 'Use fullname in menu'
 #: modules_v3\fancy_treeview/help_text.php:41
@@ -148,7 +148,7 @@ msgstr "ID"
 #: modules_v3\fancy_treeview/pdf/pdf.php:23
 #, php-format
 msgid "Make sure the folders %s exist and are writable."
-msgstr ""
+msgstr "Stellen Sie sicher, dass die Ordner %s existieren und beschreibbar sind."
 
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
@@ -157,7 +157,7 @@ msgstr "Anzahl der anzuzeigenden Generationen"
 
 #: modules_v3\fancy_treeview/module.php:808
 msgid "OK"
-msgstr "ok"
+msgstr "OK"
 
 #: modules_v3\fancy_treeview/module.php:514
 msgid "Or manually add a root person"
@@ -169,13 +169,12 @@ msgstr "PDF wird für RTL Sprachen nicht unterstützt"
 
 #: modules_v3\fancy_treeview/help_text.php:63
 msgid "Place settings"
-msgstr ""
+msgstr "Ortseinstellungen"
 
 #: modules_v3\fancy_treeview/help_text.php:67
 #: modules_v3\fancy_treeview/module.php:601
-#, fuzzy
 msgid "Resize thumbnails"
-msgstr "Quadratische Bildchen"
+msgstr "Miniaturbilder anpassen"
 
 #: modules_v3\fancy_treeview/module.php:524
 msgid "Root person"
@@ -215,7 +214,7 @@ msgstr "Ortsangaben ausgeben?"
 #: modules_v3\fancy_treeview/help_text.php:58
 #: modules_v3\fancy_treeview/module.php:588
 msgid "Show single persons"
-msgstr "Auch Einzelpersonen ausgeben"
+msgstr "Auch Einzelpersonen ausgeben?"
 
 #. I18N: %s is an ordinal
 #: modules_v3\fancy_treeview/module.php:1137
@@ -234,17 +233,16 @@ msgstr "Die Einzelheiten zu dieser Generation sind nicht öffentlich."
 
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
-msgstr "Das Pdf zeigt nur Blöcke von sichtbaren Generationen."
+msgstr "Das PDF zeigt nur Blöcke von sichtbaren Generationen."
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
 msgid "The pdf could not be generated."
-msgstr "Das Pdf zeigt nur Blöcke von sichtbaren Generationen."
+msgstr "Das Pdf konnte nicht erstellt werden."
 
 #: modules_v3\fancy_treeview/module.php:564
-#, fuzzy, php-format
+#, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr "Fehler: Die von Ihnen eingegebene ID %s existiert in diesem Stammbaum nicht."
+msgstr "Fehler: Die von Ihnen eingegebene ID %s existiert in diesem Stammbaum nicht mehr."
 
 #: modules_v3\fancy_treeview/module.php:624
 msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
@@ -252,7 +250,7 @@ msgstr "Die Einstellungen (für alle Bäume) werden auf Standardwerte zurückges
 
 #: modules_v3\fancy_treeview/module.php:605
 msgid "Thumbnail size"
-msgstr "Bildchengröße"
+msgstr "Größe der Miniaturbilder"
 
 #: modules_v3\fancy_treeview/module.php:1619
 msgid "Tree view"
@@ -260,7 +258,7 @@ msgstr "Baumansicht"
 
 #: modules_v3\fancy_treeview/module.php:594
 msgid "Use default Gedcom settings to abbreviate place names?"
-msgstr ""
+msgstr "GEDCOM Einstellungen zur Abkürzung von Ortsnamen übernehmen?"
 
 #: modules_v3\fancy_treeview/help_text.php:43
 #: modules_v3\fancy_treeview/module.php:577
@@ -269,7 +267,7 @@ msgstr "Alle Namensteile im Menu verwenden"
 
 #: modules_v3\fancy_treeview/module.php:609
 msgid "Use square thumbnails"
-msgstr "Quadratische Bildchen"
+msgstr "Miniaturbilder"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1166
@@ -297,7 +295,7 @@ msgstr "im Alter von %s Jahren"
 
 #: modules_v3\fancy_treeview/module.php:1037
 msgid "back to top"
-msgstr ""
+msgstr "Zum Seitenanfang"
 
 #: modules_v3\fancy_treeview/module.php:1307
 msgctxt "FEMALE"
@@ -352,13 +350,13 @@ msgstr "hatte"
 #: modules_v3\fancy_treeview/module.php:1448
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "in "
+msgstr "im"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1451
 msgctxt "before dateformat yyyy"
 msgid "in "
-msgstr "in "
+msgstr "im Jahr"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1477
@@ -374,11 +372,11 @@ msgstr "am "
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "percent"
-msgstr ""
+msgstr "Prozent"
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "pixels"
-msgstr ""
+msgstr "Pixel"
 
 #: modules_v3\fancy_treeview/module.php:1128
 msgid "second"
