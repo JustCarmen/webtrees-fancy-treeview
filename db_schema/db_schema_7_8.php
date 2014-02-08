@@ -35,15 +35,16 @@ $options = unserialize(get_module_setting('fancy_treeview', 'FTV_OPTIONS'));
 if(!empty($options)) {
 	foreach($options as $tree => $option) {
 		foreach($option as $key => $value){
-		   if($key == 'USE_FTV_THUMBS'){
-			  $new_option['RESIZE_THUMBS'] = $value;
-		   }else{
-			  if($key !== 'COUNTRY') {
-			  	$new_option[$key] = $value;
-			  }
-		   }
-		   $new_option['USE_GEDCOM_PLACES'] = '1';
-		   $new_option['THUMB_RESIZE_FORMAT'] = '2';
+			$new_option = array();
+			if($key == 'USE_FTV_THUMBS'){
+				$new_option['RESIZE_THUMBS'] = $value;
+			}else{
+				if($key !== 'COUNTRY') {
+					$new_option[$key] = $value;
+				}
+			}
+			$new_option['USE_GEDCOM_PLACES'] = '1';
+			$new_option['THUMB_RESIZE_FORMAT'] = '2';
 		}		
 		$new_options[$tree] = $new_option;
 	}
