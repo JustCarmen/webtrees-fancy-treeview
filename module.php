@@ -1033,7 +1033,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="'.$i.'" data-pids="'.implode('|', $generation).'">
-					<div class="blockheader ui-state-default"><span class="header-title">'.WT_I18N::translate('Generation').' '.$i.'</span><a href="#body" class="header-link scroll">'.WT_I18N::translate('back to top').'</a></div>';
+					<div class="blockheader ui-state-default"><span class="header-title">'.WT_I18N::translate('Generation').' '.$i.'</span>';
+						if($i > 1) $html .= '<a href="#body" class="header-link scroll">'.WT_I18N::translate('back to top').'</a>';
+		$html .= '	</div>';
 
 		if ($this->check_privacy($generation, true)) {
 			$html .= '<div class="blockcontent generation private">'.WT_I18N::translate('The details of this generation are private.').'</div>';
