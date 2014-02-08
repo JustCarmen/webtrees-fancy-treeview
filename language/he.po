@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
 "POT-Creation-Date: 2014-01-30 19:25+0100\n"
-"PO-Revision-Date: 2013-12-31 01:33+0200\n"
+"PO-Revision-Date: 2014-02-01 18:17+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -86,24 +86,24 @@ msgstr "ערוך את שם המשפחה (לתצוגה בתפריט)"
 #: modules_v3\fancy_treeview/module.php:356
 #, php-format
 msgid "Error: An individual with ID %s doesn’t exist in this tree."
-msgstr ""
+msgstr "שגיאה: אדם עם המזהה %s אינו קיים בעץ זה."
 
 #: modules_v3\fancy_treeview/module.php:310
 msgid "Error: The root person belonging to this surname already exists"
-msgstr ""
+msgstr "שגיאה: אדם המוצא השייך לשם המשפחה הזה כבר קיים"
 
 #: modules_v3\fancy_treeview/module.php:313
 msgid "Error: The root person you are trying to add already exists"
-msgstr ""
+msgstr "שגיאה: אדם המוצא שאתה מנסה להוסיף כבר קיים"
 
 #: modules_v3\fancy_treeview/module.php:276
 #: modules_v3\fancy_treeview/module.php:346
 msgid "Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person."
-msgstr ""
+msgstr "שגיאה: לאדם המוצא שאתה מנסה להוסיף אין שותף ו/או ילדים. אין אפשרות להגדיר את האדם הזה כאדם המוצא."
 
 #: modules_v3\fancy_treeview/module.php:267
 msgid "Error: The surname you entered doesn’t exist in this tree."
-msgstr ""
+msgstr "שגיאה: שם המשפחה שהזנת אינו קיים בעץ זה."
 
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:51
@@ -145,7 +145,7 @@ msgstr "קוד זיהי"
 #: modules_v3\fancy_treeview/pdf/pdf.php:23
 #, php-format
 msgid "Make sure the folders %s exist and are writable."
-msgstr ""
+msgstr "ודא כי התיקיות %s קיימות והן ניתנות לכתיבה."
 
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
@@ -154,7 +154,7 @@ msgstr "מספר בלוקי דורות שיש להציג"
 
 #: modules_v3\fancy_treeview/module.php:808
 msgid "OK"
-msgstr ""
+msgstr "אוֹ קֵי"
 
 #: modules_v3\fancy_treeview/module.php:514
 msgid "Or manually add a root person"
@@ -166,13 +166,12 @@ msgstr "PDF אינו נתמך על דפי RTL"
 
 #: modules_v3\fancy_treeview/help_text.php:63
 msgid "Place settings"
-msgstr ""
+msgstr "הגדרות של מקומות"
 
 #: modules_v3\fancy_treeview/help_text.php:67
 #: modules_v3\fancy_treeview/module.php:601
-#, fuzzy
 msgid "Resize thumbnails"
-msgstr "השתמש בתמונות ממוזערות מרובעות"
+msgstr "שנה גודל התמונות הממוזערות"
 
 #: modules_v3\fancy_treeview/module.php:524
 msgid "Root person"
@@ -234,14 +233,13 @@ msgid "The pdf contains only visible generation blocks."
 msgstr "ה-PDF מכיל בלוקי דור גלויים בלבד."
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
 msgid "The pdf could not be generated."
-msgstr "ה-PDF מכיל בלוקי דור גלויים בלבד."
+msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr ""
+msgstr "אדם המוצא עם קוד מזהה %s כבר לא קיים בעץ הזה"
 
 #: modules_v3\fancy_treeview/module.php:624
 msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
@@ -257,7 +255,7 @@ msgstr "תצוגת עץ"
 
 #: modules_v3\fancy_treeview/module.php:594
 msgid "Use default Gedcom settings to abbreviate place names?"
-msgstr ""
+msgstr "השתמש בהגדרות ברירת המחדל של Gedcom לקיצור שמות המקום?"
 
 #: modules_v3\fancy_treeview/help_text.php:43
 #: modules_v3\fancy_treeview/module.php:577
@@ -294,7 +292,7 @@ msgstr "בגיל %s שנים"
 
 #: modules_v3\fancy_treeview/module.php:1037
 msgid "back to top"
-msgstr ""
+msgstr "חזרה למעלה"
 
 #: modules_v3\fancy_treeview/module.php:1307
 msgctxt "FEMALE"
@@ -371,11 +369,11 @@ msgstr "ב-"
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "percent"
-msgstr ""
+msgstr "אחוז"
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "pixels"
-msgstr ""
+msgstr "פיקסלים"
 
 #: modules_v3\fancy_treeview/module.php:1128
 msgid "second"

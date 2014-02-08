@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
 "POT-Creation-Date: 2014-01-30 19:25+0100\n"
-"PO-Revision-Date: 2014-01-02 13:19+0200\n"
+"PO-Revision-Date: 2014-02-01 18:00+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -99,7 +99,7 @@ msgstr "Virhe: alkuhenkilö jonka yrität lisätä on jo olemassa"
 #: modules_v3\fancy_treeview/module.php:276
 #: modules_v3\fancy_treeview/module.php:346
 msgid "Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person."
-msgstr ""
+msgstr "Virhe: Alkuhenkilöllä, jonka yrität lisätä, ei ole kumppania ja/tai lapsia. Ei ole mahdollista asettaa tätä henkilöä alkuhenkilöksi."
 
 #: modules_v3\fancy_treeview/module.php:267
 msgid "Error: The surname you entered doesn’t exist in this tree."
@@ -145,7 +145,7 @@ msgstr "ID"
 #: modules_v3\fancy_treeview/pdf/pdf.php:23
 #, php-format
 msgid "Make sure the folders %s exist and are writable."
-msgstr ""
+msgstr "Varmista, että kansiot %s ovat olemassa ja ovat kirjoitettavia."
 
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
@@ -166,13 +166,12 @@ msgstr "PDF:iä ei tueta RTL-kielillä"
 
 #: modules_v3\fancy_treeview/help_text.php:63
 msgid "Place settings"
-msgstr ""
+msgstr "Paikkojen asetukset"
 
 #: modules_v3\fancy_treeview/help_text.php:67
 #: modules_v3\fancy_treeview/module.php:601
-#, fuzzy
 msgid "Resize thumbnails"
-msgstr "Käytä neliö-pienoiskuvia"
+msgstr "Muuta pienoiskuvien koko"
 
 #: modules_v3\fancy_treeview/module.php:524
 msgid "Root person"
@@ -234,14 +233,13 @@ msgid "The pdf contains only visible generation blocks."
 msgstr "pdf sisältää ainoastaan näkyvien sukupolvien lohkot."
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
 msgid "The pdf could not be generated."
-msgstr "pdf sisältää ainoastaan näkyvien sukupolvien lohkot."
+msgstr "PDF tietuetta ei voitu luoda."
 
 #: modules_v3\fancy_treeview/module.php:564
-#, fuzzy, php-format
+#, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr "Virhe: henkilön ID %s ei ole tässä puussa."
+msgstr "Alkuhenkilö, jonka tunnus on %s, ei ole enää tässä puussa"
 
 #: modules_v3\fancy_treeview/module.php:624
 msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
@@ -257,7 +255,7 @@ msgstr "Puunäkymä"
 
 #: modules_v3\fancy_treeview/module.php:594
 msgid "Use default Gedcom settings to abbreviate place names?"
-msgstr ""
+msgstr "Käytä Gedcomin oletusasetuksia paikannimien lyhennyksiin?"
 
 #: modules_v3\fancy_treeview/help_text.php:43
 #: modules_v3\fancy_treeview/module.php:577
@@ -294,7 +292,7 @@ msgstr "%s vuotiaana"
 
 #: modules_v3\fancy_treeview/module.php:1037
 msgid "back to top"
-msgstr ""
+msgstr "palaa alkuun"
 
 #: modules_v3\fancy_treeview/module.php:1307
 msgctxt "FEMALE"
@@ -371,11 +369,11 @@ msgstr " "
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "percent"
-msgstr ""
+msgstr "prosenttia"
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "pixels"
-msgstr ""
+msgstr "pikseliä"
 
 #: modules_v3\fancy_treeview/module.php:1128
 msgid "second"
