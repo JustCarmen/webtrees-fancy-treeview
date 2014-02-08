@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
 "POT-Creation-Date: 2014-01-30 19:25+0100\n"
-"PO-Revision-Date: 2013-12-31 01:33+0200\n"
+"PO-Revision-Date: 2014-02-01 18:07+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -86,24 +86,24 @@ msgstr "Redigera namnet (för visning i menyn)"
 #: modules_v3\fancy_treeview/module.php:356
 #, php-format
 msgid "Error: An individual with ID %s doesn’t exist in this tree."
-msgstr ""
+msgstr "Fel: En individ med ID %s finns inte i detta träd."
 
 #: modules_v3\fancy_treeview/module.php:310
 msgid "Error: The root person belonging to this surname already exists"
-msgstr ""
+msgstr "Fel: Startpersonen som tillhör detta efternamn finns redan"
 
 #: modules_v3\fancy_treeview/module.php:313
 msgid "Error: The root person you are trying to add already exists"
-msgstr ""
+msgstr "Fel: Startpersonen som du försöker lägga till finns redan"
 
 #: modules_v3\fancy_treeview/module.php:276
 #: modules_v3\fancy_treeview/module.php:346
 msgid "Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person."
-msgstr ""
+msgstr "Fel: Startpersonen som du försöker lägga till har inga partner eller barn. Det är inte möjligt att ställa in denna person som startperson."
 
 #: modules_v3\fancy_treeview/module.php:267
 msgid "Error: The surname you entered doesn’t exist in this tree."
-msgstr ""
+msgstr "Fel: Efternamnet som du angav finns inte i detta träd."
 
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:51
@@ -145,7 +145,7 @@ msgstr "ID"
 #: modules_v3\fancy_treeview/pdf/pdf.php:23
 #, php-format
 msgid "Make sure the folders %s exist and are writable."
-msgstr ""
+msgstr "Kontrollera att mapparna %s existerar och är skrivbara."
 
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
@@ -166,13 +166,12 @@ msgstr "PDF stöds inte för RTL-språk"
 
 #: modules_v3\fancy_treeview/help_text.php:63
 msgid "Place settings"
-msgstr ""
+msgstr "Plats inställningar"
 
 #: modules_v3\fancy_treeview/help_text.php:67
 #: modules_v3\fancy_treeview/module.php:601
-#, fuzzy
 msgid "Resize thumbnails"
-msgstr "Använd kvadratiska miniatyrbilder"
+msgstr "Ändra miniatyrbilders storlek"
 
 #: modules_v3\fancy_treeview/module.php:524
 msgid "Root person"
@@ -234,14 +233,13 @@ msgid "The pdf contains only visible generation blocks."
 msgstr "PDF-filen innehåller endast synliga generationens block."
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
 msgid "The pdf could not be generated."
-msgstr "PDF-filen innehåller endast synliga generationens block."
+msgstr "PDF-filen kunde inte genereras."
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr ""
+msgstr "Startpersonen med id %s finns inte längre i detta träd"
 
 #: modules_v3\fancy_treeview/module.php:624
 msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
@@ -257,7 +255,7 @@ msgstr "Trädvy"
 
 #: modules_v3\fancy_treeview/module.php:594
 msgid "Use default Gedcom settings to abbreviate place names?"
-msgstr ""
+msgstr "Använd standardinställningarna för Gedcom för att förkorta ortnamn?"
 
 #: modules_v3\fancy_treeview/help_text.php:43
 #: modules_v3\fancy_treeview/module.php:577
@@ -294,7 +292,7 @@ msgstr "vid en ålder av %s"
 
 #: modules_v3\fancy_treeview/module.php:1037
 msgid "back to top"
-msgstr ""
+msgstr "tillbaka till toppen"
 
 #: modules_v3\fancy_treeview/module.php:1307
 msgctxt "FEMALE"
@@ -371,11 +369,11 @@ msgstr "den "
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "percent"
-msgstr ""
+msgstr "procent"
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "pixels"
-msgstr ""
+msgstr "pixlar"
 
 #: modules_v3\fancy_treeview/module.php:1128
 msgid "second"
