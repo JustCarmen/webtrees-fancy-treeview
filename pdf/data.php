@@ -7,7 +7,7 @@ if (!defined('WT_WEBTREES')) {
 
 Zend_Session::writeClose();
 
-$filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
+$filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 $content = WT_Filter::post('pdfContent');
 
 // make our datafile if it does not exist.

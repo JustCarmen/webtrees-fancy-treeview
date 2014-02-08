@@ -14,7 +14,7 @@ if (is_dir($fontsDir) && !is_writable($fontsDir)) {
 	@chmod($fontsDir, WT_PERM_EXE);
 }
 
-$filename = WT_MODULES_DIR.$this->getName().'/pdf/data/data.txt';
+$filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 
 if(!$filename || !is_writable($fontsDir)) {
 	header('Location: module.php?mod='.$this->getName().'&mod_action=show&rootid='.WT_Filter::get('rootid'));
@@ -51,4 +51,7 @@ else {
 	
 	// pdf output
 	$dompdf->stream(WT_Filter::get('title').'.pdf');
+	
+	// remove the temporary text file
+	@unlink(WT_DATA_DIR . '/fancy_treeview_tmp.txt');
 }
