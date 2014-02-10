@@ -1,3 +1,12 @@
+GOTO HTTP://WWW.JUSTCARMEN.NL/HELP FOR INSTALLATION AND UPGRADE INSTRUCTIONS
+
+Version 1.5.2 - 10-02-2014
+* Changes made to the function for adding module translations due to compatibility with webtrees 1.5.2
+* Move temporarily files needed by the dompdf library to the default webtrees data folder.
+* Update all language files
+
+===========================================================================================================================
+
 Version 1.5.1.2 for webtrees 1.5.1 - 08-02-2014
 
 * Arabic and Polish translations added.
