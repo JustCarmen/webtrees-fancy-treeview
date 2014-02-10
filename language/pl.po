@@ -142,11 +142,6 @@ msgstr "Urodził się"
 msgid "ID"
 msgstr "Nr"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr ""
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -231,11 +226,6 @@ msgstr "Szczegóły danego pokolenia są prywatne."
 
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
-msgstr "PDF zawiera tylko widoczne bloki pokoleń."
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
-msgid "The pdf could not be generated."
 msgstr "PDF zawiera tylko widoczne bloki pokoleń."
 
 #: modules_v3\fancy_treeview/module.php:564
@@ -417,6 +407,10 @@ msgstr "rozwiedli się"
 
 #~ msgid "Select your country"
 #~ msgstr "Wybierz kraj"
+
+#, fuzzy
+#~ msgid "The pdf could not be generated."
+#~ msgstr "PDF zawiera tylko widoczne bloki pokoleń."
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "Użyj zmienionych miniaturek"

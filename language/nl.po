@@ -145,11 +145,6 @@ msgstr "Hij is geboren"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr "Zorg ervoor dat de folders %s bestaan en beschrijfbaar zijn."
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -234,10 +229,6 @@ msgstr "De details van deze generatie zijn privé."
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
 msgstr "Het pdf-bestand bevat alleen zichbare generatie blokken."
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-msgid "The pdf could not be generated."
-msgstr "De pdf kan niet worden samengesteld."
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
@@ -416,8 +407,14 @@ msgstr "zijn gescheiden"
 #~ msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
 #~ msgstr "<p>Wanneer u de “Toon plaatsen” optie heeft aangevinkt, kunt u hier uw eigen land invoeren. De volledige plaatsnamen worden getoond op de Fancy Tree View pagina’s, maar waneer een plaats de naam van uw thuisland bevat, wordt deze naam weggelaten.</p><p>Als u hier geen keuze maakt voor een bepaald land, worden alle landen getoond, inclusief uw thuisland."
 
+#~ msgid "Make sure the folders %s exist and are writable."
+#~ msgstr "Zorg ervoor dat de folders %s bestaan en beschrijfbaar zijn."
+
 #~ msgid "Select your country"
 #~ msgstr "Selecteer uw land"
+
+#~ msgid "The pdf could not be generated."
+#~ msgstr "De pdf kan niet worden samengesteld."
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "Gebruik aangepaste thumbnails"

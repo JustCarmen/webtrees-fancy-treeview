@@ -147,11 +147,6 @@ msgstr "ولد"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr ""
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -236,11 +231,6 @@ msgstr "تفاصيل هذا الجيل خاصة"
 
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
-msgstr "ملف الـpdf يحوي على الاجيال الظاهرة فقط"
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
-msgid "The pdf could not be generated."
 msgstr "ملف الـpdf يحوي على الاجيال الظاهرة فقط"
 
 #: modules_v3\fancy_treeview/module.php:564
@@ -422,6 +412,10 @@ msgstr "أنفصلا "
 
 #~ msgid "Select your country"
 #~ msgstr "اختر بلدك"
+
+#, fuzzy
+#~ msgid "The pdf could not be generated."
+#~ msgstr "ملف الـpdf يحوي على الاجيال الظاهرة فقط"
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "أستخدم صورة مصغره مخصصة"

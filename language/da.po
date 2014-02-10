@@ -142,11 +142,6 @@ msgstr "Han var føddt"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr ""
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -231,11 +226,6 @@ msgstr "Detaljerne for denne generation er private"
 
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
-msgstr "Denne pdf indeholder kun synlige generations blokke"
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-#, fuzzy
-msgid "The pdf could not be generated."
 msgstr "Denne pdf indeholder kun synlige generations blokke"
 
 #: modules_v3\fancy_treeview/module.php:564
@@ -417,3 +407,7 @@ msgstr "blev skilt"
 
 #~ msgid "Select your country"
 #~ msgstr "Vælg dit land"
+
+#, fuzzy
+#~ msgid "The pdf could not be generated."
+#~ msgstr "Denne pdf indeholder kun synlige generations blokke"

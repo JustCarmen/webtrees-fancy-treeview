@@ -142,11 +142,6 @@ msgstr "Han var född"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr "Kontrollera att mapparna %s existerar och är skrivbara."
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -231,10 +226,6 @@ msgstr "Denna generations detaljer är privata."
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
 msgstr "PDF-filen innehåller endast synliga generationens block."
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-msgid "The pdf could not be generated."
-msgstr "PDF-filen kunde inte genereras."
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
@@ -407,8 +398,14 @@ msgstr "var född"
 msgid "were divorced"
 msgstr "skilde sig"
 
+#~ msgid "Make sure the folders %s exist and are writable."
+#~ msgstr "Kontrollera att mapparna %s existerar och är skrivbara."
+
 #~ msgid "Select your country"
 #~ msgstr "Välj ditt land"
+
+#~ msgid "The pdf could not be generated."
+#~ msgstr "PDF-filen kunde inte genereras."
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "Använd specialminiatyrbilder"

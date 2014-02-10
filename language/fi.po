@@ -142,11 +142,6 @@ msgstr "Puoliso syntyi"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr "Varmista, että kansiot %s ovat olemassa ja ovat kirjoitettavia."
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -231,10 +226,6 @@ msgstr "Tämän sukupolven tiedot ovat yksityissuojattuja"
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
 msgstr "pdf sisältää ainoastaan näkyvien sukupolvien lohkot."
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-msgid "The pdf could not be generated."
-msgstr "PDF tietuetta ei voitu luoda."
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
@@ -407,8 +398,14 @@ msgstr "syntyi"
 msgid "were divorced"
 msgstr "erosivat"
 
+#~ msgid "Make sure the folders %s exist and are writable."
+#~ msgstr "Varmista, että kansiot %s ovat olemassa ja ovat kirjoitettavia."
+
 #~ msgid "Select your country"
 #~ msgstr "Valitse maasi"
+
+#~ msgid "The pdf could not be generated."
+#~ msgstr "PDF tietuetta ei voitu luoda."
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "Käytä erikoispikkukuvia"

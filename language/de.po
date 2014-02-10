@@ -145,11 +145,6 @@ msgstr "Er wurde geboren"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr "Stellen Sie sicher, dass die Ordner %s existieren und beschreibbar sind."
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -234,10 +229,6 @@ msgstr "Die Einzelheiten zu dieser Generation sind nicht öffentlich."
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
 msgstr "Das PDF zeigt nur Blöcke von sichtbaren Generationen."
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-msgid "The pdf could not be generated."
-msgstr "Das Pdf konnte nicht erstellt werden."
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
@@ -416,8 +407,14 @@ msgstr "wurden geschieden"
 #~ msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
 #~ msgstr "<p>Wenn Sie die Auswahl “Ortsangaben ausgeben” markiert haben, können Sie hier ein Land (in der Regel das Heimatland) auswählen. Dessen Ausgabe wird dann bei der Ortsausgabe unterdrückt; bei allen anderen Ländern wird aber weiterhin das Land mit ausgegeben.</p><p>Wenn Sie hier kein Land auswählen, werden alle Länder ausgegeben.</p>"
 
+#~ msgid "Make sure the folders %s exist and are writable."
+#~ msgstr "Stellen Sie sicher, dass die Ordner %s existieren und beschreibbar sind."
+
 #~ msgid "Select your country"
 #~ msgstr "Keine Anzeige des Ländernamen für"
+
+#~ msgid "The pdf could not be generated."
+#~ msgstr "Das Pdf konnte nicht erstellt werden."
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "Verwende angepasste Bildvorschauen"

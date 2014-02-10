@@ -142,11 +142,6 @@ msgstr "He was born"
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/pdf/pdf.php:23
-#, php-format
-msgid "Make sure the folders %s exist and are writable."
-msgstr "Make sure the folders %s exists and are writable."
-
 #: modules_v3\fancy_treeview/help_text.php:46
 #: modules_v3\fancy_treeview/module.php:580
 msgid "Number of generation blocks to show"
@@ -231,10 +226,6 @@ msgstr "The details of this generation are private."
 #: modules_v3\fancy_treeview/module.php:946
 msgid "The pdf contains only visible generation blocks."
 msgstr "The pdf contains only visible generation blocks."
-
-#: modules_v3\fancy_treeview/pdf/pdf.php:21
-msgid "The pdf could not be generated."
-msgstr "The pdf could not be generated."
 
 #: modules_v3\fancy_treeview/module.php:564
 #, php-format
@@ -413,8 +404,14 @@ msgstr "were divorced"
 #~ msgid "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
 #~ msgstr "<p>If you have ticked the “Show places” option, here you can set your own country. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
 
+#~ msgid "Make sure the folders %s exist and are writable."
+#~ msgstr "Make sure the folders %s exists and are writable."
+
 #~ msgid "Select your country"
 #~ msgstr "Select your country"
+
+#~ msgid "The pdf could not be generated."
+#~ msgstr "The pdf could not be generated."
 
 #~ msgid "This individual does not exist or you do not have permission to view it."
 #~ msgstr "This individual does not exist or you do not have permission to view it."
