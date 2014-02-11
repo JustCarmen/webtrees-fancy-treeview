@@ -33,23 +33,23 @@ if (!defined('WT_WEBTREES')) {
 
 $options = unserialize(get_module_setting('fancy_treeview', 'FTV_OPTIONS'));
 if(!empty($options)) {
-	foreach($options as $tree => $option) {
-		foreach($option as $key => $value){
-			$new_option = array();
+	foreach($options as $option) {
+		foreach($option as $key => $value) {
 			if($key == 'USE_FTV_THUMBS'){
-				$new_option['RESIZE_THUMBS'] = $value;
-			}else{
-				if($key !== 'COUNTRY') {
-					$new_option[$key] = $value;
-				}
+				$option['RESIZE_THUMBS'] = $value;
+				unset($option[$key]);
 			}
-			$new_option['USE_GEDCOM_PLACES'] = '1';
-			$new_option['THUMB_RESIZE_FORMAT'] = '2';
-		}		
-		$new_options[$tree] = $new_option;
+			if($key == 'COUNTRY') {
+				unset($option[$key]);
+			}
+		}
+		$option['USE_GEDCOM_PLACES'] = '1';
+		$option['THUMB_RESIZE_FORMAT'] = '2';	
+		$new_options[] = $option;
 	}
 	set_module_setting('fancy_treeview', 'FTV_OPTIONS',  serialize($new_options));
 	unset($new_options);
 }
+
 // Update the version to indicate success
 WT_Site::preference($schema_name, $next_version);
