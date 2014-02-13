@@ -20,7 +20,7 @@ msgstr "<p>Obecnie opcja PDF obsługuje tylko języki używające zapisu od lewe
 
 #: modules_v3\fancy_treeview/help_text.php:68
 msgid "<p>Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels.</p><dl><dt>Size in percentage</dt><dd>The original thumbnails will be proportionally resized. This may result in a different width and height for each thumbnail.</dd><dt>Size in pixels</dt><dd>The longest side of the image will be resized to match the size in pixels. The other side will be resized proportionally.</dd><dt>Square thumbs</dt><dd>When you use a square thumbnail, all thumbnails will have the same width and height. In this case the thumbnails will be cropped.</dd></dl><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.</p>"
-msgstr ""
+msgstr "<p>W tym miejscu można zmienić rozmiar miniaturek wykorzystywanych na stronach Ozdobnego widoku drzewa. Można ustawić własny rozmiar w procentach lub pikselach.</p><dl><dt>Rozmiar w procentach</dt><dd>Oryginalne miniaturki zostaną zmniejszone proporcjonalnie. W wyniku tego mogą być rózne szerokości i wysokości dla każdej miniaturki.</dd><dt>Rozmiar w pikselach</dt><dd>Najdłuższy bok obrazu będzie miał zmieniony rozmiar do tego podanego w pikselach. Drugi bok zostanie zmieniony proporcjonalnie.</dd><dt>Kwadratowe miniaturki</dt><dd>Gdy używane są kwadratowe miniaturki, wszystkie miniaturki mają taką samą szerokość i wysokość. W tym wypadku miniaturki zostaną przycięte.</dd></dl><p>Jeśli opcja nie będzie zaznaczona będą używane domyślne miniaturki w formacie ustawionym na stronie konfiguracji drzewa.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:34
 msgid "<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p><p>This person will act as the root person for this family branch. Potential you can perform a phonetic search by placing a check mark in one or both phonetic algorithms.</p><p>After the search is complete, it is possible to change the ID of the root person. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.</p><p>By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.</p>"
@@ -28,7 +28,7 @@ msgstr "<p>W tym miejscu można podać nazwisko. Program automatycznie wyszuka n
 
 #: modules_v3\fancy_treeview/help_text.php:64
 msgid "<p>If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.</p>"
-msgstr ""
+msgstr "<p>Jeśli została wybrana opcja „Pokaż miejsca” będzie można użyć domyślnych ustawień drzewa odnoszących się do skracania nazw miejsc. Jeśli ta opcja nie zostanie ustawiona będą pokazane pełne nazwy miejsc.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:41
 #, php-format
@@ -161,7 +161,7 @@ msgstr "PDF nie obsługuje języków zapisywanych od prawej do lewej"
 
 #: modules_v3\fancy_treeview/help_text.php:63
 msgid "Place settings"
-msgstr ""
+msgstr "Ustawienia miejsc"
 
 #: modules_v3\fancy_treeview/help_text.php:67
 #: modules_v3\fancy_treeview/module.php:601
@@ -229,9 +229,9 @@ msgid "The pdf contains only visible generation blocks."
 msgstr "PDF zawiera tylko widoczne bloki pokoleń."
 
 #: modules_v3\fancy_treeview/module.php:564
-#, fuzzy, php-format
+#, fuzzy
 msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr "Błąd: Osoba z danym identyfikatorem nie istniej w danym drzewie."
+msgstr "Błąd: Osoba z identyfikatorem %s nie istnieje w danym drzewie."
 
 #: modules_v3\fancy_treeview/module.php:624
 msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
@@ -247,7 +247,7 @@ msgstr "Widok drzewa"
 
 #: modules_v3\fancy_treeview/module.php:594
 msgid "Use default Gedcom settings to abbreviate place names?"
-msgstr ""
+msgstr "Użyj domyślnych ustawień drzewa do skracania nazw miejsc"
 
 #: modules_v3\fancy_treeview/help_text.php:43
 #: modules_v3\fancy_treeview/module.php:577
@@ -284,7 +284,7 @@ msgstr "w wieku %s"
 
 #: modules_v3\fancy_treeview/module.php:1037
 msgid "back to top"
-msgstr ""
+msgstr "powrót do góry"
 
 #: modules_v3\fancy_treeview/module.php:1307
 msgctxt "FEMALE"
@@ -361,11 +361,11 @@ msgstr "dnia "
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "percent"
-msgstr ""
+msgstr "procent"
 
 #: modules_v3\fancy_treeview/module.php:606
 msgid "pixels"
-msgstr ""
+msgstr "pikseli"
 
 #: modules_v3\fancy_treeview/module.php:1128
 msgid "second"
