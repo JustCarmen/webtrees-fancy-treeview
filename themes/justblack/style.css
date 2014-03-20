@@ -9,6 +9,7 @@ html[dir=rtl] #fancy_treeview-page .blockheader .header-link{left:8px}
 
 /* family-block */
 #fancy_treeview-page img{box-shadow: 4px 6px #171717;border:#545454 1px solid}
+#fancy_treeview-page a.gallery[type$="png"] img {box-shadow:none;border:none}
 #fancy_treeview-page li.child a {color:#e2e2e2}
 #fancy_treeview-page li.child a:hover {color:#767676}
 #fancy_treeview-page li.child a.scroll, #fancy_treeview-page li.child a.link_next {color:#dd6900}

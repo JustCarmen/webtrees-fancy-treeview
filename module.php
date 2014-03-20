@@ -1446,9 +1446,17 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						}
 					}
 					$process = @imagecreatetruecolor(round($new_width), round($new_height));
-
+					if($type == 'image/png') { // keep transparancy for png files.
+						imagealphablending($process, false);
+						imagesavealpha($process, true);
+					}
 					@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
+					
 					$square == true ? $thumb = imagecreatetruecolor($thumbwidth, $thumbheight) : $thumb = imagecreatetruecolor($new_width, $new_height);
+					if($type == 'image/png') {
+						imagealphablending($thumb, false);
+						imagesavealpha($thumb, true);
+					}
 					@imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
 
 					@imagedestroy($process);
@@ -1456,7 +1464,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 					$square == true ? $width = round($thumbwidth) : $width = round($new_width);
 					$square == true ? $height = round($thumbheight) : $height = round($new_height);
-					ob_start();imagejpeg($thumb,null,100);$thumb = ob_get_clean(); // the thumbnails are always of the type jpeg.
+					ob_start();$type = 'image/png' ? imagepng($thumb,null,9) : imagejpeg($thumb,null,100);$thumb = ob_get_clean();
 					$html = '<a' .
 							' class="'          	. 'gallery'                         			 	. '"' .
 							' href="'           	. $mediaobject->getHtmlUrlDirect('main')    		. '"' .
@@ -1465,7 +1473,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
 							' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
 							' data-title="'     	. strip_tags($mediaobject->getFullName())   		. '"' .
-							'><img class="ftv-thumb" src="data:image/jpeg;base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
+							'><img class="ftv-thumb" src="data:'.$mediaobject->mimeType().';base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
 				}
 			}
 			else {
