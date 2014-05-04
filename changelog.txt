@@ -1,5 +1,16 @@
 GOTO HTTP://WWW.JUSTCARMEN.NL/HELP FOR INSTALLATION AND UPGRADE INSTRUCTIONS
 
+Version 1.5.3 - 04-05-2014
+* Update Polish translation files.
+* Introducing the countrylist again. Now you have the option to use the default gedcom (abbreviated) placenames
+  or use full place names but optionally leave out the country in placenames from your own country.
+* All language files updated.
+* Add extra space in the topMenu of the Xenea theme. In some languages the text on the menu item for the FTV-page is too long.
+* Keep transparancy for png thumbnails.
+
+===========================================================================================================================
+
+
 Version 1.5.2.1 - 11-02-2014
 * Bugfix: new db_schema causes error on multi tree sites after upgrade.
 
