@@ -1118,8 +1118,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 			// get a list of all the spouses
 			/*
-         	* First, determine the true number of spouses by checking the family gedcom
-        	*/
+			 * First, determine the true number of spouses by checking the family gedcom
+        	 */
             $spousecount = 0;
             foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
                 $spouse = $family->getSpouse($person);
