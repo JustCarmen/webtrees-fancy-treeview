@@ -1,25 +1,86 @@
-/* Print style for the Fancy Tree View Pages - this css file is only used to print pages.
-/* Do not delete this file.
-** Copyright (C) 2014 JustCarmen.
-*/
-
+/*
+ * Base print stylesheet for the Fancy Tree View Module
+ *
+ * webtrees: Web based Family History software
+ * Copyright (C) 2014 webtrees development team.
+ * Copyright (C) 2014 JustCarmen.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
 
 /* General */
-@page{size:auto;margin:20mm 0}
-body{background:none;font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;font-size:12pt;margin:0}
-.divider, #pdf, .tooltip {display:none}
+@page {
+	size:auto;margin:20mm 0;
+}
+
+body {
+	background: none;
+	font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+	font-size: 12pt;
+	margin: 0;
+}
+
+.divider, #pdf, .tooltip {
+	display: none;
+}
 
 /* Page */
-#fancy_treeview-page{margin:0;padding:0;width:100%;max-width:100%}
-#fancy_treeview-page .block, #fancy_treeview-page .blockheader, #fancy_treeview-page .blockcontent {background:none;border:none;box-shadow:none;color:#000}
-#fancy_treeview-page h2, #fancy_treeview-page .blockheader {color:#000;font-family: "DejaVu Sans", Helvetica, Arial, sans-serif}
-#fancy_treeview-page .blockheader {border-bottom-width:1px;border-bottom-style:solid;font-size:14pt}
-#fancy_treeview-page .blockcontent {margin:0;padding:0 0 0 10mm}
+#fancy_treeview-page {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	max-width: 100%;
+}
+
+#fancy_treeview-page .block, #fancy_treeview-page .blockheader, #fancy_treeview-page .blockcontent {
+	background: none;
+	border: none;
+	box-shadow: none;
+	color: #000;
+}
+
+#fancy_treeview-page h2, #fancy_treeview-page .blockheader {
+	color: #000;
+	font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+}
+
+#fancy_treeview-page .blockheader {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	font-size: 14pt;
+}
+
+#fancy_treeview-page .blockcontent {
+	margin: 0;
+	padding: 0 0 0 10mm;
+}
 
 /* Blockheaders */
-#fancy_treeview-page .blockheader .header-link {display:none}
+#fancy_treeview-page .blockheader .header-link {
+	display: none;
+}
 
 /* Family block */
-#fancy_treeview-page .family.private{display:none}
-#fancy_treeview-page .parents span.NAME {font-weight:bold;}
-#fancy_treeview-page a {color:#000}
+#fancy_treeview-page .family.private {
+	display: none;
+}
+
+#fancy_treeview-page .parents span.NAME {
+	font-weight: bold;
+}
+
+#fancy_treeview-page a {
+	color: #000;
+}

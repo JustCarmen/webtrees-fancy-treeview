@@ -1,53 +1,211 @@
-/* Basic style for the Fancy Tree View Pages - this css file is needed for all other themes
-/* Do not delete this folder and files.
-** Copyright (C) 2014 JustCarmen.
-*/
+/*
+ * Base stylesheet for the Fancy Tree View Module
+ *
+ * webtrees: Web based Family History software
+ * Copyright (C) 2014 webtrees development team.
+ * Copyright (C) 2014 JustCarmen.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
 
 /* Page */
-#fancy_treeview-page{margin-left:auto;margin-right:auto;width:80%;max-width:960px}
-#fancy_treeview-page #page-header{position:relative;text-align:center}
-#fancy_treeview-page h2 {padding-bottom:10px}
-#fancy_treeview-page #pdf {position:absolute;right:0;top:0}
-#fancy_treeview-page #page-body{line-height:1.5em;margin-top:2em}
-#fancy_treeview-page #page-body form{text-align:right}
-#fancy_treeview-page #page-body form label{font-size:11px;font-weight:normal}
-#fancy_treeview-page #error {margin:10px 0 10px 40px;padding:0 10px}
-#fancy_treeview-page .generation-block{margin-bottom:20px; padding:0}
-#fancy_treeview-page .generation-block.hidden{display:none}
-html[dir=rtl] #fancy_treeview-page #page-body form{text-align:left}
-html[dir=rtl] #fancy_treeview-page #error {margin:10px 40px 10px 0}
+#fancy_treeview-page {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	max-width: 960px;
+}
+
+#fancy_treeview-page #page-header {
+	position: relative;
+	text-align: center;
+}
+
+#fancy_treeview-page h2 {
+	padding-bottom: 10px;
+}
+
+#fancy_treeview-page #pdf {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#fancy_treeview-page #page-body {
+	line-height: 1.5em;
+	margin-top: 2em;
+}
+
+#fancy_treeview-page #page-body form {
+	text-align: right;
+}
+
+#fancy_treeview-page #page-body form label {
+	font-size: 11px;
+	font-weight: normal;
+}
+
+#fancy_treeview-page #error {
+	margin: 10px 0 10px 40px;
+	padding: 0 10px;
+}
+
+#fancy_treeview-page .generation-block {
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+#fancy_treeview-page .generation-block.hidden {
+	display: none;
+}
+
+[dir=rtl] #fancy_treeview-page #page-body form {
+	text-align: left;
+}
+
+[dir=rtl] #fancy_treeview-page #error {
+	margin: 10px 40px 10px 0;
+}
 
 /* Blockheaders */
-#fancy_treeview-page .blockheader{border:none; border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:0}
-#fancy_treeview-page .blockheader .header-link{font-size:11px;position:absolute;left:auto}
-html[dir=rtl] #fancy_treeview-page .blockheader .header-link{right:auto}
+#fancy_treeview-page .blockheader {
+	border: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	margin: 0;
+	padding: 0;
+}
+
+#fancy_treeview-page .blockheader .header-link {
+	font-size: 11px;
+	position: absolute;
+	left: auto;
+}
+
+[dir=rtl] #fancy_treeview-page .blockheader .header-link {
+	right: auto;
+}
 
 /* List */
-#fancy_treeview-page ol#fancy_treeview {counter-reset: first-level}
-#fancy_treeview-page li.generation-block {counter-reset: second-level}
-#fancy_treeview-page li.family {counter-reset: third-level}
-#fancy_treeview-page li {position: relative;display: block}
-#fancy_treeview-page li.generation-block:before{counter-increment: first-level; content:""}
-#fancy_treeview-page li.family:before {counter-increment: second-level; content: counter(first-level) "." counter(second-level);margin-left: -4em;float:left} 
-#fancy_treeview-page li.child:before {counter-increment: third-level; content: counter(first-level) "." counter(second-level) "." counter(third-level);display:inline-block;width:4.75em}
-html[dir=rtl] #fancy_treeview-page li.family:before {counter(first-level) "." counter(second-level);margin-right: -4em;float:right}
-html[dir=rtl] #fancy_treeview-page li.child:before {counter(first-level) "." counter(second-level) "." counter(third-level)}
+#fancy_treeview-page ol#fancy_treeview {
+	counter-reset: first-level;
+}
+
+#fancy_treeview-page li.generation-block {
+	counter-reset: second-level;
+}
+
+#fancy_treeview-page li.family {
+	counter-reset: third-level;
+}
+
+#fancy_treeview-page li {
+	position: relative;
+	display: block;
+}
+
+#fancy_treeview-page li.generation-block:before {
+	counter-increment: first-level;
+	content: "";
+}
+
+#fancy_treeview-page li.family:before {
+	counter-increment: second-level;
+	content: counter(first-level) "." counter(second-level);
+	margin-left: -4em;
+	float: left;
+}
+
+#fancy_treeview-page li.child:before {
+	counter-increment: third-level;
+	content: counter(first-level) "." counter(second-level) "." counter(third-level);
+	display: inline-block;
+	width: 4.75em;
+}
+
+[dir=rtl] #fancy_treeview-page li.family:before {
+	counter(first-level) "." counter(second-level);margin-right: -4em;
+	float: right;
+}
+
+[dir=rtl] #fancy_treeview-page li.child:before {
+	counter(first-level) "." counter(second-level) "." counter(third-level);
+}
 
 /* family-block */
-#fancy_treeview-page .blockcontent {padding:20px 0 20px 40px}
-#fancy_treeview-page .generation.private{padding:10px}
-#fancy_treeview-page li.family{padding:10px 20px}
-#fancy_treeview-page li.family.private{padding:5px 20px}
-#fancy_treeview-page .parents p{margin:0}
-#fancy_treeview-page .children{clear:both;padding-top:10px}
-#fancy_treeview-page .children p {margin:5px 0}
-#fancy_treeview-page .date{font-size:13px;font-weight:normal}
-#fancy_treeview-page img{float:left;margin:5px 10px 5px 0}
-#fancy_treeview-page li.child .lifespan{font-size:9px}
-#fancy_treeview-page .tooltip-text{display:none}
-html[dir=rtl] #fancy_treeview-page .blockcontent {padding:20px 40px 20px 0}
-html[dir=rtl] #fancy_treeview-page img{float:right;margin:5px 0 5px 10px}
+#fancy_treeview-page .blockcontent {
+	padding: 20px 0 20px 40px;
+}
+
+#fancy_treeview-page .generation.private {
+	padding: 10px;
+}
+
+#fancy_treeview-page li.family {
+	padding: 10px 20px;
+}
+
+#fancy_treeview-page li.family.private {
+	padding: 5px 20px;
+}
+
+#fancy_treeview-page .parents p {
+	margin: 0;
+}
+
+#fancy_treeview-page .children {
+	clear: both;
+	padding-top: 10px;
+}
+
+#fancy_treeview-page .children p {
+	margin: 5px 0;
+}
+
+#fancy_treeview-page .date {
+	font-size: 13px;
+	font-weight: normal;
+}
+
+#fancy_treeview-page img {
+	float: left;
+	margin: 5px 10px 5px 0;
+}
+
+#fancy_treeview-page li.child .lifespan {
+	font-size: 9px;
+}
+
+#fancy_treeview-page .tooltip-text {
+	display: none;
+}
+
+[dir=rtl] #fancy_treeview-page .blockcontent {
+	padding: 20px 40px 20px 0;
+}
+
+[dir=rtl] #fancy_treeview-page img {
+	float: right;
+	margin: 5px 0 5px 10px;
+}
 
 /* button */
-#fancy_treeview-page #btn_next {text-align:right}
-html[dir=rtl] #fancy_treeview-page #btn_next {text-align:left}
+#fancy_treeview-page #btn_next {
+	text-align: right;
+}
+
+[dir=rtl] #fancy_treeview-page #btn_next {
+	text-align: left;
+}

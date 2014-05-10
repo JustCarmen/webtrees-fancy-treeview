@@ -1,19 +1,75 @@
-/* Theme style for the Fancy Tree View Pages
-** Copyright (C) 2014 JustCarmen.
-*/
+/*
+ * Theme stylesheet for the Fancy Tree View Module
+ *
+ * webtrees: Web based Family History software
+ * Copyright (C) 2014 webtrees development team.
+ * Copyright (C) 2014 JustCarmen.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
 
-/* The generation-block and blockheader css is equal to css #index_main_blocks .block (not loaded because of too specific css in the Rural theme)
+/* The generation-block and blockheader css is equal to css #index_main_blocks .block
+ * (not loaded because of too specific css in the Rural theme)
+ */
 
 /* Page - */
-#fancy_treeview-page {margin-top:20px}
-#fancy_treeview-page li.generation-block{background-color: #F3EFEF;background-image: url("block_bg.png");background-repeat: repeat-y;color:#000000;margin-bottom: 10px;padding: 1px 4px 4px 46px;vertical-align: top}
+#fancy_treeview-page {
+	margin-top: 20px;
+}
+
+#fancy_treeview-page li.generation-block {
+	background-color: #F3EFEF;
+	background-image: url("block_bg.png");
+	background-repeat: repeat-y;
+	color: #000000;
+	margin-bottom: 10px;
+	padding: 1px 4px 4px 46px;
+	vertical-align: top;
+}
 
 /* Blockheaders */
-#fancy_treeview-page .blockheader {border-bottom: 1px dashed #CCCCCC;color: #8C847A;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;margin: 0 0 5px;padding: 5px 0 3px;}
-#fancy_treeview-page .blockheader .header-link{float:right;padding-right:10px;position:relative}
-html[dir=rtl] #fancy_treeview-page .blockheader .header-title{padding-right:10px}
-html[dir=rtl] #fancy_treeview-page .blockheader .header-link{float:left;padding-left:10px}
+#fancy_treeview-page .blockheader {
+	border-bottom: 1px dashed #CCCCCC;
+	color: #8C847A;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 0 5px;
+	padding: 5px 0 3px;
+}
+
+#fancy_treeview-page .blockheader .header-link {
+	float: right;
+	padding-right: 10px;
+	position: relative;
+}
+
+[dir=rtl] #fancy_treeview-page .blockheader .header-title {
+	padding-right: 10px;
+}
+
+[dir=rtl] #fancy_treeview-page .blockheader .header-link {
+	float: left;
+	padding-left: 10px;
+}
 
 /* family-block */
-#fancy_treeview-page .date {font-size:10px}
-#fancy_treeview-page li.child .lifespan {font-size:10px}
+#fancy_treeview-page .date {
+	font-size: 10px;
+}
+
+#fancy_treeview-page li.child .lifespan {
+	font-size: 10px;
+}

@@ -1,12 +1,44 @@
-/* Theme style for the Fancy Tree View Pages
-** Copyright (C) 2014 JustCarmen.
-*/
+/*
+ * Theme stylesheet for the Fancy Tree View Module
+ *
+ * webtrees: Web based Family History software
+ * Copyright (C) 2014 webtrees development team.
+ * Copyright (C) 2014 JustCarmen.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
 
 /* blockheaders */
-#fancy_treeview-page {padding-top:20px}
-#fancy_treeview-page .blockheader {border-bottom-color:#555; padding:5px 20px}
-#fancy_treeview-page .blockheader .header-link{right:20px}
-html[dir=rtl] #fancy_treeview-page .blockheader .header-link{left:20px}
+#fancy_treeview-page {
+	padding-top: 20px;
+}
+
+#fancy_treeview-page .blockheader {
+	border-bottom-color: #555;
+	padding: 5px 20px;
+}
+
+#fancy_treeview-page .blockheader .header-link {
+	right: 20px;
+}
+
+[dir=rtl] #fancy_treeview-page .blockheader .header-link {
+	left: 20px;
+}
 
 /* family-block */
-#fancy_treeview-page a.tooltip {text-decoration:underline}
+#fancy_treeview-page a.tooltip {
+	text-decoration: underline;
+}

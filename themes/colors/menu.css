@@ -1,9 +1,35 @@
-/* Theme style for the Fancy Tree View Pages to load the menu icons
-** Copyright (C) 2014 JustCarmen.
-*/
+/*
+ * Theme menu stylesheet for the Fancy Tree View Module
+ *
+ * webtrees: Web based Family History software
+ * Copyright (C) 2014 webtrees development team.
+ * Copyright (C) 2014 JustCarmen.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
 
-/* Menu */
-#main-menu li#menu-fancy_treeview {background:url(menu-ftv.png) no-repeat 50% 25%;background-size:40px}
-#main-menu li#menu-fancy_treeview ul li:not(:first-child) {background:url(menu-ftv-small.png) no-repeat 1% 0;background-size:22px}
-html[dir=rtl] #main-menu li#menu-fancy_treeview ul li {background-position:99% 0}
+#main-menu li#menu-fancy_treeview {
+	background: url(menu-ftv.png) no-repeat 50% 25%;
+	background-size: 40px;
+}
 
+#main-menu li#menu-fancy_treeview ul li:not(:first-child) {
+	background: url(menu-ftv-small.png) no-repeat 1% 0;
+	background-size: 22px;
+}
+
+html[dir=rtl] #main-menu li#menu-fancy_treeview ul li {
+	background-position: 99% 0;
+}
