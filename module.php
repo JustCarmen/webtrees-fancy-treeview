@@ -231,7 +231,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	// Reset all settings to default
 	private function ftv_reset() {
 		WT_DB::prepare("DELETE FROM `##module_setting` WHERE setting_name LIKE 'FTV%'")->execute();
-		AddToLog($this->getTitle().' reset to default values', 'config');
+		\WT\Log::addConfigurationLog($this->getTitle().' reset to default values');
 	}
 
 	// Delete item
@@ -240,7 +240,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		unset($FTV_SETTINGS[WT_Filter::getInteger('key')]);
 		$NEW_FTV_SETTINGS = array_merge($FTV_SETTINGS);
 		set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
-		AddToLog($this->getTitle().' item deleted', 'config');
+		\WT\Log::addConfigurationLog($this->getTitle().' item deleted');
 	}
 
 	// Actions from the configuration page
@@ -250,7 +250,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 		$controller=new WT_Controller_Page;
 		$controller
-			->requireAdminLogin()
+			->restrictAccess(\WT\Auth::isAdmin())
 			->setPageTitle('Fancy Tree View')
 			->pageHeader();
 
@@ -329,7 +329,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							'SORT'			=> $count
 						);
 						set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
-						AddToLog($this->getTitle().' config updated', 'config');
+						\WT\Log::addConfigurationLog($this->getTitle().' config updated');
 					}
 				}
 			}
@@ -395,7 +395,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			if(isset($NEW_FTV_OPTIONS)) {
 				set_module_setting($this->getName(), 'FTV_OPTIONS',  serialize($NEW_FTV_OPTIONS));
-				AddToLog($this->getTitle().' config updated', 'config');
+				\WT\Log::addConfigurationLog($this->getTitle().' config updated');
 			}
 		}
 
