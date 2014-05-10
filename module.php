@@ -84,7 +84,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			);
 			$key = 0;
 		};
-		
+
 		// country could be disabled and thus not set
 		if($value == 'country' && !array_key_exists(strtoupper($value), $FTV_OPTIONS[$key])) return '';
 		elseif($value) return($FTV_OPTIONS[$key][strtoupper($value)]);
@@ -491,14 +491,14 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			toggleFields("#resize_thumbs", "#thumb_size, #square_thumbs");
 			toggleFields("#places", "#gedcom_places, #country_list");
-			
+
 			if (jQuery("#gedcom_places input[type=checkbox]").is(":checked")) jQuery("#country_list select").prop("disabled", true);
 			else jQuery("#country_list select").prop("disabled", false);
 			jQuery("#gedcom_places input[type=checkbox]").click(function(){
 				if (this.checked) jQuery("#country_list select").prop("disabled", true);
 				else jQuery("#country_list select").prop("disabled", false);
 			});
-						
+
 			jQuery("input[type=reset]").click(function(e){
 				jQuery("#dialog-confirm").dialog({
 					resizable: false,
@@ -588,11 +588,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 										<input type="hidden" name="NEW_FTV_PID['.$key.']" value="'.$FTV_ITEM['PID'].'">
 										<input type="hidden" name="NEW_FTV_ACCESS_LEVEL['.$key.']" value="'.WT_PRIV_HIDE.'">
 										<input type="hidden" name="NEW_FTV_DISPLAY_NAME['.$key.']" value="'.$FTV_ITEM['DISPLAY_NAME'].'">
-										'.$FTV_ITEM['DISPLAY_NAME'].'</td>							
+										'.$FTV_ITEM['DISPLAY_NAME'].'</td>
 									<td colspan="4" class="error">
 										'.WT_I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $FTV_ITEM['PID']).'
-									</td>								
-									<td><a href="module.php?mod='.$this->getName().'&amp;mod_action=admin_delete&amp;key='.$key.'"><img src="'.$WT_IMAGES['remove'].'" alt="icon-delete"/></a></td>';						
+									</td>
+									<td><a href="module.php?mod='.$this->getName().'&amp;mod_action=admin_delete&amp;key='.$key.'"><img src="'.$WT_IMAGES['remove'].'" alt="icon-delete"/></a></td>';
 		$html .= '				</tr>';
 							endif;
 						endif;
@@ -615,7 +615,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					</div>
 					<div class="field">
 						<label class="label">'.WT_I18N::translate('Show single persons').help_link('show_singles', $this->getName()).'</label>'.two_state_checkbox('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles')).'
-					</div>				
+					</div>
 					<div id="places" class="field">
 						<label class="label">'.WT_I18N::translate('Show places?').'</label>'.two_state_checkbox('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places')).'
 					</div>
@@ -655,7 +655,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				</div>
 				<hr/>';
 		$html .='<div class="buttons">
-					<input type="submit" value="'.WT_I18N::translate('Save').'">					
+					<input type="submit" value="'.WT_I18N::translate('Save').'">
 					<input type="reset" value="'.WT_I18N::translate('Reset').'">
 					<div id="dialog-confirm" title="'.WT_I18N::translate('Reset').'" style="display:none">
 						<p>'.WT_I18N::translate('The settings will be reset to default (for all trees). Are you sure you want to do this?').'</p>
@@ -869,7 +869,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 											return KeyValue[1];
 										}
 									}
-								}							
+								}
 								jQuery("a.gallery img").each(function(){
 									var obj = jQuery(this);
 									var src = obj.attr("src");
@@ -880,19 +880,19 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 										async: false,
 										success: function(data) {
 											obj.addClass("wt-thumb").attr("src", data);
-										}										
-									});				
+										}
+									});
 								});
-							}	
-							
-							// clone the content now												
+							}
+
+							// clone the content now
 							var content = jQuery("#content").clone();
-							
+
 							//put image back behind the mediafirewall
 							jQuery(".wt-thumb").each(function(){
-								jQuery(this).attr("src", jQuery(this).parent().data("obje-url") + "&thumb=1");							
+								jQuery(this).attr("src", jQuery(this).parent().data("obje-url") + "&thumb=1");
 							});
-							
+
 							//dompdf does not support ordered list, so we make our own
 							jQuery(".generation-block", content).each(function(index) {
 								var main = (index+1);
@@ -942,7 +942,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							source: "autocomplete.php?field=INDI",
 							html: true
 						});
-						
+
 						// submit form to change root id
 						jQuery( "form#change_root" ).submit(function(e) {
 							e.preventDefault();
@@ -1210,7 +1210,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	private function print_children($family, $person, $spouse) {
 		$html = '';
-		
+
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1]==0) {
 			$html .= '<div class="children"><p>'.$person->getFullName().' ';
 					if($spouse && $spouse->CanShow()) {
@@ -1221,9 +1221,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						$html .= WT_I18N::translate_c('One parent/one child', 'had');
 					}
 					$html .= ' '.WT_I18N::translate('none').' '.WT_I18N::translate('children').'.</p></div>';
-		}		
+		}
 		else {
-			$children = $family->getChildren();		
+			$children = $family->getChildren();
 			if($children) {
 				if ($this->check_privacy($children)) {
 					$html .= '<div class="children"><p>'.$person->getFullName().' ';
@@ -1261,11 +1261,11 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						}
 					}
 					$html .= ':<ol>';
-	
+
 					foreach ($children as $child) {
 						$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
 						if($child->CanShow() && ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK())) $html .= '<span class="lifespan"> ('.$child->getLifeSpan().')</span>';
-	
+
 						$child_family = $this->get_family($child);
 						if ($child->canShow() && $child_family) {
 								$html .= ' - <a class="scroll" href="#'.$child_family->getXref().'"></a>';
@@ -1416,12 +1416,12 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					else {
 						$ratio_orig = 1;
 					}
-					
+
 					if($resize_format == 1) {
 						$thumbwidth = $thumbwidth/100 * $width_orig;
 						$thumbheight = $thumbheight/100 * $height_orig;
 					}
-					
+
 					if($square == true) {
 						$thumbheight = $thumbwidth;
 						if ($ratio_orig < 1) {
@@ -1435,7 +1435,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					else {
 						if($resize_format == 1) {
 							$new_width = $thumbwidth;
-							$new_height = $thumbheight;	
+							$new_height = $thumbheight;
 						} elseif ($width_orig > $height_orig) {
 							$new_height = $thumbheight/$ratio_orig;
 							$new_width 	= $thumbwidth;
@@ -1453,7 +1453,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						imagesavealpha($process, true);
 					}
 					@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
-					
+
 					$square == true ? $thumb = imagecreatetruecolor($thumbwidth, $thumbheight) : $thumb = imagecreatetruecolor($new_width, $new_height);
 					if($type == 'image/png') {
 						imagealphablending($thumb, false);
@@ -1637,15 +1637,15 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			return true;
 		}
 	}
-	
+
 	private function getImageData() {
 		Zend_Session::writeClose();
 		header('Content-type: text/html; charset=UTF-8');
 		$xref = WT_Filter::get('mid');
 		$mediaobject = WT_Media::getInstance($xref);
-		if($mediaobject) echo $mediaobject->getServerFilename();	
+		if($mediaobject) echo $mediaobject->getServerFilename();
 	}
-	
+
 	// ************************************************* START OF MENU ********************************* //
 
 	// Implement WT_Module_Menu
