@@ -1472,7 +1472,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							' data-obje-url="'  	. $mediaobject->getHtmlUrl()                		. '"' .
 							' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
 							' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
-							' data-title="'     	. strip_tags($mediaobject->getFullName())   		. '"' .
+							' data-title="'     	. WT_Filter::escapeHtml($mediaobject->getFullName()). '"' .
 							'><img class="ftv-thumb" src="data:'.$mediaobject->mimeType().';base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
 				}
 			}
