@@ -3,7 +3,7 @@ Fancy Tree View
 
 Fancy Tree View module for webtrees.
 
-The development version of the module requires [webtrees 1.5.4](https://github.com/fisharebest/webtrees), but it might work on older versions as well.
+The development version of the module requires [webtrees 1.5.4](https://github.com/fisharebest/webtrees).
 
 Download the latest stable release for webtrees 1.5.3 here: https://github.com/JustCarmen/fancy_treeview/releases/tag/1.5.3
 
