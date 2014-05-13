@@ -182,7 +182,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$tmp_array[$pos] = $val[$sort_by];
 		}
 		asort($tmp_array);
-
+		
+		$return_array = array();
 		foreach ($tmp_array as $pos => $val){
 			foreach ($array_keys as $key) {
 				$key = strtoupper($key);
@@ -363,7 +364,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 										$this->addMessage($controller, 'error', WT_I18N::translate('Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person.'));
 									}
 									else {
-										$change_pid = true;
 										$FTV_SETTINGS[$key]['SURNAME'] = $this->getSurname($new_pid);
 										$FTV_SETTINGS[$key]['DISPLAY_NAME'] = $this->getSurname($new_pid);
 										$FTV_SETTINGS[$key]['PID'] = $new_pid;
@@ -1128,7 +1128,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		global $SHOW_PRIVATE_RELATIONSHIPS;
 
 		if($person->CanShow()) {
-			$this->options('resize_thumbs') == 1 ? $resize = true : $resize = false;
+			$resize = $this->options('resize_thumbs') == 1 ? true : false;
 			$html = '<div class="parents">'.$this->print_thumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize).'<a id="'.$person->getXref().'" href="'.$person->getHtmlUrl().'"><p class="desc">'.$person->getFullName().'</a>';
 			if ($this->options('show_occu') == true) {
 				$html .= $this->print_fact($person, 'OCCU');
@@ -1244,7 +1244,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	private function print_children($family, $person, $spouse) {
 		$html = '';
-
+		
+		$match = null;
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1]==0) {
 			$html .= '<div class="children"><p>'.$person->getFullName().' ';
 					if($spouse && $spouse->CanShow()) {
@@ -1423,7 +1424,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 		}
 
-		if ($birthdata = true || $deathdata = true) {
+		if ($birthdata || $deathdata) {
 			$html .= '. ';
 		}
 
@@ -1526,7 +1527,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					}
 					@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
 
-					$square == true ? $thumb = imagecreatetruecolor($thumbwidth, $thumbheight) : $thumb = imagecreatetruecolor($new_width, $new_height);
+					$thumb = $square == true ? imagecreatetruecolor($thumbwidth, $thumbheight) : imagecreatetruecolor($new_width, $new_height);
 					if($type == 'image/png') {
 						imagealphablending($thumb, false);
 						imagesavealpha($thumb, true);
@@ -1536,9 +1537,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					@imagedestroy($process);
 					@imagedestroy($image);
 
-					$square == true ? $width = round($thumbwidth) : $width = round($new_width);
-					$square == true ? $height = round($thumbheight) : $height = round($new_height);
-					ob_start();$type = 'image/png' ? imagepng($thumb,null,9) : imagejpeg($thumb,null,100);$thumb = ob_get_clean();
+					$width = $square == true ? round($thumbwidth) : round($new_width);
+					$height = $square == true ? round($thumbheight) : round($new_height);
+					ob_start();$type = 'image/png' ? imagepng($thumb,null,9) : imagejpeg($thumb,null,100);$newThumb = ob_get_clean();
 					$html = '<a' .
 							' class="'          	. 'gallery'                         			 	. '"' .
 							' href="'           	. $mediaobject->getHtmlUrlDirect('main')    		. '"' .
@@ -1547,7 +1548,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							' data-obje-note="' 	. htmlspecialchars($mediaobject->getNote())			. '"' .
 							' data-obje-xref="'		. $mediaobject->getXref()							. '"' .
 							' data-title="'     	. WT_Filter::escapeHtml($mediaobject->getFullName()). '"' .
-							'><img class="ftv-thumb" src="data:'.$mediaobject->mimeType().';base64,'.base64_encode($thumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
+							'><img class="ftv-thumb" src="data:'.$mediaobject->mimeType().';base64,'.base64_encode($newThumb).'" dir="auto" title="'.$mediatitle.'" alt="'.$mediatitle.'" width="'.$width.'" height="'.$height.'"/></a>'; // need size to fetch it with jquery (for pdf conversion)
 				}
 			}
 			else {
@@ -1583,9 +1584,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		$facts = $person->getFacts();
 		foreach ($facts as $fact) {
 			if ($fact->getTag()== $tag) {
-				$str = $fact->getValue();
-				$str = rtrim($str, ".");
-				$html = ', '.$str;
+				$html = ', ' . rtrim($fact->getValue(), ".");
 				return $html;
 			}
 		}
@@ -1669,8 +1668,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				return '';
 			}
 
-			$person1=$nodes['path'][0];
-			$person2=$nodes['path'][count($nodes['path'])-1];
 			$path=array_slice($nodes['relations'], 1);
 
 			$combined_path='';
@@ -1716,7 +1713,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	private function getMarriage($family) {
 		$record = WT_GedcomRecord::getInstance($family->getXref());
 		foreach ($record->getFacts('MARR', false, WT_PRIV_HIDE) as $fact) {
-			return true;
+			if($fact) {
+				return true;
+			}
 		}
 	}
 
@@ -1739,7 +1738,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	// Implement WT_Module_Menu
 	public function getMenu() {
-		global $controller, $SEARCH_SPIDER;
+		global $SEARCH_SPIDER;
 
 		$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
 
