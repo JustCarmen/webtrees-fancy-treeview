@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
-"POT-Creation-Date: 2014-02-16 08:26+0100\n"
+"POT-Creation-Date: 2014-05-18 20:50+0100\n"
 "PO-Revision-Date: 2014-02-01 18:17+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
@@ -73,7 +73,7 @@ msgstr "בדוק מערכת יחסים בין בני זוג"
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:40
 #: modules_v3\fancy_treeview/module.php:572
-#: modules_v3\fancy_treeview/module.php:1672
+#: modules_v3\fancy_treeview/module.php:1680
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "צאצאים של משפחת %s"
@@ -177,6 +177,11 @@ msgstr "שנה גודל התמונות הממוזערות"
 msgid "Root person"
 msgstr "אדם מוצא"
 
+#: modules_v3\fancy_treeview/help_text.php:67
+#: modules_v3\fancy_treeview/module.php:625
+msgid "Select your country"
+msgstr "בחר את המדינה שלך"
+
 #: modules_v3\fancy_treeview/module.php:1172
 #, php-format
 msgid "She married %s times"
@@ -245,7 +250,7 @@ msgstr "ההגדרות תאופסנה לברירת מחדל (לכל העצים).
 msgid "Thumbnail size"
 msgstr "גודל תמונה ממוזערת"
 
-#: modules_v3\fancy_treeview/module.php:1664
+#: modules_v3\fancy_treeview/module.php:1672
 msgid "Tree view"
 msgstr "תצוגת עץ"
 
@@ -340,25 +345,25 @@ msgid "had"
 msgstr "היה"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1486
+#: modules_v3\fancy_treeview/module.php:1494
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "ב"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1489
+#: modules_v3\fancy_treeview/module.php:1497
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "ב-"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1515
+#: modules_v3\fancy_treeview/module.php:1523
 msgctxt "before placesnames"
 msgid "in "
 msgstr "ב-"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1483
+#: modules_v3\fancy_treeview/module.php:1491
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "ב-"
@@ -405,9 +410,6 @@ msgstr "התגרשו"
 
 #~ msgid "Make sure the folders %s exist and are writable."
 #~ msgstr "ודא כי התיקיות %s קיימות והן ניתנות לכתיבה."
-
-#~ msgid "Select your country"
-#~ msgstr "בחר את המדינה שלך"
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "השתמש בתמונות ממוזערות מותאמות"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
-"POT-Creation-Date: 2014-02-16 08:26+0100\n"
+"POT-Creation-Date: 2014-05-18 20:50+0100\n"
 "PO-Revision-Date: 2013-11-30 18:02+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -74,7 +74,7 @@ msgstr "Sprawdź pokrewieństwo pomiędzy małżonkami"
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:40
 #: modules_v3\fancy_treeview/module.php:572
-#: modules_v3\fancy_treeview/module.php:1672
+#: modules_v3\fancy_treeview/module.php:1680
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Potomkowie z rodziny %s"
@@ -179,6 +179,11 @@ msgstr "Użyj kwadratowych mianiaturek"
 msgid "Root person"
 msgstr "Probant"
 
+#: modules_v3\fancy_treeview/help_text.php:67
+#: modules_v3\fancy_treeview/module.php:625
+msgid "Select your country"
+msgstr "Wybierz kraj"
+
 #: modules_v3\fancy_treeview/module.php:1172
 #, php-format
 msgid "She married %s times"
@@ -247,7 +252,7 @@ msgstr "Ustawienia zostaną zresetowane (dla wyszstkich drzew). Czy wykonać?"
 msgid "Thumbnail size"
 msgstr "Rozmiar miniaturki"
 
-#: modules_v3\fancy_treeview/module.php:1664
+#: modules_v3\fancy_treeview/module.php:1672
 msgid "Tree view"
 msgstr "Widok drzewa"
 
@@ -342,25 +347,25 @@ msgid "had"
 msgstr "ma"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1486
+#: modules_v3\fancy_treeview/module.php:1494
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "w roku "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1489
+#: modules_v3\fancy_treeview/module.php:1497
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "w roku "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1515
+#: modules_v3\fancy_treeview/module.php:1523
 msgctxt "before placesnames"
 msgid "in "
 msgstr "w miejscowości "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1483
+#: modules_v3\fancy_treeview/module.php:1491
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "dnia "
@@ -407,9 +412,6 @@ msgstr "rozwiedli się"
 
 #~ msgid "<p>Here you can choose to use custom thumbnails especially for the Fancy Tree View pages. You can set a custom size and/or opt for square thumbnails.</p><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you set on the tree configuration page.</p>"
 #~ msgstr "<p>W tym miejscu można wybrać używanie zmienionych miniaturek na stronach Ozdobnego widoku drzewa. Można wybrać własny rozmiar oraz opcję kwadratowej miniaturki.</p><p>Jeśli opcja pozostanie niezaznaczona będą używane domyślne miniaturki, których format można ustawić na stronie konfiguracji drzewa genealogicznego.</p>"
-
-#~ msgid "Select your country"
-#~ msgstr "Wybierz kraj"
 
 #, fuzzy
 #~ msgid "The pdf could not be generated."

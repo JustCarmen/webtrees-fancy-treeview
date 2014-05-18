@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
-"POT-Creation-Date: 2014-02-16 08:26+0100\n"
+"POT-Creation-Date: 2014-05-18 20:50+0100\n"
 "PO-Revision-Date: 2014-02-01 18:00+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
@@ -73,7 +73,7 @@ msgstr "Tarkista puolisoiden väliset suhteet"
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:40
 #: modules_v3\fancy_treeview/module.php:572
-#: modules_v3\fancy_treeview/module.php:1672
+#: modules_v3\fancy_treeview/module.php:1680
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "%s perheen jälkeläiset"
@@ -177,6 +177,11 @@ msgstr "Muuta pienoiskuvien koko"
 msgid "Root person"
 msgstr "Alkuhenkilö"
 
+#: modules_v3\fancy_treeview/help_text.php:67
+#: modules_v3\fancy_treeview/module.php:625
+msgid "Select your country"
+msgstr "Valitse maasi"
+
 #: modules_v3\fancy_treeview/module.php:1172
 #, php-format
 msgid "She married %s times"
@@ -245,7 +250,7 @@ msgstr "Asetukset nollataan oletusarvoihin (kaikille puille). Oletko varma, ett�
 msgid "Thumbnail size"
 msgstr "Pienoiskuvan koko"
 
-#: modules_v3\fancy_treeview/module.php:1664
+#: modules_v3\fancy_treeview/module.php:1672
 msgid "Tree view"
 msgstr "Puunäkymä"
 
@@ -340,25 +345,25 @@ msgid "had"
 msgstr "-"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1486
+#: modules_v3\fancy_treeview/module.php:1494
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr " "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1489
+#: modules_v3\fancy_treeview/module.php:1497
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "vuonna "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1515
+#: modules_v3\fancy_treeview/module.php:1523
 msgctxt "before placesnames"
 msgid "in "
 msgstr " "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1483
+#: modules_v3\fancy_treeview/module.php:1491
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr " "
@@ -405,9 +410,6 @@ msgstr "erosivat"
 
 #~ msgid "Make sure the folders %s exist and are writable."
 #~ msgstr "Varmista, että kansiot %s ovat olemassa ja ovat kirjoitettavia."
-
-#~ msgid "Select your country"
-#~ msgstr "Valitse maasi"
 
 #~ msgid "The pdf could not be generated."
 #~ msgstr "PDF tietuetta ei voitu luoda."

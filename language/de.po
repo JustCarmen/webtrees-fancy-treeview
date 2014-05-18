@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 15\n"
-"POT-Creation-Date: 2014-02-16 08:26+0100\n"
-"PO-Revision-Date: 2014-02-06 11:19+0100\n"
-"Last-Translator: Bogie\n"
+"POT-Creation-Date: 2014-05-18 20:50+0100\n"
+"PO-Revision-Date: 2014-05-18 21:01+0100\n"
+"Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translate_c:2,1c\n"
 "X-Poedit-Basepath: c:\\xampp\\htdocs\\webtrees_1.4.4_build\\\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -29,9 +29,8 @@ msgid "<p>Here you can enter a surname. The script will automatically search for
 msgstr "<p>Hier können Sie einen Nachnamen eintragen. Das Skript sucht automatisch nach der ältesten Person mit diesem Namen.</p><p>Diese Person dient dann als Startperson für den gewünschten Familienzweig. Sie können durch die entsprechende Auswahl auch eine oder beide der phonetischen Suchmethoden benutzen.</p><p>Nach erfolgreicher Suche kann die ermittelte ID für die Startperson auch noch geändert werden. Sie können beliebig viele Namen eintragen. Für jeden Namen wird eine Auswahl im Menu und eine eigene Seite erzeugt.</p><p>Die angezeigten Menueinträge können durch einfaches Verschieben mit dem Kreuz beliebig umsortiert werden.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:68
-#, fuzzy
 msgid "<p>If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
-msgstr "<p>Wenn Sie die Auswahl “Ortsangaben ausgeben” markiert haben, können Sie hier ein Land (in der Regel das Heimatland) auswählen. Dessen Ausgabe wird dann bei der Ortsausgabe unterdrückt; bei allen anderen Ländern wird aber weiterhin das Land mit ausgegeben.</p><p>Wenn Sie hier kein Land auswählen, werden alle Länder ausgegeben.</p>"
+msgstr "<p>Wenn Sie die Option “Ortsangaben ausgeben”, aber NICHT die Option \"GEDCOM Einstellungen zur Abkürzung von Ortsnamen übernehmen\" aktiviert haben, können Sie hier Ihr eigenes Land auswählen. Volle Ortsnamen werden auf den Fancy Tree Seiten ausgegeben, aber Orte, die den Namen Ihres Landes enthalten, werden abgekürzt.</p><p>Wenn Sie kein Land auswählen, werden alle Länder ausgegeben einschließlich Ihres eigenen.</p>"
 
 #: modules_v3\fancy_treeview/help_text.php:64
 msgid "<p>If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.</p>"
@@ -77,7 +76,7 @@ msgstr "Überprüfung auf weitere Beziehungen zwischen Partnern"
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:40
 #: modules_v3\fancy_treeview/module.php:572
-#: modules_v3\fancy_treeview/module.php:1672
+#: modules_v3\fancy_treeview/module.php:1680
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Nachkommen der Familie %s"
@@ -181,6 +180,11 @@ msgstr "Miniaturbilder anpassen"
 msgid "Root person"
 msgstr "Startperson"
 
+#: modules_v3\fancy_treeview/help_text.php:67
+#: modules_v3\fancy_treeview/module.php:625
+msgid "Select your country"
+msgstr "Land auswählen"
+
 #: modules_v3\fancy_treeview/module.php:1172
 #, php-format
 msgid "She married %s times"
@@ -249,7 +253,7 @@ msgstr "Die Einstellungen (für alle Bäume) werden auf Standardwerte zurückges
 msgid "Thumbnail size"
 msgstr "Größe der Miniaturbilder"
 
-#: modules_v3\fancy_treeview/module.php:1664
+#: modules_v3\fancy_treeview/module.php:1672
 msgid "Tree view"
 msgstr "Baumansicht"
 
@@ -344,25 +348,25 @@ msgid "had"
 msgstr "hatte"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1486
+#: modules_v3\fancy_treeview/module.php:1494
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "im"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1489
+#: modules_v3\fancy_treeview/module.php:1497
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "im Jahr"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1515
+#: modules_v3\fancy_treeview/module.php:1523
 msgctxt "before placesnames"
 msgid "in "
 msgstr "in "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1483
+#: modules_v3\fancy_treeview/module.php:1491
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "am "
@@ -412,9 +416,6 @@ msgstr "wurden geschieden"
 
 #~ msgid "Make sure the folders %s exist and are writable."
 #~ msgstr "Stellen Sie sicher, dass die Ordner %s existieren und beschreibbar sind."
-
-#~ msgid "Select your country"
-#~ msgstr "Keine Anzeige des Ländernamen für"
 
 #~ msgid "The pdf could not be generated."
 #~ msgstr "Das Pdf konnte nicht erstellt werden."
