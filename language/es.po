@@ -229,7 +229,7 @@ msgstr "La %s vez se casó con"
 #: modules_v3\fancy_treeview/module.php:1175
 #, php-format
 msgid "The %s time she married"
-msgstr "Se casó por la %s vez con"
+msgstr "Se casó por %s vez con"
 
 #: modules_v3\fancy_treeview/module.php:1078
 msgid "The details of this generation are private."
