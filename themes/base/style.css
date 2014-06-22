@@ -184,6 +184,10 @@
 	margin: 5px 10px 5px 0;
 }
 
+#fancy_treeview-page li.child .pedi {
+	font-size: 11px;
+}
+
 #fancy_treeview-page li.child .lifespan {
 	font-size: 9px;
 }

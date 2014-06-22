@@ -1307,6 +1307,22 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 					foreach ($children as $child) {
 						$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
+						$pedi = $this->check_pedi($child, $family);
+						
+						if($pedi === 'foster') {
+							if ($child->getSex() == 'F') {
+								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('FEMALE', 'foster child').'</span>';
+							} else {
+								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('MALE', 'foster child').'</span>';
+							}							
+						}
+						if($pedi === 'adopted') {
+							if ($child->getSex() == 'F') {
+								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('FEMALE', 'adopted').'</span>';
+							} else {
+								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('MALE', 'adopted').'</span>';
+							}
+						}
 						if ($child->CanShow() && ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK())) {
 							$html .= '<span class="lifespan"> (' . $child->getLifeSpan() . ')</span>';
 						}
@@ -1332,20 +1348,40 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	private function print_parents($person) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
-			$father = $parents->getHusband();
-			$mother = $parents->getWife();
-
+			$pedi = $this->check_pedi($person, $parents);
+			
 			$html = '';
 			switch($person->getSex()) {
 				case 'M':
-					$html .= ', '.WT_I18N::translate('son of').' ';
+					if ($pedi === 'foster') {
+						$html .= ', '.WT_I18N::translate('foster son').' '.WT_I18N::translate('of').' ';
+					} elseif ($pedi === 'adopted') {
+						$html .= ', '.WT_I18N::translate('adopted son').' '.WT_I18N::translate('of').' ';
+					} else {
+						$html .= ', '.WT_I18N::translate('son of').' ';
+					}
 					break;
 				case 'F':
-					$html .= ', '.WT_I18N::translate('daughter of').' ';
+					if ($pedi === 'foster') {
+						$html .= ', '.WT_I18N::translate('foster daughter').' '.WT_I18N::translate('of').' ';
+					} elseif ($pedi === 'adopted') {
+						$html .= ', '.WT_I18N::translate('adopted daughter').' '.WT_I18N::translate('of').' ';
+					} else {
+						$html .= ', '.WT_I18N::translate('daughter of').' ';
+					}
 					break;
 				default:
-					$html .= ', '.WT_I18N::translate('child').' '.WT_I18N::translate('of').' ';
+					if ($pedi === 'foster') {
+						$html .= ', '.WT_I18N::translate_c('MALE', 'foster child').' '.WT_I18N::translate('of').' ';
+					} elseif ($pedi === 'adopted') {
+						$html .= ', '.WT_I18N::translate('adopted child').' '.WT_I18N::translate('of').' ';
+					} else {
+						$html .= ', '.WT_I18N::translate('child of').' ';
+					}
 			}
+			
+			$father = $parents->getHusband();
+			$mother = $parents->getWife();
 
 			if ($father) {
 				$html .= $father->getFullName();
@@ -1717,6 +1753,17 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				return true;
 			}
 		}
+	}
+	
+	// Check if this person is an adopted or foster child
+	private function check_pedi($person, $parents) {
+		foreach ($person->getFacts('FAMC') as $fact) {
+			if ($fact->getTarget() === $parents) {
+				$pedi = $fact->getAttribute('PEDI');
+				break;
+			}		
+		}
+		return $pedi;
 	}
 
 	private function getImageData() {
