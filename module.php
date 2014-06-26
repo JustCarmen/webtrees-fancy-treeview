@@ -1354,27 +1354,27 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			switch($person->getSex()) {
 				case 'M':
 					if ($pedi === 'foster') {
-						$html .= ', '.WT_I18N::translate('foster son').' '.WT_I18N::translate('of').' ';
+						$html .= ', '.WT_I18N::translate('foster son of').' ';
 					} elseif ($pedi === 'adopted') {
-						$html .= ', '.WT_I18N::translate('adopted son').' '.WT_I18N::translate('of').' ';
+						$html .= ', '.WT_I18N::translate('adopted son of').' ';
 					} else {
 						$html .= ', '.WT_I18N::translate('son of').' ';
 					}
 					break;
 				case 'F':
 					if ($pedi === 'foster') {
-						$html .= ', '.WT_I18N::translate('foster daughter').' '.WT_I18N::translate('of').' ';
+						$html .= ', '.WT_I18N::translate('foster daughter of').' ';
 					} elseif ($pedi === 'adopted') {
-						$html .= ', '.WT_I18N::translate('adopted daughter').' '.WT_I18N::translate('of').' ';
+						$html .= ', '.WT_I18N::translate('adopted daughter of').' ';
 					} else {
 						$html .= ', '.WT_I18N::translate('daughter of').' ';
 					}
 					break;
 				default:
 					if ($pedi === 'foster') {
-						$html .= ', '.WT_I18N::translate_c('MALE', 'foster child').' '.WT_I18N::translate('of').' ';
+						$html .= ', '.WT_I18N::translate('foster child of').' ';
 					} elseif ($pedi === 'adopted') {
-						$html .= ', '.WT_I18N::translate('adopted child').' '.WT_I18N::translate('of').' ';
+						$html .= ', '.WT_I18N::translate('adopted child of').' ';
 					} else {
 						$html .= ', '.WT_I18N::translate('child of').' ';
 					}

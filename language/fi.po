@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.5\n"
-"POT-Creation-Date: 2014-06-23 00:23+0100\n"
+"POT-Creation-Date: 2014-06-26 22:19+0100\n"
 "PO-Revision-Date: 2014-02-01 18:00+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
@@ -278,15 +278,15 @@ msgid "adopted"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1377
-msgid "adopted child"
+msgid "adopted child of"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1368
-msgid "adopted daughter"
+msgid "adopted daughter of"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1359
-msgid "adopted son"
+msgid "adopted son of"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
@@ -350,12 +350,16 @@ msgctxt "MALE"
 msgid "foster child"
 msgstr ""
 
+#: modules_v3\fancy_treeview/module.php:1375
+msgid "foster child of"
+msgstr ""
+
 #: modules_v3\fancy_treeview/module.php:1366
-msgid "foster daughter"
+msgid "foster daughter of"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1357
-msgid "foster son"
+msgid "foster son of"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1194

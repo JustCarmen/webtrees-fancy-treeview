@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View 1.2\n"
-"POT-Creation-Date: 2014-06-23 00:23+0100\n"
-"PO-Revision-Date: 2014-06-23 00:36+0100\n"
+"POT-Creation-Date: 2014-06-26 22:19+0100\n"
+"PO-Revision-Date: 2014-06-26 22:24+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -281,16 +281,16 @@ msgid "adopted"
 msgstr "geadopteerd"
 
 #: modules_v3\fancy_treeview/module.php:1377
-msgid "adopted child"
-msgstr "geadopteerd kind"
+msgid "adopted child of"
+msgstr "geadopteerd kind van"
 
 #: modules_v3\fancy_treeview/module.php:1368
-msgid "adopted daughter"
-msgstr "geadopteerde dochter"
+msgid "adopted daughter of"
+msgstr "geadopteerde dochter van"
 
 #: modules_v3\fancy_treeview/module.php:1359
-msgid "adopted son"
-msgstr "geadopteerde zoon"
+msgid "adopted son of"
+msgstr "geadopteerde zoon van"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1239
@@ -353,13 +353,17 @@ msgctxt "MALE"
 msgid "foster child"
 msgstr "pleegkind"
 
+#: modules_v3\fancy_treeview/module.php:1375
+msgid "foster child of"
+msgstr "pleegkind van"
+
 #: modules_v3\fancy_treeview/module.php:1366
-msgid "foster daughter"
-msgstr "pleegdochter"
+msgid "foster daughter of"
+msgstr "pleegdochter van"
 
 #: modules_v3\fancy_treeview/module.php:1357
-msgid "foster son"
-msgstr "pleegzoon"
+msgid "foster son of"
+msgstr "pleegzoon van"
 
 #: modules_v3\fancy_treeview/module.php:1194
 msgid "fourth"
@@ -462,3 +466,18 @@ msgstr "zijn gescheiden"
 
 #~ msgid "Use custom thumbnails"
 #~ msgstr "Gebruik aangepaste thumbnails"
+
+#~ msgid "adopted child"
+#~ msgstr "geadopteerd kind"
+
+#~ msgid "adopted daughter"
+#~ msgstr "geadopteerde dochter"
+
+#~ msgid "adopted son"
+#~ msgstr "geadopteerde zoon"
+
+#~ msgid "foster daughter"
+#~ msgstr "pleegdochter"
+
+#~ msgid "foster son"
+#~ msgstr "pleegzoon"
