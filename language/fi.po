@@ -270,24 +270,24 @@ msgstr "Käytä neliö-pienoiskuvia"
 #: modules_v3\fancy_treeview/module.php:1321
 msgctxt "FEMALE"
 msgid "adopted"
-msgstr ""
+msgstr "adoptoitu"
 
 #: modules_v3\fancy_treeview/module.php:1323
 msgctxt "MALE"
 msgid "adopted"
-msgstr ""
+msgstr "adoptoitu"
 
 #: modules_v3\fancy_treeview/module.php:1377
 msgid "adopted child of"
-msgstr ""
+msgstr "adoptiovanhemmat:"
 
 #: modules_v3\fancy_treeview/module.php:1368
 msgid "adopted daughter of"
-msgstr ""
+msgstr "adoptiovanhemmat:"
 
 #: modules_v3\fancy_treeview/module.php:1359
 msgid "adopted son of"
-msgstr ""
+msgstr "adoptiovanhemmat:"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1239
@@ -343,24 +343,24 @@ msgstr "seuraa"
 #: modules_v3\fancy_treeview/module.php:1314
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr ""
+msgstr "kasvattilapsi"
 
 #: modules_v3\fancy_treeview/module.php:1316
 msgctxt "MALE"
 msgid "foster child"
-msgstr ""
+msgstr "kasvattilapsi"
 
 #: modules_v3\fancy_treeview/module.php:1375
 msgid "foster child of"
-msgstr ""
+msgstr "kasvattivanhemmat:"
 
 #: modules_v3\fancy_treeview/module.php:1366
 msgid "foster daughter of"
-msgstr ""
+msgstr "kasvattivanhemmat:"
 
 #: modules_v3\fancy_treeview/module.php:1357
 msgid "foster son of"
-msgstr ""
+msgstr "kasvattivanhemmat:"
 
 #: modules_v3\fancy_treeview/module.php:1194
 msgid "fourth"

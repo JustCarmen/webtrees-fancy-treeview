@@ -270,24 +270,24 @@ msgstr "השתמש בתמונות ממוזערות מרובעות"
 #: modules_v3\fancy_treeview/module.php:1321
 msgctxt "FEMALE"
 msgid "adopted"
-msgstr ""
+msgstr "אימוץ"
 
 #: modules_v3\fancy_treeview/module.php:1323
 msgctxt "MALE"
 msgid "adopted"
-msgstr ""
+msgstr "אימוץ"
 
 #: modules_v3\fancy_treeview/module.php:1377
 msgid "adopted child of"
-msgstr ""
+msgstr "ילד מאומץ ע\"י"
 
 #: modules_v3\fancy_treeview/module.php:1368
 msgid "adopted daughter of"
-msgstr ""
+msgstr "בת מאומצת ע\"י"
 
 #: modules_v3\fancy_treeview/module.php:1359
 msgid "adopted son of"
-msgstr ""
+msgstr "בן מאומץ ע\"י"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/module.php:1239
@@ -343,24 +343,24 @@ msgstr "עקוב"
 #: modules_v3\fancy_treeview/module.php:1314
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr ""
+msgstr "אומנה"
 
 #: modules_v3\fancy_treeview/module.php:1316
 msgctxt "MALE"
 msgid "foster child"
-msgstr ""
+msgstr "אומנה"
 
 #: modules_v3\fancy_treeview/module.php:1375
 msgid "foster child of"
-msgstr ""
+msgstr "ילד אומנה של"
 
 #: modules_v3\fancy_treeview/module.php:1366
 msgid "foster daughter of"
-msgstr ""
+msgstr "בת אומנה של"
 
 #: modules_v3\fancy_treeview/module.php:1357
 msgid "foster son of"
-msgstr ""
+msgstr "בן אומנה של"
 
 #: modules_v3\fancy_treeview/module.php:1194
 msgid "fourth"
