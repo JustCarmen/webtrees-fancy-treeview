@@ -1757,6 +1757,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	
 	// Check if this person is an adopted or foster child
 	private function check_pedi($person, $parents) {
+		$pedi = "";
 		foreach ($person->getFacts('FAMC') as $fact) {
 			if ($fact->getTarget() === $parents) {
 				$pedi = $fact->getAttribute('PEDI');
