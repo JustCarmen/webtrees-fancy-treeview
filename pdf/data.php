@@ -1,10 +1,5 @@
 <?php
 
-if (!defined('WT_WEBTREES')) {
-	header('HTTP/1.0 403 Forbidden');
-	exit;
-}
-
 Zend_Session::writeClose();
 
 $filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';

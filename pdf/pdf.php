@@ -1,10 +1,5 @@
 <?php
 
-if (!defined('WT_WEBTREES')) {
-	header('HTTP/1.0 403 Forbidden');
-	exit;
-}
-
 require_once(WT_MODULES_DIR.$this->getName().'/pdf/dompdf/dompdf_config.inc.php');
 Zend_Loader_Autoloader::getInstance()->pushAutoloader('DOMPDF_autoload','');
 
