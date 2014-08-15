@@ -21,6 +21,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+use WT\Auth;
+use WT\Log;
+
 if (!defined('WT_WEBTREES')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
@@ -244,7 +247,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	// Reset all settings to default
 	private function ftv_reset() {
 		WT_DB::prepare("DELETE FROM `##module_setting` WHERE setting_name LIKE 'FTV%'")->execute();
-		\WT\Log::addConfigurationLog($this->getTitle().' reset to default values');
+		Log::addConfigurationLog($this->getTitle().' reset to default values');
 	}
 
 	// Delete item
@@ -253,7 +256,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		unset($FTV_SETTINGS[WT_Filter::getInteger('key')]);
 		$NEW_FTV_SETTINGS = array_merge($FTV_SETTINGS);
 		set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
-		\WT\Log::addConfigurationLog($this->getTitle().' item deleted');
+		Log::addConfigurationLog($this->getTitle().' item deleted');
 	}
 
 	// Actions from the configuration page
@@ -263,7 +266,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 		$controller=new WT_Controller_Page;
 		$controller
-			->restrictAccess(\WT\Auth::isAdmin())
+			->restrictAccess(Auth::isAdmin())
 			->setPageTitle('Fancy Tree View')
 			->pageHeader();
 
@@ -342,7 +345,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							'SORT'			=> $count
 						);
 						set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
-						\WT\Log::addConfigurationLog($this->getTitle().' config updated');
+						Log::addConfigurationLog($this->getTitle().' config updated');
 					}
 				}
 			}
@@ -407,7 +410,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			if(isset($NEW_FTV_OPTIONS)) {
 				set_module_setting($this->getName(), 'FTV_OPTIONS',  serialize($NEW_FTV_OPTIONS));
-				\WT\Log::addConfigurationLog($this->getTitle().' config updated');
+				Log::addConfigurationLog($this->getTitle().' config updated');
 			}
 		}
 
