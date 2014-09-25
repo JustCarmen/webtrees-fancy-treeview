@@ -44,4 +44,4 @@ if(!empty($options)) {
 	unset($new_options);
 }
 // Update the version to indicate success
-WT_Site::preference($schema_name, $next_version);
+WT_Site::getPreference($schema_name, $next_version);
