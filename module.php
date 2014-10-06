@@ -58,7 +58,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	// Get module options
 	private function options($value = '') {
-		$FTV_OPTIONS = unserialize(get_module_setting($this->getName(), 'FTV_OPTIONS'));
+		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 
 		$key = WT_TREE::getIdFromName(WT_Filter::get('ged'));
 		if (empty($key)) {
@@ -247,10 +247,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	// Delete item
 	private function delete() {
-		$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 		unset($FTV_SETTINGS[WT_Filter::getInteger('key')]);
 		$NEW_FTV_SETTINGS = array_merge($FTV_SETTINGS);
-		set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
+		$this->setSetting('FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
 		Log::addConfigurationLog($this->getTitle().' item deleted');
 	}
 
@@ -301,7 +301,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 
 				if(isset($pid)) {
-					$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
+					$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
 					if(!empty($FTV_SETTINGS)) {
 						$i = 0;
@@ -339,7 +339,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 							'ACCESS_LEVEL'	=> '2', // default access level = show to visitors
 							'SORT'			=> $count
 						);
-						set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
+						$this->setSetting('FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
 						Log::addConfigurationLog($this->getTitle().' config updated');
 					}
 				}
@@ -349,7 +349,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 			if($new_pids || $new_display_name || $new_access_level || $new_sort) {
 				// retrieve the array again from the database because it could have been changed due to an add action.
-				$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
+				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 				foreach ($new_pids as $key => $new_pid) {
 					if(!empty($new_pid)) {
 						$new_pid = strtoupper($new_pid); // make sure the PID is entered in the format I200 and not i200.
@@ -387,10 +387,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 
 				$NEW_FTV_SETTINGS = $this->sortArray($FTV_SETTINGS, 'SORT');
-				set_module_setting($this->getName(), 'FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
+				$this->setSetting('FTV_SETTINGS',  serialize($NEW_FTV_SETTINGS));
 			}
 			// retrieve the current options from the database
-			$FTV_OPTIONS = unserialize(get_module_setting($this->getName(), 'FTV_OPTIONS'));
+			$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 			$key = WT_Filter::postInteger('NEW_FTV_TREE');
 			// check if options are not empty and if the options for the tree are already set. If not add them to the array.
 			if ($FTV_OPTIONS) {
@@ -404,13 +404,13 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				$NEW_FTV_OPTIONS[WT_Filter::postInteger('NEW_FTV_TREE')] = WT_Filter::postArray('NEW_FTV_OPTIONS');
 			}
 			if(isset($NEW_FTV_OPTIONS)) {
-				set_module_setting($this->getName(), 'FTV_OPTIONS',  serialize($NEW_FTV_OPTIONS));
+				$this->setSetting('FTV_OPTIONS',  serialize($NEW_FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle().' config updated');
 			}
 		}
 
 		// get module settings (options are coming from function options)
-		$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
 		// inline javascript
 		$controller->addInlineJavascript('
@@ -1786,7 +1786,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	public function getMenu() {
 		global $SEARCH_SPIDER;
 
-		$FTV_SETTINGS = unserialize(get_module_setting($this->getName(), 'FTV_SETTINGS'));
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
 		if(!empty($FTV_SETTINGS)) {
 			if ($SEARCH_SPIDER) {
