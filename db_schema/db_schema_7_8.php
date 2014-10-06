@@ -26,12 +26,8 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-if (!defined('WT_WEBTREES')) {
-	header('HTTP/1.0 403 Forbidden');
-	exit;
-}
-
-$options = unserialize(get_module_setting('fancy_treeview', 'FTV_OPTIONS'));
+$module = new fancy_treeview_WT_Module;
+$options = unserialize($module->getSetting('FTV_OPTIONS'));
 if(!empty($options)) {
 	foreach($options as $option) {
 		foreach($option as $key => $value) {
@@ -47,7 +43,7 @@ if(!empty($options)) {
 		$option['THUMB_RESIZE_FORMAT'] = '2';	
 		$new_options[] = $option;
 	}
-	set_module_setting('fancy_treeview', 'FTV_OPTIONS',  serialize($new_options));
+	$module->setSetting('FTV_OPTIONS',  serialize($new_options));
 	unset($new_options);
 }
 
