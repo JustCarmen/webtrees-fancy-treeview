@@ -175,7 +175,7 @@
 }
 
 #fancy_treeview-page .date {
-	font-size: 13px;
+	font-size: inherit;
 	font-weight: normal;
 }
 
