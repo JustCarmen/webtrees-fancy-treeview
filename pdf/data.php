@@ -9,7 +9,7 @@ $content = WT_Filter::post('pdfContent');
 if(!file_exists($filename)) {
 	$handle = fopen($filename, 'w');
 	@fclose($handle);
-	@chmod($filename, WT_PERM_FILE);
+	@chmod($filename, 0644);
 }
 
 // Let's make sure the file exists and is writable first.
