@@ -28,8 +28,12 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-$module = new fancy_treeview_WT_Module;
-$settings = unserialize($module->getSetting('FTV_SETTINGS'));
+$module_settings = 'FTV_SETTINGS';
+$ftv_settings=WT_DB::prepare(
+	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+)->execute(array($module_settings))->fetchOne();
+
+$settings = unserialize($ftv_settings);
 if(!empty($settings)) {
 	foreach ($settings as $setting) {
 		if(!array_key_exists('LINK', $setting)) {
@@ -38,23 +42,38 @@ if(!empty($settings)) {
 		}
 	}
 	if (isset($new_settings)) {
-		$module->getSetting('FTV_SETTINGS',  serialize($new_settings));
+		WT_DB::prepare(
+			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
+		)->execute(array(serialize($new_settings), $module_settings));
 	}
 	unset($new_settings);
 }
 
-$options = unserialize($module->getSetting('FTV_OPTIONS'));
+$module_options = 'FTV_OPTIONS';
+$ftv_options=WT_DB::prepare(
+	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+)->execute(array($module_options))->fetchOne();
+
+$options = unserialize($ftv_options);
 if(!empty($options)) {
+	$show_places = array_key_exists('SHOW_PLACES', $options) ? $options['SHOW_PLACES'] : '1';
+	$country = array_key_exists('COUNTRY', $options) ? $options['COUNTRY'] : '';
+	$show_occu = array_key_exists('SHOW_OCCU', $options) ? $options['SHOW_OCCU'] : '1';
+	
 	foreach (WT_Tree::getAll() as $tree) {
 		$new_options[$tree->tree_id] = array(
-			'SHOW_PLACES' 	=> $options['SHOW_PLACES'],
-			'COUNTRY' 		=> $options['COUNTRY'],
-			'SHOW_OCCU'		=> $options['SHOW_OCCU']
+			'SHOW_PLACES' 	=> $show_places,
+			'COUNTRY' 		=> $country,
+			'SHOW_OCCU'		=> $show_occu
 		);
 	}
-	if(isset($new_options)) $module->setSetting('FTV_OPTIONS',  serialize($new_options));
+	if(isset($new_options)) {
+		WT_DB::prepare(
+			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
+		)->execute(array(serialize($new_options), $module_options));
+	}
 	unset($new_options);
 }
 
 // Update the version to indicate success
-WT_Site::getPreference($schema_name, $next_version);
+WT_Site::setPreference($schema_name, $next_version);

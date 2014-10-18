@@ -27,42 +27,64 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-$module = new fancy_treeview_WT_Module;
-$settings = unserialize($module->getSetting('FTV_SETTINGS'));
-if(!empty($settings)) {
-	foreach ($settings as $setting) {
-		if(array_key_exists('LINK', $setting)) {
-			unset($setting['LINK']);
-			$new_settings[] = $setting;
+$module_settings = 'FTV_SETTINGS';
+$ftv_asettings=WT_DB::prepare(
+	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+)->execute(array($module_settings))->fetchOne();
+
+$asettings = unserialize($ftv_asettings);
+if(!empty($asettings)) {
+	foreach ($asettings as $asetting) {
+		if(array_key_exists('LINK', $asetting)) {
+			unset($asetting['LINK']);
+			$new_asettings[] = $asetting;
 		}
 	}
-	if(isset($new_settings)) {
-		$module->setSetting('FTV_SETTINGS',  serialize($new_settings));
+	if(isset($new_asettings)) {
+		WT_DB::prepare(
+			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
+		)->execute(array(serialize($new_asettings), $module_settings));
 	}
-	unset($new_settings);
+	unset($new_asettings);
 }
 
-$settings = unserialize($module->getSetting('FTV_SETTINGS'));
-if(!empty($settings)) {
-	foreach ($settings as $setting) {
-		if(!array_key_exists('DISPLAY_NAME', $setting)) {
-			$setting['DISPLAY_NAME'] = $setting['SURNAME'];
-			$new_settings[] = $setting;
+$ftv_bsettings=WT_DB::prepare(
+	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+)->execute(array($module_settings))->fetchOne();
+
+$bsettings = unserialize($ftv_bsettings);
+if(!empty($bsettings)) {
+	foreach ($bsettings as $bsetting) {
+		if(!array_key_exists('DISPLAY_NAME', $bsetting)) {
+			$bsetting['DISPLAY_NAME'] = $bsetting['SURNAME'];
+			$new_bsettings[] = $bsetting;
 		}
 	}
-	if(isset($new_settings)) $module->setSetting('FTV_SETTINGS',  serialize($new_settings));
-	unset($new_settings);
+	if(isset($new_bsettings)) {
+		WT_DB::prepare(
+			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
+		)->execute(array(serialize($new_bsettings), $module_settings));
+	}
+	unset($new_bsettings);
 }
 
+$module_options = 'FTV_OPTIONS';
+$ftv_options=WT_DB::prepare(
+	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+)->execute(array($module_options))->fetchOne();
 
-$options = unserialize($module->getSetting('FTV_OPTIONS'));
+$options = unserialize($ftv_options);
 if(!empty($options)) {
 	foreach($options as $option) {
 		$option['USE_FULLNAME'] = '0';
 		$new_options[] = $option;
 	}
-	$module->setSetting('FTV_OPTIONS',  serialize($new_options));
+	if(isset($new_options)) {
+		WT_DB::prepare(
+			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
+		)->execute(array(serialize($new_options), $module_options));
+	}
 	unset($new_options);
 }
 // Update the version to indicate success
-WT_Site::getPreference($schema_name, $next_version);
+WT_Site::setPreference($schema_name, $next_version);

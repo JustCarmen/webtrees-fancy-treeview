@@ -24,7 +24,7 @@
 use WT\Auth;
 use WT\Log;
 
-// Update database for version 1.5
+// Update database when upgrading from a previous version
 try {
 	WT_DB::updateSchema(WT_ROOT.WT_MODULES_DIR.'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 8);
 } catch (PDOException $ex) {

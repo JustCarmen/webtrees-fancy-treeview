@@ -27,8 +27,12 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-$module = new fancy_treeview_WT_Module;
-$options = unserialize($module->getSetting('FTV_OPTIONS'));
+$module_options = 'FTV_OPTIONS';
+$ftv_options=WT_DB::prepare(
+	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+)->execute(array($module_options))->fetchOne();
+
+$options = unserialize($ftv_options);
 if(!empty($options)) {
 	foreach($options as $option) {
 		$option['THUMB_SIZE'] = '60';
@@ -36,8 +40,12 @@ if(!empty($options)) {
 		$option['SHOW_USERFORM'] = '2';
 		$new_options[] = $option;
 	}
-	$module->setSetting('FTV_OPTIONS',  serialize($new_options));
+	if(isset($new_options)) {
+		WT_DB::prepare(
+			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
+		)->execute(array(serialize($new_options), $module_options));
+	}
 	unset($new_options);
 }
 // Update the version to indicate success
-WT_Site::getPreference($schema_name, $next_version);
+WT_Site::setPreference($schema_name, $next_version);
