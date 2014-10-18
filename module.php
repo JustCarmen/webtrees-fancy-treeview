@@ -1192,14 +1192,38 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				WT_I18N::translate('fourth'),
 				WT_I18N::translate('fifth')
 			);
-			if($i == 0) {
-				$person->getSex() == 'M' ? $html .= /* I18N: %s is a number  */ WT_I18N::translate('He married %s times', $count) : $html .= WT_I18N::translate('She married %s times', $count);
-				$html .= '. ';
+			switch ($person->getSex()) {
+			case 'M':
+				if($i == 0) {
+					$html .= /* I18N: %s is a number  */ WT_I18N::translate('He married %s times', $count) . '. ';
+				}
+				$html .= /* I18N: %s is an ordinal */ WT_I18N::translate('The %s time he married', $wordcount[$i]);					
+				break;
+			case 'F':
+				if($i == 0) {
+					$html .= /* I18N: %s is a number  */ WT_I18N::translate('She married %s times', $count) . '. ';
+				}
+				$html .= /* I18N: %s is an ordinal */ WT_I18N::translate('The %s time she married', $wordcount[$i]);					
+				break;
+			default:
+				if($i == 0) {
+					$html .= /* I18N: %s is a number  */ WT_I18N::translate('This individual married %s times', $count) . '. ';
+				}
+				$html .= /* I18N: %s is an ordinal */ WT_I18N::translate('The %s time this individual married', $wordcount[$i]);
+				break;
 			}
-			$person->getSex() == 'M' ? $html .= /* I18N: %s is an ordinal */ WT_I18N::translate('The %s time he married', $wordcount[$i]) : $html .= WT_I18N::translate('The %s time she married', $wordcount[$i]);
-		}
-		else {
-			$person->getSex() == 'M' ? $html .= WT_I18N::translate('He married') : $html .= WT_I18N::translate('She married');
+		} else {
+			switch ($person->getSex()) {
+			case 'M':
+				$html .= WT_I18N::translate('He married');
+				break;
+			case 'F':
+				$html .= WT_I18N::translate('She married');
+				break;
+			default:
+				$html .= WT_I18N::translate('This individual married');
+				break;
+			}			
 		}
 
 		$html .= ' <a href="'.$spouse->getHtmlUrl().'">'.$spouse->getFullName().'</a>';
@@ -1307,20 +1331,33 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						$html .= '<li class="child"><a href="'.$child->getHtmlUrl().'">'.$child->getFullName().'</a>';
 						$pedi = $this->check_pedi($child, $family);
 						
-						if($pedi === 'foster') {
-							if ($child->getSex() == 'F') {
-								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('FEMALE', 'foster child').'</span>';
-							} else {
-								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('MALE', 'foster child').'</span>';
-							}							
-						}
-						if($pedi === 'adopted') {
-							if ($child->getSex() == 'F') {
-								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('FEMALE', 'adopted').'</span>';
-							} else {
-								$html .= ' <span class="pedi"> - '.WT_I18N::translate_c('MALE', 'adopted').'</span>';
+						if ($pedi) {
+							$html .= ' <span class="pedi"> - ';
+							switch ($pedi) {
+							case 'foster':
+								switch ($child->getSex()) {
+								case 'F':
+									$html .= WT_I18N::translate_c('FEMALE', 'foster child');
+									break;						
+								default:
+									$html .= WT_I18N::translate_c('MALE', 'foster child');
+									break;
+								}
+								break;
+							case 'adopted':
+								switch ($child->getSex()) {								
+								case 'F':
+									$html .= WT_I18N::translate_c('FEMALE', 'adopted child');
+									break;						
+								default:
+									$html .= WT_I18N::translate_c('MALE', 'adopted child');
+									break;
+								}
+								break;
 							}
+							$html .= '</span>';
 						}
+						
 						if ($child->CanShow() && ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK())) {
 							$html .= '<span class="lifespan"> (' . $child->getLifeSpan() . ')</span>';
 						}
