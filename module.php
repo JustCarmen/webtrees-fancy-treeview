@@ -274,7 +274,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					$soundex_dm = WT_Filter::postBool('soundex_dm');
 
 					$indis = $this->indis_array($surname, $soundex_std, $soundex_dm);
-					usort($indis, array('WT_Individual', 'CompareBirtDate'));
+					usort($indis, array('WT_Individual', 'CompareBirthDate'));
 
 					if (isset($indis) && count($indis) > 0) {
 						$pid = $indis[0]->getXref();
