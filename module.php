@@ -96,7 +96,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 
 	// Get Indis from surname input
-	private function indis_array($surname, $soundex_std, $soundex_dm) {
+	private function indis_array($surname, $russell, $daitchMokotoff) {
 		$sql=
 			"SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom".
 			" FROM `##individuals`".
@@ -105,16 +105,16 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			" AND n_type!=?".
 			" AND (n_surn=? OR n_surname=?";
 		$args=array(WT_GED_ID, '_MARNM', $surname, $surname);
-		if ($soundex_std) { // works only with latin letters. For other letters it outputs the code '0000'.
-			foreach (explode(':', WT_Soundex::soundex_std($surname)) as $value) {
+		if ($russell) { // works only with latin letters. For other letters it outputs the code '0000'.
+			foreach (explode(':', WT_Soundex::russell($surname)) as $value) {
 				if ($value != '0000') {
 					$sql .= " OR n_soundex_surn_std LIKE CONCAT('%', ?, '%')";
 					$args[]=$value;
 				}
 			}
 		}
-		if ($soundex_dm) { // works only with predefined letters and lettercombinations. Fot other letters it outputs the code '000000'.
-			foreach (explode(':', WT_Soundex::soundex_dm($surname)) as $value) {
+		if ($daitchMokotoff) { // works only with predefined letters and lettercombinations. Fot other letters it outputs the code '000000'.
+			foreach (explode(':', WT_Soundex::daitchMokotoff($surname)) as $value) {
 				if ($value != '000000') {
 					$sql .= " OR n_soundex_surn_dm LIKE CONCAT('%', ?, '%')";
 					$args[]=$value;
@@ -270,10 +270,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			$root_id = strtoupper(WT_Filter::post('NEW_FTV_ROOTID', WT_REGEX_XREF));
 			if($surname || $root_id) {
 				if($surname) {
-					$soundex_std = WT_Filter::postBool('soundex_std');
-					$soundex_dm = WT_Filter::postBool('soundex_dm');
+					$russell = WT_Filter::postBool('russell');
+					$daitchMokotoff = WT_Filter::postBool('daitchMokotoff');
 
-					$indis = $this->indis_array($surname, $soundex_std, $soundex_dm);
+					$indis = $this->indis_array($surname, $russell, $daitchMokotoff);
 					usort($indis, array('WT_Individual', 'CompareBirthDate'));
 
 					if (isset($indis) && count($indis) > 0) {
@@ -546,8 +546,8 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					<div class="field">
 						<label for="NEW_FTV_SURNAME" class="label">'.WT_I18N::translate('Add a surname').help_link('add_surname', $this->getName()).'</label>
 						<input type="text" id="NEW_FTV_SURNAME" class="surname" name="NEW_FTV_SURNAME" value="" />
-						<label>'.checkbox('soundex_std').WT_I18N::translate('Russell').'</label>
-						<label>'.checkbox('soudex_dm').WT_I18N::translate('Daitch-Mokotoff').'</label>
+						<label>'.checkbox('russell').WT_I18N::translate('Russell').'</label>
+						<label>'.checkbox('daitchMokotoff').WT_I18N::translate('Daitch-Mokotoff').'</label>
 					</div>
 					<div class="field">
 						<label class="label">'.WT_I18N::translate('Or manually add a root person').checkbox('unlock_field').'</label>
