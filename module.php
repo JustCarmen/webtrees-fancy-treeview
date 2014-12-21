@@ -1792,9 +1792,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				return null;
 			}
 
-			// load the module stylesheets
-			echo $this->getStylesheet();
-
 			foreach ($FTV_SETTINGS as $FTV_ITEM) {
 				if ($FTV_ITEM['TREE'] == WT_GED_ID && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
 					$FTV_GED_SETTINGS[] = $FTV_ITEM;
@@ -1802,6 +1799,20 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			}
 			if (!empty($FTV_GED_SETTINGS)) {
 				$menu = new WT_Menu(WT_I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
+				
+				/*
+				 *  We need extra css on all pages to render the menu icon. We can't create our own menu here because we need to return
+				 *  the menu as a default menu array. This is demanded by the clouds and colors theme since they are rendering their
+				 *  own custom menu from the array. So we load the script in the menu array as a 'fake' submenu. By putting the script
+				 *  here temporarily, it can render immediately and we don't have to wait until the page is fully loaded (which is too
+				 *  late in the process). At the end of page load, we just remove the list-item with the script, so we don't get problems
+				 *  with validation. We use the same method to render the extra css on the ftv-page so we can render the page without
+				 *  page flickering.
+				 */
+
+				$submenu = new WT_Menu($this->getStylesheet(), '', 'ftv-script');
+				$menu->addSubmenu($submenu);
+				$controller->addInlineJavascript('jQuery("#ftv-script").remove();');
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 					if (WT_Individual::getInstance($FTV_ITEM['PID'])) {
@@ -1832,7 +1843,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				$stylesheet .= $this->includeCss($module_dir . WT_THEME_URL . 'style.css', 'screen');
 			}
 		}
-		return $stylesheet;
+		return '<script>' . $stylesheet . '</script>';
 	}
 
 	private function includeJs() {
@@ -1845,15 +1856,14 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	}
 
 	private function includeCss($css, $type = 'all') {
-		return
-			'<script>
-				var newSheet=document.createElement("link");
-				newSheet.setAttribute("href","'.$css.'");
-				newSheet.setAttribute("type","text/css");
-				newSheet.setAttribute("rel","stylesheet");
-				newSheet.setAttribute("media","'.$type.'");
-				document.getElementsByTagName("head")[0].appendChild(newSheet);
-			</script>';
+		return '
+			var newSheet=document.createElement("link");
+			newSheet.setAttribute("href","' . $css . '");
+			newSheet.setAttribute("type","text/css");
+			newSheet.setAttribute("rel","stylesheet");
+			newSheet.setAttribute("media","' . $type . '");
+			document.getElementsByTagName("head")[0].appendChild(newSheet);
+		';
 	}
 
 }
