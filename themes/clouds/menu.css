@@ -20,21 +20,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#main-menu li#menu-fancy_treeview,
-#main-menu li#menu-fancy_treeview ul li:not(:first-child) {
+#menu-fancy_treeview,
+#menu-fancy_treeview ul li:not(:first-child) {
 	background-image: url(menu-ftv.png);
 	background-repeat: no-repeat;
 	background-size: 22px;
 }
 
-#main-menu li#menu-fancy_treeview {
+#menu-fancy_treeview {
 	background-position: 50% 50%;
 }
 
-#main-menu li#menu-fancy_treeview ul li {
+#menu-fancy_treeview ul li {
 	background-position: 1% 2%;
 }
 
-[dir=rtl] #main-menu li#menu-fancy_treeview ul li {
+[dir=rtl] #menu-fancy_treeview ul li {
 	background-position: 99% 0;
 }
