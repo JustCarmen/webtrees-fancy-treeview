@@ -635,7 +635,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 					</div>
 					<div id="thumb_size" class="field">
 						<label class="label">' . WT_I18N::translate('Thumbnail size') . '</label>
-						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="' . $this->options('thumb_size') . '" />&nbsp;' . select_edit_control('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => WT_I18N::translate('percent'), '2' => WT_I18N::translate('pixels')), null, $this->options('thumb_resize_format')) . '
+						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="' . $this->options('thumb_size') . '" /> ' . select_edit_control('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => WT_I18N::translate('percent'), '2' => WT_I18N::translate('pixels')), null, $this->options('thumb_resize_format')) . '
 					</div>
 					<div id="square_thumbs" class="field">
 						<label class="label">' . WT_I18N::translate('Use square thumbnails') . '</label>' .
@@ -741,6 +741,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 					// remove the empty hyphen on childrens lifespan if death date is unknown.
 					jQuery("li.child .lifespan").html(function(index, html){
+					    // this does not work without &nbsp;
 						return html.replace("–<span title=\"&nbsp;\"></span>", "");
 					});
 
