@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Fancy Tree View Module
  *
@@ -24,6 +23,8 @@
 
 use WT\Auth;
 use WT\Log;
+use WT\Theme;
+use Rhumsaa\Uuid\Uuid;
 
 // Update database when upgrading from a previous version
 try {
@@ -59,9 +60,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 
 	// Get module options
 	private function options($value = '') {
+		global $WT_TREE;
 		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 
-		$key = WT_TREE::getIdFromName(WT_Filter::get('ged'));
+		$key = $WT_TREE->getIdFromName(WT_Filter::get('ged'));
 		if (empty($key)) {
 			$key = WT_GED_ID;
 		}
@@ -96,7 +98,7 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		}
 	}
 
-	// Get Indis from surname input
+	// Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
 	private function indis_array($surname, $russell, $daitchMokotoff) {
 		$sql = "SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
@@ -140,22 +142,6 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		return $data;
 	}
 
-	// Add error or succes message
-	private function addMessage($controller, $type, $msg) {
-		if ($type == "success") {
-			$class = "ui-state-highlight";
-		}
-		if ($type == "error") {
-			$class = "ui-state-error";
-		}
-		$controller->addInlineJavaScript('
-			jQuery("#error").text("' . $msg . '").addClass("' . $class . '").show("normal");
-			setTimeout(function() {
-				jQuery("#error").hide("normal");
-			}, 10000);
-		');
-	}
-
 	// Search within a multiple dimensional array
 	private function searchArray($array, $key, $value) {
 		$results = array();
@@ -190,6 +176,21 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		return array_values($return_array);
 	}
 
+	private function getPageLink($pid) {
+		global $WT_TREE;
+		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;ged=' . $WT_TREE->nameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
+
+		if ($this->options('use_fullname') == true) {
+			$link .= WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($pid)->getFullName());
+		} else {
+			$link .= WT_I18N::translate('Descendants of the %s family', $this->getSurname($pid));
+		}
+
+		$link .= '</a>';
+
+		return $link;
+	}
+
 	private function getCountryList() {
 		$list = '';
 		$countries = WT_DB::prepare("SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=? AND p_file=?")
@@ -207,8 +208,20 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 			case 'admin_config':
 				$this->config();
 				break;
+			case 'admin_search':
+				$this->search();
+				break;
+			case 'admin_add':
+				$this->add();
+				break;
+			case 'admin_update':
+				$this->update();
+				break;
+			case 'admin_save':
+				$this->save_options();
+				break;
 			case 'admin_reset':
-				$this->ftv_reset();
+				$this->reset_options();
 				$this->config();
 				break;
 			case 'admin_delete':
@@ -237,171 +250,9 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 		return 'module.php?mod=' . $this->getName() . '&amp;mod_action=admin_config';
 	}
 
-	// Reset all settings to default
-	private function ftv_reset() {
-		WT_DB::prepare("DELETE FROM `##module_setting` WHERE setting_name LIKE 'FTV%'")->execute();
-		Log::addConfigurationLog($this->getTitle() . ' reset to default values');
-	}
-
-	// Delete item
-	private function delete() {
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-		unset($FTV_SETTINGS[WT_Filter::getInteger('key')]);
-		$NEW_FTV_SETTINGS = array_merge($FTV_SETTINGS);
-		$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
-		Log::addConfigurationLog($this->getTitle() . ' item deleted');
-	}
-
-	// Actions from the configuration page
-	private function config() {
-
-		require WT_ROOT . 'includes/functions/functions_edit.php';
-
-		$controller = new WT_Controller_Page;
-		$controller
-			->restrictAccess(Auth::isAdmin())
-			->setPageTitle('Fancy Tree View')
-			->pageHeader();
-
-		if (WT_Filter::postBool('save')) {
-			$surname = WT_Filter::post('NEW_FTV_SURNAME');
-			$root_id = strtoupper(WT_Filter::post('NEW_FTV_ROOTID', WT_REGEX_XREF));
-			if ($surname || $root_id) {
-				if ($surname) {
-					$russell = WT_Filter::postBool('russell');
-					$daitchMokotoff = WT_Filter::postBool('daitchMokotoff');
-
-					$indis = $this->indis_array($surname, $russell, $daitchMokotoff);
-					usort($indis, array('WT_Individual', 'CompareBirthDate'));
-
-					if (isset($indis) && count($indis) > 0) {
-						$pid = $indis[0]->getXref();
-					} else {
-						$this->addMessage($controller, 'error', WT_I18N::translate('Error: The surname you entered doesn’t exist in this tree.'));
-					}
-				}
-
-				if ($root_id) {
-					if ($this->getSurname($root_id)) {
-						// check if this person has a spouse and/or children
-						$person = $this->get_person($root_id);
-						if (!$person->getSpouseFamilies()) {
-							$this->addMessage($controller, 'error', WT_I18N::translate('Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person.'));
-						} else {
-							$pid = $root_id;
-						}
-					} else {
-						$this->addMessage($controller, 'error', WT_I18N::translate('Error: An individual with ID %s doesn’t exist in this tree.', $root_id));
-					}
-				}
-
-				if (isset($pid)) {
-					$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-					if (!empty($FTV_SETTINGS)) {
-						$i = 0;
-						foreach ($FTV_SETTINGS as $FTV_ITEM) {
-							if ($FTV_ITEM['TREE'] == WT_Filter::postInteger('NEW_FTV_TREE')) {
-								if ($FTV_ITEM['PID'] == $pid) {
-									$error = true;
-									break;
-								} else {
-									$i++;
-								}
-							}
-						}
-						$count = $i + 1;
-					} else {
-						$count = 1;
-					}
-					if (isset($error) && $error == true) {
-						if ($surname) {
-							$this->addMessage($controller, 'error', WT_I18N::translate('Error: The root person belonging to this surname already exists'));
-						}
-						if ($root_id) {
-							$this->addMessage($controller, 'error', WT_I18N::translate('Error: The root person you are trying to add already exists'));
-						}
-					} else {
-						$NEW_FTV_SETTINGS = $FTV_SETTINGS;
-						$NEW_FTV_SETTINGS[] = array(
-							'TREE'			 => WT_Filter::postInteger('NEW_FTV_TREE'),
-							'SURNAME'		 => $this->getSurname($pid),
-							'DISPLAY_NAME'	 => $this->getSurname($pid),
-							'PID'			 => $pid,
-							'ACCESS_LEVEL'	 => '2', // default access level = show to visitors
-							'SORT'			 => $count
-						);
-						$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
-						Log::addConfigurationLog($this->getTitle() . ' config updated');
-					}
-				}
-			}
-
-			$new_pids = WT_Filter::postArray('NEW_FTV_PID'); $new_display_name = WT_Filter::postArray('NEW_FTV_DISPLAY_NAME'); $new_access_level = WT_Filter::postArray('NEW_FTV_ACCESS_LEVEL'); $new_sort = WT_Filter::postArray('NEW_FTV_SORT');
-
-			if ($new_pids || $new_display_name || $new_access_level || $new_sort) {
-				// retrieve the array again from the database because it could have been changed due to an add action.
-				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-				foreach ($new_pids as $key => $new_pid) {
-					if (!empty($new_pid)) {
-						$new_pid = strtoupper($new_pid); // make sure the PID is entered in the format I200 and not i200.
-						if ($FTV_SETTINGS[$key]['PID'] != $new_pid) {
-							if (!$this->searchArray($FTV_SETTINGS, 'PID', $new_pid)) {
-								if ($this->getSurname($new_pid)) {
-									// check if this person has a spouse and/or children
-									$person = $this->get_person($new_pid);
-									if (!$person->getSpouseFamilies()) {
-										$this->addMessage($controller, 'error', WT_I18N::translate('Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person.'));
-									} else {
-										$FTV_SETTINGS[$key]['SURNAME'] = $this->getSurname($new_pid);
-										$FTV_SETTINGS[$key]['DISPLAY_NAME'] = $this->getSurname($new_pid);
-										$FTV_SETTINGS[$key]['PID'] = $new_pid;
-									}
-								} else {
-									$this->addMessage($controller, 'error', WT_I18N::translate('Error: An individual with ID %s doesn’t exist in this tree.', $new_pid));
-								}
-							}
-						} else {
-							$FTV_SETTINGS[$key]['DISPLAY_NAME'] = $new_display_name[$key];
-						}
-					}
-				}
-
-				foreach ($new_access_level as $key => $new_access_level) {
-					$FTV_SETTINGS[$key]['ACCESS_LEVEL'] = $new_access_level;
-				}
-
-				foreach ($new_sort as $key => $new_sort) {
-					$FTV_SETTINGS[$key]['SORT'] = $new_sort;
-				}
-
-				$NEW_FTV_SETTINGS = $this->sortArray($FTV_SETTINGS, 'SORT');
-				$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
-			}
-			// retrieve the current options from the database
-			$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-			$key = WT_Filter::postInteger('NEW_FTV_TREE');
-			// check if options are not empty and if the options for the tree are already set. If not add them to the array.
-			if ($FTV_OPTIONS) {
-				// check if options are changed for the specific key (tree_id)
-				if (!array_key_exists($key, $FTV_OPTIONS) || $FTV_OPTIONS[$key] != WT_Filter::postArray('NEW_FTV_OPTIONS')) {
-					$NEW_FTV_OPTIONS = $FTV_OPTIONS;
-					$NEW_FTV_OPTIONS[WT_Filter::postInteger('NEW_FTV_TREE')] = WT_Filter::postArray('NEW_FTV_OPTIONS');
-				}
-			} else {
-				$NEW_FTV_OPTIONS[WT_Filter::postInteger('NEW_FTV_TREE')] = WT_Filter::postArray('NEW_FTV_OPTIONS');
-			}
-			if (isset($NEW_FTV_OPTIONS)) {
-				$this->setSetting('FTV_OPTIONS', serialize($NEW_FTV_OPTIONS));
-				Log::addConfigurationLog($this->getTitle() . ' config updated');
-			}
-		}
-
-		// get module settings (options are coming from function options)
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-		// inline javascript
+	private function getAdminPageJS($controller) {
 		$controller->addInlineJavascript('
+			// Fancy Tree View configuration page script
 			function include_css(css_file) {
 				var html_doc = document.getElementsByTagName("head")[0];
 				var css = document.createElement("link");
@@ -410,261 +261,804 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				css.setAttribute("href", css_file);
 				html_doc.appendChild(css);
 			}
-			include_css("' . WT_MODULES_DIR . $this->getName() . '/' . WT_THEME_URL . 'style.css");
-			var pastefield; function paste_id(value) { pastefield.value=value; } // For the \'find indi\' link
+			include_css("' . WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/style.css");
 
-			jQuery(".tree").change(function(){
+			// Close the alerts without removal (Bootstrap default)
+			jQuery(".alert .close").on("click",function(){
+				jQuery(this).parent().hide();
+			});
+
+			// dynamic title
+			var treeName = jQuery("#tree option:selected").text();
+			jQuery("#panel2 .panel-title a").text("' . WT_I18N::translate('Options for') . '" + treeName);
+
+			/*** FORM 1 ***/
+			jQuery("#tree").change(function(){
 				// get the config page for the selected tree
-				var ged = jQuery(this).find("option:selected").data("ged");
-				window.location = "module.php?mod=' . $this->getName() . '&mod_action=admin_config&ged=" + ged;
+				var tree_name = jQuery(this).find("option:selected").data("ged");
+				window.location = "module.php?mod=' . $this->getName() . '&mod_action=admin_config&ged=" + tree_name;
 			});
 
-			// make sure not both the surname and the root_id can be set at the same time.
-			jQuery("input.root_id").prop("disabled", true);
-			var find_indi = jQuery(".icon-button_indi:first").attr("onclick");
-			jQuery(".icon-button_indi:first").removeAttr("onclick").css("cursor", "default");
-			jQuery("input[name=unlock_field]").click(function(){
-				if(jQuery(this).prop("checked")) {
-					jQuery("input.surname").prop("disabled", true).val("");
-					jQuery("input.root_id").prop("disabled", false).focus();
-					jQuery(".icon-button_indi:first").attr("onclick", find_indi).css("cursor", "pointer");
-				}
-				else {
-					jQuery("input.root_id").prop("disabled", true).val("");
-					jQuery("input.surname").prop("disabled", false).focus();
-					jQuery(".icon-button_indi:first").removeAttr("onclick").css("cursor", "default");
-				}
+			/*** FORM 2 ***/
+			// add search values from form2 to form3
+			jQuery("#ftv-search-form").on("submit", "form[name=form2]", function(e){
+				e.preventDefault();
+				var tree = jQuery("#tree").find("option:selected").val();
+				var table = jQuery("#search-result-table");
+				jQuery.ajax({
+					type: "POST",
+					url: "module.php?mod=' . $this->getName() . '&mod_action=admin_search&tree=" + tree,
+					data: jQuery(this).serialize(),
+					dataType: "json",
+					success: function(data) {
+						jQuery(".ui-autocomplete").hide();
+						if(data.hasOwnProperty("error")) {
+							jQuery("form[name=form3] table").hide();
+							jQuery("#error .message").html(data.error).parent().fadeIn();
+							jQuery("input#surname").val("").focus();
+						}
+						else {
+							jQuery("#error").hide();
+							table.find("#pid").val(data.pid);
+							table.find("#sort").val(data.sort);
+							table.find("#root span").html(data.root);
+							table.find("#surname").val(data.surname);
+							table.find("#surn label").text(data.surname);
+							table.find("#title").html(data.title);
+							table.show();
+						}
+					}
+				});
 			});
 
-			// click on a surname to get an input textfield to change the surname to a more appropriate name. This can not be used if \'Use fullname in menu\' is checked.
-			var handler = function(){
+			/*** FORM 3 ***/
+			// add search results to table
+			jQuery("#ftv-search-form").on("submit", "form[name=form3]", function(e){
+				e.preventDefault();
+				var tree = jQuery("#tree").find("option:selected").val();
+				jQuery.ajax({
+					type: "POST",
+					url: "module.php?mod=' . $this->getName() . '&mod_action=admin_add&tree=" + tree,
+					data: jQuery(this).serialize(),
+					success: function() {
+						jQuery("#fancy-treeview-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #fancy-treeview-form form")
+						jQuery("#search-result-table").fadeOut("slow");
+						jQuery("input#surname").val("");
+					}
+				});
+			});
+
+			/*** FORM 3 AND 4 ***/
+			// click on a surname to get an input textfield to change the surname to a more appropriate name.
+			jQuery("#panel1").on("click", ".showname", function(){
 				jQuery(this).hide();
 				jQuery(this).next(".editname").show();
-			};
-
-			jQuery(".showname").click(handler);
-
-			jQuery(".fullname input[type=checkbox]").click(function() {
-				if (jQuery(this).prop("checked")) {
-					jQuery(".showname").show().css("cursor", "move");
-					jQuery(".editname").hide();
-					jQuery(".showname").off("click", handler);
-				}
-				else {
-					jQuery(".showname").on("click", handler).css("cursor", "text");
-				}
 			});
 
+			/*** FORM 4 ***/
 			// make the table sortable
-			jQuery("#fancy_treeview-table").sortable({items: ".sortme", forceHelperSize: true, forcePlaceholderSize: true, opacity: 0.7, cursor: "move", axis: "y"});
+			jQuery("#fancy-treeview-form").sortable({items: ".sortme", forceHelperSize: true, forcePlaceholderSize: true, opacity: 0.7, cursor: "move", axis: "y"});
 
 			//-- update the order numbers after drag-n-drop sorting is complete
-			jQuery("#fancy_treeview-table").bind("sortupdate", function(event, ui) {
-				jQuery("#"+jQuery(this).attr("id")+" input[type=hidden]").each(
+			jQuery("#fancy-treeview-form").bind("sortupdate", function(event, ui) {
+				jQuery("#"+jQuery(this).attr("id")+" input[id^=sort]").each(
 					function (index, value) {
 						value.value = index+1;
 					}
 				);
 			});
 
-			function toggleFields(checkbox, field, reverse) {
-				var checkbox = jQuery(checkbox).find("input[type=checkbox]");
-				var field = jQuery(field)
-				if(!reverse) {
-					if ((checkbox).is(":checked")) field.show("slow");
-					else field.hide("slow");
-					checkbox.click(function(){
-						if (this.checked) field.show("slow");
-						else field.hide("slow");
-					});
-				}
-				else {
-					if ((checkbox).is(":checked")) field.hide("slow");
-					else field.show("slow");
-					checkbox.click(function(){
-						if (this.checked) field.hide("slow");
-						else field.show("slow");
-					});
-				}
-			}
-			toggleFields("#resize_thumbs", "#thumb_size, #square_thumbs");
-			toggleFields("#places", "#gedcom_places, #country_list");
-
-			if (jQuery("#gedcom_places input[type=checkbox]").is(":checked")) jQuery("#country_list select").prop("disabled", true);
-			else jQuery("#country_list select").prop("disabled", false);
-			jQuery("#gedcom_places input[type=checkbox]").click(function(){
-				if (this.checked) jQuery("#country_list select").prop("disabled", true);
-				else jQuery("#country_list select").prop("disabled", false);
+			// update settings form4
+			jQuery("#fancy-treeview-form").on("submit", "form[name=form4]", function(e){
+				e.preventDefault();
+				jQuery.ajax({
+					type: "POST",
+					url: "module.php?mod=' . $this->getName() . '&mod_action=admin_update",
+					data: jQuery(this).serialize(),
+					success: function() {
+						jQuery("#fancy-treeview-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #fancy-treeview-form form", function(){
+							var message = jQuery("#message-save-options");
+							jQuery(this).before(message);
+							message.fadeIn();
+							var target = message.offset().top - 60;
+							jQuery("html, body").animate({scrollTop:target}, 800);
+							setTimeout(function() {
+								message.fadeOut();
+							}, 5000 );
+						})
+					}
+				});
 			});
 
-			jQuery("input[type=reset]").click(function(e){
-				jQuery("#dialog-confirm").dialog({
-					resizable: false,
-					width: 400,
-					modal: true,
-					buttons : {
-						"' . WT_I18N::translate('OK') . '" : function() {
-							window.location.href= "module.php?mod=' . $this->getName() . '&mod_action=admin_reset";
-							jQuery(this).dialog("close");
-						},
-						"' . WT_I18N::translate('Cancel') . '" : function() {
-							jQuery(this).dialog("close");
+			// delete row from form4
+			jQuery("#fancy-treeview-form").on("click", "button[name=delete]", function(e){
+				e.preventDefault()
+				var key = jQuery(this).data("key");
+				var row = jQuery(this).parents("tr");
+				var rowCount = jQuery("#fancy-treeview-table > tbody > tr").length - 1;
+				jQuery.ajax({
+					type: "GET",
+					url: "module.php?mod=' . $this->getName() . '&mod_action=admin_delete&key=" + key,
+					success: function() {
+						row.remove();
+						if(rowCount === 0) {
+							jQuery("#fancy-treeview-form form").remove();
 						}
 					}
 				});
 			});
-		');
 
-		// Admin page content
-		$html = '
-			<div id="fancy_treeview-config"><div id="error"></div><h2>' . $this->getTitle() . '</h2>
-			<form method="post" name="configform" action="' . $this->getConfigLink() . '">
-				<input type="hidden" name="save" value="1">
-				<div id="top">
-					<label for="NEW_FTV_TREE" class="label">' . WT_I18N::translate('Family tree') . '</label>
-					<select name="NEW_FTV_TREE" id="NEW_FTV_TREE" class="tree">';
-		foreach (WT_Tree::getAll() as $tree):
-			if ($tree->tree_id == WT_GED_ID) {
-				$html .= '<option value="' . $tree->tree_id . '" data-ged="' . $tree->tree_name . '" selected="selected">' . $tree->tree_title . '</option>';
+			/*** FORM 5 ***/
+			// update options
+			jQuery("#ftv-options-form").on("submit", "form[name=form5]", function(e){
+				e.preventDefault();
+				var tree = jQuery("#tree").find("option:selected").val();
+				jQuery.ajax({
+					type: "POST",
+					url: "module.php?mod=' . $this->getName() . '&mod_action=admin_save&tree=" + tree,
+					data: jQuery(this).serialize(),
+					success: function() {
+							jQuery("#ftv-search-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #ftv-search-form form", function() {
+								jQuery(this).find("#search-result-table").hide().removeClass("hidden");
+							})
+							jQuery("#fancy-treeview-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #fancy-treeview-form form")
+							jQuery("#ftv-options-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #ftv-options-form form", function(){
+							jQuery("#reset-options").hide();
+							jQuery("#save-options").fadeIn();
+							var target = jQuery("#save-options").offset().top - 60;
+							jQuery("html, body").animate({scrollTop:target}, 800);
+						})
+					}
+				});
+			});
+
+			// reset options
+			jQuery("#ftv-options-form").on("reset", "form[name=form5]", function(e){
+				e.preventDefault()
+				var tree = jQuery("#tree").find("option:selected").val();
+				jQuery.ajax({
+					type: "GET",
+					url: "module.php?mod=' . $this->getName() . '&mod_action=admin_reset&tree=" + tree,
+					success: function() {
+						jQuery("#ftv-search-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #ftv-search-form form", function() {
+								jQuery(this).find("#search-result-table").hide().removeClass("hidden");
+							})
+							jQuery("#fancy-treeview-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #fancy-treeview-form form")
+						jQuery("#ftv-options-form").load("module.php?mod=' . $this->getName() . '&mod_action=admin_config #ftv-options-form form", function(){
+							jQuery("#save-options").hide();
+							jQuery("#reset-options").fadeIn();
+							var target = jQuery("#reset-options").offset().top - 60;
+							jQuery("html, body").animate({scrollTop:target}, 800);
+						})
+					}
+				});
+			});
+
+			jQuery("#ftv-options-form").on("click", "#resize_thumbs input[type=radio]", function(){
+				var field = jQuery("#ftv-options-form").find("#thumb_size, #square_thumbs");
+				jQuery(this).val() === "1" ? field.fadeIn() : field.fadeOut();
+			});
+
+			jQuery("#ftv-options-form").on("click", "#places input[type=radio]", function(){
+				var field1 = jQuery("#ftv-options-form").find("#gedcom_places");
+				var field2 = jQuery("#ftv-options-form").find("#country_list");
+				if(jQuery(this).val() === "1") {
+					field1.fadeIn();
+					if(field1.find("input[type=radio]:checked").val() === "0") field2.fadeIn();
+				}
+				else {
+					field1.fadeOut();
+					field2.fadeOut();
+				}
+			});
+
+			jQuery("#ftv-options-form").on("click", "#gedcom_places input[type=radio]", function(){
+				var field = jQuery("#ftv-options-form").find("#country_list");
+				jQuery(this).val() === "0" ? field.fadeIn() : field.fadeOut();
+			});
+			// end of Fancy Tree View configuration page script
+		');
+	}
+
+	private function search() {
+		Zend_Session::writeClose();
+		// new settings
+		$surname = WT_Filter::post('surname');
+		if ($surname) {
+			$soundex_std = WT_Filter::postBool('soundex_std');
+			$soundex_dm = WT_Filter::postBool('soundex_dm');
+
+			$indis = $this->indis_array($surname, $soundex_std, $soundex_dm);
+			usort($indis, array('WT_Individual', 'CompareBirthDate'));
+
+			if (isset($indis) && count($indis) > 0) {
+				$pid = $indis[0]->getXref();
 			} else {
-				$html .= '<option value="' . $tree->tree_id . '" data-ged="' . $tree->tree_name . '">' . $tree->tree_title . '</option>';
+				$result['error'] = WT_I18N::translate('Error: The surname you entered doesn’t exist in this tree.');
 			}
-		endforeach;
-		$html .= '	</select>
-					<div class="field">
-						<label for="NEW_FTV_SURNAME" class="label">' . WT_I18N::translate('Add a surname') . help_link('add_surname', $this->getName()) . '</label>
-						<input type="text" id="NEW_FTV_SURNAME" class="surname" name="NEW_FTV_SURNAME" value="" />
-						<label>' . checkbox('russell') . WT_I18N::translate('Russell') . '</label>
-						<label>' . checkbox('daitchMokotoff') . WT_I18N::translate('Daitch-Mokotoff') . '</label>
-					</div>
-					<div class="field">
-						<label class="label">' . WT_I18N::translate('Or manually add a root person') . checkbox('unlock_field') . '</label>
-						<input type="text" name="NEW_FTV_ROOTID" id="NEW_FTV_ROOTID" class="root_id" value="" size="5" maxlength="20"/>' .
-			print_findindi_link('NEW_FTV_ROOTID');
-		$html .= '	</div>
-				</div>';
-		if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)):
-			global $WT_IMAGES, $WT_TREE;
-			$html .= '<table id="fancy_treeview-table" class="modules_table ui-sortable">
-					<tr>
-						<th>' . WT_I18N::translate('Surname') . help_link('edit_surname', $this->getName()) . '</th>
-						<th>' . WT_I18N::translate('Root person') . '</th>
-						<th>' . WT_I18N::translate('Menu') . '</th>
-						<th>' . WT_I18N::translate('Edit Root person') . '</th>
-						<th>' . WT_I18N::translate('Access level') . '</th>
-						<th>' . WT_I18N::translate('Delete') . '</th>
-					</tr>';
-			foreach ($FTV_SETTINGS as $key => $FTV_ITEM):
-				if ($FTV_ITEM['TREE'] == WT_GED_ID):
-					if (WT_Individual::getInstance($FTV_ITEM['PID'])):
-						$html .= '				<tr class="sortme">
-									<td><input type="hidden" name="NEW_FTV_SORT[' . $key . ']" id="NEW_FTV_SORT[' . $key . ']" value="' . $FTV_ITEM['SORT'] . '" />
-										<span class="showname">' . $FTV_ITEM['DISPLAY_NAME'] . '</span>
-										<span class="editname"><input type="text" name="NEW_FTV_DISPLAY_NAME[' . $key . ']" id="NEW_FTV_DISPLAY_NAME[' . $key . ']" value="' . $FTV_ITEM['DISPLAY_NAME'] . '"/></span>
-									</td>
-									<td>' . WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName() . ' (' . $FTV_ITEM['PID'] . ')</td>
-									<td>
-										<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;ged=' . $WT_TREE->tree_name . '&amp;rootid=' . ($FTV_ITEM['PID']) . '" target="_blank">';
-						if ($this->options('use_fullname') == true) {
-							$html .= WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName());
-						} else {
-							$html .= WT_I18N::translate('Descendants of the %s family', $FTV_ITEM['DISPLAY_NAME']);
-						}
-						$html .= '</a>
-									</td>
-									<td class="wrap">
-										<input type="text" name="NEW_FTV_PID[' . $key . ']" id="NEW_FTV_PID[' . $key . ']" value="' . $FTV_ITEM['PID'] . '" size="5" maxlength="20">' .
-							print_findindi_link('NEW_FTV_PID[' . $key . ']');
-						$html .= '					</td>
-									<td>' . edit_field_access_level('NEW_FTV_ACCESS_LEVEL[' . $key . ']', $FTV_ITEM['ACCESS_LEVEL']) . '</td>
-									<td><a href="module.php?mod=' . $this->getName() . '&amp;mod_action=admin_delete&amp;key=' . $key . '"><img src="' . $WT_IMAGES['remove'] . '" alt="icon-delete"/></a></td>
-								</tr>';
-					else:
-						$html .= '				<tr>
-									<td class="error">
-										<input type="hidden" name="NEW_FTV_PID[' . $key . ']" value="' . $FTV_ITEM['PID'] . '">
-										<input type="hidden" name="NEW_FTV_ACCESS_LEVEL[' . $key . ']" value="' . WT_PRIV_HIDE . '">
-										<input type="hidden" name="NEW_FTV_DISPLAY_NAME[' . $key . ']" value="' . $FTV_ITEM['DISPLAY_NAME'] . '">
-										' . $FTV_ITEM['DISPLAY_NAME'] . '</td>
-									<td colspan="4" class="error">
-										' . WT_I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $FTV_ITEM['PID']) . '
-									</td>
-									<td><a href="module.php?mod=' . $this->getName() . '&amp;mod_action=admin_delete&amp;key=' . $key . '"><img src="' . $WT_IMAGES['remove'] . '" alt="icon-delete"/></a></td>';
-						$html .= '				</tr>';
-					endif;
-				endif;
-			endforeach;
-			$html .='</table>';
-		endif;
-		$html .='<hr/>
-				<h3>' . WT_I18N::translate('General Options') . '</h3>
-				<div id="bottom">
-					<div class="field fullname">
-						<label class="label">' . WT_I18N::translate('Use fullname in menu') . '</label>' . two_state_checkbox('NEW_FTV_OPTIONS[USE_FULLNAME]', $this->options('use_fullname')) . '
-					</div>
-					<div class="field">
-						<label class="label">' . WT_I18N::translate('Number of generation blocks to show') . help_link('numblocks', $this->getName()) . '</label>' .
-			select_edit_control('NEW_FTV_OPTIONS[NUMBLOCKS]', array(WT_I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $this->options('numblocks')) . '
-					</div>
-					<div class="field">
-						<label class="label">' . WT_I18N::translate('Check relationship between partners') . help_link('check_relationship', $this->getName()) . '</label>' .
-			two_state_checkbox('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $this->options('check_relationship')) . '
-					</div>
-					<div class="field">
-						<label class="label">' . WT_I18N::translate('Show single persons') . help_link('show_singles', $this->getName()) . '</label>' . two_state_checkbox('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles')) . '
-					</div>
-					<div id="places" class="field">
-						<label class="label">' . WT_I18N::translate('Show places?') . '</label>' . two_state_checkbox('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places')) . '
-					</div>
-					<div id="gedcom_places" class="field">
-						<label class="label">' . WT_I18N::translate('Use default Gedcom settings to abbreviate place names?') . help_link('gedcom_places', $this->getName()) . '</label>' . two_state_checkbox('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $this->options('use_gedcom_places')) . '
-					</div>';
-		if ($this->getCountrylist()) {
-			$html .='	<div id="country_list" class="field">
-							<label class="label">' . WT_I18N::translate('Select your country') . help_link('select_country', $this->getName()) . '</label>' .
-				select_edit_control('NEW_FTV_OPTIONS[COUNTRY]', $this->getCountryList(), '', $this->options('country')) . '
-						</div>';
 		}
-		$html .='	<div class="field">
-						<label class="label">' . WT_I18N::translate('Show occupations') . '</label>' .
-			two_state_checkbox('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')) . '
-					</div>
-					<div id="resize_thumbs" class="field">
-						<label class="label">' . WT_I18N::translate('Resize thumbnails') . help_link('resize_thumbs', $this->getName()) . '</label>' .
-			two_state_checkbox('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $this->options('resize_thumbs')) . '
-					</div>
-					<div id="thumb_size" class="field">
-						<label class="label">' . WT_I18N::translate('Thumbnail size') . '</label>
-						<input type="text" size="3" id="NEW_FTV_OPTIONS[THUMB_SIZE]" name="NEW_FTV_OPTIONS[THUMB_SIZE]" value="' . $this->options('thumb_size') . '" /> ' . select_edit_control('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => WT_I18N::translate('percent'), '2' => WT_I18N::translate('pixels')), null, $this->options('thumb_resize_format')) . '
-					</div>
-					<div id="square_thumbs" class="field">
-						<label class="label">' . WT_I18N::translate('Use square thumbnails') . '</label>' .
-			two_state_checkbox('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $this->options('use_square_thumbs')) . '
-					</div>
-					<div class="field">
-						<label class="label">' . WT_I18N::translate('Show form to change start person') . '</label>' .
-			edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform')) . '
-					</div>
-					<div class="field">
-						<label class="label">' . WT_I18N::translate('Show PDF icon?') . help_link('show_pdf', $this->getName()) . '</label>' .
-			edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon')) . '
+
+		if (isset($pid)) {
+			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+			if ($this->searchArray($this->searchArray($FTV_SETTINGS, 'TREE', WT_Filter::getInteger('tree')), 'PID', $pid)) {
+				$result['error'] = WT_I18N::translate('Error: The root person belonging to this surname already exists');
+			} else {
+				$root = WT_Individual::getInstance($pid)->getFullName() . ' (' . WT_Individual::getInstance($pid)->getLifeSpan() . ')';
+				$title = $this->getPageLink($pid);
+
+				$result = array(
+					'access_level'	 => '2', // default access level = show to visitors
+					'pid'			 => $pid,
+					'root'			 => $root,
+					'sort'			 => count($this->searchArray($FTV_SETTINGS, 'TREE', WT_Filter::getInteger('tree'))) + 1,
+					'surname'		 => $this->getSurname($pid),
+					'title'			 => $title,
+					'tree'			 => WT_Filter::getInteger('tree')
+				);
+			}
+		}
+		echo json_encode($result);
+	}
+
+	private function add() {
+		Zend_Session::writeClose();
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		$NEW_FTV_SETTINGS = $FTV_SETTINGS;
+		$NEW_FTV_SETTINGS[] = array(
+			'TREE'			 => WT_Filter::getInteger('tree'),
+			'SURNAME'		 => WT_Filter::post('surname'),
+			'PID'			 => WT_Filter::post('pid'),
+			'ACCESS_LEVEL'	 => WT_Filter::postInteger('access_level'),
+			'SORT'			 => WT_Filter::postInteger('sort'),
+		);
+		$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
+		Log::addConfigurationLog($this->getTitle() . ' config updated');
+	}
+
+	Private function update() {
+		Zend_Session::writeClose();
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+
+		$new_surname = WT_Filter::postArray('surname');
+		$new_access_level = WT_Filter::postArray('access_level');
+		$new_sort = WT_Filter::postArray('sort');
+
+		foreach ($new_surname as $key => $new_surname) {
+			$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
+		}
+
+		foreach ($new_access_level as $key => $new_access_level) {
+			$FTV_SETTINGS[$key]['ACCESS_LEVEL'] = $new_access_level;
+		}
+
+		foreach ($new_sort as $key => $new_sort) {
+			$FTV_SETTINGS[$key]['SORT'] = $new_sort;
+		}
+
+		$NEW_FTV_SETTINGS = $this->sortArray($FTV_SETTINGS, 'SORT');
+		$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
+	}
+
+	private function save_options() {
+		Zend_Session::writeClose();
+		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+		$FTV_OPTIONS[WT_Filter::getInteger('tree')] = WT_Filter::postArray('NEW_FTV_OPTIONS');
+		$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+		Log::addConfigurationLog($this->getTitle() . ' config updated');
+	}
+
+	private function reset_options() {
+		Zend_Session::writeClose();
+		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+		unset($FTV_OPTIONS[WT_Filter::getInteger('tree')]);
+		$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+		Log::addConfigurationLog($this->getTitle() . ' options set to default');
+	}
+
+	private function delete() {
+		Zend_Session::writeClose();
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		unset($FTV_SETTINGS[WT_Filter::getInteger('key')]);
+		$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
+		Log::addConfigurationLog($this->getTitle() . ' item deleted');
+	}
+
+	private function message($id, $type, $message = '') {
+		return
+			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible" style="display: none">' .
+			'<button type="button" class="close" aria-label="' . WT_I18N::translate('close') . '">' .
+			'<span aria-hidden="true">&times;</span>' .
+			'</button>' .
+			'<span class="message">' . $message . '</span>' .
+			'</div>';
+	}
+
+	// Radio buttons
+	private function radio_buttons($name, $selected) {
+		$values = array(
+			0	 => WT_I18N::translate('no'),
+			1	 => WT_I18N::translate('yes'),
+		);
+
+		return radio_buttons($name, $values, $selected, 'class="radio-inline"');
+	}
+
+	// Actions from the configuration page
+	private function config() {
+		global $WT_TREE;
+		require WT_ROOT . 'includes/functions/functions_edit.php';
+
+		$controller = new WT_Controller_Page;
+		$controller
+			->restrictAccess(Auth::isAdmin())
+			->setPageTitle('Fancy Tree View')
+			->pageHeader()
+			->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+			->addInlineJavascript('autocomplete();');
+
+		if (WT_Filter::postBool('save') && WT_Filter::checkCsrf()) {
+			$this->update_settings($controller);
+			$this->update_options();
+		}
+
+		// inline javascript
+		$this->getAdminPageJS($controller);
+
+		// get the settings for this tree
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		?>
+
+		<!-- ADMIN PAGE CONTENT -->
+		<ol class="breadcrumb small">
+			<li><a href="admin.php"><?php echo WT_I18N::translate('Control panel'); ?></a></li>
+			<li><a href="admin_modules.php"><?php echo WT_I18N::translate('Module administration'); ?></a></li>
+			<li class="active"><?php echo $controller->getPageTitle(); ?></li>
+		</ol>
+		<h2><?php echo $controller->getPageTitle(); ?></h2>
+		<!-- *** FORM 1 *** -->
+		<form class="form-horizontal" method="post" name="form1">
+			<?php echo WT_Filter::getCsrf(); ?>
+			<input type="hidden" name="save" value="1">
+			<!-- SELECT TREE -->
+			<div class="form-group">
+				<label class="control-label col-sm-1" for="tree">
+					<?php echo WT_I18N::translate('Family tree'); ?>
+				</label>
+				<div class="col-sm-4">
+					<select id="tree" name="NEW_FIB_TREE" id="NEW_FIB_TREE" class="form-control">
+						<?php foreach (WT_Tree::getAll() as $tree): ?>
+							<?php if ($tree->id() == WT_GED_ID): ?>
+								<option value="<?php echo $tree->id(); ?>" data-ged="<?php echo $tree->nameHtml(); ?>" selected="selected">
+									<?php echo $tree->titleHtml(); ?>
+								</option>
+							<?php else: ?>
+								<option value="<?php echo $tree->id(); ?>" data-ged="<?php echo $tree->nameHtml(); ?>">
+									<?php echo $tree->titleHtml(); ?>
+								</option>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+		</form>
+		<!-- PANEL GROUP ACCORDION -->
+		<div class="panel-group" id="accordion">
+			<!-- PANEL 1 -->
+			<div class="panel panel-default" id="panel1">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+							<?php echo WT_I18N::translate('Pages'); ?>
+						</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID))): ?>
+							<div class="alert alert-info alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="' . WT_I18N::translate('close') . '">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<p class="small text-muted">
+									<?php echo /* I18N: Help text for creating Fancy Tree View pages */ WT_I18N::translate('Use the search form below to search for a root person. After a successfull search the Fancy Tree View page will be automatically created. You can add as many root persons as you want.'); ?>
+								</p>
+							</div>
+						<?php endif; ?>
+						<!-- *** FORM 2 *** -->
+						<div id="ftv-search-form" class="form-group alert alert-info">
+							<form class="form-inline" method="post" name="form2">
+								<!-- SURNAME SEARCH FIELD -->
+								<div class="form-group">
+									<label class="control-label">
+										<?php echo WT_I18N::translate('Search root person'); ?>
+									</label>
+									<input
+										class="form-control surname"
+										data-autocomplete-type="SURN"
+										dir="ltr"
+										id="surname"
+										name="surname"
+										placeholder="<?php echo WT_I18N::translate('Surname'); ?>"
+										type="text"
+										>
+									<label class="checkbox-inline">
+										<?php echo checkbox('soundex_std') . WT_I18N::translate('Russell'); ?>
+									</label>
+									<label class="checkbox-inline">
+										<?php echo checkbox('soudex_dm') . WT_I18N::translate('Daitch-Mokotoff'); ?>
+									</label>
+								</div>
+								<button name="search" class="btn btn-primary" type="submit">
+									<i class="fa fa-search"></i>
+									<?php echo WT_I18N::translate('Search'); ?>
+								</button>
+							</form>
+							<!-- *** FORM 3 *** -->
+							<form class="form-horizontal" method="post" name="form3">
+								<!-- TABLE -->
+								<table id="search-result-table" class="table" style="display: none">
+									<thead>
+										<tr>
+											<th><?php echo WT_I18N::translate('Root person'); ?></th>
+											<?php if (!$this->options('use_fullname')): ?>
+												<th><?php echo WT_I18N::translate('Surname in page title') ?></th>
+											<?php endif; ?>
+											<th><?php echo WT_I18N::translate('Page title'); ?></th>
+											<th><?php echo WT_I18N::translate('Access level'); ?></th>
+											<th><?php echo WT_I18N::translate('Add'); ?></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<!-- ROOT PERSONS FULL NAME -->
+											<td id="root">
+												<?php if ($this->options('use_fullname')): ?>
+													<input
+														id="surname"
+														name="surname"
+														type="hidden"
+														value=""
+														>
+													<?php endif ?>
+												<input
+													id="pid"
+													name="pid"
+													type="hidden"
+													value=""
+													>
+												<input
+													id="sort"
+													name="sort"
+													type="hidden"
+													value=""
+													>
+												<span></span>
+											</td>
+											<?php if (!$this->options('use_fullname')): ?>
+												<!-- SURNAME IN PAGE TITLE -->
+												<td id="surn">
+													<label class="showname"></label>
+													<input
+														class="form-control editname"
+														id="surname"
+														name="surname"
+														type="text"
+														value=""
+														>
+												</td>
+											<?php endif ?>
+											<!-- PAGE TITLE -->
+											<td id="title"></td>
+											<!-- ACCESS LEVEL -->
+											<td>
+												<?php echo edit_field_access_level('access_level', 2, 'class="form-control"'); ?>
+											</td>
+											<!-- ADD BUTTON -->
+											<td>
+												<button	type="submit" name="add" class="btn btn-success btn-sm" title="<?php WT_I18N::translate('Add'); ?>">
+													<i class="fa fa-plus"></i>
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<?php echo $this->message("error", "danger"); ?>
+						<div id="fancy-treeview-form" class="form-group">
+							<?php if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)): ?>
+								<form class="form-horizontal" method="post" name="form4">
+									<!-- TABLE -->
+									<table id="fancy-treeview-table" class="table table-hover">
+										<thead>
+											<tr>
+												<th><?php echo WT_I18N::translate('Root person'); ?></th>
+												<?php if (!$this->options('use_fullname')): ?>
+													<th><?php echo WT_I18N::translate('Surname in page title') ?></th>
+												<?php endif; ?>
+												<th><?php echo WT_I18N::translate('Page title'); ?></th>
+												<th><?php echo WT_I18N::translate('Access level'); ?></th>
+												<th><?php echo WT_I18N::translate('Delete'); ?></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($FTV_SETTINGS as $key => $FTV_ITEM): ?>
+												<?php if ($FTV_ITEM['TREE'] == WT_GED_ID): ?>
+													<?php if (WT_Individual::getInstance($FTV_ITEM['PID'])): ?>
+														<tr class="sortme">
+															<!-- ROOT PERSONS FULL NAME -->
+															<td>
+																<input
+																	id="pid[<?php echo $key; ?>]"
+																	name="pid[<?php echo $key; ?>]"
+																	type="hidden"
+																	value="<?php echo $FTV_ITEM['PID']; ?>"
+																	>
+																<input
+																	id="sort[<?php echo $key; ?>]"
+																	name="sort[<?php echo $key; ?>]"
+																	type="hidden"
+																	value="<?php echo $FTV_ITEM['SORT']; ?>"
+																	>
+																	<?php echo WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName() . ''; ?>
+																(<?php echo WT_Individual::getInstance($FTV_ITEM['PID'])->getLifeSpan(); ?>)
+															</td>
+															<?php if (!$this->options('use_fullname')): ?>
+																<!-- SURNAME IN PAGE TITLE -->
+																<td>
+																	<label class="showname">
+																		<?php echo $FTV_ITEM['SURNAME']; ?>
+																	</label>
+																	<input
+																		class="form-control editname"
+																		id="surname[<?php echo $key; ?>]"
+																		name="surname[<?php echo $key; ?>]"
+																		type="text"
+																		value="<?php echo $FTV_ITEM['SURNAME']; ?>"
+																		>
+																</td>
+															<?php endif ?>
+															<!-- PAGE TITLE -->
+															<td>
+																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=show&amp;ged=<?php echo $WT_TREE->nameHtml(); ?>&amp;rootid=<?php echo $FTV_ITEM['PID']; ?>" target="_blank">
+																	<?php
+																	if ($this->options('use_fullname') == true) {
+																		echo WT_I18N::translate('Descendants of %s', WT_Individual::getInstance($FTV_ITEM['PID'])->getFullName());
+																	} else {
+																		echo WT_I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']);
+																	}
+																	?>
+																</a>
+															</td>
+															<!-- ACCESS LEVEL -->
+															<td>
+																<?php echo edit_field_access_level('access_level[' . $key . ']', $FTV_ITEM['ACCESS_LEVEL'], 'class="form-control"'); ?>
+															</td>
+															<!-- DELETE BUTTON -->
+															<td>
+																<button	type="button" name="delete" class="btn btn-danger btn-sm" data-key="<?php echo $key ?>" title="<?php WT_I18N::translate('Delete'); ?>">
+																	<i class="fa fa-trash-o"></i>
+																</button>
+															</td>
+														</tr>
+													<?php else: ?>
+														<tr>
+															<!-- SURNAME -->
+															<td class="error">
+																<input
+																	name="pid[<?php echo $key; ?>]"
+																	type="hidden"
+																	value="<?php echo $FTV_ITEM['PID']; ?>"
+																	>
+																	<?php echo $FTV_ITEM['SURNAME']; ?>
+															</td>
+															<!-- ERROR MESSAGE -->
+															<td colspan="4" class="error">
+																<?php echo WT_I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $FTV_ITEM['PID']); ?>
+															</td>
+															<!-- DELETE BUTTON -->
+															<td>
+																<button name="delete" type="button" class="btn btn-danger btn-sm" title="<?php WT_I18N::translate('Delete'); ?>">
+																	<i class="fa fa-trash-o"></i>
+																</button>
+															</td>
+														</tr>
+													<?php endif; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+									<!-- BUTTONS -->
+									<button name="update" class="btn btn-primary" type="submit">
+										<i class="fa fa-check"></i>
+										<?php echo WT_I18N::translate('Update'); ?>
+									</button>
+								</form>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
-				<hr/>';
-		$html .='<div class="buttons">
-					<input type="submit" value="' . WT_I18N::translate('Save') . '">
-					<input type="reset" value="' . WT_I18N::translate('Reset') . '">
-					<div id="dialog-confirm" title="' . WT_I18N::translate('Reset') . '" style="display:none">
-						<p>' . WT_I18N::translate('The settings will be reset to default (for all trees). Are you sure you want to do this?') . '</p>
-					</div>
-	 			</div>
-			</form>
-			</div>';
+			</div>
 
-		// output
-		ob_start();
-		$html .= ob_get_clean();
-		echo $html;
+			<!-- PANEL 2 -->
+			<div class="panel panel-default" id="panel2">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo" class="collapsed">
+							<!-- Dynamic text here -->
+						</a>
+					</h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse">
+					<div class="panel-body">
+						<?php echo $this->message('save-options', 'success', WT_I18N::translate('The options for this tree are succesfully saved')); ?>
+						<?php echo $this->message('reset-options', 'success', WT_I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
+						<div id="ftv-options-form" class="form-group">
+							<form class="form-horizontal" method="post" name="form5">
+								<!-- USE FULLNAME IN MENU -->
+								<div class="form-group fullname">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Use fullname in menu'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[USE_FULLNAME]', $this->options('use_fullname')); ?>
+									</div>
+								</div>
+								<!-- GENERATION BLOCKS -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Number of generation blocks to show'); ?>
+									</label>
+									<div class="col-sm-4">
+										<?php echo select_edit_control('NEW_FTV_OPTIONS[NUMBLOCKS]', array(WT_I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $this->options('numblocks'), 'class="form-control"'); ?>									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Number of generation blocks to show” configuration setting */ WT_I18N::translate('This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.'); ?>
+									</p>
+								</div>
+								<!-- CHECK RELATIONSHIP -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Check relationship between partners'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $this->options('check_relationship')); ?>
+									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ WT_I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).'); ?>
+									</p>
+								</div>
+								<!-- SHOW SINGLES -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Show single persons'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles')); ?>									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Show single persons” configuration setting */ WT_I18N::translate('Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block.'); ?>
+									</p>
+								</div>
+								<!-- SHOW PLACES -->
+								<div id="places" class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Show places?'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places')); ?>
+									</div>
+								</div>
+								<!-- USE GEDCOM PLACE SETTING -->
+								<div id="gedcom_places" class="form-group <?php if (!$this->options('show_places')) echo 'hidden' ?>">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Use default Gedcom settings to abbreviate place names?'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $this->options('use_gedcom_places')); ?>
+									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting */ WT_I18N::translate('If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.'); ?>
+									</p>
+								</div>
+								<!-- GET COUNTRYLIST -->
+								<?php if ($this->getCountrylist()): ?>
+									<div id="country_list" class="form-group <?php if (!$this->options('show_places') || $this->options('use_gedcom_places')) echo 'hidden' ?>">
+										<label class="control-label col-sm-4">
+											<?php echo WT_I18N::translate('Select your country'); ?>
+										</label>
+										<div class="col-sm-8">
+											<?php echo select_edit_control('NEW_FTV_OPTIONS[COUNTRY]', $this->getCountryList(), '', $this->options('country'), 'class="form-control"'); ?>
+										</div>
+										<p class="col-sm-8 col-sm-offset-4 small text-muted">
+											<?php echo /* I18N: Help text for the “Select your country” configuration setting */ WT_I18N::translate('If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own.'); ?>
+										</p>
+									</div>
+								<?php endif; ?>
+								<!-- SHOW OCCUPATIONS -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Show occupations'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu')); ?>
+									</div>
+								</div>
+								<!-- RESIZE THUMBS -->
+								<div id="resize_thumbs" class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Resize thumbnails'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $this->options('resize_thumbs')); ?>
+									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting */ WT_I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
+								</div>
+								<!-- THUMB SIZE -->
+								<div id="thumb_size" class="form-group <?php if (!$this->options('resize_thumbs')) echo 'hidden' ?>">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Thumbnail size'); ?>
+									</label>
+									<div class="row">
+										<div class="col-sm-1">
+											<input
+												class="form-control"
+												id="NEW_FTV_OPTIONS[THUMB_SIZE]"
+												name="NEW_FTV_OPTIONS[THUMB_SIZE]"
+												type="text"
+												value="<?php echo $this->options('thumb_size'); ?>"
+												>
+										</div>
+										<div class="col-sm-2">
+											<?php echo select_edit_control('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => WT_I18N::translate('percent'), '2' => WT_I18N::translate('pixels')), null, $this->options('thumb_resize_format'), 'class="form-control"'); ?>
+										</div>
+									</div>
+								</div>
+								<!-- SQUARE THUMBS -->
+								<div id="square_thumbs" class="form-group <?php if (!$this->options('resize_thumbs')) echo 'hidden' ?>">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Use square thumbnails'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo $this->radio_buttons('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $this->options('use_square_thumbs')); ?>
+									</div>
+								</div>
+								<!-- SHOW USERFORM -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Show form to change start person'); ?>
+									</label>
+									<div class="col-sm-4">
+										<?php echo edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform'), 'class="form-control"'); ?>
+									</div>
+								</div>
+								<!-- SHOW PDF -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo WT_I18N::translate('Show PDF icon?'); ?>
+									</label>
+									<div class="col-sm-4">
+										<?php echo edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon'), 'class="form-control"'); ?>
+									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Show PDF icon” configuration setting */ WT_I18N::translate('Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left.'); ?>
+									</p>
+								</div>
+								<!-- BUTTONS -->
+								<button name="save-options" class="btn btn-primary" type="submit">
+									<i class="fa fa-check"></i>
+									<?php echo WT_I18N::translate('Save'); ?>
+								</button>
+								<button name="reset-options" class="btn btn-primary" type="reset">
+									<i class="fa fa-recycle"></i>
+									<?php echo WT_I18N::translate('Reset'); ?>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
 	}
 
 	// ************************************************* START OF FRONT PAGE ********************************* //
@@ -1786,6 +2180,13 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 	public function getMenu() {
 		global $controller, $SEARCH_SPIDER;
 
+		static $menu;
+
+		// Function has already run
+		if ($menu !== null) {
+			return $menu;
+		}
+
 		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
 		if (!empty($FTV_SETTINGS)) {
@@ -1799,21 +2200,10 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 				}
 			}
 			if (!empty($FTV_GED_SETTINGS)) {
-				$menu = new WT_Menu(WT_I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
-				
-				/*
-				 *  We need extra css on all pages to render the menu icon. We can't create our own menu here because we need to return
-				 *  the menu as a default menu array. This is demanded by the clouds and colors theme since they are rendering their
-				 *  own custom menu from the array. So we load the script in the menu array as a 'fake' submenu. By putting the script
-				 *  here temporarily, it can render immediately and we don't have to wait until the page is fully loaded (which is too
-				 *  late in the process). At the end of page load, we just remove the list-item with the script, so we don't get problems
-				 *  with validation. We use the same method to render the extra css on the ftv-page so we can render the page without
-				 *  page flickering.
-				 */
+				// load the module stylesheets
+				echo $this->getStylesheet();
 
-				$submenu = new WT_Menu($this->getStylesheet(), '', 'ftv-script');
-				$menu->addSubmenu($submenu);
-				$controller->addInlineJavascript('jQuery("#ftv-script").remove();');
+				$menu = new WT_Menu(WT_I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 					if (WT_Individual::getInstance($FTV_ITEM['PID'])) {
@@ -1825,46 +2215,47 @@ class fancy_treeview_WT_Module extends WT_Module implements WT_Module_Config, WT
 						$menu->addSubmenu($submenu);
 					}
 				}
+				$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
 				return $menu;
 			}
 		}
 	}
 
 	private function getStylesheet() {
-		$module_dir = WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/';
+		$theme_dir = WT_MODULES_DIR . $this->getName() . '/themes/';
 		$stylesheet = '';
-		if (file_exists($module_dir . WT_THEME_URL . 'menu.css')) {
-			$stylesheet .= $this->includeCss($module_dir . WT_THEME_URL . 'menu.css', 'screen');
+		if (file_exists($theme_dir . Theme::theme()->themeId() . '/menu.css')) {
+			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/menu.css', 'screen');
 		}
 
 		if (WT_Filter::get('mod') == $this->getName()) {
-			$stylesheet .= $this->includeCss($module_dir . 'themes/base/style.css');
-			$stylesheet .= $this->includeCss($module_dir . 'themes/base/print.css', 'print');
-			if (file_exists($module_dir . WT_THEME_URL . 'style.css')) {
-				$stylesheet .= $this->includeCss($module_dir . WT_THEME_URL . 'style.css', 'screen');
+			$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
+			$stylesheet .= $this->includeCss($theme_dir . 'base/print.css', 'print');
+			if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
+				$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css', 'screen');
 			}
 		}
-		return '<script>' . $stylesheet . '</script>';
+		return $stylesheet;
 	}
 
 	private function includeJs() {
 		global $controller;
 		// some files needs an extra js script
-		$theme = basename(WT_THEME_DIR);
-		if (file_exists(WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/' . WT_THEME_URL . $theme . '.js')) {
-			$controller->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/' . WT_THEME_URL . $theme . '.js');
+		if (file_exists(WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
+			$controller->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 		}
 	}
 
 	private function includeCss($css, $type = 'all') {
-		return '
-			var newSheet=document.createElement("link");
-			newSheet.setAttribute("href","' . $css . '");
-			newSheet.setAttribute("type","text/css");
-			newSheet.setAttribute("rel","stylesheet");
-			newSheet.setAttribute("media","' . $type . '");
-			document.getElementsByTagName("head")[0].appendChild(newSheet);
-		';
+		return
+			'<script class="fancy-treeview-script">
+				var newSheet=document.createElement("link");
+				newSheet.setAttribute("href","' . $css . '");
+				newSheet.setAttribute("type","text/css");
+				newSheet.setAttribute("rel","stylesheet");
+				newSheet.setAttribute("media","' . $type . '");
+				document.getElementsByTagName("head")[0].appendChild(newSheet);
+			</script>';
 	}
 
 }

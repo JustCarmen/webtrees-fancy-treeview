@@ -5,117 +5,6 @@
 #Note: the line number may be different from the current line number in the file fancy_treeview/module.php
 ===============================================================================================================
 
-#: modules_v3\fancy_treeview/module.php:384
-msgid "Family tree"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:397
-msgid "Russell"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:398
-msgid "Daitch-Mokotoff"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:410
-msgid "Surname"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:475
-msgid "Menu"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:414
-msgid "Access level"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:415
-msgid "Delete"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:455
-msgid "Save"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:458
-msgid "Reset"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:478
-#, php-format
-msgid "Descendants of %s"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:532
-msgid "All"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:589
-msgid "Generation"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:654
-msgid "The details of this family are private."
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:677
-msgid "He married"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:677
-msgid "She married"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:632
-#: modules_v3\fancy_treeview/module.php:684
-msgid "son of"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:632
-#: modules_v3\fancy_treeview/module.php:684
-msgid "daughter of"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:706
-msgid "next"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:711
-msgid "Children of "
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:786
-msgid "She died"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:786
-msgid "He died"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:811
-msgid "Cancel"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:881
-msgid "next"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:1047
-msgid "Birth"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:1048
-msgid "Death"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:1054
-msgid "Father"
-msgstr ""
-
-#: modules_v3\fancy_treeview/module.php:1055
-msgid "Mother"
-msgstr ""
-
 #: modules_v3\fancy_treeview/module.php:1142
 #, php-format
 msgid "%s child"
@@ -123,12 +12,137 @@ msgid_plural "%s children"
 msgstr[0] ""
 msgstr[1] ""
 
+#: modules_v3\fancy_treeview/module.php:414
+msgid "Access level"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:720
+#: modules_v3\fancy_treeview/module.php:770
+msgid "Add"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:532
+msgid "All"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1047
+msgid "Birth"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:811
+msgid "Cancel"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:711
+msgid "Children of "
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:625
+msgid "Control panel"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:398
+msgid "Daitch-Mokotoff"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1048
+msgid "Death"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:415
+msgid "Delete"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:478
+#, php-format
+msgid "Descendants of %s"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:384
+msgid "Family tree"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1054
+msgid "Father"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:589
+msgid "Generation"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:786
+msgid "He died"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:677
+msgid "He married"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:626
+msgid "Module administration"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1055
+msgid "Mother"
+msgstr ""
+
 #: modules_v3\fancy_treeview/pdf/dompdf.php:33
 msgid "Page"
 msgstr ""
 
-#: modules_v3\fancy_treeview/pdf/dompdf.php:33
-msgid "of"
+#: modules_v3\fancy_treeview/module.php:458
+msgid "Reset"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:397
+msgid "Russell"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:455
+msgid "Save"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:705
+msgid "Search"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:786
+msgid "She died"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:677
+msgid "She married"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:410
+msgid "Surname"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:654
+msgid "The details of this family are private."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:921
+#: modules_v3\fancy_treeview/module.php:976
+msgid "This individual does not exist or you do not have permission to view it."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:886
+msgid "Update"
+msgstr ""
+
+#. I18N: Note the space at the end of the string
+#: modules_v3\fancy_treeview/module.php:1645
+#: modules_v3\fancy_treeview/module.php:1658
+#: modules_v3\fancy_treeview/module.php:1671
+#: modules_v3\fancy_treeview/module.php:1688
+#: modules_v3\fancy_treeview/module.php:1802
+#: modules_v3\fancy_treeview/module.php:1849
+msgid "and "
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1478
+msgid "back to top"
 msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:1260
@@ -139,11 +153,50 @@ msgstr ""
 msgid "children"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1183
+#: modules_v3\fancy_treeview/module.php:569
+msgid "close"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:632
+#: modules_v3\fancy_treeview/module.php:684
+msgid "daughter of"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1850
+msgctxt "FEMALE"
+msgid "died"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1850
+msgctxt "MALE"
+msgid "died"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:706
+msgid "next"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:582
+msgid "no"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1663
 msgid "none"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:921
-#: modules_v3\fancy_treeview/module.php:976
-msgid "This individual does not exist or you do not have permission to view it."
+#: modules_v3\fancy_treeview/pdf/dompdf.php:33
+msgid "of"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1024
+msgid "pixels"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:632
+#: modules_v3\fancy_treeview/module.php:684
+msgid "son of"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:583
+msgid "yes"
 msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
-"POT-Creation-Date: 2014-12-21 22:59+0100\n"
+"POT-Creation-Date: 2015-02-04 06:44+0100\n"
 "PO-Revision-Date: 2014-12-21 23:14+0100\n"
 "Last-Translator: Matilde Triguis <archivista.nuestroarbol@gmail.com>\n"
 "Language-Team: \n"
@@ -16,462 +16,420 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: modules_v3\\fancy_treeview\n"
 
-#: modules_v3\fancy_treeview/help_text.php:76
-msgid "<p>Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left.</p>"
-msgstr "<p>Actualmente la opción PDF está disponible solamente para los idiomas LTR (dirección de lectura de izquierda a derecha). El ícono PDF no estará disponible si el usuario selecciona un idioma RTL (dirección de lectura de derecha a izquierda).</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:72
-msgid "<p>Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels.</p><dl><dt>Size in percentage</dt><dd>The original thumbnails will be proportionally resized. This may result in a different width and height for each thumbnail.</dd><dt>Size in pixels</dt><dd>The longest side of the image will be resized to match the size in pixels. The other side will be resized proportionally.</dd><dt>Square thumbs</dt><dd>When you use a square thumbnail, all thumbnails will have the same width and height. In this case the thumbnails will be cropped.</dd></dl><p>If you untick the checkbox the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.</p>"
-msgstr "<p>Aquí puede elegir el tamaño de las miniaturas ( \"thumbnails\" o imágenes en miniatura)  usadas en Fancy Tree View. Puede predeterminar el tamaño en porcentaje de pixeles.</p><dl><dt>Tamaño en porcentaje</dt><dd>La miniatura original será redimensionada de manera proporcional. Esto puede resultar en diferente ancho y altura para cada miniatura.</dd><dt>Tamaño en pixeles</dt><dd>El lado más largo de la miniatura será redimensionado en base al tamaño en pixeles, el otro lado será redimensionado de manera proporcional.</dd><dt>Miniaturas cuadradas</dt><dd>Si usa miniaturas cuadradas todas las miniaturas tendrán el mismo ancho y altura. En este caso las miniaturas serán recortadas.</dd></dl><p>Si deselecciona la casilla, las miniaturas por defecto  de webtress serán usadas con los formatos establecidos en la página de configuración del árbol.</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:33
-msgid "<p>Here you can enter a surname. The script will automatically search for the oldest person with this surname.</p><p>This person will act as the root person for this family branch. Potential you can perform a phonetic search by placing a check mark in one or both phonetic algorithms.</p><p>After the search is complete, it is possible to change the ID of the root person. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.</p><p>By dragging and dropping the table entries which will appear after you have set the first surname, you can sort the pages in any way you want.</p>"
-msgstr "<p>Aquí puede ingresar el apellido (o apellidos) de una persona. El algoritmo buscará automáticamente a la persona más antigua con ese nombre de familia.</p><p>Esta persona será la raiz para este rama familiar. Se puede también hacer una búsqueda fonética seleccionando la opción en uno o ambos algoritmos fonéticos.</p><p>Luego de finalizada la búsqueda, es posible cambiar la identificación (ID) de la persona raíz. Puede ingresar tantos apellidos como desee.  Un enlace será creado en el menú por cada apellido.</p><p>Luego de haber ingresado el primer apellido se pueden ordenar los enlaces de la manera deseada, arrastrando y soltando las entradas de la tabla.</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:67
-msgid "<p>If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out.</p><p>If you don’t select a country then all countries will be shown, including your own.</p>"
-msgstr ""
-
-#: modules_v3\fancy_treeview/help_text.php:63
-msgid "<p>If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.</p>"
-msgstr "<p>Si ha seleccionado la opción “Mostrar Lugares” puede elegir usar la configuración de abreviación de nombres de lugares de Gedcom. Si no ha seleccionado esta opción, el nombre completo de los lugares será mostrado.</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:40
-#, php-format
-msgid "<p>The displayed surname is the surname used in the menu. It is possible to change the displayed surname to a more appropriate name.</p><p>If you click on the surname, an “edit”-field appears where you can change the surname. Click on the “save” button to save your input.</p><p>Note: this option is not available when the option “%s” is checked.</p>"
-msgstr "<p>El apellido mostrado es el apellido usado en el enlace del menú. Es posible cambiar el apellido a otro texto.</p><p>Si hace clic en el apellido que desea modificar aparecerá \"Editar\" y podrá cambiarlo. Haga click en el botón \"Guardar\" para guardar los cambios.</p><p>Nota: esta opción no está disponible cuando la opción “%s” está seleccionada.</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:46
-msgid "<p>This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level.</p><p>Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded.</p><p>Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.</p>"
-msgstr "<p>Esta opción es muy útil para árbolos grandes. Si nota que el informe es lento, aquí puede disminuir el número de bloques generacionales a ser cargados por vez.</p><p>Debajo del último bloque generacional, un botón le permitirá agregar el siguiente grupo de bloques generacionales. Los nuevos bloques serán agregados a los bloques ya presentados.</p><p>Haciendo clic en el enlace “siguiente” en el último bloque generacional visible, se puede agregar el siguiente grupo de bloques generacionales.</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:58
-msgid "<p>Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children.</p><p>With this option turned on, every child of a family will be shown in a detailed way in the next generation block.</p>"
-msgstr "<p>Elija esta opción si quiere mostrar personas célibes sin descendientes en los bloques generacionales. Personas célibes sin descendientes son personas sin pareja y sin hijos.</p><p>Con esta opción, todos los miembros de una familian serán mostrado en cada bloque generacional.</p>"
-
-#: modules_v3\fancy_treeview/help_text.php:52
-msgid "<p>With this option turned on, the script checks if a (married) couple has the same ancestors.</p><p>If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship.</p><p>Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).</p>"
-msgstr "<p>Con esta opción seleccionada el algorimo investiga si una pareja (casados) tiene los mismos ancestros.</p><p>Si algun ancestro común fue encontrado, un mensaje aparecerá entre paréntesis, a continuación del nombre de los esposos, para indicar el relacionamiento.</p><p>Nota: esta opción puede causar lentitud, sobretodo en árboles genealógicos grandes. En este caso, reduzca el número de bloques generacionales a ser presentados a la vez (ver previa opción).</p>"
-
 #. I18N: Description of the module
-#: modules_v3\fancy_treeview/module.php:57
+#: modules_v3\fancy_treeview/module.php:58
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way"
 msgstr "Una manera elegante (\"Fancy\") de mostrar los descendientes de la una rama de la familia en forma narrativa"
 
-#: modules_v3\fancy_treeview/help_text.php:32
-#: modules_v3\fancy_treeview/module.php:535
-msgid "Add a surname"
-msgstr "Agregar apellido(s)"
-
-#: modules_v3\fancy_treeview/module.php:989
+#: modules_v3\fancy_treeview/module.php:1396
 msgid "Change root person"
 msgstr "Modificar persona raíz"
 
-#: modules_v3\fancy_treeview/help_text.php:51
-#: modules_v3\fancy_treeview/module.php:610
+#: modules_v3\fancy_treeview/module.php:933
 msgid "Check relationship between partners"
 msgstr "Ancestros comunes"
 
+#. I18N: Help text for the “Show PDF icon” configuration setting
+#: modules_v3\fancy_treeview/module.php:1055
+#, fuzzy
+msgid "Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left."
+msgstr "Actualmente la opción PDF está disponible solamente para los idiomas LTR (dirección de lectura de izquierda a derecha). El ícono PDF no estará disponible si el usuario selecciona un idioma RTL (dirección de lectura de derecha a izquierda)."
+
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:40
-#: modules_v3\fancy_treeview/module.php:571
-#: modules_v3\fancy_treeview/module.php:1822
+#: modules_v3\fancy_treeview/module.php:186
+#: modules_v3\fancy_treeview/module.php:840
+#: modules_v3\fancy_treeview/module.php:2225
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Descendientes de la familia %s"
 
-#: modules_v3\fancy_treeview/module.php:553
-msgid "Edit Root person"
-msgstr "Editar persona raíz"
-
-#: modules_v3\fancy_treeview/help_text.php:39
-msgid "Edit the surname (for display in the menu)"
-msgstr "Editar el apellido (enlace en el menú)"
-
-#: modules_v3\fancy_treeview/module.php:294
-#: modules_v3\fancy_treeview/module.php:361
-#, php-format
-msgid "Error: An individual with ID %s doesn’t exist in this tree."
-msgstr "Error: El individuo con esta identificación ID %s no existe en el árbol."
-
-#: modules_v3\fancy_treeview/module.php:319
+#: modules_v3\fancy_treeview/module.php:484
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Error: La persona raíz para este apellido ya existe"
 
-#: modules_v3\fancy_treeview/module.php:322
-msgid "Error: The root person you are trying to add already exists"
-msgstr "Error: La persona raíz que está tratando de agregar ya existe"
-
-#: modules_v3\fancy_treeview/module.php:289
-#: modules_v3\fancy_treeview/module.php:354
-msgid "Error: The root person you are trying to add has no partner and/or children. It is not possible to set this individual as root person."
-msgstr "Error: La persona raíz que trata de agregar no tiene pareja y/o descendientes. No es posible ponerlo como persona raíz."
-
-#: modules_v3\fancy_treeview/module.php:280
+#: modules_v3\fancy_treeview/module.php:477
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Error: El apellido ingresado no existe en este árbol."
 
 #. I18N: Name of the module
-#: modules_v3\fancy_treeview/module.php:52
+#: modules_v3\fancy_treeview/module.php:53
 msgid "Fancy Tree View"
 msgstr "Fancy Tree View"
 
-#: modules_v3\fancy_treeview/module.php:600
-msgid "General Options"
-msgstr "Opciones"
-
-#: modules_v3\fancy_treeview/module.php:979
+#: modules_v3\fancy_treeview/module.php:1386
 msgid "Generate PDF"
 msgstr "Crear PDF"
 
-#: modules_v3\fancy_treeview/module.php:992
+#: modules_v3\fancy_treeview/module.php:1399
 msgid "Go"
 msgstr "Ir"
 
 #. I18N: %s is a number
-#: modules_v3\fancy_treeview/module.php:1176
+#: modules_v3\fancy_treeview/module.php:1583
 #, php-format
 msgid "He married %s times"
 msgstr "Casado %s veces"
 
-#: modules_v3\fancy_treeview/module.php:1417
+#: modules_v3\fancy_treeview/module.php:1824
 msgctxt "PAST"
 msgid "He was born"
 msgstr "Él nació"
 
-#: modules_v3\fancy_treeview/module.php:1419
+#: modules_v3\fancy_treeview/module.php:1826
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "Él nace"
 
-#: modules_v3\fancy_treeview/module.php:990
+#. I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting
+#: modules_v3\fancy_treeview/module.php:1006
+msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1397
 msgid "ID"
 msgstr "ID"
 
-#: modules_v3\fancy_treeview/help_text.php:45
-#: modules_v3\fancy_treeview/module.php:606
+#. I18N: Help text for the “Select your country” configuration setting
+#: modules_v3\fancy_treeview/module.php:984
+msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
+msgstr ""
+
+#. I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting
+#: modules_v3\fancy_treeview/module.php:971
+#, fuzzy
+msgid "If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
+msgstr "Si ha seleccionado la opción “Mostrar Lugares” puede elegir usar la configuración de abreviación de nombres de lugares de Gedcom. Si no ha seleccionado esta opción, el nombre completo de los lugares será mostrado."
+
+#: modules_v3\fancy_treeview/module.php:922
 msgid "Number of generation blocks to show"
 msgstr "Número de bloques generacionales a mostrar"
 
-#: modules_v3\fancy_treeview/module.php:506
-#: modules_v3\fancy_treeview/module.php:842
+#: modules_v3\fancy_treeview/module.php:1249
 msgid "OK"
 msgstr "Ok"
 
-#: modules_v3\fancy_treeview/module.php:541
-msgid "Or manually add a root person"
-msgstr "O agregar el ID de una persona"
+#: modules_v3\fancy_treeview/module.php:273
+msgid "Options for"
+msgstr ""
 
-#: modules_v3\fancy_treeview/help_text.php:75
-msgid "PDF not supported for RTL-languages"
-msgstr "PDF no disponible para idiomas RTL (dirección de lectura de derecha a izquierda)"
+#: modules_v3\fancy_treeview/module.php:718
+#: modules_v3\fancy_treeview/module.php:791
+msgid "Page title"
+msgstr ""
 
-#: modules_v3\fancy_treeview/help_text.php:62
-msgid "Place settings"
-msgstr "Configuración de lugar"
+#: modules_v3\fancy_treeview/module.php:663
+msgid "Pages"
+msgstr ""
 
-#: modules_v3\fancy_treeview/help_text.php:71
-#: modules_v3\fancy_treeview/module.php:633
+#: modules_v3\fancy_treeview/module.php:1000
 msgid "Resize thumbnails"
 msgstr "Cambiar el tamaño de las miniaturas"
 
-#: modules_v3\fancy_treeview/module.php:551
+#: modules_v3\fancy_treeview/module.php:714
+#: modules_v3\fancy_treeview/module.php:787
 msgid "Root person"
 msgstr "Persona raíz"
 
-#: modules_v3\fancy_treeview/help_text.php:66
-#: modules_v3\fancy_treeview/module.php:624
+#: modules_v3\fancy_treeview/module.php:685
+#, fuzzy
+msgid "Search root person"
+msgstr "Modificar persona raíz"
+
+#: modules_v3\fancy_treeview/module.php:978
 msgid "Select your country"
 msgstr ""
 
 #. I18N: %s is a number
-#: modules_v3\fancy_treeview/module.php:1182
+#: modules_v3\fancy_treeview/module.php:1589
 #, php-format
 msgid "She married %s times"
 msgstr "Ella se casa %s veces"
 
-#: modules_v3\fancy_treeview/module.php:1417
+#: modules_v3\fancy_treeview/module.php:1824
 msgctxt "PAST"
 msgid "She was born"
 msgstr "Ella nació"
 
-#: modules_v3\fancy_treeview/module.php:1419
+#: modules_v3\fancy_treeview/module.php:1826
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Ella nace"
 
-#: modules_v3\fancy_treeview/module.php:649
+#: modules_v3\fancy_treeview/module.php:1049
 msgid "Show PDF icon?"
 msgstr "¿Mostrar el ícono PDF?"
 
-#: modules_v3\fancy_treeview/module.php:645
+#: modules_v3\fancy_treeview/module.php:1040
 msgid "Show form to change start person"
 msgstr "Permitir cambio de la persona raíz"
 
-#: modules_v3\fancy_treeview/module.php:629
+#: modules_v3\fancy_treeview/module.php:991
 msgid "Show occupations"
 msgstr "Mostrar Ocupación u Oficio"
 
-#: modules_v3\fancy_treeview/module.php:617
+#: modules_v3\fancy_treeview/module.php:956
 msgid "Show places?"
 msgstr "¿Mostrar Lugares?"
 
-#: modules_v3\fancy_treeview/help_text.php:57
-#: modules_v3\fancy_treeview/module.php:614
+#: modules_v3\fancy_treeview/module.php:945
 msgid "Show single persons"
 msgstr "Mostrar personas célibes sin descendientes"
 
+#: modules_v3\fancy_treeview/module.php:716
+#: modules_v3\fancy_treeview/module.php:789
+msgid "Surname in page title"
+msgstr ""
+
 #. I18N: %s is an ordinal
-#: modules_v3\fancy_treeview/module.php:1178
+#: modules_v3\fancy_treeview/module.php:1585
 #, php-format
 msgid "The %s time he married"
 msgstr "La %s vez se casó con"
 
 #. I18N: %s is an ordinal
-#: modules_v3\fancy_treeview/module.php:1184
+#: modules_v3\fancy_treeview/module.php:1591
 #, php-format
 msgid "The %s time she married"
 msgstr "Se casó por %s vez con"
 
 #. I18N: %s is an ordinal
-#: modules_v3\fancy_treeview/module.php:1190
+#: modules_v3\fancy_treeview/module.php:1597
 #, php-format
 msgid "The %s time this individual married"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1076
+#: modules_v3\fancy_treeview/module.php:1483
 msgid "The details of this generation are private."
 msgstr "La información de esta generación no se encuentra disponible al público."
 
-#: modules_v3\fancy_treeview/module.php:980
+#: modules_v3\fancy_treeview/module.php:907
+msgid "The options for this tree are succesfully reset to the default values"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:906
+msgid "The options for this tree are succesfully saved"
+msgstr ""
+
+#: modules_v3\fancy_treeview/module.php:1387
 msgid "The pdf contains only visible generation blocks."
 msgstr "El archivo PDF contiene solamente bloques generacionales visibles."
 
-#: modules_v3\fancy_treeview/module.php:590
+#: modules_v3\fancy_treeview/module.php:869
 #, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
 msgstr "La persona con este número de identificación %s ya no existe en este árbol genealógico"
 
-#: modules_v3\fancy_treeview/module.php:658
-msgid "The settings will be reset to default (for all trees). Are you sure you want to do this?"
-msgstr "La configuración será reinicializada a los valores por defecto (para todos los árboles genealógicos). ¿Quiere continuar?"
-
-#: modules_v3\fancy_treeview/module.php:1202
+#: modules_v3\fancy_treeview/module.php:1609
 msgid "This individual married"
 msgstr ""
 
 #. I18N: %s is a number
-#: modules_v3\fancy_treeview/module.php:1188
+#: modules_v3\fancy_treeview/module.php:1595
 #, php-format
 msgid "This individual married %s times"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:637
+#. I18N: Help text for the “Number of generation blocks to show” configuration setting
+#: modules_v3\fancy_treeview/module.php:927
+#, fuzzy
+msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
+msgstr "Esta opción es muy útil para árbolos grandes. Si nota que el informe es lento, aquí puede disminuir el número de bloques generacionales a ser cargados por vez.Debajo del último bloque generacional, un botón le permitirá agregar el siguiente grupo de bloques generacionales. Los nuevos bloques serán agregados a los bloques ya presentados.Haciendo clic en el enlace “siguiente” en el último bloque generacional visible, se puede agregar el siguiente grupo de bloques generacionales."
+
+#: modules_v3\fancy_treeview/module.php:1011
 msgid "Thumbnail size"
 msgstr "Tamaño de imagen en miniatura"
 
-#: modules_v3\fancy_treeview/module.php:1801
+#: modules_v3\fancy_treeview/module.php:2218
 msgid "Tree view"
 msgstr "Fancy árbol"
 
-#: modules_v3\fancy_treeview/module.php:620
+#. I18N: Help text for the “Show single persons” configuration setting
+#: modules_v3\fancy_treeview/module.php:950
+#, fuzzy
+msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
+msgstr "Elija esta opción si quiere mostrar personas célibes sin descendientes en los bloques generacionales. Personas célibes sin descendientes son personas sin pareja y sin hijos.Con esta opción, todos los miembros de una familian serán mostrado en cada bloque generacional."
+
+#: modules_v3\fancy_treeview/module.php:965
 msgid "Use default Gedcom settings to abbreviate place names?"
 msgstr "¿Usar la configuración por defecto de Gedcom para abreviar los nombres de lugares?"
 
-#: modules_v3\fancy_treeview/help_text.php:42
-#: modules_v3\fancy_treeview/module.php:603
+#: modules_v3\fancy_treeview/module.php:913
 msgid "Use fullname in menu"
 msgstr "Usar nombre completo en el menú"
 
-#: modules_v3\fancy_treeview/module.php:641
+#: modules_v3\fancy_treeview/module.php:1031
 msgid "Use square thumbnails"
 msgstr "Usar imágenes en miniatura"
 
-#: modules_v3\fancy_treeview/module.php:1321
+#. I18N: Help text for creating Fancy Tree View pages
+#: modules_v3\fancy_treeview/module.php:675
+msgid "Use the search form below to search for a root person. After a successfull search the Fancy Tree View page will be automatically created. You can add as many root persons as you want."
+msgstr ""
+
+#. I18N: Help text for the “Check relationship between partners” configuration setting
+#: modules_v3\fancy_treeview/module.php:939
+#, fuzzy
+msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option)."
+msgstr "Con esta opción seleccionada el algorimo investiga si una pareja (casados) tiene los mismos ancestros.Si algun ancestro común fue encontrado, un mensaje aparecerá entre paréntesis, a continuación del nombre de los esposos, para indicar el relacionamiento.Nota: esta opción puede causar lentitud, sobretodo en árboles genealógicos grandes. En este caso, reduzca el número de bloques generacionales a ser presentados a la vez (ver previa opción)."
+
+#: modules_v3\fancy_treeview/module.php:1728
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1324
+#: modules_v3\fancy_treeview/module.php:1731
 msgctxt "MALE"
 msgid "adopted child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1382
+#: modules_v3\fancy_treeview/module.php:1789
 msgid "adopted child of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1373
+#: modules_v3\fancy_treeview/module.php:1780
 msgid "adopted daughter of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1364
+#: modules_v3\fancy_treeview/module.php:1771
 msgid "adopted son of"
 msgstr ""
 
-#. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1238
-#: modules_v3\fancy_treeview/module.php:1251
-#: modules_v3\fancy_treeview/module.php:1264
-#: modules_v3\fancy_treeview/module.php:1281
-#: modules_v3\fancy_treeview/module.php:1395
-#: modules_v3\fancy_treeview/module.php:1442
-msgid "and "
-msgstr "y "
-
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
-#: modules_v3\fancy_treeview/module.php:1457
+#: modules_v3\fancy_treeview/module.php:1864
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr "a la tierna edad de %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
-#: modules_v3\fancy_treeview/module.php:1459
+#: modules_v3\fancy_treeview/module.php:1866
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "a la edad de %s años"
 
-#: modules_v3\fancy_treeview/module.php:1071
-msgid "back to top"
-msgstr "Volver al inicio"
-
-#: modules_v3\fancy_treeview/module.php:1384
+#: modules_v3\fancy_treeview/module.php:1791
 msgid "child of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1443
-msgctxt "FEMALE"
-msgid "died"
-msgstr "falleció"
-
-#: modules_v3\fancy_treeview/module.php:1443
-msgctxt "MALE"
-msgid "died"
-msgstr "falleció"
-
-#: modules_v3\fancy_treeview/module.php:1171
+#: modules_v3\fancy_treeview/module.php:1578
 msgid "fifth"
 msgstr "quinta"
 
-#: modules_v3\fancy_treeview/module.php:1167
+#: modules_v3\fancy_treeview/module.php:1574
 msgid "first"
 msgstr "primera"
 
-#: modules_v3\fancy_treeview/module.php:696
-#: modules_v3\fancy_treeview/module.php:699
+#: modules_v3\fancy_treeview/module.php:1102
+#: modules_v3\fancy_treeview/module.php:1105
 msgid "follow"
 msgstr "ir a"
 
-#: modules_v3\fancy_treeview/module.php:1311
+#: modules_v3\fancy_treeview/module.php:1718
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1314
+#: modules_v3\fancy_treeview/module.php:1721
 msgctxt "MALE"
 msgid "foster child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1380
+#: modules_v3\fancy_treeview/module.php:1787
 msgid "foster child of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1371
+#: modules_v3\fancy_treeview/module.php:1778
 msgid "foster daughter of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1362
+#: modules_v3\fancy_treeview/module.php:1769
 msgid "foster son of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/module.php:1170
+#: modules_v3\fancy_treeview/module.php:1577
 msgid "fourth"
 msgstr "cuarta"
 
-#: modules_v3\fancy_treeview/module.php:1272
+#: modules_v3\fancy_treeview/module.php:1679
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "tuvo "
 
-#: modules_v3\fancy_treeview/module.php:1254
-#: modules_v3\fancy_treeview/module.php:1274
+#: modules_v3\fancy_treeview/module.php:1661
+#: modules_v3\fancy_treeview/module.php:1681
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "tuvo"
 
-#: modules_v3\fancy_treeview/module.php:1266
+#: modules_v3\fancy_treeview/module.php:1673
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "tuvieron"
 
-#: modules_v3\fancy_treeview/module.php:1252
-#: modules_v3\fancy_treeview/module.php:1268
+#: modules_v3\fancy_treeview/module.php:1659
+#: modules_v3\fancy_treeview/module.php:1675
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "tuvieron"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1603
+#: modules_v3\fancy_treeview/module.php:2010
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "en "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1606
+#: modules_v3\fancy_treeview/module.php:2013
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "en el año "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1630
+#: modules_v3\fancy_treeview/module.php:2037
 msgctxt "before placesnames"
 msgid "in "
 msgstr "en "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1600
+#: modules_v3\fancy_treeview/module.php:2007
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "el "
 
-#: modules_v3\fancy_treeview/module.php:638
+#: modules_v3\fancy_treeview/module.php:1024
 msgid "percent"
 msgstr "porcentaje"
 
-#: modules_v3\fancy_treeview/module.php:638
-msgid "pixels"
-msgstr "pixeles"
-
-#: modules_v3\fancy_treeview/module.php:1168
+#: modules_v3\fancy_treeview/module.php:1575
 msgid "second"
 msgstr "segunda"
 
-#: modules_v3\fancy_treeview/module.php:1169
+#: modules_v3\fancy_treeview/module.php:1576
 msgid "third"
 msgstr "tercera"
 
-#: modules_v3\fancy_treeview/module.php:1424
+#: modules_v3\fancy_treeview/module.php:1831
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "nació"
 
-#: modules_v3\fancy_treeview/module.php:1424
+#: modules_v3\fancy_treeview/module.php:1831
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "nació"
 
-#: modules_v3\fancy_treeview/module.php:1426
+#: modules_v3\fancy_treeview/module.php:1833
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "nace"
 
-#: modules_v3\fancy_treeview/module.php:1426
+#: modules_v3\fancy_treeview/module.php:1833
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "nace"
 
-#: modules_v3\fancy_treeview/module.php:1238
+#: modules_v3\fancy_treeview/module.php:1645
 msgid "were divorced"
 msgstr "se divorciaron"
