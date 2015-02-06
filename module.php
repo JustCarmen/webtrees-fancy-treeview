@@ -468,7 +468,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$soundex_dm = Filter::postBool('soundex_dm');
 
 			$indis = $this->indis_array($surname, $soundex_std, $soundex_dm);
-			usort($indis, array('Individual', 'CompareBirthDate'));
+			usort($indis, 'Webtrees\Individual::compareBirthDate');
 
 			if (isset($indis) && count($indis) > 0) {
 				$pid = $indis[0]->getXref();
