@@ -1461,7 +1461,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	private function print_generation($generation, $i) {
-
+		
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">
 					<div class="blockheader ui-state-default"><span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>';
@@ -1500,7 +1500,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	private function print_person($person) {
-		global $SHOW_PRIVATE_RELATIONSHIPS;
+		global $WT_TREE;
 
 		if ($person->CanShow()) {
 			$resize = $this->options('resize_thumbs') == 1 ? true : false;
@@ -1549,7 +1549,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			return $html;
 		} else {
-			if ($SHOW_PRIVATE_RELATIONSHIPS) {
+			if ($WT_TREE->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
 				return I18N::translate('The details of this family are private.');
 			}
 		}
