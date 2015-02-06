@@ -101,24 +101,26 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	private function indis_array($surname, $russell, $daitchMokotoff) {
 		$sql = "SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
-			" JOIN `##name` ON (i_id=n_id AND i_file=n_file)" .
-			" WHERE n_file=?" .
-			" AND n_type!=?" .
-			" AND (n_surn=? OR n_surname=?";
-		$args = array(WT_GED_ID, '_MARNM', $surname, $surname);
+			" JOIN `##name` ON (i_id = n_id AND i_file = n_file)" .
+			" WHERE n_file = :ged_id" .
+			" AND n_type != '_MARNM'" .
+			" AND (n_surn = :surname1 OR n_surname = :surname2";
+		$args = array(
+			'ged_id' => WT_GED_ID,			
+			'surname1' => $surname,
+			'surname2' => $surname
+		);
 		if ($russell) { // works only with latin letters. For other letters it outputs the code '0000'.
 			foreach (explode(':', Soundex::russell($surname)) as $value) {
 				if ($value != '0000') {
-					$sql .= " OR n_soundex_surn_std LIKE CONCAT('%', ?, '%')";
-					$args[] = $value;
+					$sql .= " OR n_soundex_surn_std LIKE CONCAT('%', '" . $value . "', '%')";
 				}
 			}
 		}
 		if ($daitchMokotoff) { // works only with predefined letters and lettercombinations. Fot other letters it outputs the code '000000'.
 			foreach (explode(':', Soundex::daitchMokotoff($surname)) as $value) {
 				if ($value != '000000') {
-					$sql .= " OR n_soundex_surn_dm LIKE CONCAT('%', ?, '%')";
-					$args[] = $value;
+					$sql .= " OR n_soundex_surn_dm LIKE CONCAT('%', '" . $value . "', '%')";
 				}
 			}
 		}
@@ -135,8 +137,11 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	// Get surname from pid
 	private function getSurname($pid) {
-		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file=? AND n_id=? AND n_type=?";
-		$args = array(WT_GED_ID, $pid, 'NAME');
+		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :ged_id AND n_id = :pid AND n_type = 'NAME'";
+		$args = array(
+			'ged_id' => WT_GED_ID,
+			'pid' => $pid
+		);
 		$data = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
 	}
