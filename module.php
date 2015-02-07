@@ -182,7 +182,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	private function getPageLink($pid) {
 		global $WT_TREE;
-		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;ged=' . $WT_tree->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
+		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
 
 		if ($this->options('use_fullname') == true) {
 			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid)->getFullName());
@@ -630,12 +630,12 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				<div class="col-sm-4">
 					<select id="tree" name="NEW_FIB_TREE" id="NEW_FIB_TREE" class="form-control">
 						<?php foreach (Tree::getAll() as $tree): ?>
-							<?php if ($tree->getId() == WT_GED_ID): ?>
-								<option value="<?php echo $tree->getId(); ?>" data-ged="<?php echo $tree->getNameHtml(); ?>" selected="selected">
+							<?php if ($tree->getTreeId() == WT_GED_ID): ?>
+								<option value="<?php echo $tree->getTreeId(); ?>" data-ged="<?php echo $tree->getNameHtml(); ?>" selected="selected">
 									<?php echo $tree->getTitleHtml(); ?>
 								</option>
 							<?php else: ?>
-								<option value="<?php echo $tree->getId(); ?>" data-ged="<?php echo $tree->getNameHtml(); ?>">
+								<option value="<?php echo $tree->getTreeId(); ?>" data-ged="<?php echo $tree->getNameHtml(); ?>">
 									<?php echo $tree->getTitleHtml(); ?>
 								</option>
 							<?php endif; ?>
@@ -823,7 +823,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 															<?php endif ?>
 															<!-- PAGE TITLE -->
 															<td>
-																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=show&amp;ged=<?php echo $WT_tree->getNameHtml(); ?>&amp;rootid=<?php echo $FTV_ITEM['PID']; ?>" target="_blank">
+																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=show&amp;ged=<?php echo $WT_TREE->getNameHtml(); ?>&amp;rootid=<?php echo $FTV_ITEM['PID']; ?>" target="_blank">
 																	<?php
 																	if ($this->options('use_fullname') == true) {
 																		echo I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'])->getFullName());
