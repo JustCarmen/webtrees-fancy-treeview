@@ -106,7 +106,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			" AND n_type != '_MARNM'" .
 			" AND (n_surn = :surname1 OR n_surname = :surname2";
 		$args = array(
-			'ged_id' => WT_GED_ID,			
+			'ged_id' => WT_GED_ID,
 			'surname1' => $surname,
 			'surname2' => $surname
 		);
@@ -590,7 +590,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	// Actions from the configuration page
 	private function config() {
 		global $WT_TREE;
-		
+
 		$controller = new PageController;
 		$controller
 			->restrictAccess(Auth::isAdmin())
@@ -1461,7 +1461,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	private function print_generation($generation, $i) {
-		
+
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">
 					<div class="blockheader ui-state-default"><span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>';
@@ -2204,7 +2204,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			}
 			if (!empty($FTV_GED_SETTINGS)) {
 				// load the module stylesheets
-				echo $this->getStylesheet();
+				if (Theme::theme()->themeId() !== '_administration') {
+					echo $this->getStylesheet();
+				}
 
 				$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
@@ -2218,7 +2220,11 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 						$menu->addSubmenu($submenu);
 					}
 				}
-				$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
+
+				if (Theme::theme()->themeId() !== '_administration') {
+					$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
+				}
+
 				return $menu;
 			}
 		}
