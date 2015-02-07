@@ -1069,7 +1069,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	private function show() {
 		global $controller, $TEXT_DIRECTION;
 		$root = Filter::get('rootid', WT_REGEX_XREF); // the first pid
-		$root_person = $this->get_person($root);
+		$root_person = $this->get_individual($root);
 
 		$controller = new PageController;
 		if ($root_person && $root_person->canShowName()) {
@@ -1477,21 +1477,21 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$generation = array_unique($generation); // needed to prevent the same family added twice to the generation block (this is the case when parents have the same ancestors and are both members of the previous generation).
 
 			foreach ($generation as $pid) {
-				$person = $this->get_person($pid);
+				$individual = $this->get_individual($pid);
 
 				// only list persons without parents in the same generation - if they have they will be listed in the next generation anyway.
 				// This prevents double listings
-				if (!$this->has_parents_in_same_generation($person, $generation)) {
-					$family = $this->get_family($person);
+				if (!$this->has_parents_in_same_generation($individual, $generation)) {
+					$family = $this->get_family($individual);
 					if (!empty($family)) {
 						$id = $family->getXref();
 					} else {
-						if ($this->options('show_singles') == true || !$person->getSpouseFamilies()) {
+						if ($this->options('show_singles') == true || !$individual->getSpouseFamilies()) {
 							$id = 'S' . $pid;
 						} // Added prefix (S = Single) to prevent double id's.
 					}
-					$class = $person->canShow() ? 'family' : 'family private';
-					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->print_person($person) . '</li>';
+					$class = $individual->canShow() ? 'family' : 'family private';
+					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->print_individual($individual) . '</li>';
 				}
 			}
 			$html .= '</ol></li>';
@@ -1499,25 +1499,25 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		return $html;
 	}
 
-	private function print_person($person) {
+	private function print_individual($individual) {
 		global $WT_TREE;
 
-		if ($person->CanShow()) {
+		if ($individual->CanShow()) {
 			$resize = $this->options('resize_thumbs') == 1 ? true : false;
-			$html = '<div class="parents">' . $this->print_thumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<a id="' . $person->getXref() . '" href="' . $person->getHtmlUrl() . '"><p class="desc">' . $person->getFullName() . '</a>';
+			$html = '<div class="parents">' . $this->print_thumbnail($individual, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<a id="' . $individual->getXref() . '" href="' . $individual->getHtmlUrl() . '"><p class="desc">' . $individual->getFullName() . '</a>';
 			if ($this->options('show_occu') == true) {
-				$html .= $this->print_fact($person, 'OCCU');
+				$html .= $this->print_fact($individual, 'OCCU');
 			}
 
-			$html .= $this->print_parents($person) . $this->print_lifespan($person);
+			$html .= $this->print_parents($individual) . $this->print_lifespan($individual);
 
 			// get a list of all the spouses
 			/*
 			 * First, determine the true number of spouses by checking the family gedcom
 			 */
 			$spousecount = 0;
-			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
-				$spouse = $family->getSpouse($person);
+			foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
+				$spouse = $family->getSpouse($individual);
 				if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 					$spousecount++;
 				}
@@ -1530,10 +1530,10 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			 */
 			if ($spousecount > 0) {
 				$spouseindex = 0;
-				foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
-					$spouse = $family->getSpouse($person);
+				foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
+					$spouse = $family->getSpouse($individual);
 					if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
-						$html .= $this->print_spouse($family, $person, $spouse, $spouseindex, $spousecount);
+						$html .= $this->print_spouse($family, $individual, $spouse, $spouseindex, $spousecount);
 						$spouseindex++;
 					}
 				}
@@ -1542,9 +1542,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$html .= '</p></div>';
 
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
-			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
-				$spouse = $family->getSpouse($person);
-				$html .= $this->print_children($family, $person, $spouse);
+			foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
+				$spouse = $family->getSpouse($individual);
+				$html .= $this->print_children($family, $individual, $spouse);
 			}
 
 			return $html;
@@ -1555,7 +1555,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		}
 	}
 
-	private function print_spouse($family, $person, $spouse, $i, $count) {
+	private function print_spouse($family, $individual, $spouse, $i, $count) {
 
 		$html = ' ';
 
@@ -1568,7 +1568,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				I18N::translate('fourth'),
 				I18N::translate('fifth')
 			);
-			switch ($person->getSex()) {
+			switch ($individual->getSex()) {
 				case 'M':
 					if ($i == 0) {
 						$html .= /* I18N: %s is a number  */ I18N::translate('He married %s times', $count) . '. ';
@@ -1589,7 +1589,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					break;
 			}
 		} else {
-			switch ($person->getSex()) {
+			switch ($individual->getSex()) {
 				case 'M':
 					$html .= I18N::translate('He married');
 					break;
@@ -1606,7 +1606,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 		// Add relationship note
 		if ($this->options('check_relationship')) {
-			$relationship = $this->check_relationship($person, $spouse, $family);
+			$relationship = $this->check_relationship($individual, $spouse, $family);
 			if ($relationship) {
 				$html .= ' (' . $relationship . ')';
 			}
@@ -1633,18 +1633,18 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			$div = $family->getFirstFact('DIV');
 			if ($div) {
-				$html .= $person->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
+				$html .= $individual->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->print_divorce_date($div) . '.';
 			}
 		}
 		return $html;
 	}
 
-	private function print_children($family, $person, $spouse) {
+	private function print_children($family, $individual, $spouse) {
 		$html = '';
 
 		$match = null;
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1] == 0) {
-			$html .= '<div class="children"><p>' . $person->getFullName() . ' ';
+			$html .= '<div class="children"><p>' . $individual->getFullName() . ' ';
 			if ($spouse && $spouse->CanShow()) {
 				$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
 				$html .= I18N::translate_c('Two parents/one child', 'had');
@@ -1656,7 +1656,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$children = $family->getChildren();
 			if ($children) {
 				if ($this->check_privacy($children)) {
-					$html .= '<div class="children"><p>' . $person->getFullName() . ' ';
+					$html .= '<div class="children"><p>' . $individual->getFullName() . ' ';
 					// needs multiple translations for the word 'had' to serve different languages.
 					if ($spouse && $spouse->CanShow()) {
 						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
@@ -1674,13 +1674,13 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					}
 					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
 				} else {
-					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $person->getFullName();
+					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $individual->getFullName();
 					if ($spouse && $spouse->CanShow()) {
 						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
 						if (!$family->getMarriage()) {
 							// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
 							if ($this->options('check_relationship')) {
-								$relationship = $this->check_relationship($person, $spouse, $family);
+								$relationship = $this->check_relationship($individual, $spouse, $family);
 							}
 							if (isset($relationship) && $relationship) {
 								$html .= $spouse->getFullName() . ' (' . $relationship . ')';
@@ -1748,13 +1748,13 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		return $html;
 	}
 
-	private function print_parents($person) {
-		$parents = $person->getPrimaryChildFamily();
+	private function print_parents($individual) {
+		$parents = $individual->getPrimaryChildFamily();
 		if ($parents) {
-			$pedi = $this->check_pedi($person, $parents);
+			$pedi = $this->check_pedi($individual, $parents);
 
 			$html = '';
-			switch ($person->getSex()) {
+			switch ($individual->getSex()) {
 				case 'M':
 					if ($pedi === 'foster') {
 						$html .= ', ' . I18N::translate('foster son of') . ' ';
@@ -1800,54 +1800,54 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		}
 	}
 
-	private function print_lifespan($person, $is_spouse = false) {
+	private function print_lifespan($individual, $is_spouse = false) {
 		$html = '';
-		$birthdate = $person->getBirthDate();
-		$deathdate = $person->getDeathdate();
+		$birthdate = $individual->getBirthDate();
+		$deathdate = $individual->getDeathdate();
 		$ageOfdeath = get_age_at_event(Date::GetAgeGedcom($birthdate, $deathdate), false);
 
 		$birthdata = false;
-		if ($birthdate->isOK() || $person->getBirthPlace() != '') {
+		if ($birthdate->isOK() || $individual->getBirthPlace() != '') {
 			$birthdata = true;
 			if ($is_spouse == true) {
 				$html .= '. ';
-				if ($person->isDead()) {
-					$person->getSex() == 'F' ? $html .= I18N::translate_c('PAST', 'She was born') : $html .= I18N::translate_c('PAST', 'He was born');
+				if ($individual->isDead()) {
+					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PAST', 'She was born') : $html .= I18N::translate_c('PAST', 'He was born');
 				} else {
-					$person->getSex() == 'F' ? $html .= I18N::translate_c('PRESENT', 'She was born') : $html .= I18N::translate_c('PRESENT', 'He was born');
+					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PRESENT', 'She was born') : $html .= I18N::translate_c('PRESENT', 'He was born');
 				}
 			} else {
-				$this->print_parents($person) || $this->print_fact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
-				if ($person->isDead()) {
-					$person->getSex() == 'F' ? $html .= I18N::translate_c('PAST (FEMALE)', 'was born') : $html .= I18N::translate_c('PAST (MALE)', 'was born');
+				$this->print_parents($individual) || $this->print_fact($individual, 'OCCU') ? $html .= ', ' : $html .= ' ';
+				if ($individual->isDead()) {
+					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PAST (FEMALE)', 'was born') : $html .= I18N::translate_c('PAST (MALE)', 'was born');
 				} else {
-					$person->getSex() == 'F' ? $html .= I18N::translate_c('PRESENT (FEMALE)', 'was born') : $html .= I18N::translate_c('PRESENT (MALE)', 'was born');
+					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PRESENT (FEMALE)', 'was born') : $html .= I18N::translate_c('PRESENT (MALE)', 'was born');
 				}
 			}
 			if ($birthdate->isOK()) {
 				$html .= $this->print_date($birthdate);
 			}
-			if ($person->getBirthPlace() != '') {
-				$html .= $this->print_place($person->getBirthPlace());
+			if ($individual->getBirthPlace() != '') {
+				$html .= $this->print_place($individual->getBirthPlace());
 			}
 		}
 
 		$deathdata = false;
-		if ($deathdate->isOK() || $person->getDeathPlace() != '') {
+		if ($deathdate->isOK() || $individual->getDeathPlace() != '') {
 			$deathdata = true;
 
 			if ($birthdata) {
 				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-				$person->getSex() == 'F' ? $html .= I18N::translate_c('FEMALE', 'died') : $html .= I18N::translate_c('MALE', 'died');
+				$individual->getSex() == 'F' ? $html .= I18N::translate_c('FEMALE', 'died') : $html .= I18N::translate_c('MALE', 'died');
 			} else {
-				$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
+				$individual->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
 			}
 
 			if ($deathdate->isOK()) {
 				$html .= $this->print_date($deathdate);
 			}
-			if ($person->getDeathPlace() != '') {
-				$html .= $this->print_place($person->getDeathPlace());
+			if ($individual->getDeathPlace() != '') {
+				$html .= $this->print_place($individual->getDeathPlace());
 			}
 
 			if ($birthdate->isOK() && $deathdate->isOK()) {
@@ -1867,9 +1867,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	// some couples are known as not married but have children together. Print the info of the "spouse" parent in a tooltip.
-	private function print_tooltip($person) {
-		$birthdate = $person->getBirthDate();
-		$deathdate = $person->getDeathdate();
+	private function print_tooltip($individual) {
+		$birthdate = $individual->getBirthDate();
+		$deathdate = $individual->getDeathdate();
 		$html = '';
 		if ($birthdate->isOK()) {
 			$html .= '<strong>' . I18N::translate('Birth') . ':</strong> ' . strip_tags($birthdate->Display());
@@ -1878,7 +1878,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$html .= '<br><strong>' . I18N::translate('Death') . ':</strong> ' . strip_tags($deathdate->Display());
 		}
 
-		$parents = $person->getPrimaryChildFamily();
+		$parents = $individual->getPrimaryChildFamily();
 		if ($parents) {
 			$father = $parents->getHusband();
 			$mother = $parents->getWife();
@@ -1892,14 +1892,14 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		return $html;
 	}
 
-	private function print_thumbnail($person, $thumbsize, $resize_format, $square, $resize) {
-		$mediaobject = $person->findHighlightedMedia();
+	private function print_thumbnail($individual, $thumbsize, $resize_format, $square, $resize) {
+		$mediaobject = $individual->findHighlightedMedia();
 		if ($mediaobject) {
 			$html = '';
 			if ($resize == true) {
 				$mediasrc = $resize_format == 1 ? $mediaobject->getServerFilename('thumb') : $mediaobject->getServerFilename('main');
 				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
-				$mediatitle = strip_tags($person->getFullName());
+				$mediatitle = strip_tags($individual->getFullName());
 
 				$type = $mediaobject->mimeType();
 				if ($type == 'image/jpeg' || $type == 'image/png') {
@@ -2012,8 +2012,8 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		}
 	}
 
-	private function print_fact($person, $tag) {
-		$facts = $person->getFacts();
+	private function print_fact($individual, $tag) {
+		$facts = $individual->getFacts();
 		foreach ($facts as $fact) {
 			if ($fact->getTag() == $tag) {
 				$html = ', ' . rtrim($fact->getValue(), ".");
@@ -2043,20 +2043,20 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	// Other functions
-	private function get_person($pid) {
-		$person = Individual::getInstance($pid);
-		return $person;
+	private function get_individual($pid) {
+		$individual = Individual::getInstance($pid);
+		return $individual;
 	}
 
-	private function get_family($person) {
-		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
+	private function get_family($individual) {
+		foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
 			return $family;
 		}
 	}
 
 	private function get_next_gen($pid) {
-		$person = $this->get_person($pid);
-		foreach ($person->getSpouseFamilies() as $family) {
+		$individual = $this->get_individual($pid);
+		foreach ($individual->getSpouseFamilies() as $family) {
 			$children = $family->getChildren();
 			if ($children) {
 				foreach ($children as $key => $child) {
@@ -2072,8 +2072,8 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	// check if a person has parents in the same generation
-	private function has_parents_in_same_generation($person, $generation) {
-		$parents = $person->getPrimaryChildFamily();
+	private function has_parents_in_same_generation($individual, $generation) {
+		$parents = $individual->getPrimaryChildFamily();
 		if ($parents) {
 			$father = $parents->getHusband();
 			$mother = $parents->getWife();
@@ -2090,11 +2090,11 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	// check (blood) relationship between partners
-	private function check_relationship($person, $spouse, $family) {
+	private function check_relationship($individual, $spouse, $family) {
 		$count = count($family->getChildren());
 		for ($i = 0; $i <= $count; $i++) { // the number of paths is equal to the number of children, because every relationship is checked through each child.
 			// and we need the relationship from the next path.
-			$nodes = get_relationship($person, $spouse, false, 0, $i);
+			$nodes = get_relationship($individual, $spouse, false, 0, $i);
 
 			if (!is_array($nodes)) {
 				return '';
@@ -2121,18 +2121,18 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				foreach ($path as $rel) {
 					$combined_path.=substr($rel, 0, 3);
 				}
-				return get_relationship_name_from_path($combined_path, $person, $spouse);
+				return get_relationship_name_from_path($combined_path, $individual, $spouse);
 			}
 		}
 	}
 
 	private function check_privacy($record, $xrefs = false) {
 		$count = 0;
-		foreach ($record as $person) {
+		foreach ($record as $individual) {
 			if ($xrefs) {
-				$person = $this->get_person($person);
+				$individual = $this->get_individual($individual);
 			}
-			if ($person->CanShow()) {
+			if ($individual->CanShow()) {
 				$count++;
 			}
 		}
@@ -2152,9 +2152,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	// Check if this person is an adopted or foster child
-	private function check_pedi($person, $parents) {
+	private function check_pedi($individual, $parents) {
 		$pedi = "";
-		foreach ($person->getFacts('FAMC') as $fact) {
+		foreach ($individual->getFacts('FAMC') as $fact) {
 			if ($fact->getTarget() === $parents) {
 				$pedi = $fact->getAttribute('PEDI');
 				break;
