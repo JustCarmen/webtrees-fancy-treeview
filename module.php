@@ -1500,7 +1500,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	private function print_individual($individual) {
-		global $WT_TREE;
 
 		if ($individual->CanShow()) {
 			$resize = $this->options('resize_thumbs') == 1 ? true : false;
@@ -1549,7 +1548,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			return $html;
 		} else {
-			if ($WT_TREE->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
+			if ($individual->getTree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
 				return I18N::translate('The details of this family are private.');
 			}
 		}
