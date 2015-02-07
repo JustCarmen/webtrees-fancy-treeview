@@ -1627,7 +1627,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				$html .= $this->print_date($marrdate);
 			}
 			if ($marrplace->getGedcomName()) {
-				$html .= $this->print_place($marrplace->getGedcomName());
+				$html .= $this->print_place($marrplace->getGedcomName(), $family->getTree());
 			}
 			$html .= $this->print_lifespan($spouse, true);
 
@@ -1828,7 +1828,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				$html .= $this->print_date($birthdate);
 			}
 			if ($individual->getBirthPlace() != '') {
-				$html .= $this->print_place($individual->getBirthPlace());
+				$html .= $this->print_place($individual->getBirthPlace(), $individual->getTree());
 			}
 		}
 
@@ -1847,7 +1847,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				$html .= $this->print_date($deathdate);
 			}
 			if ($individual->getDeathPlace() != '') {
-				$html .= $this->print_place($individual->getDeathPlace());
+				$html .= $this->print_place($individual->getDeathPlace(), $individual->getTree());
 			}
 
 			if ($birthdate->isOK() && $deathdate->isOK()) {
@@ -2022,9 +2022,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		}
 	}
 
-	private function print_place($place) {
+	private function print_place($place, $tree) {
 		if ($this->options('show_places') == true) {
-			$place = new Place($place, WT_GED_ID);
+			$place = new Place($place, $tree);
 			$html = ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before placesnames', 'in ');
 			if ($this->options('use_gedcom_places') == true) {
 				$html .= $place->getShortName();
