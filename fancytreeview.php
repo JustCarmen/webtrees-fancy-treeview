@@ -958,28 +958,72 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 			->addInlineJavascript('autocomplete();')
 			->addInlineJavascript('
-				var ModuleDir		= "' . $this->_dir . '";
-				var ModuleName		= "' . $this->getName() . '";
-				var ThemeID			= "' . Theme::theme()->themeId() . '"
-				var TextOptionsFor	= "' . I18N::translate('Options for') . '";
+				var ModuleDir			= "' . $this->_dir . '";
+				var ModuleName			= "' . $this->getName() . '";
+				var ThemeID				= "' . Theme::theme()->themeId() . '";
+				var RootID				= "' . $this->rootId() . '";
+				var OptionsNumBlocks	= "' . $this->options('numblocks') . '";
+				var TextOptionsFor		= "' . I18N::translate('Options for') . '";
+				var TextFollow			= "' . I18N::translate('follow') . '";
 			', BaseController::JS_PRIORITY_HIGH);
 		
 		switch ($page) {
 		case 'admin':
-			$controller
-				->addExternalJavascript($this->_dir . '/js/admin.js');
+			$controller->addExternalJavascript($this->_dir . '/js/admin.js');
 			break;
 		
 		case 'fancytreeview':
-			$controller
-				->addExternalJavascript($this->_dir . '/js/fancytreeview.js');
+			$controller->addExternalJavascript($this->_dir . '/js/fancytreeview.js');
+			
+			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+				$controller->addExternalJavascript($this->_dir . '/pdf/pdf.js');
+			}
 			
 			// some files needs an extra js script
 			if (file_exists(WT_STATIC_URL . $this->_dir . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
 				$controller->addExternalJavascript($this->_dir . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 			}
+			
+			if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+				$this->includeJsInline($controller);
+			}
 			break;
 		}
+	}
+	
+	private function includeJsInline($controller) {
+		$controller->addInlineJavascript('
+			jQuery("#new_rootid").autocomplete({
+				source: "autocomplete.php?field=INDI",
+				html: true
+			});
+
+			// submit form to change root id
+			jQuery( "form#change_root" ).submit(function(e) {
+				e.preventDefault();
+				var new_rootid = jQuery("form #new_rootid").val();
+				var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=show&rootid=" + new_rootid;
+				jQuery.ajax({
+					url: url,
+					csrf: WT_CSRF_TOKEN,
+					success: function() {
+						window.location = url;
+					},
+					statusCode: {
+						404: function() {
+							var msg = "' . I18N::translate('This individual does not exist or you do not have permission to view it.') . '";
+							jQuery("#error").text(msg).addClass("ui-state-error").show();
+							setTimeout(function() {
+								jQuery("#error").fadeOut("slow");
+							}, 3000);
+							jQuery("form #new_rootid")
+								.val("")
+								.focus();
+						}
+					}
+				});
+			});
+		');
 	}
 
 	private function includeCss($css, $type = 'all') {
@@ -992,6 +1036,10 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				newSheet.setAttribute("media","' . $type . '");
 				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			</script>';
+	}
+	
+	protected function rootId() {
+		return Filter::get('rootid', WT_REGEX_XREF);
 	}
 	
 }
