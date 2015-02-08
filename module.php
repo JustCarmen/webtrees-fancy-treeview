@@ -1067,7 +1067,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	// ************************************************* START OF FRONT PAGE ********************************* //
 	// Show
 	private function show() {
-		global $controller, $TEXT_DIRECTION;
+		global $controller;
 		$root = Filter::get('rootid', WT_REGEX_XREF); // the first pid
 		$root_person = $this->get_individual($root);
 
@@ -1227,7 +1227,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					});
 				');
 
-			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && $TEXT_DIRECTION == 'ltr') {
+			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
 				$controller->addInlineJavascript('
 						// convert page to pdf
 						jQuery("#pdf").click(function(e){
@@ -1372,7 +1372,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$html .= '
 					<div id="fancy_treeview-page">
 						<div id="page-header"><h2>' . $controller->getPageTitle() . '</h2>';
-			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && $TEXT_DIRECTION == 'ltr') {
+			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
 				$html .= '
 									<div id="dialog-confirm" title="' . I18N::translate('Generate PDF') . '" style="display:none">
 										<p>' . I18N::translate('The pdf contains only visible generation blocks.') . '</p>
