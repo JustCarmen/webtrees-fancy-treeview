@@ -82,7 +82,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			$this->getAdminPageJS($controller);
 
 			// get the settings for this tree
-			$FTV_SETTINGS = unserialize($ftv->getSetting('FTV_SETTINGS'));
+			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 			?>
 
 			<!-- ADMIN PAGE CONTENT -->

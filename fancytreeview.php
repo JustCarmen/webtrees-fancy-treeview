@@ -26,7 +26,7 @@ class FancyTreeView {
 	// Get module options
 	private function options($value = '') {
 		global $WT_TREE;
-		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+		$FTV_OPTIONS = unserialize(fancy_treeview_WT_Module::getSetting('FTV_OPTIONS'));
 
 		$key = $WT_TREE->getIdFromName(Filter::get('ged'));
 		if (empty($key)) {
