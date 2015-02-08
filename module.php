@@ -32,19 +32,25 @@ try {
 }
 
 class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleMenuInterface {
+	
+	// location of the fancy treeview module files.
+	var $_dir;
 
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct();
-
+		
+		$this->_dir = WT_MODULES_DIR . $this->getName();
+		
 		// Load the module class
-		require_once WT_MODULES_DIR . $this->getName() . '/fancytreeview.php';
+		require_once $this->_dir . '/fancytreeview.php';
+		
 
 		// Load any local user translations
-		if (is_dir(WT_MODULES_DIR . $this->getName() . '/language')) {
-			if (file_exists(WT_MODULES_DIR . $this->getName() . '/language/' . WT_LOCALE . '.mo')) {
+		if (is_dir($this->_dir . '/language')) {
+			if (file_exists($this->_dir . '/language/' . WT_LOCALE . '.mo')) {
 				I18N::addTranslation(
-					new Zend_Translate('gettext', WT_MODULES_DIR . $this->getName() . '/language/' . WT_LOCALE . '.mo', WT_LOCALE)
+					new Zend_Translate('gettext', $this->_dir . '/language/' . WT_LOCALE . '.mo', WT_LOCALE)
 				);
 			}
 		}

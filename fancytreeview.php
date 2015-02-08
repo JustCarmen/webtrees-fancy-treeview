@@ -936,7 +936,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 	
 	protected function getStylesheet() {
-		$theme_dir = WT_MODULES_DIR . $this->getName() . '/themes/';
+		$theme_dir = $this->_dir . '/themes/';
 		$stylesheet = '';
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/menu.css')) {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/menu.css', 'screen');
@@ -954,25 +954,31 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 	protected function includeJs($controller, $page) {
 		
-		$controller->addInlineJavascript('
-			var ModuleDir		= "' . WT_MODULES_DIR . $this->getName() . '";
-			var ModuleName		= "' . $this->getName() . '";
-			var ThemeID			= "' . Theme::theme()->themeId() . '"
-			var TextOptionsFor	= "' . I18N::translate('Options for') . '";
-		', BaseController::JS_PRIORITY_HIGH);
+		$controller
+			->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+			->addInlineJavascript('autocomplete();')
+			->addInlineJavascript('
+				var ModuleDir		= "' . $this->_dir . '";
+				var ModuleName		= "' . $this->getName() . '";
+				var ThemeID			= "' . Theme::theme()->themeId() . '"
+				var TextOptionsFor	= "' . I18N::translate('Options for') . '";
+			', BaseController::JS_PRIORITY_HIGH);
 		
-		if ($page === 'admin') {
+		switch ($page) {
+		case 'admin':
 			$controller
-				->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
-				->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/js/admin.js')
-				->addInlineJavascript('autocomplete();');
-		}				
+				->addExternalJavascript($this->_dir . '/js/admin.js');
+			break;
 		
-		if ($page === 'front') {
+		case 'fancytreeview':
+			$controller
+				->addExternalJavascript($this->_dir . '/js/fancytreeview.js');
+			
 			// some files needs an extra js script
-			if (file_exists(WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
-				$controller->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+			if (file_exists(WT_STATIC_URL . $this->_dir . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
+				$controller->addExternalJavascript($this->_dir . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 			}
+			break;
 		}
 	}
 
