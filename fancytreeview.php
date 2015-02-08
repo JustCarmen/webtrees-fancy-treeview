@@ -239,7 +239,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">
 					<div class="blockheader ui-state-default"><span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>';
 		if ($i > 1) {
-			$html .= '<a href="#body" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
+			$html .= '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
 		}
 		$html .= '	</div>';
 
