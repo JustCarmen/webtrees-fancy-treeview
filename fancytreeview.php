@@ -21,12 +21,12 @@ use PDO;
 /**
  * Class FancyTreeView
  */
-class FancyTreeView {
+class FancyTreeView extends fancy_treeview_WT_Module {
 	
 	// Get module options
-	private function options($value = '') {
+	protected function options($value = '') {
 		global $WT_TREE;
-		$FTV_OPTIONS = unserialize(fancy_treeview_WT_Module::getSetting('FTV_OPTIONS'));
+		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 
 		$key = $WT_TREE->getIdFromName(Filter::get('ged'));
 		if (empty($key)) {
@@ -64,7 +64,7 @@ class FancyTreeView {
 	}
 	
 	// Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
-	private function indisArray($surname, $russell, $daitchMokotoff) {
+	protected function indisArray($surname, $russell, $daitchMokotoff) {
 		$sql = "SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
 			" JOIN `##name` ON (i_id = n_id AND i_file = n_file)" .
@@ -113,7 +113,7 @@ class FancyTreeView {
 	}
 
 	// Search within a multiple dimensional array
-	private function searchArray($array, $key, $value) {
+	protected function searchArray($array, $key, $value) {
 		$results = array();
 		if (is_array($array)) {
 			if (isset($array[$key]) && $array[$key] == $value) {
@@ -127,7 +127,7 @@ class FancyTreeView {
 	}
 
 	// Sort the array according to the $key['SORT'] input.
-	private function sortArray($array, $sort_by) {
+	protected function sortArray($array, $sort_by) {
 
 		$array_keys = array('tree', 'surname', 'display_name', 'pid', 'access_level', 'sort');
 
@@ -146,7 +146,7 @@ class FancyTreeView {
 		return array_values($return_array);
 	}
 
-	private function getPageLink($pid) {
+	protected function getPageLink($pid) {
 		global $WT_TREE;
 		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
 
@@ -161,7 +161,7 @@ class FancyTreeView {
 		return $link;
 	}
 
-	private function getCountryList() {
+	protected function getCountryList() {
 		$list = '';
 		$countries = Database::prepare("SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=? AND p_file=?")
 				->execute(array('0', WT_GED_ID))->fetchAll(PDO::FETCH_ASSOC);
@@ -173,7 +173,7 @@ class FancyTreeView {
 	}
 	
 	// Radio buttons
-	private function radioButtons($name, $selected) {
+	protected function radioButtons($name, $selected) {
 		$values = array(
 			0	 => I18N::translate('no'),
 			1	 => I18N::translate('yes'),
@@ -183,7 +183,7 @@ class FancyTreeView {
 	}
 	
 	// Print functions
-	private function printPage() {
+	protected function printPage() {
 		$root = Filter::get('rootid', WT_REGEX_XREF);
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
 		$pids = Filter::get('pids');
@@ -935,7 +935,7 @@ class FancyTreeView {
 		return $pedi;
 	}
 
-	private function getImageData() {
+	protected function getImageData() {
 		Zend_Session::writeClose();
 		header('Content-type: text/html; charset=UTF-8');
 		$xref = Filter::get('mid');
@@ -945,7 +945,7 @@ class FancyTreeView {
 		}
 	}
 	
-	private function getStylesheet() {
+	protected function getStylesheet() {
 		$theme_dir = WT_MODULES_DIR . $this->getName() . '/themes/';
 		$stylesheet = '';
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/menu.css')) {
@@ -962,7 +962,7 @@ class FancyTreeView {
 		return $stylesheet;
 	}
 
-	private function includeJs() {
+	protected function includeJs() {
 		global $controller;
 		// some files needs an extra js script
 		if (file_exists(WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
