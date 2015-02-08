@@ -131,16 +131,6 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/module.php:1645
-#: modules_v3\fancy_treeview/module.php:1658
-#: modules_v3\fancy_treeview/module.php:1671
-#: modules_v3\fancy_treeview/module.php:1688
-#: modules_v3\fancy_treeview/module.php:1802
-#: modules_v3\fancy_treeview/module.php:1849
-msgid "and "
-msgstr ""
-
 #: modules_v3\fancy_treeview/module.php:1478
 msgid "back to top"
 msgstr ""
