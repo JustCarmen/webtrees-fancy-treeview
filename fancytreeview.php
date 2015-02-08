@@ -184,7 +184,6 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	
 	// Print functions
 	protected function printPage() {
-		$root = Filter::get('rootid', WT_REGEX_XREF);
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
 		$pids = Filter::get('pids');
 		$numblocks = $this->options('numblocks');
@@ -197,7 +196,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		if (!isset($gen) && !isset($pids)) {
 			$gen = 1;
 			$numblocks = $numblocks - 1;
-			$generation = array($root);
+			$generation = array($this->rootId());
 			$html .= $this->printGeneration($generation, $gen);
 		} else {
 			$generation = explode('|', $pids);
