@@ -83,11 +83,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				->setPageTitle('Fancy Tree View')
 				->pageHeader();
 
-			if (Filter::postBool('save') && Filter::checkCsrf()) {
-				$this->update_settings($controller);
-				$this->update_options();
-			}
-
 			// add javascript files and scripts
 			$ftv->includeJs($controller, 'admin');
 

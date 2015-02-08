@@ -28,7 +28,6 @@ namespace Fisharebest\Webtrees;
 <!-- *** FORM 1 *** -->
 <form class="form-horizontal" method="post" name="form1">
 	<?php echo Filter::getCsrf(); ?>
-	<input type="hidden" name="save" value="1">
 	<!-- SELECT TREE -->
 	<div class="form-group">
 		<label class="control-label col-sm-1" for="tree">
