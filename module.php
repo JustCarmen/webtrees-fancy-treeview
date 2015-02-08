@@ -32,7 +32,7 @@ try {
 }
 
 class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleMenuInterface {
-	
+
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct();
@@ -43,9 +43,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					new Zend_Translate('gettext', WT_MODULES_DIR . $this->getName() . '/language/' . WT_LOCALE . '.mo', WT_LOCALE)
 				);
 			}
-		}		
+		}
 	}
-	
+
 	/** {@inheritdoc} */
 	public function getTitle() {
 		return /* I18N: Name of the module */ I18N::translate('Fancy Tree View');
@@ -55,15 +55,14 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	public function getDescription() {
 		return /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way');
 	}
-	
+
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		require_once WT_MODULES_DIR . $this->getName() . '/fancytreeview.php';
+		$ftv = new FancyTreeView;
 		switch ($mod_action) {
 		case 'admin_config':
 			global $WT_TREE;
-			
-			$ftv = new FancyTreeView;
 
 			$controller = new PageController;
 			$controller
@@ -537,39 +536,473 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			</div>
 			<?php
 			break;
-			
+
 		case 'admin_search':
-			$this->search();
+			Zend_Session::writeClose();
+			// new settings
+			$surname = Filter::post('surname');
+			if ($surname) {
+				$soundex_std = Filter::postBool('soundex_std');
+				$soundex_dm = Filter::postBool('soundex_dm');
+
+				$indis = $this->indisArray($surname, $soundex_std, $soundex_dm);
+				usort($indis, __NAMESPACE__ . '\\Individual::compareBirthDate');
+
+				if (isset($indis) && count($indis) > 0) {
+					$pid = $indis[0]->getXref();
+				} else {
+					$result['error'] = I18N::translate('Error: The surname you entered doesn’t exist in this tree.');
+				}
+			}
+
+			if (isset($pid)) {
+				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+				if ($this->searchArray($this->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
+					$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
+				} else {
+					$root = Individual::getInstance($pid)->getFullName() . ' (' . Individual::getInstance($pid)->getLifeSpan() . ')';
+					$title = $this->getPageLink($pid);
+
+					$result = array(
+						'access_level'	 => '2', // default access level = show to visitors
+						'pid'			 => $pid,
+						'root'			 => $root,
+						'sort'			 => count($this->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
+						'surname'		 => $this->getSurname($pid),
+						'title'			 => $title,
+						'tree'			 => Filter::getInteger('tree')
+					);
+				}
+			}
+			echo json_encode($result);
 			break;
+
 		case 'admin_add':
-			$this->add();
+			Zend_Session::writeClose();
+			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+			$NEW_FTV_SETTINGS = $FTV_SETTINGS;
+			$NEW_FTV_SETTINGS[] = array(
+				'TREE'			 => Filter::getInteger('tree'),
+				'SURNAME'		 => Filter::post('surname'),
+				'PID'			 => Filter::post('pid'),
+				'ACCESS_LEVEL'	 => Filter::postInteger('access_level'),
+				'SORT'			 => Filter::postInteger('sort'),
+			);
+			$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
+			Log::addConfigurationLog($this->getTitle() . ' config updated');
 			break;
+
 		case 'admin_update':
-			$this->update();
+			Zend_Session::writeClose();
+			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+
+			$new_surname = Filter::postArray('surname');
+			$new_access_level = Filter::postArray('access_level');
+			$new_sort = Filter::postArray('sort');
+
+			foreach ($new_surname as $key => $new_surname) {
+				$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
+			}
+
+			foreach ($new_access_level as $key => $new_access_level) {
+				$FTV_SETTINGS[$key]['ACCESS_LEVEL'] = $new_access_level;
+			}
+
+			foreach ($new_sort as $key => $new_sort) {
+				$FTV_SETTINGS[$key]['SORT'] = $new_sort;
+			}
+
+			$NEW_FTV_SETTINGS = $this->sortArray($FTV_SETTINGS, 'SORT');
+			$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
 			break;
+
 		case 'admin_save':
-			$this->saveOptions();
+			Zend_Session::writeClose();
+			$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+			$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
+			$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+			Log::addConfigurationLog($this->getTitle() . ' config updated');
 			break;
+
 		case 'admin_reset':
-			$this->resetOptions();
-			$this->config();
+			Zend_Session::writeClose();
+			$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+			unset($FTV_OPTIONS[Filter::getInteger('tree')]);
+			$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+			Log::addConfigurationLog($this->getTitle() . ' options set to default');
+			header('Location: ' . $this->getConfigLink());
 			break;
+
 		case 'admin_delete':
-			$this->delete();
-			$this->config();
+			Zend_Session::writeClose();
+			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+			unset($FTV_SETTINGS[Filter::getInteger('key')]);
+			$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
+			Log::addConfigurationLog($this->getTitle() . ' item deleted');
+			header('Location: ' . $this->getConfigLink());
 			break;
+
 		case 'show':
-			$this->show();
+			global $controller;
+			$root = Filter::get('rootid', WT_REGEX_XREF); // the first pid
+			$root_person = $this->getIndividual($root);
+
+			$controller = new PageController;
+			if ($root_person && $root_person->canShowName()) {
+				$controller
+					->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
+					->pageHeader()
+					->addExternalJavascript(WT_STATIC_URL . 'js/autocomplete.js')
+					->addInlineJavascript('
+						var pastefield; function paste_id(value) { pastefield.value=value; } // For the \'find indi\' link
+						// setup numbers for scroll reference
+						function addScrollNumbers() {
+							jQuery(".generation-block:visible").each(function(){
+								var gen = jQuery(this).data("gen");
+								jQuery(this).find("a.scroll").each(function(){
+									if(jQuery(this).text() == "" || jQuery(this).hasClass("add_num")) {
+										var id = jQuery(this).attr("href");
+										var fam_id = jQuery(id);
+										var fam_id_index = fam_id.index() + 1;
+										var gen_id_index = fam_id.parents(".generation-block").data("gen");
+										if(fam_id.length > 0) {
+											jQuery(this).text("' . I18N::translate('follow') . ' " + gen_id_index + "." + fam_id_index).removeClass("add_num");
+										}
+										else { // fam to follow is in a generation block after the last hidden block.
+											jQuery(this).text("' . I18N::translate('follow') . '").addClass("add_num");
+										}
+									}
+								});
+							});
+							if (jQuery(".generation-block.hidden").length > 0) { // there are next generations so prepare the links
+								jQuery(".generation-block.hidden").prev().find("a.scroll").not(".header-link").addClass("link_next").removeClass("scroll");
+							}
+						}
+
+						// remove button if there are no more generations to catch
+						function btnRemove() {
+							if (jQuery(".generation-block.hidden").length == 0) { // if there is no hidden block there is no next generation.
+								jQuery("#btn_next").remove();
+							}
+						}
+
+						// set style dynamically on parents blocks with an image
+						function setImageBlock() {
+							jQuery(".parents").each(function(){
+								if(jQuery(this).find(".gallery").length > 0) {
+									var height = jQuery(this).find(".gallery img").height() + 10 + "px";
+									jQuery(this).css({"min-height" : height});
+								}
+							});
+						}
+
+						// Hide last generation block (only needed in the DOM for scroll reference. Must be set before calling addScrollNumbers function.)
+						var numBlocks = ' . $this->options('numblocks') . ';
+						var lastBlock = jQuery(".generation-block:last");
+						if(numBlocks > 0 && lastBlock.data("gen") > numBlocks) {
+							lastBlock.addClass("hidden").hide();
+						}
+
+						// add scroll numbers to visible generation blocks when page is loaded
+						addScrollNumbers();
+
+						// Remove button if there are no more generations to catch
+						btnRemove();
+
+						// Set css class on parents blocks with an image
+						setImageBlock();
+
+						// remove the empty hyphen on childrens lifespan if death date is unknown.
+						jQuery("li.child .lifespan").html(function(index, html){
+							// this does not work without &nbsp;
+							return html.replace("–<span title=\"&nbsp;\"></span>", "");
+						});
+
+						// prevent duplicate id\'s
+						jQuery("li.family[id]").each(function(){
+							var family = jQuery("[id="+this.id+"]");
+							if(family.length>1){
+								i = 1;
+								family.each(function(){
+									famID = jQuery(this).attr("id");
+									anchor = jQuery("#fancy_treeview a.scroll[href$="+this.id+"]:first");
+									anchor.attr("href", "#" + famID + "_" + i);
+									jQuery(this).attr("id", famID + "_" + i);
+									i++;
+								});
+							}
+						});
+
+						// scroll to anchors
+						jQuery("#fancy_treeview-page").on("click", ".scroll", function(event){
+							var id = jQuery(this).attr("href");
+							if(jQuery(id).is(":hidden") || jQuery(id).length === 0) {
+								jQuery(this).addClass("link_next").trigger("click");
+								return false;
+							}
+							var offset = 60;
+							var target = jQuery(id).offset().top - offset;
+							jQuery("html, body").animate({scrollTop:target}, 1000);
+							event.preventDefault();
+						});
+
+						// Print extra information about the non-married spouse (the father/mother of the children) in a tooltip
+						jQuery(".tooltip").each(function(){
+							var text = jQuery(this).next(".tooltip-text").html();
+							jQuery(this).tooltip({
+							   items: "[title]",
+							   content: function() {
+								 return text;
+							   }
+							});
+						});
+
+						//button or link to retrieve next generations
+						jQuery("#fancy_treeview-page").on("click", "#btn_next, .link_next", function(event){
+							if(jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
+								var id = jQuery(this).attr("href");
+								scroll = true
+							}
+							jQuery(".generation-block.hidden").remove(); // remove the last hidden block to retrieve the correct data from the previous last block
+							var lastBlock = jQuery(".generation-block:last");
+							var pids = lastBlock.data("pids");
+							var gen  = lastBlock.data("gen");
+							var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=show&rootid=' . $root . '&gen=" + gen + "&pids=" + pids;
+							lastBlock.find("a.link_next").addClass("scroll").removeClass("link_next");
+							lastBlock.after("<div class=\"loading-image\">");
+							jQuery("#btn_next").hide();
+							jQuery.get(url,
+								function(data){
+
+									var data = jQuery(data).find(".generation-block");
+									jQuery(lastBlock).after(data);
+
+									var count = data.length;
+									if(count == ' . $this->options('numblocks') . ' + 1) {
+										jQuery(".generation-block:last").addClass("hidden").hide(); // hidden block must be set before calling addScrollNumbers function.
+									}
+
+									// scroll
+									addScrollNumbers();
+									if (scroll == true) {
+										var offset = 60;
+										var target = jQuery(id).offset().top - offset;
+										jQuery("html, body").animate({scrollTop:target}, 1000);
+									}
+
+									jQuery(".loading-image").remove();
+									jQuery("#btn_next").show();
+
+									// check if button has to be removed
+									btnRemove();
+
+									// check for parents blocks with images
+									setImageBlock();
+								}
+							);
+						});
+					');
+
+				if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+					$controller->addInlineJavascript('
+							// convert page to pdf
+							jQuery("#pdf").click(function(e){
+								if (jQuery("#btn_next").length > 0) {
+									jQuery("#dialog-confirm").dialog({
+										resizable: false,
+										width: 300,
+										modal: true,
+										buttons : {
+											"' . I18N::translate('OK') . '" : function() {
+												getPDF();
+												jQuery(this).dialog("close");
+											},
+											"' . I18N::translate('Cancel') . '" : function() {
+												jQuery(this).dialog("close");
+											}
+										}
+									});
+								}
+								else {
+									getPDF();
+								}
+							});
+
+							function getPDF() {
+								// get image source for default webtrees thumbs
+								if(jQuery(".ftv-thumb").length == 0) {
+									function qstring(key, url) {
+										KeysValues = url.split(/[\?&]+/);
+										for (i = 0; i < KeysValues.length; i++) {
+											KeyValue= KeysValues[i].split("=");
+											if (KeyValue[0] == key) {
+												return KeyValue[1];
+											}
+										}
+									}
+									jQuery("a.gallery img").each(function(){
+										var obj = jQuery(this);
+										var src = obj.attr("src");
+										var mid = qstring("mid", src);
+										jQuery.ajax({
+											type: "GET",
+											url: "module.php?mod=' . $this->getName() . '&mod_action=image_data&mid=" + mid,
+											async: false,
+											success: function(data) {
+												obj.addClass("wt-thumb").attr("src", data);
+											}
+										});
+									});
+								}
+
+								// clone the content now
+								var content = jQuery("#content").clone();
+
+								//put image back behind the mediafirewall
+								jQuery(".wt-thumb").each(function(){
+									jQuery(this).attr("src", jQuery(this).parent().data("obje-url") + "&thumb=1");
+								});
+
+								//dompdf does not support ordered list, so we make our own
+								jQuery(".generation-block", content).each(function(index) {
+									var main = (index+1);
+									jQuery(this).find(".generation").each(function(){
+										jQuery(this).find("li.family").each(function(index){
+											var i = (index+1)
+											jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");
+											jQuery(this).find("li.child").each(function(index) {
+												jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");
+											});
+										});
+									});
+								});
+
+								// remove or unwrap all elements we do not need in pdf display
+								jQuery("#pdf, form, #btn_next, #error, .header-link, .hidden, .tooltip-text", content).remove();
+								jQuery(".generation.private", content).parents(".generation-block").remove();
+								jQuery("a, span.SURN, span.date", content).contents().unwrap();
+								jQuery("a", content).remove() //left-overs
+
+								// Turn family blocks into a table for better display in pdf
+								jQuery("li.family", content).each(function(){
+									var obj = jQuery(this);
+									obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
+									obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
+									obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
+								});
+
+								var newContent = content.html();
+
+								jQuery.ajax({
+									type: "POST",
+									url: "module.php?mod=' . $this->getName() . '&mod_action=pdf_data",
+									data: { "pdfContent": newContent },
+									csrf: WT_CSRF_TOKEN,
+									success: function() {
+										window.location.href = "module.php?mod=' . $this->getName() . '&mod_action=show_pdf&rootid=' . Filter::get('rootid') . '&title=' . urlencode(strip_tags($controller->getPageTitle())) . '#page=1";
+									}
+								});
+							}
+						');
+				}
+
+				if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+					$controller->addInlineJavascript('
+							jQuery("#new_rootid").autocomplete({
+								source: "autocomplete.php?field=INDI",
+								html: true
+							});
+
+							// submit form to change root id
+							jQuery( "form#change_root" ).submit(function(e) {
+								e.preventDefault();
+								var new_rootid = jQuery("form #new_rootid").val();
+								var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=show&rootid=" + new_rootid;
+								jQuery.ajax({
+									url: url,
+									csrf: WT_CSRF_TOKEN,
+									success: function() {
+										window.location = url;
+									},
+									statusCode: {
+										404: function() {
+											var msg = "' . I18N::translate('This individual does not exist or you do not have permission to view it.') . '";
+											jQuery("#error").text(msg).addClass("ui-state-error").show();
+											setTimeout(function() {
+												jQuery("#error").fadeOut("slow");
+											}, 3000);
+											jQuery("form #new_rootid")
+												.val("")
+												.focus();
+										}
+									}
+								});
+							});
+						');
+				}
+
+				// add theme js
+				$html = $this->includeJs();
+
+				// Start page content
+				$html .= '
+						<div id="fancy_treeview-page">
+							<div id="page-header"><h2>' . $controller->getPageTitle() . '</h2>';
+				if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+					$html .= '
+										<div id="dialog-confirm" title="' . I18N::translate('Generate PDF') . '" style="display:none">
+											<p>' . I18N::translate('The pdf contains only visible generation blocks.') . '</p>
+										</div>
+										<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
+				}
+				$html .= '</div>
+					<div id="page-body">';
+				if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+					$html .= '
+								<form id="change_root">
+									<label class="label">' . I18N::translate('Change root person') . '</label>
+									<input type="text" name="new_rootid" id="new_rootid" size="10" maxlength="20" placeholder="' . I18N::translate('ID') . '"/>' .
+						print_findindi_link('new_rootid') . '
+									<input type="submit" id="btn_go" value="' . I18N::translate('Go') . '" />
+								</form>
+							<div id="error"></div>';
+				}
+				$html .= '
+								<ol id="fancy_treeview">' . $this->printPage() . '</ol>
+								<div id="btn_next"><input type="button" name="next" value="' . I18N::translate('next') . '"/></div>
+							</div>
+						</div>';
+
+				// output
+				ob_start();
+				$html .= ob_get_clean();
+				echo $html;
+			} else {
+				header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+				$controller->pageHeader();
+				echo '<p class="ui-state-error">', I18N::translate('This individual does not exist or you do not have permission to view it.'), '</p>';
+				exit;
+			}
 			break;
+
 		case 'image_data':
-			$this->getImageData();
+			Zend_Session::writeClose();
+			header('Content-type: text/html; charset=UTF-8');
+			$xref = Filter::get('mid');
+			$mediaobject = Media::getInstance($xref);
+			if ($mediaobject) {
+				echo $mediaobject->getServerFilename();
+			}
 			break;
+
 		case 'pdf_data':
 			include('pdf/data.php');
 			break;
+
 		case 'show_pdf':
 			include('pdf/pdf.php');
 			break;
+
 		default:
 			header('HTTP/1.0 404 Not Found');
 		}
@@ -790,109 +1223,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		');
 	}
 
-	private function search() {
-		Zend_Session::writeClose();
-		// new settings
-		$surname = Filter::post('surname');
-		if ($surname) {
-			$soundex_std = Filter::postBool('soundex_std');
-			$soundex_dm = Filter::postBool('soundex_dm');
-
-			$indis = $this->indisArray($surname, $soundex_std, $soundex_dm);
-			usort($indis, __NAMESPACE__ . '\\Individual::compareBirthDate');
-
-			if (isset($indis) && count($indis) > 0) {
-				$pid = $indis[0]->getXref();
-			} else {
-				$result['error'] = I18N::translate('Error: The surname you entered doesn’t exist in this tree.');
-			}
-		}
-
-		if (isset($pid)) {
-			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-			if ($this->searchArray($this->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
-				$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
-			} else {
-				$root = Individual::getInstance($pid)->getFullName() . ' (' . Individual::getInstance($pid)->getLifeSpan() . ')';
-				$title = $this->getPageLink($pid);
-
-				$result = array(
-					'access_level'	 => '2', // default access level = show to visitors
-					'pid'			 => $pid,
-					'root'			 => $root,
-					'sort'			 => count($this->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
-					'surname'		 => $this->getSurname($pid),
-					'title'			 => $title,
-					'tree'			 => Filter::getInteger('tree')
-				);
-			}
-		}
-		echo json_encode($result);
-	}
-
-	private function add() {
-		Zend_Session::writeClose();
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-		$NEW_FTV_SETTINGS = $FTV_SETTINGS;
-		$NEW_FTV_SETTINGS[] = array(
-			'TREE'			 => Filter::getInteger('tree'),
-			'SURNAME'		 => Filter::post('surname'),
-			'PID'			 => Filter::post('pid'),
-			'ACCESS_LEVEL'	 => Filter::postInteger('access_level'),
-			'SORT'			 => Filter::postInteger('sort'),
-		);
-		$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
-		Log::addConfigurationLog($this->getTitle() . ' config updated');
-	}
-
-	Private function update() {
-		Zend_Session::writeClose();
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-		$new_surname = Filter::postArray('surname');
-		$new_access_level = Filter::postArray('access_level');
-		$new_sort = Filter::postArray('sort');
-
-		foreach ($new_surname as $key => $new_surname) {
-			$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
-		}
-
-		foreach ($new_access_level as $key => $new_access_level) {
-			$FTV_SETTINGS[$key]['ACCESS_LEVEL'] = $new_access_level;
-		}
-
-		foreach ($new_sort as $key => $new_sort) {
-			$FTV_SETTINGS[$key]['SORT'] = $new_sort;
-		}
-
-		$NEW_FTV_SETTINGS = $this->sortArray($FTV_SETTINGS, 'SORT');
-		$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
-	}
-
-	private function saveOptions() {
-		Zend_Session::writeClose();
-		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-		$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
-		$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
-		Log::addConfigurationLog($this->getTitle() . ' config updated');
-	}
-
-	private function resetOptions() {
-		Zend_Session::writeClose();
-		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-		unset($FTV_OPTIONS[Filter::getInteger('tree')]);
-		$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
-		Log::addConfigurationLog($this->getTitle() . ' options set to default');
-	}
-
-	private function delete() {
-		Zend_Session::writeClose();
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-		unset($FTV_SETTINGS[Filter::getInteger('key')]);
-		$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
-		Log::addConfigurationLog($this->getTitle() . ' item deleted');
-	}
-
 	private function message($id, $type, $message = '') {
 		return
 			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible" style="display: none">' .
@@ -903,357 +1233,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			'</div>';
 	}
 
-	// Actions from the configuration page
-	private function config() {
-		
-	}
-
-	// ************************************************* START OF FRONT PAGE ********************************* //
-	// Show
-	private function show() {
-		global $controller;
-		$root = Filter::get('rootid', WT_REGEX_XREF); // the first pid
-		$root_person = $this->getIndividual($root);
-
-		$controller = new PageController;
-		if ($root_person && $root_person->canShowName()) {
-			$controller
-				->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
-				->pageHeader()
-				->addExternalJavascript(WT_STATIC_URL . 'js/autocomplete.js')
-				->addInlineJavascript('
-					var pastefield; function paste_id(value) { pastefield.value=value; } // For the \'find indi\' link
-					// setup numbers for scroll reference
-					function addScrollNumbers() {
-						jQuery(".generation-block:visible").each(function(){
-							var gen = jQuery(this).data("gen");
-							jQuery(this).find("a.scroll").each(function(){
-								if(jQuery(this).text() == "" || jQuery(this).hasClass("add_num")) {
-									var id = jQuery(this).attr("href");
-									var fam_id = jQuery(id);
-									var fam_id_index = fam_id.index() + 1;
-									var gen_id_index = fam_id.parents(".generation-block").data("gen");
-									if(fam_id.length > 0) {
-										jQuery(this).text("' . I18N::translate('follow') . ' " + gen_id_index + "." + fam_id_index).removeClass("add_num");
-									}
-									else { // fam to follow is in a generation block after the last hidden block.
-										jQuery(this).text("' . I18N::translate('follow') . '").addClass("add_num");
-									}
-								}
-							});
-						});
-						if (jQuery(".generation-block.hidden").length > 0) { // there are next generations so prepare the links
-							jQuery(".generation-block.hidden").prev().find("a.scroll").not(".header-link").addClass("link_next").removeClass("scroll");
-						}
-					}
-
-					// remove button if there are no more generations to catch
-					function btnRemove() {
-						if (jQuery(".generation-block.hidden").length == 0) { // if there is no hidden block there is no next generation.
-							jQuery("#btn_next").remove();
-						}
-					}
-
-					// set style dynamically on parents blocks with an image
-					function setImageBlock() {
-						jQuery(".parents").each(function(){
-							if(jQuery(this).find(".gallery").length > 0) {
-								var height = jQuery(this).find(".gallery img").height() + 10 + "px";
-								jQuery(this).css({"min-height" : height});
-							}
-						});
-					}
-
-					// Hide last generation block (only needed in the DOM for scroll reference. Must be set before calling addScrollNumbers function.)
-					var numBlocks = ' . $this->options('numblocks') . ';
-					var lastBlock = jQuery(".generation-block:last");
-					if(numBlocks > 0 && lastBlock.data("gen") > numBlocks) {
-						lastBlock.addClass("hidden").hide();
-					}
-
-					// add scroll numbers to visible generation blocks when page is loaded
-					addScrollNumbers();
-
-					// Remove button if there are no more generations to catch
-					btnRemove();
-
-					// Set css class on parents blocks with an image
-					setImageBlock();
-
-					// remove the empty hyphen on childrens lifespan if death date is unknown.
-					jQuery("li.child .lifespan").html(function(index, html){
-					    // this does not work without &nbsp;
-						return html.replace("–<span title=\"&nbsp;\"></span>", "");
-					});
-
-					// prevent duplicate id\'s
-					jQuery("li.family[id]").each(function(){
-						var family = jQuery("[id="+this.id+"]");
-						if(family.length>1){
-							i = 1;
-							family.each(function(){
-							 	famID = jQuery(this).attr("id");
-							  	anchor = jQuery("#fancy_treeview a.scroll[href$="+this.id+"]:first");
-							  	anchor.attr("href", "#" + famID + "_" + i);
-							  	jQuery(this).attr("id", famID + "_" + i);
-							 	i++;
-							});
-						}
-					});
-
-					// scroll to anchors
-					jQuery("#fancy_treeview-page").on("click", ".scroll", function(event){
-						var id = jQuery(this).attr("href");
-						if(jQuery(id).is(":hidden") || jQuery(id).length === 0) {
-							jQuery(this).addClass("link_next").trigger("click");
-							return false;
-						}
-						var offset = 60;
-						var target = jQuery(id).offset().top - offset;
-						jQuery("html, body").animate({scrollTop:target}, 1000);
-						event.preventDefault();
-					});
-
-					// Print extra information about the non-married spouse (the father/mother of the children) in a tooltip
-					jQuery(".tooltip").each(function(){
-						var text = jQuery(this).next(".tooltip-text").html();
-						jQuery(this).tooltip({
-						   items: "[title]",
-						   content: function() {
-							 return text;
-						   }
-						});
-					});
-
-					//button or link to retrieve next generations
-					jQuery("#fancy_treeview-page").on("click", "#btn_next, .link_next", function(event){
-						if(jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
-							var id = jQuery(this).attr("href");
-							scroll = true
-						}
-						jQuery(".generation-block.hidden").remove(); // remove the last hidden block to retrieve the correct data from the previous last block
-						var lastBlock = jQuery(".generation-block:last");
-						var pids = lastBlock.data("pids");
-						var gen  = lastBlock.data("gen");
-						var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=show&rootid=' . $root . '&gen=" + gen + "&pids=" + pids;
-						lastBlock.find("a.link_next").addClass("scroll").removeClass("link_next");
-						lastBlock.after("<div class=\"loading-image\">");
-						jQuery("#btn_next").hide();
-						jQuery.get(url,
-							function(data){
-
-								var data = jQuery(data).find(".generation-block");
-								jQuery(lastBlock).after(data);
-
-								var count = data.length;
-								if(count == ' . $this->options('numblocks') . ' + 1) {
-									jQuery(".generation-block:last").addClass("hidden").hide(); // hidden block must be set before calling addScrollNumbers function.
-								}
-
-								// scroll
-								addScrollNumbers();
-								if (scroll == true) {
-									var offset = 60;
-									var target = jQuery(id).offset().top - offset;
-									jQuery("html, body").animate({scrollTop:target}, 1000);
-								}
-
-								jQuery(".loading-image").remove();
-								jQuery("#btn_next").show();
-
-								// check if button has to be removed
-								btnRemove();
-
-								// check for parents blocks with images
-								setImageBlock();
-							}
-						);
-					});
-				');
-
-			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
-				$controller->addInlineJavascript('
-						// convert page to pdf
-						jQuery("#pdf").click(function(e){
-							if (jQuery("#btn_next").length > 0) {
-								jQuery("#dialog-confirm").dialog({
-									resizable: false,
-									width: 300,
-						  			modal: true,
-									buttons : {
-										"' . I18N::translate('OK') . '" : function() {
-											getPDF();
-											jQuery(this).dialog("close");
-										},
-										"' . I18N::translate('Cancel') . '" : function() {
-											jQuery(this).dialog("close");
-										}
-									}
-								});
-							}
-							else {
-								getPDF();
-							}
-						});
-
-						function getPDF() {
-							// get image source for default webtrees thumbs
-							if(jQuery(".ftv-thumb").length == 0) {
-								function qstring(key, url) {
-									KeysValues = url.split(/[\?&]+/);
-									for (i = 0; i < KeysValues.length; i++) {
-										KeyValue= KeysValues[i].split("=");
-										if (KeyValue[0] == key) {
-											return KeyValue[1];
-										}
-									}
-								}
-								jQuery("a.gallery img").each(function(){
-									var obj = jQuery(this);
-									var src = obj.attr("src");
-									var mid = qstring("mid", src);
-									jQuery.ajax({
-										type: "GET",
-										url: "module.php?mod=' . $this->getName() . '&mod_action=image_data&mid=" + mid,
-										async: false,
-										success: function(data) {
-											obj.addClass("wt-thumb").attr("src", data);
-										}
-									});
-								});
-							}
-
-							// clone the content now
-							var content = jQuery("#content").clone();
-
-							//put image back behind the mediafirewall
-							jQuery(".wt-thumb").each(function(){
-								jQuery(this).attr("src", jQuery(this).parent().data("obje-url") + "&thumb=1");
-							});
-
-							//dompdf does not support ordered list, so we make our own
-							jQuery(".generation-block", content).each(function(index) {
-								var main = (index+1);
-								jQuery(this).find(".generation").each(function(){
-									jQuery(this).find("li.family").each(function(index){
-										var i = (index+1)
-										jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");
-										jQuery(this).find("li.child").each(function(index) {
-											jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");
-										});
-									});
-								});
-							});
-
-							// remove or unwrap all elements we do not need in pdf display
-							jQuery("#pdf, form, #btn_next, #error, .header-link, .hidden, .tooltip-text", content).remove();
-							jQuery(".generation.private", content).parents(".generation-block").remove();
-							jQuery("a, span.SURN, span.date", content).contents().unwrap();
-							jQuery("a", content).remove() //left-overs
-
-							// Turn family blocks into a table for better display in pdf
-							jQuery("li.family", content).each(function(){
-								var obj = jQuery(this);
-								obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
-								obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
-								obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
-							});
-
-							var newContent = content.html();
-
-							jQuery.ajax({
-								type: "POST",
-								url: "module.php?mod=' . $this->getName() . '&mod_action=pdf_data",
-								data: { "pdfContent": newContent },
-								csrf: WT_CSRF_TOKEN,
-								success: function() {
-									window.location.href = "module.php?mod=' . $this->getName() . '&mod_action=show_pdf&rootid=' . Filter::get('rootid') . '&title=' . urlencode(strip_tags($controller->getPageTitle())) . '#page=1";
-								}
-							});
-						}
-					');
-			}
-
-			if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
-				$controller->addInlineJavascript('
-						jQuery("#new_rootid").autocomplete({
-							source: "autocomplete.php?field=INDI",
-							html: true
-						});
-
-						// submit form to change root id
-						jQuery( "form#change_root" ).submit(function(e) {
-							e.preventDefault();
-							var new_rootid = jQuery("form #new_rootid").val();
-							var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=show&rootid=" + new_rootid;
-							jQuery.ajax({
-								url: url,
-								csrf: WT_CSRF_TOKEN,
-								success: function() {
-									window.location = url;
-								},
-								statusCode: {
-									404: function() {
-										var msg = "' . I18N::translate('This individual does not exist or you do not have permission to view it.') . '";
-										jQuery("#error").text(msg).addClass("ui-state-error").show();
-										setTimeout(function() {
-											jQuery("#error").fadeOut("slow");
-										}, 3000);
-										jQuery("form #new_rootid")
-											.val("")
-											.focus();
-									}
-								}
-							});
-						});
-					');
-			}
-
-			// add theme js
-			$html = $this->includeJs();
-
-			// Start page content
-			$html .= '
-					<div id="fancy_treeview-page">
-						<div id="page-header"><h2>' . $controller->getPageTitle() . '</h2>';
-			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
-				$html .= '
-									<div id="dialog-confirm" title="' . I18N::translate('Generate PDF') . '" style="display:none">
-										<p>' . I18N::translate('The pdf contains only visible generation blocks.') . '</p>
-									</div>
-									<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
-			}
-			$html .= '</div>
-				<div id="page-body">';
-			if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
-				$html .= '
-							<form id="change_root">
-								<label class="label">' . I18N::translate('Change root person') . '</label>
-								<input type="text" name="new_rootid" id="new_rootid" size="10" maxlength="20" placeholder="' . I18N::translate('ID') . '"/>' .
-					print_findindi_link('new_rootid') . '
-								<input type="submit" id="btn_go" value="' . I18N::translate('Go') . '" />
-							</form>
-						<div id="error"></div>';
-			}
-			$html .= '
-							<ol id="fancy_treeview">' . $this->printPage() . '</ol>
-							<div id="btn_next"><input type="button" name="next" value="' . I18N::translate('next') . '"/></div>
-						</div>
-					</div>';
-
-			// output
-			ob_start();
-			$html .= ob_get_clean();
-			echo $html;
-		} else {
-			header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-			$controller->pageHeader();
-			echo '<p class="ui-state-error">', I18N::translate('This individual does not exist or you do not have permission to view it.'), '</p>';
-			exit;
-		}
-	}
-
-	// ************************************************* START OF MENU ********************************* //
 	/** {@inheritdoc} */
 	public function defaultMenuOrder() {
 		return 10;
@@ -1308,6 +1287,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				return $menu;
 			}
 		}
-	}	
+	}
 
 }

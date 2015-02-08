@@ -934,16 +934,6 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		}
 		return $pedi;
 	}
-
-	protected function getImageData() {
-		Zend_Session::writeClose();
-		header('Content-type: text/html; charset=UTF-8');
-		$xref = Filter::get('mid');
-		$mediaobject = Media::getInstance($xref);
-		if ($mediaobject) {
-			echo $mediaobject->getServerFilename();
-		}
-	}
 	
 	protected function getStylesheet() {
 		$theme_dir = WT_MODULES_DIR . $this->getName() . '/themes/';
