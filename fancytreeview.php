@@ -1042,4 +1042,16 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		return Filter::get('rootid', WT_REGEX_XREF);
 	}
 	
+	protected function addMessage($id, $type, $message = '', $hidden = false) {		
+		$style = $hidden ? ' style="display:none"' : '';
+		
+		return
+			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
+			'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
+			'<span aria-hidden="true">&times;</span>' .
+			'</button>' .
+			'<span class="message">' . $message . '</span>' .
+			'</div>';
+	}
+	
 }

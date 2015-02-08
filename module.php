@@ -32,19 +32,19 @@ try {
 }
 
 class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleMenuInterface {
-	
+
 	// location of the fancy treeview module files.
 	var $_dir;
 
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->_dir = WT_MODULES_DIR . $this->getName();
-		
+
 		// Load the module class
 		require_once $this->_dir . '/fancytreeview.php';
-		
+
 
 		// Load any local user translations
 		if (is_dir($this->_dir . '/language')) {
@@ -82,7 +82,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				->restrictAccess(Auth::isAdmin())
 				->setPageTitle('Fancy Tree View')
 				->pageHeader();
-				
+
 			if (Filter::postBool('save') && Filter::checkCsrf()) {
 				$this->update_settings($controller);
 				$this->update_options();
@@ -251,7 +251,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 									</table>
 								</form>
 							</div>
-							<?php echo $this->message("error", "danger"); ?>
+							<?php echo $ftv->addMessage("error", "danger", '', true); ?>
 							<div id="fancy-treeview-form" class="form-group">
 								<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)): ?>
 									<form class="form-horizontal" method="post" name="form4">
@@ -378,8 +378,8 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse">
 						<div class="panel-body">
-							<?php echo $this->message('save-options', 'success', I18N::translate('The options for this tree are succesfully saved')); ?>
-							<?php echo $this->message('reset-options', 'success', I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
+							<?php echo $ftv->addMessage('save-options', 'success', I18N::translate('The options for this tree are succesfully saved')); ?>
+							<?php echo $ftv->addMessage('reset-options', 'success', I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
 							<div id="ftv-options-form" class="form-group">
 								<form class="form-horizontal" method="post" name="form5">
 									<!-- USE FULLNAME IN MENU -->
@@ -655,9 +655,10 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 		case 'show':
 			global $controller;
-			$root_person = $ftv->getIndividual($ftv->rootId());
 
 			$controller = new PageController;
+			
+			$root_person = $ftv->getIndividual($ftv->rootId());
 			if ($root_person && $root_person->canShowName()) {
 				$controller
 					->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
@@ -665,45 +666,56 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 				// add javascript files and scripts
 				$ftv->includeJs($controller, 'fancytreeview');
+				?>
 
-				// Start page content
-				$html = '
-						<div id="fancy_treeview-page">
-							<div id="page-header"><h2>' . $controller->getPageTitle() . '</h2>';
-				if ($ftv->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
-					$html .= '
-										<div id="dialog-confirm" title="' . I18N::translate('Generate PDF') . '" style="display:none">
-											<p>' . I18N::translate('The pdf contains only visible generation blocks.') . '</p>
-										</div>
-										<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>';
-				}
-				$html .= '</div>
+				<!-- FANCY TREE VIEW CONTENT -->
+				<div id="fancy_treeview-page">
+					<div id="page-header">
+						<h2><?php echo $controller->getPageTitle(); ?></h2>
+						<?php if ($ftv->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr'): ?>
+						<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
+							<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
+						</div>
+						<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
+						<?php endif; ?>
+					</div>
 					<div id="page-body">';
-				if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
-					$html .= '
-								<form id="change_root">
-									<label class="label">' . I18N::translate('Change root person') . '</label>
-									<input type="text" name="new_rootid" id="new_rootid" size="10" maxlength="20" placeholder="' . I18N::translate('ID') . '"/>' .
-						print_findindi_link('new_rootid') . '
-									<input type="submit" id="btn_go" value="' . I18N::translate('Go') . '" />
-								</form>
-							<div id="error"></div>';
-				}
-				$html .= '
-								<ol id="fancy_treeview">' . $ftv->printPage() . '</ol>
-								<div id="btn_next"><input type="button" name="next" value="' . I18N::translate('next') . '"/></div>
-							</div>
-						</div>';
-
-				// output
-				ob_start();
-				$html .= ob_get_clean();
-				echo $html;
+						<?php if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL): ?>
+						<form id="change_root">
+							<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
+							<input
+								type="text"
+								name="new_rootid"
+								id="new_rootid"
+								size="10"
+								maxlength="20"
+								placeholder="<?php echo I18N::translate('ID'); ?>"
+								>
+							<?php echo print_findindi_link('new_rootid'); ?>
+							<input
+								type="submit"
+								id="btn_go"
+								value="<?php echo I18N::translate('Go'); ?>"
+								>
+						</form>
+						<div id="error"></div>';
+						<?php endif; ?>
+						<ol id="fancy_treeview"><?php echo $ftv->printPage(); ?></ol>
+						<div id="btn_next">
+							<input
+								type="button"
+								name="next"
+								value="<?php echo I18N::translate('next'); ?>"
+								>
+						</div>
+					</div>
+				</div>
+			<?php
 			} else {
-				header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+				http_response_code(404);				
 				$controller->pageHeader();
-				echo '<p class="ui-state-error">', I18N::translate('This individual does not exist or you do not have permission to view it.'), '</p>';
-				exit;
+				echo $ftv->addMessage('alert', 'warning', I18N::translate('This individual does not exist or you do not have permission to view it.'));
+				
 			}
 			break;
 
@@ -733,16 +745,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	/** {@inheritdoc} */
 	public function getConfigLink() {
 		return 'module.php?mod=' . $this->getName() . '&amp;mod_action=admin_config';
-	}
-
-	private function message($id, $type, $message = '') {
-		return
-			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible" style="display: none">' .
-			'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
-			'<span aria-hidden="true">&times;</span>' .
-			'</button>' .
-			'<span class="message">' . $message . '</span>' .
-			'</div>';
 	}
 
 	/** {@inheritdoc} */
