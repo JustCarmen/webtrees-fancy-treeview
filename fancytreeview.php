@@ -815,7 +815,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 
 	// Other functions
-	private function getIndividual($pid) {
+	protected function getIndividual($pid) {
 		$individual = Individual::getInstance($pid);
 		return $individual;
 	}
