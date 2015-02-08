@@ -952,11 +952,27 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		return $stylesheet;
 	}
 
-	protected function includeJs() {
-		global $controller;
-		// some files needs an extra js script
-		if (file_exists(WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
-			$controller->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+	protected function includeJs($controller, $page) {
+		
+		$controller->addInlineJavascript('
+			var ModuleDir		= "' . WT_MODULES_DIR . $this->getName() . '";
+			var ModuleName		= "' . $this->getName() . '";
+			var ThemeID			= "' . Theme::theme()->themeId() . '"
+			var TextOptionsFor	= "' . I18N::translate('Options for') . '";
+		', BaseController::JS_PRIORITY_HIGH);
+		
+		if ($page === 'admin') {
+			$controller
+				->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+				->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/js/admin.js')
+				->addInlineJavascript('autocomplete();');
+		}				
+		
+		if ($page === 'front') {
+			// some files needs an extra js script
+			if (file_exists(WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
+				$controller->addExternalJavascript(WT_MODULES_DIR . $this->getName() . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+			}
 		}
 	}
 
