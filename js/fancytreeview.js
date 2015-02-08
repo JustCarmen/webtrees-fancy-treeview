@@ -15,24 +15,24 @@
  */
 
 // For the 'find indi' link
-var pastefield; 
+var pastefield;
+
 function paste_id(value) {
 	pastefield.value = value;
 }
 
 // setup numbers for scroll reference
 function addScrollNumbers() {
-	jQuery(".generation-block:visible").each(function(){
-		jQuery(this).find("a.scroll").each(function(){
-			if(jQuery(this).text() == "" || jQuery(this).hasClass("add_num")) {
+	jQuery(".generation-block:visible").each(function () {
+		jQuery(this).find("a.scroll").each(function () {
+			if (jQuery(this).text() === "" || jQuery(this).hasClass("add_num")) {
 				var id = jQuery(this).attr("href");
 				var fam_id = jQuery(id);
 				var fam_id_index = fam_id.index() + 1;
 				var gen_id_index = fam_id.parents(".generation-block").data("gen");
-				if(fam_id.length > 0) {
-					jQuery(this).text(TextFollow + gen_id_index + "." + fam_id_index).removeClass("add_num");
-				}
-				else { // fam to follow is in a generation block after the last hidden block.
+				if (fam_id.length > 0) {
+					jQuery(this).text(TextFollow + " " + gen_id_index + "." + fam_id_index).removeClass("add_num");
+				} else { // fam to follow is in a generation block after the last hidden block.
 					jQuery(this).text(TextFollow).addClass("add_num");
 				}
 			}
@@ -43,26 +43,37 @@ function addScrollNumbers() {
 	}
 }
 
-// remove button if there are no more generations to catch
+function scrollToTarget(id){
+	var offset = 60;
+	var target = jQuery(id).offset().top - offset;
+	jQuery("html, body").animate({
+		scrollTop: target
+	}, 1000);
+	return false;
+}
+
+// remove button if there are no more generations to catch (if there is no hidden block there is no next generation)
 function btnRemove() {
-	if (jQuery(".generation-block.hidden").length == 0) { // if there is no hidden block there is no next generation.
+	if (jQuery(".generation-block.hidden").length === 0) {
 		jQuery("#btn_next").remove();
 	}
 }
 
 // set style dynamically on parents blocks with an image
 function setImageBlock() {
-	jQuery(".parents").each(function(){
-		if(jQuery(this).find(".gallery").length > 0) {
+	jQuery(".parents").each(function () {
+		if (jQuery(this).find(".gallery").length > 0) {
 			var height = jQuery(this).find(".gallery img").height() + 10 + "px";
-			jQuery(this).css({"min-height" : height});
+			jQuery(this).css({
+				"min-height": height
+			});
 		}
 	});
 }
 
 // Hide last generation block (only needed in the DOM for scroll reference. Must be set before calling addScrollNumbers function.)
 var lastBlock = jQuery(".generation-block:last");
-if(OptionsNumBlocks > 0 && lastBlock.data("gen") > OptionsNumBlocks) {
+if (OptionsNumBlocks > 0 && lastBlock.data("gen") > OptionsNumBlocks) {
 	lastBlock.addClass("hidden").hide();
 }
 
@@ -76,19 +87,19 @@ btnRemove();
 setImageBlock();
 
 // remove the empty hyphen on childrens lifespan if death date is unknown.
-jQuery("li.child .lifespan").html(function(index, html){
+jQuery("li.child .lifespan").html(function (index, html) {
 	// this does not work without &nbsp;
 	return html.replace("–<span title=\"&nbsp;\"></span>", "");
 });
 
 // prevent duplicate id\'s
-jQuery("li.family[id]").each(function(){
-	var family = jQuery("[id="+this.id+"]");
-	if(family.length>1){
+jQuery("li.family[id]").each(function () {
+	var family = jQuery("[id=" + this.id + "]");
+	if (family.length > 1) {
 		i = 1;
-		family.each(function(){
+		family.each(function () {
 			famID = jQuery(this).attr("id");
-			anchor = jQuery("#fancy_treeview a.scroll[href$="+this.id+"]:first");
+			anchor = jQuery("#fancy_treeview a.scroll[href$=" + this.id + "]:first");
 			anchor.attr("href", "#" + famID + "_" + i);
 			jQuery(this).attr("id", famID + "_" + i);
 			i++;
@@ -97,70 +108,67 @@ jQuery("li.family[id]").each(function(){
 });
 
 // scroll to anchors
-jQuery("#fancy_treeview-page").on("click", ".scroll", function(event){
+jQuery("#fancy_treeview-page").on("click", ".scroll", function (event) {
 	var id = jQuery(this).attr("href");
-	if(jQuery(id).is(":hidden") || jQuery(id).length === 0) {
+	if (jQuery(id).is(":hidden") || jQuery(id).length === 0) {
 		jQuery(this).addClass("link_next").trigger("click");
 		return false;
 	}
-	var offset = 60;
-	var target = jQuery(id).offset().top - offset;
-	jQuery("html, body").animate({scrollTop:target}, 1000);
-	event.preventDefault();
+	scrollToTarget(id);
 });
 
 // Print extra information about the non-married spouse (the father/mother of the children) in a tooltip
-jQuery(".tooltip").each(function(){
+jQuery(".tooltip").each(function () {
 	var text = jQuery(this).next(".tooltip-text").html();
 	jQuery(this).tooltip({
-	   items: "[title]",
-	   content: function() {
-		 return text;
-	   }
+		items: "[title]",
+		content: function () {
+			return text;
+		}
 	});
 });
 
 //button or link to retrieve next generations
-jQuery("#fancy_treeview-page").on("click", "#btn_next, .link_next", function(){
-	if(jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
+jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", function () {
+	if (jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
 		var id = jQuery(this).attr("href");
-		scroll = true
+		scroll = true;
 	}
-	jQuery(".generation-block.hidden").remove(); // remove the last hidden block to retrieve the correct data from the previous last block
+
+	// remove the last hidden block to retrieve the correct data from the previous last block
+	jQuery(".generation-block.hidden").remove();
+
+	var numBlocks = OptionsNumBlocks;
 	var lastBlock = jQuery(".generation-block:last");
 	var pids = lastBlock.data("pids");
-	var gen  = lastBlock.data("gen");
-	var url = jQuery(location).attr("pathname") + "?mod=" + moduleName + "&mod_action=show&rootid=" + RootID + "&gen=" + gen + "&pids=" + pids;
+	var gen = lastBlock.data("gen");
+	var url = jQuery(location).attr("pathname") + "?mod=" + ModuleName + "&mod_action=show&rootid=" + RootID + "&gen=" + gen + "&pids=" + pids;
+
 	lastBlock.find("a.link_next").addClass("scroll").removeClass("link_next");
 	lastBlock.after("<div class=\"loading-image\">");
 	jQuery("#btn_next").hide();
-	jQuery.get(url,
-		function(data){
-			data = jQuery(data).find(".generation-block");
-			jQuery(lastBlock).after(data);
-			
-			// hidden block must be set before calling addScrollNumbers function.
-			var count = data.length;
-			if(count === OptionsNumBlocks + 1) {
-				jQuery(".generation-block:last").addClass("hidden").hide(); 
-			}
 
-			// scroll
-			addScrollNumbers();
-			if (scroll == true) {
-				var offset = 60;
-				var target = jQuery(id).offset().top - offset;
-				jQuery("html, body").animate({scrollTop:target}, 1000);
-			}
-
-			jQuery(".loading-image").remove();
-			jQuery("#btn_next").show();
-
-			// check if button has to be removed
-			btnRemove();
-
-			// check for parents blocks with images
-			setImageBlock();
+	jQuery.get(url, function (data) {
+		var blocks = jQuery(".generation-block", data);
+		jQuery(lastBlock).after(blocks);
+		// hidden block must be set before calling addScrollNumbers function.
+		if (blocks.length === numBlocks + 1) {
+			jQuery(".generation-block:last").addClass("hidden").hide();
 		}
-	);
+
+		// scroll
+		addScrollNumbers();
+		if (scroll === true) {
+			scrollToTarget(id);
+		}
+
+		jQuery(".loading-image").remove();
+		jQuery("#btn_next").show();
+
+		// check if button should be removed
+		btnRemove();
+
+		// check for parents blocks with images
+		setImageBlock();
+	});
 });

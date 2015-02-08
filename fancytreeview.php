@@ -962,7 +962,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
 				var RootID				= "' . $this->rootId() . '";
-				var OptionsNumBlocks	= "' . $this->options('numblocks') . '";
+				var OptionsNumBlocks	= ' . $this->options('numblocks') . ';
 				var TextOptionsFor		= "' . I18N::translate('Options for') . '";
 				var TextFollow			= "' . I18N::translate('follow') . '";
 			', BaseController::JS_PRIORITY_HIGH);
