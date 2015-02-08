@@ -961,10 +961,13 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				var ModuleDir			= "' . $this->module . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
+				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";
 				var RootID				= "' . $this->rootId() . '";
 				var OptionsNumBlocks	= ' . $this->options('numblocks') . ';
 				var TextOptionsFor		= "' . I18N::translate('Options for') . '";
 				var TextFollow			= "' . I18N::translate('follow') . '";
+				var TextOk				= "' . I18N::translate('Ok') . '";
+				var TextCancel			= "' . I18N::translate('Cancel') . '";
 			', BaseController::JS_PRIORITY_HIGH);
 		
 		switch ($page) {

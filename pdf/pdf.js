@@ -15,22 +15,24 @@
  */
 
 // convert page to pdf
-jQuery("#pdf").click(function(e){
+jQuery("#pdf").click(function(){
 	if (jQuery("#btn_next").length > 0) {
-		jQuery("#dialog-confirm").dialog({
+		var $dialog = jQuery("#dialog-confirm").dialog({
 			resizable: false,
 			width: 300,
 			modal: true,
 			buttons : {
-				"' . I18N::translate('OK') . '" : function() {
+				"ok" : function() {
 					getPDF();
 					jQuery(this).dialog("close");
 				},
-				"' . I18N::translate('Cancel') . '" : function() {
+				"cancel" : function() {
 					jQuery(this).dialog("close");
 				}
 			}
 		});
+		jQuery('.ui-dialog-buttonpane button:contains(ok)').html(TextOk);
+		jQuery('.ui-dialog-buttonpane button:contains(cancel)').html(TextCancel);
 	}
 	else {
 		getPDF();
@@ -39,12 +41,12 @@ jQuery("#pdf").click(function(e){
 
 function getPDF() {
 	// get image source for default webtrees thumbs
-	if(jQuery(".ftv-thumb").length == 0) {
+	if(jQuery(".ftv-thumb").length === 0) {
 		function qstring(key, url) {
 			KeysValues = url.split(/[\?&]+/);
 			for (i = 0; i < KeysValues.length; i++) {
 				KeyValue= KeysValues[i].split("=");
-				if (KeyValue[0] == key) {
+				if (KeyValue[0] === key) {
 					return KeyValue[1];
 				}
 			}
@@ -55,7 +57,7 @@ function getPDF() {
 			var mid = qstring("mid", src);
 			jQuery.ajax({
 				type: "GET",
-				url: "module.php?mod=' . $this->getName() . '&mod_action=image_data&mid=" + mid,
+				url: "module.php?mod=" + ModuleName + "&mod_action=image_data&mid=" + mid,
 				async: false,
 				success: function(data) {
 					obj.addClass("wt-thumb").attr("src", data);
@@ -77,7 +79,7 @@ function getPDF() {
 		var main = (index+1);
 		jQuery(this).find(".generation").each(function(){
 			jQuery(this).find("li.family").each(function(index){
-				var i = (index+1)
+				var i = (index+1);
 				jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");
 				jQuery(this).find("li.child").each(function(index) {
 					jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");
@@ -90,7 +92,7 @@ function getPDF() {
 	jQuery("#pdf, form, #btn_next, #error, .header-link, .hidden, .tooltip-text", content).remove();
 	jQuery(".generation.private", content).parents(".generation-block").remove();
 	jQuery("a, span.SURN, span.date", content).contents().unwrap();
-	jQuery("a", content).remove() //left-overs
+	jQuery("a", content).remove(); //left-overs
 
 	// Turn family blocks into a table for better display in pdf
 	jQuery("li.family", content).each(function(){
@@ -104,11 +106,11 @@ function getPDF() {
 
 	jQuery.ajax({
 		type: "POST",
-		url: "module.php?mod=' . $this->getName() . '&mod_action=pdf_data",
+		url: "module.php?mod=" + ModuleName + "&mod_action=pdf_data",
 		data: { "pdfContent": newContent },
 		csrf: WT_CSRF_TOKEN,
 		success: function() {
-			window.location.href = "module.php?mod=' . $this->getName() . '&mod_action=show_pdf&rootid=' . Filter::get('rootid') . '&title=' . urlencode(strip_tags($controller->getPageTitle())) . '#page=1";
+			window.location.href = "module.php?mod=" + ModuleName + "&mod_action=show_pdf&rootid=" + RootID + "&title=" + PageTitle + "#page=1";
 		}
 	});
 }
