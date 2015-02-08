@@ -36,6 +36,10 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct();
+
+		// Load the module class
+		require_once WT_MODULES_DIR . $this->getName() . '/fancytreeview.php';
+
 		// Load any local user translations
 		if (is_dir(WT_MODULES_DIR . $this->getName() . '/language')) {
 			if (file_exists(WT_MODULES_DIR . $this->getName() . '/language/' . WT_LOCALE . '.mo')) {
@@ -44,6 +48,10 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				);
 			}
 		}
+	}
+
+	public function getName() {
+		return 'fancy_treeview';
 	}
 
 	/** {@inheritdoc} */
@@ -58,7 +66,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
-		require_once WT_MODULES_DIR . $this->getName() . '/fancytreeview.php';
 		$ftv = new FancyTreeView;
 		switch ($mod_action) {
 		case 'admin_config':
@@ -545,7 +552,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				$soundex_std = Filter::postBool('soundex_std');
 				$soundex_dm = Filter::postBool('soundex_dm');
 
-				$indis = $this->indisArray($surname, $soundex_std, $soundex_dm);
+				$indis = $ftv->indisArray($surname, $soundex_std, $soundex_dm);
 				usort($indis, __NAMESPACE__ . '\\Individual::compareBirthDate');
 
 				if (isset($indis) && count($indis) > 0) {
@@ -557,18 +564,18 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			if (isset($pid)) {
 				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-				if ($this->searchArray($this->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
+				if ($ftv->searchArray($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
 					$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
 				} else {
 					$root = Individual::getInstance($pid)->getFullName() . ' (' . Individual::getInstance($pid)->getLifeSpan() . ')';
-					$title = $this->getPageLink($pid);
+					$title = $ftv->getPageLink($pid);
 
 					$result = array(
 						'access_level'	 => '2', // default access level = show to visitors
 						'pid'			 => $pid,
 						'root'			 => $root,
-						'sort'			 => count($this->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
-						'surname'		 => $this->getSurname($pid),
+						'sort'			 => count($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
+						'surname'		 => $ftv->getSurname($pid),
 						'title'			 => $title,
 						'tree'			 => Filter::getInteger('tree')
 					);
@@ -612,7 +619,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				$FTV_SETTINGS[$key]['SORT'] = $new_sort;
 			}
 
-			$NEW_FTV_SETTINGS = $this->sortArray($FTV_SETTINGS, 'SORT');
+			$NEW_FTV_SETTINGS = $ftv->sortArray($FTV_SETTINGS, 'SORT');
 			$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
 			break;
 
@@ -645,7 +652,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		case 'show':
 			global $controller;
 			$root = Filter::get('rootid', WT_REGEX_XREF); // the first pid
-			$root_person = $this->getIndividual($root);
+			$root_person = $ftv->getIndividual($root);
 
 			$controller = new PageController;
 			if ($root_person && $root_person->canShowName()) {
@@ -697,7 +704,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 						}
 
 						// Hide last generation block (only needed in the DOM for scroll reference. Must be set before calling addScrollNumbers function.)
-						var numBlocks = ' . $this->options('numblocks') . ';
+						var numBlocks = ' . $ftv->options('numblocks') . ';
 						var lastBlock = jQuery(".generation-block:last");
 						if(numBlocks > 0 && lastBlock.data("gen") > numBlocks) {
 							lastBlock.addClass("hidden").hide();
@@ -778,7 +785,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 									jQuery(lastBlock).after(data);
 
 									var count = data.length;
-									if(count == ' . $this->options('numblocks') . ' + 1) {
+									if(count == ' . $ftv->options('numblocks') . ' + 1) {
 										jQuery(".generation-block:last").addClass("hidden").hide(); // hidden block must be set before calling addScrollNumbers function.
 									}
 
@@ -803,7 +810,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 						});
 					');
 
-				if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+				if ($ftv->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
 					$controller->addInlineJavascript('
 							// convert page to pdf
 							jQuery("#pdf").click(function(e){
@@ -906,7 +913,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 						');
 				}
 
-				if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+				if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
 					$controller->addInlineJavascript('
 							jQuery("#new_rootid").autocomplete({
 								source: "autocomplete.php?field=INDI",
@@ -942,13 +949,13 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				}
 
 				// add theme js
-				$html = $this->includeJs();
+				$html = $ftv->includeJs();
 
 				// Start page content
 				$html .= '
 						<div id="fancy_treeview-page">
 							<div id="page-header"><h2>' . $controller->getPageTitle() . '</h2>';
-				if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+				if ($ftv->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
 					$html .= '
 										<div id="dialog-confirm" title="' . I18N::translate('Generate PDF') . '" style="display:none">
 											<p>' . I18N::translate('The pdf contains only visible generation blocks.') . '</p>
@@ -957,7 +964,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				}
 				$html .= '</div>
 					<div id="page-body">';
-				if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+				if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
 					$html .= '
 								<form id="change_root">
 									<label class="label">' . I18N::translate('Change root person') . '</label>
@@ -968,7 +975,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 							<div id="error"></div>';
 				}
 				$html .= '
-								<ol id="fancy_treeview">' . $this->printPage() . '</ol>
+								<ol id="fancy_treeview">' . $ftv->printPage() . '</ol>
 								<div id="btn_next"><input type="button" name="next" value="' . I18N::translate('next') . '"/></div>
 							</div>
 						</div>';
@@ -1242,6 +1249,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	public function getMenu() {
 		global $controller, $SEARCH_SPIDER;
 
+		$ftv = new FancyTreeView;
 		static $menu;
 
 		// Function has already run
@@ -1264,14 +1272,14 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			if (!empty($FTV_GED_SETTINGS)) {
 				// load the module stylesheets
 				if (Theme::theme()->themeId() !== '_administration') {
-					echo $this->getStylesheet();
+					echo $ftv->getStylesheet();
 				}
 
 				$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 					if (Individual::getInstance($FTV_ITEM['PID'])) {
-						if ($this->options('use_fullname') == true) {
+						if ($ftv->options('use_fullname') == true) {
 							$submenu = new Menu(I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'])->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
 						} else {
 							$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
