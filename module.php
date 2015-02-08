@@ -679,7 +679,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 						<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
 						<?php endif; ?>
 					</div>
-					<div id="page-body">';
+					<div id="page-body">
 						<?php if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL): ?>
 						<form id="change_root">
 							<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
@@ -698,7 +698,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 								value="<?php echo I18N::translate('Go'); ?>"
 								>
 						</form>
-						<div id="error"></div>';
+						<div id="error"></div>
 						<?php endif; ?>
 						<ol id="fancy_treeview"><?php echo $ftv->printPage(); ?></ol>
 						<div id="btn_next">
