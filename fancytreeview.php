@@ -936,7 +936,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 	
 	protected function getStylesheet() {
-		$theme_dir = $this->_dir . '/themes/';
+		$theme_dir = $this->module . '/themes/';
 		$stylesheet = '';
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/menu.css')) {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/menu.css', 'screen');
@@ -958,7 +958,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 			->addInlineJavascript('autocomplete();')
 			->addInlineJavascript('
-				var ModuleDir			= "' . $this->_dir . '";
+				var ModuleDir			= "' . $this->module . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
 				var RootID				= "' . $this->rootId() . '";
@@ -969,19 +969,19 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		
 		switch ($page) {
 		case 'admin':
-			$controller->addExternalJavascript($this->_dir . '/js/admin.js');
+			$controller->addExternalJavascript($this->module . '/js/admin.js');
 			break;
 		
 		case 'fancytreeview':
-			$controller->addExternalJavascript($this->_dir . '/js/fancytreeview.js');
+			$controller->addExternalJavascript($this->module . '/js/fancytreeview.js');
 			
 			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
-				$controller->addExternalJavascript($this->_dir . '/pdf/pdf.js');
+				$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
 			}
 			
 			// some files needs an extra js script
-			if (file_exists(WT_STATIC_URL . $this->_dir . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
-				$controller->addExternalJavascript($this->_dir . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+			if (file_exists(WT_STATIC_URL . $this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
+				$controller->addExternalJavascript($this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 			}
 			
 			if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
