@@ -102,7 +102,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 	
 	// Get surname from pid
-	private function getSurname($pid) {
+	protected function getSurname($pid) {
 		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :ged_id AND n_id = :pid AND n_type = 'NAME'";
 		$args = array(
 			'ged_id' => WT_GED_ID,
