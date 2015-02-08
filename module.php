@@ -19,7 +19,6 @@ namespace Fisharebest\Webtrees;
 
 use PDO;
 use PDOException;
-use Rhumsaa\Uuid\Uuid;
 use Zend_Session;
 use Zend_Translate;
 
