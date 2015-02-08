@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
-"POT-Creation-Date: 2015-02-08 11:28+0100\n"
+"POT-Creation-Date: 2015-02-08 12:20+0100\n"
 "PO-Revision-Date: 2014-12-21 23:14+0100\n"
 "Last-Translator: Matilde Triguis <archivista.nuestroarbol@gmail.com>\n"
 "Language-Team: \n"
@@ -15,6 +15,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: modules_v3\\fancy_treeview\n"
+
+#. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
+#: modules_v3\fancy_treeview/module.php:1993
+msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
+msgid " "
+msgstr " "
 
 #. I18N: Description of the module
 #: modules_v3\fancy_treeview/module.php:56

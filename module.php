@@ -1990,7 +1990,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	private function printDate($date) {
 		if ($date->qual1 || $date->qual2) {
-			return ' ' . $date->Display();
+			return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.*/ I18N::translate_c('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();;
 		}
 		if ($date->MinDate()->d > 0) {
 			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
