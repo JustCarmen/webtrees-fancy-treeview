@@ -148,7 +148,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 	protected function getPageLink($pid) {
 		global $WT_TREE;
-		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=show&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
+		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
 
 		if ($this->options('use_fullname') == true) {
 			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid)->getFullName());
@@ -1004,7 +1004,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			jQuery( "form#change_root" ).submit(function(e) {
 				e.preventDefault();
 				var new_rootid = jQuery("form #new_rootid").val();
-				var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=show&rootid=" + new_rootid;
+				var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=page&rootid=" + new_rootid;
 				jQuery.ajax({
 					url: url,
 					csrf: WT_CSRF_TOKEN,

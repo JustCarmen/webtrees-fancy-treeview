@@ -142,7 +142,7 @@ jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", functi
 	var lastBlock = jQuery(".generation-block:last");
 	var pids = lastBlock.data("pids");
 	var gen = lastBlock.data("gen");
-	var url = jQuery(location).attr("pathname") + "?mod=" + ModuleName + "&mod_action=show&rootid=" + RootID + "&gen=" + gen + "&pids=" + pids;
+	var url = jQuery(location).attr("pathname") + "?mod=" + ModuleName + "&mod_action=page&rootid=" + RootID + "&gen=" + gen + "&pids=" + pids;
 
 	lastBlock.find("a.link_next").addClass("scroll").removeClass("link_next");
 	lastBlock.after("<div class=\"loading-image\">");
