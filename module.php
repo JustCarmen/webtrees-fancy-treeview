@@ -206,7 +206,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			} else {
 				http_response_code(404);
 				$controller->pageHeader();
-				echo $ftv->addMessage('alert', 'warning', I18N::translate('This individual does not exist or you do not have permission to view it.', false));
+				echo $ftv->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
 
 			}
 			break;

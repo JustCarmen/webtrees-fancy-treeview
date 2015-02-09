@@ -176,8 +176,8 @@ global $WT_TREE;
 						</table>
 					</form>
 				</div>
-				<?php echo $ftv->addMessage("error", "danger"); ?>
-				<?php echo $ftv->addMessage('update-settings', 'success', I18N::translate('The settings for this tree are succesfully updated')); ?>
+				<?php echo $ftv->addMessage("error", "danger", true); ?>
+				<?php echo $ftv->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')); ?>
 				<div id="fancy-treeview-form" class="form-group">
 					<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)): ?>
 						<form class="form-horizontal" method="post" name="form4">
@@ -304,8 +304,8 @@ global $WT_TREE;
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php echo $ftv->addMessage('save-options', 'success', I18N::translate('The options for this tree are succesfully saved')); ?>
-				<?php echo $ftv->addMessage('reset-options', 'success', I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
+				<?php echo $ftv->addMessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')); ?>
+				<?php echo $ftv->addMessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
 				<div id="ftv-options-form" class="form-group">
 					<form class="form-horizontal" method="post" name="form5">
 						<!-- USE FULLNAME IN MENU -->
