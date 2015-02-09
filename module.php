@@ -264,10 +264,11 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			}
 
 			foreach ($FTV_SETTINGS as $FTV_ITEM) {
-				if ($FTV_ITEM['TREE'] == WT_GED_ID && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
+				if ($FTV_ITEM['TREE'] == WT_GED_ID && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
 					$FTV_GED_SETTINGS[] = $FTV_ITEM;
 				}
 			}
+			
 			if (!empty($FTV_GED_SETTINGS)) {
 				// load the module stylesheets
 				if (Theme::theme()->themeId() !== '_administration') {
