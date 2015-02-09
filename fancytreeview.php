@@ -22,7 +22,7 @@ use PDO;
  * Class FancyTreeView
  */
 class FancyTreeView extends fancy_treeview_WT_Module {
-	
+
 	// Get module options
 	protected function options($value = '') {
 		global $WT_TREE;
@@ -62,7 +62,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			return $FTV_OPTIONS[$key];
 		}
 	}
-	
+
 	// Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
 	protected function indisArray($surname, $russell, $daitchMokotoff) {
 		$sql = "SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom" .
@@ -100,7 +100,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		}
 		return $data;
 	}
-	
+
 	// Get surname from pid
 	protected function getSurname($pid) {
 		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :ged_id AND n_id = :pid AND n_type = 'NAME'";
@@ -171,7 +171,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		}
 		return $list;
 	}
-	
+
 	// Radio buttons
 	protected function radioButtons($name, $selected) {
 		$values = array(
@@ -181,7 +181,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 		return radio_buttons($name, $values, $selected, 'class="radio-inline"');
 	}
-	
+
 	// Print functions
 	protected function printPage() {
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
@@ -933,7 +933,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		}
 		return $pedi;
 	}
-	
+
 	protected function getStylesheet() {
 		$theme_dir = $this->module . '/themes/';
 		$stylesheet = '';
@@ -951,8 +951,8 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		return $stylesheet;
 	}
 
-	protected function includeJs($controller, $page) {
-		
+	protected function includeJs(PageController $controller, $page) {
+
 		$controller
 			->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 			->addInlineJavascript('autocomplete();')
@@ -968,31 +968,37 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				var TextOk				= "' . I18N::translate('Ok') . '";
 				var TextCancel			= "' . I18N::translate('Cancel') . '";
 			', BaseController::JS_PRIORITY_HIGH);
-		
+
 		switch ($page) {
 		case 'admin':
 			$controller->addExternalJavascript($this->module . '/js/admin.js');
 			break;
-		
+
 		case 'fancytreeview':
-			$controller->addExternalJavascript($this->module . '/js/fancytreeview.js');
-			
+			$controller
+				->addExternalJavascript($this->module . '/js/fancytreeview.js')
+				->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
+
 			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
 				$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
 			}
-			
+
 			// some files needs an extra js script
 			if (file_exists(WT_STATIC_URL . $this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
 				$controller->addExternalJavascript($this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 			}
-			
+
 			if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
 				$this->includeJsInline($controller);
 			}
 			break;
+
+		case 'menu':
+			$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
 		}
+
 	}
-	
+
 	private function includeJsInline($controller) {
 		$controller->addInlineJavascript('
 			jQuery("#new_rootid").autocomplete({
@@ -1039,14 +1045,14 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			</script>';
 	}
-	
+
 	protected function rootId() {
 		return Filter::get('rootid', WT_REGEX_XREF);
 	}
-	
-	protected function addMessage($id, $type, $message = '', $hidden = false) {		
+
+	protected function addMessage($id, $type, $message = '', $hidden = false) {
 		$style = $hidden ? ' style="display:none"' : '';
-		
+
 		return
 			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
 			'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
@@ -1055,5 +1061,5 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			'<span class="message">' . $message . '</span>' .
 			'</div>';
 	}
-	
+
 }

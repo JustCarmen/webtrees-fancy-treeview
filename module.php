@@ -276,6 +276,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					echo $ftv->getStylesheet();
 				}
 
+				// add javascript files and scripts
+				$ftv->includeJs($controller, 'menu');
+
 				$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
@@ -287,10 +290,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 						}
 						$menu->addSubmenu($submenu);
 					}
-				}
-
-				if (Theme::theme()->themeId() !== '_administration') {
-					$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
 				}
 
 				return $menu;
