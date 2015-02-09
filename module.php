@@ -177,7 +177,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			unset($FTV_OPTIONS[Filter::getInteger('tree')]);
 			$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
 			Log::addConfigurationLog($this->getTitle() . ' options set to default');
-			header('Location: ' . $this->getConfigLink());
 			break;
 
 		case 'admin_delete':
@@ -186,7 +185,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			unset($FTV_SETTINGS[Filter::getInteger('key')]);
 			$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
 			Log::addConfigurationLog($this->getTitle() . ' item deleted');
-			header('Location: ' . $this->getConfigLink());
 			break;
 
 		case 'page':
