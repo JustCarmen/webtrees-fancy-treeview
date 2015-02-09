@@ -1,6 +1,6 @@
 /**
  * Fancy Tree View admin configuration page script
- * 
+ *
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
  * Copyright (C) 2015 JustCarmen
@@ -126,16 +126,11 @@ jQuery("#fancy-treeview-form").on("submit", "form[name=form4]", function (e) {
 		data: jQuery(this).serialize(),
 		success: function () {
 			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form", function () {
-				var message = jQuery("#message-save-options");
-				jQuery(this).before(message);
-				message.fadeIn();
-				var target = message.offset().top - 60;
+				jQuery("#update-settings").fadeIn();
+				var target = jQuery("#update-settings").offset().top - 60;
 				jQuery("html, body").animate({
 					scrollTop: target
 				}, 800);
-				setTimeout(function () {
-					message.fadeOut();
-				}, 5000);
 			})
 		}
 	});
@@ -155,6 +150,11 @@ jQuery("#fancy-treeview-form").on("click", "button[name=delete]", function (e) {
 			if (rowCount === 0) {
 				jQuery("#fancy-treeview-form form").remove();
 			}
+			jQuery("#update-settings").fadeIn();
+			var target = jQuery("#update-settings").offset().top - 60;
+			jQuery("html, body").animate({
+				scrollTop: target
+			}, 800);
 		}
 	});
 

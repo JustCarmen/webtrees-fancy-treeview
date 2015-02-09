@@ -1,7 +1,7 @@
 <?php
 namespace Fisharebest\Webtrees;
 
-/* 
+/*
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
  * Copyright (C) 2015 JustCarmen
@@ -177,6 +177,7 @@ global $WT_TREE;
 					</form>
 				</div>
 				<?php echo $ftv->addMessage("error", "danger"); ?>
+				<?php echo $ftv->addMessage('update-settings', 'success', I18N::translate('The settings for this tree are succesfully updated')); ?>
 				<div id="fancy-treeview-form" class="form-group">
 					<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)): ?>
 						<form class="form-horizontal" method="post" name="form4">
