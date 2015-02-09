@@ -17,6 +17,7 @@ namespace Fisharebest\Webtrees;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+global $WT_TREE;
 ?>
 <!-- ADMIN PAGE CONTENT -->
 <ol class="breadcrumb small">

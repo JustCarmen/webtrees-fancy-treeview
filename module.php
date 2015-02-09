@@ -21,16 +21,6 @@ use PDOException;
 use Zend_Session;
 use Zend_Translate;
 
-// Update database when upgrading from a previous version
-try {
-	Database::updateSchema(WT_ROOT . WT_MODULES_DIR . 'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 8);
-} catch (PDOException $ex) {
-	// The schema update scripts should never fail.  If they do, there is no clean recovery.
-	FlashMessages::addMessage($ex->getMessage(), 'danger');
-	header('Location: ' . WT_BASE_URL . 'site-unavailable.php');
-	throw $ex;
-}
-
 class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleMenuInterface {
 
 	// location of the fancy treeview module files.
@@ -40,11 +30,14 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	public function __construct() {
 		parent::__construct();
 
+		// update the database if neccessary
+		self::updateSchema();
+
+		// set default variable
 		$this->module = WT_MODULES_DIR . $this->getName();
 
 		// Load the module class
 		require_once $this->module . '/fancytreeview.php';
-
 
 		// Load any local user translations
 		if (is_dir($this->module . '/language')) {
@@ -75,8 +68,6 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		$ftv = new FancyTreeView;
 		switch ($mod_action) {
 		case 'admin_config':
-			global $WT_TREE;
-
 			$controller = new PageController;
 			$controller
 				->restrictAccess(Auth::isAdmin())
@@ -88,7 +79,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			// get the settings for this tree
 			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-			
+
 			// get the admin page content
 			include($this->module . '/templates/admin.php');
 			break;
@@ -202,7 +193,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			global $controller;
 
 			$controller = new PageController;
-			
+
 			$root_person = $ftv->getIndividual($ftv->rootId());
 			if ($root_person && $root_person->canShowName()) {
 				$controller
@@ -211,14 +202,14 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 				// add javascript files and scripts
 				$ftv->includeJs($controller, 'fancytreeview');
-				
+
 				// get the Fancy Tree View page content
 				include($this->module . '/templates/page.php');
 			} else {
-				http_response_code(404);				
+				http_response_code(404);
 				$controller->pageHeader();
 				echo $ftv->addMessage('alert', 'warning', I18N::translate('This individual does not exist or you do not have permission to view it.'));
-				
+
 			}
 			break;
 
@@ -304,6 +295,20 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 				return $menu;
 			}
+		}
+	}
+
+	/**
+	 * Make sure the database structure is up-to-date.
+	 */
+	protected static function updateSchema() {
+		try {
+			Database::updateSchema(WT_ROOT . WT_MODULES_DIR . 'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 8);
+		} catch (PDOException $ex) {
+			// The schema update scripts should never fail.  If they do, there is no clean recovery.
+			FlashMessages::addMessage($ex->getMessage(), 'danger');
+			header('Location: ' . WT_BASE_URL . 'site-unavailable.php');
+			throw $ex;
 		}
 	}
 
