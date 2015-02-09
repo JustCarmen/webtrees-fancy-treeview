@@ -176,7 +176,7 @@ global $WT_TREE;
 						</table>
 					</form>
 				</div>
-				<?php echo $ftv->addMessage("error", "danger", '', true); ?>
+				<?php echo $ftv->addMessage("error", "danger"); ?>
 				<div id="fancy-treeview-form" class="form-group">
 					<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)): ?>
 						<form class="form-horizontal" method="post" name="form4">

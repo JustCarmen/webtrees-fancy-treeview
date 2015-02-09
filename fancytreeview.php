@@ -1050,7 +1050,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		return Filter::get('rootid', WT_REGEX_XREF);
 	}
 
-	protected function addMessage($id, $type, $message = '', $hidden = false) {
+	protected function addMessage($id, $type, $message = '', $hidden = true) {
 		$style = $hidden ? ' style="display:none"' : '';
 
 		return
