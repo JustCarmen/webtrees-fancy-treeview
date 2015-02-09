@@ -88,7 +88,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			// get the settings for this tree
 			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-			include($this->module . '/admin.php');
+			
+			// get the admin page content
+			include($this->module . '/templates/admin.php');
 			break;
 
 		case 'admin_search':
@@ -209,51 +211,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 				// add javascript files and scripts
 				$ftv->includeJs($controller, 'fancytreeview');
-				?>
-
-				<!-- FANCY TREE VIEW CONTENT -->
-				<div id="fancy_treeview-page">
-					<div id="page-header">
-						<h2><?php echo $controller->getPageTitle(); ?></h2>
-						<?php if ($ftv->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr'): ?>
-						<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
-							<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
-						</div>
-						<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
-						<?php endif; ?>
-					</div>
-					<div id="page-body">
-						<?php if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL): ?>
-						<form id="change_root">
-							<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
-							<input
-								type="text"
-								name="new_rootid"
-								id="new_rootid"
-								size="10"
-								maxlength="20"
-								placeholder="<?php echo I18N::translate('ID'); ?>"
-								>
-							<?php echo print_findindi_link('new_rootid'); ?>
-							<input
-								type="submit"
-								id="btn_go"
-								value="<?php echo I18N::translate('Go'); ?>"
-								>
-						</form>
-						<div id="error"></div>
-						<?php endif; ?>
-						<ol id="fancy_treeview"><?php echo $ftv->printPage(); ?></ol>
-						<div id="btn_next">
-							<input
-								type="button"
-								name="next"
-								value="<?php echo I18N::translate('next'); ?>"
-								>
-						</div>
-					</div>
-				</div>
-			<?php
+				
+				// get the Fancy Tree View page content
+				include($this->module . '/templates/page.php');
 			} else {
 				http_response_code(404);				
 				$controller->pageHeader();

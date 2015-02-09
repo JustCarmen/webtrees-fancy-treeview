@@ -25,6 +25,7 @@ namespace Fisharebest\Webtrees;
 	<li class="active"><?php echo $controller->getPageTitle(); ?></li>
 </ol>
 <h2><?php echo $controller->getPageTitle(); ?></h2>
+
 <!-- *** FORM 1 *** -->
 <form class="form-horizontal" method="post" name="form1">
 	<?php echo Filter::getCsrf(); ?>
@@ -50,6 +51,7 @@ namespace Fisharebest\Webtrees;
 		</div>
 	</div>
 </form>
+
 <!-- PANEL GROUP ACCORDION -->
 <div class="panel-group" id="accordion">
 	<!-- PANEL 1 -->
