@@ -1,4 +1,5 @@
 <?php
+namespace \Fisharebest\Webtrees;
 
 /**
  * webtrees: online genealogy
@@ -14,25 +15,26 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>. * 
+ *
+ * Update the Fancy Tree View module database schema from version 1 to 2
+ * - remove key 'LINK' from FTV_SETTINGS
+ * 
  */
 
-// Update the Fancy Tree View module database schema from version 1 to 2
-// - remove key 'LINK' from FTV_SETTINGS
-
 $module_settings = 'FTV_SETTINGS';
-$ftv_asettings=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_settings))->fetchOne();
+$ftv_asettings = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_settings))->fetchOne();
 
 $asettings = unserialize($ftv_asettings);
-if(!empty($asettings)) {
+if (!empty($asettings)) {
 	foreach ($asettings as $asetting) {
-		if(array_key_exists('LINK', $asetting)) {
+		if (array_key_exists('LINK', $asetting)) {
 			unset($asetting['LINK']);
 			$new_asettings[] = $asetting;
 		}
 	}
-	if(isset($new_asettings)) {
+	if (isset($new_asettings)) {
 		Database::prepare(
 			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
 		)->execute(array(serialize($new_asettings), $module_settings));
@@ -40,19 +42,19 @@ if(!empty($asettings)) {
 	unset($new_asettings);
 }
 
-$ftv_bsettings=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_settings))->fetchOne();
+$ftv_bsettings = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_settings))->fetchOne();
 
 $bsettings = unserialize($ftv_bsettings);
-if(!empty($bsettings)) {
+if (!empty($bsettings)) {
 	foreach ($bsettings as $bsetting) {
-		if(!array_key_exists('DISPLAY_NAME', $bsetting)) {
+		if (!array_key_exists('DISPLAY_NAME', $bsetting)) {
 			$bsetting['DISPLAY_NAME'] = $bsetting['SURNAME'];
 			$new_bsettings[] = $bsetting;
 		}
 	}
-	if(isset($new_bsettings)) {
+	if (isset($new_bsettings)) {
 		Database::prepare(
 			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
 		)->execute(array(serialize($new_bsettings), $module_settings));
@@ -61,17 +63,17 @@ if(!empty($bsettings)) {
 }
 
 $module_options = 'FTV_OPTIONS';
-$ftv_options=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_options))->fetchOne();
+$ftv_options = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_options))->fetchOne();
 
 $options = unserialize($ftv_options);
-if(!empty($options)) {
-	foreach($options as $option) {
+if (!empty($options)) {
+	foreach ($options as $option) {
 		$option['USE_FULLNAME'] = '0';
 		$new_options[] = $option;
 	}
-	if(isset($new_options)) {
+	if (isset($new_options)) {
 		Database::prepare(
 			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
 		)->execute(array(serialize($new_options), $module_options));

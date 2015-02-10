@@ -1,4 +1,5 @@
 <?php
+namespace \Fisharebest\Webtrees;
 
 /**
  * webtrees: online genealogy
@@ -14,32 +15,33 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>. * 
+ *
+ * Update the Fancy Tree View module database schema from version 7 to 8
+ * 
  */
 
-// Update the Fancy Tree View module database schema from version 7 to 8
-
 $module_options = 'FTV_OPTIONS';
-$ftv_options=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_options))->fetchOne();
+$ftv_options = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_options))->fetchOne();
 
 $options = unserialize($ftv_options);
-if(!empty($options)) {
-	foreach($options as $option) {
-		foreach($option as $key => $value) {
-			if($key == 'USE_FTV_THUMBS'){
+if (!empty($options)) {
+	foreach ($options as $option) {
+		foreach ($option as $key => $value) {
+			if ($key == 'USE_FTV_THUMBS') {
 				$option['RESIZE_THUMBS'] = $value;
 				unset($option[$key]);
 			}
-			if($key == 'COUNTRY') {
+			if ($key == 'COUNTRY') {
 				unset($option[$key]);
 			}
 		}
 		$option['USE_GEDCOM_PLACES'] = '1';
-		$option['THUMB_RESIZE_FORMAT'] = '2';	
+		$option['THUMB_RESIZE_FORMAT'] = '2';
 		$new_options[] = $option;
 	}
-	if(isset($new_options)) {
+	if (isset($new_options)) {
 		Database::prepare(
 			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
 		)->execute(array(serialize($new_options), $module_options));

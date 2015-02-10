@@ -1,4 +1,5 @@
 <?php
+namespace \Fisharebest\Webtrees;
 
 /**
  * webtrees: online genealogy
@@ -14,23 +15,24 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>. * 
+ *
+ * Update the Fancy Tree View module database schema from version 4 to 5
+ * - new options added
+ * 
  */
 
-// Update the Fancy Tree View module database schema from version 4 to 5
-// - new options added
-
 $module_options = 'FTV_OPTIONS';
-$ftv_options=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_options))->fetchOne();
+$ftv_options = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_options))->fetchOne();
 
 $options = unserialize($ftv_options);
-if(!empty($options)) {
-	foreach($options as $option) {
+if (!empty($options)) {
+	foreach ($options as $option) {
 		$option['USE_FTV_THUMBS'] = '1';
 		$new_options[] = $option;
 	}
-	if(isset($new_options)) {
+	if (isset($new_options)) {
 		Database::prepare(
 			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
 		)->execute(array(serialize($new_options), $module_options));
