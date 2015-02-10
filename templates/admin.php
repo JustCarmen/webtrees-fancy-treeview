@@ -36,7 +36,7 @@ global $WT_TREE;
 			<?php echo I18N::translate('Family tree'); ?>
 		</label>
 		<div class="col-sm-4">
-			<select id="tree" name="NEW_FIB_TREE" id="NEW_FIB_TREE" class="form-control">
+			<select id="tree" name="NEW_FIB_TREE" class="form-control">
 				<?php foreach (Tree::getAll() as $tree): ?>
 					<?php if ($tree->getTreeId() == WT_GED_ID): ?>
 						<option value="<?php echo $tree->getTreeId(); ?>" data-ged="<?php echo $tree->getNameHtml(); ?>" selected="selected">
@@ -88,8 +88,8 @@ global $WT_TREE;
 								class="form-control surname"
 								data-autocomplete-type="SURN"
 								dir="ltr"
-								id="surname"
-								name="surname"
+								id="SURNAME"
+								name="SURNAME"
 								placeholder="<?php echo I18N::translate('Surname'); ?>"
 								type="text"
 								>
@@ -99,11 +99,31 @@ global $WT_TREE;
 							<label class="checkbox-inline">
 								<?php echo checkbox('soudex_dm') . I18N::translate('Daitch-Mokotoff'); ?>
 							</label>
+							<button name="search" class="btn btn-primary" type="submit">
+								<i class="fa fa-search"></i>
+								<?php echo I18N::translate('Search'); ?>
+							</button>
 						</div>
-						<button name="search" class="btn btn-primary" type="submit">
-							<i class="fa fa-search"></i>
-							<?php echo I18N::translate('Search'); ?>
-						</button>
+						<!-- PID -->
+						<div class="form-group pull-right">
+							<label class="control-label" for="PID">
+								<?php echo I18N::translate('Or enter an ID'); ?>
+							</label>
+							<input
+								class="form-control"
+								data-autocomplete-type="INDI"
+								dir="ltr"
+								id="PID"
+								name="PID"
+								placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
+								type="text"
+								value=""
+							>
+							<button name="Ok" class="btn btn-primary" type="submit">
+								<i class="fa fa-check"></i>
+								<?php echo I18N::translate('Ok'); ?>
+							</button>
+						</div>
 					</form>
 					<!-- *** FORM 3 *** -->
 					<form class="form-horizontal" method="post" name="form3">

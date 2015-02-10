@@ -87,7 +87,8 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		case 'admin_search':
 			Zend_Session::writeClose();
 			// new settings
-			$surname = Filter::post('surname');
+			$surname = Filter::post('SURNAME');
+			$pid = Filter::post('PID');
 			if ($surname) {
 				$soundex_std = Filter::postBool('soundex_std');
 				$soundex_dm = Filter::postBool('soundex_dm');
@@ -105,7 +106,12 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			if (isset($pid)) {
 				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 				if ($ftv->searchArray($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
-					$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
+					if ($surname) {
+						$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
+					}
+					else {
+						$result['error'] = I18N::translate('Error: A root person with ID %s already exists', $pid);
+					}
 				} else {
 					$root = Individual::getInstance($pid)->getFullName() . ' (' . Individual::getInstance($pid)->getLifeSpan() . ')';
 					$title = $ftv->getPageLink($pid);
