@@ -1,7 +1,7 @@
 <?php
 namespace Fisharebest\Webtrees;
 
-/* 
+/*
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
  * Copyright (C) 2015 JustCarmen
@@ -34,17 +34,17 @@ namespace Fisharebest\Webtrees;
 		<form id="change_root">
 			<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 			<input
-				type="text"
-				name="new_rootid"
+				data-autocomplete-type="INDI"
+				dir="ltr"
 				id="new_rootid"
-				size="10"
-				maxlength="20"
-				placeholder="<?php echo I18N::translate('ID'); ?>"
+				name="new_rootid"
+				placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
+				type="text"
 				>
-			<?php echo print_findindi_link('new_rootid'); ?>
 			<input
-				type="submit"
 				id="btn_go"
+				name="btn_go"
+				type="submit"
 				value="<?php echo I18N::translate('Go'); ?>"
 				>
 		</form>

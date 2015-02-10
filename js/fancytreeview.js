@@ -1,4 +1,4 @@
-/* 
+/*
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
  * Copyright (C) 2015 JustCarmen
@@ -13,13 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-// For the 'find indi' link
-var pastefield;
-
-function paste_id(value) {
-	pastefield.value = value;
-}
 
 // setup numbers for scroll reference
 function addScrollNumbers() {
@@ -43,7 +36,7 @@ function addScrollNumbers() {
 	}
 }
 
-function scrollToTarget(id){
+function scrollToTarget(id) {
 	var offset = 60;
 	var target = jQuery(id).offset().top - offset;
 	jQuery("html, body").animate({
