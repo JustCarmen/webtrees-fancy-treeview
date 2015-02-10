@@ -72,9 +72,9 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			" AND n_type != '_MARNM'" .
 			" AND (n_surn = :surname1 OR n_surname = :surname2";
 		$args = array(
-			'ged_id' => WT_GED_ID,
-			'surname1' => $surname,
-			'surname2' => $surname
+			'ged_id'	 => WT_GED_ID,
+			'surname1'	 => $surname,
+			'surname2'	 => $surname
 		);
 		if ($russell) { // works only with latin letters. For other letters it outputs the code '0000'.
 			foreach (explode(':', Soundex::russell($surname)) as $value) {
@@ -106,7 +106,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :ged_id AND n_id = :pid AND n_type = 'NAME'";
 		$args = array(
 			'ged_id' => WT_GED_ID,
-			'pid' => $pid
+			'pid'	 => $pid
 		);
 		$data = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
@@ -763,7 +763,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 	private function printDate($date) {
 		if ($date->qual1 || $date->qual2) {
-			return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.*/ I18N::translate_c('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();;
+			return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translate_c('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
 		}
 		if ($date->MinDate()->d > 0) {
 			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
@@ -995,7 +995,6 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		case 'menu':
 			$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
 		}
-
 	}
 
 	private function includeJsInline($controller) {

@@ -118,7 +118,7 @@ global $WT_TREE;
 								placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
 								type="text"
 								value=""
-							>
+								>
 							<button name="Ok" class="btn btn-primary" type="submit">
 								<i class="fa fa-check"></i>
 								<?php echo I18N::translate('Ok'); ?>
