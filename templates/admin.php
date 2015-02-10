@@ -104,7 +104,7 @@ global $WT_TREE;
 								<?php echo I18N::translate('Search'); ?>
 							</button>
 						</div>
-						<!-- PID -->
+						<!-- PID SEARCH FIELD -->
 						<div class="form-group pull-right">
 							<label class="control-label" for="PID">
 								<?php echo I18N::translate('Or enter an ID'); ?>
