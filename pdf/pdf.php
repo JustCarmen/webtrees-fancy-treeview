@@ -21,7 +21,7 @@ use DOMPDF;
 use Font_Metrics;
 use Zend_Loader_Autoloader;
 
-require_once(WT_MODULES_DIR . $this->getName() . '/pdf/dompdf/dompdf_config.inc.php');
+require_once(WT_MODULES_DIR . $this->getName() . '/pdf/dompdf-0.6.1/dompdf_config.inc.php');
 Zend_Loader_Autoloader::getInstance()->pushAutoloader('DOMPDF_autoload', '');
 
 $filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';

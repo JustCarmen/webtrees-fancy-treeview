@@ -1,4 +1,5 @@
 <?php
+namespace \Fisharebest\Webtrees;
 
 /**
  * webtrees: online genealogy
@@ -14,21 +15,22 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>. * 
+ *
+ * Update the Fancy Tree View module database schema from version 0 to 1
+ * - add key 'LINK' to FTV_SETTINGS
+ * - Change options to multidimeninal array with array key = tree id.
+ * 
  */
 
-// Update the Fancy Tree View module database schema from version 0 to 1
-// - add key 'LINK' to FTV_SETTINGS
-// - Change options to multidimeninal array with array key = tree id.
-
 $module_settings = 'FTV_SETTINGS';
-$ftv_settings=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_settings))->fetchOne();
+$ftv_settings = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_settings))->fetchOne();
 
 $settings = unserialize($ftv_settings);
-if(!empty($settings)) {
+if (!empty($settings)) {
 	foreach ($settings as $setting) {
-		if(!array_key_exists('LINK', $setting)) {
+		if (!array_key_exists('LINK', $setting)) {
 			$setting['LINK'] = /* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of the %s family', $setting['SURNAME']);
 			$new_settings[] = $setting;
 		}
@@ -42,24 +44,24 @@ if(!empty($settings)) {
 }
 
 $module_options = 'FTV_OPTIONS';
-$ftv_options=Database::prepare(
-	"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-)->execute(array($module_options))->fetchOne();
+$ftv_options = Database::prepare(
+		"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
+	)->execute(array($module_options))->fetchOne();
 
 $options = unserialize($ftv_options);
-if(!empty($options)) {
+if (!empty($options)) {
 	$show_places = array_key_exists('SHOW_PLACES', $options) ? $options['SHOW_PLACES'] : '1';
 	$country = array_key_exists('COUNTRY', $options) ? $options['COUNTRY'] : '';
 	$show_occu = array_key_exists('SHOW_OCCU', $options) ? $options['SHOW_OCCU'] : '1';
-	
+
 	foreach (Tree::getAll() as $tree) {
 		$new_options[$tree->tree_id] = array(
-			'SHOW_PLACES' 	=> $show_places,
-			'COUNTRY' 		=> $country,
-			'SHOW_OCCU'		=> $show_occu
+			'SHOW_PLACES'	 => $show_places,
+			'COUNTRY'		 => $country,
+			'SHOW_OCCU'		 => $show_occu
 		);
 	}
-	if(isset($new_options)) {
+	if (isset($new_options)) {
 		Database::prepare(
 			"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
 		)->execute(array(serialize($new_options), $module_options));
