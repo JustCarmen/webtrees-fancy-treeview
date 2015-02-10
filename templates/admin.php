@@ -318,7 +318,7 @@ global $WT_TREE;
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo" class="collapsed">
-					<!-- Dynamic text here -->
+					<?php echo I18N::translate('Options for %s', $WT_TREE->getTitleHtml()); ?>
 				</a>
 			</h4>
 		</div>

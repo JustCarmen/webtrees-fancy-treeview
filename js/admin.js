@@ -31,10 +31,6 @@ jQuery(".alert .close").on("click", function () {
 	jQuery(this).parent().hide();
 });
 
-// dynamic title
-var treeName = jQuery("#tree option:selected").text();
-jQuery("#panel2 .panel-title a").text(TextOptionsFor + treeName);
-
 /*** FORM 1 ***/
 jQuery("#tree").change(function () {
 	// get the config page for the selected tree
@@ -58,6 +54,7 @@ jQuery("#ftv-search-form").on("submit", "form[name=form2]", function (e) {
 			if (data.hasOwnProperty("error")) {
 				jQuery("form[name=form3] table").hide();
 				jQuery("#error .message").html(data.error).parent().fadeIn();
+				jQuery("input#PID").val();
 				jQuery("input#surname").val("").focus();
 			} else {
 				jQuery("#error").hide();
