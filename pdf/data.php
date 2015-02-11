@@ -27,8 +27,8 @@ $content = Filter::post('pdfContent');
 // make our datafile if it does not exist.
 if (!file_exists($filename)) {
 	$handle = fopen($filename, 'w');
-	@fclose($handle);
-	@chmod($filename, 0644);
+	fclose($handle);
+	chmod($filename, 0644);
 }
 
 // Let's make sure the file exists and is writable first.
@@ -39,9 +39,9 @@ if (is_writable($filename)) {
 	}
 
 	// Write the pdfContent to our data.txt file.
-	if (@fwrite($handle, $content) === FALSE) {
+	if (fwrite($handle, $content) === FALSE) {
 		exit;
 	}
 
-	@fclose($handle);
+	fclose($handle);
 }
