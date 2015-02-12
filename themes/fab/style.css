@@ -32,3 +32,8 @@
 #fancy_treeview-page .blockcontent {
 	margin-left: 10px;
 }
+
+/* ===== tab ===== */
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	padding: 5px 0;
+}

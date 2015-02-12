@@ -32,7 +32,12 @@
 	text-decoration: underline;
 }
 
-/* menu */
+/* ===== tab ===== */
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	border-bottom-color: #ddd;
+}
+
+/* ===== menu ===== */
 #menu-fancy_treeview {
 	background: url(menu-ftv.png) no-repeat 50% 25%;
 	background-size: 40px;

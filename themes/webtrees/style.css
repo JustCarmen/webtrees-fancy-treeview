@@ -37,7 +37,13 @@
 	text-decoration: underline;
 }
 
-/* menu */
+/* ===== tab ===== */
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	border-color: #ddd;
+	padding: 5px 0;
+}
+
+/* ===== menu ===== */
 #menu-fancy_treeview {
 	background: url(menu-ftv.png) no-repeat 50% 25%;
 	background-size: 50px;

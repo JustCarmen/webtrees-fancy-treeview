@@ -208,6 +208,38 @@
 	text-align: left;
 }
 
+/* ===== Fancy Treeview Tab ===== */
+#fancy_treeview-page.fancy_treeview-tab {
+	margin-top: 20px;
+	width: 100%;
+	max-width: none;
+}
+
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+.fancy_treeview-tab .header-title {
+	font-size: initial;
+}
+
+.fancy_treeview-tab ol#fancy_treeview {
+	padding: 0 10px;
+}
+
+#fancy_treeview-page.fancy_treeview-tab li.child .lifespan {
+	font-size: inherit;
+}
+
+.fancy_treeview-tab #read-more-link {
+	text-align: right;
+}
+
+[dir=rtl] .fancy_treeview-tab #read-more-link {
+	text-align: left;
+}
+
 @media print {
 	/* General */
 	@page {

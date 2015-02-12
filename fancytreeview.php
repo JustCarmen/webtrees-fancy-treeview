@@ -48,7 +48,8 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				'THUMB_RESIZE_FORMAT'	 => '2',
 				'USE_SQUARE_THUMBS'		 => '1',
 				'SHOW_USERFORM'			 => '2',
-				'SHOW_PDF_ICON'			 => '2'
+				'SHOW_PDF_ICON'			 => '2',
+				'FTV_TAB'				 => '0',
 			);
 			$key = 0;
 		}
@@ -226,7 +227,50 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				$html .= $this->printGeneration($generation, $gen);
 				unset($next_gen, $descendants, $pids);
 			} else {
-				break;
+				return $html;
+			}
+		}
+		return $html;
+	}
+
+	// Print functions
+	protected function printTabContent($pid) {
+		$html = '';
+		$gen = 1;
+		$root = $pid; // save value for read more link
+		$generation = array($pid);
+		$html .= $this->printTabContentGeneration($generation, $gen);
+
+		while (count($generation) > 0 && $gen < 4) {
+			$pids = $generation;
+			unset($generation);
+
+			foreach ($pids as $pid) {
+				$next_gen[] = $this->getNextGen($pid);
+			}
+			
+			foreach ($next_gen as $descendants) {
+				if (count($descendants) > 0) {
+					foreach ($descendants as $descendant) {
+						if ($this->options('show_singles') == true || $descendant['desc'] == 1) {
+							$generation[] = $descendant['pid'];
+						}
+					}
+				}
+			}
+
+			if (!empty($generation)) {
+				if($gen === 3) {
+					$html .= 
+						'<div id="read-more-link"><a href="module.php?mod=' . $this->getName() .  '&amp;mod_action=page&rootid=' . $root . '">'. I18N::translate('Read more') . '</a></div>';
+					return $html;
+				} else {
+					$gen++;
+					$html .= $this->printTabContentGeneration($generation, $gen);
+					unset($next_gen, $descendants, $pids);
+				}
+			} else {
+				return $html;
 			}
 		}
 		return $html;
@@ -246,6 +290,43 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			$html .= '<div class="blockcontent generation private">' . I18N::translate('The details of this generation are private.') . '</div>';
 		} else {
 			$html .= '<ol class="blockcontent generation">';
+			$generation = array_unique($generation); // needed to prevent the same family added twice to the generation block (this is the case when parents have the same ancestors and are both members of the previous generation).
+
+			foreach ($generation as $pid) {
+				$individual = $this->getIndividual($pid);
+
+				// only list persons without parents in the same generation - if they have they will be listed in the next generation anyway.
+				// This prevents double listings
+				if (!$this->hasParentsInSameGeneration($individual, $generation)) {
+					$family = $this->getFamily($individual);
+					if (!empty($family)) {
+						$id = $family->getXref();
+					} else {
+						if ($this->options('show_singles') == true || !$individual->getSpouseFamilies()) {
+							$id = 'S' . $pid;
+						} // Added prefix (S = Single) to prevent double id's.
+					}
+					$class = $individual->canShow() ? 'family' : 'family private';
+					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($individual) . '</li>';
+				}
+			}
+			$html .= '</ol></li>';
+		}
+		return $html;
+	}
+	
+	private function printTabContentGeneration($generation, $i) {
+
+		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
+		$html = '<li class="generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">
+					<div class="blockheader">
+						<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>
+					</div>';
+		
+		if ($this->checkPrivacy($generation, true)) {
+			$html .= '<div class="generation private">' . I18N::translate('The details of this generation are private.') . '</div>';
+		} else {
+			$html .= '<ol class="generation">';
 			$generation = array_unique($generation); // needed to prevent the same family added twice to the generation block (this is the case when parents have the same ancestors and are both members of the previous generation).
 
 			foreach ($generation as $pid) {
@@ -503,11 +584,15 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 						}
 
 						$child_family = $this->getFamily($child);
-						if ($child->canShow() && $child_family) {
-							$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
-						} else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
-							if ($this->options('show_singles') == true) {
-								$html .= ' - <a class="scroll" href="#S' . $child->getXref() . '"></a>';
+						
+						// do not load this part of the code in the fancy treeview tab on the individual page.
+						if (WT_SCRIPT_NAME !== 'inidividual.php') {
+							if ($child->canShow() && $child_family) {
+								$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
+							} else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
+								if ($this->options('show_singles') == true) {
+									$html .= ' - <a class="scroll" href="#S' . $child->getXref() . '"></a>';
+								}
 							}
 						}
 						$html .= '</li>';
@@ -937,12 +1022,11 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	protected function getStylesheet() {
 		$theme_dir = $this->module . '/themes/';
 		$stylesheet = '';
-		if (file_exists($theme_dir . Theme::theme()->themeId() . '/menu.css')) {
-			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/menu.css', 'screen');
+		
+		if (Theme::theme()->themeId() !== '_administration') {
+			$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
 		}
-
-
-		$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
+		
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css');
 		}
@@ -950,32 +1034,43 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		return $stylesheet;
 	}
 
-	protected function includeJs(PageController $controller, $page) {
+	protected function includeJs($controller, $page) {
 
-		$controller
-			->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
-			->addInlineJavascript('autocomplete();')
-			->addInlineJavascript('
+		switch ($page) {
+		case 'admin':
+			$controller->addInlineJavascript('
 				var ModuleDir			= "' . $this->module . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
+			', BaseController::JS_PRIORITY_HIGH);
+			$controller
+				->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+				->addInlineJavascript('autocomplete();')
+				->addExternalJavascript($this->module . '/js/admin.js');
+			break;
+
+		case 'menu':
+			$controller->addInlineJavascript('
+				var ModuleDir			= "' . $this->module . '";
+				var ModuleName			= "' . $this->getName() . '";
+				var ThemeID				= "' . Theme::theme()->themeId() . '";
+			', BaseController::JS_PRIORITY_HIGH);
+			$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();', BaseController::JS_PRIORITY_LOW);
+			break;
+
+		case 'page':
+			$controller
+				->addInlineJavascript('
 				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";
 				var RootID				= "' . $this->rootId() . '";
 				var OptionsNumBlocks	= ' . $this->options('numblocks') . ';
 				var TextFollow			= "' . I18N::translate('follow') . '";
 				var TextOk				= "' . I18N::translate('Ok') . '";
 				var TextCancel			= "' . I18N::translate('Cancel') . '";
-			', BaseController::JS_PRIORITY_HIGH);
-
-		switch ($page) {
-		case 'admin':
-			$controller->addExternalJavascript($this->module . '/js/admin.js');
-			break;
-
-		case 'fancytreeview':
-			$controller
-				->addExternalJavascript($this->module . '/js/fancytreeview.js')
-				->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
+			', BaseController::JS_PRIORITY_HIGH)
+				->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+				->addInlineJavascript('autocomplete();')
+				->addExternalJavascript($this->module . '/js/page.js');
 
 			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
 				$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
@@ -990,9 +1085,6 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				$this->includeJsInline($controller);
 			}
 			break;
-
-		case 'menu':
-			$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();');
 		}
 	}
 

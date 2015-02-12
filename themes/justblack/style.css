@@ -58,7 +58,14 @@
 	color: #767676;
 }
 
-/* menu */
+/* ===== tab ===== */
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	padding: 5px 0;
+	text-align: left;
+	font-family: inherit;
+}
+
+/* ===== menu ===== */
 #menu-fancy_treeview {
 	background: url(menu-ftv.png) no-repeat 50% 50%;
 	background-size: 28px;

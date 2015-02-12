@@ -21,7 +21,7 @@ use PDOException;
 use Zend_Session;
 use Zend_Translate;
 
-class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleMenuInterface {
+class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
 	// location of the fancy treeview module files.
 	var $module;
@@ -64,6 +64,41 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	/** {@inheritdoc} */
+	public function getConfigLink() {
+		return 'module.php?mod=' . $this->getName() . '&amp;mod_action=admin_config';
+	}
+
+	/** {@inheritdoc} */
+	public function defaultMenuOrder() {
+		return 10;
+	}
+
+	/** {@inheritdoc} */
+	public function defaultTabOrder() {
+		return 99;
+	}
+
+	/** {@inheritdoc} */
+	public function hasTabContent() {
+		$ftv = new FancyTreeView;
+		if($ftv->options('ftv_tab')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/** {@inheritdoc} */
+	public function isGrayedOut() {
+		return false;
+	}
+
+	/** {@inheritdoc} */
+	public function canLoadAjax() {
+		return false;
+	}
+
+	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		$ftv = new FancyTreeView;
 		switch ($mod_action) {
@@ -76,6 +111,9 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			// add javascript files and scripts
 			$ftv->includeJs($controller, 'admin');
+			
+			// add stylesheet
+			echo $ftv->getStylesheet();
 
 			// get the settings for this tree
 			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
@@ -205,7 +243,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					->pageHeader();
 
 				// add javascript files and scripts
-				$ftv->includeJs($controller, 'fancytreeview');
+				$ftv->includeJs($controller, 'page');
 
 				// get the Fancy Tree View page content
 				include($this->module . '/templates/page.php');
@@ -242,13 +280,19 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 	/** {@inheritdoc} */
-	public function getConfigLink() {
-		return 'module.php?mod=' . $this->getName() . '&amp;mod_action=admin_config';
+	public function getTabContent() {
+		global $controller;
+		$ftv = new FancyTreeView;
+		return 
+			'<script src="' . WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/js/tab.js" defer="defer"></script>' .
+			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
+				'<ol id="fancy_treeview">' . $ftv->printTabContent($controller->record->getXref()) . '</ol>' .
+			'</div>';
 	}
 
 	/** {@inheritdoc} */
-	public function defaultMenuOrder() {
-		return 10;
+	public function getPreLoadContent() {
+		return false;
 	}
 
 	/** {@inheritdoc} */
@@ -275,7 +319,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 					$FTV_GED_SETTINGS[] = $FTV_ITEM;
 				}
 			}
-			
+
 			if (!empty($FTV_GED_SETTINGS)) {
 				// load the module stylesheets
 				echo $ftv->getStylesheet();
@@ -300,7 +344,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			}
 		}
 	}
-
+	
 	/**
 	 * Make sure the database structure is up-to-date.
 	 */

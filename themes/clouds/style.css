@@ -27,7 +27,12 @@
 	left: 11px;
 }
 
-/* menu */
+/* ===== tab ===== */
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	border-bottom-color: #8fbcff;
+}
+
+/* ===== menu ===== */
 #menu-fancy_treeview,
 #menu-fancy_treeview ul li:not(:first-child) {
 	background-image: url(menu-ftv.png);

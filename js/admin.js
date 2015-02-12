@@ -16,16 +16,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-function include_css(css_file) {
-	var html_doc = document.getElementsByTagName("head")[0];
-	var css = document.createElement("link");
-	css.setAttribute("rel", "stylesheet");
-	css.setAttribute("type", "text/css");
-	css.setAttribute("href", css_file);
-	html_doc.appendChild(css);
-}
-include_css(ModuleDir + "/themes/" + ThemeID + "/style.css");
-
 // Close the alerts without removal (Bootstrap default)
 jQuery(".alert .close").on("click", function () {
 	jQuery(this).parent().hide();

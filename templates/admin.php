@@ -476,6 +476,15 @@ global $WT_TREE;
 								<?php echo /* I18N: Help text for the “Show PDF icon” configuration setting */ I18N::translate('Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left.'); ?>
 							</p>
 						</div>
+						<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
+						<div class="form-group fullname">
+							<label class="control-label col-sm-4">
+								<?php echo I18N::translate('Show a Fancy Tree View tab on the individual page'); ?>
+							</label>
+							<div class="col-sm-8">
+								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab')); ?>
+							</div>
+						</div>
 						<!-- BUTTONS -->
 						<button name="save-options" class="btn btn-primary" type="submit">
 							<i class="fa fa-check"></i>

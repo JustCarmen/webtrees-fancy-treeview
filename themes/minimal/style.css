@@ -36,3 +36,15 @@
 #fancy_treeview-page a.tooltip {
 	text-decoration: underline;
 }
+
+/* ===== tab ===== */
+#fancy_treeview-page.fancy_treeview-tab {
+	background: #fff;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#fancy_treeview-page.fancy_treeview-tab .blockheader {
+	border-color: #ddd;
+	padding: 5px 0;
+}
