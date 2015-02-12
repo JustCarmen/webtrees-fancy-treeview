@@ -941,13 +941,12 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/menu.css', 'screen');
 		}
 
-		if (Filter::get('mod') == $this->getName()) {
-			$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
-			$stylesheet .= $this->includeCss($theme_dir . 'base/print.css', 'print');
-			if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
-				$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css', 'screen');
-			}
+
+		$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
+		if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
+			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css');
 		}
+
 		return $stylesheet;
 	}
 
@@ -1032,14 +1031,14 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		');
 	}
 
-	private function includeCss($css, $type = 'all') {
+	protected function includeCss($css) {
 		return
 			'<script class="fancy-treeview-script">
 				var newSheet=document.createElement("link");
 				newSheet.setAttribute("href","' . $css . '");
 				newSheet.setAttribute("type","text/css");
 				newSheet.setAttribute("rel","stylesheet");
-				newSheet.setAttribute("media","' . $type . '");
+				newSheet.setAttribute("media","all");
 				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			</script>';
 	}

@@ -26,3 +26,23 @@
 [dir=rtl] #fancy_treeview-page .blockheader .header-link {
 	left: 11px;
 }
+
+/* menu */
+#menu-fancy_treeview,
+#menu-fancy_treeview ul li:not(:first-child) {
+	background-image: url(menu-ftv.png);
+	background-repeat: no-repeat;
+	background-size: 22px;
+}
+
+#menu-fancy_treeview {
+	background-position: 50% 50%;
+}
+
+#menu-fancy_treeview ul li {
+	background-position: 1% 2%;
+}
+
+[dir=rtl] #menu-fancy_treeview ul li {
+	background-position: 99% 0;
+}

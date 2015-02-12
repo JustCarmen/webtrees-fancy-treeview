@@ -278,9 +278,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			
 			if (!empty($FTV_GED_SETTINGS)) {
 				// load the module stylesheets
-				if (Theme::theme()->themeId() !== '_administration') {
-					echo $ftv->getStylesheet();
-				}
+				echo $ftv->getStylesheet();
 
 				// add javascript files and scripts
 				$ftv->includeJs($controller, 'menu');
