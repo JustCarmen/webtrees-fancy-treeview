@@ -80,9 +80,13 @@ btnRemove();
 setImageBlock();
 
 // remove the empty hyphen on childrens lifespan if death date is unknown.
-jQuery("li.child .lifespan").html(function (index, html) {
-	// this does not work without &nbsp;
-	return html.replace("–<span title=\"&nbsp;\"></span>", "");
+jQuery(".lifespan span:last-child").each(function() {
+	if (jQuery(this).attr("title") === "") {
+		jQuery(this)
+			.parent().html(jQuery(this).prev("span"))
+			.prepend(" (")
+			.append(")");
+	}
 });
 
 // prevent duplicate id\'s
