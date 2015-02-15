@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
 "POT-Creation-Date: 2015-02-10 23:59+0100\n"
-"PO-Revision-Date: 2014-12-21 23:13+0100\n"
+"PO-Revision-Date: 2015-02-12 12:10+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translate_c:2,1c\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "בדוק מערכת יחסים בין בני זוג"
 #. I18N: Help text for the “Show PDF icon” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:476
 msgid "Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left."
-msgstr ""
+msgstr "האפשרות של PDF נתמכת כעת רק לשפות-LTR. אלו הן כל השפות שבו הטקסט הוא משמאל לימין. הסמל PDF לא יהיה זמין כאשר המשתמש בוחר שפה RTL. בשפה מימין לשמאל קוראים את הטכסט מימין לשמאל."
 
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:34
@@ -48,9 +48,9 @@ msgid "Descendants of the %s family"
 msgstr "צאצאים של משפחת %s"
 
 #: modules_v3\fancy_treeview/module.php:113
-#, fuzzy, php-format
+#, php-format
 msgid "Error: A root person with ID %s already exists"
-msgstr "שגיאה: אדם המוצא השייך לשם המשפחה הזה כבר קיים"
+msgstr "שגיאה: אדם מוצא עם קוד זיהוי %s קיים כבר"
 
 #: modules_v3\fancy_treeview/module.php:110
 msgid "Error: The root person belonging to this surname already exists"
@@ -67,7 +67,7 @@ msgstr "צוגת עץ מפוארת"
 
 #: modules_v3\fancy_treeview/templates/page.php:26
 msgid "Generate PDF"
-msgstr ""
+msgstr "צור PDF"
 
 #: modules_v3\fancy_treeview/templates/page.php:48
 msgid "Go"
@@ -92,17 +92,17 @@ msgstr "הוא נולד"
 #. I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:427
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr ""
+msgstr "כאן תוכל לשנות את גודל התמונות הממוזערות של ברירת המחדל של webtrees במיוחד עבור דפי תצוגת עץ מהודרת. באפשרותך להגדיר גודל מותאם אישית באחוזים או בפיקסלים. אם תבחר ”לא” הממוזערות של webtrees יהיו בשימוש בתבניות שהגדרת בדף התצורה של העץ."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:405
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr ""
+msgstr "אם בחרת את האפשרות \"הצג מקומות\", אבל לא את האפשרות לקצר את שמות המקומות, באפשרותך להגדיר את המדינה שלך כאן. מקומות מלאים יופיעו בעמודי תצוגת עץ מהודרות, אבל כאשר המקום כולל את שם המדינה שלך, שם זה אינו נכלל. אם לא תבחר מדינה אז כל המדינות תוצגנה, כולל המדינה שלך."
 
 #. I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:392
 msgid "If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
-msgstr ""
+msgstr "אם בחרת את האפשרות \"הצג מקומות\", אתה יכול לבחור להשתמש בהגדרות ברירת המחדל של GEDCOM  כדי לקצר שמות מקומות. אם לא תבחר אפשרות זו, יוצגו שמות מקומות מלאים.."
 
 #: modules_v3\fancy_treeview/templates/admin.php:343
 msgid "Number of generation blocks to show"
@@ -111,21 +111,21 @@ msgstr "מספר בלוקי דורות שיש להציג"
 #: modules_v3\fancy_treeview/fancytreeview.php:967
 #: modules_v3\fancy_treeview/templates/admin.php:124
 msgid "Ok"
-msgstr ""
+msgstr "או קיי"
 
 #: modules_v3\fancy_treeview/templates/admin.php:321
 #, php-format
 msgid "Options for %s"
-msgstr ""
+msgstr "אפשרויות עבור %s"
 
 #: modules_v3\fancy_treeview/templates/admin.php:138
 #: modules_v3\fancy_treeview/templates/admin.php:212
 msgid "Page title"
-msgstr ""
+msgstr "כותרת דף"
 
 #: modules_v3\fancy_treeview/templates/admin.php:63
 msgid "Pages"
-msgstr ""
+msgstr "דפים"
 
 #: modules_v3\fancy_treeview/templates/admin.php:421
 msgid "Resize thumbnails"
@@ -139,12 +139,11 @@ msgstr "אדם מוצא"
 #: modules_v3\fancy_treeview/templates/admin.php:118
 #: modules_v3\fancy_treeview/templates/page.php:41
 msgid "Search ID by name"
-msgstr ""
+msgstr "חפש קוד זיהוי לפי שם"
 
 #: modules_v3\fancy_treeview/templates/admin.php:85
-#, fuzzy
 msgid "Search root person"
-msgstr "שנה את אדם המוצא"
+msgstr "חפש את אדם מוצא"
 
 #: modules_v3\fancy_treeview/templates/admin.php:399
 msgid "Select your country"
@@ -189,25 +188,25 @@ msgstr "הצג רווקים"
 #: modules_v3\fancy_treeview/templates/admin.php:136
 #: modules_v3\fancy_treeview/templates/admin.php:210
 msgid "Surname in page title"
-msgstr ""
+msgstr "שם משפחה בכותרת דף"
 
 #. I18N: %s is an ordinal
 #: modules_v3\fancy_treeview/fancytreeview.php:347
 #, php-format
 msgid "The %s time he married"
-msgstr "בפעם ה-%s הוא התחתן עם"
+msgstr "בפעם ה%s הוא התחתן עם"
 
 #. I18N: %s is an ordinal
 #: modules_v3\fancy_treeview/fancytreeview.php:353
 #, php-format
 msgid "The %s time she married"
-msgstr "בפעם ה-%s היא התחתנה עם"
+msgstr "בפעם ה%s היא התחתנה עם"
 
 #. I18N: %s is an ordinal
 #: modules_v3\fancy_treeview/fancytreeview.php:359
 #, php-format
 msgid "The %s time this individual married"
-msgstr ""
+msgstr "בפעם ה%s האדם התחתן עם"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:246
 msgid "The details of this generation are private."
@@ -215,11 +214,11 @@ msgstr "הפרטים של הדור הזה הם פרטיים."
 
 #: modules_v3\fancy_treeview/templates/admin.php:328
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr ""
+msgstr "האפשרויות עבור העץ הזה אופסו בהצלחה להגדרות ברירת המחדל"
 
 #: modules_v3\fancy_treeview/templates/admin.php:327
 msgid "The options for this tree are succesfully saved"
-msgstr ""
+msgstr "האפשרויות עבור העץ הזה נשמרו בהצלחה"
 
 #: modules_v3\fancy_treeview/templates/page.php:27
 msgid "The pdf contains only visible generation blocks."
@@ -232,22 +231,22 @@ msgstr "אדם המוצא עם קוד מזהה %s כבר לא קיים בעץ ה
 
 #: modules_v3\fancy_treeview/templates/admin.php:200
 msgid "The settings for this tree are succesfully updated"
-msgstr ""
+msgstr "האפשרויות עבור העץ הזה עודכנו בהצלחה"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:371
 msgid "This individual married"
-msgstr ""
+msgstr "האדם הזה התחתן"
 
 #. I18N: %s is a number
 #: modules_v3\fancy_treeview/fancytreeview.php:357
 #, php-format
 msgid "This individual married %s times"
-msgstr ""
+msgstr "האדם הזה התחתן %s פעמים"
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:348
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr ""
+msgstr "אפשרות זו שימושית במיוחד עבור עצים גדולים. כאשר אתה שם לב שיש טעינה אטית של הדף, אתה יכול להגדיר כאן את מספר בלוקי דור שיש לטעון בבת אחת לרמה נמוכה יותר. מתחת לבלוק הדור האחרון יופיע כפתור שבאזרתו ניתן  להוסיף את הסט הבא של בלוקי דור. הבלוקים החדשים יתווספו לבלוקים שכבר נטענו. לחיצה על קישור \"עקוב\" בבלוק הדור הגלוי האחרון,  יטעון גם כן את הסט הבא של בלוקי דור."
 
 #: modules_v3\fancy_treeview/templates/admin.php:432
 msgid "Thumbnail size"
@@ -260,7 +259,7 @@ msgstr "תצוגת עץ"
 #. I18N: Help text for the “Show single persons” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:371
 msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
-msgstr ""
+msgstr "הפעל אפשרות זו באם אתה רוצה להראות אנשים בודדים בבלוקי הדורות. אנשים בודדים הם אנשים ללא בן זוג וילדים. כאשר אפשרות זו מופעלת, כל ילד של המשפחה יוצג באופן מפורט בבלוק של הדור הבא."
 
 #: modules_v3\fancy_treeview/templates/admin.php:386
 msgid "Use default Gedcom settings to abbreviate place names?"
@@ -277,34 +276,34 @@ msgstr "השתמש בתמונות ממוזערות מרובעות"
 #. I18N: Help text for creating Fancy Tree View pages
 #: modules_v3\fancy_treeview/templates/admin.php:75
 msgid "Use the search form below to search for a root person. After a successfull search the Fancy Tree View page will be automatically created. You can add as many root persons as you want."
-msgstr ""
+msgstr "השתמש בטופס החיפוש שלמטה כדי לחפש אדם מוצא. לאחר חיפוש מוצלח דף תצוגת עץ מפוארת נוצר באופן אוטומטי. אתה יכול להוסיף אנשי מוצא רבים ככל שתרצה."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:360
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option)."
-msgstr ""
+msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקק אם לזוג (נשוי) יש אותם אבות. אם נמצאו יחסים בין בני הזוג, יופיע טקסט בסוגריים אחרי שמו של בן הזוג כדי לציין את מערכת היחסים. הערה: אפשרות זו עלולה לגרום לטעינת דף איטית יותר, במיוחד בעצים גדולים. אם אתה מבחין בהתנהגות כזו, יש לצמצם את מספר בלוקי הדור שנטענים בבת אחת (ראה האפשרות הקודמת)."
 
 #: modules_v3\fancy_treeview/fancytreeview.php:490
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr ""
+msgstr "בת מאומצת"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:493
 msgctxt "MALE"
 msgid "adopted child"
-msgstr ""
+msgstr "בן מאומץ"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:551
 msgid "adopted child of"
-msgstr "ילד מאומץ ע\"י"
+msgstr "ילד מאומץ ע״י"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:542
 msgid "adopted daughter of"
-msgstr "בת מאומצת ע\"י"
+msgstr "בת מאומצת ע״י"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:533
 msgid "adopted son of"
-msgstr "בן מאומץ ע\"י"
+msgstr "בן מאומץ ע״י"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/fancytreeview.php:407
@@ -314,7 +313,7 @@ msgstr "בן מאומץ ע\"י"
 #: modules_v3\fancy_treeview/fancytreeview.php:564
 #: modules_v3\fancy_treeview/fancytreeview.php:611
 msgid "and "
-msgstr ""
+msgstr "ו"
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: modules_v3\fancy_treeview/fancytreeview.php:626
@@ -332,17 +331,17 @@ msgstr "בגיל %s שנים"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:553
 msgid "child of"
-msgstr ""
+msgstr "ילד/ה של"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:612
 msgctxt "FEMALE"
 msgid "died"
-msgstr ""
+msgstr "נפטרה"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:612
 msgctxt "MALE"
 msgid "died"
-msgstr ""
+msgstr "נפטר"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:340
 msgid "fifth"
