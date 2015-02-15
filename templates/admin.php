@@ -105,7 +105,8 @@ global $WT_TREE;
 							</button>
 						</div>
 						<!-- PID SEARCH FIELD -->
-						<div class="form-group pull-right">
+						<?php $class = I18N::direction() === 'rtl' ? 'pull-left' : 'pull-right'; ?>
+						<div class="form-group <?php echo $class; ?>">
 							<label class="control-label" for="PID">
 								<?php echo I18N::translate('Or enter an ID'); ?>
 							</label>

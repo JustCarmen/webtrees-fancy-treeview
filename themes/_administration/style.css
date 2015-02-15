@@ -20,6 +20,11 @@
     float: right; 
     color: grey; 
 }
+
+[dir=rtl] .panel-heading a:after {
+	float: left;
+}
+
 .panel-heading a.collapsed:after {
 	content:"\f054";
 }
@@ -27,6 +32,10 @@
 #search-result-table {
 	margin-left: -8px;
 	margin-top: 30px;
+}
+
+[dir=rtl] #search-result-table {
+	margin-right: -8px;
 }
 
 .sortme {
@@ -48,4 +57,9 @@
 
 .ui-helper-hidden-accessible {
 	visibility: hidden;
+}
+
+/*Correction for rtl-pages*/
+[dir=rtl] .form-inline .checkbox-inline {
+	padding-right: 20px;
 }
