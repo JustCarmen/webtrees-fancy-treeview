@@ -23,12 +23,17 @@ use Zend_Translate;
 
 class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
-	// location of the fancy treeview module files.
+	/** @var string location of the fancy treeview module files */
 	var $module;
+	
+	/** @var integer The tree's ID number */
+	var $tree_id;
 
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct();
+		
+		$this->tree_id = $this->treeId();
 
 		// update the database if neccessary
 		self::updateSchema();
@@ -343,6 +348,17 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 				return $menu;
 			}
 		}
+	}
+	
+	private function treeId() {
+		global $WT_TREE;
+
+		$tree_id = $WT_TREE->getIdFromName(Filter::get('ged'));
+		if (!$tree_id) {
+			$tree_id = $WT_TREE->getTreeId();
+		}
+
+		return $tree_id;
 	}
 	
 	/**

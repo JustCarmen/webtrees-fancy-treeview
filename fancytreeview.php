@@ -25,15 +25,9 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 	// Get module options
 	protected function options($value = '') {
-		global $WT_TREE;
 		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 
-		$key = $WT_TREE->getIdFromName(Filter::get('ged'));
-		if (empty($key)) {
-			$key = WT_GED_ID;
-		}
-
-		if (empty($FTV_OPTIONS) || (is_array($FTV_OPTIONS) && !array_key_exists($key, $FTV_OPTIONS))) {
+		if (empty($FTV_OPTIONS) || (is_array($FTV_OPTIONS) && !array_key_exists($this->tree_id, $FTV_OPTIONS))) {
 			$FTV_OPTIONS[0] = array(
 				'USE_FULLNAME'			 => '0',
 				'NUMBLOCKS'				 => '0',
@@ -55,12 +49,12 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		}
 
 		// country could be disabled and thus not set
-		if ($value == 'country' && !array_key_exists(strtoupper($value), $FTV_OPTIONS[$key])) {
+		if ($value == 'country' && !array_key_exists(strtoupper($value), $FTV_OPTIONS[$this->tree_id])) {
 			return '';
 		} elseif ($value) {
-			return($FTV_OPTIONS[$key][strtoupper($value)]);
+			return($FTV_OPTIONS[$this->tree_id][strtoupper($value)]);
 		} else {
-			return $FTV_OPTIONS[$key];
+			return $FTV_OPTIONS[$this->tree_id];
 		}
 	}
 
@@ -69,11 +63,11 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		$sql = "SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
 			" JOIN `##name` ON (i_id = n_id AND i_file = n_file)" .
-			" WHERE n_file = :ged_id" .
+			" WHERE n_file = :tree_id" .
 			" AND n_type != '_MARNM'" .
 			" AND (n_surn = :surname1 OR n_surname = :surname2";
 		$args = array(
-			'ged_id'	 => WT_GED_ID,
+			'tree_id'	 => $this->tree_id,
 			'surname1'	 => $surname,
 			'surname2'	 => $surname
 		);
@@ -104,10 +98,10 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 	// Get surname from pid
 	protected function getSurname($pid) {
-		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :ged_id AND n_id = :pid AND n_type = 'NAME'";
+		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
 		$args = array(
-			'ged_id' => WT_GED_ID,
-			'pid'	 => $pid
+			'tree_id'	 => $this->tree_id,
+			'pid'		 => $pid
 		);
 		$data = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
@@ -164,8 +158,13 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 	protected function getCountryList() {
 		$list = '';
-		$countries = Database::prepare("SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=? AND p_file=?")
-				->execute(array('0', WT_GED_ID))->fetchAll(PDO::FETCH_ASSOC);
+		$sql = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
+		$args = array(
+			'parent_id'	 => '0',
+			'tree_id'	 => $this->tree_id
+		);
+
+		$countries = Database::prepare($sql)->execute($args)->fetchAll(PDO::FETCH_ASSOC);
 
 		foreach ($countries as $country) {
 			$list[$country['country']] = $country['country']; // set the country as key to display as option value.
@@ -248,7 +247,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			foreach ($pids as $pid) {
 				$next_gen[] = $this->getNextGen($pid);
 			}
-			
+
 			foreach ($next_gen as $descendants) {
 				if (count($descendants) > 0) {
 					foreach ($descendants as $descendant) {
@@ -260,9 +259,9 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 			}
 
 			if (!empty($generation)) {
-				if($gen === 3) {
-					$html .= 
-						'<div id="read-more-link"><a href="module.php?mod=' . $this->getName() .  '&amp;mod_action=page&rootid=' . $root . '">'. I18N::translate('Read more') . '</a></div>';
+				if ($gen === 3) {
+					$html .=
+						'<div id="read-more-link"><a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '">' . I18N::translate('Read more') . '</a></div>';
 					return $html;
 				} else {
 					$gen++;
@@ -314,7 +313,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		}
 		return $html;
 	}
-	
+
 	private function printTabContentGeneration($generation, $i) {
 
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
@@ -322,7 +321,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 					<div class="blockheader">
 						<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>
 					</div>';
-		
+
 		if ($this->checkPrivacy($generation, true)) {
 			$html .= '<div class="generation private">' . I18N::translate('The details of this generation are private.') . '</div>';
 		} else {
@@ -584,7 +583,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 						}
 
 						$child_family = $this->getFamily($child);
-						
+
 						// do not load this part of the code in the fancy treeview tab on the individual page.
 						if (WT_SCRIPT_NAME !== 'inidividual.php') {
 							if ($child->canShow() && $child_family) {
@@ -1022,11 +1021,11 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	protected function getStylesheet() {
 		$theme_dir = $this->module . '/themes/';
 		$stylesheet = '';
-		
+
 		if (Theme::theme()->themeId() !== '_administration') {
 			$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
 		}
-		
+
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css');
 		}
@@ -1037,30 +1036,30 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	protected function includeJs($controller, $page) {
 
 		switch ($page) {
-		case 'admin':
-			$controller->addInlineJavascript('
+			case 'admin':
+				$controller->addInlineJavascript('
 				var ModuleDir			= "' . $this->module . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
 			', BaseController::JS_PRIORITY_HIGH);
-			$controller
-				->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
-				->addInlineJavascript('autocomplete();')
-				->addExternalJavascript($this->module . '/js/admin.js');
-			break;
+				$controller
+					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+					->addInlineJavascript('autocomplete();')
+					->addExternalJavascript($this->module . '/js/admin.js');
+				break;
 
-		case 'menu':
-			$controller->addInlineJavascript('
+			case 'menu':
+				$controller->addInlineJavascript('
 				var ModuleDir			= "' . $this->module . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
 			', BaseController::JS_PRIORITY_HIGH);
-			$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();', BaseController::JS_PRIORITY_LOW);
-			break;
+				$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();', BaseController::JS_PRIORITY_LOW);
+				break;
 
-		case 'page':
-			$controller
-				->addInlineJavascript('
+			case 'page':
+				$controller
+					->addInlineJavascript('
 				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";
 				var RootID				= "' . $this->rootId() . '";
 				var OptionsNumBlocks	= ' . $this->options('numblocks') . ';
@@ -1068,23 +1067,23 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				var TextOk				= "' . I18N::translate('Ok') . '";
 				var TextCancel			= "' . I18N::translate('Cancel') . '";
 			', BaseController::JS_PRIORITY_HIGH)
-				->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
-				->addInlineJavascript('autocomplete();')
-				->addExternalJavascript($this->module . '/js/page.js');
+					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
+					->addInlineJavascript('autocomplete();')
+					->addExternalJavascript($this->module . '/js/page.js');
 
-			if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
-				$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
-			}
+				if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+					$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
+				}
 
-			// some files needs an extra js script
-			if (file_exists(WT_STATIC_URL . $this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
-				$controller->addExternalJavascript($this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
-			}
+				// some files needs an extra js script
+				if (file_exists(WT_STATIC_URL . $this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
+					$controller->addExternalJavascript($this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+				}
 
-			if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
-				$this->includeJsInline($controller);
-			}
-			break;
+				if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+					$this->includeJsInline($controller);
+				}
+				break;
 		}
 	}
 
