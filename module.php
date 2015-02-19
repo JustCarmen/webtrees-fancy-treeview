@@ -302,7 +302,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	/** {@inheritdoc} */
 	public function getMenu() {
-		global $controller, $SEARCH_SPIDER;
+		global $controller;
 
 		$ftv = new FancyTreeView;
 		static $menu;
@@ -315,7 +315,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
 		if (!empty($FTV_SETTINGS)) {
-			if ($SEARCH_SPIDER) {
+			if (Auth::isSearchEngine()) {
 				return null;
 			}
 
