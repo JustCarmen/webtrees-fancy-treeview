@@ -23,38 +23,37 @@ use PDO;
  */
 class FancyTreeView extends fancy_treeview_WT_Module {
 
+	// Set default module options
+	private function setDefault($key) {
+		$FTV_DEFAULT = array(
+			'USE_FULLNAME'			 => '0',
+			'NUMBLOCKS'				 => '0',
+			'CHECK_RELATIONSHIP'	 => '0',
+			'SHOW_SINGLES'			 => '0',
+			'SHOW_PLACES'			 => '1',
+			'USE_GEDCOM_PLACES'		 => '0',
+			'COUNTRY'				 => '',
+			'SHOW_OCCU'				 => '1',
+			'RESIZE_THUMBS'			 => '1',
+			'THUMB_SIZE'			 => '60',
+			'THUMB_RESIZE_FORMAT'	 => '2',
+			'USE_SQUARE_THUMBS'		 => '1',
+			'SHOW_USERFORM'			 => '2',
+			'SHOW_PDF_ICON'			 => '2',
+			'FTV_TAB'				 => '0',
+		);
+		return $FTV_DEFAULT[$key];
+	}
+
 	// Get module options
-	protected function options($value = '') {
+	protected function options($k) {
 		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+		$key = strtoupper($k);
 
-		if (empty($FTV_OPTIONS) || (is_array($FTV_OPTIONS) && !array_key_exists($this->tree_id, $FTV_OPTIONS))) {
-			$FTV_OPTIONS[0] = array(
-				'USE_FULLNAME'			 => '0',
-				'NUMBLOCKS'				 => '0',
-				'CHECK_RELATIONSHIP'	 => '0',
-				'SHOW_SINGLES'			 => '0',
-				'SHOW_PLACES'			 => '1',
-				'USE_GEDCOM_PLACES'		 => '0',
-				'COUNTRY'				 => '',
-				'SHOW_OCCU'				 => '1',
-				'RESIZE_THUMBS'			 => '1',
-				'THUMB_SIZE'			 => '60',
-				'THUMB_RESIZE_FORMAT'	 => '2',
-				'USE_SQUARE_THUMBS'		 => '1',
-				'SHOW_USERFORM'			 => '2',
-				'SHOW_PDF_ICON'			 => '2',
-				'FTV_TAB'				 => '0',
-			);
-			$key = 0;
-		}
-
-		// country could be disabled and thus not set
-		if ($value == 'country' && !array_key_exists(strtoupper($value), $FTV_OPTIONS[$this->tree_id])) {
-			return '';
-		} elseif ($value) {
-			return($FTV_OPTIONS[$this->tree_id][strtoupper($value)]);
+		if (empty($FTV_OPTIONS[$this->tree_id]) || (is_array($FTV_OPTIONS[$this->tree_id]) && !array_key_exists($key, $FTV_OPTIONS[$this->tree_id]))) {
+			return $this->setDefault($key);
 		} else {
-			return $FTV_OPTIONS[$this->tree_id];
+			return($FTV_OPTIONS[$this->tree_id][$key]);
 		}
 	}
 
