@@ -33,7 +33,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	public function __construct() {
 		parent::__construct();
 		
-		$this->tree_id = $this->treeId();
+		$this->tree_id = $this->getTreeId();
 
 		// update the database if neccessary
 		self::updateSchema();
@@ -350,7 +350,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 		}
 	}
 	
-	private function treeId() {
+	private function getTreeId() {
 		global $WT_TREE;
 
 		$tree_id = $WT_TREE->getIdFromName(Filter::get('ged'));
