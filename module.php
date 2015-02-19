@@ -23,23 +23,21 @@ use Zend_Translate;
 
 class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
-	/** @var string location of the fancy treeview module files */
-	var $module;
-	
 	/** @var integer The tree's ID number */
 	var $tree_id;
+
+	/** @var string location of the fancy treeview module files */
+	var $module;
 
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->tree_id = $this->getTreeId();
+		$this->module = WT_MODULES_DIR . $this->getName();
 
 		// update the database if neccessary
 		self::updateSchema();
-
-		// set default variable
-		$this->module = WT_MODULES_DIR . $this->getName();
 
 		// Load the module class
 		require_once $this->module . '/fancytreeview.php';
@@ -116,7 +114,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 			// add javascript files and scripts
 			$ftv->includeJs($controller, 'admin');
-			
+
 			// add stylesheet
 			echo $ftv->getStylesheet();
 
@@ -288,7 +286,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	public function getTabContent() {
 		global $controller;
 		$ftv = new FancyTreeView;
-		return 
+		return
 			'<script src="' . WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
 				'<ol id="fancy_treeview">' . $ftv->printTabContent($controller->record->getXref()) . '</ol>' .
@@ -349,7 +347,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 			}
 		}
 	}
-	
+
 	private function getTreeId() {
 		global $WT_TREE;
 
@@ -360,7 +358,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 		return $tree_id;
 	}
-	
+
 	/**
 	 * Make sure the database structure is up-to-date.
 	 */

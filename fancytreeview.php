@@ -181,6 +181,22 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		return radio_buttons($name, $values, $selected, 'class="radio-inline"');
 	}
 
+	protected function addMessage($id, $type, $hidden, $message = '') {
+		$style = $hidden ? ' style="display:none"' : '';
+
+		return
+			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
+			'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
+			'<span aria-hidden="true">&times;</span>' .
+			'</button>' .
+			'<span class="message">' . $message . '</span>' .
+			'</div>';
+	}
+
+	protected function rootId() {
+		return Filter::get('rootid', WT_REGEX_XREF);
+	}
+
 	// Print functions
 	protected function printPage() {
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
@@ -1131,22 +1147,6 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 				newSheet.setAttribute("media","all");
 				document.getElementsByTagName("head")[0].appendChild(newSheet);
 			</script>';
-	}
-
-	protected function rootId() {
-		return Filter::get('rootid', WT_REGEX_XREF);
-	}
-
-	protected function addMessage($id, $type, $hidden, $message = '') {
-		$style = $hidden ? ' style="display:none"' : '';
-
-		return
-			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
-			'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
-			'<span aria-hidden="true">&times;</span>' .
-			'</button>' .
-			'<span class="message">' . $message . '</span>' .
-			'</div>';
 	}
 
 }
