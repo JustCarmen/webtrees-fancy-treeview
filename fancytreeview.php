@@ -426,13 +426,18 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		$html = ' ';
 
 		if ($count > 1) {
-			// we assume no one married more then five times.
+			// we assume no one married more then ten times.
 			$wordcount = array(
 				I18N::translate('first'),
 				I18N::translate('second'),
 				I18N::translate('third'),
 				I18N::translate('fourth'),
-				I18N::translate('fifth')
+				I18N::translate('fifth'),
+				I18N::translate('sixth'),
+				I18N::translate('seventh'),
+				I18N::translate('eighth'),
+				I18N::translate('ninth'),
+				I18N::translate('tenth')
 			);
 			switch ($individual->getSex()) {
 				case 'M':
