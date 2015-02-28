@@ -71,7 +71,7 @@ function getPDF() {
 
 	//put image back behind the mediafirewall
 	jQuery(".wt-thumb").each(function(){
-		jQuery(this).attr("src", jQuery(this).parent().data("obje-url") + "&thumb=1");
+		jQuery(this).attr("src", jQuery(this).parent().attr("href") + "&thumb=1");
 	});
 
 	//dompdf does not support ordered list, so we make our own
