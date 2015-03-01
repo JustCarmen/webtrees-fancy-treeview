@@ -298,7 +298,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		if ($this->checkPrivacy($generation, true)) {
 			$html .= $this->printPrivateBlock();
 		} else {
-			$html .= $this->printBlockContent($generation);
+			$html .= $this->printBlockContent(array_unique($generation));
 		}
 		
 		$html .= '</li>';
@@ -315,8 +315,6 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 	
 	private function printBlockContent($generation) {		
-		$generation = array_unique($generation);
-		
 		$html = '<ol class="blockcontent generation">';
 		foreach ($generation as $pid) {
 			$individual = $this->getIndividual($pid);
