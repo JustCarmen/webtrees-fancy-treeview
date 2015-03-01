@@ -28,6 +28,8 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	/** @var string location of the fancy treeview module files */
 	var $module;
+	
+	var $action;
 
 	/** {@inheritdoc} */
 	public function __construct() {
@@ -35,6 +37,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 		$this->tree_id = $this->getTreeId();
 		$this->module = WT_MODULES_DIR . $this->getName();
+		$this->action = Filter::get('mod_action');
 
 		// update the database if neccessary
 		self::updateSchema();

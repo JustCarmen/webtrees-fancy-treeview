@@ -253,7 +253,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		$gen = 1;
 		$root = $pid; // save value for read more link
 		$generation = array($pid);
-		$html .= $this->printTabContentGeneration($generation, $gen);
+		$html .= $this->printGeneration($generation, $gen);
 
 		while (count($generation) > 0 && $gen < 4) {
 			$pids = $generation;
@@ -275,12 +275,11 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 
 			if (!empty($generation)) {
 				if ($gen === 3) {
-					$html .=
-						'<div id="read-more-link"><a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '">' . I18N::translate('Read more') . '</a></div>';
+					$html .= $this->printReadMoreLink($root);
 					return $html;
 				} else {
 					$gen++;
-					$html .= $this->printTabContentGeneration($generation, $gen);
+					$html .= $this->printGeneration($generation, $gen);
 					unset($next_gen, $descendants, $pids);
 				}
 			} else {
@@ -291,44 +290,76 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 
 	private function printGeneration($generation, $i) {
-
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">
-					<div class="blockheader ui-state-default"><span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>';
-		if ($i > 1) {
-			$html .= '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
-		}
-		$html .= '	</div>';
-
+		$html = 
+		'<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">' .
+		$this->printBlockHeader($i);
+		
 		if ($this->checkPrivacy($generation, true)) {
-			$html .= '<div class="blockcontent generation private">' . I18N::translate('The details of this generation are private.') . '</div>';
+			$html .= $this->printPrivateBlock();
 		} else {
-			$html .= '<ol class="blockcontent generation">';
-			$generation = array_unique($generation); // needed to prevent the same family added twice to the generation block (this is the case when parents have the same ancestors and are both members of the previous generation).
-
-			foreach ($generation as $pid) {
-				$individual = $this->getIndividual($pid);
-
-				// only list persons without parents in the same generation - if they have they will be listed in the next generation anyway.
-				// This prevents double listings
-				if (!$this->hasParentsInSameGeneration($individual, $generation)) {
-					$family = $this->getFamily($individual);
-					if (!empty($family)) {
-						$id = $family->getXref();
-					} else {
-						if ($this->options('show_singles') == true || !$individual->getSpouseFamilies()) {
-							$id = 'S' . $pid;
-						} // Added prefix (S = Single) to prevent double id's.
-					}
-					$class = $individual->canShow() ? 'family' : 'family private';
-					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($individual) . '</li>';
-				}
-			}
-			$html .= '</ol></li>';
+			$html .= $this->printBlockContent($generation);
 		}
+		
+		$html .= '</li>';
+		
 		return $html;
 	}
-
+	
+	private function printBlockHeader($i) {
+		return 
+			'<div class="blockheader ui-state-default">' .
+			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>' .
+			$this->printBackToTopLink($i) .
+			'</div>';
+	}
+	
+	private function printBlockContent($generation) {		
+		$generation = array_unique($generation);
+		
+		$html = '<ol class="blockcontent generation">';
+		foreach ($generation as $pid) {
+			$individual = $this->getIndividual($pid);
+			if (!$this->hasParentsInSameGeneration($individual, $generation)) {
+				$family = $this->getFamily($individual);
+				if (!empty($family)) {
+					$id = $family->getXref();
+				} else {
+					if ($this->options('show_singles') == true || !$individual->getSpouseFamilies()) {
+						$id = 'S' . $pid;
+					} // Added prefix (S = Single) to prevent double id's.
+				}
+				$class = $individual->canShow() ? 'family' : 'family private';
+				$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($individual) . '</li>';
+			}
+		}
+		$html .= '</ol>';
+		return $html;
+	}
+	
+	private function printBackToTopLink($i) {
+		if ($this->action === 'page' && $i > 1) {
+			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
+		}		
+	}
+	
+	private function printReadMoreLink($root) {
+		return 
+			'<div id="read-more-link">' .
+			'<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '">' .
+			I18N::translate('Read more') . 
+			'</a>' .
+			'</div>';
+	}
+	
+	private function printPrivateBlock() {
+		return
+			'<div class="blockcontent generation private">' . 
+			I18N::translate('The details of this generation are private.') . 
+			'</div>';
+	}
+	
+	
 	private function printTabContentGeneration($generation, $i) {
 
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
@@ -1155,3 +1186,4 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 	}
 
 }
+
