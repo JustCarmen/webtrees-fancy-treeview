@@ -1071,9 +1071,7 @@ class FancyTreeView extends fancy_treeview_WT_Module {
 		$theme_dir = $this->module . '/themes/';
 		$stylesheet = '';
 
-		if (Theme::theme()->themeId() !== '_administration') {
-			$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
-		}
+		$stylesheet .= $this->includeCss($theme_dir . 'base/style.css');
 
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css');

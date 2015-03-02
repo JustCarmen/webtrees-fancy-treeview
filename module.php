@@ -304,49 +304,49 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	/** {@inheritdoc} */
 	public function getMenu() {
 		global $controller;
+		
+		if (!Auth::isSearchEngine() && Theme::theme()->themeId() !== '_administration') {
 
-		$ftv = new FancyTreeView;
-		static $menu;
+			$ftv = new FancyTreeView;
+			static $menu;
 
-		// Function has already run
-		if ($menu !== null) {
-			return $menu;
-		}
-
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-		if (!empty($FTV_SETTINGS)) {
-			if (Auth::isSearchEngine()) {
-				return null;
+			// Function has already run
+			if ($menu !== null) {
+				return $menu;
 			}
 
-			foreach ($FTV_SETTINGS as $FTV_ITEM) {
-				if ($FTV_ITEM['TREE'] == WT_GED_ID && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
-					$FTV_GED_SETTINGS[] = $FTV_ITEM;
-				}
-			}
+			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
-			if (!empty($FTV_GED_SETTINGS)) {
-				// load the module stylesheets
-				echo $ftv->getStylesheet();
+			if (!empty($FTV_SETTINGS)) {
 
-				// add javascript files and scripts
-				$ftv->includeJs($controller, 'menu');
-
-				$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
-
-				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
-					if (Individual::getInstance($FTV_ITEM['PID'])) {
-						if ($ftv->options('use_fullname') == true) {
-							$submenu = new Menu(I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'])->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
-						} else {
-							$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
-						}
-						$menu->addSubmenu($submenu);
+				foreach ($FTV_SETTINGS as $FTV_ITEM) {
+					if ($FTV_ITEM['TREE'] == WT_GED_ID && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
+						$FTV_GED_SETTINGS[] = $FTV_ITEM;
 					}
 				}
 
-				return $menu;
+				if (!empty($FTV_GED_SETTINGS)) {
+					// load the module stylesheets
+					echo $ftv->getStylesheet();
+
+					// add javascript files and scripts
+					$ftv->includeJs($controller, 'menu');
+
+					$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
+
+					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
+						if (Individual::getInstance($FTV_ITEM['PID'])) {
+							if ($ftv->options('use_fullname') == true) {
+								$submenu = new Menu(I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'])->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+							} else {
+								$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+							}
+							$menu->addSubmenu($submenu);
+						}
+					}
+
+					return $menu;
+				}
 			}
 		}
 	}
