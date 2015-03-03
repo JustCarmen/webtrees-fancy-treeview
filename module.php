@@ -305,7 +305,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 	public function getMenu() {
 		global $controller;
 		
-		if (!Auth::isSearchEngine() && Theme::theme()->themeId() !== '_administration') {
+		if (!Auth::isSearchEngine()) {
 
 			$ftv = new FancyTreeView;
 			static $menu;
@@ -326,11 +326,14 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 				}
 
 				if (!empty($FTV_GED_SETTINGS)) {
-					// load the module stylesheets
-					echo $ftv->getStylesheet();
+					
+					if (Theme::theme()->themeId() !== '_administration') {
+						// load the module stylesheets
+						echo $ftv->getStylesheet();
 
-					// add javascript files and scripts
-					$ftv->includeJs($controller, 'menu');
+						// add javascript files and scripts
+						$ftv->includeJs($controller, 'menu');
+					}
 
 					$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
