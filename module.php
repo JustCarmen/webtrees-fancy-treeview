@@ -21,7 +21,7 @@ use PDOException;
 use Zend_Session;
 use Zend_Translate;
 
-class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
+class FancyTreeviewModule extends Module implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
 	/** @var integer The tree's ID number */
 	var $tree_id;
@@ -33,7 +33,7 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 
 	/** {@inheritdoc} */
 	public function __construct() {
-		parent::__construct();
+		parent::__construct('fancy_treeview');
 
 		$this->tree_id = $this->getTreeId();
 		$this->module = WT_MODULES_DIR . $this->getName();
@@ -377,3 +377,5 @@ class fancy_treeview_WT_Module extends Module implements ModuleConfigInterface, 
 	}
 
 }
+
+return new FancyTreeviewModule;

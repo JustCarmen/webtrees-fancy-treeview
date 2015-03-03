@@ -21,7 +21,7 @@ use PDO;
 /**
  * Class FancyTreeView
  */
-class FancyTreeView extends fancy_treeview_WT_Module {
+class FancyTreeView extends FancyTreeviewModule {
 
 	// Set default module options
 	private function setDefault($key) {
