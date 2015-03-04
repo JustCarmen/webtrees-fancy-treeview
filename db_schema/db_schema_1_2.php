@@ -81,4 +81,4 @@ if (!empty($options)) {
 	unset($new_options);
 }
 // Update the version to indicate success
-WT_Site::setPreference($schema_name, $next_version);
+Site::setPreference($schema_name, $next_version);
