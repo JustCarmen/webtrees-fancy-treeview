@@ -357,44 +357,6 @@ class FancyTreeView extends FancyTreeviewModule {
 			'</div>';
 	}
 
-
-	private function printTabContentGeneration($generation, $i) {
-
-		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = '<li class="generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">
-					<div class="blockheader">
-						<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>
-					</div>';
-
-		if ($this->checkPrivacy($generation, true)) {
-			$html .= '<div class="generation private">' . I18N::translate('The details of this generation are private.') . '</div>';
-		} else {
-			$html .= '<ol class="generation">';
-			$generation = array_unique($generation); // needed to prevent the same family added twice to the generation block (this is the case when parents have the same ancestors and are both members of the previous generation).
-
-			foreach ($generation as $pid) {
-				$person = $this->getPerson($pid);
-
-				// only list persons without parents in the same generation - if they have they will be listed in the next generation anyway.
-				// This prevents double listings
-				if (!$this->hasParentsInSameGeneration($person, $generation)) {
-					$family = $this->getFamily($person);
-					if (!empty($family)) {
-						$id = $family->getXref();
-					} else {
-						if ($this->options('show_singles') == true || !$person->getSpouseFamilies()) {
-							$id = 'S' . $pid;
-						} // Added prefix (S = Single) to prevent double id's.
-					}
-					$class = $person->canShow() ? 'family' : 'family private';
-					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
-				}
-			}
-			$html .= '</ol></li>';
-		}
-		return $html;
-	}
-
 	private function printIndividual($person) {
 
 		if ($person->CanShow()) {
