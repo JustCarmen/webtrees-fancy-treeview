@@ -547,9 +547,9 @@ class FancyTreeView extends FancyTreeviewModule {
 			$html .= '<div class="children"><p>' . $individual->getFullName() . ' ';
 			if ($spouse && $spouse->CanShow()) {
 				$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
-				$html .= I18N::translate_c('Two parents/one child', 'had');
+				$html .= I18N::translateContext('Two parents/one child', 'had');
 			} else {
-				$html .= I18N::translate_c('One parent/one child', 'had');
+				$html .= I18N::translateContext('One parent/one child', 'had');
 			}
 			$html .= ' ' . I18N::translate('none') . ' ' . I18N::translate('children') . '.</p></div>';
 		} else {
@@ -561,15 +561,15 @@ class FancyTreeView extends FancyTreeviewModule {
 					if ($spouse && $spouse->CanShow()) {
 						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
 						if (count($children) > 1) {
-							$html .= I18N::translate_c('Two parents/multiple children', 'had');
+							$html .= I18N::translateContext('Two parents/multiple children', 'had');
 						} else {
-							$html .= I18N::translate_c('Two parents/one child', 'had');
+							$html .= I18N::translateContext('Two parents/one child', 'had');
 						}
 					} else {
 						if (count($children) > 1) {
-							$html .= I18N::translate_c('One parent/multiple children', 'had');
+							$html .= I18N::translateContext('One parent/multiple children', 'had');
 						} else {
-							$html .= I18N::translate_c('One parent/one child', 'had');
+							$html .= I18N::translateContext('One parent/one child', 'had');
 						}
 					}
 					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
@@ -606,20 +606,20 @@ class FancyTreeView extends FancyTreeviewModule {
 								case 'foster':
 									switch ($child->getSex()) {
 										case 'F':
-											$html .= I18N::translate_c('FEMALE', 'foster child');
+											$html .= I18N::translateContext('FEMALE', 'foster child');
 											break;
 										default:
-											$html .= I18N::translate_c('MALE', 'foster child');
+											$html .= I18N::translateContext('MALE', 'foster child');
 											break;
 									}
 									break;
 								case 'adopted':
 									switch ($child->getSex()) {
 										case 'F':
-											$html .= I18N::translate_c('FEMALE', 'adopted child');
+											$html .= I18N::translateContext('FEMALE', 'adopted child');
 											break;
 										default:
-											$html .= I18N::translate_c('MALE', 'adopted child');
+											$html .= I18N::translateContext('MALE', 'adopted child');
 											break;
 									}
 									break;
@@ -716,16 +716,16 @@ class FancyTreeView extends FancyTreeviewModule {
 			if ($is_spouse == true) {
 				$html .= '. ';
 				if ($individual->isDead()) {
-					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PAST', 'She was born') : $html .= I18N::translate_c('PAST', 'He was born');
+					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
 				} else {
-					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PRESENT', 'She was born') : $html .= I18N::translate_c('PRESENT', 'He was born');
+					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
 				}
 			} else {
 				$this->printParents($individual) || $this->printFact($individual, 'OCCU') ? $html .= ', ' : $html .= ' ';
 				if ($individual->isDead()) {
-					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PAST (FEMALE)', 'was born') : $html .= I18N::translate_c('PAST (MALE)', 'was born');
+					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
 				} else {
-					$individual->getSex() == 'F' ? $html .= I18N::translate_c('PRESENT (FEMALE)', 'was born') : $html .= I18N::translate_c('PRESENT (MALE)', 'was born');
+					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
 				}
 			}
 			if ($birthdate->isOK()) {
@@ -742,7 +742,7 @@ class FancyTreeView extends FancyTreeviewModule {
 
 			if ($birthdata) {
 				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-				$individual->getSex() == 'F' ? $html .= I18N::translate_c('FEMALE', 'died') : $html .= I18N::translate_c('MALE', 'died');
+				$individual->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
 			} else {
 				$individual->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
 			}
@@ -756,9 +756,9 @@ class FancyTreeView extends FancyTreeviewModule {
 
 			if ($birthdate->isOK() && $deathdate->isOK()) {
 				if (Date::getAge($birthdate, $deathdate, 0) < 2) {
-					$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translate_c('age in days/months', 'at the age of %s', $ageOfdeath);
+					$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
 				} else {
-					$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translate_c('age in years', 'at the age of %s', $ageOfdeath);
+					$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
 				}
 			}
 		}
@@ -896,16 +896,16 @@ class FancyTreeView extends FancyTreeviewModule {
 
 	private function printDate($date) {
 		if ($date->qual1 || $date->qual2) {
-			return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translate_c('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
+			return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
 		}
-		if ($date->MinDate()->d > 0) {
-			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
+		if ($date->minimumDate()->d > 0) {
+			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
 		}
-		if ($date->MinDate()->m > 0) {
-			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before dateformat mmm yyyy', 'in ') . $date->Display();
+		if ($date->minimumDate()->m > 0) {
+			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat mmm yyyy', 'in ') . $date->Display();
 		}
-		if ($date->MinDate()->y > 0) {
-			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before dateformat yyyy', 'in ') . $date->Display();
+		if ($date->minimumDate()->y > 0) {
+			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
 		}
 	}
 
@@ -929,7 +929,7 @@ class FancyTreeView extends FancyTreeviewModule {
 	private function printPlace($place, $tree) {
 		if ($this->options('show_places') == true) {
 			$place = new Place($place, $tree);
-			$html = ' ' . /* I18N: Note the space at the end of the string */ I18N::translate_c('before placesnames', 'in ');
+			$html = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
 			if ($this->options('use_gedcom_places') == true) {
 				$html .= $place->getShortName();
 			} else {
