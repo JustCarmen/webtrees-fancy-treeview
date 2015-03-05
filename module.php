@@ -242,7 +242,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 
 			$controller = new PageController;
 
-			$root_person = $ftv->getIndividual($ftv->rootId());
+			$root_person = $ftv->getPerson($ftv->rootId());
 			if ($root_person && $root_person->canShowName()) {
 				$controller
 					->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))

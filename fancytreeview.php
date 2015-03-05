@@ -317,18 +317,18 @@ class FancyTreeView extends FancyTreeviewModule {
 	private function printBlockContent($generation) {
 		$html = '<ol class="blockcontent generation">';
 		foreach ($generation as $pid) {
-			$individual = $this->getIndividual($pid);
-			if (!$this->hasParentsInSameGeneration($individual, $generation)) {
-				$family = $this->getFamily($individual);
+			$person = $this->getPerson($pid);
+			if (!$this->hasParentsInSameGeneration($person, $generation)) {
+				$family = $this->getFamily($person);
 				if (!empty($family)) {
 					$id = $family->getXref();
 				} else {
-					if ($this->options('show_singles') == true || !$individual->getSpouseFamilies()) {
+					if ($this->options('show_singles') == true || !$person->getSpouseFamilies()) {
 						$id = 'S' . $pid;
 					} // Added prefix (S = Single) to prevent double id's.
 				}
-				$class = $individual->canShow() ? 'family' : 'family private';
-				$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($individual) . '</li>';
+				$class = $person->canShow() ? 'family' : 'family private';
+				$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
 			}
 		}
 		$html .= '</ol>';
@@ -373,21 +373,21 @@ class FancyTreeView extends FancyTreeviewModule {
 			$generation = array_unique($generation); // needed to prevent the same family added twice to the generation block (this is the case when parents have the same ancestors and are both members of the previous generation).
 
 			foreach ($generation as $pid) {
-				$individual = $this->getIndividual($pid);
+				$person = $this->getPerson($pid);
 
 				// only list persons without parents in the same generation - if they have they will be listed in the next generation anyway.
 				// This prevents double listings
-				if (!$this->hasParentsInSameGeneration($individual, $generation)) {
-					$family = $this->getFamily($individual);
+				if (!$this->hasParentsInSameGeneration($person, $generation)) {
+					$family = $this->getFamily($person);
 					if (!empty($family)) {
 						$id = $family->getXref();
 					} else {
-						if ($this->options('show_singles') == true || !$individual->getSpouseFamilies()) {
+						if ($this->options('show_singles') == true || !$person->getSpouseFamilies()) {
 							$id = 'S' . $pid;
 						} // Added prefix (S = Single) to prevent double id's.
 					}
-					$class = $individual->canShow() ? 'family' : 'family private';
-					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($individual) . '</li>';
+					$class = $person->canShow() ? 'family' : 'family private';
+					$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
 				}
 			}
 			$html .= '</ol></li>';
@@ -395,24 +395,24 @@ class FancyTreeView extends FancyTreeviewModule {
 		return $html;
 	}
 
-	private function printIndividual($individual) {
+	private function printIndividual($person) {
 
-		if ($individual->CanShow()) {
+		if ($person->CanShow()) {
 			$resize = $this->options('resize_thumbs') == 1 ? true : false;
-			$html = '<div class="parents">' . $this->printThumbnail($individual, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<a id="' . $individual->getXref() . '" href="' . $individual->getHtmlUrl() . '"><p class="desc">' . $individual->getFullName() . '</a>';
+			$html = '<div class="parents">' . $this->printThumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<a id="' . $person->getXref() . '" href="' . $person->getHtmlUrl() . '"><p class="desc">' . $person->getFullName() . '</a>';
 			if ($this->options('show_occu') == true) {
-				$html .= $this->printFact($individual, 'OCCU');
+				$html .= $this->printFact($person, 'OCCU');
 			}
 
-			$html .= $this->printParents($individual) . $this->printLifespan($individual);
+			$html .= $this->printParents($person) . $this->printLifespan($person);
 
 			// get a list of all the spouses
 			/*
 			 * First, determine the true number of spouses by checking the family gedcom
 			 */
 			$spousecount = 0;
-			foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
-				$spouse = $family->getSpouse($individual);
+			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
+				$spouse = $family->getSpouse($person);
 				if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 					$spousecount++;
 				}
@@ -425,10 +425,10 @@ class FancyTreeView extends FancyTreeviewModule {
 			 */
 			if ($spousecount > 0) {
 				$spouseindex = 0;
-				foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
-					$spouse = $family->getSpouse($individual);
+				foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
+					$spouse = $family->getSpouse($person);
 					if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
-						$html .= $this->printSpouse($family, $individual, $spouse, $spouseindex, $spousecount);
+						$html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
 						$spouseindex++;
 					}
 				}
@@ -437,20 +437,20 @@ class FancyTreeView extends FancyTreeviewModule {
 			$html .= '</p></div>';
 
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
-			foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
-				$spouse = $family->getSpouse($individual);
-				$html .= $this->printChildren($family, $individual, $spouse);
+			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
+				$spouse = $family->getSpouse($person);
+				$html .= $this->printChildren($family, $person, $spouse);
 			}
 
 			return $html;
 		} else {
-			if ($individual->getTree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
+			if ($person->getTree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
 				return I18N::translate('The details of this family are private.');
 			}
 		}
 	}
 
-	private function printSpouse($family, $individual, $spouse, $i, $count) {
+	private function printSpouse($family, $person, $spouse, $i, $count) {
 
 		$html = ' ';
 
@@ -468,7 +468,7 @@ class FancyTreeView extends FancyTreeviewModule {
 				I18N::translate('ninth'),
 				I18N::translate('tenth')
 			);
-			switch ($individual->getSex()) {
+			switch ($person->getSex()) {
 				case 'M':
 					if ($i == 0) {
 						$html .= /* I18N: %s is a number  */ I18N::translate('He married %s times', $count) . '. ';
@@ -489,7 +489,7 @@ class FancyTreeView extends FancyTreeviewModule {
 					break;
 			}
 		} else {
-			switch ($individual->getSex()) {
+			switch ($person->getSex()) {
 				case 'M':
 					$html .= I18N::translate('He married');
 					break;
@@ -506,7 +506,7 @@ class FancyTreeView extends FancyTreeviewModule {
 
 		// Add relationship note
 		if ($this->options('check_relationship')) {
-			$relationship = $this->checkRelationship($individual, $spouse, $family);
+			$relationship = $this->checkRelationship($person, $spouse, $family);
 			if ($relationship) {
 				$html .= ' (' . $relationship . ')';
 			}
@@ -535,18 +535,18 @@ class FancyTreeView extends FancyTreeviewModule {
 
 			$divorce = $family->getFirstFact('DIV');
 			if ($divorce) {
-				$html .= $individual->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
+				$html .= $person->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
 			}
 		}
 		return $html;
 	}
 
-	private function printChildren($family, $individual, $spouse) {
+	private function printChildren($family, $person, $spouse) {
 		$html = '';
 
 		$match = null;
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1] == 0) {
-			$html .= '<div class="children"><p>' . $individual->getFullName() . ' ';
+			$html .= '<div class="children"><p>' . $person->getFullName() . ' ';
 			if ($spouse && $spouse->CanShow()) {
 				$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
 				$html .= I18N::translateContext('Two parents/one child', 'had');
@@ -558,7 +558,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			$children = $family->getChildren();
 			if ($children) {
 				if ($this->checkPrivacy($children)) {
-					$html .= '<div class="children"><p>' . $individual->getFullName() . ' ';
+					$html .= '<div class="children"><p>' . $person->getFullName() . ' ';
 					// needs multiple translations for the word 'had' to serve different languages.
 					if ($spouse && $spouse->CanShow()) {
 						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
@@ -576,13 +576,13 @@ class FancyTreeView extends FancyTreeviewModule {
 					}
 					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
 				} else {
-					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $individual->getFullName();
+					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $person->getFullName();
 					if ($spouse && $spouse->CanShow()) {
 						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
 						if (!$family->getMarriage()) {
 							// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
 							if ($this->options('check_relationship')) {
-								$relationship = $this->checkRelationship($individual, $spouse, $family);
+								$relationship = $this->checkRelationship($person, $spouse, $family);
 							}
 							if (isset($relationship) && $relationship) {
 								$html .= $spouse->getFullName() . ' (' . $relationship . ')';
@@ -654,13 +654,13 @@ class FancyTreeView extends FancyTreeviewModule {
 		return $html;
 	}
 
-	private function printParents($individual) {
-		$parents = $individual->getPrimaryChildFamily();
+	private function printParents($person) {
+		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
-			$pedi = $this->checkPedi($individual, $parents);
+			$pedi = $this->checkPedi($person, $parents);
 
 			$html = '';
-			switch ($individual->getSex()) {
+			switch ($person->getSex()) {
 				case 'M':
 					if ($pedi === 'foster') {
 						$html .= ', ' . I18N::translate('foster son of') . ' ';
@@ -706,59 +706,59 @@ class FancyTreeView extends FancyTreeviewModule {
 		}
 	}
 
-	private function printLifespan($individual, $is_spouse = false) {
+	private function printLifespan($person, $is_spouse = false) {
 		$html = '';
-		$birthdate = $individual->getBirthDate();
-		$deathdate = $individual->getDeathdate();
+		$birthdate = $person->getBirthDate();
+		$deathdate = $person->getDeathdate();
 		$ageOfdeath = get_age_at_event(Date::GetAgeGedcom($birthdate, $deathdate), false);
 
 		$birthdata = false;
-		if ($birthdate->isOK() || $individual->getBirthPlace() != '') {
+		if ($birthdate->isOK() || $person->getBirthPlace() != '') {
 			$birthdata = true;
 			if ($is_spouse == true) {
 				$html .= '. ';
-				if ($individual->isDead()) {
-					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
+				if ($person->isDead()) {
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
 				} else {
-					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
 				}
 			} else {
-				$this->printParents($individual) || $this->printFact($individual, 'OCCU') ? $html .= ', ' : $html .= ' ';
-				if ($individual->isDead()) {
-					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
+				$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+				if ($person->isDead()) {
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
 				} else {
-					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
 				}
 			}
 			
-			$birt = $individual->getFirstFact('BIRT');			
+			$birt = $person->getFirstFact('BIRT');			
 			if ($birt) {
 				$html .= $this->printDate($birt);
 			}
 
-			if ($individual->getBirthPlace() != '') {
-				$html .= $this->printPlace($individual->getBirthPlace(), $individual->getTree());
+			if ($person->getBirthPlace() != '') {
+				$html .= $this->printPlace($person->getBirthPlace(), $person->getTree());
 			}
 		}
 
 		$deathdata = false;
-		if ($deathdate->isOK() || $individual->getDeathPlace() != '') {
+		if ($deathdate->isOK() || $person->getDeathPlace() != '') {
 			$deathdata = true;
 
 			if ($birthdata) {
 				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-				$individual->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
+				$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
 			} else {
-				$individual->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
+				$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
 			}
 			
-			$deat = $individual->getFirstFact('DEAT');
+			$deat = $person->getFirstFact('DEAT');
 			if ($deat) {
 				$html .= $this->printDate($deat);
 			}
 
-			if ($individual->getDeathPlace() != '') {
-				$html .= $this->printPlace($individual->getDeathPlace(), $individual->getTree());
+			if ($person->getDeathPlace() != '') {
+				$html .= $this->printPlace($person->getDeathPlace(), $person->getTree());
 			}
 
 			if ($birthdate->isOK() && $deathdate->isOK()) {
@@ -778,9 +778,9 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 	// some couples are known as not married but have children together. Print the info of the "spouse" parent in a tooltip.
-	private function printTooltip($individual) {
-		$birthdate = $individual->getBirthDate();
-		$deathdate = $individual->getDeathdate();
+	private function printTooltip($person) {
+		$birthdate = $person->getBirthDate();
+		$deathdate = $person->getDeathdate();
 		$html = '';
 		if ($birthdate->isOK()) {
 			$html .= '<strong>' . I18N::translate('Birth') . ':</strong> ' . strip_tags($birthdate->Display());
@@ -789,7 +789,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			$html .= '<br><strong>' . I18N::translate('Death') . ':</strong> ' . strip_tags($deathdate->Display());
 		}
 
-		$parents = $individual->getPrimaryChildFamily();
+		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
 			$father = $parents->getHusband();
 			$mother = $parents->getWife();
@@ -803,14 +803,14 @@ class FancyTreeView extends FancyTreeviewModule {
 		return $html;
 	}
 
-	private function printThumbnail($individual, $thumbsize, $resize_format, $square, $resize) {
-		$mediaobject = $individual->findHighlightedMedia();
+	private function printThumbnail($person, $thumbsize, $resize_format, $square, $resize) {
+		$mediaobject = $person->findHighlightedMedia();
 		if ($mediaobject) {
 			$html = '';
 			if ($resize == true) {
 				$mediasrc = $resize_format == 1 ? $mediaobject->getServerFilename('thumb') : $mediaobject->getServerFilename('main');
 				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
-				$mediatitle = strip_tags($individual->getFullName());
+				$mediatitle = strip_tags($person->getFullName());
 
 				$type = $mediaobject->mimeType();
 				if ($type == 'image/jpeg' || $type == 'image/png') {
@@ -919,8 +919,8 @@ class FancyTreeView extends FancyTreeviewModule {
 		}
 	}
 
-	private function printFact($individual, $tag) {
-		$facts = $individual->getFacts();
+	private function printFact($person, $tag) {
+		$facts = $person->getFacts();
 		foreach ($facts as $fact) {
 			if ($fact->getTag() == $tag) {
 				$html = ', ' . rtrim($fact->getValue(), ".");
@@ -950,20 +950,19 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 	// Other functions
-	protected function getIndividual($pid) {
-		$individual = Individual::getInstance($pid);
-		return $individual;
+	protected function getPerson($pid) {
+		return Individual::getInstance($pid);
 	}
 
-	private function getFamily($individual) {
-		foreach ($individual->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
+	private function getFamily($person) {
+		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
 			return $family;
 		}
 	}
 
 	private function getNextGen($pid) {
-		$individual = $this->getIndividual($pid);
-		foreach ($individual->getSpouseFamilies() as $family) {
+		$person = $this->getPerson($pid);
+		foreach ($person->getSpouseFamilies() as $family) {
 			$children = $family->getChildren();
 			if ($children) {
 				foreach ($children as $key => $child) {
@@ -979,8 +978,8 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 	// check if a person has parents in the same generation
-	private function hasParentsInSameGeneration($individual, $generation) {
-		$parents = $individual->getPrimaryChildFamily();
+	private function hasParentsInSameGeneration($person, $generation) {
+		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
 			$father = $parents->getHusband();
 			$mother = $parents->getWife();
@@ -997,11 +996,11 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 	// check (blood) relationship between partners
-	private function checkRelationship($individual, $spouse, $family) {
+	private function checkRelationship($person, $spouse, $family) {
 		$count = count($family->getChildren());
 		for ($i = 0; $i <= $count; $i++) { // the number of paths is equal to the number of children, because every relationship is checked through each child.
 			// and we need the relationship from the next path.
-			$nodes = get_relationship($individual, $spouse, false, 0, $i);
+			$nodes = get_relationship($person, $spouse, false, 0, $i);
 
 			if (!is_array($nodes)) {
 				return '';
@@ -1028,18 +1027,18 @@ class FancyTreeView extends FancyTreeviewModule {
 				foreach ($path as $rel) {
 					$combined_path.=substr($rel, 0, 3);
 				}
-				return get_relationship_name_from_path($combined_path, $individual, $spouse);
+				return get_relationship_name_from_path($combined_path, $person, $spouse);
 			}
 		}
 	}
 
 	private function checkPrivacy($record, $xrefs = false) {
 		$count = 0;
-		foreach ($record as $individual) {
+		foreach ($record as $person) {
 			if ($xrefs) {
-				$individual = $this->getIndividual($individual);
+				$person = $this->getPerson($person);
 			}
-			if ($individual->CanShow()) {
+			if ($person->CanShow()) {
 				$count++;
 			}
 		}
@@ -1059,9 +1058,9 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 	// Check if this person is an adopted or foster child
-	private function checkPedi($individual, $parents) {
+	private function checkPedi($person, $parents) {
 		$pedi = "";
-		foreach ($individual->getFacts('FAMC') as $fact) {
+		foreach ($person->getFacts('FAMC') as $fact) {
 			if ($fact->getTarget() === $parents) {
 				$pedi = $fact->getAttribute('PEDI');
 				break;
