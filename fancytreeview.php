@@ -291,30 +291,30 @@ class FancyTreeView extends FancyTreeviewModule {
 
 	private function printGeneration($generation, $i) {
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = 
+		$html =
 		'<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">' .
 		$this->printBlockHeader($i);
-		
+
 		if ($this->checkPrivacy($generation, true)) {
 			$html .= $this->printPrivateBlock();
 		} else {
 			$html .= $this->printBlockContent(array_unique($generation));
 		}
-		
+
 		$html .= '</li>';
-		
+
 		return $html;
 	}
-	
+
 	private function printBlockHeader($i) {
-		return 
+		return
 			'<div class="blockheader ui-state-default">' .
 			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>' .
 			$this->printBackToTopLink($i) .
 			'</div>';
 	}
-	
-	private function printBlockContent($generation) {		
+
+	private function printBlockContent($generation) {
 		$html = '<ol class="blockcontent generation">';
 		foreach ($generation as $pid) {
 			$individual = $this->getIndividual($pid);
@@ -334,30 +334,30 @@ class FancyTreeView extends FancyTreeviewModule {
 		$html .= '</ol>';
 		return $html;
 	}
-	
+
 	private function printBackToTopLink($i) {
 		if ($this->action === 'page' && $i > 1) {
 			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
-		}		
+		}
 	}
-	
+
 	private function printReadMoreLink($root) {
-		return 
+		return
 			'<div id="read-more-link">' .
 			'<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '">' .
-			I18N::translate('Read more') . 
+			I18N::translate('Read more') .
 			'</a>' .
 			'</div>';
 	}
-	
+
 	private function printPrivateBlock() {
 		return
-			'<div class="blockcontent generation private">' . 
-			I18N::translate('The details of this generation are private.') . 
+			'<div class="blockcontent generation private">' .
+			I18N::translate('The details of this generation are private.') .
 			'</div>';
 	}
-	
-	
+
+
 	private function printTabContentGeneration($generation, $i) {
 
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
@@ -521,19 +521,21 @@ class FancyTreeView extends FancyTreeviewModule {
 			if ($this->printParents($spouse)) {
 				$html .= ',';
 			}
-			$marrdate = $family->getMarriageDate();
-			$marrplace = $family->getMarriagePlace();
-			if ($marrdate && $marrdate->isOK()) {
-				$html .= $this->printDate($marrdate);
+			
+			$marriage = $family->getFirstFact('MARR');
+			if ($marriage) {
+				$html .= $this->printDate($marriage);
 			}
+
+			$marrplace = $family->getMarriagePlace();
 			if ($marrplace->getGedcomName()) {
 				$html .= $this->printPlace($marrplace->getGedcomName(), $family->getTree());
 			}
 			$html .= $this->printLifespan($spouse, true);
 
-			$div = $family->getFirstFact('DIV');
-			if ($div) {
-				$html .= $individual->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->printDivorceDate($div) . '.';
+			$divorce = $family->getFirstFact('DIV');
+			if ($divorce) {
+				$html .= $individual->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
 			}
 		}
 		return $html;
@@ -728,9 +730,12 @@ class FancyTreeView extends FancyTreeviewModule {
 					$individual->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
 				}
 			}
-			if ($birthdate->isOK()) {
-				$html .= $this->printDate($birthdate);
+			
+			$birt = $individual->getFirstFact('BIRT');			
+			if ($birt) {
+				$html .= $this->printDate($birt);
 			}
+
 			if ($individual->getBirthPlace() != '') {
 				$html .= $this->printPlace($individual->getBirthPlace(), $individual->getTree());
 			}
@@ -746,10 +751,12 @@ class FancyTreeView extends FancyTreeviewModule {
 			} else {
 				$individual->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
 			}
-
-			if ($deathdate->isOK()) {
-				$html .= $this->printDate($deathdate);
+			
+			$deat = $individual->getFirstFact('DEAT');
+			if ($deat) {
+				$html .= $this->printDate($deat);
 			}
+
 			if ($individual->getDeathPlace() != '') {
 				$html .= $this->printPlace($individual->getDeathPlace(), $individual->getTree());
 			}
@@ -894,25 +901,21 @@ class FancyTreeView extends FancyTreeviewModule {
 		}
 	}
 
-	private function printDate($date) {
-		if ($date->qual1 || $date->qual2) {
-			return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
-		}
-		if ($date->minimumDate()->d > 0) {
-			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
-		}
-		if ($date->minimumDate()->m > 0) {
-			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat mmm yyyy', 'in ') . $date->Display();
-		}
-		if ($date->minimumDate()->y > 0) {
-			return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
-		}
-	}
-
-	private function printDivorceDate($div) {
-		// Only display if it has a date
-		if ($div->getDate()->isOK() && $div->canShow()) {
-			return $this->printDate($div->getDate());
+	private function printDate($fact) {
+		$date = $fact->getDate();
+		if ($date && $date->isOK()) {
+			if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->getAttribute('DATE'))) {
+				return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
+			}
+			if ($date->minimumDate()->d > 0) {
+				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
+			}
+			if ($date->minimumDate()->m > 0) {
+				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat mmm yyyy', 'in ') . $date->Display();
+			}
+			if ($date->minimumDate()->y > 0) {
+				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
+			}
 		}
 	}
 
