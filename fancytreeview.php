@@ -123,7 +123,7 @@ class FancyTreeView extends FancyTreeviewModule {
 	// Sort the array according to the $key['SORT'] input.
 	protected function sortArray($array, $sort_by) {
 
-		$array_keys = array('tree', 'surname', 'display_name', 'pid', 'access_level', 'sort');
+		$array_keys = array('tree', 'surname', 'pid', 'access_level', 'sort');
 
 		foreach ($array as $pos => $val) {
 			$tmp_array[$pos] = $val[$sort_by];
