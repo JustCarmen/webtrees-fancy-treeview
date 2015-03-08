@@ -373,7 +373,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			 * First, determine the true number of spouses by checking the family gedcom
 			 */
 			$spousecount = 0;
-			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
+			foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
 				$spouse = $family->getSpouse($person);
 				if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 					$spousecount++;
@@ -387,7 +387,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			 */
 			if ($spousecount > 0) {
 				$spouseindex = 0;
-				foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $i => $family) {
+				foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
 					$spouse = $family->getSpouse($person);
 					if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 						$html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
@@ -399,7 +399,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			$html .= '</p></div>';
 
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
-			foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
+			foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 				$spouse = $family->getSpouse($person);
 				$html .= $this->printChildren($family, $person, $spouse);
 			}
@@ -917,7 +917,7 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 	private function getFamily($person) {
-		foreach ($person->getSpouseFamilies(WT_PRIV_HIDE) as $family) {
+		foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 			return $family;
 		}
 	}
@@ -930,7 +930,7 @@ class FancyTreeView extends FancyTreeviewModule {
 				foreach ($children as $key => $child) {
 					$key = $family->getXref() . '-' . $key; // be sure the key is unique.
 					$ng[$key]['pid'] = $child->getXref();
-					$child->getSpouseFamilies(WT_PRIV_HIDE) ? $ng[$key]['desc'] = 1 : $ng[$key]['desc'] = 0;
+					$child->getSpouseFamilies(Auth::PRIV_HIDE) ? $ng[$key]['desc'] = 1 : $ng[$key]['desc'] = 0;
 				}
 			}
 		}
@@ -1012,7 +1012,7 @@ class FancyTreeView extends FancyTreeviewModule {
 	// Determine if the family parents are married. Don't use the default function because we want to privatize the record but display the name and the parents of the spouse if the spouse him/herself is not private.
 	private function getMarriage($family) {
 		$record = GedcomRecord::getInstance($family->getXref());
-		foreach ($record->getFacts('MARR', false, WT_PRIV_HIDE) as $fact) {
+		foreach ($record->getFacts('MARR', false, Auth::PRIV_HIDE) as $fact) {
 			if ($fact) {
 				return true;
 			}
@@ -1069,6 +1069,8 @@ class FancyTreeView extends FancyTreeviewModule {
 				break;
 
 			case 'page':
+				global $WT_TREE;
+				
 				$controller
 					->addInlineJavascript('
 				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";
@@ -1082,7 +1084,7 @@ class FancyTreeView extends FancyTreeviewModule {
 					->addInlineJavascript('autocomplete();')
 					->addExternalJavascript($this->module . '/js/page.js');
 
-				if ($this->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr') {
+				if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE) && I18N::direction() === 'ltr') {
 					$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
 				}
 
@@ -1091,7 +1093,7 @@ class FancyTreeView extends FancyTreeviewModule {
 					$controller->addExternalJavascript($this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 				}
 
-				if ($this->options('show_userform') >= WT_USER_ACCESS_LEVEL) {
+				if ($this->options('show_userform') >= Auth::accessLevel($WT_TREE)) {
 					$this->includeJsInline($controller);
 				}
 				break;

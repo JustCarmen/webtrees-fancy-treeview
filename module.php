@@ -303,7 +303,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 
 	/** {@inheritdoc} */
 	public function getMenu() {
-		global $controller;
+		global $WT_TREE, $controller;
 		
 		if (!Auth::isSearchEngine()) {
 
@@ -320,7 +320,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 			if (!empty($FTV_SETTINGS)) {
 
 				foreach ($FTV_SETTINGS as $FTV_ITEM) {
-					if ($FTV_ITEM['TREE'] == WT_GED_ID && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= WT_USER_ACCESS_LEVEL) {
+					if ($FTV_ITEM['TREE'] == WT_GED_ID && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($WT_TREE)) {
 						$FTV_GED_SETTINGS[] = $FTV_ITEM;
 					}
 				}

@@ -16,13 +16,15 @@ namespace Fisharebest\Webtrees;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+global $WT_TREE;
 ?>
 
 <!-- FANCY TREE VIEW PAGE -->
 <div id="fancy_treeview-page">
 	<div id="page-header">
 		<h2><?php echo $controller->getPageTitle(); ?></h2>
-		<?php if ($ftv->options('show_pdf_icon') >= WT_USER_ACCESS_LEVEL && I18N::direction() === 'ltr'): ?>
+		<?php if ($ftv->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE) && I18N::direction() === 'ltr'): ?>
 		<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
 			<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
 		</div>
@@ -30,7 +32,7 @@ namespace Fisharebest\Webtrees;
 		<?php endif; ?>
 	</div>
 	<div id="page-body">
-		<?php if ($ftv->options('show_userform') >= WT_USER_ACCESS_LEVEL): ?>
+		<?php if ($ftv->options('show_userform') >= Auth::accessLevel($WT_TREE)): ?>
 		<form id="change_root">
 			<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 			<input
