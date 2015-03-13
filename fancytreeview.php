@@ -90,7 +90,8 @@ class FancyTreeView extends FancyTreeviewModule {
 			->fetchAll();
 		$data = array();
 		foreach ($rows as $row) {
-			$data[] = Individual::getInstance($row->xref, $row->gedcom_id, $row->gedcom);
+			$tree = Tree::findById($row->gedcom_id);
+			$data[] = Individual::getInstance($row->xref, $tree, $row->gedcom);
 		}
 		return $data;
 	}
@@ -145,7 +146,7 @@ class FancyTreeView extends FancyTreeviewModule {
 		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
 
 		if ($this->options('use_fullname') == true) {
-			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid)->getFullName());
+			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid, $WT_TREE)->getFullName());
 		} else {
 			$link .= I18N::translate('Descendants of the %s family', $this->getSurname($pid));
 		}
@@ -483,7 +484,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			if ($this->printParents($spouse)) {
 				$html .= ',';
 			}
-			
+
 			$marriage = $family->getFirstFact('MARR');
 			if ($marriage) {
 				$html .= $this->printDate($marriage);
@@ -692,8 +693,8 @@ class FancyTreeView extends FancyTreeviewModule {
 					$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
 				}
 			}
-			
-			$birt = $person->getFirstFact('BIRT');			
+
+			$birt = $person->getFirstFact('BIRT');
 			if ($birt) {
 				$html .= $this->printDate($birt);
 			}
@@ -713,7 +714,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			} else {
 				$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
 			}
-			
+
 			$deat = $person->getFirstFact('DEAT');
 			if ($deat) {
 				$html .= $this->printDate($deat);
@@ -913,7 +914,8 @@ class FancyTreeView extends FancyTreeviewModule {
 
 	// Other functions
 	protected function getPerson($pid) {
-		return Individual::getInstance($pid);
+		global $WT_TREE;
+		return Individual::getInstance($pid, $WT_TREE);
 	}
 
 	private function getFamily($person) {
@@ -1011,7 +1013,8 @@ class FancyTreeView extends FancyTreeviewModule {
 
 	// Determine if the family parents are married. Don't use the default function because we want to privatize the record but display the name and the parents of the spouse if the spouse him/herself is not private.
 	private function getMarriage($family) {
-		$record = GedcomRecord::getInstance($family->getXref());
+		global $WT_TREE;
+		$record = GedcomRecord::getInstance($family->getXref(), $WT_TREE);
 		foreach ($record->getFacts('MARR', false, Auth::PRIV_HIDE) as $fact) {
 			if ($fact) {
 				return true;
@@ -1070,7 +1073,7 @@ class FancyTreeView extends FancyTreeviewModule {
 
 			case 'page':
 				global $WT_TREE;
-				
+
 				$controller
 					->addInlineJavascript('
 				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";

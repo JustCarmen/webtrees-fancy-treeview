@@ -16,8 +16,6 @@ namespace Fisharebest\Webtrees;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-global $WT_TREE;
 ?>
 <!-- ADMIN PAGE CONTENT -->
 <ol class="breadcrumb small">
@@ -38,7 +36,7 @@ global $WT_TREE;
 		<div class="col-sm-4">
 			<select id="tree" name="NEW_FIB_TREE" class="form-control">
 				<?php foreach (Tree::getAll() as $tree): ?>
-					<?php if ($tree->getTreeId() == WT_GED_ID): ?>
+					<?php if ($tree->getTreeId() == $WT_TREE->getTreeId()): ?>
 						<option value="<?php echo $tree->getTreeId(); ?>" data-ged="<?php echo $tree->getNameHtml(); ?>" selected="selected">
 							<?php echo $tree->getTitleHtml(); ?>
 						</option>
@@ -66,7 +64,7 @@ global $WT_TREE;
 		</div>
 		<div id="collapseOne" class="panel-collapse collapse in">
 			<div class="panel-body">
-				<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$ftv->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID))): ?>
+				<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$ftv->searchArray($FTV_SETTINGS, 'TREE', $WT_TREE->getTreeId()))): ?>
 					<div class="alert alert-info alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="' . I18N::translate('close') . '">
 							<span aria-hidden="true">&times;</span>
@@ -200,7 +198,7 @@ global $WT_TREE;
 				<?php echo $ftv->addMessage("error", "danger", true); ?>
 				<?php echo $ftv->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')); ?>
 				<div id="fancy-treeview-form" class="form-group">
-					<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', WT_GED_ID)): ?>
+					<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', $WT_TREE->getTreeId())): ?>
 						<form class="form-horizontal" method="post" name="form4">
 							<!-- TABLE -->
 							<table id="fancy-treeview-table" class="table table-hover">
@@ -217,8 +215,8 @@ global $WT_TREE;
 								</thead>
 								<tbody>
 									<?php foreach ($FTV_SETTINGS as $key => $FTV_ITEM): ?>
-										<?php if ($FTV_ITEM['TREE'] == WT_GED_ID): ?>
-											<?php if (Individual::getInstance($FTV_ITEM['PID'])): ?>
+										<?php if ($FTV_ITEM['TREE'] == $WT_TREE->getTreeId()): ?>
+											<?php if (Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)): ?>
 												<tr class="sortme">
 													<!-- ROOT PERSONS FULL NAME -->
 													<td>
@@ -234,8 +232,8 @@ global $WT_TREE;
 															type="hidden"
 															value="<?php echo $FTV_ITEM['SORT']; ?>"
 															>
-															<?php echo Individual::getInstance($FTV_ITEM['PID'])->getFullName() . ''; ?>
-														(<?php echo Individual::getInstance($FTV_ITEM['PID'])->getLifeSpan(); ?>)
+															<?php echo Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)->getFullName() . ''; ?>
+														(<?php echo Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)->getLifeSpan(); ?>)
 													</td>
 													<?php if (!$ftv->options('use_fullname')): ?>
 														<!-- SURNAME IN PAGE TITLE -->
@@ -257,7 +255,7 @@ global $WT_TREE;
 														<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=page&amp;ged=<?php echo $WT_TREE->getNameHtml(); ?>&amp;rootid=<?php echo $FTV_ITEM['PID']; ?>" target="_blank">
 															<?php
 															if ($ftv->options('use_fullname') == true) {
-																echo I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'])->getFullName());
+																echo I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)->getFullName());
 															} else {
 																echo I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']);
 															}

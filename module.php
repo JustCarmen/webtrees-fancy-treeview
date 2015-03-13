@@ -28,7 +28,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 
 	/** @var string location of the fancy treeview module files */
 	var $module;
-	
+
 	var $action;
 
 	/** {@inheritdoc} */
@@ -106,6 +106,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
+		global $WT_TREE;
 		$ftv = new FancyTreeView;
 		switch ($mod_action) {
 		case 'admin_config':
@@ -157,7 +158,8 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 						$result['error'] = I18N::translate('Error: A root person with ID %s already exists', $pid);
 					}
 				} else {
-					$root = Individual::getInstance($pid)->getFullName() . ' (' . Individual::getInstance($pid)->getLifeSpan() . ')';
+					$record = Individual::getInstance($pid, $WT_TREE);
+					$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
 					$title = $ftv->getPageLink($pid);
 
 					$result = array(
@@ -265,7 +267,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 			Zend_Session::writeClose();
 			header('Content-type: text/html; charset=UTF-8');
 			$xref = Filter::get('mid');
-			$mediaobject = Media::getInstance($xref);
+			$mediaobject = Media::getInstance($xref, $WT_TREE);
 			if ($mediaobject) {
 				echo $mediaobject->getServerFilename();
 			}
@@ -304,7 +306,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 	/** {@inheritdoc} */
 	public function getMenu() {
 		global $WT_TREE, $controller;
-		
+
 		if (!Auth::isSearchEngine()) {
 
 			$ftv = new FancyTreeView;
@@ -320,13 +322,13 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 			if (!empty($FTV_SETTINGS)) {
 
 				foreach ($FTV_SETTINGS as $FTV_ITEM) {
-					if ($FTV_ITEM['TREE'] == WT_GED_ID && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($WT_TREE)) {
+					if ($FTV_ITEM['TREE'] == $WT_TREE->getTreeId() && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($WT_TREE)) {
 						$FTV_GED_SETTINGS[] = $FTV_ITEM;
 					}
 				}
 
 				if (!empty($FTV_GED_SETTINGS)) {
-					
+
 					if (Theme::theme()->themeId() !== '_administration') {
 						// load the module stylesheets
 						echo $ftv->getStylesheet();
@@ -338,9 +340,10 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 					$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
-						if (Individual::getInstance($FTV_ITEM['PID'])) {
+						$record = Individual::getInstance($FTV_ITEM['PID'], $WT_TREE);
+						if ($record) {
 							if ($ftv->options('use_fullname') == true) {
-								$submenu = new Menu(I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'])->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+								$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
 							} else {
 								$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
 							}
@@ -357,12 +360,12 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 	private function getTreeId() {
 		global $WT_TREE;
 
-		$tree_id = $WT_TREE->getIdFromName(Filter::get('ged'));
-		if (!$tree_id) {
-			$tree_id = $WT_TREE->getTreeId();
+		$tree = $WT_TREE->findByName(Filter::get('ged'));
+		if ($tree) {
+			return $tree->getTreeId();
+		} else {
+			return $WT_TREE->getTreeId();
 		}
-
-		return $tree_id;
 	}
 
 	/**
