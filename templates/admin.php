@@ -85,7 +85,6 @@ namespace Fisharebest\Webtrees;
 							<input
 								class="form-control surname"
 								data-autocomplete-type="SURN"
-								dir="ltr"
 								id="SURNAME"
 								name="SURNAME"
 								placeholder="<?php echo I18N::translate('Surname'); ?>"
@@ -111,7 +110,6 @@ namespace Fisharebest\Webtrees;
 							<input
 								class="form-control"
 								data-autocomplete-type="INDI"
-								dir="ltr"
 								id="PID"
 								name="PID"
 								placeholder="<?php echo I18N::translate('Search ID by name'); ?>"

@@ -35,7 +35,6 @@ namespace Fisharebest\Webtrees;
 			<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 			<input
 				data-autocomplete-type="INDI"
-				dir="ltr"
 				id="new_rootid"
 				name="new_rootid"
 				placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
