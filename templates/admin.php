@@ -382,13 +382,13 @@ namespace Fisharebest\Webtrees;
 						<!-- USE GEDCOM PLACE SETTING -->
 						<div id="gedcom_places" class="form-group <?php if (!$ftv->options('show_places')) echo 'hidden' ?>">
 							<label class="control-label col-sm-4">
-								<?php echo I18N::translate('Use default Gedcom settings to abbreviate place names?'); ?>
+								<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names?'); ?>
 							</label>
 							<div class="col-sm-8">
 								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $ftv->options('use_gedcom_places')); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
-								<?php echo /* I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting */ I18N::translate('If you have ticked the “Show places” option, you can choose to use the default Gedcom settings to abbreviate placenames. If you don’t set this option, full place names will be shown.'); ?>
+								<?php echo /* I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting */ I18N::translate('If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown.'); ?>
 							</p>
 						</div>
 						<!-- GET COUNTRYLIST -->
@@ -423,7 +423,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs')); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
-								<?php echo /* I18N: Help text for the “Use default Gedcom settings to abbreviate place names” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
+								<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
 						</div>
 						<!-- THUMB SIZE -->
 						<div id="thumb_size" class="form-group <?php if (!$ftv->options('resize_thumbs')) echo 'hidden' ?>">
