@@ -66,7 +66,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 
 	/** {@inheritdoc} */
 	public function getDescription() {
-		return /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way');
+		return /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way.');
 	}
 
 	/** {@inheritdoc} */

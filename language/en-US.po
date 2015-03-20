@@ -5,7 +5,7 @@ msgstr ""
 "PO-Revision-Date: 2015-03-20 22:01+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
-"Language: en_US\n"
+"Language: en-US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,8 +22,8 @@ msgstr " "
 
 #. I18N: Description of the module
 #: modules_v3\fancy_treeview/module.php:69
-msgid "A Fancy overview of the descendants of one family(branch) in a narrative way"
-msgstr "A Fancy overview of the descendants of one family(branch) in a narrative way"
+msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
+msgstr "A Fancy overview of the descendants of one family(branch) in a narrative way."
 
 #: modules_v3\fancy_treeview/templates/page.php:35
 msgid "Change root person"

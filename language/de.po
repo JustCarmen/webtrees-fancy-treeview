@@ -24,8 +24,8 @@ msgstr " "
 
 #. I18N: Description of the module
 #: modules_v3\fancy_treeview/module.php:69
-msgid "A Fancy overview of the descendants of one family(branch) in a narrative way"
-msgstr "Ein ausführlicher Bericht über die Generationen einer Familie"
+msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
+msgstr "Ein ausführlicher Bericht über die Generationen einer Familie."
 
 #: modules_v3\fancy_treeview/templates/page.php:35
 msgid "Change root person"
