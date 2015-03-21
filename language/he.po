@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
 "POT-Creation-Date: 2015-03-20 21:53+0100\n"
-"PO-Revision-Date: 2015-02-12 12:10+0200\n"
+"PO-Revision-Date: 2015-03-21 09:24+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -67,7 +67,7 @@ msgstr "שגיאה: לא ניתן ליצור את קובץ ה-pdf"
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:64
 msgid "Fancy Tree View"
-msgstr "צוגת עץ מפוארת"
+msgstr "תצוגת עץ מפוארת"
 
 #: modules_v3\fancy_treeview/templates/page.php:26
 msgid "Generate PDF"
