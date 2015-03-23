@@ -44,15 +44,6 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 
 		// Load the module class
 		require_once $this->module . '/fancytreeview.php';
-
-		// Load any local user translations
-		if (is_dir($this->module . '/language')) {
-			if (file_exists($this->module . '/language/' . WT_LOCALE . '.mo')) {
-				I18N::addTranslation(
-					new Zend_Translate('gettext', $this->module . '/language/' . WT_LOCALE . '.mo', WT_LOCALE)
-				);
-			}
-		}
 	}
 
 	public function getName() {
