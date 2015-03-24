@@ -38,16 +38,16 @@
 }
 
 /* ===== menu ===== */
-#menu-fancy_treeview {
+li.menu-fancy_treeview {
 	background: url(menu-ftv.png) no-repeat 50% 25%;
 	background-size: 40px;
 }
 
-#menu-fancy_treeview ul li:not(:first-child) {
+li.menu-fancy_treeview ul li:not(:first-child) {
 	background: url(menu-ftv-small.png) no-repeat 1% 0;
 	background-size: 22px;
 }
 
-html[dir=rtl] #menu-fancy_treeview ul li {
+html[dir=rtl] li.menu-fancy_treeview ul li {
 	background-position: 99% 0;
 }
