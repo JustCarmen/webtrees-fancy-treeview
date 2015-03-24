@@ -104,7 +104,7 @@ class FancyTreeviewModule extends Module implements ModuleConfigInterface, Modul
 			$controller = new PageController;
 			$controller
 				->restrictAccess(Auth::isAdmin())
-				->setPageTitle('Fancy Tree View')
+				->setPageTitle(I18N::translate('Fancy Tree View'))
 				->pageHeader();
 
 			// add javascript files and scripts
