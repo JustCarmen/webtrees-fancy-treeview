@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
 "POT-Creation-Date: 2015-03-20 21:53+0100\n"
-"PO-Revision-Date: 2015-03-20 21:09+0200\n"
+"PO-Revision-Date: 2015-03-27 16:43+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -48,9 +48,9 @@ msgid "Descendants of the %s family"
 msgstr "%s perheen jälkeläiset"
 
 #: modules_v3\fancy_treeview/module.php:158
-#, fuzzy, php-format
+#, php-format
 msgid "Error: A root person with ID %s already exists"
-msgstr "Virhe: tämän sukunimen alkuhenkilö on jo olemassa"
+msgstr "Virhe: Alkuhenkilö jolla on tunnus %s on jo olemassa"
 
 #: modules_v3\fancy_treeview/module.php:155
 msgid "Error: The root person belonging to this surname already exists"
@@ -98,6 +98,10 @@ msgstr "Puoliso syntyi"
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
 msgstr "Täällä voit muuttaa webtreesin oletuspikkukuvien koon Hienoa puunäkymää varten. Voit määrittää mukautetun koon prosentteina tai kuvapisteinä. Jos valitset ”ei” käytetään webtreesin oletuspikkukuvia niin kuin ne on määritetty puun asetussivulla."
 
+#: modules_v3\fancy_treeview/module.php:1387
+msgid "ID"
+msgstr "ID"
+
 #. I18N: Help text for the “Select your country” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:404
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
@@ -105,7 +109,6 @@ msgstr "Jos olet valinnut ”Näytä paikat” vaihtoehdon, mutta ET vaihtoehtoa
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:391
-#, fuzzy
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
 msgstr "Jos olet valinnut ”Näytä paikat” vaihtoehdon, voit käyttää GEDCOMin oletusasetuksia paikannimiä lyhennettäessä. Jos et määritä tätä vaihtoehtoa, täydet paikannimet näkyvät."
 
@@ -155,9 +158,8 @@ msgid "Search ID by name"
 msgstr "Etsi tunnus nimen mukaan"
 
 #: modules_v3\fancy_treeview/templates/admin.php:83
-#, fuzzy
 msgid "Search root person"
-msgstr "Muuta aloitushenkilö"
+msgstr "Etsi aloitushenkilö"
 
 #: modules_v3\fancy_treeview/templates/admin.php:398
 msgid "Select your country"
@@ -224,7 +226,7 @@ msgstr "%s kerralla puoliso:"
 #: modules_v3\fancy_treeview/fancytreeview.php:451
 #, php-format
 msgid "The %s time this individual married"
-msgstr "%s kerralla tämä henkilö puoliso:"
+msgstr "%s kerralla tämän henkilön puoliso:"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:411
 #: modules_v3\fancy_treeview/fancytreeview.php:357
@@ -281,9 +283,8 @@ msgid "Turn this option on if you want to show single persons in the generation 
 msgstr "Valitse tämä vaihtoehto, jos haluat näyttää naimattomat henkilöt sukupolvien lohkoissa. Naimattomat henkilöt ovat henkilöitä ilman kumppania ja lapsia. Kun tämä vaihtoehto on käytössä, jokainen perheen lapsi näkyy yksityiskohtaisesti seuraavan sukupolven lohkossa."
 
 #: modules_v3\fancy_treeview/templates/admin.php:385
-#, fuzzy
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Käytä GEDCOMin oletusasetuksia paikannimien lyhennyksiin?"
+msgstr "Käytä Gedcomin oletusasetuksia paikannimien lyhennyksiin?"
 
 #: modules_v3\fancy_treeview/templates/admin.php:333
 msgid "Use fullname in menu"
