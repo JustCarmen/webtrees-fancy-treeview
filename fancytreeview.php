@@ -494,7 +494,12 @@ class FancyTreeView extends FancyTreeviewModule {
 			if ($marrplace->getGedcomName()) {
 				$html .= $this->printPlace($marrplace->getGedcomName(), $family->getTree());
 			}
-			$html .= $this->printLifespan($spouse, true);
+			
+			if ($this->printLifespan($spouse, true)) {
+				$html .= $this->printLifespan($spouse, true);
+			} else {
+				$html .= '. ';
+			}
 
 			$divorce = $family->getFirstFact('DIV');
 			if ($divorce) {
@@ -566,7 +571,7 @@ class FancyTreeView extends FancyTreeviewModule {
 						$pedi = $this->checkPedi($child, $family);
 
 						if ($pedi) {
-							$html .= ' <span class="pedi"> - ';
+							$html .= ' <span class="pedi">';
 							switch ($pedi) {
 								case 'foster':
 									switch ($child->getSex()) {
