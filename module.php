@@ -21,7 +21,7 @@ use PDOException;
 use Zend_Session;
 use Zend_Translate;
 
-class FancyTreeviewModule extends Module implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
+class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
 	/** @var integer The tree's ID number */
 	var $tree_id;
