@@ -70,7 +70,7 @@ namespace Fisharebest\Webtrees;
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<p class="small text-muted">
-							<?php echo /* I18N: Help text for creating Fancy Tree View pages */ I18N::translate('Use the search form below to search for a root person. After a successfull search the Fancy Tree View page will be automatically created. You can add as many root persons as you want.'); ?>
+							<?php echo /* I18N: Help text for creating Fancy Tree View pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Tree View page will be automatically created. You can add as many root persons as you want.'); ?>
 						</p>
 					</div>
 				<?php endif; ?>

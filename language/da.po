@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
-"POT-Creation-Date: 2015-03-20 21:53+0100\n"
+"POT-Creation-Date: 2015-04-06 20:39+0100\n"
 "PO-Revision-Date: 2014-12-21 23:14+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -15,13 +15,13 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: modules_v3\fancy_treeview/fancytreeview.php:871
+#: modules_v3\fancy_treeview/fancytreeview.php:876
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
 
 #. I18N: Description of the module
-#: modules_v3\fancy_treeview/module.php:69
+#: modules_v3\fancy_treeview/module.php:60
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "En smart visning af efterkommere i en faldende sorterings-orden."
 
@@ -29,12 +29,12 @@ msgstr "En smart visning af efterkommere i en faldende sorterings-orden."
 msgid "Change root person"
 msgstr "Vælg anden proband"
 
-#: modules_v3\fancy_treeview/templates/admin.php:353
+#: modules_v3\fancy_treeview/templates/admin.php:351
 msgid "Check relationship between partners"
 msgstr "Check relationerne mellem partnerne"
 
 #. I18N: Help text for the “Show PDF icon” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:475
+#: modules_v3\fancy_treeview/templates/admin.php:473
 #, fuzzy
 msgid "Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left."
 msgstr "For tiden er PDF funktionen kun understøtte for LTR sprog. Dvs. sprog læst fra venstre til højre. Ikonet for PDF vil være inaktiv, hvis brugeren vælger RTL-sproget. RTL læster fra højre til venstre"
@@ -42,22 +42,22 @@ msgstr "For tiden er PDF funktionen kun understøtte for LTR sprog. Dvs. sprog l
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:34
 #: modules_v3\fancy_treeview/fancytreeview.php:151
-#: modules_v3\fancy_treeview/module.php:348
-#: modules_v3\fancy_treeview/templates/admin.php:260
+#: modules_v3\fancy_treeview/module.php:339
+#: modules_v3\fancy_treeview/templates/admin.php:258
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Efterkommer til %s familie"
 
-#: modules_v3\fancy_treeview/module.php:158
+#: modules_v3\fancy_treeview/module.php:149
 #, fuzzy, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr "Fejl: Den valgte proband er allerede valgt"
 
-#: modules_v3\fancy_treeview/module.php:155
+#: modules_v3\fancy_treeview/module.php:146
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Fejl: Den valgte proband er allerede valgt"
 
-#: modules_v3\fancy_treeview/module.php:147
+#: modules_v3\fancy_treeview/module.php:138
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Fejl: Efternavnet som du har indtastet findes ikke i dette træ."
 
@@ -66,7 +66,8 @@ msgid "Error: the pdf file could not be generated."
 msgstr ""
 
 #. I18N: Name of the module
-#: modules_v3\fancy_treeview/module.php:64
+#: modules_v3\fancy_treeview/module.php:55
+#: modules_v3\fancy_treeview/module.php:107
 msgid "Fancy Tree View"
 msgstr "Vis Smart Træ"
 
@@ -74,7 +75,7 @@ msgstr "Vis Smart Træ"
 msgid "Generate PDF"
 msgstr "Generér PDF"
 
-#: modules_v3\fancy_treeview/templates/page.php:48
+#: modules_v3\fancy_treeview/templates/page.php:47
 msgid "Go"
 msgstr "Kør"
 
@@ -84,52 +85,52 @@ msgstr "Kør"
 msgid "He married %s times"
 msgstr "Han blev gift %s gange"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:684
+#: modules_v3\fancy_treeview/fancytreeview.php:689
 msgctxt "PAST"
 msgid "He was born"
 msgstr "Han var født"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:686
+#: modules_v3\fancy_treeview/fancytreeview.php:691
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "Han var føddt"
 
 #. I18N: Help text for the “Resize thumbnails” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:426
+#: modules_v3\fancy_treeview/templates/admin.php:424
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
 msgstr ""
 
 #. I18N: Help text for the “Select your country” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:404
+#: modules_v3\fancy_treeview/templates/admin.php:402
 #, fuzzy
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
 msgstr "Hvis du har aktiveret vis steder funktionen, kan du vælge land. Fuld definerede stednavne vil bliv vist på Fancy Tree View siderne, men hvis et stednavn indeholder landet, vil dette blive udeladt.Ellers vises alle lande, incl. eget land"
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:391
+#: modules_v3\fancy_treeview/templates/admin.php:389
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:342
+#: modules_v3\fancy_treeview/templates/admin.php:340
 msgid "Number of generation blocks to show"
 msgstr "Antal af generationer"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:1083
-#: modules_v3\fancy_treeview/templates/admin.php:123
+#: modules_v3\fancy_treeview/fancytreeview.php:1088
+#: modules_v3\fancy_treeview/templates/admin.php:121
 msgid "Ok"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:320
+#: modules_v3\fancy_treeview/templates/admin.php:318
 #, php-format
 msgid "Options for %s"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:109
+#: modules_v3\fancy_treeview/templates/admin.php:108
 msgid "Or enter an ID"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:137
-#: modules_v3\fancy_treeview/templates/admin.php:211
+#: modules_v3\fancy_treeview/templates/admin.php:135
+#: modules_v3\fancy_treeview/templates/admin.php:209
 msgid "Page title"
 msgstr ""
 
@@ -141,18 +142,18 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:420
+#: modules_v3\fancy_treeview/templates/admin.php:418
 #, fuzzy
 msgid "Resize thumbnails"
 msgstr "Brug lodrette miniaturer"
 
-#: modules_v3\fancy_treeview/templates/admin.php:133
-#: modules_v3\fancy_treeview/templates/admin.php:207
+#: modules_v3\fancy_treeview/templates/admin.php:131
+#: modules_v3\fancy_treeview/templates/admin.php:205
 msgid "Root person"
 msgstr "Proband"
 
-#: modules_v3\fancy_treeview/templates/admin.php:117
-#: modules_v3\fancy_treeview/templates/page.php:41
+#: modules_v3\fancy_treeview/templates/admin.php:115
+#: modules_v3\fancy_treeview/templates/page.php:40
 msgid "Search ID by name"
 msgstr ""
 
@@ -161,7 +162,7 @@ msgstr ""
 msgid "Search root person"
 msgstr "Vælg anden proband"
 
-#: modules_v3\fancy_treeview/templates/admin.php:398
+#: modules_v3\fancy_treeview/templates/admin.php:396
 msgid "Select your country"
 msgstr "Vælg dit land"
 
@@ -171,42 +172,42 @@ msgstr "Vælg dit land"
 msgid "She married %s times"
 msgstr "Hun blev gift %s gange"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:684
+#: modules_v3\fancy_treeview/fancytreeview.php:689
 msgctxt "PAST"
 msgid "She was born"
 msgstr "Hun var født"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:686
+#: modules_v3\fancy_treeview/fancytreeview.php:691
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Hun blev født"
 
-#: modules_v3\fancy_treeview/templates/admin.php:469
+#: modules_v3\fancy_treeview/templates/admin.php:467
 msgid "Show PDF icon?"
 msgstr "Vis PDF ikon?"
 
-#: modules_v3\fancy_treeview/templates/admin.php:481
+#: modules_v3\fancy_treeview/templates/admin.php:479
 msgid "Show a Fancy Tree View tab on the individual page"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:460
+#: modules_v3\fancy_treeview/templates/admin.php:458
 msgid "Show form to change start person"
 msgstr "Vis menuen til at skifte proband"
 
-#: modules_v3\fancy_treeview/templates/admin.php:411
+#: modules_v3\fancy_treeview/templates/admin.php:409
 msgid "Show occupations"
 msgstr "Vis beskæftigelse"
 
-#: modules_v3\fancy_treeview/templates/admin.php:376
+#: modules_v3\fancy_treeview/templates/admin.php:374
 msgid "Show places?"
 msgstr "Vis stednavne?"
 
-#: modules_v3\fancy_treeview/templates/admin.php:365
+#: modules_v3\fancy_treeview/templates/admin.php:363
 msgid "Show single persons"
 msgstr "Vis enkelte personer"
 
-#: modules_v3\fancy_treeview/templates/admin.php:135
-#: modules_v3\fancy_treeview/templates/admin.php:209
+#: modules_v3\fancy_treeview/templates/admin.php:133
+#: modules_v3\fancy_treeview/templates/admin.php:207
 msgid "Surname in page title"
 msgstr ""
 
@@ -233,11 +234,11 @@ msgstr ""
 msgid "The details of this generation are private."
 msgstr "Detaljerne for denne generation er private"
 
-#: modules_v3\fancy_treeview/templates/admin.php:327
+#: modules_v3\fancy_treeview/templates/admin.php:325
 msgid "The options for this tree are succesfully reset to the default settings"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:326
+#: modules_v3\fancy_treeview/templates/admin.php:324
 msgid "The options for this tree are succesfully saved"
 msgstr ""
 
@@ -245,12 +246,12 @@ msgstr ""
 msgid "The pdf contains only visible generation blocks."
 msgstr "Denne pdf indeholder kun synlige generations blokke"
 
-#: modules_v3\fancy_treeview/templates/admin.php:289
+#: modules_v3\fancy_treeview/templates/admin.php:287
 #, fuzzy, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
 msgstr "Fejl: Det valgte ID %s findes ikke."
 
-#: modules_v3\fancy_treeview/templates/admin.php:199
+#: modules_v3\fancy_treeview/templates/admin.php:197
 msgid "The settings for this tree are succesfully updated"
 msgstr ""
 
@@ -265,103 +266,103 @@ msgid "This individual married %s times"
 msgstr ""
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:347
+#: modules_v3\fancy_treeview/templates/admin.php:345
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:431
+#: modules_v3\fancy_treeview/templates/admin.php:429
 msgid "Thumbnail size"
 msgstr "Miniature størrelse"
 
-#: modules_v3\fancy_treeview/module.php:340
+#: modules_v3\fancy_treeview/module.php:331
 msgid "Tree view"
 msgstr "Vis træ"
 
 #. I18N: Help text for the “Show single persons” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:370
+#: modules_v3\fancy_treeview/templates/admin.php:368
 #, fuzzy
 msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
 msgstr "Ved dette valg, vil samtlige børn blive vist. Derved også personer uden partner og børn"
 
-#: modules_v3\fancy_treeview/templates/admin.php:385
+#: modules_v3\fancy_treeview/templates/admin.php:383
 msgid "Use default GEDCOM settings to abbreviate place names?"
 msgstr ""
 
-#: modules_v3\fancy_treeview/templates/admin.php:333
+#: modules_v3\fancy_treeview/templates/admin.php:331
 msgid "Use fullname in menu"
 msgstr "Brug fulde navn i menuen"
 
-#: modules_v3\fancy_treeview/templates/admin.php:451
+#: modules_v3\fancy_treeview/templates/admin.php:449
 msgid "Use square thumbnails"
 msgstr "Brug lodrette miniaturer"
 
 #. I18N: Help text for creating Fancy Tree View pages
 #: modules_v3\fancy_treeview/templates/admin.php:73
-msgid "Use the search form below to search for a root person. After a successfull search the Fancy Tree View page will be automatically created. You can add as many root persons as you want."
+msgid "Use the search form below to search for a root person. After a successful search the Fancy Tree View page will be automatically created. You can add as many root persons as you want."
 msgstr ""
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
-#: modules_v3\fancy_treeview/templates/admin.php:359
+#: modules_v3\fancy_treeview/templates/admin.php:357
 #, fuzzy
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option)."
 msgstr "Ved dette valg, vil der blive søgt på om partnere har samme aner. Hvis der findes nogen, vil der fremkomme en tekst der indikerer slægtskabet. NB! Dette vil gøre siden langsommere"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:584
+#: modules_v3\fancy_treeview/fancytreeview.php:589
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:587
+#: modules_v3\fancy_treeview/fancytreeview.php:592
 msgctxt "MALE"
 msgid "adopted child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:649
+#: modules_v3\fancy_treeview/fancytreeview.php:654
 msgid "adopted child of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:640
+#: modules_v3\fancy_treeview/fancytreeview.php:645
 msgid "adopted daughter of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:631
+#: modules_v3\fancy_treeview/fancytreeview.php:636
 msgid "adopted son of"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/fancytreeview.php:501
-#: modules_v3\fancy_treeview/fancytreeview.php:514
-#: modules_v3\fancy_treeview/fancytreeview.php:527
-#: modules_v3\fancy_treeview/fancytreeview.php:544
-#: modules_v3\fancy_treeview/fancytreeview.php:662
-#: modules_v3\fancy_treeview/fancytreeview.php:712
+#: modules_v3\fancy_treeview/fancytreeview.php:506
+#: modules_v3\fancy_treeview/fancytreeview.php:519
+#: modules_v3\fancy_treeview/fancytreeview.php:532
+#: modules_v3\fancy_treeview/fancytreeview.php:549
+#: modules_v3\fancy_treeview/fancytreeview.php:667
+#: modules_v3\fancy_treeview/fancytreeview.php:717
 msgid "and "
 msgstr ""
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
-#: modules_v3\fancy_treeview/fancytreeview.php:729
+#: modules_v3\fancy_treeview/fancytreeview.php:734
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr "i alderen af %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
-#: modules_v3\fancy_treeview/fancytreeview.php:731
+#: modules_v3\fancy_treeview/fancytreeview.php:736
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "i alderen af %s"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:651
+#: modules_v3\fancy_treeview/fancytreeview.php:656
 msgid "child of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:713
+#: modules_v3\fancy_treeview/fancytreeview.php:718
 msgctxt "FEMALE"
 msgid "died"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:713
+#: modules_v3\fancy_treeview/fancytreeview.php:718
 msgctxt "MALE"
 msgid "died"
 msgstr ""
@@ -378,29 +379,29 @@ msgstr "fjerde"
 msgid "first"
 msgstr "første"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:1082
+#: modules_v3\fancy_treeview/fancytreeview.php:1087
 msgid "follow"
 msgstr "følgende"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:574
+#: modules_v3\fancy_treeview/fancytreeview.php:579
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:577
+#: modules_v3\fancy_treeview/fancytreeview.php:582
 msgctxt "MALE"
 msgid "foster child"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:647
+#: modules_v3\fancy_treeview/fancytreeview.php:652
 msgid "foster child of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:638
+#: modules_v3\fancy_treeview/fancytreeview.php:643
 msgid "foster daughter of"
 msgstr ""
 
-#: modules_v3\fancy_treeview/fancytreeview.php:629
+#: modules_v3\fancy_treeview/fancytreeview.php:634
 msgid "foster son of"
 msgstr ""
 
@@ -408,42 +409,42 @@ msgstr ""
 msgid "fourth"
 msgstr "fjerde"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:535
+#: modules_v3\fancy_treeview/fancytreeview.php:540
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "havde"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:517
-#: modules_v3\fancy_treeview/fancytreeview.php:537
+#: modules_v3\fancy_treeview/fancytreeview.php:522
+#: modules_v3\fancy_treeview/fancytreeview.php:542
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "havde"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:529
+#: modules_v3\fancy_treeview/fancytreeview.php:534
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "havde"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:515
-#: modules_v3\fancy_treeview/fancytreeview.php:531
+#: modules_v3\fancy_treeview/fancytreeview.php:520
+#: modules_v3\fancy_treeview/fancytreeview.php:536
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "havde"
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/fancytreeview.php:877
+#: modules_v3\fancy_treeview/fancytreeview.php:882
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "den "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/fancytreeview.php:880
+#: modules_v3\fancy_treeview/fancytreeview.php:885
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "den "
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/fancytreeview.php:898
+#: modules_v3\fancy_treeview/fancytreeview.php:903
 msgctxt "before placesnames"
 msgid "in "
 msgstr "i "
@@ -453,12 +454,12 @@ msgid "ninth"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: modules_v3\fancy_treeview/fancytreeview.php:874
+#: modules_v3\fancy_treeview/fancytreeview.php:879
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "den "
 
-#: modules_v3\fancy_treeview/templates/admin.php:444
+#: modules_v3\fancy_treeview/templates/admin.php:442
 msgid "percent"
 msgstr ""
 
@@ -482,26 +483,26 @@ msgstr ""
 msgid "third"
 msgstr "tredie"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:691
+#: modules_v3\fancy_treeview/fancytreeview.php:696
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "var født"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:691
+#: modules_v3\fancy_treeview/fancytreeview.php:696
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "var født"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:693
+#: modules_v3\fancy_treeview/fancytreeview.php:698
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "var født"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:693
+#: modules_v3\fancy_treeview/fancytreeview.php:698
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "var født"
 
-#: modules_v3\fancy_treeview/fancytreeview.php:501
+#: modules_v3\fancy_treeview/fancytreeview.php:506
 msgid "were divorced"
 msgstr "blev skilt"
