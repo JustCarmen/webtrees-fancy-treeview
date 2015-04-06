@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
 "POT-Creation-Date: 2015-03-20 21:53+0100\n"
-"PO-Revision-Date: 2015-03-27 16:43+0200\n"
+"PO-Revision-Date: 2015-04-05 09:27+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr " "
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Hieno kerrontatyylinen katsaus yhden perheen (haaran) jälkeläisistä."
 
-#: modules_v3\fancy_treeview/templates/page.php:35
+#: modules_v3\fancy_treeview/module.php:1873
 msgid "Change root person"
 msgstr "Muuta aloitushenkilö"
 
@@ -69,11 +69,11 @@ msgstr "Virhe: pdf-tiedostoa ei voitu luoda."
 msgid "Fancy Tree View"
 msgstr "Hieno puunäkymä"
 
-#: modules_v3\fancy_treeview/templates/page.php:26
+#: modules_v3\fancy_treeview/module.php:1376
 msgid "Generate PDF"
 msgstr "Luo PDF"
 
-#: modules_v3\fancy_treeview/templates/page.php:48
+#: modules_v3\fancy_treeview/module.php:1389
 msgid "Go"
 msgstr "Mene"
 
@@ -241,7 +241,7 @@ msgstr "Tämän puun vaihtoehdot on onnistuneesti palautettu oletusasetuksiin"
 msgid "The options for this tree are succesfully saved"
 msgstr "Tämän puun vaihtoehdot on onnistuneesti talletettu"
 
-#: modules_v3\fancy_treeview/templates/page.php:27
+#: modules_v3\fancy_treeview/module.php:1377
 msgid "The pdf contains only visible generation blocks."
 msgstr "pdf sisältää ainoastaan näkyvien sukupolvien lohkot."
 
@@ -503,6 +503,3 @@ msgstr "syntyi"
 #: modules_v3\fancy_treeview/fancytreeview.php:501
 msgid "were divorced"
 msgstr "erosivat"
-
-#~ msgid "ID"
-#~ msgstr "ID"
