@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
 "POT-Creation-Date: 2015-03-20 21:53+0100\n"
-"PO-Revision-Date: 2015-03-27 16:59+0200\n"
+"PO-Revision-Date: 2015-04-05 23:03+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "Kontrollera förhållandet mellan partnerna"
 #. I18N: Help text for the “Show PDF icon” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:475
 msgid "Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left."
-msgstr ""
+msgstr "För närvarande stöds PDF alternativet bara för LTR-språk. Dessa är alla språk där texten läses från vänster till höger. PDF-ikon inaktiveras när användaren väljer ett RTL-språk. I ett RTL språk läses texten från höger till vänster."
 
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:34
@@ -62,7 +62,7 @@ msgstr "Fel: Efternamnet som du angav finns inte i detta träd."
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:63
 msgid "Error: the pdf file could not be generated."
-msgstr "Fel: pdf-filen kunde inte skapas."
+msgstr "Fel: PDF-filen kunde inte skapas."
 
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:64
@@ -96,17 +96,17 @@ msgstr "Han var född"
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:426
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr ""
+msgstr "Här kan du välja att ändra storlek på standard webtrees thumbnail miniatyrer särskilt för Fantasiträdvy sidor. Du kan ställa in en anpassad storlek i procent eller i pixlar. Om du väljer ”nej” kommer standard webtrees miniatyrer att användas med de format som du har angett på trädets konfigurationssida."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:404
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr ""
+msgstr "Om du har valt alternativet ”Visa platser” men INTE alternativet att förkorta platsens namn, kan du ställa in dit eget land här. En lista på oförkortade platsnamn kommer att visas på Fantasiträdvy sidorna, men när en plats innehåller namnet på ditt eget land, kommer detta namn att utelämnas. Om du inte väljer ett land  kommer alla länder att visas, inklusive dit eget."
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:391
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
-msgstr ""
+msgstr "Om du har valt alternativet \"Visa platser\" kan du  använda GEDCOMs standardinställningar för att förkorta platsnamn. Fullständiga ortnamn kommer att visas om du inte ställer in detta alternativ."
 
 #: modules_v3\fancy_treeview/templates/admin.php:342
 msgid "Number of generation blocks to show"
@@ -120,24 +120,24 @@ msgstr "OK"
 #: modules_v3\fancy_treeview/templates/admin.php:320
 #, php-format
 msgid "Options for %s"
-msgstr ""
+msgstr "Alternativ för %s"
 
 #: modules_v3\fancy_treeview/templates/admin.php:109
 msgid "Or enter an ID"
-msgstr ""
+msgstr "Eller ange ID"
 
 #: modules_v3\fancy_treeview/templates/admin.php:137
 #: modules_v3\fancy_treeview/templates/admin.php:211
 msgid "Page title"
-msgstr ""
+msgstr "Sidrubrik"
 
 #: modules_v3\fancy_treeview/templates/admin.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Sidor"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:349
 msgid "Read more"
-msgstr "Läs mer"
+msgstr "Läs mera"
 
 #: modules_v3\fancy_treeview/templates/admin.php:420
 msgid "Resize thumbnails"
@@ -151,7 +151,7 @@ msgstr "Startperson"
 #: modules_v3\fancy_treeview/templates/admin.php:117
 #: modules_v3\fancy_treeview/templates/page.php:41
 msgid "Search ID by name"
-msgstr "Sök ID efter namn"
+msgstr "ID-sökning med namn"
 
 #: modules_v3\fancy_treeview/templates/admin.php:83
 msgid "Search root person"
@@ -183,7 +183,7 @@ msgstr "Visa PDF ikon"
 
 #: modules_v3\fancy_treeview/templates/admin.php:481
 msgid "Show a Fancy Tree View tab on the individual page"
-msgstr ""
+msgstr "Visa en Fantasiträdvy-flik på individuella sidan"
 
 #: modules_v3\fancy_treeview/templates/admin.php:460
 msgid "Show form to change start person"
@@ -204,7 +204,7 @@ msgstr "Visa ensamstående"
 #: modules_v3\fancy_treeview/templates/admin.php:135
 #: modules_v3\fancy_treeview/templates/admin.php:209
 msgid "Surname in page title"
-msgstr ""
+msgstr "Efternamn i sidrubriken"
 
 #. I18N: %s is an ordinal
 #: modules_v3\fancy_treeview/fancytreeview.php:439
@@ -231,11 +231,11 @@ msgstr "Denna generations detaljer är privata."
 
 #: modules_v3\fancy_treeview/templates/admin.php:327
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr ""
+msgstr "Alternativen för detta träd har framgångsrikt återställts till standardinställningarna"
 
 #: modules_v3\fancy_treeview/templates/admin.php:326
 msgid "The options for this tree are succesfully saved"
-msgstr ""
+msgstr "Alternativen för detta träd har framgångsrikt sparats"
 
 #: modules_v3\fancy_treeview/templates/page.php:27
 msgid "The pdf contains only visible generation blocks."
@@ -248,7 +248,7 @@ msgstr "Startpersonen med id %s finns inte längre i detta träd"
 
 #: modules_v3\fancy_treeview/templates/admin.php:199
 msgid "The settings for this tree are succesfully updated"
-msgstr ""
+msgstr "Alternativen för detta träd har framgångsrikt uppdaterats"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:463
 msgid "This individual married"
@@ -263,7 +263,7 @@ msgstr "Denna person gifte sig %s gånger"
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:347
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr ""
+msgstr "Detta alternativ är särskilt användbart för stora träd. När du märker att sidan laddas ner långsamt, kan du här minska antalet generationsblock till en lägre nivå. Nedanför det sista generationsblocket visas en knapp för nästa uppsättning generationsblock. De nya blocken kommer att läggas till blocken som redan är nedladdade. Klicka på länken ”följ” i det sista synliga generationsblock och nästa uppsättning laddas ner."
 
 #: modules_v3\fancy_treeview/templates/admin.php:431
 msgid "Thumbnail size"
@@ -276,11 +276,11 @@ msgstr "Trädvy"
 #. I18N: Help text for the “Show single persons” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:370
 msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
-msgstr ""
+msgstr "Aktivera detta alternativ för att  visa ensamstående personer i generationblocken. Ensamstående är personer utan partner och barn. När detta  alternativ är aktiverat, kommer alla barn i en familj att visas detaljerat i följande generationsblock."
 
 #: modules_v3\fancy_treeview/templates/admin.php:385
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Använd standard GEDCOM inställningar för att förkorta ortnamn?"
+msgstr "Använd GEDCOM:s standardinställning för att förkorta ortsnamn"
 
 #: modules_v3\fancy_treeview/templates/admin.php:333
 msgid "Use fullname in menu"
@@ -293,12 +293,12 @@ msgstr "Använd kvadratiska miniatyrbilder"
 #. I18N: Help text for creating Fancy Tree View pages
 #: modules_v3\fancy_treeview/templates/admin.php:73
 msgid "Use the search form below to search for a root person. After a successfull search the Fancy Tree View page will be automatically created. You can add as many root persons as you want."
-msgstr ""
+msgstr "Använd sökformuläret nedan för att söka efter en startperson. Efter en lyckad sökning skapas sidan Fantasiträdvy automatiskt. Du kan lägga till så många startpersoner du vill."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:359
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option)."
-msgstr ""
+msgstr "Med det här alternativet aktiverat, kontrollerar skriptet om ett (gift) par har samma förfäder. Om en relation mellan parterna hittas, kommer en text att visas inom parentes efter makarnas namn för att ange relationen. Obs.  detta alternativ kan göra att sidan laddas ner långsammare, speciellt med stora träd. Om du märker att så sker, minska antalet generationsblock som laddas på en gång (se föregående alternativ)."
 
 #: modules_v3\fancy_treeview/fancytreeview.php:584
 msgctxt "FEMALE"
@@ -353,12 +353,12 @@ msgstr "barn till"
 #: modules_v3\fancy_treeview/fancytreeview.php:713
 msgctxt "FEMALE"
 msgid "died"
-msgstr "dog"
+msgstr "avled"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:713
 msgctxt "MALE"
 msgid "died"
-msgstr "dog"
+msgstr "avled"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:430
 msgid "eighth"
