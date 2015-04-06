@@ -150,18 +150,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					}
 				} else {
 					$record = Individual::getInstance($pid, $WT_TREE);
-					$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
-					$title = $ftv->getPageLink($pid);
+					if ($record) {
+						$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
+						$title = $ftv->getPageLink($pid);
 
-					$result = array(
-						'access_level'	 => '2', // default access level = show to visitors
-						'pid'			 => $pid,
-						'root'			 => $root,
-						'sort'			 => count($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
-						'surname'		 => $ftv->getSurname($pid),
-						'title'			 => $title,
-						'tree'			 => Filter::getInteger('tree')
-					);
+						$result = array(
+							'access_level'	 => '2', // default access level = show to visitors
+							'pid'			 => $pid,
+							'root'			 => $root,
+							'sort'			 => count($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
+							'surname'		 => $ftv->getSurname($pid),
+							'title'			 => $title,
+							'tree'			 => Filter::getInteger('tree')
+						);
+					} else {
+						if (empty($result['error'])) {
+							$result['error'] = I18N::translate('Error: A person with ID %s does not exist in this tree', $pid);
+						}
+					}
 				}
 			}
 			echo json_encode($result);
