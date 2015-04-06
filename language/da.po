@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
-"POT-Creation-Date: 2015-04-06 20:39+0100\n"
+"POT-Creation-Date: 2015-04-06 21:15+0100\n"
 "PO-Revision-Date: 2014-12-21 23:14+0100\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -42,11 +42,16 @@ msgstr "For tiden er PDF funktionen kun understøtte for LTR sprog. Dvs. sprog l
 #. I18N: %s is the surname of the root individual
 #: modules_v3\fancy_treeview/db_schema/db_schema_0_1.php:34
 #: modules_v3\fancy_treeview/fancytreeview.php:151
-#: modules_v3\fancy_treeview/module.php:339
+#: modules_v3\fancy_treeview/module.php:345
 #: modules_v3\fancy_treeview/templates/admin.php:258
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Efterkommer til %s familie"
+
+#: modules_v3\fancy_treeview/module.php:168
+#, php-format
+msgid "Error: A person with ID %s does not exist in this tree"
+msgstr ""
 
 #: modules_v3\fancy_treeview/module.php:149
 #, fuzzy, php-format
@@ -274,7 +279,7 @@ msgstr ""
 msgid "Thumbnail size"
 msgstr "Miniature størrelse"
 
-#: modules_v3\fancy_treeview/module.php:331
+#: modules_v3\fancy_treeview/module.php:337
 msgid "Tree view"
 msgstr "Vis træ"
 
