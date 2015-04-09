@@ -857,7 +857,7 @@ class FancyTreeView extends FancyTreeviewModule {
 						' href="' . $mediaobject->getHtmlUrlDirect('main') . '"' .
 						' type="' . $mediaobject->mimeType() . '"' .
 						' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
-						' data-obje-note="' . htmlspecialchars($mediaobject->getNote()) . '"' .
+						' data-obje-note="' . Filter::escapeHtml($mediaobject->getNote()) . '"' .
 						' data-obje-xref="' . $mediaobject->getXref() . '"' .
 						' data-title="' . Filter::escapeHtml($mediaobject->getFullName()) . '"' .
 						'><img class="ftv-thumb" src="data:' . $mediaobject->mimeType() . ';base64,' . base64_encode($newThumb) . '" dir="auto" title="' . $mediatitle . '" alt="' . $mediatitle . '" width="' . $width . '" height="' . $height . '"/></a>'; // need size to fetch it with jquery (for pdf conversion)
