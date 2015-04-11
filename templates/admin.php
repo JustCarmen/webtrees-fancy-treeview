@@ -469,9 +469,6 @@ namespace Fisharebest\Webtrees;
 							<div class="col-sm-4">
 								<?php echo edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $ftv->options('show_pdf_icon'), 'class="form-control"'); ?>
 							</div>
-							<p class="col-sm-8 col-sm-offset-4 small text-muted">
-								<?php echo /* I18N: Help text for the “Show PDF icon” configuration setting */ I18N::translate('Currently the PDF option is only supported for LTR-languages. These are all languages in which the text is read from left to right. The PDF icon will be disabled when the user selects a RTL-language. In a RTL language the text is read from right to left.'); ?>
-							</p>
 						</div>
 						<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
 						<div class="form-group fullname">

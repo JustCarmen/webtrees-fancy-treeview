@@ -1,4 +1,4 @@
-/* 
+/*
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
  * Copyright (C) 2015 JustCarmen
@@ -17,13 +17,13 @@
 // convert page to pdf
 jQuery("#pdf").click(function(){
 	if (jQuery("#btn_next").length > 0) {
-		var $dialog = jQuery("#dialog-confirm").dialog({
+		jQuery("#dialog-confirm").dialog({
 			resizable: false,
 			width: 300,
 			modal: true,
 			buttons : {
 				"ok" : function() {
-					getPDF();
+					createPDF();
 					jQuery(this).dialog("close");
 				},
 				"cancel" : function() {
@@ -35,83 +35,151 @@ jQuery("#pdf").click(function(){
 		jQuery('.ui-dialog-buttonpane button:contains(cancel)').html(TextCancel);
 	}
 	else {
-		getPDF();
+		createPDF();
 	}
 });
 
-function getPDF() {
-	// get image source for default webtrees thumbs
-	if(jQuery(".ftv-thumb").length === 0) {
-		function qstring(key, url) {
-			KeysValues = url.split(/[\?&]+/);
-			for (i = 0; i < KeysValues.length; i++) {
-				KeyValue= KeysValues[i].split("=");
-				if (KeyValue[0] === key) {
-					return KeyValue[1];
+function createPDF() {
+	// clone the content now
+	jQuery("body").append('<div id="pdf-content">');
+	jQuery("#pdf-content").append(jQuery("#fancy_treeview-page").clone()).hide();
+
+	var content = jQuery("#pdf-content");
+	var counter = jQuery("a.gallery img", content).length;
+
+	if (counter > 0) {
+		if(jQuery(".ftv-thumb", content).length) {
+			jQuery("a.gallery img", content).each(function(){
+				jQuery.ajax({
+					url: "module.php?mod=" + ModuleName + "&mod_action=image_data&ftv_thumb=1",
+					type: "POST",
+					data: {
+						base64: jQuery(this).attr("src"),
+					},
+					context: this,
+					success: function(data) {
+						jQuery(this).attr("src", data);
+						counter--;
+						if (counter === 0) {
+							getPDF();
+						}
+					}
+				});
+			});
+		} else {
+			function qstring(key, url) {
+				KeysValues = url.split(/[\?&]+/);
+				for (i = 0; i < KeysValues.length; i++) {
+					KeyValue= KeysValues[i].split("=");
+					if (KeyValue[0] === key) {
+						return KeyValue[1];
+					}
 				}
 			}
-		}
-		jQuery("a.gallery img").each(function(){
-			var obj = jQuery(this);
-			var src = obj.attr("src");
-			var mid = qstring("mid", src);
-			jQuery.ajax({
-				type: "GET",
-				url: "module.php?mod=" + ModuleName + "&mod_action=image_data&mid=" + mid,
-				async: false,
-				success: function(data) {
-					obj.addClass("wt-thumb").attr("src", data);
-				}
+			jQuery("a.gallery img", content).each(function(){
+				var mid = qstring("mid", jQuery(this).attr("src"));
+				jQuery.ajax({
+					type: "GET",
+					url: "module.php?mod=" + ModuleName + "&mod_action=image_data&mid=" + mid,
+					context: this,
+					success: function(data) {
+						jQuery(this).addClass("wt-thumb").attr("src", data);
+						counter--;
+						if (counter === 0) {
+							getPDF();
+						}
+					}
+				});
 			});
+		}
+	} else {
+		getPDF();
+	}
+}
+
+function getPDF() {
+	jQuery.when(modifyContent()).then(function(){
+		jQuery.ajax({
+			type: "POST",
+			url: "module.php?mod=" + ModuleName + "&mod_action=pdf_data",
+			data: { "pdfContent": jQuery("#new-pdf-content").html() },
+			csrf: WT_CSRF_TOKEN,
+			success: function() {
+				jQuery("#pdf-content, #new-pdf-content").remove()
+				window.location.href = "module.php?mod=" + ModuleName + "&mod_action=show_pdf&rootid=" + RootID + "&title=" + PageTitle;
+			}
 		});
+	});
+}
+
+function modifyContent() {
+	var content = jQuery("#pdf-content");
+
+	// remove or unwrap all elements we do not need in pdf display
+	jQuery(".hidden, .header-link, .tooltip-text", content).remove();
+	jQuery(".generation.private", content).parents(".generation-block").remove();
+	jQuery(".generation-block", content).removeAttr("data-gen data-pids");
+	jQuery(".blockheader").removeClass("ui-state-default");
+	jQuery("a, span.SURN, span.date", content).contents().unwrap();
+	jQuery("a", content).remove(); //left-overs
+
+	// mPDF doesn't support dir="auto", so set the textdirection to rtl if needed.
+	if(textDirection === "rtl") {
+		jQuery("span[dir=auto]", content).each(function(){
+			jQuery(this).attr("dir", "rtl")
+		})
 	}
 
-	// clone the content now
-	var content = jQuery("#content").clone();
+	// Set some extra classes
+	jQuery(".parents", content).each(function() {
+		jQuery(".NAME:first", this).addClass("parents-name");
+	})
+	jQuery(".children p", content).addClass("children-text");
 
-	//put image back behind the mediafirewall
-	jQuery(".wt-thumb").each(function(){
-		jQuery(this).attr("src", jQuery(this).parent().attr("href") + "&thumb=1");
+	// Turn blocks into a table for better display in pdf
+	jQuery(".family", content).each(function(){
+		var obj = jQuery(this);
+		obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
+		obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
+		obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
+		obj.find(".child").each(function(){
+			jQuery(this).replaceWith("<tr><td>" + jQuery(this).html());
+		});
+		obj.find(".children ol").each(function() {
+			jQuery(this).replaceWith('<table class="children-list">' + jQuery(this).html());
+		});
 	});
 
-	//dompdf does not support ordered list, so we make our own
+	jQuery(".private", content).each(function(){
+		jQuery(this).append("<table class=\"parents\"><tr><td>" + jQuery(this).text());
+	});
+
+	//mPDF does not support multilevel ordered list, so we make our own
 	jQuery(".generation-block", content).each(function(index) {
 		var main = (index+1);
 		jQuery(this).find(".generation").each(function(){
-			jQuery(this).find("li.family").each(function(index){
+			jQuery(this).find(".family").each(function(index){
 				var i = (index+1);
-				jQuery(this).find(".parents").prepend("<td class=\"index\">" + main + "." + i + ".</td>");
-				jQuery(this).find("li.child").each(function(index) {
-					jQuery(this).prepend("<span class=\"index\">" + main + "." + i + "." + (index+1) + ".</span>");
+				if(textDirection === "rtl") {
+					var dot = "";
+				} else {
+					var dot = ".";
+				}
+				jQuery(this).find(".parents tr").prepend("<td class=\"index\">" + main + "." + i + dot + " </td>");
+				jQuery(this).find(".children tr").each(function(index) {
+					jQuery(this).prepend("<td class=\"index\">" + main + "." + i + "." + (index+1) + dot + "  </td>");
 				});
 			});
 		});
 	});
 
-	// remove or unwrap all elements we do not need in pdf display
-	jQuery("#pdf, form, #btn_next, #error, .header-link, .hidden, .tooltip-text", content).remove();
-	jQuery(".generation.private", content).parents(".generation-block").remove();
-	jQuery("a, span.SURN, span.date", content).contents().unwrap();
-	jQuery("a", content).remove(); //left-overs
-
-	// Turn family blocks into a table for better display in pdf
-	jQuery("li.family", content).each(function(){
-		var obj = jQuery(this);
-		obj.find(".desc").replaceWith("<td class=\"desc\">" + obj.find(".desc").html());
-		obj.find("img").wrap("<td class=\"image\" style=\"width:" + obj.find("img").width() + "px\">");
-		obj.find(".parents").replaceWith("<table class=\"parents\"><tr>" + obj.find(".parents").html());
+	// Simplify the output
+	content.after('<div id="new-pdf-content">');
+	var pdf_content = jQuery("#new-pdf-content").hide();
+	pdf_content.append(jQuery("h2", content));
+	jQuery(".blockheader, .parents, .children-text, .children-list", content).each(function() {
+		jQuery(this).appendTo(pdf_content);
 	});
 
-	var newContent = content.html();
-
-	jQuery.ajax({
-		type: "POST",
-		url: "module.php?mod=" + ModuleName + "&mod_action=pdf_data",
-		data: { "pdfContent": newContent },
-		csrf: WT_CSRF_TOKEN,
-		success: function() {
-			window.location.href = "module.php?mod=" + ModuleName + "&mod_action=show_pdf&rootid=" + RootID + "&title=" + PageTitle + "#page=1";
-		}
-	});
+	jQuery("h2, .blockheader, .parents, .children-text, .children-list", pdf_content).after('\n');
 }
-

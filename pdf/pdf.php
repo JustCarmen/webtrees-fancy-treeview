@@ -17,46 +17,70 @@ namespace Fisharebest\Webtrees;
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-use DOMPDF;
-use Font_Metrics;
-use Zend_Loader_Autoloader;
+use mPDF;
 
-require_once(WT_MODULES_DIR . $this->getName() . '/pdf/dompdf-0.6.1/dompdf_config.inc.php');
-Zend_Loader_Autoloader::getInstance()->pushAutoloader('DOMPDF_autoload', '');
+require_once(WT_MODULES_DIR . $this->getName() . '/pdf/mpdf60/mpdf.php');
 
-$filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
+global $WT_TREE;
 
-if (is_dir(WT_DATA_DIR) && is_readable($filename)) {
+$tmpfile = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 
-	$html = '<html>
-		<head>
-			<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-			<link type="text/css" href="style.css" rel="stylesheet" />
-		</head>
-		<body>' . file_get_contents($filename) . '</body>
-	  </html>';
+if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 
-	$dompdf = new DOMPDF();
-	$dompdf->set_base_path(WT_MODULES_DIR . $this->getName() . '/pdf/'); // works only for the template file (set absolute links for images and all other links)
-	$dompdf->set_paper('a3', 'portrait');
-	$dompdf->load_html($html);
-	$dompdf->render();
+	$stylesheet = file_get_contents(WT_MODULES_DIR . $this->getName() . '/pdf/style.css');
+	$stylesheet_rtl = file_get_contents(WT_MODULES_DIR . $this->getName() . '/pdf/style-rtl.css');
+	$html = file_get_contents($tmpfile);
+	
+	$header =	'<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';	
+	$footer =	'<footer>' .
+					'<div class="left">' . WT_ROOT . '</div>' .
+					'<div class="right">{PAGENO}</div>' .
+				'</footer>';
 
-	// create the page
-	$canvas = $dompdf->get_canvas();
-	$font = Font_Metrics::get_font("DejaVu Sans", "normal");
-	$headertext_left = WT_BASE_URL;
-	$headertext_right = I18N::translate('Page') . " {PAGE_NUM} " . I18N::translate('of') . " {PAGE_COUNT} ";
-	$headerpos_right = $canvas->get_width() - $canvas->get_text_width($headertext_right, $font, 9, 0) + 100;
+	$mpdf = new mPDF();
 
-	$canvas->page_text(20, 10, $headertext_left, $font, 9, array(0, 0, 0));
-	$canvas->page_text($headerpos_right, 10, $headertext_right, $font, 9, array(0, 0, 0));
+	$mpdf->simpleTables = true;
+	$mpdf->shrink_tables_to_fit = 1;
 
-	// pdf output
-	$dompdf->stream(Filter::get('title') . '.pdf');
+	$mpdf->autoScriptToLang = true;
+	if (I18N::direction() === 'rtl') {
+		$mpdf->SetDirectionality('rtl');
+	}
 
-	// remove the temporary text file
-	File::delete(WT_DATA_DIR . '/fancy_treeview_tmp.txt');
+	if (I18N::direction() === 'rtl') {
+		$mpdf->WriteHTML($stylesheet_rtl, 1);
+	} else {
+		$mpdf->WriteHTML($stylesheet, 1);
+	}
+	
+	$mpdf->setAutoTopMargin = 'stretch';	
+	$mpdf->setAutoBottomMargin = 'stretch';	
+	$mpdf->autoMarginPadding = 5;		
+	
+	$mpdf->SetHTMLHeader($header);
+	$mpdf->setHTMLFooter($footer);
+	
+	$html_chunks = explode("\n", $html);
+	$chunks = count($html_chunks);
+	$i = 1;
+	foreach ($html_chunks as $html_chunk) {
+		if($i === 1){
+			$mpdf->WriteHTML($html_chunk, 2, true, false);
+		} elseif ($i === $chunks) {
+			$mpdf->WriteHTML($html_chunk, 2, false, false);
+		} else {
+			$mpdf->WriteHTML($html_chunk, 2, false, true);
+		}
+		$i++;
+	}
+
+	$mpdf->Output(Filter::get('title') . '.pdf', 'D');
+
+	// remove the temporary files
+	File::delete($tmpfile);
+	foreach (glob(WT_DATA_DIR . 'ftv*.*') as $image) {
+		File::delete($image);
+	}
 }
 else {
 	$ftv = new FancyTreeView;

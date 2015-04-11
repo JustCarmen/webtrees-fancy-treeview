@@ -65,6 +65,11 @@
 	display: none;
 }
 
+[dir=rtl] #fancy_treeview-page #pdf {
+	left: 0;
+	right: auto;
+}
+
 [dir=rtl] #fancy_treeview-page #page-body form {
 	text-align: left;
 }

@@ -22,7 +22,7 @@ namespace Fisharebest\Webtrees;
 <div id="fancy_treeview-page">
 	<div id="page-header">
 		<h2><?php echo $controller->getPageTitle(); ?></h2>
-		<?php if ($ftv->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE) && I18N::direction() === 'ltr'): ?>
+		<?php if ($ftv->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)): ?>
 		<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
 			<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
 		</div>

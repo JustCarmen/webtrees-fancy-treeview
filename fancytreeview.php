@@ -1092,7 +1092,7 @@ class FancyTreeView extends FancyTreeviewModule {
 					->addInlineJavascript('autocomplete();')
 					->addExternalJavascript($this->module . '/js/page.js');
 
-				if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE) && I18N::direction() === 'ltr') {
+				if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)) {
 					$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
 				}
 

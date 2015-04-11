@@ -20,6 +20,7 @@ namespace Fisharebest\Webtrees;
 use PDOException;
 use Zend_Session;
 use Zend_Translate;
+use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
@@ -263,10 +264,23 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		case 'image_data':
 			Zend_Session::writeClose();
 			header('Content-type: text/html; charset=UTF-8');
-			$xref = Filter::get('mid');
-			$mediaobject = Media::getInstance($xref, $WT_TREE);
-			if ($mediaobject) {
-				echo $mediaobject->getServerFilename();
+			if (Filter::get('ftv_thumb')) {
+				header("Content-Type: image/jpeg");
+				$data = Filter::post('base64');
+				list($type, $data) = explode(';', $data);
+				list(, $data)      = explode(',', $data);
+				$image = base64_decode($data);
+				$filename = WT_DATA_DIR . 'ftv' . Uuid::uuid4() . '.jpg';
+				if($image) {
+					file_put_contents($filename, $image);
+					echo $filename;
+				}
+			} else {				
+				$xref = Filter::get('mid');
+				$mediaobject = Media::getInstance($xref, $WT_TREE);
+				if ($mediaobject) {
+					echo $mediaobject->getServerFilename();
+				}				
 			}
 			break;
 
