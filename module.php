@@ -279,7 +279,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				$xref = Filter::get('mid');
 				$mediaobject = Media::getInstance($xref, $WT_TREE);
 				if ($mediaobject) {
-					echo $mediaobject->getServerFilename();
+					echo $mediaobject->getServerFilename('thumb');
 				}				
 			}
 			break;
