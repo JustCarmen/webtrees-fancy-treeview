@@ -729,7 +729,7 @@ class FancyTreeView extends FancyTreeviewModule {
 				$html .= $this->printPlace($person->getDeathPlace(), $person->getTree());
 			}
 
-			if ($birthdate->isOK() && $deathdate->isOK()) {
+			if ($birthdate->isOK() && $deathdate->isOK() && $this->isDateDMY($birt) && $this->isDateDMY($deat)) {
 				if (Date::getAge($birthdate, $deathdate, 0) < 2) {
 					$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
 				} else {
@@ -961,6 +961,13 @@ class FancyTreeView extends FancyTreeviewModule {
 			if (in_array($father, $generation) || in_array($mother, $generation)) {
 				return true;
 			}
+		}
+	}
+
+	// check if this date has any date qualifiers. Return true if no date qualifiers are found.
+	private function isDateDMY($fact) {
+		if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->getAttribute('DATE'))) {
+			return true;
 		}
 	}
 
