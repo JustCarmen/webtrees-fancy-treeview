@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tree View\n"
 "POT-Creation-Date: 2015-04-06 21:15+0100\n"
-"PO-Revision-Date: 2015-04-05 09:27+0200\n"
+"PO-Revision-Date: 2015-04-07 00:26+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -25,7 +25,7 @@ msgstr " "
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Hieno kerrontatyylinen katsaus yhden perheen (haaran) jälkeläisistä."
 
-#: modules_v3\fancy_treeview/templates/page.php:35
+#: modules_v3\fancy_treeview/module.php:1873
 msgid "Change root person"
 msgstr "Muuta aloitushenkilö"
 
@@ -50,7 +50,7 @@ msgstr "%s perheen jälkeläiset"
 #: modules_v3\fancy_treeview/module.php:168
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
-msgstr ""
+msgstr "Virhe: Henkilö, jonka tunnus on %s, ei ole tässä puussa"
 
 #: modules_v3\fancy_treeview/module.php:149
 #, php-format
@@ -75,7 +75,7 @@ msgstr "Virhe: pdf-tiedostoa ei voitu luoda."
 msgid "Fancy Tree View"
 msgstr "Hieno puunäkymä"
 
-#: modules_v3\fancy_treeview/templates/page.php:26
+#: modules_v3\fancy_treeview/module.php:1376
 msgid "Generate PDF"
 msgstr "Luo PDF"
 
@@ -243,7 +243,7 @@ msgstr "Tämän puun vaihtoehdot on onnistuneesti palautettu oletusasetuksiin"
 msgid "The options for this tree are succesfully saved"
 msgstr "Tämän puun vaihtoehdot on onnistuneesti talletettu"
 
-#: modules_v3\fancy_treeview/templates/page.php:27
+#: modules_v3\fancy_treeview/module.php:1377
 msgid "The pdf contains only visible generation blocks."
 msgstr "pdf sisältää ainoastaan näkyvien sukupolvien lohkot."
 

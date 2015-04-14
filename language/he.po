@@ -50,7 +50,7 @@ msgstr "צאצאים של משפחת %s"
 #: modules_v3\fancy_treeview/module.php:168
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
-msgstr ""
+msgstr "שגיאה: אדם עם קוד זיהוי %s אינו קיים בעץ הזה"
 
 #: modules_v3\fancy_treeview/module.php:149
 #, php-format
@@ -304,7 +304,7 @@ msgstr "השתמש בטופס החיפוש שלמטה כדי לחפש אדם מ�
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:357
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option)."
-msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקק אם לזוג (נשוי) יש אותם אבות. אם נמצאו יחסים בין בני הזוג, יופיע טקסט בסוגריים אחרי שמו של בן הזוג כדי לציין את מערכת היחסים. הערה: אפשרות זו עלולה לגרום לטעינת דף איטית יותר, במיוחד בעצים גדולים. אם אתה מבחין בהתנהגות כזו, יש לצמצם את מספר בלוקי הדור שנטענים בבת אחת (ראה האפשרות הקודמת)."
+msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקת אם לזוג (נשוי) יש אותם אבות. אם נמצאו יחסים בין בני הזוג, יופיע טקסט בסוגריים אחרי שמו של בן הזוג כדי לציין את מערכת היחסים. הערה: אפשרות זו עלולה לגרום לטעינת דף איטית יותר, במיוחד בעצים גדולים. אם אתה מבחין בהתנהגות כזו, יש לצמצם את מספר בלוקי הדור שנטענים בבת אחת (ראה האפשרות הקודמת)."
 
 #: modules_v3\fancy_treeview/fancytreeview.php:589
 msgctxt "FEMALE"
