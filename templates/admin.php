@@ -331,7 +331,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Use fullname in menu'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[USE_FULLNAME]', $ftv->options('use_fullname')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[USE_FULLNAME]', $ftv->options('use_fullname'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- GENERATION BLOCKS -->
@@ -351,7 +351,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Check relationship between partners'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $ftv->options('check_relationship')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $ftv->options('check_relationship'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).'); ?>
@@ -363,7 +363,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show single persons'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[SHOW_SINGLES]', $ftv->options('show_singles')); ?>									</div>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[SHOW_SINGLES]', $ftv->options('show_singles'), 'class="radio-inline"'); ?>									</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Show single persons” configuration setting */ I18N::translate('Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block.'); ?>
 							</p>
@@ -374,7 +374,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show places?'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[SHOW_PLACES]', $ftv->options('show_places')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[SHOW_PLACES]', $ftv->options('show_places'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- USE GEDCOM PLACE SETTING -->
@@ -383,7 +383,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names?'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $ftv->options('use_gedcom_places')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $ftv->options('use_gedcom_places'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting */ I18N::translate('If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown.'); ?>
@@ -409,7 +409,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show occupations'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[SHOW_OCCU]', $ftv->options('show_occu')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[SHOW_OCCU]', $ftv->options('show_occu'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- RESIZE THUMBS -->
@@ -418,7 +418,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Resize thumbnails'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
@@ -449,7 +449,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Use square thumbnails'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $ftv->options('use_square_thumbs')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $ftv->options('use_square_thumbs'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- SHOW USERFORM -->
@@ -476,7 +476,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show a Fancy Tree View tab on the individual page'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo $ftv->radioButtons('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab')); ?>
+								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- BUTTONS -->

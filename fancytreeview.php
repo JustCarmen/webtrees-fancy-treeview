@@ -172,16 +172,6 @@ class FancyTreeView extends FancyTreeviewModule {
 		return $list;
 	}
 
-	// Radio buttons
-	protected function radioButtons($name, $selected) {
-		$values = array(
-			0	 => I18N::translate('no'),
-			1	 => I18N::translate('yes'),
-		);
-
-		return radio_buttons($name, $values, $selected, 'class="radio-inline"');
-	}
-
 	protected function addMessage($id, $type, $hidden, $message = '') {
 		$style = $hidden ? ' style="display:none"' : '';
 
