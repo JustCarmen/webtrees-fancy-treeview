@@ -594,7 +594,7 @@ class FancyTreeView extends FancyTreeviewModule {
 						$child_family = $this->getFamily($child);
 
 						// do not load this part of the code in the fancy treeview tab on the individual page.
-						if (WT_SCRIPT_NAME !== 'inidividual.php') {
+						if (WT_SCRIPT_NAME !== 'individual.php') {
 							if ($child->canShow() && $child_family) {
 								$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
 							} else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
