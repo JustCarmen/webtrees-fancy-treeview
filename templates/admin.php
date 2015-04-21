@@ -378,7 +378,7 @@ namespace Fisharebest\Webtrees;
 							</div>
 						</div>
 						<!-- USE GEDCOM PLACE SETTING -->
-						<div id="gedcom_places" class="form-group <?php if (!$ftv->options('show_places')) echo 'hidden' ?>">
+						<div id="gedcom_places" class="form-group<?php if (!$ftv->options('show_places')) echo ' collapse' ?>">
 							<label class="control-label col-sm-4">
 								<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names?'); ?>
 							</label>
@@ -391,7 +391,7 @@ namespace Fisharebest\Webtrees;
 						</div>
 						<!-- GET COUNTRYLIST -->
 						<?php if ($ftv->getCountrylist()): ?>
-							<div id="country_list" class="form-group <?php if (!$ftv->options('show_places') || $ftv->options('use_gedcom_places')) echo 'hidden' ?>">
+							<div id="country_list" class="form-group<?php if (!$ftv->options('show_places') || $ftv->options('use_gedcom_places')) echo ' collapse' ?>">
 								<label class="control-label col-sm-4">
 									<?php echo I18N::translate('Select your country'); ?>
 								</label>
@@ -424,7 +424,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
 						</div>
 						<!-- THUMB SIZE -->
-						<div id="thumb_size" class="form-group <?php if (!$ftv->options('resize_thumbs')) echo 'hidden' ?>">
+						<div id="thumb_size" class="form-group<?php if (!$ftv->options('resize_thumbs')) echo ' collapse' ?>">
 							<label class="control-label col-sm-4">
 								<?php echo I18N::translate('Thumbnail size'); ?>
 							</label>
@@ -444,7 +444,7 @@ namespace Fisharebest\Webtrees;
 							</div>
 						</div>
 						<!-- SQUARE THUMBS -->
-						<div id="square_thumbs" class="form-group <?php if (!$ftv->options('resize_thumbs')) echo 'hidden' ?>">
+						<div id="square_thumbs" class="form-group<?php if (!$ftv->options('resize_thumbs')) echo ' collapse' ?>">
 							<label class="control-label col-sm-4">
 								<?php echo I18N::translate('Use square thumbnails'); ?>
 							</label>
