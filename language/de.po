@@ -53,7 +53,7 @@ msgstr "Nachkommen der Familie %s"
 #: modules_v3\fancy_treeview/module.php:168
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
-msgstr ""
+msgstr "Fehler: Eine Person mit der ID %s existiert nicht in diesem Stammbaum."
 
 #: modules_v3\fancy_treeview/module.php:149
 #, fuzzy, php-format
@@ -70,7 +70,7 @@ msgstr "Fehler: Der gesuchte Name existiert in diesem Stammbaum nicht."
 
 #: modules_v3\fancy_treeview/pdf/pdf.php:63
 msgid "Error: the pdf file could not be generated."
-msgstr ""
+msgstr "Fehler: Die PDF-Datei konnte nicht erzeugt werden."
 
 #. I18N: Name of the module
 #: modules_v3\fancy_treeview/module.php:55
@@ -126,12 +126,12 @@ msgstr "Anzahl der anzuzeigenden Generationen"
 #: modules_v3\fancy_treeview/fancytreeview.php:1088
 #: modules_v3\fancy_treeview/templates/admin.php:121
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: modules_v3\fancy_treeview/templates/admin.php:318
 #, php-format
 msgid "Options for %s"
-msgstr ""
+msgstr "Einstellungen für %s"
 
 #: modules_v3\fancy_treeview/templates/admin.php:108
 msgid "Or enter an ID"
@@ -140,15 +140,15 @@ msgstr ""
 #: modules_v3\fancy_treeview/templates/admin.php:135
 #: modules_v3\fancy_treeview/templates/admin.php:209
 msgid "Page title"
-msgstr ""
+msgstr "Seitentitel"
 
 #: modules_v3\fancy_treeview/templates/admin.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Seiten"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:349
 msgid "Read more"
-msgstr ""
+msgstr "Lies mehr"
 
 #: modules_v3\fancy_treeview/templates/admin.php:418
 msgid "Resize thumbnails"
@@ -162,7 +162,7 @@ msgstr "Startperson"
 #: modules_v3\fancy_treeview/templates/admin.php:115
 #: modules_v3\fancy_treeview/templates/page.php:40
 msgid "Search ID by name"
-msgstr ""
+msgstr "Suche ID über Name"
 
 #: modules_v3\fancy_treeview/templates/admin.php:83
 #, fuzzy
@@ -195,7 +195,7 @@ msgstr "PDF Schaltfläche zeigen?"
 
 #: modules_v3\fancy_treeview/templates/admin.php:479
 msgid "Show a Fancy Tree View tab on the individual page"
-msgstr ""
+msgstr "Zeige einen Fancy Tree View Reiter auf der Personenseite"
 
 #: modules_v3\fancy_treeview/templates/admin.php:458
 msgid "Show form to change start person"
@@ -203,20 +203,20 @@ msgstr "Zeige Feld zum Wechseln der Startperson"
 
 #: modules_v3\fancy_treeview/templates/admin.php:409
 msgid "Show occupations"
-msgstr "Berufe ausgeben?"
+msgstr "Zeige Berufe"
 
 #: modules_v3\fancy_treeview/templates/admin.php:374
 msgid "Show places?"
-msgstr "Ortsangaben ausgeben?"
+msgstr "Zeige Orte?"
 
 #: modules_v3\fancy_treeview/templates/admin.php:363
 msgid "Show single persons"
-msgstr "Auch Einzelpersonen ausgeben?"
+msgstr "Zeige Einzelpersonen"
 
 #: modules_v3\fancy_treeview/templates/admin.php:133
 #: modules_v3\fancy_treeview/templates/admin.php:207
 msgid "Surname in page title"
-msgstr ""
+msgstr "Nachnamen im Seitentitel"
 
 #. I18N: %s is an ordinal
 #: modules_v3\fancy_treeview/fancytreeview.php:439
@@ -234,7 +234,7 @@ msgstr "Das %s Mal heiratete sie"
 #: modules_v3\fancy_treeview/fancytreeview.php:451
 #, php-format
 msgid "The %s time this individual married"
-msgstr ""
+msgstr "Das %s Mal heiratete die Person"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:411
 #: modules_v3\fancy_treeview/fancytreeview.php:357
@@ -243,11 +243,11 @@ msgstr "Die Einzelheiten zu dieser Generation sind nicht öffentlich."
 
 #: modules_v3\fancy_treeview/templates/admin.php:325
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr ""
+msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich auf die Standardeinstellungen zurückgesetzt"
 
 #: modules_v3\fancy_treeview/templates/admin.php:324
 msgid "The options for this tree are succesfully saved"
-msgstr ""
+msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich gespeichert"
 
 #: modules_v3\fancy_treeview/templates/page.php:27
 msgid "The pdf contains only visible generation blocks."
@@ -260,17 +260,17 @@ msgstr "Fehler: Die von Ihnen eingegebene ID %s existiert in diesem Stammbaum ni
 
 #: modules_v3\fancy_treeview/templates/admin.php:197
 msgid "The settings for this tree are succesfully updated"
-msgstr ""
+msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich aktualisiert"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:463
 msgid "This individual married"
-msgstr ""
+msgstr "Diese Person heiratete"
 
 #. I18N: %s is a number
 #: modules_v3\fancy_treeview/fancytreeview.php:449
 #, php-format
 msgid "This individual married %s times"
-msgstr ""
+msgstr "Diese Persone heiratete %s Mal"
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: modules_v3\fancy_treeview/templates/admin.php:345
@@ -319,24 +319,24 @@ msgstr "Hier überprüft das Skript, ob ein (Ehe-) Paar gemeinsame Vorfahren hat
 #: modules_v3\fancy_treeview/fancytreeview.php:589
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr ""
+msgstr "adoptiertes Kind"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:592
 msgctxt "MALE"
 msgid "adopted child"
-msgstr ""
+msgstr "adoptiertes Kind"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:654
 msgid "adopted child of"
-msgstr ""
+msgstr "adoptiertes Kind von"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:645
 msgid "adopted daughter of"
-msgstr ""
+msgstr "adoptierte Tochter von"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:636
 msgid "adopted son of"
-msgstr ""
+msgstr "adoptierter Sohn von"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/fancytreeview.php:506
@@ -346,7 +346,7 @@ msgstr ""
 #: modules_v3\fancy_treeview/fancytreeview.php:667
 #: modules_v3\fancy_treeview/fancytreeview.php:717
 msgid "and "
-msgstr ""
+msgstr "und "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: modules_v3\fancy_treeview/fancytreeview.php:734
@@ -364,21 +364,21 @@ msgstr "im Alter von %s Jahren"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:656
 msgid "child of"
-msgstr ""
+msgstr "Kind von"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:718
 msgctxt "FEMALE"
 msgid "died"
-msgstr ""
+msgstr "starb"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:718
 msgctxt "MALE"
 msgid "died"
-msgstr ""
+msgstr "starb"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:430
 msgid "eighth"
-msgstr ""
+msgstr "achte"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:427
 msgid "fifth"
@@ -395,24 +395,24 @@ msgstr "weiter"
 #: modules_v3\fancy_treeview/fancytreeview.php:579
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr ""
+msgstr "Pflegetochter"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:582
 msgctxt "MALE"
 msgid "foster child"
-msgstr ""
+msgstr "Pflegesohn"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:652
 msgid "foster child of"
-msgstr ""
+msgstr "Pflegekind von"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:643
 msgid "foster daughter of"
-msgstr ""
+msgstr "Pflegetochter von"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:634
 msgid "foster son of"
-msgstr ""
+msgstr "Pflegesohn von"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:426
 msgid "fourth"
@@ -444,7 +444,7 @@ msgstr "hatte"
 #: modules_v3\fancy_treeview/fancytreeview.php:882
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "im"
+msgstr "im "
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/fancytreeview.php:885
@@ -460,7 +460,7 @@ msgstr "in "
 
 #: modules_v3\fancy_treeview/fancytreeview.php:431
 msgid "ninth"
-msgstr ""
+msgstr "neunte"
 
 #. I18N: Note the space at the end of the string
 #: modules_v3\fancy_treeview/fancytreeview.php:879
@@ -478,15 +478,15 @@ msgstr "zweite"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:429
 msgid "seventh"
-msgstr ""
+msgstr "siebente"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:428
 msgid "sixth"
-msgstr ""
+msgstr "sechste"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:432
 msgid "tenth"
-msgstr ""
+msgstr "zehnte"
 
 #: modules_v3\fancy_treeview/fancytreeview.php:425
 msgid "third"
