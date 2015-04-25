@@ -19,7 +19,6 @@ namespace Fisharebest\Webtrees;
 
 use PDOException;
 use Zend_Session;
-use Zend_Translate;
 use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
