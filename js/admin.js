@@ -72,7 +72,7 @@ jQuery("#ftv-search-form").on("submit", "form[name=form3]", function (e) {
 		url: "module.php?mod=" + ModuleName + "&mod_action=admin_add&tree=" + tree,
 		data: jQuery(this).serialize(),
 		success: function () {
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form")
+			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
 			jQuery("#search-result-table").fadeOut("slow");
 			jQuery("input#surname").val("");
 		}
@@ -127,7 +127,7 @@ jQuery("#fancy-treeview-form").on("submit", "form[name=form4]", function (e) {
 
 // delete row from form4
 jQuery("#fancy-treeview-form").on("click", "button[name=delete]", function (e) {
-	e.preventDefault()
+	e.preventDefault();
 	var key = jQuery(this).data("key");
 	var row = jQuery(this).parents("tr");
 	var rowCount = jQuery("#fancy-treeview-table > tbody > tr").length - 1;
@@ -161,8 +161,8 @@ jQuery("#ftv-options-form").on("submit", "form[name=form5]", function (e) {
 		success: function () {
 			jQuery("#ftv-search-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-search-form form", function () {
 				jQuery(this).find("#search-result-table").hide().removeClass("hidden");
-			})
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form")
+			});
+			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
 			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function () {
 				jQuery("#reset-options").hide();
 				jQuery("#save-options").fadeIn();
@@ -170,14 +170,14 @@ jQuery("#ftv-options-form").on("submit", "form[name=form5]", function (e) {
 				jQuery("html, body").animate({
 					scrollTop: target
 				}, 800);
-			})
+			});
 		}
 	});
 });
 
 // reset options
 jQuery("#ftv-options-form").on("reset", "form[name=form5]", function (e) {
-	e.preventDefault()
+	e.preventDefault();
 	var tree = jQuery("#tree").find("option:selected").val();
 	jQuery.ajax({
 		type: "GET",
@@ -185,8 +185,8 @@ jQuery("#ftv-options-form").on("reset", "form[name=form5]", function (e) {
 		success: function () {
 			jQuery("#ftv-search-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-search-form form", function () {
 				jQuery(this).find("#search-result-table").hide().removeClass("hidden");
-			})
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form")
+			});
+			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
 			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function () {
 				jQuery("#save-options").hide();
 				jQuery("#reset-options").fadeIn();
@@ -194,7 +194,7 @@ jQuery("#ftv-options-form").on("reset", "form[name=form5]", function (e) {
 				jQuery("html, body").animate({
 					scrollTop: target
 				}, 800);
-			})
+			});
 		}
 	});
 });
