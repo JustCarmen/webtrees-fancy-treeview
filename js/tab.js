@@ -25,11 +25,8 @@ jQuery(".parents").each(function () {
 });
 
 // remove the empty hyphen on childrens lifespan if death date is unknown.
-jQuery(".lifespan span:last-child").each(function() {
+jQuery(".lifespan span:last-child").each(function () {
 	if (jQuery(this).attr("title") === "") {
-		jQuery(this)
-			.parent().html(jQuery(this).prev("span"))
-			.prepend(" (")
-			.append(")");
+		jQuery(this).parent().html(jQuery(this).prev("span")).prepend(" (").append(")");
 	}
 });
