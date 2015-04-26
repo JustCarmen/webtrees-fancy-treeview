@@ -23,31 +23,31 @@ namespace Fisharebest\Webtrees;
 	<div id="page-header">
 		<h2><?php echo $controller->getPageTitle(); ?></h2>
 		<?php if ($ftv->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)): ?>
-		<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
-			<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
-		</div>
-		<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
+			<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
+				<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
+			</div>
+			<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
 		<?php endif; ?>
 	</div>
 	<div id="page-body">
 		<?php if ($ftv->options('show_userform') >= Auth::accessLevel($WT_TREE)): ?>
-		<form id="change_root">
-			<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
-			<input
-				data-autocomplete-type="INDI"
-				id="new_rootid"
-				name="new_rootid"
-				placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
-				type="text"
-				>
-			<input
-				id="btn_go"
-				name="btn_go"
-				type="submit"
-				value="<?php echo I18N::translate('Go'); ?>"
-				>
-		</form>
-		<div id="error"></div>
+			<form id="change_root">
+				<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
+				<input
+					data-autocomplete-type="INDI"
+					id="new_rootid"
+					name="new_rootid"
+					placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
+					type="text"
+					>
+				<input
+					id="btn_go"
+					name="btn_go"
+					type="submit"
+					value="<?php echo I18N::translate('Go'); ?>"
+					>
+			</form>
+			<div id="error"></div>
 		<?php endif; ?>
 		<ol id="fancy_treeview"><?php echo $ftv->printPage(); ?></ol>
 		<div id="btn_next">

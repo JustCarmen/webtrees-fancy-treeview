@@ -282,9 +282,8 @@ class FancyTreeView extends FancyTreeviewModule {
 
 	private function printGeneration($generation, $i) {
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html =
-		'<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">' .
-		$this->printBlockHeader($i);
+		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">' .
+			$this->printBlockHeader($i);
 
 		if ($this->checkPrivacy($generation, true)) {
 			$html .= $this->printPrivateBlock();
@@ -484,7 +483,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			if ($marrplace->getGedcomName()) {
 				$html .= $this->printPlace($marrplace->getGedcomName(), $family->getTree());
 			}
-			
+
 			if ($this->printLifespan($spouse, true)) {
 				$html .= $this->printLifespan($spouse, true);
 			} else {
@@ -1153,4 +1152,3 @@ class FancyTreeView extends FancyTreeviewModule {
 	}
 
 }
-

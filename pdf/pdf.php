@@ -30,12 +30,12 @@ if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 	$stylesheet = file_get_contents(WT_MODULES_DIR . $this->getName() . '/pdf/style.css');
 	$stylesheet_rtl = file_get_contents(WT_MODULES_DIR . $this->getName() . '/pdf/style-rtl.css');
 	$html = file_get_contents($tmpfile);
-	
-	$header =	'<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';	
-	$footer =	'<footer>' .
-					'<div class="left">' . WT_ROOT . '</div>' .
-					'<div class="right">{PAGENO}</div>' .
-				'</footer>';
+
+	$header = '<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';
+	$footer = '<footer>' .
+		'<div class="left">' . WT_ROOT . '</div>' .
+		'<div class="right">{PAGENO}</div>' .
+		'</footer>';
 
 	$mpdf = new mPDF();
 
@@ -52,19 +52,19 @@ if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 	} else {
 		$mpdf->WriteHTML($stylesheet, 1);
 	}
-	
-	$mpdf->setAutoTopMargin = 'stretch';	
-	$mpdf->setAutoBottomMargin = 'stretch';	
-	$mpdf->autoMarginPadding = 5;		
-	
+
+	$mpdf->setAutoTopMargin = 'stretch';
+	$mpdf->setAutoBottomMargin = 'stretch';
+	$mpdf->autoMarginPadding = 5;
+
 	$mpdf->SetHTMLHeader($header);
 	$mpdf->setHTMLFooter($footer);
-	
+
 	$html_chunks = explode("\n", $html);
 	$chunks = count($html_chunks);
 	$i = 1;
 	foreach ($html_chunks as $html_chunk) {
-		if($i === 1){
+		if ($i === 1) {
 			$mpdf->WriteHTML($html_chunk, 2, true, false);
 		} elseif ($i === $chunks) {
 			$mpdf->WriteHTML($html_chunk, 2, false, false);
@@ -81,8 +81,7 @@ if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 	foreach (glob(WT_DATA_DIR . 'ftv*.*') as $image) {
 		File::delete($image);
 	}
-}
-else {
+} else {
 	$ftv = new FancyTreeView;
 	echo $ftv->addMessage('alert', 'danger', false, I18N::translate('Error: the pdf file could not be generated.'));
 }

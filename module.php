@@ -28,7 +28,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** @var string location of the fancy treeview module files */
 	var $module;
-
 	var $action;
 
 	/** {@inheritdoc} */
@@ -78,7 +77,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function hasTabContent() {
 		$ftv = new FancyTreeView;
-		if($ftv->options('ftv_tab')) {
+		if ($ftv->options('ftv_tab')) {
 			return true;
 		} else {
 			return false;
@@ -100,200 +99,198 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		global $WT_TREE;
 		$ftv = new FancyTreeView;
 		switch ($mod_action) {
-		case 'admin_config':
-			$controller = new PageController;
-			$controller
-				->restrictAccess(Auth::isAdmin())
-				->setPageTitle(I18N::translate('Fancy Tree View'))
-				->pageHeader();
-
-			// add javascript files and scripts
-			$ftv->includeJs($controller, 'admin');
-
-			// add stylesheet
-			echo $ftv->getStylesheet();
-
-			// get the settings for this tree
-			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-			// get the admin page content
-			include($this->module . '/templates/admin.php');
-			break;
-
-		case 'admin_search':
-			Zend_Session::writeClose();
-			// new settings
-			$surname = Filter::post('SURNAME');
-			$pid = Filter::post('PID');
-			if ($surname) {
-				$soundex_std = Filter::postBool('soundex_std');
-				$soundex_dm = Filter::postBool('soundex_dm');
-
-				$indis = $ftv->indisArray($surname, $soundex_std, $soundex_dm);
-				usort($indis, __NAMESPACE__ . '\\Individual::compareBirthDate');
-
-				if (isset($indis) && count($indis) > 0) {
-					$pid = $indis[0]->getXref();
-				} else {
-					$result['error'] = I18N::translate('Error: The surname you entered doesn’t exist in this tree.');
-				}
-			}
-
-			if (isset($pid)) {
-				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-				if ($ftv->searchArray($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
-					if ($surname) {
-						$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
-					}
-					else {
-						$result['error'] = I18N::translate('Error: A root person with ID %s already exists', $pid);
-					}
-				} else {
-					$record = Individual::getInstance($pid, $WT_TREE);
-					if ($record) {
-						$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
-						$title = $ftv->getPageLink($pid);
-
-						$result = array(
-							'access_level'	 => '2', // default access level = show to visitors
-							'pid'			 => $pid,
-							'root'			 => $root,
-							'sort'			 => count($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
-							'surname'		 => $ftv->getSurname($pid),
-							'title'			 => $title,
-							'tree'			 => Filter::getInteger('tree')
-						);
-					} else {
-						if (empty($result['error'])) {
-							$result['error'] = I18N::translate('Error: A person with ID %s does not exist in this tree', $pid);
-						}
-					}
-				}
-			}
-			echo json_encode($result);
-			break;
-
-		case 'admin_add':
-			Zend_Session::writeClose();
-			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-			$NEW_FTV_SETTINGS = $FTV_SETTINGS;
-			$NEW_FTV_SETTINGS[] = array(
-				'TREE'			 => Filter::getInteger('tree'),
-				'SURNAME'		 => Filter::post('surname'),
-				'PID'			 => Filter::post('pid'),
-				'ACCESS_LEVEL'	 => Filter::postInteger('access_level'),
-				'SORT'			 => Filter::postInteger('sort'),
-			);
-			$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
-			Log::addConfigurationLog($this->getTitle() . ' config updated');
-			break;
-
-		case 'admin_update':
-			Zend_Session::writeClose();
-			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-			$new_surname = Filter::postArray('surname');
-			$new_access_level = Filter::postArray('access_level');
-			$new_sort = Filter::postArray('sort');
-
-			foreach ($new_surname as $key => $new_surname) {
-				$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
-			}
-
-			foreach ($new_access_level as $key => $new_access_level) {
-				$FTV_SETTINGS[$key]['ACCESS_LEVEL'] = $new_access_level;
-			}
-
-			foreach ($new_sort as $key => $new_sort) {
-				$FTV_SETTINGS[$key]['SORT'] = $new_sort;
-			}
-
-			$NEW_FTV_SETTINGS = $ftv->sortArray($FTV_SETTINGS, 'SORT');
-			$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
-			break;
-
-		case 'admin_save':
-			Zend_Session::writeClose();
-			$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-			$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
-			$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
-			Log::addConfigurationLog($this->getTitle() . ' config updated');
-			break;
-
-		case 'admin_reset':
-			Zend_Session::writeClose();
-			$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-			unset($FTV_OPTIONS[Filter::getInteger('tree')]);
-			$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
-			Log::addConfigurationLog($this->getTitle() . ' options set to default');
-			break;
-
-		case 'admin_delete':
-			Zend_Session::writeClose();
-			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-			unset($FTV_SETTINGS[Filter::getInteger('key')]);
-			$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
-			Log::addConfigurationLog($this->getTitle() . ' item deleted');
-			break;
-
-		case 'page':
-			global $controller;
-
-			$controller = new PageController;
-
-			$root_person = $ftv->getPerson($ftv->rootId());
-			if ($root_person && $root_person->canShowName()) {
+			case 'admin_config':
+				$controller = new PageController;
 				$controller
-					->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
+					->restrictAccess(Auth::isAdmin())
+					->setPageTitle(I18N::translate('Fancy Tree View'))
 					->pageHeader();
 
 				// add javascript files and scripts
-				$ftv->includeJs($controller, 'page');
+				$ftv->includeJs($controller, 'admin');
 
-				// get the Fancy Tree View page content
-				include($this->module . '/templates/page.php');
-			} else {
-				http_response_code(404);
-				$controller->pageHeader();
-				echo $ftv->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
+				// add stylesheet
+				echo $ftv->getStylesheet();
 
-			}
-			break;
+				// get the settings for this tree
+				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
-		case 'image_data':
-			Zend_Session::writeClose();
-			header('Content-type: text/html; charset=UTF-8');
-			if (Filter::get('ftv_thumb')) {
-				header("Content-Type: image/jpeg");
-				$data = Filter::post('base64');
-				list($type, $data) = explode(';', $data);
-				list(, $data)      = explode(',', $data);
-				$image = base64_decode($data);
-				$filename = WT_DATA_DIR . 'ftv' . Uuid::uuid4() . '.jpg';
-				if($image) {
-					file_put_contents($filename, $image);
-					echo $filename;
+				// get the admin page content
+				include($this->module . '/templates/admin.php');
+				break;
+
+			case 'admin_search':
+				Zend_Session::writeClose();
+				// new settings
+				$surname = Filter::post('SURNAME');
+				$pid = Filter::post('PID');
+				if ($surname) {
+					$soundex_std = Filter::postBool('soundex_std');
+					$soundex_dm = Filter::postBool('soundex_dm');
+
+					$indis = $ftv->indisArray($surname, $soundex_std, $soundex_dm);
+					usort($indis, __NAMESPACE__ . '\\Individual::compareBirthDate');
+
+					if (isset($indis) && count($indis) > 0) {
+						$pid = $indis[0]->getXref();
+					} else {
+						$result['error'] = I18N::translate('Error: The surname you entered doesn’t exist in this tree.');
+					}
 				}
-			} else {				
-				$xref = Filter::get('mid');
-				$mediaobject = Media::getInstance($xref, $WT_TREE);
-				if ($mediaobject) {
-					echo $mediaobject->getServerFilename('thumb');
-				}				
-			}
-			break;
 
-		case 'pdf_data':
-			include('pdf/data.php');
-			break;
+				if (isset($pid)) {
+					$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+					if ($ftv->searchArray($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
+						if ($surname) {
+							$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
+						} else {
+							$result['error'] = I18N::translate('Error: A root person with ID %s already exists', $pid);
+						}
+					} else {
+						$record = Individual::getInstance($pid, $WT_TREE);
+						if ($record) {
+							$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
+							$title = $ftv->getPageLink($pid);
 
-		case 'show_pdf':
-			include('pdf/pdf.php');
-			break;
+							$result = array(
+								'access_level'	 => '2', // default access level = show to visitors
+								'pid'			 => $pid,
+								'root'			 => $root,
+								'sort'			 => count($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
+								'surname'		 => $ftv->getSurname($pid),
+								'title'			 => $title,
+								'tree'			 => Filter::getInteger('tree')
+							);
+						} else {
+							if (empty($result['error'])) {
+								$result['error'] = I18N::translate('Error: A person with ID %s does not exist in this tree', $pid);
+							}
+						}
+					}
+				}
+				echo json_encode($result);
+				break;
 
-		default:
-			http_response_code(404);
-			break;
+			case 'admin_add':
+				Zend_Session::writeClose();
+				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+				$NEW_FTV_SETTINGS = $FTV_SETTINGS;
+				$NEW_FTV_SETTINGS[] = array(
+					'TREE'			 => Filter::getInteger('tree'),
+					'SURNAME'		 => Filter::post('surname'),
+					'PID'			 => Filter::post('pid'),
+					'ACCESS_LEVEL'	 => Filter::postInteger('access_level'),
+					'SORT'			 => Filter::postInteger('sort'),
+				);
+				$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
+				Log::addConfigurationLog($this->getTitle() . ' config updated');
+				break;
+
+			case 'admin_update':
+				Zend_Session::writeClose();
+				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+
+				$new_surname = Filter::postArray('surname');
+				$new_access_level = Filter::postArray('access_level');
+				$new_sort = Filter::postArray('sort');
+
+				foreach ($new_surname as $key => $new_surname) {
+					$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
+				}
+
+				foreach ($new_access_level as $key => $new_access_level) {
+					$FTV_SETTINGS[$key]['ACCESS_LEVEL'] = $new_access_level;
+				}
+
+				foreach ($new_sort as $key => $new_sort) {
+					$FTV_SETTINGS[$key]['SORT'] = $new_sort;
+				}
+
+				$NEW_FTV_SETTINGS = $ftv->sortArray($FTV_SETTINGS, 'SORT');
+				$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
+				break;
+
+			case 'admin_save':
+				Zend_Session::writeClose();
+				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+				$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
+				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+				Log::addConfigurationLog($this->getTitle() . ' config updated');
+				break;
+
+			case 'admin_reset':
+				Zend_Session::writeClose();
+				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+				unset($FTV_OPTIONS[Filter::getInteger('tree')]);
+				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+				Log::addConfigurationLog($this->getTitle() . ' options set to default');
+				break;
+
+			case 'admin_delete':
+				Zend_Session::writeClose();
+				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+				unset($FTV_SETTINGS[Filter::getInteger('key')]);
+				$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
+				Log::addConfigurationLog($this->getTitle() . ' item deleted');
+				break;
+
+			case 'page':
+				global $controller;
+
+				$controller = new PageController;
+
+				$root_person = $ftv->getPerson($ftv->rootId());
+				if ($root_person && $root_person->canShowName()) {
+					$controller
+						->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
+						->pageHeader();
+
+					// add javascript files and scripts
+					$ftv->includeJs($controller, 'page');
+
+					// get the Fancy Tree View page content
+					include($this->module . '/templates/page.php');
+				} else {
+					http_response_code(404);
+					$controller->pageHeader();
+					echo $ftv->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
+				}
+				break;
+
+			case 'image_data':
+				Zend_Session::writeClose();
+				header('Content-type: text/html; charset=UTF-8');
+				if (Filter::get('ftv_thumb')) {
+					header("Content-Type: image/jpeg");
+					$data = Filter::post('base64');
+					list($type, $data) = explode(';', $data);
+					list(, $data) = explode(',', $data);
+					$image = base64_decode($data);
+					$filename = WT_DATA_DIR . 'ftv' . Uuid::uuid4() . '.jpg';
+					if ($image) {
+						file_put_contents($filename, $image);
+						echo $filename;
+					}
+				} else {
+					$xref = Filter::get('mid');
+					$mediaobject = Media::getInstance($xref, $WT_TREE);
+					if ($mediaobject) {
+						echo $mediaobject->getServerFilename('thumb');
+					}
+				}
+				break;
+
+			case 'pdf_data':
+				include('pdf/data.php');
+				break;
+
+			case 'show_pdf':
+				include('pdf/pdf.php');
+				break;
+
+			default:
+				http_response_code(404);
+				break;
 		}
 	}
 
@@ -304,7 +301,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		return
 			'<script src="' . WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
-				'<ol id="fancy_treeview">' . $ftv->printTabContent($controller->record->getXref()) . '</ol>' .
+			'<ol id="fancy_treeview">' . $ftv->printTabContent($controller->record->getXref()) . '</ol>' .
 			'</div>';
 	}
 
