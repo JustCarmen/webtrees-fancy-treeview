@@ -1,4 +1,4 @@
-/**
+/*
  * Fancy Tree View admin configuration page script
  *
  * webtrees: online genealogy
@@ -15,6 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
+/* global ModuleName */
 
 // Close the alerts without removal (Bootstrap default)
 jQuery(".alert .close").on("click", function () {

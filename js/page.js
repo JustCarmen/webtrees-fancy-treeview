@@ -14,6 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* global TextFollow, OptionsNumBlocks, RootID, ModuleName */
+
 // setup numbers for scroll reference
 function addScrollNumbers() {
 	jQuery(".generation-block:visible").each(function () {
