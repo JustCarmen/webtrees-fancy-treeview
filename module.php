@@ -18,7 +18,6 @@ namespace Fisharebest\Webtrees;
  */
 
 use PDOException;
-use Zend_Session;
 use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
@@ -120,7 +119,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_search':
-				Zend_Session::writeClose();
 				// new settings
 				$surname = Filter::post('SURNAME');
 				$pid = Filter::post('PID');
@@ -172,7 +170,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_add':
-				Zend_Session::writeClose();
 				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 				$NEW_FTV_SETTINGS = $FTV_SETTINGS;
 				$NEW_FTV_SETTINGS[] = array(
@@ -187,7 +184,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_update':
-				Zend_Session::writeClose();
 				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
 				$new_surname = Filter::postArray('surname');
@@ -211,7 +207,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_save':
-				Zend_Session::writeClose();
 				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 				$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
 				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
@@ -219,7 +214,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_reset':
-				Zend_Session::writeClose();
 				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 				unset($FTV_OPTIONS[Filter::getInteger('tree')]);
 				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
@@ -227,7 +221,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_delete':
-				Zend_Session::writeClose();
 				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 				unset($FTV_SETTINGS[Filter::getInteger('key')]);
 				$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
@@ -258,7 +251,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'image_data':
-				Zend_Session::writeClose();
 				header('Content-type: text/html; charset=UTF-8');
 				if (Filter::get('ftv_thumb')) {
 					header("Content-Type: image/jpeg");

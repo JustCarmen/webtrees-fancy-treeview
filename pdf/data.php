@@ -17,10 +17,6 @@ namespace Fisharebest\Webtrees;
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Zend_Session;
-
-Zend_Session::writeClose();
-
 $filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 $content = Filter::post('pdfContent');
 
