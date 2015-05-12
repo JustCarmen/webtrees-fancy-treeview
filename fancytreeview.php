@@ -59,7 +59,7 @@ class FancyTreeView extends FancyTreeviewModule {
 
 	// Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
 	protected function indisArray($surname, $russell, $daitchMokotoff) {
-		$sql = "SELECT DISTINCT i_id AS xref, i_file AS gedcom_id, i_gedcom AS gedcom" .
+		$sql = "SELECT DISTINCT i_id AS xref, i_file AS tree_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
 			" JOIN `##name` ON (i_id = n_id AND i_file = n_file)" .
 			" WHERE n_file = :tree_id" .
@@ -90,7 +90,7 @@ class FancyTreeView extends FancyTreeviewModule {
 			->fetchAll();
 		$data = array();
 		foreach ($rows as $row) {
-			$tree = Tree::findById($row->gedcom_id);
+			$tree = Tree::findById($row->tree_id);
 			$data[] = Individual::getInstance($row->xref, $tree, $row->gedcom);
 		}
 		return $data;
