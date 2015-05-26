@@ -90,7 +90,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function canLoadAjax() {
-		return false;
+		return true;
 	}
 
 	/** {@inheritdoc} */
