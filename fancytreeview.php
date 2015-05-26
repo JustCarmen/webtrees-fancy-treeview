@@ -1101,6 +1101,11 @@ class FancyTreeView extends FancyTreeviewModule {
 					$this->includeJsInline($controller);
 				}
 				break;
+			case 'tab':
+				$controller->addInlineJavascript('
+					jQuery("a[href$=' . $this->getName() . ']").text("' . $this->getTabTitle() . '");
+				');
+				break;
 		}
 	}
 

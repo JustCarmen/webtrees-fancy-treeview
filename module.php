@@ -52,6 +52,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function getTitle() {
 		return /* I18N: Name of the module */ I18N::translate('Fancy Tree View');
 	}
+	
+	public function getTabTitle() {
+		return /* I18N: Title used in the tab panel */ I18N::translate('Generations');
+	}
 
 	/** {@inheritdoc} */
 	public function getDescription() {
@@ -334,6 +338,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 						// add javascript files and scripts
 						$ftv->includeJs($controller, 'menu');
+						
+						if (WT_SCRIPT_NAME === 'individual.php') {
+							$ftv->includeJs($controller, 'tab');
+						}
 					}
 
 					$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
