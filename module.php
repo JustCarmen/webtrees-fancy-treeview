@@ -366,12 +366,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	private function getTreeId() {
 		global $WT_TREE;
-
-		$tree = $WT_TREE->findByName(Filter::get('ged'));
-		if ($tree) {
-			return $tree->getTreeId();
-		} else {
-			return $WT_TREE->getTreeId();
+		
+		if ($WT_TREE) {
+			$tree = $WT_TREE->findByName(Filter::get('ged'));
+			if ($tree) {
+				return $tree->getTreeId();
+			} else {
+				return $WT_TREE->getTreeId();
+			}
 		}
 	}
 
