@@ -58,3 +58,10 @@ li.menu-fancy_treeview ul li {
 	background-position: 99% 0;
 }
 
+@media (max-width: 600px) {
+	li.menu-fancy_treeview {
+		background: url(menu2-ftv.png) no-repeat 50% 25%;
+		background-size: 40px;
+	}
+}
+
