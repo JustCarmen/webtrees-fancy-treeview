@@ -16,7 +16,10 @@ namespace Fisharebest\Webtrees;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+use Fisharebest\Webtrees\Functions\FunctionsEdit;
 ?>
+
 <!-- ADMIN PAGE CONTENT -->
 <ol class="breadcrumb small">
 	<li><a href="admin.php"><?php echo I18N::translate('Control panel'); ?></a></li>
@@ -91,10 +94,10 @@ namespace Fisharebest\Webtrees;
 								type="text"
 								>
 							<label class="checkbox-inline">
-								<?php echo checkbox('soundex_std') . I18N::translate('Russell'); ?>
+								<?php echo FunctionsEdit::checkbox('soundex_std') . I18N::translate('Russell'); ?>
 							</label>
 							<label class="checkbox-inline">
-								<?php echo checkbox('soudex_dm') . I18N::translate('Daitch-Mokotoff'); ?>
+								<?php echo FunctionsEdit::checkbox('soudex_dm') . I18N::translate('Daitch-Mokotoff'); ?>
 							</label>
 							<button name="search" class="btn btn-primary" type="submit">
 								<i class="fa fa-search"></i>
@@ -180,7 +183,7 @@ namespace Fisharebest\Webtrees;
 									<td id="title"></td>
 									<!-- ACCESS LEVEL -->
 									<td>
-										<?php echo edit_field_access_level('access_level', 2, 'class="form-control"'); ?>
+										<?php echo FunctionsEdit::editFieldAccessLevel('access_level', 2, 'class="form-control"'); ?>
 									</td>
 									<!-- ADD BUTTON -->
 									<td>
@@ -262,7 +265,7 @@ namespace Fisharebest\Webtrees;
 													</td>
 													<!-- ACCESS LEVEL -->
 													<td>
-														<?php echo edit_field_access_level('access_level[' . $key . ']', $FTV_ITEM['ACCESS_LEVEL'], 'class="form-control"'); ?>
+														<?php echo FunctionsEdit::editFieldAccessLevel('access_level[' . $key . ']', $FTV_ITEM['ACCESS_LEVEL'], 'class="form-control"'); ?>
 													</td>
 													<!-- DELETE BUTTON -->
 													<td>
@@ -331,7 +334,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Use fullname in menu'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[USE_FULLNAME]', $ftv->options('use_fullname'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_FULLNAME]', $ftv->options('use_fullname'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- GENERATION BLOCKS -->
@@ -340,7 +343,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Number of generation blocks to show'); ?>
 							</label>
 							<div class="col-sm-4">
-								<?php echo select_edit_control('NEW_FTV_OPTIONS[NUMBLOCKS]', array(I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $ftv->options('numblocks'), 'class="form-control"'); ?>									</div>
+								<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[NUMBLOCKS]', array(I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $ftv->options('numblocks'), 'class="form-control"'); ?>									</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Number of generation blocks to show” configuration setting */ I18N::translate('This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.'); ?>
 							</p>
@@ -351,7 +354,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Check relationship between partners'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $ftv->options('check_relationship'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $ftv->options('check_relationship'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).'); ?>
@@ -363,7 +366,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show single persons'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[SHOW_SINGLES]', $ftv->options('show_singles'), 'class="radio-inline"'); ?>									</div>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_SINGLES]', $ftv->options('show_singles'), 'class="radio-inline"'); ?>									</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Show single persons” configuration setting */ I18N::translate('Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block.'); ?>
 							</p>
@@ -374,7 +377,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show places?'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[SHOW_PLACES]', $ftv->options('show_places'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_PLACES]', $ftv->options('show_places'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- USE GEDCOM PLACE SETTING -->
@@ -383,7 +386,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names?'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $ftv->options('use_gedcom_places'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $ftv->options('use_gedcom_places'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting */ I18N::translate('If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown.'); ?>
@@ -396,7 +399,7 @@ namespace Fisharebest\Webtrees;
 									<?php echo I18N::translate('Select your country'); ?>
 								</label>
 								<div class="col-sm-8">
-									<?php echo select_edit_control('NEW_FTV_OPTIONS[COUNTRY]', $ftv->getCountryList(), '', $ftv->options('country'), 'class="form-control"'); ?>
+									<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[COUNTRY]', $ftv->getCountryList(), '', $ftv->options('country'), 'class="form-control"'); ?>
 								</div>
 								<p class="col-sm-8 col-sm-offset-4 small text-muted">
 									<?php echo /* I18N: Help text for the “Select your country” configuration setting */ I18N::translate('If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own.'); ?>
@@ -409,7 +412,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show occupations'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[SHOW_OCCU]', $ftv->options('show_occu'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_OCCU]', $ftv->options('show_occu'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- RESIZE THUMBS -->
@@ -418,7 +421,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Resize thumbnails'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
 								<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
@@ -439,7 +442,7 @@ namespace Fisharebest\Webtrees;
 										>
 								</div>
 								<div class="col-sm-2">
-									<?php echo select_edit_control('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => I18N::translate('percent'), '2' => I18N::translate('pixels')), null, $ftv->options('thumb_resize_format'), 'class="form-control"'); ?>
+									<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => I18N::translate('percent'), '2' => I18N::translate('pixels')), null, $ftv->options('thumb_resize_format'), 'class="form-control"'); ?>
 								</div>
 							</div>
 						</div>
@@ -449,7 +452,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Use square thumbnails'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $ftv->options('use_square_thumbs'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $ftv->options('use_square_thumbs'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- SHOW USERFORM -->
@@ -458,7 +461,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show form to change start person'); ?>
 							</label>
 							<div class="col-sm-4">
-								<?php echo edit_field_access_level('NEW_FTV_OPTIONS[SHOW_USERFORM]', $ftv->options('show_userform'), 'class="form-control"'); ?>
+								<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_USERFORM]', $ftv->options('show_userform'), 'class="form-control"'); ?>
 							</div>
 						</div>
 						<!-- SHOW PDF -->
@@ -467,7 +470,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show PDF icon?'); ?>
 							</label>
 							<div class="col-sm-4">
-								<?php echo edit_field_access_level('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $ftv->options('show_pdf_icon'), 'class="form-control"'); ?>
+								<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $ftv->options('show_pdf_icon'), 'class="form-control"'); ?>
 							</div>
 						</div>
 						<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
@@ -476,7 +479,7 @@ namespace Fisharebest\Webtrees;
 								<?php echo I18N::translate('Show a Fancy Tree View tab on the individual page'); ?>
 							</label>
 							<div class="col-sm-8">
-								<?php echo edit_field_yes_no('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab'), 'class="radio-inline"'); ?>
+								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab'), 'class="radio-inline"'); ?>
 							</div>
 						</div>
 						<!-- BUTTONS -->
