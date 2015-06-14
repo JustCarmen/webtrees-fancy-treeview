@@ -64,7 +64,6 @@ jQuery("#ftv-search-form").on("submit", "form[name=form2]", function (e) {
 
 /*** FORM 3 ***/
 // add search results to table
-
 /** @param {event} e */
 jQuery("#ftv-search-form").on("submit", "form[name=form3]", function (e) {
 	e.preventDefault();
@@ -153,7 +152,6 @@ jQuery("#fancy-treeview-form").on("click", "button[name=delete]", function (e) {
 
 /*** FORM 5 ***/
 // update options
-
 /** @param {event} e */
 jQuery("#ftv-options-form").on("submit", "form[name=form5]", function (e) {
 	e.preventDefault();
