@@ -17,6 +17,7 @@ namespace Fisharebest\Webtrees;
  */
 
 use Fisharebest\Webtrees\Controller\BaseController;
+use Fisharebest\Webtrees\Functions\FunctionsDate;
 use PDO;
 
 /**
@@ -668,7 +669,7 @@ class FancyTreeView extends FancyTreeviewModule {
 		$html = '';
 		$birthdate = $person->getBirthDate();
 		$deathdate = $person->getDeathdate();
-		$ageOfdeath = get_age_at_event(Date::GetAgeGedcom($birthdate, $deathdate), false);
+		$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($birthdate, $deathdate), false);
 
 		$birthdata = false;
 		if ($birthdate->isOK() || $person->getBirthPlace() != '') {
