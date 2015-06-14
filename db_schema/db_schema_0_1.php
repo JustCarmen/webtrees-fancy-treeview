@@ -1,6 +1,4 @@
 <?php
-namespace \Fisharebest\Webtrees;
-
 /**
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
@@ -21,6 +19,7 @@ namespace \Fisharebest\Webtrees;
  * - Change options to multidimeninal array with array key = tree id.
  * 
  */
+namespace \Fisharebest\Webtrees;
 
 $module_settings = 'FTV_SETTINGS';
 $ftv_settings = Database::prepare(

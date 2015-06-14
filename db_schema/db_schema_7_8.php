@@ -1,6 +1,4 @@
 <?php
-namespace \Fisharebest\Webtrees;
-
 /**
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
@@ -19,6 +17,7 @@ namespace \Fisharebest\Webtrees;
  * Update the Fancy Tree View module database schema from version 7 to 8
  * 
  */
+namespace \Fisharebest\Webtrees;
 
 $module_options = 'FTV_OPTIONS';
 $ftv_options = Database::prepare(

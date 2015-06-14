@@ -1,6 +1,4 @@
 <?php
-namespace \Fisharebest\Webtrees;
-
 /**
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
@@ -20,6 +18,7 @@ namespace \Fisharebest\Webtrees;
  * - new options added
  * 
  */
+namespace \Fisharebest\Webtrees;
 
 $module_options = 'FTV_OPTIONS';
 $ftv_options = Database::prepare(

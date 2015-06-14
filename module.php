@@ -1,6 +1,4 @@
 <?php
-namespace Fisharebest\Webtrees;
-
 /**
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team
@@ -16,12 +14,13 @@ namespace Fisharebest\Webtrees;
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Fisharebest\Webtrees;
 
+use Fisharebest\Webtrees\Controller\PageController;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
-use Fisharebest\Webtrees\Controller\PageController;
 use PDOException;
 use Rhumsaa\Uuid\Uuid;
 
@@ -57,7 +56,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function getTitle() {
 		return /* I18N: Name of the module */ I18N::translate('Fancy Tree View');
 	}
-	
+
 	public function getTabTitle() {
 		return /* I18N: Title used in the tab panel */ I18N::translate('Generations');
 	}
@@ -343,7 +342,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 						// add javascript files and scripts
 						$ftv->includeJs($controller, 'menu');
-						
+
 						if (WT_SCRIPT_NAME === 'individual.php') {
 							$ftv->includeJs($controller, 'tab');
 						}
@@ -371,7 +370,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	private function getTreeId() {
 		global $WT_TREE;
-		
+
 		if ($WT_TREE) {
 			$tree = $WT_TREE->findByName(Filter::get('ged'));
 			if ($tree) {
