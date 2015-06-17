@@ -18,9 +18,7 @@ namespace JustCarmen\WebtreesAddOns\Module;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
-use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Filter;
-use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Log;
@@ -30,6 +28,8 @@ use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
+use Fisharebest\Webtrees\Schema\MigrationInterface;
+use Fisharebest\Webtrees\Site;
 use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\Module\FancyTreeView\FancyTreeView;
 use PDOException;
@@ -51,9 +51,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$this->tree_id = $this->getTreeId();
 		$this->module = WT_MODULES_DIR . $this->getName();
 		$this->action = Filter::get('mod_action');
-
-		// update the database if neccessary
-		self::updateSchema();
+				
+		// Update the database tables if neccessary.
+		self::updateSchema('\\' . __NAMESPACE__ . '\FancyTreeView\Schema', 'FTV_SCHEMA_VERSION', 8);
 
 		// Load the module class
 		require_once $this->module . '/fancytreeview.php';
@@ -146,7 +146,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					$soundex_dm = Filter::postBool('soundex_dm');
 
 					$indis = $ftv->indisArray($surname, $soundex_std, $soundex_dm);
-					usort($indis, __NAMESPACE__ . '\\Individual::compareBirthDate');
+					usort($indis, 'Fisharebest\Webtrees\Individual::compareBirthDate');
 
 					if (isset($indis) && count($indis) > 0) {
 						$pid = $indis[0]->getXref();
@@ -391,18 +391,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			}
 		}
 	}
-
-	/**
-	 * Make sure the database structure is up-to-date.
-	 */
-	protected static function updateSchema() {
+	
+	/** {@inheritDoc} */
+	public static function updateSchema($namespace, $schema_name, $target_version) {
 		try {
-			Database::updateSchema(WT_ROOT . WT_MODULES_DIR . 'fancy_treeview/db_schema/', 'FTV_SCHEMA_VERSION', 8);
-		} catch (PDOException $ex) {
-			// The schema update scripts should never fail.  If they do, there is no clean recovery.
-			FlashMessages::addMessage($ex->getMessage(), 'danger');
-			header('Location: ' . WT_BASE_URL . 'site-unavailable.php');
-			throw $ex;
+			$current_version = (int) Site::getPreference($schema_name);
+		} catch (PDOException $e) {
+			// During initial installation, the site_preference table won’t exist.
+			$current_version = 0;
+		}
+
+		// Update the schema, one version at a time.
+		while ($current_version < $target_version) {
+			require_once WT_MODULES_DIR . 'fancy_treeview/schema/migration' . $current_version . '.php';
+			$class = $namespace . '\\Migration' . $current_version;
+			/** @var MigrationInterface $migration */
+			$migration = new $class;
+			$migration->upgrade();
+			Site::setPreference($schema_name, ++$current_version);
 		}
 	}
 
