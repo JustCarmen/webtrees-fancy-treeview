@@ -14,7 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Fisharebest\Webtrees;
+namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\PDF;
+
+use Fisharebest\Webtrees\Filter;
 
 $filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 $content = Filter::post('pdfContent');

@@ -14,8 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Fisharebest\Webtrees;
+namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\PDF;
 
+use Fisharebest\Webtrees\File;
+use Fisharebest\Webtrees\Filter;
+use Fisharebest\Webtrees\I18N;
+use JustCarmen\WebtreesAddOns\Module\FancyTreeView\FancyTreeView;
 use mPDF;
 
 require_once(WT_MODULES_DIR . $this->getName() . '/pdf/mpdf60/mpdf.php');

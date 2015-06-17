@@ -17,7 +17,10 @@
  * Update the Fancy Tree View module database schema from version 7 to 8
  * 
  */
-namespace \Fisharebest\Webtrees;
+namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\Schema;
+
+use Fisharebest\Webtrees\Database;
+use Fisharebest\Webtrees\Site;
 
 $module_options = 'FTV_OPTIONS';
 $ftv_options = Database::prepare(

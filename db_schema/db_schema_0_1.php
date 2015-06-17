@@ -19,7 +19,12 @@
  * - Change options to multidimeninal array with array key = tree id.
  * 
  */
-namespace \Fisharebest\Webtrees;
+namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\Schema;
+
+use Fisharebest\Webtrees\Database;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Site;
+use Fisharebest\Webtrees\Tree;
 
 $module_settings = 'FTV_SETTINGS';
 $ftv_settings = Database::prepare(

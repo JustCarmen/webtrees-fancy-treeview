@@ -18,7 +18,10 @@
  * - remove key 'LINK' from FTV_SETTINGS
  * 
  */
-namespace \Fisharebest\Webtrees;
+namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\Schema;
+
+use Fisharebest\Webtrees\Database;
+use Fisharebest\Webtrees\Site;
 
 $module_settings = 'FTV_SETTINGS';
 $ftv_asettings = Database::prepare(
