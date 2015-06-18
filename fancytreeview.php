@@ -13,12 +13,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView;
+namespace JustCarmen\WebtreesAddOns\FancyTreeView;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\BaseController;
-use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Database;
+use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\Functions\FunctionsDate;
 use Fisharebest\Webtrees\GedcomRecord;
@@ -28,13 +28,12 @@ use Fisharebest\Webtrees\Place;
 use Fisharebest\Webtrees\Soundex;
 use Fisharebest\Webtrees\Theme;
 use Fisharebest\Webtrees\Tree;
-use JustCarmen\WebtreesAddOns\Module\FancyTreeviewModule;
 use PDO;
 
 /**
  * Class FancyTreeView
  */
-class FancyTreeView extends FancyTreeviewModule {
+class FancyTreeViewClass extends FancyTreeviewModule {
 
 	// Set default module options
 	private function setDefault($key) {

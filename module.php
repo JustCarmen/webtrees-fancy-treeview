@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\Module;
+namespace JustCarmen\WebtreesAddOns\FancyTreeView;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
@@ -31,7 +31,6 @@ use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Schema\MigrationInterface;
 use Fisharebest\Webtrees\Site;
 use Fisharebest\Webtrees\Theme;
-use JustCarmen\WebtreesAddOns\Module\FancyTreeView\FancyTreeView;
 use PDOException;
 use Rhumsaa\Uuid\Uuid;
 
@@ -53,7 +52,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$this->action = Filter::get('mod_action');
 				
 		// Update the database tables if neccessary.
-		self::updateSchema('\\' . __NAMESPACE__ . '\FancyTreeView\Schema', 'FTV_SCHEMA_VERSION', 8);
+		self::updateSchema('\\' . __NAMESPACE__ . '\Schema', 'FTV_SCHEMA_VERSION', 8);
 
 		// Load the module class
 		require_once $this->module . '/fancytreeview.php';
@@ -94,7 +93,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function hasTabContent() {
-		$ftv = new FancyTreeView;
+		$ftv = new FancyTreeViewClass;
 		if ($ftv->options('ftv_tab')) {
 			return true;
 		} else {
@@ -115,7 +114,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		global $WT_TREE;
-		$ftv = new FancyTreeView;
+		$ftv = new FancyTreeViewClass;
 		switch ($mod_action) {
 			case 'admin_config':
 				$controller = new PageController;
@@ -308,7 +307,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function getTabContent() {
 		global $controller;
-		$ftv = new FancyTreeView;
+		$ftv = new FancyTreeViewClass;
 		return
 			'<script src="' . WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
@@ -327,7 +326,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 		if (!Auth::isSearchEngine()) {
 
-			$ftv = new FancyTreeView;
+			$ftv = new FancyTreeViewClass;
 			static $menu;
 
 			// Function has already run
