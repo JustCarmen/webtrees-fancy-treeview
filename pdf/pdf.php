@@ -14,12 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\PDF;
+namespace JustCarmen\WebtreesAddOns\FancyTreeview\PDF;
 
 use Fisharebest\Webtrees\File;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
-use JustCarmen\WebtreesAddOns\Module\FancyTreeView\FancyTreeView;
 use mPDF;
 
 require_once(WT_MODULES_DIR . $this->getName() . '/pdf/mpdf60/mpdf.php');
@@ -85,6 +84,6 @@ if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 		File::delete($image);
 	}
 } else {
-	$ftv = new FancyTreeView;
+	$ftv = new FancyTreeview;
 	echo $ftv->addMessage('alert', 'danger', false, I18N::translate('Error: the pdf file could not be generated.'));
 }

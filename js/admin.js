@@ -1,5 +1,5 @@
 /*
- * Fancy Tree View admin configuration page script
+ * Fancy Treeview admin configuration page script
  *
  * webtrees: online genealogy
  * Copyright (C) 2015 webtrees development team

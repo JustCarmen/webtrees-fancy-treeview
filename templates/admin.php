@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\Template;
+namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\Functions\FunctionsEdit;
@@ -76,7 +76,7 @@ use Fisharebest\Webtrees\Tree;
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<p class="small text-muted">
-							<?php echo /* I18N: Help text for creating Fancy Tree View pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Tree View page will be automatically created. You can add as many root persons as you want.'); ?>
+							<?php echo /* I18N: Help text for creating Fancy Treeview pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want.'); ?>
 						</p>
 					</div>
 				<?php endif; ?>
@@ -405,7 +405,7 @@ use Fisharebest\Webtrees\Tree;
 									<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[COUNTRY]', $ftv->getCountryList(), '', $ftv->options('country'), 'class="form-control"'); ?>
 								</div>
 								<p class="col-sm-8 col-sm-offset-4 small text-muted">
-									<?php echo /* I18N: Help text for the “Select your country” configuration setting */ I18N::translate('If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Tree View pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own.'); ?>
+									<?php echo /* I18N: Help text for the “Select your country” configuration setting */ I18N::translate('If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own.'); ?>
 								</p>
 							</div>
 						<?php endif; ?>
@@ -427,7 +427,7 @@ use Fisharebest\Webtrees\Tree;
 								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs'), 'class="radio-inline"'); ?>
 							</div>
 							<p class="col-sm-8 col-sm-offset-4 small text-muted">
-								<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Tree View pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
+								<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
 						</div>
 						<!-- THUMB SIZE -->
 						<div id="thumb_size" class="form-group<?php if (!$ftv->options('resize_thumbs')) echo ' collapse' ?>">
@@ -479,7 +479,7 @@ use Fisharebest\Webtrees\Tree;
 						<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
 						<div class="form-group fullname">
 							<label class="control-label col-sm-4">
-								<?php echo I18N::translate('Show a Fancy Tree View tab on the individual page'); ?>
+								<?php echo I18N::translate('Show a Fancy Treeview tab on the individual page'); ?>
 							</label>
 							<div class="col-sm-8">
 								<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab'), 'class="radio-inline"'); ?>

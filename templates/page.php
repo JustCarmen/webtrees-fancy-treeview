@@ -14,13 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\Module\FancyTreeView\Template;
+namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\I18N;
 ?>
 
-<!-- FANCY TREE VIEW PAGE -->
+<!-- FANCY TREEVIEW PAGE -->
 <div id="fancy_treeview-page">
 	<div id="page-header">
 		<h2><?php echo $controller->getPageTitle(); ?></h2>

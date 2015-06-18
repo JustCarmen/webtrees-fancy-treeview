@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\FancyTreeView;
+namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
@@ -64,7 +64,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function getTitle() {
-		return /* I18N: Name of the module */ I18N::translate('Fancy Tree View');
+		return /* I18N: Name of the module */ I18N::translate('Fancy Treeview');
 	}
 
 	public function getTabTitle() {
@@ -93,7 +93,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function hasTabContent() {
-		$ftv = new FancyTreeViewClass;
+		$ftv = new FancyTreeviewClass;
 		if ($ftv->options('ftv_tab')) {
 			return true;
 		} else {
@@ -114,13 +114,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		global $WT_TREE;
-		$ftv = new FancyTreeViewClass;
+		$ftv = new FancyTreeviewClass;
 		switch ($mod_action) {
 			case 'admin_config':
 				$controller = new PageController;
 				$controller
 					->restrictAccess(Auth::isAdmin())
-					->setPageTitle(I18N::translate('Fancy Tree View'))
+					->setPageTitle(I18N::translate('Fancy Treeview'))
 					->pageHeader();
 
 				// add javascript files and scripts
@@ -259,7 +259,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					// add javascript files and scripts
 					$ftv->includeJs($controller, 'page');
 
-					// get the Fancy Tree View page content
+					// get the Fancy Treeview page content
 					include($this->module . '/templates/page.php');
 				} else {
 					http_response_code(404);
@@ -307,7 +307,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function getTabContent() {
 		global $controller;
-		$ftv = new FancyTreeViewClass;
+		$ftv = new FancyTreeviewClass;
 		return
 			'<script src="' . WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
@@ -326,7 +326,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 		if (!Auth::isSearchEngine()) {
 
-			$ftv = new FancyTreeViewClass;
+			$ftv = new FancyTreeviewClass;
 			static $menu;
 
 			// Function has already run
@@ -358,7 +358,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 						}
 					}
 
-					$menu = new Menu(I18N::translate('Tree view'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
+					$menu = new Menu(I18N::translate('Treeview'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'], 'menu-fancy_treeview');
 
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 						$record = Individual::getInstance($FTV_ITEM['PID'], $WT_TREE);

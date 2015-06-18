@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-namespace JustCarmen\WebtreesAddOns\FancyTreeView;
+namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\BaseController;
@@ -31,9 +31,9 @@ use Fisharebest\Webtrees\Tree;
 use PDO;
 
 /**
- * Class FancyTreeView
+ * Class FancyTreeview
  */
-class FancyTreeViewClass extends FancyTreeviewModule {
+class FancyTreeviewClass extends FancyTreeviewModule {
 
 	// Set default module options
 	private function setDefault($key) {
