@@ -17,9 +17,11 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\BaseController;
+use Fisharebest\Webtrees\Controller\RelationshipController;
 use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Date;
 use Fisharebest\Webtrees\Filter;
+use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Functions\FunctionsDate;
 use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
@@ -470,7 +472,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		// Add relationship note
 		if ($this->options('check_relationship')) {
-			$relationship = $this->checkRelationship($person, $spouse, $family);
+			$relationship = $this->checkRelationship($person, $spouse);
 			if ($relationship) {
 				$html .= ' (' . $relationship . ')';
 			}
@@ -551,7 +553,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						if (!$family->getMarriage()) {
 							// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
 							if ($this->options('check_relationship')) {
-								$relationship = $this->checkRelationship($person, $spouse, $family);
+								$relationship = $this->checkRelationship($person, $spouse);
 							}
 							if (isset($relationship) && $relationship) {
 								$html .= $spouse->getFullName() . ' (' . $relationship . ')';
@@ -973,38 +975,24 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 
 	// check (blood) relationship between partners
-	private function checkRelationship($person, $spouse, $family) {
-		$count = count($family->getChildren());
-		for ($i = 0; $i <= $count; $i++) { // the number of paths is equal to the number of children, because every relationship is checked through each child.
-			// and we need the relationship from the next path.
-			$nodes = get_relationship($person, $spouse, false, 0, $i);
-
-			if (!is_array($nodes)) {
-				return '';
+	private function checkRelationship($person, $spouse) {
+		$controller = new RelationshipController();
+		$paths = $controller->calculateRelationships($person, $spouse, 1);
+		foreach ($paths as $path) {
+			$relationships = $controller->oldStyleRelationshipPath($path);
+			if (empty($relationships)) {
+				// Cannot see one of the families/individuals, due to privacy;
+				continue;
 			}
-
-			$path = array_slice($nodes['relations'], 1);
-
-			$combined_path = '';
-			$display = false;
-			foreach ($path as $key => $rel) {
-				$rel_to_exclude = array('son', 'daughter', 'child'); // don't return the relationship path through the children
-				if ($key == 0 && in_array($rel, $rel_to_exclude)) {
-					$display = false;
-					break;
+			foreach (array_keys($path) as $n) {
+				if ($n % 2 === 1) {
+					switch ($relationships[$n]) {
+						case 'sis':
+						case 'bro':
+						case 'sib':
+							return Functions::getRelationshipNameFromPath(implode('', $relationships), $person, $spouse);
+					}
 				}
-				$rel_to_find = array('sister', 'brother', 'sibling'); // one of these relationships must be in the path
-				if (in_array($rel, $rel_to_find)) {
-					$display = true;
-					break;
-				}
-			}
-
-			if ($display == true) {
-				foreach ($path as $rel) {
-					$combined_path.=substr($rel, 0, 3);
-				}
-				return get_relationship_name_from_path($combined_path, $person, $spouse);
 			}
 		}
 	}
