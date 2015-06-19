@@ -114,7 +114,7 @@ jQuery("#fancy_treeview-page").on("click", ".scroll", function (event) {
 });
 
 // Print extra information about the non-married spouse (the father/mother of the children) in a tooltip
-jQuery(".tooltip").each(function () {
+jQuery(".tooltip-title").each(function () {
 	var text = jQuery(this).next(".tooltip-text").html();
 	jQuery(this).tooltip({
 		items: "[title]",

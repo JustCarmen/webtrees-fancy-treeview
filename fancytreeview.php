@@ -559,7 +559,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 								$html .= $spouse->getFullName() . ' (' . $relationship . ')';
 							} else {
 								// the non-married spouse is not mentioned in the parents div text or elsewhere on the page. So put a link behind the name.
-								$html .= '<a class="tooltip" title="" href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
+								$html .= '<a class="tooltip-title" title="" href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
 								// Print info of the non-married spouse in a tooltip
 								$html .= '<span class="tooltip-text">' . $this->printTooltip($spouse) . '</span>';
 							}
