@@ -552,11 +552,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
 						if (!$family->getMarriage()) {
 							// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
-							if ($this->options('check_relationship')) {
-								$relationship = $this->checkRelationship($person, $spouse);
-							}
-							if (isset($relationship) && $relationship) {
-								$html .= $spouse->getFullName() . ' (' . $relationship . ')';
+							$relationship = $this->checkRelationship($person, $spouse);							
+							if ($relationship) {
+								$html .= $spouse->getFullName();
+								if ($this->options('check_relationship')) {
+									$html .= ' (' . $relationship . ')';
+								}
 							} else {
 								// the non-married spouse is not mentioned in the parents div text or elsewhere on the page. So put a link behind the name.
 								$html .= '<a class="tooltip-title" title="" href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
