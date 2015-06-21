@@ -16,8 +16,10 @@
  */
 namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
+use Composer\Autoload\ClassLoader;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
+use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -28,10 +30,7 @@ use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
-use Fisharebest\Webtrees\Schema\MigrationInterface;
-use Fisharebest\Webtrees\Site;
 use Fisharebest\Webtrees\Theme;
-use PDOException;
 use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
@@ -50,9 +49,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$this->tree_id = $this->getTreeId();
 		$this->module = WT_MODULES_DIR . $this->getName();
 		$this->action = Filter::get('mod_action');
+		
+		// register the namespace
+		$loader = new ClassLoader();
+		$loader->addPsr4('JustCarmen\\WebtreesAddOns\\FancyTreeview\\', WT_MODULES_DIR . $this->getName() . '/src');
+		$loader->register();
 				
 		// Update the database tables if neccessary.
-		self::updateSchema('\\' . __NAMESPACE__ . '\Schema', 'FTV_SCHEMA_VERSION', 8);
+		Database::updateSchema('\JustCarmen\WebtreesAddOns\FancyTreeview\Schema', 'FTV_SCHEMA_VERSION', 8);
 
 		// Load the module class
 		require_once $this->module . '/fancytreeview.php';
@@ -388,26 +392,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			} else {
 				return $WT_TREE->getTreeId();
 			}
-		}
-	}
-	
-	/** {@inheritDoc} */
-	public static function updateSchema($namespace, $schema_name, $target_version) {
-		try {
-			$current_version = (int) Site::getPreference($schema_name);
-		} catch (PDOException $e) {
-			// During initial installation, the site_preference table won’t exist.
-			$current_version = 0;
-		}
-
-		// Update the schema, one version at a time.
-		while ($current_version < $target_version) {
-			require_once WT_MODULES_DIR . 'fancy_treeview/schema/migration' . $current_version . '.php';
-			$class = $namespace . '\\Migration' . $current_version;
-			/** @var MigrationInterface $migration */
-			$migration = new $class;
-			$migration->upgrade();
-			Site::setPreference($schema_name, ++$current_version);
 		}
 	}
 
