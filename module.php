@@ -31,6 +31,7 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Theme;
+use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
@@ -118,24 +119,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$ftv = new FancyTreeviewClass;
 		switch ($mod_action) {
 			case 'admin_config':
-				$controller = new PageController;
-				$controller
-					->restrictAccess(Auth::isAdmin())
-					->setPageTitle(I18N::translate('Fancy Treeview'))
-					->pageHeader();
-
-				// add javascript files and scripts
-				$ftv->includeJs($controller, 'admin');
-
-				// add stylesheet
-				echo $ftv->getStylesheet();
-
-				// get the settings for this tree
-				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-
-				// get the admin page content
-				include($this->module . '/templates/admin.php');
-				break;
+				$template = new AdminTemplate;
+				return $template->pageContent();
 
 			case 'admin_search':
 				// new settings
