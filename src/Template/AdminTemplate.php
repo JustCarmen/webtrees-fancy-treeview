@@ -251,13 +251,11 @@ class AdminTemplate extends FancyTreeviewClass {
 															<!-- ROOT PERSONS FULL NAME -->
 															<td>
 																<input
-																	id="pid[<?php echo $key; ?>]"
 																	name="pid[<?php echo $key; ?>]"
 																	type="hidden"
 																	value="<?php echo $this_ITEM['PID']; ?>"
 																	>
 																<input
-																	id="sort[<?php echo $key; ?>]"
 																	name="sort[<?php echo $key; ?>]"
 																	type="hidden"
 																	value="<?php echo $this_ITEM['SORT']; ?>"
@@ -273,7 +271,6 @@ class AdminTemplate extends FancyTreeviewClass {
 																	</label>
 																	<input
 																		class="form-control editname"
-																		id="surname[<?php echo $key; ?>]"
 																		name="surname[<?php echo $key; ?>]"
 																		type="text"
 																		value="<?php echo $this_ITEM['SURNAME']; ?>"

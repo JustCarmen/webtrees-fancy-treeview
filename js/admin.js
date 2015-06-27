@@ -100,7 +100,7 @@ jQuery("#fancy-treeview-form").sortable({
 
 //-- update the order numbers after drag-n-drop sorting is complete
 jQuery("#fancy-treeview-form").bind("sortupdate", function (event, ui) {
-	jQuery("#" + jQuery(this).attr("id") + " input[id^=sort]").each(
+	jQuery("#" + jQuery(this).attr("id") + " input[name^=sort]").each(
 
 	function (index, value) {
 		value.value = index + 1;
