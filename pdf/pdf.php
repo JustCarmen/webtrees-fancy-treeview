@@ -21,7 +21,7 @@ use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
 use mPDF;
 
-require_once(WT_MODULES_DIR . $this->getName() . '/pdf/mpdf60/mpdf.php');
+require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');
 
 global $WT_TREE;
 
