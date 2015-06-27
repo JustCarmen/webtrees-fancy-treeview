@@ -57,9 +57,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				
 		// Update the database tables if neccessary.
 		Database::updateSchema('\JustCarmen\WebtreesAddOns\FancyTreeview\Schema', 'FTV_SCHEMA_VERSION', 8);
-
-		// Load the module class
-		require_once $this->module . '/fancytreeview.php';
 	}
 
 	public function getName() {
