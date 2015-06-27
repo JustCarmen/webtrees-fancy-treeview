@@ -27,8 +27,6 @@ class PdfTemplate extends FancyTreeviewClass {
 	public function pageBody() {
 		global $WT_TREE;
 		
-		require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');
-		
 		$tmpfile = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 		if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 			$stylesheet = file_get_contents(WT_MODULES_DIR . $this->getName() . '/css/pdf/style.css');
