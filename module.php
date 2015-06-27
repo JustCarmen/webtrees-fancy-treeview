@@ -33,6 +33,7 @@ use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
+use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PdfTemplate;
 use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
@@ -278,11 +279,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'pdf_data':
-				include('pdf/data.php');
+				$template = new PdfTemplate;
+				return $template->pageData();
 				break;
 
 			case 'show_pdf':
-				include('pdf/pdf.php');
+				$template = new PdfTemplate();
+				return $template->pageBody();
 				break;
 
 			default:
