@@ -1091,7 +1091,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					->addExternalJavascript($this->module . '/js/page.js');
 
 				if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)) {
-					$controller->addExternalJavascript($this->module . '/pdf/pdf.js');
+					$controller->addExternalJavascript($this->module . '/js/pdf.js');
 				}
 
 				// some files needs an extra js script
