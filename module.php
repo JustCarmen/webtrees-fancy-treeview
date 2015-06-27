@@ -32,6 +32,7 @@ use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
+use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
@@ -245,8 +246,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					// add javascript files and scripts
 					$ftv->includeJs($controller, 'page');
 
-					// get the Fancy Treeview page content
-					include($this->module . '/templates/page.php');
+					$template = new PageTemplate;
+					return $template->pageBody($controller);
 				} else {
 					http_response_code(404);
 					$controller->pageHeader();
