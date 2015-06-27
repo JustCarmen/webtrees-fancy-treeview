@@ -20,19 +20,17 @@ use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
 use Fisharebest\Webtrees\I18N;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
-use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewModule;
 
-class PageTemplate extends FancyTreeviewModule {
+class PageTemplate extends FancyTreeviewClass {
 	
 	public function pageBody(PageController $controller) {
 		global $WT_TREE;
-		$ftv = new FancyTreeviewClass;
 		?>
 		<!-- FANCY TREEVIEW PAGE -->
 		<div id="fancy_treeview-page">
 			<div id="page-header">
 				<h2><?php echo $controller->getPageTitle(); ?></h2>
-				<?php if ($ftv->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)): ?>
+				<?php if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)): ?>
 					<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
 						<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
 					</div>
@@ -40,7 +38,7 @@ class PageTemplate extends FancyTreeviewModule {
 				<?php endif; ?>
 			</div>
 			<div id="page-body">
-				<?php if ($ftv->options('show_userform') >= Auth::accessLevel($WT_TREE)): ?>
+				<?php if ($this->options('show_userform') >= Auth::accessLevel($WT_TREE)): ?>
 					<form id="change_root">
 						<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 						<input
@@ -59,7 +57,7 @@ class PageTemplate extends FancyTreeviewModule {
 					</form>
 					<div id="error"></div>
 				<?php endif; ?>
-				<ol id="fancy_treeview"><?php echo $ftv->printPage(); ?></ol>
+				<ol id="fancy_treeview"><?php echo $this->printPage(); ?></ol>
 				<div id="btn_next">
 					<input
 						type="button"

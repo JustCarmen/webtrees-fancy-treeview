@@ -24,32 +24,30 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Tree;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
-use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewModule;
 
-class AdminTemplate extends FancyTreeviewModule {
+class AdminTemplate extends FancyTreeviewClass {
 
 	public function pageContent() {
 		$controller = new PageController;
-		$ftv = new FancyTreeviewClass;
 		return
-			$this->pageHeader($controller, $ftv) .
-			$this->pageBody($controller, $ftv);
+			$this->pageHeader($controller) .
+			$this->pageBody($controller);
 	}
 
-	protected function pageHeader(PageController $controller, FancyTreeviewClass $ftv) {
+	protected function pageHeader(PageController $controller) {
 		$controller
 			->restrictAccess(Auth::isAdmin())
 			->setPageTitle(I18N::translate('Fancy Treeview'))
 			->pageHeader();
 
 			// add javascript and styleseheet
-			$ftv->includeJs($controller, 'admin');
-			echo $ftv->getStylesheet();
+			$this->includeJs($controller, 'admin');
+			echo $this->getStylesheet();
 	}
 	
-	protected function pageBody(PageController $controller, FancyTreeviewClass $ftv) {
+	protected function pageBody(PageController $controller) {
 		global $WT_TREE;
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		$this_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 		?>
 		<!-- ADMIN PAGE CONTENT -->
 		<ol class="breadcrumb small">
@@ -98,7 +96,7 @@ class AdminTemplate extends FancyTreeviewModule {
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-						<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$ftv->searchArray($FTV_SETTINGS, 'TREE', $WT_TREE->getTreeId()))): ?>
+						<?php if (empty($this_SETTINGS) || (!empty($this_SETTINGS) && !$this->searchArray($this_SETTINGS, 'TREE', $WT_TREE->getTreeId()))): ?>
 							<div class="alert alert-info alert-dismissible" role="alert">
 								<button type="button" class="close" data-dismiss="alert" aria-label="' . I18N::translate('close') . '">
 									<span aria-hidden="true">&times;</span>
@@ -163,7 +161,7 @@ class AdminTemplate extends FancyTreeviewModule {
 									<thead>
 										<tr>
 											<th><?php echo I18N::translate('Root person'); ?></th>
-											<?php if (!$ftv->options('use_fullname')): ?>
+											<?php if (!$this->options('use_fullname')): ?>
 												<th><?php echo I18N::translate('Surname in page title') ?></th>
 											<?php endif; ?>
 											<th><?php echo I18N::translate('Page title'); ?></th>
@@ -175,7 +173,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<tr>
 											<!-- ROOT PERSONS FULL NAME -->
 											<td id="root">
-												<?php if ($ftv->options('use_fullname')): ?>
+												<?php if ($this->options('use_fullname')): ?>
 													<input
 														id="surname"
 														name="surname"
@@ -197,7 +195,7 @@ class AdminTemplate extends FancyTreeviewModule {
 													>
 												<span></span>
 											</td>
-											<?php if (!$ftv->options('use_fullname')): ?>
+											<?php if (!$this->options('use_fullname')): ?>
 												<!-- SURNAME IN PAGE TITLE -->
 												<td id="surn">
 													<label class="showname"></label>
@@ -227,17 +225,17 @@ class AdminTemplate extends FancyTreeviewModule {
 								</table>
 							</form>
 						</div>
-						<?php echo $ftv->addMessage("error", "danger", true); ?>
-						<?php echo $ftv->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')); ?>
+						<?php echo $this->addMessage("error", "danger", true); ?>
+						<?php echo $this->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')); ?>
 						<div id="fancy-treeview-form" class="form-group">
-							<?php if (!empty($FTV_SETTINGS) && $ftv->searchArray($FTV_SETTINGS, 'TREE', $WT_TREE->getTreeId())): ?>
+							<?php if (!empty($this_SETTINGS) && $this->searchArray($this_SETTINGS, 'TREE', $WT_TREE->getTreeId())): ?>
 								<form class="form-horizontal" method="post" name="form4">
 									<!-- TABLE -->
 									<table id="fancy-treeview-table" class="table table-hover">
 										<thead>
 											<tr>
 												<th><?php echo I18N::translate('Root person'); ?></th>
-												<?php if (!$ftv->options('use_fullname')): ?>
+												<?php if (!$this->options('use_fullname')): ?>
 													<th><?php echo I18N::translate('Surname in page title') ?></th>
 												<?php endif; ?>
 												<th><?php echo I18N::translate('Page title'); ?></th>
@@ -246,9 +244,9 @@ class AdminTemplate extends FancyTreeviewModule {
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($FTV_SETTINGS as $key => $FTV_ITEM): ?>
-												<?php if ($FTV_ITEM['TREE'] == $WT_TREE->getTreeId()): ?>
-													<?php if (Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)): ?>
+											<?php foreach ($this_SETTINGS as $key => $this_ITEM): ?>
+												<?php if ($this_ITEM['TREE'] == $WT_TREE->getTreeId()): ?>
+													<?php if (Individual::getInstance($this_ITEM['PID'], $WT_TREE)): ?>
 														<tr class="sortme">
 															<!-- ROOT PERSONS FULL NAME -->
 															<td>
@@ -256,47 +254,47 @@ class AdminTemplate extends FancyTreeviewModule {
 																	id="pid[<?php echo $key; ?>]"
 																	name="pid[<?php echo $key; ?>]"
 																	type="hidden"
-																	value="<?php echo $FTV_ITEM['PID']; ?>"
+																	value="<?php echo $this_ITEM['PID']; ?>"
 																	>
 																<input
 																	id="sort[<?php echo $key; ?>]"
 																	name="sort[<?php echo $key; ?>]"
 																	type="hidden"
-																	value="<?php echo $FTV_ITEM['SORT']; ?>"
+																	value="<?php echo $this_ITEM['SORT']; ?>"
 																	>
-																	<?php echo Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)->getFullName() . ''; ?>
-																(<?php echo Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)->getLifeSpan(); ?>)
+																	<?php echo Individual::getInstance($this_ITEM['PID'], $WT_TREE)->getFullName() . ''; ?>
+																(<?php echo Individual::getInstance($this_ITEM['PID'], $WT_TREE)->getLifeSpan(); ?>)
 															</td>
-															<?php if (!$ftv->options('use_fullname')): ?>
+															<?php if (!$this->options('use_fullname')): ?>
 																<!-- SURNAME IN PAGE TITLE -->
 																<td>
 																	<label class="showname">
-																		<?php echo $FTV_ITEM['SURNAME']; ?>
+																		<?php echo $this_ITEM['SURNAME']; ?>
 																	</label>
 																	<input
 																		class="form-control editname"
 																		id="surname[<?php echo $key; ?>]"
 																		name="surname[<?php echo $key; ?>]"
 																		type="text"
-																		value="<?php echo $FTV_ITEM['SURNAME']; ?>"
+																		value="<?php echo $this_ITEM['SURNAME']; ?>"
 																		>
 																</td>
 															<?php endif ?>
 															<!-- PAGE TITLE -->
 															<td>
-																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=page&amp;ged=<?php echo $WT_TREE->getNameHtml(); ?>&amp;rootid=<?php echo $FTV_ITEM['PID']; ?>" target="_blank">
+																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=page&amp;ged=<?php echo $WT_TREE->getNameHtml(); ?>&amp;rootid=<?php echo $this_ITEM['PID']; ?>" target="_blank">
 																	<?php
-																	if ($ftv->options('use_fullname') == true) {
-																		echo I18N::translate('Descendants of %s', Individual::getInstance($FTV_ITEM['PID'], $WT_TREE)->getFullName());
+																	if ($this->options('use_fullname') == true) {
+																		echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $WT_TREE)->getFullName());
 																	} else {
-																		echo I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']);
+																		echo I18N::translate('Descendants of the %s family', $this_ITEM['SURNAME']);
 																	}
 																	?>
 																</a>
 															</td>
 															<!-- ACCESS LEVEL -->
 															<td>
-																<?php echo FunctionsEdit::editFieldAccessLevel('access_level[' . $key . ']', $FTV_ITEM['ACCESS_LEVEL'], 'class="form-control"'); ?>
+																<?php echo FunctionsEdit::editFieldAccessLevel('access_level[' . $key . ']', $this_ITEM['ACCESS_LEVEL'], 'class="form-control"'); ?>
 															</td>
 															<!-- DELETE BUTTON -->
 															<td>
@@ -312,13 +310,13 @@ class AdminTemplate extends FancyTreeviewModule {
 																<input
 																	name="pid[<?php echo $key; ?>]"
 																	type="hidden"
-																	value="<?php echo $FTV_ITEM['PID']; ?>"
+																	value="<?php echo $this_ITEM['PID']; ?>"
 																	>
-																	<?php echo $FTV_ITEM['SURNAME']; ?>
+																	<?php echo $this_ITEM['SURNAME']; ?>
 															</td>
 															<!-- ERROR MESSAGE -->
 															<td colspan="4" class="error">
-																<?php echo I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $FTV_ITEM['PID']); ?>
+																<?php echo I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $this_ITEM['PID']); ?>
 															</td>
 															<!-- DELETE BUTTON -->
 															<td>
@@ -355,8 +353,8 @@ class AdminTemplate extends FancyTreeviewModule {
 				</div>
 				<div id="collapseTwo" class="panel-collapse collapse">
 					<div class="panel-body">
-						<?php echo $ftv->addMessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')); ?>
-						<?php echo $ftv->addMessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
+						<?php echo $this->addMessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')); ?>
+						<?php echo $this->addMessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')); ?>
 						<div id="ftv-options-form" class="form-group">
 							<form class="form-horizontal" method="post" name="form5">
 								<!-- USE FULLNAME IN MENU -->
@@ -365,7 +363,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Use fullname in menu'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_FULLNAME]', $ftv->options('use_fullname'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_FULLNAME]', $this->options('use_fullname'), 'class="radio-inline"'); ?>
 									</div>
 								</div>
 								<!-- GENERATION BLOCKS -->
@@ -374,7 +372,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Number of generation blocks to show'); ?>
 									</label>
 									<div class="col-sm-4">
-										<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[NUMBLOCKS]', array(I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $ftv->options('numblocks'), 'class="form-control"'); ?>									</div>
+										<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[NUMBLOCKS]', array(I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $this->options('numblocks'), 'class="form-control"'); ?>									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Number of generation blocks to show” configuration setting */ I18N::translate('This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.'); ?>
 									</p>
@@ -385,7 +383,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Check relationship between partners'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $ftv->options('check_relationship'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $this->options('check_relationship'), 'class="radio-inline"'); ?>
 									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).'); ?>
@@ -397,7 +395,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Show single persons'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_SINGLES]', $ftv->options('show_singles'), 'class="radio-inline"'); ?>									</div>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles'), 'class="radio-inline"'); ?>									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Show single persons” configuration setting */ I18N::translate('Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block.'); ?>
 									</p>
@@ -408,29 +406,29 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Show places?'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_PLACES]', $ftv->options('show_places'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places'), 'class="radio-inline"'); ?>
 									</div>
 								</div>
 								<!-- USE GEDCOM PLACE SETTING -->
-								<div id="gedcom_places" class="form-group<?php if (!$ftv->options('show_places')) echo ' collapse' ?>">
+								<div id="gedcom_places" class="form-group<?php if (!$this->options('show_places')) echo ' collapse' ?>">
 									<label class="control-label col-sm-4">
 										<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names?'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $ftv->options('use_gedcom_places'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $this->options('use_gedcom_places'), 'class="radio-inline"'); ?>
 									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting */ I18N::translate('If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown.'); ?>
 									</p>
 								</div>
 								<!-- GET COUNTRYLIST -->
-								<?php if ($ftv->getCountrylist()): ?>
-									<div id="country_list" class="form-group<?php if (!$ftv->options('show_places') || $ftv->options('use_gedcom_places')) echo ' collapse' ?>">
+								<?php if ($this->getCountrylist()): ?>
+									<div id="country_list" class="form-group<?php if (!$this->options('show_places') || $this->options('use_gedcom_places')) echo ' collapse' ?>">
 										<label class="control-label col-sm-4">
 											<?php echo I18N::translate('Select your country'); ?>
 										</label>
 										<div class="col-sm-8">
-											<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[COUNTRY]', $ftv->getCountryList(), '', $ftv->options('country'), 'class="form-control"'); ?>
+											<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[COUNTRY]', $this->getCountryList(), '', $this->options('country'), 'class="form-control"'); ?>
 										</div>
 										<p class="col-sm-8 col-sm-offset-4 small text-muted">
 											<?php echo /* I18N: Help text for the “Select your country” configuration setting */ I18N::translate('If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own.'); ?>
@@ -443,7 +441,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Show occupations'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_OCCU]', $ftv->options('show_occu'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu'), 'class="radio-inline"'); ?>
 									</div>
 								</div>
 								<!-- RESIZE THUMBS -->
@@ -452,13 +450,13 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Resize thumbnails'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $ftv->options('resize_thumbs'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $this->options('resize_thumbs'), 'class="radio-inline"'); ?>
 									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.'); ?>									</p>
 								</div>
 								<!-- THUMB SIZE -->
-								<div id="thumb_size" class="form-group<?php if (!$ftv->options('resize_thumbs')) echo ' collapse' ?>">
+								<div id="thumb_size" class="form-group<?php if (!$this->options('resize_thumbs')) echo ' collapse' ?>">
 									<label class="control-label col-sm-4">
 										<?php echo I18N::translate('Thumbnail size'); ?>
 									</label>
@@ -469,21 +467,21 @@ class AdminTemplate extends FancyTreeviewModule {
 												id="NEW_FTV_OPTIONS[THUMB_SIZE]"
 												name="NEW_FTV_OPTIONS[THUMB_SIZE]"
 												type="text"
-												value="<?php echo $ftv->options('thumb_size'); ?>"
+												value="<?php echo $this->options('thumb_size'); ?>"
 												>
 										</div>
 										<div class="col-sm-2">
-											<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => I18N::translate('percent'), '2' => I18N::translate('pixels')), null, $ftv->options('thumb_resize_format'), 'class="form-control"'); ?>
+											<?php echo FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => I18N::translate('percent'), '2' => I18N::translate('pixels')), null, $this->options('thumb_resize_format'), 'class="form-control"'); ?>
 										</div>
 									</div>
 								</div>
 								<!-- SQUARE THUMBS -->
-								<div id="square_thumbs" class="form-group<?php if (!$ftv->options('resize_thumbs')) echo ' collapse' ?>">
+								<div id="square_thumbs" class="form-group<?php if (!$this->options('resize_thumbs')) echo ' collapse' ?>">
 									<label class="control-label col-sm-4">
 										<?php echo I18N::translate('Use square thumbnails'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $ftv->options('use_square_thumbs'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $this->options('use_square_thumbs'), 'class="radio-inline"'); ?>
 									</div>
 								</div>
 								<!-- SHOW USERFORM -->
@@ -492,7 +490,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Show form to change start person'); ?>
 									</label>
 									<div class="col-sm-4">
-										<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_USERFORM]', $ftv->options('show_userform'), 'class="form-control"'); ?>
+										<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform'), 'class="form-control"'); ?>
 									</div>
 								</div>
 								<!-- SHOW PDF -->
@@ -501,7 +499,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Show PDF icon?'); ?>
 									</label>
 									<div class="col-sm-4">
-										<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $ftv->options('show_pdf_icon'), 'class="form-control"'); ?>
+										<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon'), 'class="form-control"'); ?>
 									</div>
 								</div>
 								<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
@@ -510,7 +508,7 @@ class AdminTemplate extends FancyTreeviewModule {
 										<?php echo I18N::translate('Show a Fancy Treeview tab on the individual page'); ?>
 									</label>
 									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $ftv->options('ftv_tab'), 'class="radio-inline"'); ?>
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $this->options('ftv_tab'), 'class="radio-inline"'); ?>
 									</div>
 								</div>
 								<!-- BUTTONS -->
