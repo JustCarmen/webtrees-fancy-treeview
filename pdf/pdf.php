@@ -29,8 +29,8 @@ $tmpfile = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
 
 if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
 
-	$stylesheet = file_get_contents(WT_MODULES_DIR . $this->getName() . '/pdf/style.css');
-	$stylesheet_rtl = file_get_contents(WT_MODULES_DIR . $this->getName() . '/pdf/style-rtl.css');
+	$stylesheet = file_get_contents(WT_MODULES_DIR . $this->getName() . '/css/pdf/style.css');
+	$stylesheet_rtl = file_get_contents(WT_MODULES_DIR . $this->getName() . '/css/pdf/style-rtl.css');
 	$html = file_get_contents($tmpfile);
 
 	$header = '<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';
