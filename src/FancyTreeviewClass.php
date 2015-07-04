@@ -1083,8 +1083,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				var RootID				= "' . $this->rootId() . '";
 				var OptionsNumBlocks	= ' . $this->options('numblocks') . ';
 				var TextFollow			= "' . I18N::translate('follow') . '";
-				var TextOk				= "' . I18N::translate('Ok') . '";
-				var TextCancel			= "' . I18N::translate('Cancel') . '";
+				var TextOk				= "' . I18N::translate('ok') . '";
+				var TextCancel			= "' . I18N::translate('cancel') . '";
 			', BaseController::JS_PRIORITY_HIGH)
 					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 					->addInlineJavascript('autocomplete();')

@@ -130,7 +130,7 @@ class AdminTemplate extends FancyTreeviewClass {
 									</label>
 									<button name="search" class="btn btn-primary" type="submit">
 										<i class="fa fa-search"></i>
-										<?php echo I18N::translate('Search'); ?>
+										<?php echo I18N::translate('search'); ?>
 									</button>
 								</div>
 								<!-- PID SEARCH FIELD -->
@@ -150,7 +150,7 @@ class AdminTemplate extends FancyTreeviewClass {
 										>
 									<button name="Ok" class="btn btn-primary" type="submit">
 										<i class="fa fa-check"></i>
-										<?php echo I18N::translate('Ok'); ?>
+										<?php echo I18N::translate('ok'); ?>
 									</button>
 								</div>
 							</form>
@@ -330,7 +330,7 @@ class AdminTemplate extends FancyTreeviewClass {
 									<!-- BUTTONS -->
 									<button name="update" class="btn btn-primary" type="submit">
 										<i class="fa fa-check"></i>
-										<?php echo I18N::translate('Update'); ?>
+										<?php echo I18N::translate('update'); ?>
 									</button>
 								</form>
 							<?php endif; ?>
@@ -511,11 +511,11 @@ class AdminTemplate extends FancyTreeviewClass {
 								<!-- BUTTONS -->
 								<button name="save-options" class="btn btn-primary" type="submit">
 									<i class="fa fa-check"></i>
-									<?php echo I18N::translate('Save'); ?>
+									<?php echo I18N::translate('save'); ?>
 								</button>
 								<button name="reset-options" class="btn btn-primary" type="reset">
 									<i class="fa fa-recycle"></i>
-									<?php echo I18N::translate('Reset'); ?>
+									<?php echo I18N::translate('reset'); ?>
 								</button>
 							</form>
 						</div>
