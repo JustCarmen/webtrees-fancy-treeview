@@ -42,7 +42,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	var $tree_id;
 
 	/** @var string location of the fancy treeview module files */
-	var $module;
+	var $directory;
 	var $action;
 
 	/** {@inheritdoc} */
@@ -50,13 +50,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		parent::__construct('fancy_treeview');
 
 		$this->tree_id = $this->getTreeId();
-		$this->module = WT_MODULES_DIR . $this->getName();
+		$this->directory = WT_MODULES_DIR . $this->getName();
 		$this->action = Filter::get('mod_action');
 		
 		// register the namespaces
 		$loader = new ClassLoader();
-		$loader->addPsr4('JustCarmen\\WebtreesAddOns\\FancyTreeview\\', $this->module . '/src');
-		$loader->add('mPDF', WT_MODULES_DIR . $this->getName() . '/packages/mpdf60');
+		$loader->addPsr4('JustCarmen\\WebtreesAddOns\\FancyTreeview\\', $this->directory . '/src');
+		$loader->add('mPDF', $this->directory . '/packages/mpdf60');
 		$loader->register();
 				
 		// Update the database tables if neccessary.
@@ -300,7 +300,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		global $controller;
 		$ftv = new FancyTreeviewClass;
 		return
-			'<script src="' . WT_STATIC_URL . WT_MODULES_DIR . $this->getName() . '/js/tab.js" defer="defer"></script>' .
+			'<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
 			'<ol id="fancy_treeview">' . $ftv->printTabContent($controller->record->getXref()) . '</ol>' .
 			'</div>';

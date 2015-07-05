@@ -1037,7 +1037,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 
 	protected function getStylesheet() {
-		$path = $this->module . '/css/';
+		$path = $this->directory . '/css/';
 		$theme_dir = $path . 'themes/';
 		$stylesheet = '';
 
@@ -1055,19 +1055,19 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		switch ($page) {
 			case 'admin':
 				$controller->addInlineJavascript('
-				var ModuleDir			= "' . $this->module . '";
+				var ModuleDir			= "' . $this->directory . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
 			', BaseController::JS_PRIORITY_HIGH);
 				$controller
 					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 					->addInlineJavascript('autocomplete();')
-					->addExternalJavascript($this->module . '/js/admin.js');
+					->addExternalJavascript($this->directory . '/js/admin.js');
 				break;
 
 			case 'menu':
 				$controller->addInlineJavascript('
-				var ModuleDir			= "' . $this->module . '";
+				var ModuleDir			= "' . $this->directory . '";
 				var ModuleName			= "' . $this->getName() . '";
 				var ThemeID				= "' . Theme::theme()->themeId() . '";
 			', BaseController::JS_PRIORITY_HIGH);
@@ -1088,15 +1088,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			', BaseController::JS_PRIORITY_HIGH)
 					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 					->addInlineJavascript('autocomplete();')
-					->addExternalJavascript($this->module . '/js/page.js');
+					->addExternalJavascript($this->directory . '/js/page.js');
 
 				if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)) {
-					$controller->addExternalJavascript($this->module . '/js/pdf.js');
+					$controller->addExternalJavascript($this->directory . '/js/pdf.js');
 				}
 
 				// some files needs an extra js script
-				if (file_exists(WT_STATIC_URL . $this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
-					$controller->addExternalJavascript($this->module . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+				if (file_exists(WT_STATIC_URL . $this->directory . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
+					$controller->addExternalJavascript($this->directory . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
 				}
 
 				if ($this->options('show_userform') >= Auth::accessLevel($WT_TREE)) {
