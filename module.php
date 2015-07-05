@@ -43,6 +43,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** @var string location of the fancy treeview module files */
 	var $directory;
+
+	/** @var string module action */
 	var $action;
 
 	/** {@inheritdoc} */
@@ -52,15 +54,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$this->tree_id = $this->getTreeId();
 		$this->directory = WT_MODULES_DIR . $this->getName();
 		$this->action = Filter::get('mod_action');
-		
+
 		// register the namespaces
 		$loader = new ClassLoader();
 		$loader->addPsr4('JustCarmen\\WebtreesAddOns\\FancyTreeview\\', $this->directory . '/src');
 		$loader->add('mPDF', $this->directory . '/packages/mpdf60');
 		$loader->register();
-				
+
 		// Update the database tables if neccessary.
 		Database::updateSchema('\JustCarmen\WebtreesAddOns\FancyTreeview\Schema', 'FTV_SCHEMA_VERSION', 8);
+	}
+
+	/**
+	 * Get the module class.
+	 * 
+	 * Class functions are called with $this inside the source directory.
+	 */
+	private function module() {
+		return new FancyTreeviewClass;
 	}
 
 	public function getName() {
@@ -98,8 +109,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function hasTabContent() {
-		$ftv = new FancyTreeviewClass;
-		if ($ftv->options('ftv_tab')) {
+		if ($this->module()->options('ftv_tab')) {
 			return true;
 		} else {
 			return false;
@@ -119,7 +129,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		global $WT_TREE;
-		$ftv = new FancyTreeviewClass;
 		switch ($mod_action) {
 			case 'admin_config':
 				$template = new AdminTemplate;
@@ -133,7 +142,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					$soundex_std = Filter::postBool('soundex_std');
 					$soundex_dm = Filter::postBool('soundex_dm');
 
-					$indis = $ftv->indisArray($surname, $soundex_std, $soundex_dm);
+					$indis = $this->module()->indisArray($surname, $soundex_std, $soundex_dm);
 					usort($indis, 'Fisharebest\Webtrees\Individual::compareBirthDate');
 
 					if (isset($indis) && count($indis) > 0) {
@@ -145,7 +154,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 				if (isset($pid)) {
 					$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-					if ($ftv->searchArray($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
+					if ($this->module()->searchArray($this->module()->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
 						if ($surname) {
 							$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
 						} else {
@@ -155,14 +164,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 						$record = Individual::getInstance($pid, $WT_TREE);
 						if ($record) {
 							$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
-							$title = $ftv->getPageLink($pid);
+							$title = $this->module()->getPageLink($pid);
 
 							$result = array(
 								'access_level'	 => '2', // default access level = show to visitors
 								'pid'			 => $pid,
 								'root'			 => $root,
-								'sort'			 => count($ftv->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
-								'surname'		 => $ftv->getSurname($pid),
+								'sort'			 => count($this->module()->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
+								'surname'		 => $this->module()->getSurname($pid),
 								'title'			 => $title,
 								'tree'			 => Filter::getInteger('tree')
 							);
@@ -209,7 +218,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					$FTV_SETTINGS[$key]['SORT'] = $new_sort;
 				}
 
-				$NEW_FTV_SETTINGS = $ftv->sortArray($FTV_SETTINGS, 'SORT');
+				$NEW_FTV_SETTINGS = $this->module()->sortArray($FTV_SETTINGS, 'SORT');
 				$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
 				break;
 
@@ -239,21 +248,21 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 				$controller = new PageController;
 
-				$root_person = $ftv->getPerson($ftv->rootId());
+				$root_person = $this->module()->getPerson($this->module()->rootId());
 				if ($root_person && $root_person->canShowName()) {
 					$controller
 						->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
 						->pageHeader();
 
 					// add javascript files and scripts
-					$ftv->includeJs($controller, 'page');
+					$this->module()->includeJs($controller, 'page');
 
 					$template = new PageTemplate;
 					return $template->pageBody($controller);
 				} else {
 					http_response_code(404);
 					$controller->pageHeader();
-					echo $ftv->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
+					echo $this->module()->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
 				}
 				break;
 
@@ -298,11 +307,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function getTabContent() {
 		global $controller;
-		$ftv = new FancyTreeviewClass;
 		return
 			'<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
-			'<ol id="fancy_treeview">' . $ftv->printTabContent($controller->record->getXref()) . '</ol>' .
+			'<ol id="fancy_treeview">' . $this->module()->printTabContent($controller->record->getXref()) . '</ol>' .
 			'</div>';
 	}
 
@@ -317,7 +325,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 		if (!Auth::isSearchEngine()) {
 
-			$ftv = new FancyTreeviewClass;
 			static $menu;
 
 			// Function has already run
@@ -339,13 +346,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 					if (Theme::theme()->themeId() !== '_administration') {
 						// load the module stylesheets
-						echo $ftv->getStylesheet();
+						echo $this->module()->getStylesheet();
 
 						// add javascript files and scripts
-						$ftv->includeJs($controller, 'menu');
+						$this->module()->includeJs($controller, 'menu');
 
 						if (WT_SCRIPT_NAME === 'individual.php') {
-							$ftv->includeJs($controller, 'tab');
+							$this->module()->includeJs($controller, 'tab');
 						}
 					}
 
@@ -354,7 +361,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 						$record = Individual::getInstance($FTV_ITEM['PID'], $WT_TREE);
 						if ($record) {
-							if ($ftv->options('use_fullname') == true) {
+							if ($this->module()->options('use_fullname') == true) {
 								$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
 							} else {
 								$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
