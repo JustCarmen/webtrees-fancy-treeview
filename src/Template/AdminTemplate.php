@@ -47,7 +47,7 @@ class AdminTemplate extends FancyTreeviewClass {
 	
 	protected function pageBody(PageController $controller) {
 		global $WT_TREE;
-		$this_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 		?>
 		<!-- ADMIN PAGE CONTENT -->
 		<ol class="breadcrumb small">
@@ -96,7 +96,7 @@ class AdminTemplate extends FancyTreeviewClass {
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-						<?php if (empty($this_SETTINGS) || (!empty($this_SETTINGS) && !$this->searchArray($this_SETTINGS, 'TREE', $WT_TREE->getTreeId()))): ?>
+						<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $WT_TREE->getTreeId()))): ?>
 							<div class="alert alert-info alert-dismissible" role="alert">
 								<button type="button" class="close" data-dismiss="alert" aria-label="' . I18N::translate('close') . '">
 									<span aria-hidden="true">&times;</span>
@@ -228,7 +228,7 @@ class AdminTemplate extends FancyTreeviewClass {
 						<?php echo $this->addMessage("error", "danger", true); ?>
 						<?php echo $this->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')); ?>
 						<div id="fancy-treeview-form" class="form-group">
-							<?php if (!empty($this_SETTINGS) && $this->searchArray($this_SETTINGS, 'TREE', $WT_TREE->getTreeId())): ?>
+							<?php if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', $WT_TREE->getTreeId())): ?>
 								<form class="form-horizontal" method="post" name="form4">
 									<!-- TABLE -->
 									<table id="fancy-treeview-table" class="table table-hover">
@@ -244,7 +244,7 @@ class AdminTemplate extends FancyTreeviewClass {
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach ($this_SETTINGS as $key => $this_ITEM): ?>
+											<?php foreach ($FTV_SETTINGS as $key => $this_ITEM): ?>
 												<?php if ($this_ITEM['TREE'] == $WT_TREE->getTreeId()): ?>
 													<?php if (Individual::getInstance($this_ITEM['PID'], $WT_TREE)): ?>
 														<tr class="sortme">
