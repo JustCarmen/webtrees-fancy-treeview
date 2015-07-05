@@ -27,14 +27,14 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class AdminTemplate extends FancyTreeviewClass {
 
-	public function pageContent() {
+	protected function pageContent() {
 		$controller = new PageController;
 		return
 			$this->pageHeader($controller) .
 			$this->pageBody($controller);
 	}
 
-	protected function pageHeader(PageController $controller) {
+	private function pageHeader(PageController $controller) {
 		$controller
 			->restrictAccess(Auth::isAdmin())
 			->setPageTitle(I18N::translate('Fancy Treeview'))
@@ -45,7 +45,7 @@ class AdminTemplate extends FancyTreeviewClass {
 			echo $this->getStylesheet();
 	}
 	
-	protected function pageBody(PageController $controller) {
+	private function pageBody(PageController $controller) {
 		global $WT_TREE;
 		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 		?>
