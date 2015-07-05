@@ -921,12 +921,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 	}
 
-	// Other functions
+	// Other functions	
 	protected function getPerson($pid) {
 		global $WT_TREE;
 		return Individual::getInstance($pid, $WT_TREE);
 	}
-
+	
+	protected function getRootPerson() {
+		return $this->getPerson($this->rootId());
+	}
+	
 	private function getFamily($person) {
 		foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 			return $family;

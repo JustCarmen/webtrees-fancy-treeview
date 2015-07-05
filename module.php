@@ -244,27 +244,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'page':
-				global $controller;
-
-				$controller = new PageController;
-
-				$root_person = $this->module()->getPerson($this->module()->rootId());
-				if ($root_person && $root_person->canShowName()) {
-					$controller
-						->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $root_person->getFullName()))
-						->pageHeader();
-
-					// add javascript files and scripts
-					$this->module()->includeJs($controller, 'page');
-
-					$template = new PageTemplate;
-					return $template->pageBody($controller);
-				} else {
-					http_response_code(404);
-					$controller->pageHeader();
-					echo $this->module()->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
-				}
-				break;
+				$template = new PageTemplate;
+				return $template->pageContent();
 
 			case 'image_data':
 				header('Content-type: text/html; charset=UTF-8');

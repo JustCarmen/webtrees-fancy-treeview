@@ -23,7 +23,31 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class PageTemplate extends FancyTreeviewClass {
 	
-	public function pageBody(PageController $controller) {
+	protected function pageContent() {
+		global $controller;
+		$controller = new PageController;
+		
+		if ($this->getRootPerson() && $this->getRootPerson()->canShowName()) {
+			return
+				$this->pageHeader($controller) .
+				$this->pageBody($controller);
+		} else {
+			return $this->pageMessage($controller);
+		}
+	}
+
+	private function pageHeader(PageController $controller) {
+		print_r($controller);
+		$controller
+			->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName()))
+			->pageHeader();
+
+		// add javascript files and scripts
+		$this->includeJs($controller, 'page');
+		
+	}
+	
+	private function pageBody(PageController $controller) {
 		global $WT_TREE;
 		?>
 		<!-- FANCY TREEVIEW PAGE -->
@@ -68,6 +92,12 @@ class PageTemplate extends FancyTreeviewClass {
 			</div>
 		</div>
 		<?php		
+	}
+	
+	private function pageMessage($controller) {
+		http_response_code(404);
+		$controller->pageHeader();
+		return $this->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
 	}
 }
 
