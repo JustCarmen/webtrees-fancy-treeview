@@ -18,7 +18,6 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Composer\Autoload\ClassLoader;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Controller\PageController;
 use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
