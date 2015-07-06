@@ -37,7 +37,6 @@ class PageTemplate extends FancyTreeviewClass {
 	}
 
 	private function pageHeader(PageController $controller) {
-		print_r($controller);
 		$controller
 			->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName()))
 			->pageHeader();
