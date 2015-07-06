@@ -73,6 +73,7 @@ class PageTemplate extends FancyTreeviewClass {
 							>
 						<input
 							id="btn_go"
+							class="btn btn-primary btn-sm"
 							name="btn_go"
 							type="submit"
 							value="<?php echo I18N::translate('Go'); ?>"
@@ -83,6 +84,7 @@ class PageTemplate extends FancyTreeviewClass {
 				<ol id="fancy_treeview"><?php echo $this->printPage(); ?></ol>
 				<div id="btn_next">
 					<input
+						class="btn btn-primary"
 						type="button"
 						name="next"
 						value="<?php echo I18N::translate('next'); ?>"
