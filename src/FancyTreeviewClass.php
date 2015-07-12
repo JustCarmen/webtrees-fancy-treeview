@@ -393,9 +393,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				$spouseindex = 0;
 				foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
 					$spouse = $family->getSpouse($person);
-					if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
-						$html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
-						$spouseindex++;
+					if ($spouse && $spouse->canShow()) {
+						if ($this->getMarriage($family)) {
+							$html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
+							$spouseindex++;
+						} else {
+							$html .= $this->printPartner($family, $person, $spouse);
+						}
 					}
 				}
 			}
@@ -469,15 +473,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 
 		$html .= ' <a href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
-
-		// Add relationship note
-		if ($this->options('check_relationship')) {
-			$relationship = $this->checkRelationship($person, $spouse);
-			if ($relationship) {
-				$html .= ' (' . $relationship . ')';
-			}
-		}
-
+		$html .= $this->printRelationship($person, $spouse);
 		$html .= $this->printParents($spouse);
 
 		if (!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
@@ -508,6 +504,32 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			if ($divorce) {
 				$html .= $person->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
 			}
+		}
+		return $html;
+	}
+
+	private function printPartner($family, $person, $spouse) {
+
+		$html = ' ';
+
+		switch ($person->getSex()) {
+			case 'M':
+				$html .= I18N::translate('He had a relation with');
+				break;
+			case 'F':
+				$html .= I18N::translate('She had a relation with');
+				break;
+			default:
+				$html .= I18N::translate('This individual has a relation with');
+				break;
+		}
+
+		$html .= ' <a href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
+		$html .= $this->printRelationship($person, $spouse);
+		$html .= $this->printParents($spouse);
+
+		if ($family->getFirstFact('_NMR') && $this->printLifespan($spouse, true)) {
+			$html .= $this->printLifespan($spouse, true);
 		}
 		return $html;
 	}
@@ -549,24 +571,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				} else {
 					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $person->getFullName();
 					if ($spouse && $spouse->CanShow()) {
-						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-						if (!$family->getMarriage()) {
-							// check relationship first (If a relationship is found the information of this parent is printed elsewhere on the page.)
-							$relationship = $this->checkRelationship($person, $spouse);							
-							if ($relationship) {
-								$html .= $spouse->getFullName();
-								if ($this->options('check_relationship')) {
-									$html .= ' (' . $relationship . ')';
-								}
-							} else {
-								// the non-married spouse is not mentioned in the parents div text or elsewhere on the page. So put a link behind the name.
-								$html .= '<a class="tooltip-title" title="" href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
-								// Print info of the non-married spouse in a tooltip
-								$html .= '<span class="tooltip-text">' . $this->printTooltip($spouse) . '</span>';
-							}
-						} else {
-							$html .= $spouse->getFullName();
-						}
+						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName();
 					}
 					$html .= ':<ol>';
 
@@ -749,27 +754,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		return $html;
 	}
 
-	// some couples are known as not married but have children together. Print the info of the "spouse" parent in a tooltip.
-	private function printTooltip($person) {
-		$birthdate = $person->getBirthDate();
-		$deathdate = $person->getDeathdate();
+	private function printRelationship($person, $spouse) {
 		$html = '';
-		if ($birthdate->isOK()) {
-			$html .= '<strong>' . I18N::translate('Birth') . ':</strong> ' . strip_tags($birthdate->Display());
-		}
-		if ($deathdate->isOK()) {
-			$html .= '<br><strong>' . I18N::translate('Death') . ':</strong> ' . strip_tags($deathdate->Display());
-		}
-
-		$parents = $person->getPrimaryChildFamily();
-		if ($parents) {
-			$father = $parents->getHusband();
-			$mother = $parents->getWife();
-			if ($father) {
-				$html .= '<br><strong>' . I18N::translate('Father') . ':</strong> ' . strip_tags($father->getFullName());
-			}
-			if ($mother) {
-				$html .= '<br><strong>' . I18N::translate('Mother') . ':</strong> ' . strip_tags($mother->getFullName());
+		if ($this->options('check_relationship')) {
+			$relationship = $this->checkRelationship($person, $spouse);
+			if ($relationship) {
+				$html .= ' (' . $relationship . ')';
 			}
 		}
 		return $html;
@@ -926,11 +916,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		global $WT_TREE;
 		return Individual::getInstance($pid, $WT_TREE);
 	}
-	
+
 	protected function getRootPerson() {
 		return $this->getPerson($this->rootId());
 	}
-	
+
 	private function getFamily($person) {
 		foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 			return $family;

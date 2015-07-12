@@ -113,17 +113,6 @@ jQuery("#fancy_treeview-page").on("click", ".scroll", function (event) {
 	scrollToTarget(id);
 });
 
-// Print extra information about the non-married spouse (the father/mother of the children) in a tooltip
-jQuery(".tooltip-title").each(function () {
-	var text = jQuery(this).next(".tooltip-text").html();
-	jQuery(this).tooltip({
-		items: "[title]",
-		content: function () {
-			return text;
-		}
-	});
-});
-
 //button or link to retrieve next generations
 jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", function () {
 	if (jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
