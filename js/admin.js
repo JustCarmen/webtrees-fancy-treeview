@@ -74,8 +74,8 @@ jQuery("#ftv-search-form").on("submit", "form[name=form3]", function (e) {
 		data: jQuery(this).serialize(),
 		success: function () {
 			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
+			jQuery("#ftv-search-form input").val("");
 			jQuery("#search-result-table").fadeOut("slow");
-			jQuery("input#surname").val("");
 		}
 	});
 });
