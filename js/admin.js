@@ -46,8 +46,6 @@ jQuery("#ftv-search-form").on("submit", "form[name=form2]", function (e) {
 			if (data.hasOwnProperty("error")) {
 				jQuery("form[name=form3] table").hide();
 				jQuery("#error .message").html(data.error).parent().fadeIn();
-				jQuery("input#pid-search").val("");
-				jQuery("input#surname-search").val("").focus();
 			} else {
 				jQuery("#error").hide();
 				table.find("input[name=pid]").val(data.pid);
@@ -58,6 +56,8 @@ jQuery("#ftv-search-form").on("submit", "form[name=form2]", function (e) {
 				table.find("#title").html(data.title);
 				table.show();
 			}
+			jQuery("input#pid-search").val("");
+			jQuery("input#surname-search").val("").focus();
 		}
 	});
 });
