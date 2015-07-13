@@ -29,6 +29,10 @@
 	content:"\f054";
 }
 
+label[for="tree"] {
+	width: auto;
+}
+
 #search-result-table {
 	margin-left: -8px;
 	margin-top: 30px;

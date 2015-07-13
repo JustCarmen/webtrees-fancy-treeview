@@ -62,7 +62,7 @@ class AdminTemplate extends FancyTreeviewClass {
 			<?php echo Filter::getCsrf(); ?>
 			<!-- SELECT TREE -->
 			<div class="form-group">
-				<label class="control-label col-sm-1" for="tree">
+				<label class="control-label col-sm-2" for="tree">
 					<?php echo I18N::translate('Family tree'); ?>
 				</label>
 				<div class="col-sm-4">
