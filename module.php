@@ -57,7 +57,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		// register the namespaces
 		$loader = new ClassLoader();
 		$loader->addPsr4('JustCarmen\\WebtreesAddOns\\FancyTreeview\\', $this->directory . '/src');
-		$loader->add('mPDF', $this->directory . '/packages/mpdf60');
 		$loader->register();
 
 		// Update the database tables if neccessary.
