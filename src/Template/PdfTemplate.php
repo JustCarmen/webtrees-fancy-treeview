@@ -37,7 +37,7 @@ class PdfTemplate extends FancyTreeviewClass {
 
 			$header = '<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';
 			$footer = '<footer>' .
-				'<div class="left">' . WT_ROOT . '</div>' .
+				'<div class="left">' . WT_BASE_URL . '</div>' .
 				'<div class="right">{PAGENO}</div>' .
 				'</footer>';
 
