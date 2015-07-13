@@ -115,9 +115,9 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?php echo I18N::translate('Search root person'); ?>
 									</label>
 									<input
-										class="form-control surname"
+										class="form-control"
 										data-autocomplete-type="SURN"
-										id="SURNAME"
+										id="surname-search"
 										name="SURNAME"
 										placeholder="<?php echo I18N::translate('Surname'); ?>"
 										type="text"
@@ -136,13 +136,13 @@ class AdminTemplate extends FancyTreeviewClass {
 								<!-- PID SEARCH FIELD -->
 								<?php $class = I18N::direction() === 'rtl' ? 'pull-left' : 'pull-right'; ?>
 								<div class="form-group <?php echo $class; ?>">
-									<label class="control-label" for="PID">
+									<label class="control-label" for="pid-search">
 										<?php echo I18N::translate('Or enter an ID'); ?>
 									</label>
 									<input
 										class="form-control"
 										data-autocomplete-type="INDI"
-										id="PID"
+										id="pid-search"
 										name="PID"
 										placeholder="<?php echo I18N::translate('Search ID by name'); ?>"
 										type="text"
@@ -175,20 +175,17 @@ class AdminTemplate extends FancyTreeviewClass {
 											<td id="root">
 												<?php if ($this->options('use_fullname')): ?>
 													<input
-														id="surname"
 														name="surname"
 														type="hidden"
 														value=""
 														>
 													<?php endif ?>
 												<input
-													id="pid"
 													name="pid"
 													type="hidden"
 													value=""
 													>
 												<input
-													id="sort"
 													name="sort"
 													type="hidden"
 													value=""
@@ -201,7 +198,6 @@ class AdminTemplate extends FancyTreeviewClass {
 													<label class="showname"></label>
 													<input
 														class="form-control editname"
-														id="surname"
 														name="surname"
 														type="text"
 														value=""
