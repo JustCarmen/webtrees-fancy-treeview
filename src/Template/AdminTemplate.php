@@ -89,7 +89,7 @@ class AdminTemplate extends FancyTreeviewClass {
 			<div class="panel panel-default" id="panel1">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+						<a data-toggle="collapse" data-target="#collapseOne" href="#">
 							<?php echo I18N::translate('Pages'); ?>
 						</a>
 					</h4>
@@ -339,7 +339,7 @@ class AdminTemplate extends FancyTreeviewClass {
 			<div class="panel panel-default" id="panel2">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo" class="collapsed">
+						<a data-toggle="collapse" data-target="#collapseTwo" href="#" class="collapsed">
 							<?php echo I18N::translate('Options for %s', $WT_TREE->getTitleHtml()); ?>
 						</a>
 					</h4>
