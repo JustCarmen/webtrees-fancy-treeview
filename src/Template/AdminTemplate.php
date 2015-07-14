@@ -40,11 +40,11 @@ class AdminTemplate extends FancyTreeviewClass {
 			->setPageTitle(I18N::translate('Fancy Treeview'))
 			->pageHeader();
 
-			// add javascript and styleseheet
-			$this->includeJs($controller, 'admin');
-			echo $this->getStylesheet();
+		// add javascript and styleseheet
+		$this->includeJs($controller, 'admin');
+		echo $this->getStylesheet();
 	}
-	
+
 	private function pageBody(PageController $controller) {
 		global $WT_TREE;
 		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
@@ -370,18 +370,6 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?php echo /* I18N: Help text for the “Number of generation blocks to show” configuration setting */ I18N::translate('This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.'); ?>
 									</p>
 								</div>
-								<!-- CHECK RELATIONSHIP -->
-								<div class="form-group">
-									<label class="control-label col-sm-4">
-										<?php echo I18N::translate('Check relationship between partners'); ?>
-									</label>
-									<div class="col-sm-8">
-										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $this->options('check_relationship'), 'class="radio-inline"'); ?>
-									</div>
-									<p class="col-sm-8 col-sm-offset-4 small text-muted">
-										<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the relationship. Note: this option can cause slower page loading, especially on large trees. If you notice such a behavior, reduce the number of generation blocks to load at once (see the previous option).'); ?>
-									</p>
-								</div>
 								<!-- SHOW SINGLES -->
 								<div class="form-group">
 									<label class="control-label col-sm-4">
@@ -391,6 +379,20 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles'), 'class="radio-inline"'); ?>									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Show single persons” configuration setting */ I18N::translate('Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block.'); ?>
+									</p>
+								</div>
+								<!-- CHECK RELATIONSHIP -->
+								<div class="form-group">
+									<label class="control-label col-sm-4">
+										<?php echo I18N::translate('Check relationship between partners'); ?>
+									</label>
+									<div class="col-sm-8">
+										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $this->options('check_relationship'), 'class="radio-inline"'); ?>
+									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.'); ?></p>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Warning whenu using the “Check relationship between partners” configuration setting */ I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all.'); ?>
 									</p>
 								</div>
 								<!-- SHOW PLACES -->
@@ -521,4 +523,5 @@ class AdminTemplate extends FancyTreeviewClass {
 		</div>
 		<?php
 	}
+
 }
