@@ -51,8 +51,9 @@ function createPDF() {
 	if (counter > 0) {
 		if (jQuery(".ftv-thumb", content).length) {
 			jQuery("a.gallery img", content).each(function () {
+				var mid = jQuery(this).parent().data("obje-xref");
 				jQuery.ajax({
-					url: "module.php?mod=" + ModuleName + "&mod_action=image_data&ftv_thumb=1",
+					url: "module.php?mod=" + ModuleName + "&mod_action=image_data&mid=" + mid + "&ftv_thumb=1",
 					type: "POST",
 					data: {
 						base64: jQuery(this).attr("src"),

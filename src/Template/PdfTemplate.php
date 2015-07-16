@@ -23,14 +23,15 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 use mPDF;
 
 class PdfTemplate extends FancyTreeviewClass {
-	
+
 	public function pageBody() {
 		global $WT_TREE;
-		
+
 		require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');
 		
-		$tmpfile = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
-		if (is_dir(WT_DATA_DIR) && is_readable($tmpfile)) {
+		$cache_dir = WT_DATA_DIR . '/ftv_cache/';
+		$tmpfile = $cache_dir . 'fancy-treeview-tmp.txt';
+		if (file_exists($cache_dir) && is_readable($tmpfile)) {
 			$stylesheet = file_get_contents($this->directory . '/css/pdf/style.css');
 			$stylesheet_rtl = file_get_contents($this->directory . '/css/pdf/style-rtl.css');
 			$html = file_get_contents($tmpfile);
@@ -79,19 +80,17 @@ class PdfTemplate extends FancyTreeviewClass {
 			}
 
 			$mpdf->Output(Filter::get('title') . '.pdf', 'D');
-
-			// remove the temporary files
-			File::delete($tmpfile);
-			foreach (glob(WT_DATA_DIR . 'ftv*.*') as $image) {
-				File::delete($image);
-			}
 		} else {
 			echo $this->addMessage('alert', 'danger', false, I18N::translate('Error: the pdf file could not be generated.'));
 		}
 	}
-	
+
 	public function pageData() {
-		$filename = WT_DATA_DIR . '/fancy_treeview_tmp.txt';
+		$path = WT_DATA_DIR . '/ftv_cache/';
+		if (!file_exists($path)) {
+			File::mkdir($path);
+		}
+		$filename = $path . 'fancy-treeview-tmp.txt';
 		$content = Filter::post('pdfContent');
 
 		// make our datafile if it does not exist.
@@ -115,4 +114,5 @@ class PdfTemplate extends FancyTreeviewClass {
 			fclose($handle);
 		}
 	}
+
 }

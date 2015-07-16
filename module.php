@@ -19,6 +19,7 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 use Composer\Autoload\ClassLoader;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Database;
+use Fisharebest\Webtrees\File;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -247,18 +248,29 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 			case 'image_data':
 				header('Content-type: text/html; charset=UTF-8');
+				$xref = Filter::get('mid');
 				if (Filter::get('ftv_thumb')) {
-					$data = Filter::post('base64');
-					list($type, $data) = explode(';', $data);
-					list(, $data) = explode(',', $data);
-					$image = base64_decode($data);
-					$filename = WT_DATA_DIR . 'ftv' . Uuid::uuid4() . '.jpg';
-					if ($image) {
-						file_put_contents($filename, $image);
-						echo $filename;
+					$path = WT_DATA_DIR . '/ftv_cache/';
+					if (!file_exists($path)) {
+						File::mkdir($path);
 					}
+					$cache_file = $path . 'ftv-' . $xref . '-cache.jpg';
+					if (file_exists($cache_file)) {
+						$filemtime = filemtime($cache_file);
+					} else {
+						$filemtime = 0;
+					}
+					if (time() > $filemtime + 86400) {
+						$data = Filter::post('base64');
+						list($type, $data) = explode(';', $data);
+						list(, $data) = explode(',', $data);
+						$image = base64_decode($data);
+						if ($image) {
+							file_put_contents($cache_file, $image);
+						}
+					}
+					echo $cache_file;
 				} else {
-					$xref = Filter::get('mid');
 					$mediaobject = Media::getInstance($xref, $WT_TREE);
 					if ($mediaobject) {
 						echo $mediaobject->getServerFilename('thumb');
