@@ -248,7 +248,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			case 'image_data':
 				header('Content-type: text/html; charset=UTF-8');
 				if (Filter::get('ftv_thumb')) {
-					header("Content-Type: image/jpeg");
 					$data = Filter::post('base64');
 					list($type, $data) = explode(';', $data);
 					list(, $data) = explode(',', $data);
