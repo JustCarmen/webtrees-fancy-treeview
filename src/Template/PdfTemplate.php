@@ -26,10 +26,15 @@ class PdfTemplate extends FancyTreeviewClass {
 
 	public function pageBody() {
 		global $WT_TREE;
-
-		require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');
 		
 		$cache_dir = WT_DATA_DIR . '/ftv_cache/';
+		
+		define("_JPGRAPH_PATH", $cache_dir);
+		define("_MPDF_TEMP_PATH", $cache_dir);
+		define('_MPDF_TTFONTDATAPATH', $cache_dir);
+
+		require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');		
+		
 		$tmpfile = $cache_dir . 'fancy-treeview-tmp.txt';
 		if (file_exists($cache_dir) && is_readable($tmpfile)) {
 			$stylesheet = file_get_contents($this->directory . '/css/pdf/style.css');
