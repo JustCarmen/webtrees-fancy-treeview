@@ -14,6 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* global ModuleName, WT_CSRF_TOKEN, RootID, PageTitle */
+
 // convert page to pdf
 jQuery("#pdf").click(function () {
 	if (jQuery("#btn_next").length > 0) {
@@ -106,7 +108,7 @@ function getPDF() {
 			},
 			csrf: WT_CSRF_TOKEN,
 			success: function () {
-				jQuery("#pdf-content, #new-pdf-content").remove()
+				jQuery("#pdf-content, #new-pdf-content").remove();
 				window.location.href = "module.php?mod=" + ModuleName + "&mod_action=show_pdf&rootid=" + RootID + "&title=" + PageTitle;
 			}
 		});
