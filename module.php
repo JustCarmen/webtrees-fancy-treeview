@@ -38,6 +38,11 @@ use Rhumsaa\Uuid\Uuid;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
+	// How to update the database schema for this module
+	const SCHEMA_TARGET_VERSION = 8;
+	const SCHEMA_SETTING_NAME = 'FTV_SCHEMA_VERSION';
+	const SCHEMA_MIGRATION_PREFIX = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
+
 	/** @var integer The tree's ID number */
 	var $tree_id;
 
@@ -59,9 +64,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$loader = new ClassLoader();
 		$loader->addPsr4('JustCarmen\\WebtreesAddOns\\FancyTreeview\\', $this->directory . '/src');
 		$loader->register();
-
-		// Update the database tables if neccessary.
-		Database::updateSchema('\JustCarmen\WebtreesAddOns\FancyTreeview\Schema', 'FTV_SCHEMA_VERSION', 8);
 	}
 
 	/**
@@ -128,6 +130,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		global $WT_TREE;
+
+		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
+
 		switch ($mod_action) {
 			case 'admin_config':
 				$template = new AdminTemplate;
@@ -297,6 +302,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function getTabContent() {
 		global $controller;
+
+		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
+
 		return
 			'<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>' .
 			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
@@ -314,6 +322,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		global $WT_TREE, $controller;
 
 		if (!Auth::isSearchEngine()) {
+
+			Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
 
 			static $menu;
 
