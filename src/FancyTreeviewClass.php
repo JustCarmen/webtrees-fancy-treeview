@@ -1039,8 +1039,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
 			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css');
+		} else {
+			$parenttheme = get_parent_class(Theme::theme());
+			$theme = new $parenttheme;
+			if (basename($parenttheme) !== 'AbstractTheme' && file_exists($theme_dir . $theme->themeId() . '/style.css')) {
+				$stylesheet .= $this->includeCss($theme_dir . $theme->themeId() . '/style.css');
+			}
 		}
-
 		return $stylesheet;
 	}
 
