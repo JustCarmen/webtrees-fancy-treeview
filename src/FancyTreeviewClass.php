@@ -1030,22 +1030,30 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		return $pedi;
 	}
 
-	protected function getStylesheet() {
-		$path = $this->directory . '/css/';
-		$theme_dir = $path . 'themes/';
-		$stylesheet = '';
-
-		$stylesheet .= $this->includeCss($path . 'base/style.css');
-
-		if (file_exists($theme_dir . Theme::theme()->themeId() . '/style.css')) {
-			$stylesheet .= $this->includeCss($theme_dir . Theme::theme()->themeId() . '/style.css');
+	private function theme() {
+		$theme_dir = $this->directory . '/css/themes/';
+		if (file_exists($theme_dir . Theme::theme()->themeId())) {
+			return $theme_dir . theme::theme()->themeId();
 		} else {
-			$parenttheme = get_parent_class(Theme::theme());
-			$theme = new $parenttheme;
-			if (basename($parenttheme) !== 'AbstractTheme' && file_exists($theme_dir . $theme->themeId() . '/style.css')) {
-				$stylesheet .= $this->includeCss($theme_dir . $theme->themeId() . '/style.css');
+			$parentclass = get_parent_class(Theme::theme());
+			if (basename($parentclass) !== 'AbstractTheme') {
+				$parenttheme = new $parentclass;
+				if (file_exists($theme_dir . $parenttheme->themeId())) {
+					return $theme_dir . $parenttheme->themeId();
+				}
 			}
 		}
+	}
+
+	protected function getStylesheet() {
+		$stylesheet = '';
+
+		$stylesheet .= $this->includeCss($this->directory . '/css/base/style.css');
+
+		if ($this->theme()) {
+			$stylesheet .= $this->includeCss($this->theme() . '/style.css');
+		}
+
 		return $stylesheet;
 	}
 
@@ -1094,8 +1102,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 
 				// some files needs an extra js script
-				if (file_exists(WT_STATIC_URL . $this->directory . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js')) {
-					$controller->addExternalJavascript($this->directory . '/themes/' . Theme::theme()->themeId() . '/' . Theme::theme()->themeId() . '.js');
+				if ($this->theme()) {
+					$js = $this->theme() . '/' . basename($this->theme()) . '.js';
+					if (file_exists($js)) {
+						$controller->addExternalJavascript($js);
+					}
 				}
 
 				if ($this->options('show_userform') >= Auth::accessLevel($WT_TREE)) {
