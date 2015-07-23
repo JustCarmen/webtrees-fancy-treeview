@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2015-07-14 06:54+0200\n"
+"POT-Creation-Date: 2015-07-23 02:49+0200\n"
 "PO-Revision-Date: 2015-07-04 22:18+0200\n"
 "Last-Translator: Wooc\n"
 "Language-Team: \n"
@@ -26,7 +26,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr ""
 
 #. I18N: Description of the module
-#: module.php:90
+#: module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Ozdobny widok potomków rodziny prezentowany w stylu narracyjnym."
 
@@ -39,27 +39,27 @@ msgid "Check relationship between partners"
 msgstr "Sprawdź pokrewieństwo pomiędzy małżonkami"
 
 #. I18N: %s is the surname of the root individual
-#: module.php:346 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
+#: module.php:366 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
 #: src/Template/AdminTemplate.php:283
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Potomkowie z rodziny %s"
 
-#: module.php:178
+#: module.php:183
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr ""
 
-#: module.php:159
+#: module.php:164
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr ""
 
-#: module.php:157
+#: module.php:162
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Błąd: Probant z danym nazwiskiem już istnieje"
 
-#: module.php:149
+#: module.php:154
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Błąd: Wprowadzone nazwisko nie występuje w danym drzewie."
 
@@ -67,12 +67,12 @@ msgstr "Błąd: Wprowadzone nazwisko nie występuje w danym drzewie."
 msgid "Error: the pdf file could not be generated."
 msgstr ""
 
-#: module.php:338
+#: module.php:358
 msgid "Family tree overview"
 msgstr ""
 
 #. I18N: Name of the module
-#: module.php:81 src/Template/AdminTemplate.php:40
+#: module.php:83 src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
 msgstr "Ozdobny widok drzewa"
 
@@ -356,7 +356,7 @@ msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "w wieku %s"
 
-#: src/FancyTreeviewClass.php:1081
+#: src/FancyTreeviewClass.php:1086
 msgid "cancel"
 msgstr ""
 
@@ -365,6 +365,18 @@ msgid "child of"
 msgstr ""
 
 #: src/FancyTreeviewClass.php:727
+#, fuzzy
+msgctxt "FEMALE"
+msgid "died"
+msgstr "rozwiedli się"
+
+#: src/FancyTreeviewClass.php:727
+#, fuzzy
+msgctxt "MALE"
+msgid "died"
+msgstr "rozwiedli się"
+
+#: src/FancyTreeviewClass.php:437
 msgid "eighth"
 msgstr ""
 
@@ -372,7 +384,11 @@ msgstr ""
 msgid "fifth"
 msgstr "Piątym"
 
-#: src/FancyTreeviewClass.php:1079
+#: src/FancyTreeviewClass.php:430
+msgid "first"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:1084
 msgid "follow"
 msgstr "przejdź do"
 
@@ -444,7 +460,7 @@ msgstr "w miejscowości "
 msgid "ninth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:1080 src/Template/AdminTemplate.php:153
+#: src/FancyTreeviewClass.php:1085 src/Template/AdminTemplate.php:153
 msgid "ok"
 msgstr ""
 
@@ -537,13 +553,3 @@ msgstr "rozwiedli się"
 #, fuzzy
 #~ msgid "The details of this family are private."
 #~ msgstr "Szczegóły danego pokolenia są prywatne."
-
-#, fuzzy
-#~ msgctxt "FEMALE"
-#~ msgid "died"
-#~ msgstr "rozwiedli się"
-
-#, fuzzy
-#~ msgctxt "MALE"
-#~ msgid "died"
-#~ msgstr "rozwiedli się"

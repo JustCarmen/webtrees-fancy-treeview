@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2015-07-14 06:54+0200\n"
+"POT-Creation-Date: 2015-07-23 02:49+0200\n"
 "PO-Revision-Date: 2015-07-20 14:44+0100\n"
 "Last-Translator: phicome <phicome@gmail.com>\n"
 "Language-Team: \n"
@@ -26,7 +26,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr "<strong>Remarque</strong> : Cette option peut prendre du temps et consommer de la mémoire, en particulier sur les grands arbres. Cela peut causer le chargement très lent de la page ou une \"erreur sur le temps d'exécution\" sur votre serveur. Si vous remarquez un tel comportement, réduisez le nombre de générations à afficher ou n'utilisez pas en même temps l'option \"Afficher les célibataires\" (voir les options précédentes). Si vous rencontrez toujours des problèmes, n'utilisez pas cette option."
 
 #. I18N: Description of the module
-#: module.php:90
+#: module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Aperçu des descendants d’une même famille (branche) de manière narrative."
 
@@ -39,27 +39,27 @@ msgid "Check relationship between partners"
 msgstr "Vérifiez les relations entre conjoints"
 
 #. I18N: %s is the surname of the root individual
-#: module.php:346 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
+#: module.php:366 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
 #: src/Template/AdminTemplate.php:283
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Descendants de la famille %s"
 
-#: module.php:178
+#: module.php:183
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr "Erreur : Une personne avec cet ID% s n'existe pas dans cet arbre"
 
-#: module.php:159
+#: module.php:164
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr "Erreur : Une personne racine avec cet ID% s existe déjà"
 
-#: module.php:157
+#: module.php:162
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Erreur : La personne racine de ce nom est déjà utilisée."
 
-#: module.php:149
+#: module.php:154
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Erreur : Ce nom est inconnu."
 
@@ -67,12 +67,12 @@ msgstr "Erreur : Ce nom est inconnu."
 msgid "Error: the pdf file could not be generated."
 msgstr "Erreur : Le fichier PDF ne peut pas être généré."
 
-#: module.php:338
+#: module.php:358
 msgid "Family tree overview"
 msgstr "Aperçu de l'arbre familial"
 
 #. I18N: Name of the module
-#: module.php:81 src/Template/AdminTemplate.php:40
+#: module.php:83 src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
@@ -348,7 +348,7 @@ msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "à l’âge de %s ans"
 
-#: src/FancyTreeviewClass.php:1081
+#: src/FancyTreeviewClass.php:1086
 msgid "cancel"
 msgstr "annuler"
 
@@ -357,6 +357,18 @@ msgid "child of"
 msgstr "enfant de"
 
 #: src/FancyTreeviewClass.php:727
+#, fuzzy
+msgctxt "FEMALE"
+msgid "died"
+msgstr "ont divorcé"
+
+#: src/FancyTreeviewClass.php:727
+#, fuzzy
+msgctxt "MALE"
+msgid "died"
+msgstr "ont divorcé"
+
+#: src/FancyTreeviewClass.php:437
 msgid "eighth"
 msgstr "huitième "
 
@@ -364,7 +376,11 @@ msgstr "huitième "
 msgid "fifth"
 msgstr "cinquième"
 
-#: src/FancyTreeviewClass.php:1079
+#: src/FancyTreeviewClass.php:430
+msgid "first"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:1084
 msgid "follow"
 msgstr "Voir"
 
@@ -436,7 +452,7 @@ msgstr "à "
 msgid "ninth"
 msgstr "neuvième"
 
-#: src/FancyTreeviewClass.php:1080 src/Template/AdminTemplate.php:153
+#: src/FancyTreeviewClass.php:1085 src/Template/AdminTemplate.php:153
 msgid "ok"
 msgstr "OK"
 
@@ -529,13 +545,3 @@ msgstr "ont divorcé"
 #, fuzzy
 #~ msgid "The details of this family are private."
 #~ msgstr "Les détails de cette génération sont privés."
-
-#, fuzzy
-#~ msgctxt "FEMALE"
-#~ msgid "died"
-#~ msgstr "ont divorcé"
-
-#, fuzzy
-#~ msgctxt "MALE"
-#~ msgid "died"
-#~ msgstr "ont divorcé"

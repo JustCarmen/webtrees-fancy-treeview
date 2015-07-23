@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2015-07-14 06:54+0200\n"
+"POT-Creation-Date: 2015-07-23 02:49+0200\n"
 "PO-Revision-Date: 2015-07-04 22:17+0200\n"
 "Last-Translator: HRN\n"
 "Language-Team: \n"
@@ -26,7 +26,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr ""
 
 #. I18N: Description of the module
-#: module.php:90
+#: module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "En presentasjon over etterkommere av en familie eller en person i en fortellende stil."
 
@@ -39,27 +39,27 @@ msgid "Check relationship between partners"
 msgstr "Sjekk slektskap mellom partnere"
 
 #. I18N: %s is the surname of the root individual
-#: module.php:346 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
+#: module.php:366 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
 #: src/Template/AdminTemplate.php:283
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Etterkommere etter familien %s"
 
-#: module.php:178
+#: module.php:183
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr ""
 
-#: module.php:159
+#: module.php:164
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr "Feil: Startpersonen med ID %s finnes allerede."
 
-#: module.php:157
+#: module.php:162
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Feil: Startpersonen med dette etternavnet finnes allerede."
 
-#: module.php:149
+#: module.php:154
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Feil: Etternavnet du skrev inn finnes ikke i slektstreet"
 
@@ -67,12 +67,12 @@ msgstr "Feil: Etternavnet du skrev inn finnes ikke i slektstreet"
 msgid "Error: the pdf file could not be generated."
 msgstr "Feil: PDF-filen kunne ikke genereres."
 
-#: module.php:338
+#: module.php:358
 msgid "Family tree overview"
 msgstr ""
 
 #. I18N: Name of the module
-#: module.php:81 src/Template/AdminTemplate.php:40
+#: module.php:83 src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
@@ -356,7 +356,7 @@ msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "i en alder av %s"
 
-#: src/FancyTreeviewClass.php:1081
+#: src/FancyTreeviewClass.php:1086
 msgid "cancel"
 msgstr ""
 
@@ -365,6 +365,18 @@ msgid "child of"
 msgstr "barn av"
 
 #: src/FancyTreeviewClass.php:727
+#, fuzzy
+msgctxt "FEMALE"
+msgid "died"
+msgstr "ble skilt"
+
+#: src/FancyTreeviewClass.php:727
+#, fuzzy
+msgctxt "MALE"
+msgid "died"
+msgstr "ble skilt"
+
+#: src/FancyTreeviewClass.php:437
 msgid "eighth"
 msgstr "åttende"
 
@@ -372,7 +384,11 @@ msgstr "åttende"
 msgid "fifth"
 msgstr "femte"
 
-#: src/FancyTreeviewClass.php:1079
+#: src/FancyTreeviewClass.php:430
+msgid "first"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:1084
 msgid "follow"
 msgstr "gå til"
 
@@ -444,7 +460,7 @@ msgstr "i "
 msgid "ninth"
 msgstr "niende"
 
-#: src/FancyTreeviewClass.php:1080 src/Template/AdminTemplate.php:153
+#: src/FancyTreeviewClass.php:1085 src/Template/AdminTemplate.php:153
 msgid "ok"
 msgstr ""
 
@@ -555,16 +571,6 @@ msgstr "ble skilt"
 #, fuzzy
 #~ msgid "daughter of"
 #~ msgstr "fosterdatter av"
-
-#, fuzzy
-#~ msgctxt "FEMALE"
-#~ msgid "died"
-#~ msgstr "ble skilt"
-
-#, fuzzy
-#~ msgctxt "MALE"
-#~ msgid "died"
-#~ msgstr "ble skilt"
 
 #, fuzzy
 #~ msgid "son of"

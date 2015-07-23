@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2015-07-14 06:54+0200\n"
-"PO-Revision-Date: 2015-07-14 07:11+0200\n"
+"POT-Creation-Date: 2015-07-23 02:49+0200\n"
+"PO-Revision-Date: 2015-07-23 02:59+0200\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -26,7 +26,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr "<strong>Let op</strong>: Deze optie kan veel tijd en/of geheugen in beslag nemen, zeker in grote stambomen. Het kan er voor zorgen dat pagina’s trager laden of een ’execution time out error’ veroorzaken op uw server. Wanneer u dit merkt, stel dan het aantal generatie blokken dat tegelijkertijd moet worden geladen in op een lager niveau of gebruik deze optie niet in combinatie met de optie om alleenstaande personen te tonen (zie de vorige opties). Wanneer u dan nog steeds problemen ervaart, schakel deze optie dan uit."
 
 #. I18N: Description of the module
-#: module.php:90
+#: module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Een Fancy overzicht van de afstammelingen van één familietak op een verhalende manier."
 
@@ -39,27 +39,27 @@ msgid "Check relationship between partners"
 msgstr "Controleer de verwantschap tussen partners"
 
 #. I18N: %s is the surname of the root individual
-#: module.php:346 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
+#: module.php:366 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
 #: src/Template/AdminTemplate.php:283
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Parenteel van de familie %s"
 
-#: module.php:178
+#: module.php:183
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr "Fout: Een persoon met ID %s bestaat niet in deze stamboom"
 
-#: module.php:159
+#: module.php:164
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr "Fout: Een startpersoon met ID %s bestaat al."
 
-#: module.php:157
+#: module.php:162
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Fout: De startpersoon die bij deze achternaam hoort bestaat al."
 
-#: module.php:149
+#: module.php:154
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Fout: De achternaam die u heeft ingevoerd komt niet voor in deze stamboom."
 
@@ -67,12 +67,12 @@ msgstr "Fout: De achternaam die u heeft ingevoerd komt niet voor in deze stamboo
 msgid "Error: the pdf file could not be generated."
 msgstr "Fout: het pdf bestand kon niet worden gemaakt."
 
-#: module.php:338
+#: module.php:358
 msgid "Family tree overview"
 msgstr "Stamboom overzicht"
 
 #. I18N: Name of the module
-#: module.php:81 src/Template/AdminTemplate.php:40
+#: module.php:83 src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
@@ -348,7 +348,7 @@ msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "op %s-jarige leeftijd"
 
-#: src/FancyTreeviewClass.php:1081
+#: src/FancyTreeviewClass.php:1086
 msgid "cancel"
 msgstr "annuleren"
 
@@ -357,6 +357,16 @@ msgid "child of"
 msgstr "kind van"
 
 #: src/FancyTreeviewClass.php:727
+msgctxt "FEMALE"
+msgid "died"
+msgstr "overleed"
+
+#: src/FancyTreeviewClass.php:727
+msgctxt "MALE"
+msgid "died"
+msgstr "overleed"
+
+#: src/FancyTreeviewClass.php:437
 msgid "eighth"
 msgstr "achtste"
 
@@ -364,7 +374,11 @@ msgstr "achtste"
 msgid "fifth"
 msgstr "vijfde"
 
-#: src/FancyTreeviewClass.php:1079
+#: src/FancyTreeviewClass.php:430
+msgid "first"
+msgstr "eerste"
+
+#: src/FancyTreeviewClass.php:1084
 msgid "follow"
 msgstr "volg"
 
@@ -436,7 +450,7 @@ msgstr "in "
 msgid "ninth"
 msgstr "negende"
 
-#: src/FancyTreeviewClass.php:1080 src/Template/AdminTemplate.php:153
+#: src/FancyTreeviewClass.php:1085 src/Template/AdminTemplate.php:153
 msgid "ok"
 msgstr "ok"
 
@@ -551,16 +565,6 @@ msgstr "zijn gescheiden"
 #, fuzzy
 #~ msgid "daughter of"
 #~ msgstr "pleegdochter van"
-
-#, fuzzy
-#~ msgctxt "FEMALE"
-#~ msgid "died"
-#~ msgstr "zijn gescheiden"
-
-#, fuzzy
-#~ msgctxt "MALE"
-#~ msgid "died"
-#~ msgstr "zijn gescheiden"
 
 #, fuzzy
 #~ msgid "son of"
