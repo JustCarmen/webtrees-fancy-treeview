@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2015-07-23 02:49+0200\n"
-"PO-Revision-Date: 2015-07-20 14:44+0100\n"
+"PO-Revision-Date: 2015-07-23 09:00+0100\n"
 "Last-Translator: phicome <phicome@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -339,7 +339,7 @@ msgstr "et "
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "à l’âge de %s ans"
+msgstr "à l’âge de %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: src/FancyTreeviewClass.php:745
@@ -357,16 +357,14 @@ msgid "child of"
 msgstr "enfant de"
 
 #: src/FancyTreeviewClass.php:727
-#, fuzzy
 msgctxt "FEMALE"
 msgid "died"
-msgstr "ont divorcé"
+msgstr "décédée"
 
 #: src/FancyTreeviewClass.php:727
-#, fuzzy
 msgctxt "MALE"
 msgid "died"
-msgstr "ont divorcé"
+msgstr "décédé"
 
 #: src/FancyTreeviewClass.php:437
 msgid "eighth"
@@ -378,7 +376,7 @@ msgstr "cinquième"
 
 #: src/FancyTreeviewClass.php:430
 msgid "first"
-msgstr ""
+msgstr "première"
 
 #: src/FancyTreeviewClass.php:1084
 msgid "follow"
