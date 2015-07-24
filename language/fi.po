@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2015-07-23 02:49+0200\n"
-"PO-Revision-Date: 2015-07-05 23:32+0200\n"
+"PO-Revision-Date: 2015-07-23 11:39+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -23,7 +23,7 @@ msgstr " "
 #. I18N: Warning whenu using the “Check relationship between partners” configuration setting
 #: src/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr ""
+msgstr "<strong>Huomautus:</strong> tämä vaihtoehto voi olla aikaa ja/tai muistia vievää, varsinkin suurille puille. Se voi aiheuttaa hyvin hidasta sivujen latautumista tai ’suoritusaika virheen’ palvelimella. Jos huomaat tällaista käyttäytymistä, vähennä kerrallaan ladattavien sukupolven määrää tai älä käytä tätä yhdessä mahdollisuuden kanssa näyttää naimattomia henkilöitä (katso edellinen valinta). Jos sinulla on edelleen ongelmia, älä käytä tätä vaihtoehtoa lainkaan."
 
 #. I18N: Description of the module
 #: module.php:92
@@ -86,7 +86,7 @@ msgstr "Mene"
 
 #: src/FancyTreeviewClass.php:517
 msgid "He had a relation with"
-msgstr ""
+msgstr "Hänellä oli suhde henkilöön"
 
 #. I18N: %s is a number
 #: src/FancyTreeviewClass.php:444
@@ -166,7 +166,7 @@ msgstr "Valitse maasi"
 
 #: src/FancyTreeviewClass.php:520
 msgid "She had a relation with"
-msgstr ""
+msgstr "Hänellä oli suhde henkilöön"
 
 #. I18N: %s is a number
 #: src/FancyTreeviewClass.php:450
@@ -256,9 +256,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "Tämän puun vaihtoehdot on onnistuneesti päivitetty"
 
 #: src/FancyTreeviewClass.php:523
-#, fuzzy
 msgid "This individual has a relation with"
-msgstr "Tämä henkilö meni naimisiin"
+msgstr "Tällä henkilöllä on suhde henkilöön"
 
 #: src/FancyTreeviewClass.php:470
 msgid "This individual married"
@@ -303,9 +302,8 @@ msgstr "Käytä alla olevaa hakulomaketta etsiessäsi aloitus henkilöä. Onnist
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: src/Template/AdminTemplate.php:393
-#, fuzzy
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "Kun tämä vaihtoehto on käytössä, komentojono tarkistaa, onko (naimisissa olevalla) parilla samat esi-isät. Jos sukulaisuussuhde kumppanien välillä löytyy, näkyy teksti hakasulkeissa puolisoiden nimien jälkeen osoittamaan suhdetta. Huomautus: Tämä vaihtoehto voi aiheuttaa hitaampaa sivujen latautumista, varsinkin suurille puille. Jos havaitset tällaista ??käyttäytymistä, vähentää kerrallaan ladattavien sukupolven määrää (katso edellistä vaihtoehtoa)."
+msgstr "Kun tämä asetus on käytössä, komentojono tarkistaa, onko (naimisissa olevalla) parilla samat esi-isät. Jos sukulaisuussuhde kumppanien välillä löytyy, näkyy teksti hakasulkeissa puolisoiden nimien jälkeen osoittamaan suhdetta."
 
 #: src/FancyTreeviewClass.php:598
 msgctxt "FEMALE"
@@ -359,16 +357,14 @@ msgid "child of"
 msgstr "vanhemmat"
 
 #: src/FancyTreeviewClass.php:727
-#, fuzzy
 msgctxt "FEMALE"
 msgid "died"
-msgstr "erosivat"
+msgstr "kuoli"
 
 #: src/FancyTreeviewClass.php:727
-#, fuzzy
 msgctxt "MALE"
 msgid "died"
-msgstr "erosivat"
+msgstr "kuoli"
 
 #: src/FancyTreeviewClass.php:437
 msgid "eighth"
@@ -380,7 +376,7 @@ msgstr "Viidennellä"
 
 #: src/FancyTreeviewClass.php:430
 msgid "first"
-msgstr ""
+msgstr "Ensimmäisellä"
 
 #: src/FancyTreeviewClass.php:1084
 msgid "follow"
