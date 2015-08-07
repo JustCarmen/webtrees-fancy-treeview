@@ -370,13 +370,13 @@ msgstr "Kind von"
 #, fuzzy
 msgctxt "FEMALE"
 msgid "died"
-msgstr "wurden geschieden"
+msgstr "starb"
 
 #: src/FancyTreeviewClass.php:727
 #, fuzzy
 msgctxt "MALE"
 msgid "died"
-msgstr "wurden geschieden"
+msgstr "starb"
 
 #: src/FancyTreeviewClass.php:437
 msgid "eighth"
@@ -548,7 +548,7 @@ msgstr "wurden geschieden"
 
 #, fuzzy
 #~ msgid "He died"
-#~ msgstr "wurden geschieden"
+#~ msgstr "Er starb"
 
 #, fuzzy
 #~ msgid "He married"
@@ -556,7 +556,7 @@ msgstr "wurden geschieden"
 
 #, fuzzy
 #~ msgid "She died"
-#~ msgstr "wurden geschieden"
+#~ msgstr "Sie starb"
 
 #, fuzzy
 #~ msgid "She married"
