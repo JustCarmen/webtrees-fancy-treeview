@@ -28,6 +28,8 @@
 }
 
 #fancy_treeview-page h2 {
+	margin-left: 40px;
+	margin-right: 48px;
 	padding-bottom: 10px;
 }
 
@@ -63,6 +65,11 @@
 
 #fancy_treeview-page .generation-block.hidden {
 	display: none;
+}
+
+[dir=rtl] #fancy_treeview-page h2 {
+	margin-left: 48px;
+	margin-right: 40px;
 }
 
 [dir=rtl] #fancy_treeview-page #pdf {
