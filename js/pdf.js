@@ -118,6 +118,11 @@ function getPDF() {
 
 function modifyContent() {
 	var content = jQuery("#pdf-content");
+	
+	// first reset the special blockheader in the colors and clouds theme back to default
+	jQuery("table.blockheader", content).each(function () {
+		jQuery(this).replaceWith('<div class="blockheader">' + jQuery(this).html() + '</div>');
+	});
 
 	// remove or unwrap all elements we do not need in pdf display
 	jQuery(".hidden, .header-link, .tooltip-text", content).remove();
