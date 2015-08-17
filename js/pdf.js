@@ -128,7 +128,7 @@ function modifyContent() {
 	jQuery(".hidden, .header-link, .tooltip-text", content).remove();
 	jQuery(".generation.private", content).parents(".generation-block").remove();
 	jQuery(".generation-block", content).removeAttr("data-gen data-pids");
-	jQuery(".blockheader").removeClass("ui-state-default");
+	jQuery(".blockheader", content).removeClass("ui-state-default");
 	jQuery("a, span.SURN, span.date", content).contents().unwrap();
 	jQuery("a", content).remove(); //left-overs
 
