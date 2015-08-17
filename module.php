@@ -254,7 +254,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				header('Content-type: text/html; charset=UTF-8');
 				$xref = Filter::get('mid');
 				if (Filter::get('ftv_thumb')) {
-					$path = WT_DATA_DIR . '/ftv_cache/';
+					$path = WT_DATA_DIR . 'ftv_cache' . DIRECTORY_SEPARATOR;
 					if (!file_exists($path)) {
 						File::mkdir($path);
 					}

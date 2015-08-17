@@ -27,7 +27,7 @@ class PdfTemplate extends FancyTreeviewClass {
 	public function pageBody() {
 		global $WT_TREE;
 		
-		$cache_dir = WT_DATA_DIR . '/ftv_cache/';
+		$cache_dir = WT_DATA_DIR . 'ftv_cache' . DIRECTORY_SEPARATOR;
 		
 		define("_JPGRAPH_PATH", $cache_dir);
 		define("_MPDF_TEMP_PATH", $cache_dir);
