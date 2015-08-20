@@ -325,9 +325,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
 
 			static $menu;
-
 			// Function has already run
-			if ($menu !== null) {
+			if ($menu !== null && count($menu->getSubmenus()) > 0) {
 				return $menu;
 			}
 
@@ -359,7 +358,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 						$record = Individual::getInstance($FTV_ITEM['PID'], $WT_TREE);
-						if ($record) {
+						if ($record && $record->canShowName()) {
 							if ($this->module()->options('use_fullname') == true) {
 								$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'], 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
 							} else {
@@ -369,7 +368,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 						}
 					}
 
-					return $menu;
+					if (count($menu->getSubmenus()) > 0) {
+						return $menu;
+					}
 				}
 			}
 		}
