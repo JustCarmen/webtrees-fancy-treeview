@@ -98,7 +98,8 @@ class PageTemplate extends FancyTreeviewClass {
 	private function pageMessage($controller) {
 		http_response_code(404);
 		$controller->pageHeader();
-		return $this->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
+		echo $this->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
+		return;
 	}
 }
 

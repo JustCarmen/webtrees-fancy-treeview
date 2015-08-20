@@ -188,14 +188,18 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	protected function addMessage($id, $type, $hidden, $message = '') {
 		$style = $hidden ? ' style="display:none"' : '';
-
-		return
-			'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
-			'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
-			'<span aria-hidden="true">&times;</span>' .
-			'</button>' .
-			'<span class="message">' . $message . '</span>' .
-			'</div>';
+		
+		if (Theme::theme()->themeId() === '_administration') {
+			return
+				'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
+				'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
+				'<span aria-hidden="true">&times;</span>' .
+				'</button>' .
+				'<span class="message">' . $message . '</span>' .
+				'</div>';
+		} else {
+			return '<p class="ui-state-error">' . $message . '</p>';
+		}
 	}
 
 	protected function rootId() {
