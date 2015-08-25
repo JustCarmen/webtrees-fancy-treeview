@@ -111,7 +111,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 
 	// Get surname from pid
-	protected function getSurname($pid) {
+	public function getSurname($pid) {
 		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
 		$args = array(
 			'tree_id'	 => $this->tree_id,
