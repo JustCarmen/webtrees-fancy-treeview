@@ -374,7 +374,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				$html .= $this->printFact($person, 'OCCU');
 			}
 
-			$html .= $this->printParents($person) . $this->printLifespan($person);
+			$html .= $this->printParents($person) . $this->printLifespan($person) . '.';
 
 			// get a list of all the spouses
 			/*
@@ -772,10 +772,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
 				}
 			}
-		}
-
-		if ($birthdata || $deathdata) {
-			$html .= '. ';
 		}
 
 		return $html;
