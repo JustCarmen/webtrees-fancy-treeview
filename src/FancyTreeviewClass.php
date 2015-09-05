@@ -709,6 +709,47 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				'</a>' .
 			'</indexentry>';
 	}
+	
+	private function printBirthText($person, $birth_fact, $is_spouse = false) {
+		$html = '';
+		switch ($birth_fact) {
+			case 'BIRT':
+				if ($is_spouse == true) {
+					$html .= '. ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
+					}
+				} else {
+					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
+					}
+				}
+				break;
+			default: // BAPM or	CHR
+				if ($is_spouse == true) {
+					$html .= '. ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was baptized') : $html .= I18N::translateContext('PAST', 'He was baptized');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was baptized') : $html .= I18N::translateContext('PRESENT', 'He was baptized');
+					}
+				} else {
+					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PAST (MALE)', 'was baptized');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
+					}
+				}
+			break;				
+		}
+		return $html;		
+	}
 
 	private function printLifespan($person, $is_spouse = false) {
 		$html = '';
@@ -718,26 +759,20 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$birthdata = false;
 		if ($birthdate->isOK() || $person->getBirthPlace() != '') {
-			$birthdata = true;
-			if ($is_spouse == true) {
-				$html .= '. ';
-				if ($person->isDead()) {
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
-				} else {
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
-				}
-			} else {
-				$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
-				if ($person->isDead()) {
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
-				} else {
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
-				}
-			}
-
+			$birthdata = true;	
+			
+			$bapm = $person->getFirstFact('BAPM');
+			$chr  = $person->getFirstFact('CHR');
 			$birt = $person->getFirstFact('BIRT');
+			
 			if ($birt) {
+				$html .= $this->printBirthText($person, 'BIRT', $is_spouse);
 				$html .= $this->printDate($birt);
+			} else {
+				if ($bapm || $chr) {
+					$html .= $this->printBirthText($person, 'BAPM', $is_spouse);
+					$html .= $bapm ? $this->printDate($bapm) : $this->printDate($chr);
+				}			
 			}
 
 			if ($person->getBirthPlace() != '') {
