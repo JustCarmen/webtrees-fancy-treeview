@@ -19,6 +19,7 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 use Fisharebest\Webtrees\File;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\User;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 use mPDF;
 
@@ -69,6 +70,12 @@ class PdfTemplate extends FancyTreeviewClass {
 			$mpdf->setAutoTopMargin = 'stretch';
 			$mpdf->setAutoBottomMargin = 'stretch';
 			$mpdf->autoMarginPadding = 5;
+
+			$admin = User::find($WT_TREE->getPreference('WEBMASTER_USER_ID'))->getRealName();
+
+			$mpdf->setCreator($this->getTitle() . ' - a webtrees module by justcarmen.nl');
+			$mpdf->SetTitle(Filter::get('title'));
+			$mpdf->setAuthor($admin);
 
 			$mpdf->SetHTMLHeader($header);
 			$mpdf->setHTMLFooter($footer);
