@@ -188,7 +188,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	protected function addMessage($id, $type, $hidden, $message = '') {
 		$style = $hidden ? ' style="display:none"' : '';
-		
+
 		if (Theme::theme()->themeId() === '_administration') {
 			return
 				'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
@@ -686,30 +686,30 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $html;
 		}
 	}
-	
+
 	private function printName($person) {
 		return
 			'<indexentry content="' . str_replace(",", ", ", $person->getSortName()) . '">' .
-				$person->getFullName() .
+			$person->getFullName() .
 			'</indexentry>';
 	}
-	
-	private function printNameUrl($person, $xref='') {
+
+	private function printNameUrl($person, $xref = '') {
 		if ($xref) {
 			$name = ' name="' . $xref . '"';
 		} else {
 			$name = '';
 		}
-		
+
 		// we need the index entry tag for generation the index page in pdf
 		return
 			'<indexentry content="' . str_replace(",", ", ", $person->getSortName()) . '">' .
-				'<a' . $name . ' href="' . $person->getHtmlUrl() . '">' .				
-					$person->getFullName() .
-				'</a>' .
+			'<a' . $name . ' href="' . $person->getHtmlUrl() . '">' .
+			$person->getFullName() .
+			'</a>' .
 			'</indexentry>';
 	}
-	
+
 	private function printBirthText($person, $birth_fact, $is_spouse = false) {
 		$html = '';
 		switch ($birth_fact) {
@@ -746,9 +746,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
 					}
 				}
-			break;				
+				break;
 		}
-		return $html;		
+		return $html;
 	}
 
 	private function printLifespan($person, $is_spouse = false) {
@@ -759,12 +759,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$birthdata = false;
 		if ($birthdate->isOK() || $person->getBirthPlace() != '') {
-			$birthdata = true;	
-			
+			$birthdata = true;
+
 			$bapm = $person->getFirstFact('BAPM');
-			$chr  = $person->getFirstFact('CHR');
+			$chr = $person->getFirstFact('CHR');
 			$birt = $person->getFirstFact('BIRT');
-			
+
 			if ($birt) {
 				$html .= $this->printBirthText($person, 'BIRT', $is_spouse);
 				$html .= $this->printDate($birt);
@@ -772,7 +772,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				if ($bapm || $chr) {
 					$html .= $this->printBirthText($person, 'BAPM', $is_spouse);
 					$html .= $bapm ? $this->printDate($bapm) : $this->printDate($chr);
-				}			
+				}
 			}
 
 			if ($person->getBirthPlace() != '') {
