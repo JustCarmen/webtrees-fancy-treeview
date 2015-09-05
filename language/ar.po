@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2015-07-23 02:49+0200\n"
+"POT-Creation-Date: 2015-09-05 22:12+0200\n"
 "PO-Revision-Date: 2015-07-04 21:49+0200\n"
 "Last-Translator: Et3rnal\n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: src/FancyTreeviewClass.php:870
+#: src/FancyTreeviewClass.php:928
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -64,7 +64,7 @@ msgstr "خطأ: الرأس الذي ينتمي الى هذه العائلة مو
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "خطأ: اسم العائلة الذي ادخلته غير موجود في الشجرة."
 
-#: src/Template/PdfTemplate.php:89
+#: src/Template/PdfTemplate.php:105
 msgid "Error: the pdf file could not be generated."
 msgstr ""
 
@@ -83,26 +83,38 @@ msgstr "Fancy Treeview"
 msgid "Generate PDF"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:316
+#: src/FancyTreeviewClass.php:320
 msgid "Go"
 msgstr "نفذ"
 
-#: src/FancyTreeviewClass.php:517
+#: src/FancyTreeviewClass.php:521
 msgid "He had a relation with"
 msgstr ""
 
 #. I18N: %s is a number
-#: src/FancyTreeviewClass.php:444
+#: src/FancyTreeviewClass.php:448
 #, php-format
 msgid "He married %s times"
 msgstr "تزوج لي %s مرات"
 
-#: src/FancyTreeviewClass.php:698
+#: src/FancyTreeviewClass.php:737
+#, fuzzy
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "ولد"
+
+#: src/FancyTreeviewClass.php:739
+#, fuzzy
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "ولد"
+
+#: src/FancyTreeviewClass.php:720
 msgctxt "PAST"
 msgid "He was born"
 msgstr "ولد"
 
-#: src/FancyTreeviewClass.php:700
+#: src/FancyTreeviewClass.php:722
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "ولد"
@@ -121,6 +133,10 @@ msgstr "اذا قمت بتفعيل خيار \"اظهار الاماكن\", فم�
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: src/Template/AdminTemplate.php:416
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
+msgstr ""
+
+#: src/Template/PdfTemplate.php:99
+msgid "Index"
 msgstr ""
 
 #: src/Template/AdminTemplate.php:365
@@ -144,7 +160,7 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:352
+#: src/FancyTreeviewClass.php:356
 msgid "Read more"
 msgstr ""
 
@@ -170,22 +186,34 @@ msgstr "تغيير الشخص الرئيسي"
 msgid "Select your country"
 msgstr "اختر بلدك"
 
-#: src/FancyTreeviewClass.php:520
+#: src/FancyTreeviewClass.php:524
 msgid "She had a relation with"
 msgstr ""
 
 #. I18N: %s is a number
-#: src/FancyTreeviewClass.php:450
+#: src/FancyTreeviewClass.php:454
 #, php-format
 msgid "She married %s times"
 msgstr "تزوجت لي %s مرات"
 
-#: src/FancyTreeviewClass.php:698
+#: src/FancyTreeviewClass.php:737
+#, fuzzy
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "ولدت"
+
+#: src/FancyTreeviewClass.php:739
+#, fuzzy
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "ولدت"
+
+#: src/FancyTreeviewClass.php:720
 msgctxt "PAST"
 msgid "She was born"
 msgstr "ولدت"
 
-#: src/FancyTreeviewClass.php:700
+#: src/FancyTreeviewClass.php:722
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "ولدت"
@@ -219,24 +247,24 @@ msgid "Surname in page title"
 msgstr ""
 
 #. I18N: %s is an ordinal
-#: src/FancyTreeviewClass.php:446
+#: src/FancyTreeviewClass.php:450
 #, php-format
 msgid "The %s time he married"
 msgstr "في زواجه الـ %s"
 
 #. I18N: %s is an ordinal
-#: src/FancyTreeviewClass.php:452
+#: src/FancyTreeviewClass.php:456
 #, php-format
 msgid "The %s time she married"
 msgstr "في زواجها الـ %s "
 
 #. I18N: %s is an ordinal
-#: src/FancyTreeviewClass.php:458
+#: src/FancyTreeviewClass.php:462
 #, php-format
 msgid "The %s time this individual married"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:360
+#: src/FancyTreeviewClass.php:364
 msgid "The details of this generation are private."
 msgstr "تفاصيل هذا الجيل خاصة"
 
@@ -261,16 +289,16 @@ msgstr "خطأ: لا يوجد شخص بالمعرف %s في هذه العائل�
 msgid "The settings for this tree are succesfully updated"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:523
+#: src/FancyTreeviewClass.php:527
 msgid "This individual has a relation with"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:470
+#: src/FancyTreeviewClass.php:474
 msgid "This individual married"
 msgstr ""
 
 #. I18N: %s is a number
-#: src/FancyTreeviewClass.php:456
+#: src/FancyTreeviewClass.php:460
 #, php-format
 msgid "This individual married %s times"
 msgstr ""
@@ -316,159 +344,159 @@ msgstr ""
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
 msgstr "عند تفعيل هذا الخيار، سيقوم البرنامج بفحص اسلاف كل زوجينوفي حاله وجود قرابه بينهم حيثث سيتم تأشير ذالك بين قوسينملاحظه: هذا الخيار يمكن ان يؤثر على سرعة التطبيق خصوصا في المشجرات الكبيرة، في حالهة ملاحظه مثل هكذا اسم استخد الخيار اعلاه لتقليل عدد الاجيال المحمله مسبقا."
 
-#: src/FancyTreeviewClass.php:598
+#: src/FancyTreeviewClass.php:602
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:601
+#: src/FancyTreeviewClass.php:605
 msgctxt "MALE"
 msgid "adopted child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:663
+#: src/FancyTreeviewClass.php:667
 msgid "adopted child of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:654
+#: src/FancyTreeviewClass.php:658
 msgid "adopted daughter of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:645
+#: src/FancyTreeviewClass.php:649
 msgid "adopted son of"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:505 src/FancyTreeviewClass.php:544
-#: src/FancyTreeviewClass.php:557 src/FancyTreeviewClass.php:574
-#: src/FancyTreeviewClass.php:676 src/FancyTreeviewClass.php:726
+#: src/FancyTreeviewClass.php:509 src/FancyTreeviewClass.php:548
+#: src/FancyTreeviewClass.php:561 src/FancyTreeviewClass.php:578
+#: src/FancyTreeviewClass.php:680 src/FancyTreeviewClass.php:788
 msgid "and "
 msgstr ""
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
-#: src/FancyTreeviewClass.php:743
+#: src/FancyTreeviewClass.php:805
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr "بعمر %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
-#: src/FancyTreeviewClass.php:745
+#: src/FancyTreeviewClass.php:807
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "بعمر %s"
 
-#: src/FancyTreeviewClass.php:1086
+#: src/FancyTreeviewClass.php:1152
 msgid "cancel"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:665
+#: src/FancyTreeviewClass.php:669
 msgid "child of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:727
+#: src/FancyTreeviewClass.php:789
 #, fuzzy
 msgctxt "FEMALE"
 msgid "died"
 msgstr "أنفصلا "
 
-#: src/FancyTreeviewClass.php:727
+#: src/FancyTreeviewClass.php:789
 #, fuzzy
 msgctxt "MALE"
 msgid "died"
 msgstr "أنفصلا "
 
-#: src/FancyTreeviewClass.php:437
+#: src/FancyTreeviewClass.php:441
 msgid "eighth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:434
+#: src/FancyTreeviewClass.php:438
 msgid "fifth"
 msgstr "الخامس"
 
-#: src/FancyTreeviewClass.php:430
+#: src/FancyTreeviewClass.php:434
 msgid "first"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:1084
+#: src/FancyTreeviewClass.php:1150
 msgid "follow"
 msgstr "تعقب "
 
-#: src/FancyTreeviewClass.php:588
+#: src/FancyTreeviewClass.php:592
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:591
+#: src/FancyTreeviewClass.php:595
 msgctxt "MALE"
 msgid "foster child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:661
+#: src/FancyTreeviewClass.php:665
 msgid "foster child of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:652
+#: src/FancyTreeviewClass.php:656
 msgid "foster daughter of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:643
+#: src/FancyTreeviewClass.php:647
 msgid "foster son of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:433
+#: src/FancyTreeviewClass.php:437
 msgid "fourth"
 msgstr "الرابع"
 
-#: src/FancyTreeviewClass.php:565
+#: src/FancyTreeviewClass.php:569
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "لديه"
 
-#: src/FancyTreeviewClass.php:547 src/FancyTreeviewClass.php:567
+#: src/FancyTreeviewClass.php:551 src/FancyTreeviewClass.php:571
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "لديه"
 
-#: src/FancyTreeviewClass.php:559
+#: src/FancyTreeviewClass.php:563
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "لديه"
 
-#: src/FancyTreeviewClass.php:545 src/FancyTreeviewClass.php:561
+#: src/FancyTreeviewClass.php:549 src/FancyTreeviewClass.php:565
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "لديه"
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:876
+#: src/FancyTreeviewClass.php:934
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "في "
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:879
+#: src/FancyTreeviewClass.php:937
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "في "
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:897
+#: src/FancyTreeviewClass.php:955
 msgctxt "before placesnames"
 msgid "in "
 msgstr "في "
 
-#: src/FancyTreeviewClass.php:438
+#: src/FancyTreeviewClass.php:442
 msgid "ninth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:1085 src/Template/AdminTemplate.php:153
+#: src/FancyTreeviewClass.php:1151 src/Template/AdminTemplate.php:153
 msgid "ok"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:873
+#: src/FancyTreeviewClass.php:931
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "في "
@@ -481,47 +509,67 @@ msgstr ""
 msgid "search"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:431
+#: src/FancyTreeviewClass.php:435
 msgid "second"
 msgstr "الثاني"
 
-#: src/FancyTreeviewClass.php:436
+#: src/FancyTreeviewClass.php:440
 msgid "seventh"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:435
+#: src/FancyTreeviewClass.php:439
 msgid "sixth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:439
+#: src/FancyTreeviewClass.php:443
 msgid "tenth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:432
+#: src/FancyTreeviewClass.php:436
 msgid "third"
 msgstr "الثالث"
 
-#: src/FancyTreeviewClass.php:705
+#: src/FancyTreeviewClass.php:746
+msgctxt "PRESENT (MALE)"
+msgid "was bapitized"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:744
+msgctxt "PAST (FEMALE)"
+msgid "was baptized"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:744
+msgctxt "PAST (MALE)"
+msgid "was baptized"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:746
+msgctxt "PRESENT (FEMALE)"
+msgid "was baptized"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:727
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "ولدت"
 
-#: src/FancyTreeviewClass.php:705
+#: src/FancyTreeviewClass.php:727
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "ولد"
 
-#: src/FancyTreeviewClass.php:707
+#: src/FancyTreeviewClass.php:729
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "ولدت"
 
-#: src/FancyTreeviewClass.php:707
+#: src/FancyTreeviewClass.php:729
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "ولد"
 
-#: src/FancyTreeviewClass.php:505
+#: src/FancyTreeviewClass.php:509
 msgid "were divorced"
 msgstr "أنفصلا "
 
