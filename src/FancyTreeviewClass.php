@@ -369,7 +369,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		if ($person->CanShow()) {
 			$resize = $this->options('resize_thumbs') == 1 ? true : false;
-			$html = '<div class="parents">' . $this->printThumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<a id="' . $person->getXref() . '" href="' . $person->getHtmlUrl() . '"><p class="desc">' . $person->getFullName() . '</a>';
+			$html = '<div class="parents">' . $this->printThumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<p class="desc"><a id="' . $person->getXref() . '" href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
 			if ($this->options('show_occu') == true) {
 				$html .= $this->printFact($person, 'OCCU');
 			}
