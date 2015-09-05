@@ -93,7 +93,13 @@ class PdfTemplate extends FancyTreeviewClass {
 				}
 				$i++;
 			}
-
+			
+			$index = '
+				<pagebreak type="next-odd" />
+				<h2>' . I18N::translate('Index') . '</h2>
+				<columns column-count="2" column-gap="5" />
+				<indexinsert usedivletters="on" links="on" collation="' . WT_LOCALE . '.utf8" collationgroup="' . I18N::collation() . '" />';
+			$mpdf->writeHTML($index);
 			$mpdf->Output(Filter::get('title') . '.pdf', 'D');
 		} else {
 			echo $this->addMessage('alert', 'danger', false, I18N::translate('Error: the pdf file could not be generated.'));

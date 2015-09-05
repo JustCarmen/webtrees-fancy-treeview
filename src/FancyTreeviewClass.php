@@ -369,7 +369,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		if ($person->CanShow()) {
 			$resize = $this->options('resize_thumbs') == 1 ? true : false;
-			$html = '<div class="parents">' . $this->printThumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<p class="desc"><a id="' . $person->getXref() . '" href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
+			$html = '<div class="parents">' . $this->printThumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
 			if ($this->options('show_occu') == true) {
 				$html .= $this->printFact($person, 'OCCU');
 			}
@@ -476,7 +476,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 
-		$html .= ' <a href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
+		$html .= ' ' . $this->printNameUrl($spouse);
 		$html .= $this->printRelationship($person, $spouse);
 		$html .= $this->printParents($spouse);
 
@@ -506,7 +506,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 			$divorce = $family->getFirstFact('DIV');
 			if ($divorce) {
-				$html .= $person->getFullName() . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
+				$html .= $this->printName($person) . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
 			}
 		}
 		return $html;
@@ -528,7 +528,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				break;
 		}
 
-		$html .= ' <a href="' . $spouse->getHtmlUrl() . '">' . $spouse->getFullName() . '</a>';
+		$html .= ' ' . $this->printNameUrl($spouse);
 		$html .= $this->printRelationship($person, $spouse);
 		$html .= $this->printParents($spouse);
 
@@ -543,9 +543,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$match = null;
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1] == 0) {
-			$html .= '<div class="children"><p>' . $person->getFullName() . ' ';
+			$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
 			if ($spouse && $spouse->CanShow()) {
-				$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
+				$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
 				$html .= I18N::translateContext('Two parents/one child', 'had');
 			} else {
 				$html .= I18N::translateContext('One parent/one child', 'had');
@@ -555,10 +555,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$children = $family->getChildren();
 			if ($children) {
 				if ($this->checkPrivacy($children)) {
-					$html .= '<div class="children"><p>' . $person->getFullName() . ' ';
+					$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
 					// needs multiple translations for the word 'had' to serve different languages.
 					if ($spouse && $spouse->CanShow()) {
-						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName() . ' ';
+						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
 						if (count($children) > 1) {
 							$html .= I18N::translateContext('Two parents/multiple children', 'had');
 						} else {
@@ -573,14 +573,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
 				} else {
-					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $person->getFullName();
+					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $this->printName($person);
 					if ($spouse && $spouse->CanShow()) {
-						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $spouse->getFullName();
+						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
 					}
 					$html .= ':<ol>';
 
 					foreach ($children as $child) {
-						$html .= '<li class="child"><a href="' . $child->getHtmlUrl() . '">' . $child->getFullName() . '</a>';
+						$html .= '<li class="child">' . $this->printNameUrl($child);
 						$pedi = $this->checkPedi($child, $family);
 
 						if ($pedi) {
@@ -674,17 +674,40 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$mother = $parents->getWife();
 
 			if ($father) {
-				$html .= $father->getFullName();
+				$html .= $this->printName($father);
 			}
 			if ($father && $mother) {
 				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
 			}
 			if ($mother) {
-				$html .= $mother->getFullName();
+				$html .= $this->printName($mother);
 			}
 
 			return $html;
 		}
+	}
+	
+	private function printName($person) {
+		return
+			'<indexentry content="' . str_replace(",", ", ", $person->getSortName()) . '">' .
+				$person->getFullName() .
+			'</indexentry>';
+	}
+	
+	private function printNameUrl($person, $xref='') {
+		if ($xref) {
+			$name = ' name="' . $xref . '"';
+		} else {
+			$name = '';
+		}
+		
+		// we need the index entry tag for generation the index page in pdf
+		return
+			'<indexentry content="' . str_replace(",", ", ", $person->getSortName()) . '">' .
+				'<a' . $name . ' href="' . $person->getHtmlUrl() . '">' .				
+					$person->getFullName() .
+				'</a>' .
+			'</indexentry>';
 	}
 
 	private function printLifespan($person, $is_spouse = false) {
@@ -776,7 +799,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			if ($resize == true) {
 				$mediasrc = $resize_format == 1 ? $mediaobject->getServerFilename('thumb') : $mediaobject->getServerFilename('main');
 				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
-				$mediatitle = strip_tags($person->getFullName());
+				$mediatitle = strip_tags($this->printName($person));
 
 				$type = $mediaobject->mimeType();
 				if ($type == 'image/jpeg' || $type == 'image/png') {

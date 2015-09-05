@@ -1632,6 +1632,12 @@ function Close() {
 	if (count($this->cellBorderBuffer)) { $this->printcellbuffer(); }	// *TABLES*
 	if ($this->tablebuffer) { $this->printtablebuffer(); }	// *TABLES*
 
+	if ($this->ColActive) {
+		$this->SetColumns(0);
+		$this->ColActive = 0; 
+		if (count($this->columnbuffer)) { $this->printcolumnbuffer(); }
+	}
+
 	// BODY Backgrounds
 	$s = '';
 
@@ -1973,6 +1979,11 @@ function AddPage($orientation='',$condition='', $resetpagenum='', $pagenumstyle=
 	$this->keep_block_together = 0;
 
 	$save_cols = false;
+	if ($this->ColActive) {
+		$save_cols = true;
+		$save_nbcol = $this->NbCol;	// other values of gap and vAlign will not change by setting Columns off
+		$this->SetColumns(0);
+	}
 
 
 	$family=$this->FontFamily;
@@ -2070,6 +2081,11 @@ function AddPage($orientation='',$condition='', $resetpagenum='', $pagenumstyle=
 	if($save_vis!='visible')
 		$this->SetVisibility($save_vis);
 
+	if ($save_cols) {
+		// Restore columns
+		$this->SetColumns($save_nbcol,$this->colvAlign,$this->ColGap);
+	}
+	if ($this->ColActive) { $this->SetCol(0); }
 
 
    	//RESET BLOCK BORDER TOP
@@ -2972,6 +2988,8 @@ function Link($x,$y,$w,$h,$link) {
 	//Put a link on the page
 	$this->PageLinks[$this->page][]= $l;
 	// Save cross-reference to Column buffer
+	$ref = count($this->PageLinks[$this->page])-1;	// *COLUMNS*
+	$this->columnLinks[$this->CurrCol][INTVAL($this->x)][INTVAL($this->y)] = $ref;	// *COLUMNS*
 
 }
 
@@ -3281,6 +3299,20 @@ function Cell($w,$h=0,$txt='',$border=0,$ln=0,$align='',$fill=0,$link='', $curre
 	// Test: to put border around cell as it is specified: $border='LRTB'; 
 
 
+	// COLS
+	// COLUMN CHANGE
+	if ($this->CurrCol != $oldcolumn) {
+		if ($currentx) { 
+			$currentx += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+		} 
+		$this->x += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+	}
+
+	// COLUMNS Update/overwrite the lowest bottom of printing y value for a column
+	if ($this->ColActive) {
+		if ($h) { $this->ColDetails[$this->CurrCol]['bottom_margin'] = $this->y+$h; }
+		else { $this->ColDetails[$this->CurrCol]['bottom_margin'] = $this->y+$this->divheight; }
+	}
 
 
 	if($w==0) $w = $this->w-$this->rMargin-$this->x;
@@ -4668,6 +4700,7 @@ function finishFlowingBlock($endofblock=false, $next='') {
 	// COLS
 	$oldcolumn = $this->CurrCol;
 
+	if ($this->ColActive && !$is_table) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 
 	// Print out each chunk
 
@@ -4810,16 +4843,28 @@ function finishFlowingBlock($endofblock=false, $next='') {
 		}
 
 
+		// COLS
+		// COLUMN CHANGE
+		if ($this->CurrCol != $oldcolumn) {
+			$currentx += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+			$this->x += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+			$oldcolumn = $this->CurrCol;
+		}
+
+
+		if ($this->ColActive && !$is_table) { $this->breakpoints[$this->CurrCol][] = $this->y; }
 
 		// TOP MARGIN
 		if ($newblock && ($blockstate==1 || $blockstate==3) && ($this->blk[$this->blklvl]['margin_top']) && $lineCount == 0 && !$is_table) { 
 			$this->DivLn($this->blk[$this->blklvl]['margin_top'],$this->blklvl-1,true,$this->blk[$this->blklvl]['margin_collapse']); 
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 		}
 
 		if ($newblock && ($blockstate==1 || $blockstate==3) && $lineCount == 0 && !$is_table) { 
 			$this->blk[$this->blklvl]['y0'] = $this->y;
 			$this->blk[$this->blklvl]['startpage'] = $this->page;
 			if ($this->blk[$this->blklvl]['float']) { $this->blk[$this->blklvl]['float_start_y'] = $this->y; }
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 		}
 
 	// Paragraph INDENT
@@ -4834,6 +4879,7 @@ function finishFlowingBlock($endofblock=false, $next='') {
 	if (($newblock) && ($blockstate==1 || $blockstate==3) && (($this->blk[$this->blklvl]['padding_top']) || ($this->blk[$this->blklvl]['border_top'])) && ($lineCount == 0) && (!$is_table)) { 
 			// $state = 0 normal; 1 top; 2 bottom; 3 top and bottom
 			$this->DivLn($this->blk[$this->blklvl]['padding_top'] + $this->blk[$this->blklvl]['border_top']['w'],-3,true,false,1); 
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 			$this->x = $currentx;
 	}
 
@@ -5122,6 +5168,7 @@ function finishFlowingBlock($endofblock=false, $next='') {
 			$this->DivLn($this->blk[$this->blklvl]['padding_bottom'] + $this->blk[$this->blklvl]['border_bottom']['w'] + $extra,-3,true,false,2); 
 			$this->x = $currentx;
 
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 
 	}
 
@@ -5134,6 +5181,7 @@ function finishFlowingBlock($endofblock=false, $next='') {
 	if (($endofblock) && ($blockstate > 1) && ($this->blk[$this->blklvl]['margin_bottom']) && (!$is_table)) { 
 		if($this->y+$this->blk[$this->blklvl]['margin_bottom'] < $this->PageBreakTrigger and !$this->InFooter) {
 		  $this->DivLn($this->blk[$this->blklvl]['margin_bottom'],$this->blklvl-1,true,$this->blk[$this->blklvl]['margin_collapse']); 
+		  if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 		}
 	}
 
@@ -5161,6 +5209,7 @@ function printobjectbuffer($is_table=false, $blockdir=false) {
 			$y = $objattr['OUTER-Y'];
 			$this->y = $y - $this->FontSize/2;
 			$this->x = $x;
+			if ($objattr['type'] == 'indexentry') { $this->IndexEntry($objattr['CONTENT']); }	// *INDEX*
 		   }
 		   else { 
 			$y = $objattr['OUTER-Y'];
@@ -5575,6 +5624,7 @@ function WriteFlowingBlock( $s, $sOTLdata) {	// mPDF 5.7.1
 
 	// COLS
 	$oldcolumn = $this->CurrCol;
+	if ($this->ColActive && !$is_table) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 
    if ($is_table) { 
 	$ipaddingL = 0; 
@@ -6112,10 +6162,20 @@ if (!$table_draft) {
 		}
 
 
+		// COLS
+		// COLUMN CHANGE
+		if ($this->CurrCol != $oldcolumn) {
+			$currentx += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+			$this->x += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+			$oldcolumn = $this->CurrCol;
+		}
+
+		if ($this->ColActive && !$is_table) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 
 		// TOP MARGIN
 		if (($newblock) && ($blockstate==1 || $blockstate==3) && ($this->blk[$this->blklvl]['margin_top']) && ($lineCount == 1) && (!$is_table)) { 
 			$this->DivLn($this->blk[$this->blklvl]['margin_top'],$this->blklvl-1,true,$this->blk[$this->blklvl]['margin_collapse']); 
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 		}
 
 
@@ -6130,6 +6190,7 @@ if (!$table_draft) {
 		if (($newblock) && ($blockstate==1 || $blockstate==3) && (($this->blk[$this->blklvl]['padding_top']) || ($this->blk[$this->blklvl]['border_top'])) && ($lineCount == 1) && (!$is_table)) { 
 			// $state = 0 normal; 1 top; 2 bottom; 3 top and bottom
 			$this->DivLn($this->blk[$this->blklvl]['padding_top'] + $this->blk[$this->blklvl]['border_top']['w'],-3,true,false,1);
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 		}
 
 		$arraysize = count($chunkorder);
@@ -6442,6 +6503,13 @@ function Image($file,$x,$y,$w=0,$h=0,$type='',$link='',$paint=true, $constrain=t
 		$y = $this->tMargin;	// mPDF 5.7.3
 		$changedpage = true;
 	  }
+	  // COLS
+	  // COLUMN CHANGE
+	  if ($this->CurrCol != $oldcolumn) {
+		$y = $this->y0;
+		$x += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+		$this->x += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+	  }
 	}	// end of IF constrain
 
 	if ($info['type']=='svg') { 
@@ -6733,6 +6801,8 @@ function DivLn($h,$level=-3,$move_y=true,$collapsible=false,$state=0) {
 	if ($collapsible && (sprintf("%0.4f", $this->y)==sprintf("%0.4f", $this->tMargin)) && (!$this->ColActive)) { return; }
 
 	// mPDF 6 Columns
+ //   if ($collapsible && (sprintf("%0.4f", $this->y)==sprintf("%0.4f", $this->y0)) && ($this->ColActive) && $this->CurrCol == 0) { return; }	// *COLUMNS*
+	if ($collapsible && (sprintf("%0.4f", $this->y)==sprintf("%0.4f", $this->y0)) && ($this->ColActive)) { return; }	// *COLUMNS*
 
 	// Still use this method if columns or keep-with-table, as it allows repositioning later
 	// otherwise, now uses PaintDivBB()
@@ -9260,21 +9330,6 @@ function _getImage(&$file, $firsttime=true, $allowvector=true, $orig_srcpath=fal
 		return $info;
 	}
 
-	// BMP (Windows Bitmap)
-	else if ($type == 'bmp') {
-		if (!class_exists('bmp', false)) { include(_MPDF_PATH.'classes/bmp.php'); }
-		if (empty($this->bmp)) { $this->bmp = new bmp($this); }
-		$info = $this->bmp->_getBMPimage($data, $file);
-		if (isset($info['error'])) {
-			return $this->_imageError($file, $firsttime, $info['error']); 
-		}
-		if ($firsttime) {
-			$info['i']=count($this->images)+1;
-			$info['interpolation']=$interpolation;	// mPDF 6
-			$this->images[$file]=$info;
-		}
-		return $info;
-	}
 
 	// UNKNOWN TYPE - try GD imagecreatefromstring
 	else {
@@ -9693,6 +9748,34 @@ function _out($s,$ln=true) {
 	if($this->state==2) {
 	   if ($this->bufferoutput) {
 		$this->headerbuffer.= $s."\n";
+	   }
+	   else if (($this->ColActive) && !$this->processingHeader && !$this->processingFooter) {
+		// Captures everything in buffer for columns; Almost everything is sent from fn. Cell() except:
+		// Images sent from Image() or
+		// later sent as _out($textto) in printbuffer
+		// Line()
+		if (preg_match('/q \d+\.\d\d+ 0 0 (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ cm \/(I|FO)\d+ Do Q/',$s,$m)) {	// Image data 
+			$h = ($m[1]/_MPDFK);
+			// Update/overwrite the lowest bottom of printing y value for a column
+			$this->ColDetails[$this->CurrCol]['bottom_margin'] = $this->y+$h;
+		}
+		else if (preg_match('/\d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ ([\-]{0,1}\d+\.\d\d+) re/',$s,$m) && $this->tableLevel>0) { // Rect in table
+			$h = ($m[1]/_MPDFK);
+			// Update/overwrite the lowest bottom of printing y value for a column
+			$this->ColDetails[$this->CurrCol]['bottom_margin'] = max($this->ColDetails[$this->CurrCol]['bottom_margin'],($this->y+$h));
+		}
+		else { 	// Td Text Set in Cell()
+			if (isset($this->ColDetails[$this->CurrCol]['bottom_margin'])) { $h = $this->ColDetails[$this->CurrCol]['bottom_margin'] - $this->y; }
+			else { $h = 0; }
+		}
+		if ($h < 0) { $h = -$h; }
+		$this->columnbuffer[] = array(
+		's' => $s,							// Text string to output 
+		'col' => $this->CurrCol, 				// Column when printed 
+		'x' => $this->x, 						// x when printed 
+		'y' => $this->y,					 	// this->y when printed (after column break) 
+		'h' => $h						 	// actual y at bottom when printed = y+h  
+		);
 	   }
 	   else if ($this->table_rotate && !$this->processingHeader && !$this->processingFooter) {
 		// Captures eveything in buffer for rotated tables; 
@@ -10659,6 +10742,22 @@ function TableHeaderFooter($content='',$tablestartpage='',$tablestartcolumn ='',
 
     $y = $this->y;
 
+	// If outside columns, this is done in PaintDivBB
+	if ($this->ColActive) {
+	//OUTER FILL BGCOLOR of DIVS
+	 if ($this->blklvl > 0) {
+	  $firstblockfill = $this->GetFirstBlockFill();
+	  if ($firstblockfill && $this->blklvl >= $firstblockfill) {
+		$divh = $content[$i][0]['h'];
+		$bak_x = $this->x;
+		$this->DivLn($divh,-3,false);
+		// Reset current block fill
+		$bcor = $this->blk[$this->blklvl]['bgcolorarray'];
+		$this->SetFColor($bcor);
+		$this->x = $bak_x;
+	  }
+	 }
+	}
 
     $colctr = 0;
     foreach($content[$i] as $tablehf) {
@@ -10672,6 +10771,15 @@ function TableHeaderFooter($content='',$tablestartpage='',$tablestartcolumn ='',
 	}
 	else if (($this->mirrorMargins) && ($tablestartpage == 'EVEN') && (($this->page)%2==1)) {	// ODD
 		$x = $x +$this->MarginCorrection;
+	}
+	// Added to correct for Columns
+	if ($this->ColActive) {
+	   if ($this->directionality == 'rtl') {	// *OTL*
+		$x -= ($this->CurrCol - $tablestartcolumn) * ($this->ColWidth+$this->ColGap);	// *OTL*
+	   }	// *OTL*
+	   else {	// *OTL*
+		$x += ($this->CurrCol - $tablestartcolumn) * ($this->ColWidth+$this->ColGap);
+	   }	// *OTL*
 	}
 
 	if ($colctr==1) { $x0 = $x; }
@@ -12348,10 +12456,67 @@ function OpenTag($tag,$attr,&$ahtml,&$ihtml) {	// mPDF 6
 
 
 
+     case 'INDEXENTRY':
+	if (isset($attr['CONTENT']) && $attr['CONTENT']) {
+		if (isset($attr['XREF']) && $attr['XREF']) {
+			$this->IndexEntry(htmlspecialchars_decode($attr['CONTENT'],ENT_QUOTES),$attr['XREF']);
+			break;
+		}
+		$objattr = array();
+		$objattr['CONTENT'] = htmlspecialchars_decode($attr['CONTENT'],ENT_QUOTES);
+		$objattr['type'] = 'indexentry';
+		$objattr['vertical-align'] = 'T';
+		$e = "\xbb\xa4\xactype=indexentry,objattr=".serialize($objattr)."\xbb\xa4\xac";
+		if($this->tableLevel) { $this->cell[$this->row][$this->col]['textbuffer'][] = array($e); } 	// *TABLES*
+		else  {	// *TABLES*
+			$this->textbuffer[] = array($e);
+		}	// *TABLES*
+	}
+	break;
+
+     
+     case 'INDEXINSERT':
+	if (isset($attr['COLLATION'])) { $indexCollationLocale = $attr['COLLATION']; } else { $indexCollationLocale = ''; }
+	if (isset($attr['COLLATION-GROUP'])) { $indexCollationGroup = $attr['COLLATION-GROUP']; } else { $indexCollationGroup = ''; }
+	if (isset($attr['USEDIVLETTERS']) && (strtoupper($attr['USEDIVLETTERS'])=='OFF' || $attr['USEDIVLETTERS']==-1 || $attr['USEDIVLETTERS']==='0')) { $usedivletters = 0; }
+	else { $usedivletters = 1; }
+	if (isset($attr['LINKS']) && (strtoupper($attr['LINKS'])=='ON' || $attr['LINKS']==1)) { $links = true; }
+	else { $links = false; }
+	$this->InsertIndex($usedivletters, $links, $indexCollationLocale, $indexCollationGroup);
+
+	break;
 
 
 
 
+
+    case 'COLUMNS': //added custom-tag
+	if (isset($attr['COLUMN-COUNT']) && ($attr['COLUMN-COUNT'] || $attr['COLUMN-COUNT']==='0')) {
+		// Close any open block tags
+		for ($b= $this->blklvl;$b>0;$b--) { $this->CloseTag($this->blk[$b]['tag'],$ahtml,$ihtml); }
+		if(!empty($this->textbuffer))  {	//Output previously buffered content
+    		  	$this->printbuffer($this->textbuffer);
+      	  	$this->textbuffer=array(); 
+      	}
+
+		if (isset($attr['VALIGN']) && $attr['VALIGN']) { 
+			if ($attr['VALIGN'] == 'J') { $valign = 'J'; }
+			else { $valign = $align[$attr['VALIGN']]; }
+		}
+ 		else { $valign = ''; }
+		if (isset($attr['COLUMN-GAP']) && $attr['COLUMN-GAP']) { $this->SetColumns($attr['COLUMN-COUNT'],$valign,$attr['COLUMN-GAP']); }
+		else { $this->SetColumns($attr['COLUMN-COUNT'],$valign); }
+	}
+	$this->ignorefollowingspaces = true;
+	break;
+
+    case 'COLUMN_BREAK': //custom-tag
+    case 'COLUMNBREAK': //custom-tag
+    case 'NEWCOLUMN': //custom-tag
+	$this->ignorefollowingspaces = true;
+	$this->NewColumn();
+	$this->ColumnAdjust = false;	// disables all column height adjustment for the page.
+	break;
 
 
 
@@ -13733,6 +13898,7 @@ function OpenTag($tag,$attr,&$ahtml,&$ihtml) {	// mPDF 6
 	$this->tdbegin = false;
 	$this->lastoptionaltag = '';
 	// Disable vertical justification in columns
+	if ($this->ColActive) { $this->colvAlign = ''; }	// *COLUMNS*
 	if ($this->lastblocklevelchange == 1) { $blockstate = 1; }	// Top margins/padding only
 	else if ($this->lastblocklevelchange < 1) { $blockstate = 0; }	// NO margins/padding
 	// called from block after new div e.g. <div> ... <table> ...    Outputs block top margin/border and padding
@@ -15451,6 +15617,7 @@ function CloseTag($tag,&$ahtml,&$ihtml) {	// mPDF 6
 	$this->_fixTableBorders($this->table[$this->tableLevel][$this->tbctr[$this->tableLevel]]);
 
 
+	if ($this->ColActive) { $this->table_rotate = 0; }	// *COLUMNS*
 	if ($this->table_rotate <> 0) {
 		$this->tablebuffer = '';
 		// Max width for rotated table
@@ -16460,6 +16627,21 @@ function printbuffer($arrayaux,$blockstate=0,$is_table=false,$table_draft=false,
 				$old_height = 0;
 		}
 		$this->x = $bak_x;
+		// COLS
+		// OR COLUMN CHANGE
+		if ($this->CurrCol != $oldcolumn) {
+			if ($this->directionality == 'rtl') {	// *OTL*
+				$bak_x -= ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);	// *OTL*
+			}	// *OTL*
+			else {	// *OTL*
+				$bak_x += ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);
+			}	// *OTL*
+			$this->x = $bak_x;
+			$oldcolumn = $this->CurrCol;
+			$y = $this->y0 - $paint_ht_corr ;
+			$this->oldy = $this->y0 - $paint_ht_corr ;
+			$old_height = 0;
+		}
 
 	}
 
@@ -16480,6 +16662,7 @@ function printbuffer($arrayaux,$blockstate=0,$is_table=false,$table_draft=false,
 		}
 		else if (!$is_table) {
 			$this->DivLn($this->lineheight); 
+			if ($this->ColActive) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 		}
 	  	// Added to correct for OddEven Margins
    	  	if  ($this->page != $oldpage) {
@@ -16492,6 +16675,21 @@ function printbuffer($arrayaux,$blockstate=0,$is_table=false,$table_draft=false,
 				$old_height = 0;
 		}
 		$this->x = $bak_x;
+		// COLS
+		// OR COLUMN CHANGE
+		if ($this->CurrCol != $oldcolumn) {
+			if ($this->directionality == 'rtl') {	// *OTL*
+				$bak_x -= ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);	// *OTL*
+			}	// *OTL*
+			else {	// *OTL*
+				$bak_x += ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);
+			}	// *OTL*
+			$this->x = $bak_x;
+			$oldcolumn = $this->CurrCol;
+			$y = $this->y0 - $paint_ht_corr ;
+			$this->oldy = $this->y0 - $paint_ht_corr ;
+			$old_height = 0;
+		}
 		$this->newFlowingBlock( $this->divwidth,$this->divheight,$align,$is_table,$blockstate,false,$blockdir,$table_draft);
          }
          else {
@@ -16508,6 +16706,21 @@ function printbuffer($arrayaux,$blockstate=0,$is_table=false,$table_draft=false,
 				$this->oldy = $this->tMargin - $paint_ht_corr ;
 				$old_height = 0;
 		  }
+		// COLS
+		// OR COLUMN CHANGE
+		if ($this->CurrCol != $oldcolumn) {
+			if ($this->directionality == 'rtl') {	// *OTL*
+				$bak_x -= ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);	// *OTL*
+			}	// *OTL*
+			else {	// *OTL*
+				$bak_x += ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);
+			}	// *OTL*
+			$this->x = $bak_x;
+			$oldcolumn = $this->CurrCol;
+			$y = $this->y0 - $paint_ht_corr ;
+			$this->oldy = $this->y0 - $paint_ht_corr ;
+			$old_height = 0;
+		}
 	    }
 
 
@@ -16528,6 +16741,21 @@ function printbuffer($arrayaux,$blockstate=0,$is_table=false,$table_draft=false,
 				$old_height = 0;
 		  }
 
+		// COLS
+		// OR COLUMN CHANGE
+		if ($this->CurrCol != $oldcolumn) {
+			if ($this->directionality == 'rtl') {	// *OTL*
+				$bak_x -= ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);	// *OTL*
+			}	// *OTL*
+			else {	// *OTL*
+				$bak_x += ($this->CurrCol - $oldcolumn) * ($this->ColWidth+$this->ColGap);
+			}	// *OTL*
+			$this->x = $bak_x;
+			$oldcolumn = $this->CurrCol;
+			$y = $this->y0 - $paint_ht_corr ;
+			$this->oldy = $this->y0 - $paint_ht_corr ;
+			$old_height = 0;
+		}
 
 	}
 
@@ -16625,6 +16853,7 @@ function _setBorderLine($b, $k=1) {
 
 function PaintDivBB($divider='',$blockstate=0,$blvl=0) {
 	// Borders & backgrounds are done elsewhere for columns - messes up the repositioning in printcolumnbuffer
+	if ($this->ColActive) { return ; }	// *COLUMNS*
 	if ($this->keep_block_together ) { return ; }	// mPDF 6
 	$save_y = $this->y;
 	if (!$blvl) { $blvl = $this->blklvl; }
@@ -17427,6 +17656,7 @@ function PaintDivLnBorder($state=0,$blvl=0,$h) {
 
 function PaintImgBorder($objattr,$is_table) {
 	// Borders are disabled in columns - messes up the repositioning in printcolumnbuffer
+	if ($this->ColActive) { return ; }	// *COLUMNS*
 	if ($is_table) { $k = $this->shrin_k; } else { $k = 1; }
 	$h = (isset($objattr['BORDER-HEIGHT']) ? $objattr['BORDER-HEIGHT'] : 0);
 	$w = (isset($objattr['BORDER-WIDTH']) ? $objattr['BORDER-WIDTH'] : 0);
@@ -20185,6 +20415,7 @@ function _tableWrite(&$table, $split=false, $startrow=0, $startcol=0, $splitpg=0
 	$numcols = $table['nc'];
 	$numrows = $table['nr'];
 	$maxbwtop = 0;
+	if ($this->ColActive && $level==1) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 
 	if (!$split || ($startrow==0 && $splitpg==0) || $startrow>0){
 		// TABLE TOP MARGIN
@@ -20687,6 +20918,27 @@ function _tableWrite(&$table, $split=false, $startrow=0, $startcol=0, $splitpg=0
 						$y = $y0 = $this->y;
 					}
 
+					// COLS
+					// COLUMN CHANGE
+					if ($this->CurrCol != $oldcolumn) {
+						// Added to correct for Columns
+						$x += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+						$x0 += $this->ChangeColumn * ($this->ColWidth+$this->ColGap);
+						if ($this->CurrCol == 0) { 	// just added a page - possibly with tableheader
+							$y0 = $this->y; 	// this->y0 is global used by Columns - $y0 is internal to tablewrite
+						}
+						else {
+							$y0 = $this->y0; 	// this->y0 is global used by Columns - $y0 is internal to tablewrite
+						}
+						$y = $y0;
+						$outerfilled = 0;
+		      			if ($this->CurrCol != 0 && ($this->keepColumns && $this->ColActive) && !empty($tableheader) && $i > 0 ) { 
+							$this->x = $x; 
+							$this->y = $y;
+							$this->TableHeaderFooter($tableheader,$tablestartpage,$tablestartcolumn,'H',$level);
+							$y0 = $y=$this->y;
+						}
+					}
 				}
 				$skippage = true;
 			}
@@ -20713,6 +20965,7 @@ function _tableWrite(&$table, $split=false, $startrow=0, $startcol=0, $splitpg=0
 				}
 				else { $tablestartpage = ''; }
 				$tablestartpageno = $this->page;
+				if ($this->ColActive) { $tablestartcolumn = $this->CurrCol; }	// *COLUMNS*
 			}
 
 
@@ -20720,6 +20973,76 @@ function _tableWrite(&$table, $split=false, $startrow=0, $startcol=0, $splitpg=0
 			$align = $cell['a'];
 
 
+			// If outside columns, this is done in PaintDivBB
+			if ($this->ColActive) {
+			 //OUTER FILL BGCOLOR of DIVS
+			 if ($this->blklvl > 0 && ($j==0) && !$this->table_rotate && $level==1) {
+			  $firstblockfill = $this->GetFirstBlockFill();
+			  if ($firstblockfill && $this->blklvl >= $firstblockfill) {
+			   $divh = $maxrowheight;
+			   // Last row
+	  		   if ((!isset($cell['rowspan']) && $i == $numrows-1) || (isset($cell['rowspan']) && (($i == $numrows-1 && $cell['rowspan']<2) || ($cell['rowspan']>1 && ($i + $cell['rowspan']-1) == $numrows-1)))) {
+				if ($table['borders_separate']) { 
+					$adv = $table['margin']['B'] + $table['padding']['B'] + $table['border_details']['B']['w'] + $table['border_spacing_V']/2; 
+				}
+				else { 
+					$adv = $table['margin']['B'] + $table['max_cell_border_width']['B']/2; 
+				}
+				$divh += $adv;  //last row: fill bottom half of bottom border (y advanced at end)
+			   }
+
+			   if (($this->y + $divh) > $outerfilled ) {	// if not already painted by previous rowspan
+				$bak_x = $this->x;
+				$bak_y = $this->y;
+				if ($outerfilled > $this->y) { 
+					$divh = ($this->y + $divh) - $outerfilled;
+					$this->y = $outerfilled; 
+				}
+
+				$this->DivLn($divh,-3,false);
+				$outerfilled = $this->y + $divh;
+				// Reset current block fill
+				$bcor = $this->blk[$this->blklvl]['bgcolorarray'];
+				if ($bcor ) $this->SetFColor($bcor);
+				$this->x = $bak_x;
+				$this->y = $bak_y;
+			    }
+			  }
+			 }
+			}
+
+
+			//TABLE BACKGROUND FILL BGCOLOR - for cellSpacing
+			if ($this->ColActive) {
+			 if ($table['borders_separate']) { 
+			   $fill = isset($table['bgcolor'][-1]) ? $table['bgcolor'][-1] : 0;
+			   if ($fill) {
+  				$color = $this->ConvertColor($fill);
+  				if ($color) {
+					$xadj = ($table['border_spacing_H']/2);
+					$yadj = ($table['border_spacing_V']/2);
+					$wadj = $table['border_spacing_H'];
+					$hadj = $table['border_spacing_V'];
+ 			   		if ($i == 0) {		// Top
+						$yadj += $table['padding']['T'] + $table['border_details']['T']['w'] ;
+						$hadj += $table['padding']['T'] + $table['border_details']['T']['w'] ;
+			   		}
+			   		if ($j == 0) {		// Left
+						$xadj += $table['padding']['L'] + $table['border_details']['L']['w'] ;
+						$wadj += $table['padding']['L'] + $table['border_details']['L']['w'] ;
+			   		}
+			   		if ($i == ($numrows-1) || (isset($cell['rowspan']) && ($i+$cell['rowspan']) == $numrows)  || (!isset($cell['rowspan']) && ($i+1) == $numrows)) {	// Bottom
+						$hadj += $table['padding']['B'] + $table['border_details']['B']['w'] ;
+			   		}
+			   		if ($j == ($numcols-1) || (isset($cell['colspan']) && ($j+$cell['colspan']) == $numcols)  || (!isset($cell['colspan']) && ($j+1) == $numcols)) {	// Right
+						$wadj += $table['padding']['R'] + $table['border_details']['R']['w'] ;
+			   		}
+					$this->SetFColor($color);
+					$this->Rect($x - $xadj, $y - $yadj, $w + $wadj, $h + $hadj, 'F');
+				}
+			   }
+			 }
+			}
 
 			if ($table['empty_cells']!='hide' || !empty($cell['textbuffer']) || (isset($cell['nestedcontent']) && $cell['nestedcontent']) || !$table['borders_separate']  ) { $paintcell = true; }
 			else { $paintcell = false; } 
@@ -21051,6 +21374,10 @@ function _tableWrite(&$table, $split=false, $startrow=0, $startcol=0, $splitpg=0
 	  $newpagestarted = false;
 	  $this->tabletheadjustfinished = false;
 
+	  if ($this->ColActive) {
+		if (!$this->table_keep_together && $i < $numrows-1 && $level==1) { $this->breakpoints[$this->CurrCol][] = $y + $h; }	// mPDF 6
+		if (count($this->cellBorderBuffer)) { $this->printcellbuffer(); }
+	  }
 
 	  if ($i == $numrows-1) { $this->y = $y + $h; } //last row jump (update this->y position)
 	  if ($this->table_rotate && $level==1) {
@@ -21159,6 +21486,7 @@ function _tableWrite(&$table, $split=false, $startrow=0, $startcol=0, $splitpg=0
 	  }
 	}
 
+	if ($this->ColActive && $level==1) { $this->breakpoints[$this->CurrCol][] = $this->y; }	// *COLUMNS*
 
 	if ($split) { 
 		// Are there more columns to print on a next page?
@@ -21792,21 +22120,761 @@ function DeletePages($start_page, $end_page=-1) {
 
 
 //======================================================
+// FROM class PDF_Ref == INDEX
+
+
+function IndexEntry($txt, $xref='') {
+	if ($xref) { 
+		$this->IndexEntrySee($txt,$xref);
+		return;
+	}
+
+	//Search the reference (AND Ref/PageNo) in the array
+	$Present = false;
+	if ($this->keep_block_together) {
+		// do nothing
+	}
+	else if ($this->kwt) {
+		$size=count($this->kwt_Reference);
+		for ($i=0;$i<$size;$i++){
+			if (isset($this->kwt_Reference[$i]['t']) && $this->kwt_Reference[$i]['t']==$txt){
+				$Present = true;
+				if ($this->page != $this->kwt_Reference[$i]['op']) {
+					$this->kwt_Reference[$i]['op'] = $this->page;
+				}
+			}
+		}
+		if (!$Present) {	//If not found, add it
+			$this->kwt_Reference[] = array('t'=>$txt, 'op'=>$this->page);
+		}
+	}
+	else {
+		$size=count($this->Reference);
+		for ($i=0;$i<$size;$i++){
+			if (isset($this->Reference[$i]['t']) && $this->Reference[$i]['t']==$txt){
+				$Present = true;
+				if (!in_array($this->page,$this->Reference[$i]['p'])) {
+					$this->Reference[$i]['p'][] = $this->page;
+				}
+			}
+		}
+		if (!$Present) {	//If not found, add it
+			$this->Reference[] = array('t'=>$txt,'p'=>array($this->page));
+		}
+	}
+}
+
+
+// Added function to add a reference "Elephants. See Chickens"
+function IndexEntrySee($txta,$txtb) {
+	if ($this->directionality == 'rtl') {	// *OTL*
+		// ONLY DO THIS IF NOT IN TAGS
+		if ($txta == strip_tags($txta)) $txta = str_replace(':',' - ',$txta);	// *OTL*
+		if ($txtb == strip_tags($txtb)) $txtb = str_replace(':',' - ',$txtb);	// *OTL*
+	}	// *OTL*
+	else {	// *OTL*
+		if ($txta == strip_tags($txta)) $txta = str_replace(':',', ',$txta);
+		if ($txtb == strip_tags($txtb)) $txtb = str_replace(':',', ',$txtb);
+	}	// *OTL*
+	$this->Reference[]=array('t'=>$txta.' - see '.$txtb,'p'=>array());
+}
+
+
+function InsertIndex($usedivletters=1, $useLinking=false, $indexCollationLocale='', $indexCollationGroup='') {
+	$size=count($this->Reference);
+	if ($size == 0) { return false; }
+
+	// $spacer used after named entry
+	// $sep  separates number [groups], $joiner joins numbers in range
+	//  e.g. "elephant 73, 97-99"  =  elephant[$spacer]73[$sep]97[$joiner]99
+
+	// $subEntrySeparator separates main and subentry (if $this->indexUseSubentries == false;) e.g.
+	// Mammal:elephant => Mammal[$subEntrySeparator]elephant
+	// $subEntryInset specifies what precedes a subentry (if $this->indexUseSubentries == true;) e.g.
+	// Mammal:elephant => [$subEntryInset]elephant
+	$spacer = "\xc2\xa0 ";	
+	if ($this->directionality == 'rtl') { $sep = '&#x060c; '; $joiner = '-'; $subEntrySeparator = '&#x060c; '; $subEntryInset = ' - '; }
+	else { $sep = ', '; $joiner = '-'; $subEntrySeparator = ', '; $subEntryInset = ' - '; }
+
+	for ($i=0;$i<$size;$i++){
+		$txt = $this->Reference[$i]['t'];
+		$txt = strip_tags($txt);	// mPDF 6
+		$txt = $this->purify_utf8($txt);
+		$this->Reference[$i]['uf'] = $txt;	// Unformatted e.g. pure utf-8 encoded characters, no mark-up/tags
+								// Used for ordering and collation
+	}
+
+	if ($usedivletters) {
+		if ($indexCollationGroup) {
+			require_once(_MPDF_PATH.'collations/'.$indexCollationGroup.'.php');
+		}
+		else { $collation = array(); }
+		for ($i=0;$i<$size;$i++){
+	  	 	if ($this->Reference[$i]['uf']) { 
+				$l = mb_substr($this->Reference[$i]['uf'],0,1,'UTF-8');
+				if (isset($this->indexCollationGroup) && $this->indexCollationGroup) {
+					$uni = $this->UTF8StringToArray($l);
+					$ucode = $uni[0];
+					if (isset($collation[$ucode])) { $this->Reference[$i]['d'] = code2utf($collation[$ucode]); }
+					else { $this->Reference[$i]['d'] = mb_strtolower($l,'UTF-8'); }
+				}
+				else { $this->Reference[$i]['d'] = mb_strtolower($l,'UTF-8'); }
+			}
+		}
+	}
+
+	if (!function_exists('cmp')) {
+		function cmp ($a, $b) {
+		    return strcoll(strtolower($a['uf']), strtolower($b['uf']));
+		}
+	}
+	//Alphabetic sort of the references
+	$originalLocale = setlocale(LC_COLLATE, 0);
+	if ($indexCollationLocale) { setlocale(LC_COLLATE, $indexCollationLocale); }
+	usort($this->Reference, 'cmp');
+	if ($indexCollationLocale) { setlocale(LC_COLLATE, $originalLocale); }
+
+	$html = '<div class="mpdf_index_main">';
+
+	$lett = '';
+	$last_lett = '';
+	$mainentry = '';
+	for ($i=0;$i<$size;$i++){
+	   	if ($this->Reference[$i]['t']) { 
+			if ($usedivletters) {
+			   $lett = $this->Reference[$i]['d'];
+			   if ($lett != $last_lett) { $html .= '<div class="mpdf_index_letter">'.$lett.'</div>'; }
+			}
+			$txt = $this->Reference[$i]['t'];
+
+			// Sub-entries e.g. Mammals:elephant
+			// But allow for tags e.g. <b>Mammal</b>:elephants
+			$a=preg_split('/(<.*?>)/',$txt,-1,PREG_SPLIT_DELIM_CAPTURE);
+			$txt = '';
+			$marker = false;
+			foreach($a as $k => $e) {
+				if($k%2==0 && !$marker) {
+					if (strpos($e, ':')!==false) {	// == SubEntry
+						if ($this->indexUseSubentries) {
+
+							// If the Main entry does not have any page numbers associated with it
+							// create and insert an entry
+							list($txtmain,$sub) = preg_split('/[:]/', $e, 2);
+							if (strip_tags($txt.$txtmain) != $mainentry) {
+								$html .= '<div class="mpdf_index_entry">'.$txt.$txtmain.'</div>';
+								$mainentry = strip_tags($txt.$txtmain); 
+							}
+
+							$txt = $subEntryInset;
+							$e = $sub;	// Only replace first one
+						}
+						else {
+							$e = preg_replace('/[:]/', $subEntrySeparator, $e, 1);	// Only replace first one
+						}
+						$marker = true;	// Don't replace any more once the subentry marker has been found
+					}
+				}
+				$txt .= $e;
+			}
+
+			if (!$marker) { $mainentry = strip_tags($txt); }
+
+			$html .= '<div class="mpdf_index_entry">';
+			$html .= $txt;
+			$ppp = $this->Reference[$i]['p'];	// = array of page numbers to point to
+			if (count($ppp)) { 
+			 sort($ppp);
+			 $newarr = array();
+			 $range_start = $ppp[0];
+			 $range_end = 0;
+
+			 $html .= $spacer;
+
+			 for ($zi=1;$zi<count($ppp);$zi++) {
+			  if ($ppp[$zi] == ($ppp[($zi-1)]+1)) {
+				$range_end = $ppp[$zi];
+			  }
+			  else {
+				if ($range_end) {
+					if ($range_end == $range_start+1) { 
+						if ($useLinking) { $html .= '<a class="mpdf_index_link" href="@'.$range_start.'">'; } 
+						$html .= $this->docPageNum($range_start);
+						if ($useLinking) { $html .= '</a>'; } 
+			 			$html .= $sep;
+
+						if ($useLinking) { $html .= '<a class="mpdf_index_link" href="@'.$ppp[$zi-1].'">'; } 
+						$html .= $this->docPageNum($ppp[$zi-1]);
+						if ($useLinking) { $html .= '</a>'; } 
+			 			$html .= $sep;
+					}
+				}
+				else {
+					if ($useLinking) { $html .= '<a class="mpdf_index_link" href="@'.$ppp[$zi-1].'">'; } 
+					$html .= $this->docPageNum($ppp[$zi-1]);
+					if ($useLinking) { $html .= '</a>'; } 
+			 		$html .= $sep;
+				}
+				$range_start = $ppp[$zi];
+				$range_end = 0;
+			  }
+			 }
+
+			 if ($range_end) {
+				if ($useLinking) { $html .= '<a class="mpdf_index_link" href="@'.$range_start.'">'; } 
+				$html .= $this->docPageNum($range_start);
+				if ($range_end == $range_start+1) { 
+					if ($useLinking) { $html .= '</a>'; } 
+					$html .= $sep; 
+					if ($useLinking) { $html .= '<a class="mpdf_index_link" href="@'.$range_end.'">'; } 
+					$html .= $this->docPageNum($range_end);
+					if ($useLinking) { $html .= '</a>'; } 
+				}
+				else { 
+					$html .= $joiner; 
+					$html .= $this->docPageNum($range_end);
+					if ($useLinking) { $html .= '</a>'; } 
+				}
+
+			 }
+			 else {
+				if ($useLinking) { $html .= '<a class="mpdf_index_link" href="@'.$ppp[(count($ppp)-1)].'">'; } 
+				$html .= $this->docPageNum($ppp[(count($ppp)-1)]);
+				if ($useLinking) { $html .= '</a>'; } 
+			 }
+			}
+		}
+		$html .= '</div>';
+		$last_lett = $lett;
+	}
+	$html .= '</div>';
+	$save_fpb = $this->fixedPosBlockSave;
+	$this->WriteHTML($html);
+	$this->fixedPosBlockSave = $save_fpb;
+
+	$this->breakpoints[$this->CurrCol][] = $this->y; 	// *COLUMNS*
+}
 
 
 function AcceptPageBreak() {
 	if (count($this->cellBorderBuffer)) { $this->printcellbuffer(); }	// *TABLES*
+	if ($this->ColActive==1) {
+	    if($this->CurrCol<$this->NbCol-1) {
+        	//Go to the next column
+		$this->CurrCol++;
+       	$this->SetCol($this->CurrCol);
+		$this->y=$this->y0;
+       	$this->ChangeColumn=1;	// Number (and direction) of columns changed +1, +2, -2 etc.
+		// DIRECTIONALITY RTL
+		if ($this->directionality == 'rtl') { $this->ChangeColumn = -($this->ChangeColumn); }	// *OTL*
+ 
+       	//Stay on the page
+        	return false;
+	   }
+	   else {
+    		//Go back to the first column - NEW PAGE
+		if (count($this->columnbuffer)) { $this->printcolumnbuffer(); }
+		$this->SetCol(0);
+		$this->y0 = $this->tMargin;
+        	$this->ChangeColumn= -($this->NbCol-1);
+		// DIRECTIONALITY RTL
+		if ($this->directionality == 'rtl') { $this->ChangeColumn = -($this->ChangeColumn); }	// *OTL*
+        	//Page break
+       	return true;
+	   }
+	}
 	else if ($this->table_rotate) {
 		if ($this->tablebuffer) { $this->printtablebuffer(); }
 		return true;
 	}
+	else {	// *COLUMNS*
         	$this->ChangeColumn=0;
 		return $this->autoPageBreak;
+	}	// *COLUMNS*
 	return $this->autoPageBreak;
 }
 
 
 //----------- COLUMNS ---------------------
+
+function SetColumns($NbCol,$vAlign='',$gap=5) {
+// NbCol = number of columns
+// Anything less than 2 turns columns off
+	if ($NbCol<2) {	// SET COLUMNS OFF
+		if ($this->ColActive) { 
+			$this->ColActive=0;
+			if (count($this->columnbuffer)) { $this->printcolumnbuffer(); }
+			$this->NbCol=1;
+			$this->ResetMargins(); 
+			$this->pgwidth = $this->w - $this->lMargin - $this->rMargin;
+			$this->divwidth = 0;
+			$this->Ln(); 
+		}
+		$this->ColActive=0;
+		$this->columnbuffer = array();
+		$this->ColDetails = array();
+		$this->columnLinks = array();
+		$this->columnAnnots = array();
+		$this->columnForms = array();
+		$this->col_BMoutlines = array();
+		$this->col_toc = array();
+		$this->breakpoints = array();
+	}
+	else {	// SET COLUMNS ON
+		if ($this->ColActive) { 
+			$this->ColActive=0;
+			if (count($this->columnbuffer)) { $this->printcolumnbuffer(); }
+			$this->ResetMargins(); 
+		}
+		if (isset($this->y) && $this->y>$this->tMargin) $this->Ln();
+		$this->NbCol=$NbCol;
+		$this->ColGap = $gap;
+		$this->divwidth = 0;
+		$this->ColActive=1;
+		$this->ColumnAdjust = true;	// enables column height adjustment for the page
+		$this->columnbuffer = array();
+		$this->ColDetails = array();
+		$this->columnLinks = array();
+		$this->columnAnnots = array();
+		$this->columnForms = array();
+		$this->col_BMoutlines = array();
+		$this->col_toc = array();
+		$this->breakpoints = array();
+		if ((strtoupper($vAlign) == 'J') || (strtoupper($vAlign) == 'JUSTIFY')) { $vAlign = 'J'; } 
+		else { $vAlign = ''; }
+		$this->colvAlign = $vAlign;
+		//Save the ordinate
+		$absL = $this->DeflMargin-($gap/2);
+		$absR = $this->DefrMargin-($gap/2);
+		$PageWidth = $this->w-$absL-$absR;	// virtual pagewidth for calculation only
+		$ColWidth = (($PageWidth - ($gap * ($NbCol)))/$NbCol);
+		$this->ColWidth = $ColWidth;
+
+		if ($this->directionality == 'rtl') { 
+			for ($i=0;$i<$this->NbCol;$i++) {
+				$this->ColL[$i] = $absL + ($gap/2) + (($NbCol - ($i+1))*($PageWidth/$NbCol)) ;
+				$this->ColR[$i] = $this->ColL[$i] + $ColWidth;	// NB This is not R margin -> R pos
+			}
+		} 
+		else { 
+			for ($i=0;$i<$this->NbCol;$i++) {
+				$this->ColL[$i] = $absL + ($gap/2) + ($i* ($PageWidth/$NbCol)   );
+				$this->ColR[$i] = $this->ColL[$i] + $ColWidth;	// NB This is not R margin -> R pos
+			}
+		}	// *OTL*
+		$this->pgwidth = $ColWidth;
+		$this->SetCol(0);
+		$this->y0=$this->y;
+	}
+	$this->x = $this->lMargin;
+}
+
+function SetCol($CurrCol) {
+// Used internally to set column by number: 0 is 1st column
+	//Set position on a column
+	$this->CurrCol=$CurrCol;
+	$x = $this->ColL[$CurrCol];
+	$xR = $this->ColR[$CurrCol];	// NB This is not R margin -> R pos
+	if (($this->mirrorMargins) && (($this->page)%2==0)) {	// EVEN
+		$x += $this->MarginCorrection ;
+		$xR += $this->MarginCorrection ;
+	}
+	$this->SetMargins($x,($this->w - $xR),$this->tMargin);
+}
+
+function AddColumn() {
+	$this->NewColumn();
+	$this->ColumnAdjust = false;	// disables all column height adjustment for the page.
+}
+function NewColumn() {
+	if ($this->ColActive==1) {
+	    if($this->CurrCol<$this->NbCol-1) {
+        	//Go to the next column
+		$this->CurrCol++;
+        	$this->SetCol($this->CurrCol);
+        	$this->y = $this->y0;
+        	$this->ChangeColumn=1;
+		// DIRECTIONALITY RTL
+		if ($this->directionality == 'rtl') { $this->ChangeColumn = -($this->ChangeColumn); }	// *OTL*
+        	//Stay on the page
+    		}
+    		else {
+    		//Go back to the first column
+        	//Page break
+		if (count($this->columnbuffer)) { $this->printcolumnbuffer(); }
+		$this->AddPage($this->CurOrientation);
+		$this->SetCol(0);
+		$this->y0 = $this->tMargin;
+        	$this->ChangeColumn= -($this->NbCol-1);
+		// DIRECTIONALITY RTL
+		if ($this->directionality == 'rtl') { $this->ChangeColumn = -($this->ChangeColumn); }	// *OTL*
+    		}
+		$this->x = $this->lMargin;
+	}
+	else {
+		$this->AddPage($this->CurOrientation);
+	}
+}
+
+function printcolumnbuffer() {
+   // Columns ended (but page not ended) -> try to match all columns - unless disabled by using a custom column-break
+   if (!$this->ColActive && $this->ColumnAdjust && !$this->keepColumns) {
+	// Calculate adjustment to add to each column to calculate rel_y value
+	$this->ColDetails[0]['add_y'] = 0;
+	$last_col = 0;
+	// Recursively add previous column's height
+	for($i=1;$i<$this->NbCol;$i++) { 
+		if (isset($this->ColDetails[$i]['bottom_margin']) && $this->ColDetails[$i]['bottom_margin']) { // If any entries in the column
+			$this->ColDetails[$i]['add_y'] = ($this->ColDetails[$i-1]['bottom_margin'] - $this->y0) + $this->ColDetails[$i-1]['add_y'];
+			$last_col = $i; 	// Last column actually printed
+		}
+	}
+
+	// Calculate value for each position sensitive entry as though for one column
+	foreach($this->columnbuffer AS $key=>$s) { 
+		$t = $s['s'];
+		if ($t == 'ACROFORM') {
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+			$this->columnbuffer[$key]['s'] = '';
+		}
+		else if (preg_match('/BT \d+\.\d\d+ (\d+\.\d\d+) Td/',$t)) {
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+		}
+		else if (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ [\-]{0,1}\d+\.\d\d+ re/',$t)) {
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+		}
+		else if (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/',$t)) {
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+		}
+		else if (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/',$t)) {
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+		}
+		else if (preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/',$t)) { 
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+		}
+		else if (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/',$t)) {
+			$this->columnbuffer[$key]['rel_y'] = $s['y'] + $this->ColDetails[$s['col']]['add_y'] - $this->y0;
+		}
+	}
+	foreach($this->internallink AS $key => $f) {
+	  if (is_array($f) && isset($f['col'])) {
+		$this->internallink[$key]['rel_y'] = $f['Y'] + $this->ColDetails[$f['col']]['add_y'] - $this->y0;
+	  }
+	}
+
+	$breaks = array();
+	foreach($this->breakpoints AS $c => $bpa) { 
+		foreach($bpa AS $rely) {
+			$breaks[] = $rely + $this->ColDetails[$c]['add_y'] - $this->y0;
+		}
+	}
+
+
+	if (isset($this->ColDetails[$last_col]['bottom_margin'])) { $lcbm = $this->ColDetails[$last_col]['bottom_margin']; }
+	else { $lcbm = 0; }
+	$sum_h = $this->ColDetails[$last_col]['add_y'] + $lcbm - $this->y0;
+	//$sum_h = max($this->ColDetails[$last_col]['add_y'] + $this->ColDetails[$last_col]['bottom_margin'] - $this->y0, end($breaks));
+	$target_h = ($sum_h / $this->NbCol);
+
+	$cbr = array();
+	for($i=1;$i<$this->NbCol;$i++) { 
+		$th = ($sum_h * $i / $this->NbCol);
+		foreach($breaks AS $bk=>$val) {
+			if ($val > $th) {
+				if (($val-$th) < ($th-$breaks[$bk-1])) { $cbr[$i-1] = $val; }
+				else  { $cbr[$i-1] = $breaks[$bk-1]; }
+				break;
+			}
+		}
+	}
+	$cbr[($this->NbCol-1)] = $sum_h;
+
+	// mPDF 6
+	// Avoid outputing with 1st column empty
+	if (isset($cbr[0]) && $cbr[0]==0) { 
+		for ($i=0;$i<$this->NbCol-1;$i++) { $cbr[$i] = $cbr[$i+1]; }
+	}
+
+	// Now update the columns - divide into columns of approximately equal value
+	$last_new_col = 0; 
+	$yadj = 0;	// mm
+	$xadj = 0;
+	$last_col_bottom = 0;
+	$lowest_bottom_y = 0;
+	$block_bottom = 0;
+	$newcolumn = 0;
+	foreach($this->columnbuffer AS $key=>$s) { 
+	  if (isset($s['rel_y'])) {	// only process position sensitive data
+		if ($s['rel_y'] >= $cbr[$newcolumn]) {
+			$newcolumn++;
+		}
+		else {
+			$newcolumn = $last_new_col ;
+		}
+
+
+		$block_bottom = max($block_bottom,($s['rel_y']+$s['h']));
+
+		if ($this->directionality == 'rtl') {	// *OTL*
+			$xadj = -(($newcolumn - $s['col']) * ($this->ColWidth + $this->ColGap));	// *OTL*
+		}	// *OTL*
+		else {	// *OTL*
+			$xadj = ($newcolumn - $s['col']) * ($this->ColWidth + $this->ColGap);
+		}	// *OTL*
+
+		if ($last_new_col != $newcolumn) {	// Added new column
+			$last_col_bottom = $this->columnbuffer[$key]['rel_y'];
+			$block_bottom = 0;
+		}
+		$yadj = ($s['rel_y'] - $s['y']) - ($last_col_bottom)+$this->y0;
+		// callback function
+		$t = $s['s'];
+
+		// mPDF 5.7+
+		$t = $this->columnAdjustPregReplace('Td', $xadj, $yadj, '/BT (\d+\.\d\d+) (\d+\.\d\d+) Td/', $t);
+		$t = $this->columnAdjustPregReplace('re', $xadj, $yadj, '/(\d+\.\d\d+) (\d+\.\d\d+) (\d+\.\d\d+) ([\-]{0,1}\d+\.\d\d+) re/', $t);
+		$t = $this->columnAdjustPregReplace('l', $xadj, $yadj, '/(\d+\.\d\d+) (\d+\.\d\d+) l/', $t);
+		$t = $this->columnAdjustPregReplace('img', $xadj, $yadj, '/q (\d+\.\d\d+) 0 0 (\d+\.\d\d+) (\d+\.\d\d+) (\d+\.\d\d+) cm \/(I|FO)/', $t);
+		$t = $this->columnAdjustPregReplace('draw', $xadj, $yadj, '/(\d+\.\d\d+) (\d+\.\d\d+) m/', $t);
+		$t = $this->columnAdjustPregReplace('bezier',$xadj, $yadj, '/(\d+\.\d\d+) (\d+\.\d\d+) (\d+\.\d\d+) (\d+\.\d\d+) (\d+\.\d\d+) (\d+\.\d\d+) c/', $t);
+
+		$this->columnbuffer[$key]['s'] = $t;
+		$this->columnbuffer[$key]['newcol'] = $newcolumn;
+		$this->columnbuffer[$key]['newy'] = $s['y'] + $yadj;
+		$last_new_col = $newcolumn;
+		$clb = $s['y'] + $yadj + $s['h'] ;	// bottom_margin of current
+		if ((isset($this->ColDetails[$newcolumn]['max_bottom']) && $clb > $this->ColDetails[$newcolumn]['max_bottom']) || (!isset($this->ColDetails[$newcolumn]['max_bottom']) && $clb)) { $this->ColDetails[$newcolumn]['max_bottom'] = $clb; }
+		if ($clb > $lowest_bottom_y) { $lowest_bottom_y = $clb; }
+		// Adjust LINKS
+		if (isset($this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])])) {
+			$ref = $this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])];
+			$this->PageLinks[$this->page][$ref][0] += ($xadj*_MPDFK);
+			$this->PageLinks[$this->page][$ref][1] -= ($yadj*_MPDFK);
+			unset($this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])]);
+		}
+		// Adjust FORM FIELDS
+		if (isset($this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])])) {
+			$ref = $this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])];
+			$this->mpdfform->forms[$ref]['x'] += ($xadj);
+			$this->mpdfform->forms[$ref]['y'] += ($yadj);
+			unset($this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])]);
+		}
+	  }
+	}
+
+
+
+	// Adjust column length to be equal
+	if ($this->colvAlign == 'J') {
+	 foreach($this->columnbuffer AS $key=>$s) { 
+	   if (isset($s['rel_y'])) {	// only process position sensitive data
+	    // Set ratio to expand y values or heights
+	    if (isset($this->ColDetails[$s['newcol']]['max_bottom']) && $this->ColDetails[$s['newcol']]['max_bottom']  && $this->ColDetails[$s['newcol']]['max_bottom']!=$this->y0) {
+		$ratio = ($lowest_bottom_y - ($this->y0)) / ($this->ColDetails[$s['newcol']]['max_bottom'] - ($this->y0));
+	    }
+	    else { $ratio = 1; }
+	    if (($ratio > 1) && ($ratio <= $this->max_colH_correction)) {
+		$yadj = ($s['newy'] - $this->y0) * ($ratio - 1);
+
+		// Adjust LINKS
+		if (isset($this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])])) {
+			$ref = $this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])];
+			$this->PageLinks[$this->page][$ref][1] -= ($yadj*_MPDFK);	// y value
+			$this->PageLinks[$this->page][$ref][3] *= $ratio;	// height
+			unset($this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])]);
+		}
+		// Adjust FORM FIELDS
+		if (isset($this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])])) {
+			$ref = $this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])];
+			$this->mpdfform->forms[$ref]['x'] += ($xadj);
+			$this->mpdfform->forms[$ref]['y'] += ($yadj);
+			unset($this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])]);
+		}
+	    }
+	  }
+	 }
+	foreach($this->internallink AS $key => $f) {
+	  if (is_array($f) && isset($f['col'])) {
+		$last_col_bottom = 0;
+		for ($nbc=0; $nbc<$this->NbCol; $nbc++) {
+			if ($f['rel_y'] >= $cbr[$nbc]) { $last_col_bottom = $cbr[$nbc]; }
+		}
+		$yadj = ($f['rel_y'] - $f['Y']) - $last_col_bottom + $this->y0;
+		$f['Y'] += $yadj;
+		unset($f['col']);
+		unset($f['rel_y']);
+		$this->internallink[$key] = $f;
+	  }
+	}
+
+	 $last_col = -1;
+	 $trans_on = false;
+	 foreach($this->columnbuffer AS $key=>$s) { 
+		if (isset($s['rel_y'])) {	// only process position sensitive data
+			// Set ratio to expand y values or heights
+			if (isset($this->ColDetails[$s['newcol']]['max_bottom']) && $this->ColDetails[$s['newcol']]['max_bottom']  && $this->ColDetails[$s['newcol']]['max_bottom']!=$this->y0) { 
+				$ratio = ($lowest_bottom_y - ($this->y0)) / ($this->ColDetails[$s['newcol']]['max_bottom'] - ($this->y0));
+			}
+			else { $ratio = 1; }
+			if (($ratio > 1) && ($ratio <= $this->max_colH_correction)) {
+				//Start Transformation
+				$this->pages[$this->page] .= $this->StartTransform(true)."\n";
+				$this->pages[$this->page] .= $this->transformScale(100, $ratio*100, $x='', $this->y0, true)."\n";
+				$trans_on = true;
+			}
+		}
+		// Now output the adjusted values
+		$this->pages[$this->page] .= $s['s']."\n"; 
+		if (isset($s['rel_y']) && ($ratio > 1) && ($ratio <= $this->max_colH_correction)) {	// only process position sensitive data
+			//Stop Transformation
+			$this->pages[$this->page] .= $this->StopTransform(true)."\n";
+	 		$trans_on = false;
+		}
+	 }
+	 if ($trans_on) { $this->pages[$this->page] .= $this->StopTransform(true)."\n"; }
+	}
+	else {	// if NOT $this->colvAlign == 'J' 
+		// Now output the adjusted values
+		foreach($this->columnbuffer AS $s) { 
+			$this->pages[$this->page] .= $s['s']."\n"; 
+		}
+	}
+	if ($lowest_bottom_y > 0) { $this->y = $lowest_bottom_y ; }
+   }
+
+   // Columns not ended but new page -> align columns (can leave the columns alone - just tidy up the height)
+   else if ($this->colvAlign == 'J' && $this->ColumnAdjust && !$this->keepColumns)  {
+	// calculate the lowest bottom margin
+	$lowest_bottom_y = 0;
+	foreach($this->columnbuffer AS $key=>$s) { 
+	   // Only process output data
+	   $t = $s['s'];
+	   if ($t == 'ACROFORM' || (preg_match('/BT \d+\.\d\d+ (\d+\.\d\d+) Td/',$t)) || (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ [\-]{0,1}\d+\.\d\d+ re/',$t)) ||
+		(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/',$t)) || 
+		(preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/',$t)) || 
+		(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/',$t)) || 
+		(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/',$t)) ) { 
+
+		$clb = $s['y'] + $s['h'];
+		if ((isset($this->ColDetails[$s['col']]['max_bottom']) && $clb > $this->ColDetails[$s['col']]['max_bottom']) || !isset($this->ColDetails[$s['col']]['max_bottom'])) { $this->ColDetails[$s['col']]['max_bottom'] = $clb; }
+		if ($clb > $lowest_bottom_y) { $lowest_bottom_y = $clb; }
+		$this->columnbuffer[$key]['rel_y'] = $s['y'];	// Marks position sensitive data to process later
+		if ($t == 'ACROFORM') { $this->columnbuffer[$key]['s'] = ''; }
+	   }
+	}
+	// Adjust column length equal
+	 foreach($this->columnbuffer AS $key=>$s) { 
+	    // Set ratio to expand y values or heights
+	    if (isset($this->ColDetails[$s['col']]['max_bottom']) && $this->ColDetails[$s['col']]['max_bottom']) { 
+		$ratio = ($lowest_bottom_y - ($this->y0)) / ($this->ColDetails[$s['col']]['max_bottom'] - ($this->y0));
+	    }
+	    else { $ratio = 1; }
+	    if (($ratio > 1) && ($ratio <= $this->max_colH_correction)) {
+		$yadj = ($s['y'] - $this->y0) * ($ratio - 1);
+
+		// Adjust LINKS
+		if (isset($s['rel_y'])) {	// only process position sensitive data
+		   // otherwise triggers for all entries in column buffer (.e.g. formatting) and makes below adjustments more than once
+		   if (isset($this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])])) {
+			$ref = $this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])];
+			$this->PageLinks[$this->page][$ref][1] -= ($yadj*_MPDFK);	// y value
+			$this->PageLinks[$this->page][$ref][3] *= $ratio;	// height
+			unset($this->columnLinks[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])]);	
+		   }
+		   // Adjust FORM FIELDS
+		   if (isset($this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])])) {
+			$ref = $this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])];
+			$this->mpdfform->forms[$ref]['x'] += ($xadj);
+			$this->mpdfform->forms[$ref]['y'] += ($yadj);
+			unset($this->columnForms[$s['col']][INTVAL($s['x'])][INTVAL($s['y'])]);
+		   }
+		}
+	    }
+	 }
+
+
+	 $trans_on = false;
+	 foreach($this->columnbuffer AS $key=>$s) { 
+		if (isset($s['rel_y'])) {	// only process position sensitive data
+			// Set ratio to expand y values or heights
+			if ($this->ColDetails[$s['col']]['max_bottom']) { 
+				$ratio = ($lowest_bottom_y - ($this->y0)) / ($this->ColDetails[$s['col']]['max_bottom'] - ($this->y0));
+			}
+			else { $ratio = 1; }
+			if (($ratio > 1) && ($ratio <= $this->max_colH_correction)) {
+				//Start Transformation
+				$this->pages[$this->page] .= $this->StartTransform(true)."\n";
+				$this->pages[$this->page] .= $this->transformScale(100, $ratio*100, $x='', $this->y0, true)."\n";
+	 			$trans_on = true;
+			}
+		}
+		// Now output the adjusted values
+		$this->pages[$this->page] .= $s['s']."\n"; 
+		if (isset($s['rel_y']) && ($ratio > 1) && ($ratio <= $this->max_colH_correction)) {
+			//Stop Transformation
+			$this->pages[$this->page] .= $this->StopTransform(true)."\n";
+	 		$trans_on = false;
+		}
+	 }
+	 if ($trans_on) { $this->pages[$this->page] .= $this->StopTransform(true)."\n"; }
+
+	if ($lowest_bottom_y > 0) { $this->y = $lowest_bottom_y ; }
+   }
+
+
+   // Just reproduce the page as it was
+   else {
+	// If page has not ended but height adjustment was disabled by custom column-break - adjust y
+	$lowest_bottom_y = 0;
+	if (!$this->ColActive && (!$this->ColumnAdjust || $this->keepColumns)) {
+		// calculate the lowest bottom margin
+		foreach($this->columnbuffer AS $key=>$s) { 
+		   // Only process output data
+		   $t = $s['s'];
+		   if ($t == 'ACROFORM' || (preg_match('/BT \d+\.\d\d+ (\d+\.\d\d+) Td/',$t)) || (preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ [\-]{0,1}\d+\.\d\d+ re/',$t)) ||
+			(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) l/',$t)) || 
+			(preg_match('/q \d+\.\d\d+ 0 0 \d+\.\d\d+ \d+\.\d\d+ (\d+\.\d\d+) cm \/(I|FO)\d+ Do Q/',$t)) || 
+			(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) m/',$t)) || 
+			(preg_match('/\d+\.\d\d+ (\d+\.\d\d+) \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ \d+\.\d\d+ c/',$t)) ) { 
+
+			$clb = $s['y'] + $s['h'];
+			if ($clb > $this->ColDetails[$s['col']]['max_bottom']) { $this->ColDetails[$s['col']]['max_bottom'] = $clb; }
+			if ($clb > $lowest_bottom_y) { $lowest_bottom_y = $clb; }
+		   }
+		}
+	}
+	foreach($this->columnbuffer AS $key=>$s) { 
+		if ($s['s'] != 'ACROFORM') 
+			$this->pages[$this->page] .= $s['s']."\n"; 
+	}
+	if ($lowest_bottom_y > 0) { $this->y = $lowest_bottom_y ; }
+   }
+   foreach($this->internallink AS $key => $f) {
+	if (isset($this->internallink[$key]['col'])) unset($this->internallink[$key]['col']);
+	if (isset($this->internallink[$key]['rel_y'])) unset($this->internallink[$key]['rel_y']);
+   }
+
+   $this->columnbuffer = array();
+   $this->ColDetails = array();
+   $this->columnLinks = array();
+   $this->columnAnnots = array();
+   $this->columnForms = array();
+   
+   $this->col_BMoutlines = array();
+   $this->col_toc = array();
+   $this->breakpoints = array();
+}
+
+// mPDF 5.7+
+function columnAdjustPregReplace($type, $xadj, $yadj, $pattern, $subject) {
+	preg_match($pattern, $subject, $matches);
+	if (!count($matches)) { return $subject; }
+	if (!isset($matches[3])) { $matches[3] = 0; }
+	if (!isset($matches[4])) { $matches[4] = 0; }
+	if (!isset($matches[5])) { $matches[5] = 0; }
+	if (!isset($matches[6])) { $matches[6] = 0; }
+	return str_replace($matches[0], $this->columnAdjustAdd($type, _MPDFK, $xadj, $yadj, $matches[1], $matches[2], $matches[3], $matches[4], $matches[5], $matches[6]), $subject);
+}
+
 
 
 //==================================================================
@@ -21957,6 +23025,22 @@ function printkwtbuffer() {
 		}
 		$this->kwt_Links = array();
 
+	      // Output Reference (index)
+	      foreach($this->kwt_Reference AS $v) {
+			$Present=0;
+			for ($i=0;$i<count($this->Reference);$i++){
+				if ($this->Reference[$i]['t']==$v['t']){
+					$Present=1;
+					if (!in_array($v['op'],$this->Reference[$i]['p'])) {
+						$this->Reference[$i]['p'][] = $v['op'];
+					}
+				}
+			}
+			if ($Present==0) {
+				$this->Reference[]=array('t'=>$v['t'],'p'=>array($v['op']));
+			}
+	      }
+		$this->kwt_Reference = array();
 
 
 
@@ -21995,6 +23079,23 @@ function printkwtbuffer() {
 	}
 
 
+
+	// Adjust Reference (index)
+	foreach($this->kwt_Reference AS $v) {
+		$Present=0;
+		//Search the reference (AND Ref/PageNo) in the array
+		for ($i=0;$i<count($this->Reference);$i++){
+			if ($this->Reference[$i]['t']==$v['t']){
+				$Present=1;
+				if (!in_array($this->page,$this->Reference[$i]['p'])) {
+					$this->Reference[$i]['p'][] = $this->page;
+				}
+			}
+		}
+		if ($Present==0) {
+			$this->Reference[]=array('t'=>$v['t'],'p'=>array($this->page));
+		}
+	}
 
 
 
@@ -22816,6 +23917,43 @@ function mb_strrev($str, $enc = 'utf-8'){
 	return implode('',$revch);
 }
 
+// Callback function from function printcolumnbuffer in mpdf
+function columnAdjustAdd($type,$k,$xadj,$yadj,$a,$b,$c=0,$d=0,$e=0,$f=0) {
+   if ($type == 'Td') { 	// xpos,ypos
+	$a += ($xadj * $k);
+	$b -= ($yadj * $k);
+	return 'BT '.sprintf('%.3F %.3F',$a,$b).' Td'; 
+   }
+   else if ($type == 're') { 	// xpos,ypos,width,height
+	$a += ($xadj * $k);
+	$b -= ($yadj * $k);
+	return sprintf('%.3F %.3F %.3F %.3F',$a,$b,$c,$d).' re'; 
+   }
+   else if ($type == 'l') { 	// xpos,ypos,x2pos,y2pos
+	$a += ($xadj * $k);
+	$b -= ($yadj * $k);
+	return sprintf('%.3F %.3F l',$a,$b); 
+   }
+   else if ($type == 'img') { 	// width,height,xpos,ypos
+	$c += ($xadj * $k);
+	$d -= ($yadj * $k);
+	return sprintf('q %.3F 0 0 %.3F %.3F %.3F',$a,$b,$c,$d).' cm /'.$e;  
+   }
+   else if ($type == 'draw') { 	// xpos,ypos
+	$a += ($xadj * $k);
+	$b -= ($yadj * $k);
+	return sprintf('%.3F %.3F m',$a,$b); 
+   }
+   else if ($type == 'bezier') { 	// xpos,ypos,x2pos,y2pos,x3pos,y3pos
+	$a += ($xadj * $k);
+	$b -= ($yadj * $k);
+	$c += ($xadj * $k);
+	$d -= ($yadj * $k);
+	$e += ($xadj * $k);
+	$f -= ($yadj * $k);
+	return sprintf('%.3F %.3F %.3F %.3F %.3F %.3F',$a,$b,$c,$d,$e,$f).' c'; 
+   }
+}
 
 
 
