@@ -26,15 +26,15 @@ class PdfTemplate extends FancyTreeviewClass {
 
 	public function pageBody() {
 		global $WT_TREE;
-		
+
 		$cache_dir = WT_DATA_DIR . 'ftv_cache' . DIRECTORY_SEPARATOR;
-		
+
 		define("_JPGRAPH_PATH", $cache_dir);
 		define("_MPDF_TEMP_PATH", $cache_dir);
 		define('_MPDF_TTFONTDATAPATH', $cache_dir);
 
-		require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');		
-		
+		require_once(WT_MODULES_DIR . $this->getName() . '/packages/mpdf60/mpdf.php');
+
 		$tmpfile = $cache_dir . 'fancy-treeview-tmp.txt';
 		if (file_exists($cache_dir) && is_readable($tmpfile)) {
 			$stylesheet = file_get_contents($this->directory . '/css/pdf/style.css');
@@ -43,8 +43,11 @@ class PdfTemplate extends FancyTreeviewClass {
 
 			$header = '<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';
 			$footer = '<footer>' .
-				'<div class="left">' . WT_BASE_URL . '</div>' .
-				'<div class="right">{PAGENO}</div>' .
+				'<table><tr>' .
+				'<td class="left">' . WT_BASE_URL . '</td>' .
+				'<td class="center">{DATE d-m-Y}</td>' .
+				'<td class="right">{PAGENO}</td>' .
+				'</tr></table>' .
 				'</footer>';
 
 			$mpdf = new mPDF();
