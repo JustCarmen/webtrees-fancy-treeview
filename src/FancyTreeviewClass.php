@@ -1094,7 +1094,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $theme_dir . theme::theme()->themeId();
 		} else {
 			$parentclass = get_parent_class(Theme::theme());
-			if (basename($parentclass) !== 'AbstractTheme') {
+			$parentclassname = explode('\\', $parentclass);
+			if (end($parentclassname) !== 'AbstractTheme') {
 				$parenttheme = new $parentclass;
 				if (file_exists($theme_dir . $parenttheme->themeId())) {
 					return $theme_dir . $parenttheme->themeId();
