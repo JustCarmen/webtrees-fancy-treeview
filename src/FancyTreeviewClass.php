@@ -1216,6 +1216,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	private function getNextGen($pid) {
 		$person = $this->getPerson($pid);
+		$ng = array();
 		foreach ($person->getSpouseFamilies() as $family) {
 			$children = $family->getChildren();
 			if ($children) {
@@ -1226,9 +1227,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 			}
 		}
-		if (isset($ng)) {
-			return $ng;
-		}
+		return $ng;
 	}
 
 	/**
