@@ -36,8 +36,13 @@ use PDO;
  * Class FancyTreeview
  */
 class FancyTreeviewClass extends FancyTreeviewModule {
-
-	// Set default module options
+	
+	/**
+	 * Set the default module options
+	 * 
+	 * @param type $key
+	 * @return string
+	 */
 	private function setDefault($key) {
 		$FTV_DEFAULT = array(
 			'USE_FULLNAME'			 => '0',
@@ -58,8 +63,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		);
 		return $FTV_DEFAULT[$key];
 	}
-
-	// Get module options
+	
+	/**
+	 * Get module options
+	 * @param type $k
+	 * @return type
+	 */
 	protected function options($k) {
 		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 		$key = strtoupper($k);
@@ -70,8 +79,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return($FTV_OPTIONS[$this->tree_id][$key]);
 		}
 	}
-
-	// Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
+	
+	/**
+	 * Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
+	 * 
+	 * @param type $surname
+	 * @param type $russell
+	 * @param type $daitchMokotoff
+	 * @return type
+	 */
 	protected function indisArray($surname, $russell, $daitchMokotoff) {
 		$sql = "SELECT DISTINCT i_id AS xref, i_file AS tree_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
@@ -109,8 +125,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $data;
 	}
-
-	// Get surname from pid
+	
+	/**
+	 * Get surname from pid
+	 * 
+	 * @param type $pid
+	 * @return type
+	 */
 	public function getSurname($pid) {
 		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
 		$args = array(
@@ -120,8 +141,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$data = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
 	}
-
-	// Search within a multiple dimensional array
+	
+	/**
+	 * Search within a multiple dimensional array
+	 * 
+	 * @param type $array
+	 * @param type $key
+	 * @param type $value
+	 * @return results
+	 */
 	protected function searchArray($array, $key, $value) {
 		$results = array();
 		if (is_array($array)) {
@@ -134,8 +162,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $results;
 	}
-
-	// Sort the array according to the $key['SORT'] input.
+	
+	/**
+	 * Sort the array according to the $key['SORT'] input.
+	 * 
+	 * @param type $array
+	 * @param type $sort_by
+	 * @return array values
+	 */
 	protected function sortArray($array, $sort_by) {
 
 		$array_keys = array('tree', 'surname', 'pid', 'access_level', 'sort');
@@ -154,7 +188,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return array_values($return_array);
 	}
-
+	
+	/**
+	 * Get the page link to store in the database
+	 * 
+	 * @global type $WT_TREE
+	 * @param type $pid
+	 * @return string
+	 */
 	protected function getPageLink($pid) {
 		global $WT_TREE;
 		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
@@ -169,7 +210,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $link;
 	}
-
+	
+	/**
+	 * Get a list of all used countries
+	 * 
+	 * @return list
+	 */
 	protected function getCountryList() {
 		$list = '';
 		$sql = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
@@ -185,7 +231,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $list;
 	}
-
+	
+	/**
+	 * Since we can't use Flashmessages here, use our own message system
+	 * 
+	 * @param type $id
+	 * @param type $type
+	 * @param type $hidden
+	 * @param type $message
+	 * @return type
+	 */
 	protected function addMessage($id, $type, $hidden, $message = '') {
 		$style = $hidden ? ' style="display:none"' : '';
 
@@ -201,12 +256,20 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return '<p class="ui-state-error">' . $message . '</p>';
 		}
 	}
-
+	
+	/**
+	 * Get the root ID
+	 * @return ID
+	 */
 	protected function rootId() {
 		return Filter::get('rootid', WT_REGEX_XREF);
 	}
 
-	// Print functions
+	/**
+	 * Print the Fancy Treeview page
+	 * 
+	 * @return html
+	 */
 	protected function printPage() {
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
 		$pids = Filter::get('pids');
@@ -256,7 +319,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		return $html;
 	}
 
-	// Print functions
+	/**
+	 * Print the tabcontent for this person on the individual page
+	 * 
+	 * @param type $pid
+	 * @return string (html)
+	 */
 	protected function printTabContent($pid) {
 		$html = '';
 		$gen = 1;
@@ -297,7 +365,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-
+	
+	/**
+	 * Print a generation
+	 * 
+	 * @param type $generation
+	 * @param type $i
+	 * @return string
+	 */
 	private function printGeneration($generation, $i) {
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">' .
@@ -313,7 +388,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $html;
 	}
-
+	
+	/**
+	 * Print the header of each generation block
+	 * 
+	 * @param type $i
+	 * @return string
+	 */
 	private function printBlockHeader($i) {
 		return
 			'<div class="blockheader ui-state-default">' .
@@ -321,7 +402,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$this->printBackToTopLink($i) .
 			'</div>';
 	}
-
+	
+	/**
+	 * 
+	 * @param type $generation
+	 * @return string
+	 */
 	private function printBlockContent($generation) {
 		$html = '<ol class="blockcontent generation">';
 		foreach ($generation as $pid) {
@@ -342,13 +428,25 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$html .= '</ol>';
 		return $html;
 	}
-
+	
+	/**
+	 * Print back-to-top link
+	 * 
+	 * @param type $i
+	 * @return string
+	 */
 	private function printBackToTopLink($i) {
 		if ($this->action === 'page' && $i > 1) {
 			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
 		}
 	}
-
+	
+	/**
+	 * Print read-more link
+	 * 
+	 * @param type $root
+	 * @return string
+	 */
 	private function printReadMoreLink($root) {
 		return
 			'<div id="read-more-link">' .
@@ -357,14 +455,25 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'</a>' .
 			'</div>';
 	}
-
+	
+	/**
+	 * Print private block content
+	 * 
+	 * @return string
+	 */
 	private function printPrivateBlock() {
 		return
 			'<div class="blockcontent generation private">' .
 			I18N::translate('The details of this generation are private.') .
 			'</div>';
 	}
-
+	
+	/**
+	 * Print the content for one individual
+	 * 
+	 * @param type $person
+	 * @return string (html)
+	 */
 	private function printIndividual($person) {
 
 		if ($person->CanShow()) {
@@ -423,7 +532,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
+	
+	/**
+	 * Print the content for a spouse
+	 * 
+	 * @param type $family
+	 * @param type $person
+	 * @param type $spouse
+	 * @param type $i
+	 * @param type $count
+	 * @return string
+	 */
 	private function printSpouse($family, $person, $spouse, $i, $count) {
 
 		$html = ' ';
@@ -511,7 +630,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-
+	
+	/**
+	 * Print the content for a non-married partner
+	 * 
+	 * @param type $family
+	 * @param type $person
+	 * @param type $spouse
+	 * @return type
+	 */
 	private function printPartner($family, $person, $spouse) {
 
 		$html = ' ';
@@ -537,7 +664,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-
+	
+	/**
+	 * Print the childrens list
+	 * 
+	 * @param type $family
+	 * @param type $person
+	 * @param type $spouse
+	 * @return string
+	 */
 	private function printChildren($family, $person, $spouse) {
 		$html = '';
 
@@ -634,7 +769,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-
+	
+	/**
+	 * Print the parents
+	 * 
+	 * @param type $person
+	 * @return string
+	 */
 	private function printParents($person) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
@@ -686,14 +827,27 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $html;
 		}
 	}
-
+	
+	/**
+	 * Print the full name of a person
+	 * 
+	 * @param type $person
+	 * @return string
+	 */
 	private function printName($person) {
 		return
 			'<indexentry content="' . str_replace(",", ", ", $person->getSortName()) . '">' .
 			$person->getFullName() .
 			'</indexentry>';
 	}
-
+	
+	/**
+	 * Print the name of a person with the link to the individual page
+	 * 
+	 * @param type $person
+	 * @param type $xref
+	 * @return string
+	 */
 	private function printNameUrl($person, $xref = '') {
 		if ($xref) {
 			$name = ' name="' . $xref . '"';
@@ -709,7 +863,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'</a>' .
 			'</indexentry>';
 	}
-
+	
+	/**
+	 * Print the birth text (born or baptized)
+	 * 
+	 * @param type $person
+	 * @param type $birth_fact
+	 * @param type $is_spouse
+	 * @return string
+	 */
 	private function printBirthText($person, $birth_fact, $is_spouse = false) {
 		$html = '';
 		switch ($birth_fact) {
@@ -750,7 +912,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-
+	
+	/**
+	 * Print the lifespan of this person
+	 * 
+	 * @param type $person
+	 * @param type $is_spouse
+	 * @return string
+	 */
 	private function printLifespan($person, $is_spouse = false) {
 		$html = '';
 		$birthdate = $person->getBirthDate();
@@ -811,7 +980,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $html;
 	}
-
+	
+	/**
+	 * Print the relationship between spouses (optional)
+	 * 
+	 * @param type $person
+	 * @param type $spouse
+	 * @return string
+	 */
 	private function printRelationship($person, $spouse) {
 		$html = '';
 		if ($this->options('check_relationship')) {
@@ -822,7 +998,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-
+	
+	/**
+	 * Print the thumbnail (highlighted image)
+	 * 
+	 * @param type $person
+	 * @param type $thumbsize
+	 * @param type $resize_format
+	 * @param type $square
+	 * @param type $resize
+	 * @return type
+	 */
 	private function printThumbnail($person, $thumbsize, $resize_format, $square, $resize) {
 		$mediaobject = $person->findHighlightedMedia();
 		if ($mediaobject) {
@@ -920,7 +1106,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $html;
 		}
 	}
-
+	
+	/**
+	 * Function to print dates with the right syntax
+	 * 
+	 * @param type $fact
+	 * @return type
+	 */
 	private function printDate($fact) {
 		$date = $fact->getDate();
 		if ($date && $date->isOK()) {
@@ -938,7 +1130,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
+	
+	/**
+	 * Print facts. Currently only used for 'OCCU'
+	 * 
+	 * @param type $person
+	 * @param type $tag
+	 * @return string
+	 */
 	private function printFact($person, $tag) {
 		$facts = $person->getFacts();
 		foreach ($facts as $fact) {
@@ -948,7 +1147,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
+	
+	/**
+	 * Print places
+	 * 
+	 * @param Place $place
+	 * @param type $tree
+	 * @return string
+	 */
 	private function printPlace($place, $tree) {
 		if ($this->options('show_places') == true) {
 			$place = new Place($place, $tree);
@@ -969,22 +1175,45 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 	}
 
-	// Other functions	
+	/**
+	 * Get individual object from PID
+	 * 
+	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
+	 * @param type $pid
+	 * @return object
+	 */
 	protected function getPerson($pid) {
 		global $WT_TREE;
 		return Individual::getInstance($pid, $WT_TREE);
 	}
-
+	
+	/**
+	 * Get object of the rootperson of this tree
+	 * 
+	 * @return object
+	 */
 	protected function getRootPerson() {
 		return $this->getPerson($this->rootId());
 	}
-
+	
+	/**
+	 * Get the family object of an individual
+	 * 
+	 * @param type $person
+	 * @return object
+	 */
 	private function getFamily($person) {
 		foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 			return $family;
 		}
 	}
-
+	
+	/**
+	 * Get an array of xrefs for the next descendant generation of this person
+	 * 
+	 * @param type $pid
+	 * @return array of xrefs
+	 */
 	private function getNextGen($pid) {
 		$person = $this->getPerson($pid);
 		foreach ($person->getSpouseFamilies() as $family) {
@@ -1002,7 +1231,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 	}
 
-	// check if a person has parents in the same generation
+	/**
+	 * check if a person has parents in the same generation
+	 * this function prevents listing the same person twice
+	 * 
+	 * @param type $person
+	 * @param type $generation
+	 * @return boolean
+	 */
 	private function hasParentsInSameGeneration($person, $generation) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
@@ -1019,15 +1255,26 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
-	// check if this date has any date qualifiers. Return true if no date qualifiers are found.
+	
+	/**
+	 * check if this date has any date qualifiers. Return true if no date qualifiers are found.
+	 * 
+	 * @param type $fact
+	 * @return boolean
+	 */
 	private function isDateDMY($fact) {
 		if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->getAttribute('DATE'))) {
 			return true;
 		}
 	}
-
-	// check (blood) relationship between partners
+	
+	/**
+	 * check (blood) relationship between partners
+	 * 
+	 * @param type $person
+	 * @param type $spouse
+	 * @return string (relationship name)
+	 */
 	private function checkRelationship($person, $spouse) {
 		$controller = new RelationshipController();
 		$paths = $controller->calculateRelationships($person, $spouse, 1);
@@ -1049,7 +1296,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
+	
+	/**
+	 * Check if this is a private record
+	 * 
+	 * @param type $record
+	 * @param type $xrefs
+	 * @return boolean
+	 */
 	private function checkPrivacy($record, $xrefs = false) {
 		$count = 0;
 		foreach ($record as $person) {
@@ -1064,8 +1318,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return true;
 		}
 	}
-
-	// Determine if the family parents are married. Don't use the default function because we want to privatize the record but display the name and the parents of the spouse if the spouse him/herself is not private.
+	
+	/**
+	 * Determine if the family parents are married.
+	 * 
+	 * Don't use the default function because we want to privatize the record but display the name
+	 * and the parents of the spouse if the spouse him/herself is not private.
+	 * 
+	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
+	 * @param type $family
+	 * @return boolean
+	 */
 	private function getMarriage($family) {
 		global $WT_TREE;
 		$record = GedcomRecord::getInstance($family->getXref(), $WT_TREE);
@@ -1075,8 +1338,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
-	// Check if this person is an adopted or foster child
+	
+	/**
+	 * Check if this person is an adopted or foster child
+	 * 
+	 * @param type $person
+	 * @param type $parents
+	 * @return attribute
+	 */
 	private function checkPedi($person, $parents) {
 		$pedi = "";
 		foreach ($person->getFacts('FAMC') as $fact) {
@@ -1087,7 +1356,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $pedi;
 	}
-
+	
+	/**
+	 * Get the Fancy treeview theme corresponding with the current user theme	 * 
+	 * Take into account the use of a custom childtheme
+	 * 
+	 * @return theme directory
+	 */
 	private function theme() {
 		$theme_dir = $this->directory . '/css/themes/';
 		if (file_exists($theme_dir . Theme::theme()->themeId())) {
@@ -1103,7 +1378,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-
+	
+	/**
+	 * Get the stylesheet which correspondents with the current user theme
+	 * 
+	 * @return stylesheet
+	 */
 	protected function getStylesheet() {
 		$stylesheet = '';
 
@@ -1115,7 +1395,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $stylesheet;
 	}
-
+	
+	/**
+	 * Determine which javascript file we need
+	 * 
+	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
+	 * @param type $controller
+	 * @param type $page
+	 * 
+	 * @return inline and/or external Javascript
+	 */
 	protected function includeJs($controller, $page) {
 
 		switch ($page) {
@@ -1179,7 +1468,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				break;
 		}
 	}
-
+	
+	/**
+	 * Add Inline Javascript
+	 * 
+	 * @param type $controller
+	 * 
+	 * @return javascript
+	 */
 	private function includeJsInline($controller) {
 		$controller->addInlineJavascript('
 			jQuery("#new_rootid").autocomplete({
@@ -1214,7 +1510,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			});
 		');
 	}
-
+	
+	/**
+	 * Use javascript to include the stylesheet(s) in the header
+	 * 
+	 * @param type $css
+	 * @return javascript
+	 */
 	protected function includeCss($css) {
 		return
 			'<script class="fancy-treeview-script">
