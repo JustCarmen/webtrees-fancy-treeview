@@ -619,9 +619,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 			if ($this->printLifespan($spouse, true)) {
 				$html .= $this->printLifespan($spouse, true);
-			} else {
-				$html .= '. ';
 			}
+			$html .= '. ';
 
 			$divorce = $family->getFirstFact('DIV');
 			if ($divorce) {
