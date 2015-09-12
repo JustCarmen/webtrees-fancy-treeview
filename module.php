@@ -19,7 +19,6 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 use Composer\Autoload\ClassLoader;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Database;
-use Fisharebest\Webtrees\File;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -230,6 +229,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
 				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' config updated');
+				
+				// the cache has to be recreated because the image options could have been changed
+				$this->module()->emptyCache();
 				break;
 
 			case 'admin_reset':
@@ -249,47 +251,86 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			case 'page':
 				$template = new PageTemplate;
 				return $template->pageContent();
-
-			case 'image_data':
-				header('Content-type: text/html; charset=UTF-8');
-				$xref = Filter::get('mid');
-				if (Filter::get('ftv_thumb')) {
-					$path = WT_DATA_DIR . 'ftv_cache' . DIRECTORY_SEPARATOR;
-					if (!file_exists($path)) {
-						File::mkdir($path);
-					}
-					$cache_file = $path . 'ftv-' . $xref . '-cache.jpg';
-					if (file_exists($cache_file)) {
-						$filemtime = filemtime($cache_file);
-					} else {
-						$filemtime = 0;
-					}
-					if (time() > $filemtime + 86400) {
-						$data = Filter::post('base64');
-						list($type, $data) = explode(';', $data);
-						list(, $data) = explode(',', $data);
-						$image = base64_decode($data);
-						if ($image) {
-							file_put_contents($cache_file, $image);
-						}
-					}
-					echo $cache_file;
-				} else {
-					$mediaobject = Media::getInstance($xref, $WT_TREE);
-					if ($mediaobject) {
-						echo $mediaobject->getServerFilename('thumb');
+			
+			// See mediafirewall.php
+			case 'thumbnail':
+				$mid			= Filter::get('mid', WT_REGEX_XREF);
+				$media			= Media::getInstance($mid, $WT_TREE);
+				$mimetype		= $media->mimeType();
+				$cache_filename = $this->module()->cacheFileName($media);
+				$filetime       = filemtime($cache_filename);
+				$filetimeHeader = gmdate('D, d M Y H:i:s', $filetime) . ' GMT';
+				$expireOffset   = 3600 * 24 * 7; // tell browser to cache this image for 7 days
+				$expireHeader	= gmdate('D, d M Y H:i:s', WT_TIMESTAMP + $expireOffset) . ' GMT';
+				$etag			= $media->getEtag();
+				$filesize		= filesize($cache_filename);
+				
+				// parse IF_MODIFIED_SINCE header from client
+				$if_modified_since = 'x';
+				if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+					$if_modified_since = preg_replace('/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE']);
+				}
+				
+				// parse IF_NONE_MATCH header from client
+				$if_none_match = 'x';
+				if (isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
+					$if_none_match = str_replace('"', '', $_SERVER['HTTP_IF_NONE_MATCH']);
+				}
+				
+				// add caching headers.  allow browser to cache file, but not proxy
+				header('Last-Modified: ' . $filetimeHeader);
+				header('ETag: "' . $etag . '"');
+				header('Expires: ' . $expireHeader);
+				header('Cache-Control: max-age=' . $expireOffset . ', s-maxage=0, proxy-revalidate');
+				
+				// if this file is already in the user’s cache, don’t resend it
+				// first check if the if_modified_since param matches
+				if ($if_modified_since === $filetimeHeader) {
+					// then check if the etag matches
+					if ($if_none_match === $etag) {
+						http_response_code(304);
+						return;
 					}
 				}
-				break;
 
-			case 'pdf_data':
-				$template = new PdfTemplate;
-				return $template->pageData();
+				// send headers for the image
+				header('Content-Type: ' . $mimetype);
+				header('Content-Disposition: filename="' . basename($cache_filename) . '"');
+				header('Content-Length: ' . $filesize);
+						
+				// Some servers disable fpassthru() and readfile()
+				if (function_exists('readfile')) {
+					readfile($cache_filename);
+				} else {
+					$fp = fopen($cache_filename, 'rb');
+					if (function_exists('fpassthru')) {
+						fpassthru($fp);
+					} else {
+						while (!feof($fp)) {
+							echo fread($fp, 65536);
+						}
+					}
+					fclose($fp);					
+				}
 				break;
 
 			case 'show_pdf':
 				$template = new PdfTemplate();
 				return $template->pageBody();
+
+			case 'pdf_data':
+				$template = new PdfTemplate;
+				return $template->pageData();
+
+			case 'pdf_thumb_data':
+				$xref			= Filter::get('mid');
+				$mediaobject	= Media::getInstance($xref, $WT_TREE);
+				$thumb			= Filter::get('thumb');
+				if ($thumb === '2') { // Fancy thumb
+					echo $this->module()->cacheFileName($mediaobject);
+				} else {
+					echo $mediaobject->getServerFilename('thumb');
+				}
 				break;
 
 			default:

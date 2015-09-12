@@ -49,51 +49,31 @@ function createPDF() {
 	var counter = jQuery("a.gallery img", content).length;
 
 	if (counter > 0) {
-		if (jQuery(".ftv-thumb", content).length) {
-			jQuery("a.gallery img", content).each(function () {
-				var mid = jQuery(this).parent().data("obje-xref");
-				jQuery.ajax({
-					url: "module.php?mod=" + ModuleName + "&mod_action=image_data&mid=" + mid + "&ftv_thumb=1",
-					type: "POST",
-					data: {
-						base64: jQuery(this).attr("src"),
-					},
-					context: this,
-					success: function (data) {
-						jQuery(this).attr("src", data);
-						counter--;
-						if (counter === 0) {
-							getPDF();
-						}
-					}
-				});
-			});
-		} else {
-			function qstring(key, url) {
-				KeysValues = url.split(/[\?&]+/);
-				for (i = 0; i < KeysValues.length; i++) {
-					KeyValue = KeysValues[i].split("=");
-					if (KeyValue[0] === key) {
-						return KeyValue[1];
-					}
+		function qstring(key, url) {
+			KeysValues = url.split(/[\?&]+/);
+			for (i = 0; i < KeysValues.length; i++) {
+				KeyValue = KeysValues[i].split("=");
+				if (KeyValue[0] === key) {
+					return KeyValue[1];
 				}
 			}
-			jQuery("a.gallery img", content).each(function () {
-				var mid = qstring("mid", jQuery(this).attr("src"));
-				jQuery.ajax({
-					type: "GET",
-					url: "module.php?mod=" + ModuleName + "&mod_action=image_data&mid=" + mid,
-					context: this,
-					success: function (data) {
-						jQuery(this).addClass("wt-thumb").attr("src", data);
-						counter--;
-						if (counter === 0) {
-							getPDF();
-						}
-					}
-				});
-			});
 		}
+		jQuery("a.gallery img", content).each(function () {
+			var mid = qstring("mid", jQuery(this).attr("src"));
+			var thumb = qstring("thumb", jQuery(this).attr("src"));
+			jQuery.ajax({
+				type: "GET",
+				url: "module.php?mod=" + ModuleName + "&mod_action=pdf_thumb_data&mid=" + mid + "&thumb=" + thumb,
+				context: this,
+				success: function (data) {
+					jQuery(this).attr("src", data);
+					counter--;
+					if (counter === 0) {
+						getPDF();
+					}
+				}
+			});
+		});
 	} else {
 		getPDF();
 	}

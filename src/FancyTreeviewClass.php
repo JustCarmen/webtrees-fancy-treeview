@@ -20,12 +20,14 @@ use Fisharebest\Webtrees\Controller\BaseController;
 use Fisharebest\Webtrees\Controller\RelationshipController;
 use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Date;
+use Fisharebest\Webtrees\File;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Functions\FunctionsDate;
 use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\Media;
 use Fisharebest\Webtrees\Place;
 use Fisharebest\Webtrees\Soundex;
 use Fisharebest\Webtrees\Theme;
@@ -477,8 +479,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	private function printIndividual($person) {
 
 		if ($person->CanShow()) {
-			$resize = $this->options('resize_thumbs') == 1 ? true : false;
-			$html = '<div class="parents">' . $this->printThumbnail($person, $this->options('thumb_size'), $this->options('thumb_resize_format'), $this->options('use_square_thumbs'), $resize) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
+			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
 			if ($this->options('show_occu') == true) {
 				$html .= $this->printFact($person, 'OCCU');
 			}
@@ -999,110 +1000,38 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 	
 	/**
-	 * Print the thumbnail (highlighted image)
+	 * Print the Fancy thumbnail for this individual
 	 * 
 	 * @param type $person
-	 * @param type $thumbsize
-	 * @param type $resize_format
-	 * @param type $square
-	 * @param type $resize
-	 * @return type
+	 * @return thumbnail
 	 */
-	private function printThumbnail($person, $thumbsize, $resize_format, $square, $resize) {
+	private function printThumbnail($person) {
 		$mediaobject = $person->findHighlightedMedia();
 		if ($mediaobject) {
-			$html = '';
-			if ($resize == true) {
-				$mediasrc = $resize_format == 1 ? $mediaobject->getServerFilename('thumb') : $mediaobject->getServerFilename('main');
-				$thumbwidth = $thumbsize; $thumbheight = $thumbsize;
-				$mediatitle = strip_tags($this->printName($person));
-
-				$type = $mediaobject->mimeType();
-				if ($type == 'image/jpeg' || $type == 'image/png') {
-
-					if (!list($width_orig, $height_orig) = @getimagesize($mediasrc)) {
-						return null;
-					}
-
-					switch ($type) {
-						case 'image/jpeg':
-							$image = @imagecreatefromjpeg($mediasrc);
-							break;
-						case 'image/png':
-							$image = @imagecreatefrompng($mediasrc);
-							break;
-					}
-
-					// fallback if image is in the database but not on the server
-					if (isset($width_orig) && isset($height_orig)) {
-						$ratio_orig = $width_orig / $height_orig;
-					} else {
-						$ratio_orig = 1;
-					}
-
-					if ($resize_format == 1) {
-						$thumbwidth = $thumbwidth / 100 * $width_orig;
-						$thumbheight = $thumbheight / 100 * $height_orig;
-					}
-
-					if ($square == true) {
-						$thumbheight = $thumbwidth;
-						if ($ratio_orig < 1) {
-							$new_height = $thumbwidth / $ratio_orig;
-							$new_width = $thumbwidth;
-						} else {
-							$new_width = $thumbheight * $ratio_orig;
-							$new_height = $thumbheight;
-						}
-					} else {
-						if ($resize_format == 1) {
-							$new_width = $thumbwidth;
-							$new_height = $thumbheight;
-						} elseif ($width_orig > $height_orig) {
-							$new_height = $thumbheight / $ratio_orig;
-							$new_width = $thumbwidth;
-						} elseif ($height_orig > $width_orig) {
-							$new_width = $thumbheight * $ratio_orig;
-							$new_height = $thumbheight;
-						} else {
-							$new_width = $thumbwidth;
-							$new_height = $thumbheight;
-						}
-					}
-					$process = @imagecreatetruecolor(round($new_width), round($new_height));
-					if ($type == 'image/png') { // keep transparancy for png files.
-						imagealphablending($process, false);
-						imagesavealpha($process, true);
-					}
-					@imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $width_orig, $height_orig);
-
-					$thumb = $square == true ? imagecreatetruecolor($thumbwidth, $thumbheight) : imagecreatetruecolor($new_width, $new_height);
-					if ($type == 'image/png') {
-						imagealphablending($thumb, false);
-						imagesavealpha($thumb, true);
-					}
-					@imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
-
-					@imagedestroy($process);
-					@imagedestroy($image);
-
-					$width = $square == true ? round($thumbwidth) : round($new_width);
-					$height = $square == true ? round($thumbheight) : round($new_height);
-					ob_start(); $type = 'image/png' ? imagepng($thumb, null, 9) : imagejpeg($thumb, null, 100); $newThumb = ob_get_clean();
-					$html = '<a' .
-						' class="' . 'gallery' . '"' .
-						' href="' . $mediaobject->getHtmlUrlDirect('main') . '"' .
-						' type="' . $mediaobject->mimeType() . '"' .
-						' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
-						' data-obje-note="' . Filter::escapeHtml($mediaobject->getNote()) . '"' .
-						' data-obje-xref="' . $mediaobject->getXref() . '"' .
-						' data-title="' . Filter::escapeHtml($mediaobject->getFullName()) . '"' .
-						'><img class="ftv-thumb" src="data:' . $mediaobject->mimeType() . ';base64,' . base64_encode($newThumb) . '" dir="auto" title="' . $mediatitle . '" alt="' . $mediatitle . '" width="' . $width . '" height="' . $height . '"/></a>'; // need size to fetch it with jquery (for pdf conversion)
-				}
+			$cache_filename = $this->getThumbnail($mediaobject);
+			if ($this->options('resize_thumbs') && is_file($cache_filename)) {
+				$imgsize = getimagesize($cache_filename);
+				// Use the Fancy thumbnail image
+				$image =
+				'<img' .
+				' dir="' . 'auto' . '"' . // For the tool-tip
+				' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
+				' alt="' . strip_tags($person->getFullName()) . '"' .
+				' title="' . strip_tags($person->getFullName()) . '"' .
+				' ' . $imgsize[3] . // height="yyy" width="xxx"
+				'>';
+				return		
+					'<a' .
+					' class="' . 'gallery' . '"' .
+					' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
+					' type="' . $mediaobject->mimeType() . '"' .
+					' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
+					' data-obje-note="' . Filter::escapeHtml($mediaobject->getNote()) . '"' .
+					' data-title="' . strip_tags($person->getFullName()) . '"' .
+					'>' . $image . '</a>';
 			} else {
-				$html = $mediaobject->displayImage();
+				return $mediaobject->displayImage();
 			}
-			return $html;
 		}
 	}
 	
@@ -1353,6 +1282,173 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 		return $pedi;
+	}
+	
+	/**
+	 * Get the ftv_cache directory
+	 * 
+	 * @return directory name
+	 */
+	protected function cacheDir() {
+		return WT_DATA_DIR . 'ftv_cache/thumbs/';
+	}
+	
+	/**
+	 * Get the filename of the cached image
+	 * 
+	 * @param Media $mediaobject
+	 * @return filename
+	 */
+	protected function cacheFileName(Media $mediaobject) {
+		global $WT_TREE;
+		return $this->cacheDir() . $WT_TREE->getTreeId() . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
+	}
+	
+	/**
+	 * remove all old cached files for this tree
+	 */
+	protected function emptyCache() {
+		global $WT_TREE;
+		foreach (glob($this->cacheDir() . '*') as $cache_file) {
+			if (is_file($cache_file)) {
+				$tree_id = intval(explode('-', basename($cache_file))[0]);
+				if ($tree_id === $WT_TREE->getTreeId()) {
+					unlink($cache_file);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Check if thumbnails from cache should be recreated
+	 * 
+	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
+	 * @param type $mediaobject
+	 * @return string filename
+	 */
+	private function getThumbnail(Media $mediaobject) {
+		$cache_dir = $this->cacheDir();
+
+		if (!file_exists($cache_dir)) {
+			File::mkdir($cache_dir);
+		}
+
+		if (file_exists($mediaobject->getServerFilename())) {
+			$cache_filename = $this->cacheFileName($mediaobject);
+			
+			if (!is_file($cache_filename)) {
+				$thumbnail = $this->fancyThumb($mediaobject);
+				$mimetype = $mediaobject->mimeType();
+				if ($mimetype === 'image/jpeg') {
+					imagejpeg($thumbnail, $cache_filename);
+				} elseif ($mimetype === 'image/png') {
+					imagepng($thumbnail, $cache_filename);
+				} else {
+					return;
+				}
+			}
+			return $cache_filename;
+		}		
+	}
+	
+	/**
+	 * Get the Fancy thumbnail (highlighted image)
+	 * 
+	 * @param type $mediaobject
+	 * @return image
+	 */
+	private function fancyThumb($mediaobject) {
+		// option 1 = percentage of original webtrees thumbnail
+		// option 2 = size in pixels		
+		$resize_format = $this->options('thumb_resize_format');
+		if ($resize_format === '1') {
+			$mediasrc = $mediaobject->getServerFilename('thumb');
+		} else {
+			$mediasrc = $mediaobject->getServerFilename('main');
+		}
+		
+		if (is_file($mediasrc)) {
+			$thumbsize = $this->options('thumb_size');
+			$thumbwidth = $thumbheight = $thumbsize; 
+
+			$mimetype = $mediaobject->mimeType();
+			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png') {
+
+				if (!list($imagewidth, $imageheight) = getimagesize($mediasrc)) {
+					return null;
+				}
+
+				switch ($mimetype) {
+					case 'image/jpeg':
+						$image = imagecreatefromjpeg($mediasrc);
+						break;
+					case 'image/png':
+						$image = imagecreatefrompng($mediasrc);
+						break;
+				}
+
+				// fallback if image is in the database but not on the server
+				if (isset($imagewidth) && isset($imageheight)) {
+					$ratio = $imagewidth / $imageheight;
+				} else {
+					$ratio = 1;
+				}
+
+				if ($resize_format === '1') {
+					$thumbwidth = $thumbwidth / 100 * $imagewidth;
+					$thumbheight = $thumbheight / 100 * $imageheight;
+				}
+
+				$square = $this->options('use_square_thumbs');
+				if ($square == true) {
+					$thumbheight = $thumbwidth;
+					if ($ratio < 1) {
+						$new_height = $thumbwidth / $ratio;
+						$new_width = $thumbwidth;
+					} else {
+						$new_width = $thumbheight * $ratio;
+						$new_height = $thumbheight;
+					}
+				} else {
+					if ($resize_format === '1') {
+						$new_width = $thumbwidth;
+						$new_height = $thumbheight;
+					} elseif ($imagewidth > $imageheight) {
+						$new_height = $thumbheight / $ratio;
+						$new_width = $thumbwidth;
+					} elseif ($imageheight > $imagewidth) {
+						$new_width = $thumbheight * $ratio;
+						$new_height = $thumbheight;
+					} else {
+						$new_width = $thumbwidth;
+						$new_height = $thumbheight;
+					}
+				}
+				$process = imagecreatetruecolor(round($new_width), round($new_height));
+				if ($mimetype == 'image/png') { // keep transparancy for png files.
+					imagealphablending($process, false);
+					imagesavealpha($process, true);
+				}
+				imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $imagewidth, $imageheight);
+
+				if ($square) {
+					$thumb = imagecreatetruecolor($thumbwidth, $thumbheight);
+				} else {
+					$thumb = imagecreatetruecolor($new_width, $new_height);
+				}
+
+				if ($mimetype == 'image/png') {
+					imagealphablending($thumb, false);
+					imagesavealpha($thumb, true);
+				}
+				imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
+
+				imagedestroy($process);
+				imagedestroy($image);				
+
+				return $thumb;
+			}
+		}
 	}
 	
 	/**
