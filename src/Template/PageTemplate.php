@@ -47,13 +47,12 @@ class PageTemplate extends FancyTreeviewClass {
 	}
 	
 	private function pageBody(PageController $controller) {
-		global $WT_TREE;
 		?>
 		<!-- FANCY TREEVIEW PAGE -->
 		<div id="fancy_treeview-page">
 			<div id="page-header">
 				<h2><?php echo $controller->getPageTitle(); ?></h2>
-				<?php if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)): ?>
+				<?php if ($this->options('show_pdf_icon') >= Auth::accessLevel($this->tree)): ?>
 					<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
 						<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
 					</div>
@@ -61,7 +60,7 @@ class PageTemplate extends FancyTreeviewClass {
 				<?php endif; ?>
 			</div>
 			<div id="page-body">
-				<?php if ($this->options('show_userform') >= Auth::accessLevel($WT_TREE)): ?>
+				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree)): ?>
 					<form id="change_root">
 						<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 						<input

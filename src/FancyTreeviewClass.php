@@ -194,16 +194,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/**
 	 * Get the page link to store in the database
 	 * 
-	 * @global type $WT_TREE
 	 * @param type $pid
 	 * @return string
 	 */
 	protected function getPageLink($pid) {
-		global $WT_TREE;
-		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $WT_TREE->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
+		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $this->tree->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
 
 		if ($this->options('use_fullname') == true) {
-			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid, $WT_TREE)->getFullName());
+			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid, $this->tree)->getFullName());
 		} else {
 			$link .= I18N::translate('Descendants of the %s family', $this->getSurname($pid));
 		}
@@ -1106,13 +1104,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/**
 	 * Get individual object from PID
 	 * 
-	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
 	 * @param type $pid
 	 * @return object
 	 */
 	protected function getPerson($pid) {
-		global $WT_TREE;
-		return Individual::getInstance($pid, $WT_TREE);
+		return Individual::getInstance($pid, $this->tree);
 	}
 	
 	/**
@@ -1252,13 +1248,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * Don't use the default function because we want to privatize the record but display the name
 	 * and the parents of the spouse if the spouse him/herself is not private.
 	 * 
-	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
 	 * @param type $family
 	 * @return boolean
 	 */
 	private function getMarriage($family) {
-		global $WT_TREE;
-		$record = GedcomRecord::getInstance($family->getXref(), $WT_TREE);
+		$record = GedcomRecord::getInstance($family->getXref(), $this->tree);
 		foreach ($record->getFacts('MARR', false, Auth::PRIV_HIDE) as $fact) {
 			if ($fact) {
 				return true;
@@ -1300,19 +1294,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return filename
 	 */
 	protected function cacheFileName(Media $mediaobject) {
-		global $WT_TREE;
-		return $this->cacheDir() . $WT_TREE->getTreeId() . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
+		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 	
 	/**
 	 * remove all old cached files for this tree
 	 */
 	protected function emptyCache() {
-		global $WT_TREE;
 		foreach (glob($this->cacheDir() . '*') as $cache_file) {
 			if (is_file($cache_file)) {
 				$tree_id = intval(explode('-', basename($cache_file))[0]);
-				if ($tree_id === $WT_TREE->getTreeId()) {
+				if ($tree_id === $this->tree_id) {
 					unlink($cache_file);
 				}
 			}
@@ -1322,7 +1314,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/**
 	 * Check if thumbnails from cache should be recreated
 	 * 
-	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
 	 * @param type $mediaobject
 	 * @return string filename
 	 */
@@ -1493,7 +1484,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/**
 	 * Determine which javascript file we need
 	 * 
-	 * @global \JustCarmen\WebtreesAddOns\FancyTreeview\type $WT_TREE
 	 * @param type $controller
 	 * @param type $page
 	 * 
@@ -1524,8 +1514,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				break;
 
 			case 'page':
-				global $WT_TREE;
-
 				$controller
 					->addInlineJavascript('
 				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";
@@ -1539,7 +1527,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					->addInlineJavascript('autocomplete();')
 					->addExternalJavascript($this->directory . '/js/page.js');
 
-				if ($this->options('show_pdf_icon') >= Auth::accessLevel($WT_TREE)) {
+				if ($this->options('show_pdf_icon') >= Auth::accessLevel($this->tree)) {
 					$controller->addExternalJavascript($this->directory . '/js/pdf.js');
 				}
 
@@ -1551,7 +1539,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 				}
 
-				if ($this->options('show_userform') >= Auth::accessLevel($WT_TREE)) {
+				if ($this->options('show_userform') >= Auth::accessLevel($this->tree)) {
 					$this->includeJsInline($controller);
 				}
 				break;

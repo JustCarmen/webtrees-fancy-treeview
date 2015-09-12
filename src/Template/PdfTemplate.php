@@ -26,8 +26,6 @@ use mPDF;
 class PdfTemplate extends FancyTreeviewClass {
 
 	public function pageBody() {
-		global $WT_TREE;
-
 		$cache_dir = WT_DATA_DIR . 'ftv_cache/';
 
 		define("_JPGRAPH_PATH", $cache_dir);
@@ -42,7 +40,7 @@ class PdfTemplate extends FancyTreeviewClass {
 			$stylesheet_rtl = file_get_contents($this->directory . '/css/pdf/style-rtl.css');
 			$html = file_get_contents($tmpfile);
 
-			$header = '<header>=== ' . $WT_TREE->getTitleHtml() . ' ===</header>';
+			$header = '<header>=== ' . $this->tree->getTitleHtml() . ' ===</header>';
 			$footer = '<footer>' .
 				'<table><tr>' .
 				'<td class="left">' . WT_BASE_URL . '</td>' .
@@ -71,7 +69,7 @@ class PdfTemplate extends FancyTreeviewClass {
 			$mpdf->setAutoBottomMargin = 'stretch';
 			$mpdf->autoMarginPadding = 5;
 
-			$admin = User::find($WT_TREE->getPreference('WEBMASTER_USER_ID'))->getRealName();
+			$admin = User::find($this->tree->getPreference('WEBMASTER_USER_ID'))->getRealName();
 
 			$mpdf->setCreator($this->getTitle() . ' - a webtrees module by justcarmen.nl');
 			$mpdf->SetTitle(Filter::get('title'));
