@@ -85,7 +85,7 @@ msgid "Go"
 msgstr "צא"
 
 #: src/FancyTreeviewClass.php:521
-msgid "He had a relation with"
+msgid "He had a relationship with"
 msgstr "לו היה קשר עם"
 
 #. I18N: %s is a number
@@ -181,7 +181,7 @@ msgid "Select your country"
 msgstr "בחר את המדינה שלך"
 
 #: src/FancyTreeviewClass.php:524
-msgid "She had a relation with"
+msgid "She had a relationship with"
 msgstr "לה היה קשר עם"
 
 #. I18N: %s is a number
@@ -284,7 +284,7 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "האפשרויות עבור העץ הזה עודכנו בהצלחה"
 
 #: src/FancyTreeviewClass.php:527
-msgid "This individual has a relation with"
+msgid "This individual had a relationship with"
 msgstr "האדם הזה יש קשר עם"
 
 #: src/FancyTreeviewClass.php:474

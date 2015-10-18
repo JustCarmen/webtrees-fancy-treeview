@@ -85,8 +85,8 @@ msgid "Go"
 msgstr "Go"
 
 #: src/FancyTreeviewClass.php:521
-msgid "He had a relation with"
-msgstr "He had a relation with"
+msgid "He had a relationship with"
+msgstr "He had a relationship with"
 
 #. I18N: %s is a number
 #: src/FancyTreeviewClass.php:448
@@ -179,8 +179,8 @@ msgid "Select your country"
 msgstr "Select your country"
 
 #: src/FancyTreeviewClass.php:524
-msgid "She had a relation with"
-msgstr "She had a relation with"
+msgid "She had a relationship with"
+msgstr "She had a relationship with"
 
 #. I18N: %s is a number
 #: src/FancyTreeviewClass.php:454
@@ -280,8 +280,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "The settings for this tree are succesfully updated"
 
 #: src/FancyTreeviewClass.php:527
-msgid "This individual has a relation with"
-msgstr "This individual has a relation with"
+msgid "This individual had a relationship with"
+msgstr "This individual had a relationship with"
 
 #: src/FancyTreeviewClass.php:474
 msgid "This individual married"

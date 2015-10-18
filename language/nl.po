@@ -85,7 +85,7 @@ msgid "Go"
 msgstr "Ga"
 
 #: src/FancyTreeviewClass.php:521
-msgid "He had a relation with"
+msgid "He had a relationship with"
 msgstr "Hij had een relatie met"
 
 #. I18N: %s is a number
@@ -179,7 +179,7 @@ msgid "Select your country"
 msgstr "Selecteer uw land"
 
 #: src/FancyTreeviewClass.php:524
-msgid "She had a relation with"
+msgid "She had a relationship with"
 msgstr "Zij had een relatie met"
 
 #. I18N: %s is a number
@@ -280,7 +280,7 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "De instellingen voor deze stamboom zijn succesvol opgeslagen"
 
 #: src/FancyTreeviewClass.php:527
-msgid "This individual has a relation with"
+msgid "This individual had a relationship with"
 msgstr "Deze persoon had een relatie met"
 
 #: src/FancyTreeviewClass.php:474

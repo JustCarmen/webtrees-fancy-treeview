@@ -643,13 +643,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		switch ($person->getSex()) {
 			case 'M':
-				$html .= I18N::translate('He had a relation with');
+				$html .= I18N::translate('He had a relationship with');
 				break;
 			case 'F':
-				$html .= I18N::translate('She had a relation with');
+				$html .= I18N::translate('She had a relationship with');
 				break;
 			default:
-				$html .= I18N::translate('This individual has a relation with');
+				$html .= I18N::translate('This individual had a relationship with');
 				break;
 		}
 
@@ -660,7 +660,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($family->getFirstFact('_NMR') && $this->printLifespan($spouse, true)) {
 			$html .= $this->printLifespan($spouse, true);
 		}
-		return $html;
+		
+		return '. ' . $html;
 	}
 	
 	/**
