@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2015-09-05 22:12+0200\n"
-"PO-Revision-Date: 2015-07-23 11:26+0200\n"
+"PO-Revision-Date: 2015-10-21 21:00+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -95,16 +95,14 @@ msgid "He married %s times"
 msgstr "הוא נישא %s פעמים"
 
 #: src/FancyTreeviewClass.php:737
-#, fuzzy
 msgctxt "PAST"
 msgid "He was baptized"
-msgstr "הוא נולד"
+msgstr "הוא הוטבל"
 
 #: src/FancyTreeviewClass.php:739
-#, fuzzy
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "הוא נולד"
+msgstr "הוא הוטבל"
 
 #: src/FancyTreeviewClass.php:720
 msgctxt "PAST"
@@ -191,16 +189,14 @@ msgid "She married %s times"
 msgstr "היא נישאה %s פעמים"
 
 #: src/FancyTreeviewClass.php:737
-#, fuzzy
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr "היא נולדה"
+msgstr "היא הוטבלה"
 
 #: src/FancyTreeviewClass.php:739
-#, fuzzy
 msgctxt "PRESENT"
 msgid "She was baptized"
-msgstr "היא נולדה"
+msgstr "היא הוטבלה"
 
 #: src/FancyTreeviewClass.php:720
 msgctxt "PAST"
@@ -268,7 +264,7 @@ msgstr "האפשרויות עבור העץ הזה אופסו בהצלחה להג
 
 #: src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully saved"
-msgstr "Tällä henkilöllä on suhde henkilöön"
+msgstr "האפשרויות עבור העץ הזה נשמרו בהצלחה"
 
 #: src/Template/PageTemplate.php:58
 msgid "The pdf contains only visible generation blocks."
@@ -285,7 +281,7 @@ msgstr "האפשרויות עבור העץ הזה עודכנו בהצלחה"
 
 #: src/FancyTreeviewClass.php:527
 msgid "This individual had a relationship with"
-msgstr "האדם הזה יש קשר עם"
+msgstr "לאדם הזה היה קשר עם"
 
 #: src/FancyTreeviewClass.php:474
 msgid "This individual married"
@@ -519,22 +515,22 @@ msgstr "שלישית"
 #: src/FancyTreeviewClass.php:746
 msgctxt "PRESENT (MALE)"
 msgid "was bapitized"
-msgstr ""
+msgstr "הוטבל"
 
 #: src/FancyTreeviewClass.php:744
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
-msgstr ""
+msgstr "הוטבלה"
 
 #: src/FancyTreeviewClass.php:744
 msgctxt "PAST (MALE)"
 msgid "was baptized"
-msgstr ""
+msgstr "הוטבל"
 
 #: src/FancyTreeviewClass.php:746
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
-msgstr ""
+msgstr "הוטבלה"
 
 #: src/FancyTreeviewClass.php:727
 msgctxt "PAST (FEMALE)"
