@@ -107,7 +107,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function defaultTabOrder() {
-		return 99;
+		return 25;
 	}
 
 	/** {@inheritdoc} */
