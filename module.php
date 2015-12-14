@@ -126,7 +126,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function canLoadAjax() {
-		return true;
+		return !Auth::isSearchEngine(); // Search engines cannot use AJAX
 	}
 
 	/** {@inheritdoc} */
