@@ -549,7 +549,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($count > 1) {
 			// we assume no one married more then ten times.
 			$wordcount = array(
-				I18N::translate('first'),
+				I18N::translateContext('Show the [first/last] [N] parts of a place name.','first'),
 				I18N::translate('second'),
 				I18N::translate('third'),
 				I18N::translate('fourth'),
