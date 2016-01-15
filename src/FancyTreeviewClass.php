@@ -549,16 +549,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($count > 1) {
 			// we assume no one married more then ten times.
 			$wordcount = array(
-				I18N::translateContext('Show the [first/last] [N] parts of a place name.','first'),
-				I18N::translate('second'),
-				I18N::translate('third'),
-				I18N::translate('fourth'),
-				I18N::translate('fifth'),
-				I18N::translate('sixth'),
-				I18N::translate('seventh'),
-				I18N::translate('eighth'),
-				I18N::translate('ninth'),
-				I18N::translate('tenth')
+				I18N::translateContext('First marriage','first'),
+				I18N::translateContext('Second marriage','second'),
+				I18N::translateContext('Third marriage','third'),
+				I18N::translateContext('Fourth marriage','fourth'),
+				I18N::translateContext('Fifth marriage','fifth'),
+				I18N::translateContext('Sixth marriage','sixth'),
+				I18N::translateContext('Seventh marriage','seventh'),
+				I18N::translateContext('Eight marriage','eighth'),
+				I18N::translateContext('Ninth marriage','ninth'),
+				I18N::translateContext('Tenth marriage','tenth')
 			);
 			switch ($person->getSex()) {
 				case 'M':
