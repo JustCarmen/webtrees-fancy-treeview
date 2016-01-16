@@ -613,7 +613,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 			$marrplace = $family->getMarriagePlace();
 			if ($marrplace->getGedcomName()) {
-				$html .= $this->printPlace($marrplace->getGedcomName(), $family->getTree());
+				$html .= $this->printPlace($marrplace->getGedcomName());
 			}
 
 			if ($this->printLifespan($spouse, true)) {
@@ -944,7 +944,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 
 			if ($person->getBirthPlace() != '') {
-				$html .= $this->printPlace($person->getBirthPlace(), $person->getTree());
+				$html .= $this->printPlace($person->getBirthPlace());
 			}
 		}
 
@@ -965,7 +965,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 
 			if ($person->getDeathPlace() != '') {
-				$html .= $this->printPlace($person->getDeathPlace(), $person->getTree());
+				$html .= $this->printPlace($person->getDeathPlace());
 			}
 
 			if ($birthdate->isOK() && $deathdate->isOK() && $this->isDateDMY($birt) && $this->isDateDMY($deat)) {
@@ -1082,9 +1082,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $tree
 	 * @return string
 	 */
-	private function printPlace($place, $tree) {
+	private function printPlace($place) {
+		global $WT_TREE;
+		
 		if ($this->options('show_places') == true) {
-			$place = new Place($place, $tree);
+			$place = new Place($place, $WT_TREE);
 			$html = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
 			if ($this->options('use_gedcom_places') == true) {
 				$html .= $place->getShortName();
