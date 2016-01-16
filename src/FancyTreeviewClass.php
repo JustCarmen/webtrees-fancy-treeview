@@ -964,13 +964,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * Print the birth text (born or baptized)
 	 * 
 	 * @param type $person
-	 * @param type $birth_fact
+	 * @param type $event
 	 * @param type $is_spouse
 	 * @return string
 	 */
-	private function printBirthText($person, $birth_fact, $is_spouse = false) {
+	private function printBirthText($person, $event, $is_spouse = false) {
 		$html = '';
-		switch ($birth_fact) {
+		switch ($event) {
 			case 'BIRT':
 				if ($is_spouse == true) {
 					$html .= '. ';
@@ -1013,13 +1013,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * Print the death text (death or buried)
 	 * 
 	 * @param type $person
-	 * @param type $deat_fact
-	 * @param type $bdata
+	 * @param type $event
+	 * @param type $is_bfact
 	 * @return string
 	 */
-	private function printDeathText($person, $death_fact, $is_bfact) {
+	private function printDeathText($person, $event, $is_bfact) {
 		$html = '';
-		switch ($death_fact) {
+		switch ($event) {
 			case 'DEAT':				
 				if ($is_bfact) {
 					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
