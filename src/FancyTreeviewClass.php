@@ -900,7 +900,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		
 		if ($is_bfact && $is_dfact && $bdate && $ddate) {
-			$html .= $this->printAgeText($bfact, $dfact);
+			$html .= $this->printAgeOfDeath($bfact, $dfact);
 		}
 
 		return $html;
@@ -1049,7 +1049,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		return $html;
 	}
 	
-	private function printAgeText($bfact, $dfact){
+	/**
+	 * Print the age at death/bury
+	 * @param type $bfact
+	 * @param type $dfact
+	 * @return string
+	 */
+	private function printAgeOfDeath($bfact, $dfact){
 		$bdate = $bfact->getDate();
 		$ddate = $dfact->getDate();
 		$html = '';
