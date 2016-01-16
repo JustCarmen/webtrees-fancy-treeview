@@ -608,12 +608,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 			$marriage = $family->getFirstFact('MARR');
 			if ($marriage) {
-				$html .= $this->printDate($marriage);
-			}
-
-			$marrplace = $family->getMarriagePlace();
-			if ($marrplace->getGedcomName()) {
-				$html .= $this->printPlace($marrplace->getGedcomName());
+				$html .= $this->printDate($marriage) .
+						 $this->printPlace($marriage);
 			}
 
 			if ($this->printLifespan($spouse, true)) {
@@ -913,6 +909,61 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 	
 	/**
+	 * Print the death text (death or buried)
+	 * 
+	 * @param type $person
+	 * @param type $deat_fact
+	 * @param type $bdata
+	 * @return string
+	 */
+	private function printDeathText($person, $death_fact, $is_bfact) {
+		$html = '';
+		switch ($death_fact) {
+			case 'DEAT':				
+				if ($is_bfact) {
+					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
+				} else {
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
+				}
+				break;
+			case 'BURI':
+				if ($is_bfact) {
+					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is buried') : $html .= I18N::translateContext('MALE', 'buried');
+				} else {
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is buried') : $html .= '. ' . I18N::translate('He is buried');
+				}
+				break;
+			case 'CREM':
+				if ($is_bfact) {
+					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is cremated') : $html .= I18N::translateContext('MALE', 'cremated');
+				} else {
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is cremated') : $html .= '. ' . I18N::translate('He is cremated');
+				}
+				break;
+				
+		}
+		return $html;
+	}
+	
+	private function printAgeText($bfact, $dfact){
+		$bdate = $bfact->getDate();
+		$ddate = $dfact->getDate();
+		$html = '';
+		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
+			$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($bdate, $ddate), false);
+			if (Date::getAge($bdate, $ddate, 0) < 2) {
+				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
+			} else {
+				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
+			}
+		}
+		return $html;
+	}
+	
+	/**
 	 * Print the lifespan of this person
 	 * 
 	 * @param type $person
@@ -921,60 +972,39 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	private function printLifespan($person, $is_spouse = false) {
 		$html = '';
-		$birthdate = $person->getBirthDate();
-		$deathdate = $person->getDeathdate();
-		$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($birthdate, $deathdate), false);
-
-		$birthdata = false;
-		if ($birthdate->isOK() || $person->getBirthPlace() != '') {
-			$birthdata = true;
-
-			$bapm = $person->getFirstFact('BAPM');
-			$chr = $person->getFirstFact('CHR');
-			$birt = $person->getFirstFact('BIRT');
-
-			if ($birt) {
-				$html .= $this->printBirthText($person, 'BIRT', $is_spouse);
-				$html .= $this->printDate($birt);
-			} else {
-				if ($bapm || $chr) {
-					$html .= $this->printBirthText($person, 'BAPM', $is_spouse);
-					$html .= $bapm ? $this->printDate($bapm) : $this->printDate($chr);
+				
+		$is_bfact = false;
+		foreach (explode('|', WT_EVENTS_BIRT) as $event) {
+			$bfact = $person->getFirstFact($event);
+			if ($bfact) {
+				$bdate  = $this->printDate($bfact);
+				$bplace = $this->printPlace($bfact);
+				
+				if ($bdate || $bplace) {
+					$is_bfact = true;
+					$html .= $this->printBirthText($person, $event, $is_spouse) . $bdate . $bplace;
+					break;
 				}
-			}
-
-			if ($person->getBirthPlace() != '') {
-				$html .= $this->printPlace($person->getBirthPlace());
 			}
 		}
-
-		$deathdata = false;
-		if ($deathdate->isOK() || $person->getDeathPlace() != '') {
-			$deathdata = true;
-
-			if ($birthdata) {
-				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-				$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
-			} else {
-				$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
-			}
-
-			$deat = $person->getFirstFact('DEAT');
-			if ($deat) {
-				$html .= $this->printDate($deat);
-			}
-
-			if ($person->getDeathPlace() != '') {
-				$html .= $this->printPlace($person->getDeathPlace());
-			}
-
-			if ($birthdate->isOK() && $deathdate->isOK() && $this->isDateDMY($birt) && $this->isDateDMY($deat)) {
-				if (Date::getAge($birthdate, $deathdate, 0) < 2) {
-					$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
-				} else {
-					$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
+		
+		$is_dfact = false;
+		foreach (explode('|', WT_EVENTS_DEAT) as $event) {
+			$dfact = $person->getFirstFact($event);
+			if ($dfact) {
+				$ddate  = $this->printDate($dfact);
+				$dplace = $this->printPlace($dfact);
+				
+				if ($ddate || $dplace) {
+					$is_dfact = true;
+					$html .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
+					break;
 				}
 			}
+		}
+		
+		if ($is_bfact && $is_dfact && $bdate && $ddate) {
+			$html .= $this->printAgeText($bfact, $dfact);
 		}
 
 		return $html;
@@ -1082,10 +1112,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $tree
 	 * @return string
 	 */
-	private function printPlace($place) {
+	private function printPlace($fact) {
 		global $WT_TREE;
-		
-		if ($this->options('show_places') == true) {
+		$place = $fact->getAttribute('PLAC');
+		if ($place && $this->options('show_places') == true) {
 			$place = new Place($place, $WT_TREE);
 			$html = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
 			if ($this->options('use_gedcom_places') == true) {
