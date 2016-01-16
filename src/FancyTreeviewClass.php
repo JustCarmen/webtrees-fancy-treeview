@@ -860,110 +860,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 	
 	/**
-	 * Print the birth text (born or baptized)
-	 * 
-	 * @param type $person
-	 * @param type $birth_fact
-	 * @param type $is_spouse
-	 * @return string
-	 */
-	private function printBirthText($person, $birth_fact, $is_spouse = false) {
-		$html = '';
-		switch ($birth_fact) {
-			case 'BIRT':
-				if ($is_spouse == true) {
-					$html .= '. ';
-					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
-					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
-					}
-				} else {
-					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
-					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
-					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
-					}
-				}
-				break;
-			default: // BAPM or	CHR
-				if ($is_spouse == true) {
-					$html .= '. ';
-					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was baptized') : $html .= I18N::translateContext('PAST', 'He was baptized');
-					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was baptized') : $html .= I18N::translateContext('PRESENT', 'He was baptized');
-					}
-				} else {
-					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
-					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PAST (MALE)', 'was baptized');
-					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
-					}
-				}
-				break;
-		}
-		return $html;
-	}
-	
-	/**
-	 * Print the death text (death or buried)
-	 * 
-	 * @param type $person
-	 * @param type $deat_fact
-	 * @param type $bdata
-	 * @return string
-	 */
-	private function printDeathText($person, $death_fact, $is_bfact) {
-		$html = '';
-		switch ($death_fact) {
-			case 'DEAT':				
-				if ($is_bfact) {
-					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
-				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
-				}
-				break;
-			case 'BURI':
-				if ($is_bfact) {
-					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is buried') : $html .= I18N::translateContext('MALE', 'buried');
-				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is buried') : $html .= '. ' . I18N::translate('He is buried');
-				}
-				break;
-			case 'CREM':
-				if ($is_bfact) {
-					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is cremated') : $html .= I18N::translateContext('MALE', 'cremated');
-				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is cremated') : $html .= '. ' . I18N::translate('He is cremated');
-				}
-				break;
-				
-		}
-		return $html;
-	}
-	
-	private function printAgeText($bfact, $dfact){
-		$bdate = $bfact->getDate();
-		$ddate = $dfact->getDate();
-		$html = '';
-		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
-			$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($bdate, $ddate), false);
-			if (Date::getAge($bdate, $ddate, 0) < 2) {
-				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
-			} else {
-				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
-			}
-		}
-		return $html;
-	}
-	
-	/**
 	 * Print the lifespan of this person
 	 * 
 	 * @param type $person
@@ -1065,6 +961,110 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 	
 	/**
+	 * Print the birth text (born or baptized)
+	 * 
+	 * @param type $person
+	 * @param type $birth_fact
+	 * @param type $is_spouse
+	 * @return string
+	 */
+	private function printBirthText($person, $birth_fact, $is_spouse = false) {
+		$html = '';
+		switch ($birth_fact) {
+			case 'BIRT':
+				if ($is_spouse == true) {
+					$html .= '. ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
+					}
+				} else {
+					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
+					}
+				}
+				break;
+			default: // BAPM or	CHR
+				if ($is_spouse == true) {
+					$html .= '. ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was baptized') : $html .= I18N::translateContext('PAST', 'He was baptized');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was baptized') : $html .= I18N::translateContext('PRESENT', 'He was baptized');
+					}
+				} else {
+					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+					if ($person->isDead()) {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PAST (MALE)', 'was baptized');
+					} else {
+						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
+					}
+				}
+				break;
+		}
+		return $html;
+	}
+	
+	/**
+	 * Print the death text (death or buried)
+	 * 
+	 * @param type $person
+	 * @param type $deat_fact
+	 * @param type $bdata
+	 * @return string
+	 */
+	private function printDeathText($person, $death_fact, $is_bfact) {
+		$html = '';
+		switch ($death_fact) {
+			case 'DEAT':				
+				if ($is_bfact) {
+					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
+				} else {
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
+				}
+				break;
+			case 'BURI':
+				if ($is_bfact) {
+					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is buried') : $html .= I18N::translateContext('MALE', 'buried');
+				} else {
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is buried') : $html .= '. ' . I18N::translate('He is buried');
+				}
+				break;
+			case 'CREM':
+				if ($is_bfact) {
+					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is cremated') : $html .= I18N::translateContext('MALE', 'cremated');
+				} else {
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is cremated') : $html .= '. ' . I18N::translate('He is cremated');
+				}
+				break;
+				
+		}
+		return $html;
+	}
+	
+	private function printAgeText($bfact, $dfact){
+		$bdate = $bfact->getDate();
+		$ddate = $dfact->getDate();
+		$html = '';
+		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
+			$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($bdate, $ddate), false);
+			if (Date::getAge($bdate, $ddate, 0) < 2) {
+				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
+			} else {
+				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
+			}
+		}
+		return $html;
+	}	
+	
+	/**
 	 * Function to print dates with the right syntax
 	 * 
 	 * @param type $fact
@@ -1084,23 +1084,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 			if ($date->minimumDate()->y > 0) {
 				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
-			}
-		}
-	}
-	
-	/**
-	 * Print facts. Currently only used for 'OCCU'
-	 * 
-	 * @param type $person
-	 * @param type $tag
-	 * @return string
-	 */
-	private function printFact($person, $tag) {
-		$facts = $person->getFacts();
-		foreach ($facts as $fact) {
-			if ($fact->getTag() == $tag) {
-				$html = ', ' . rtrim($fact->getValue(), ".");
-				return $html;
 			}
 		}
 	}
@@ -1131,6 +1114,24 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 			}
 			return $html;
+		}
+	}
+
+	/**
+	 * Print facts. Currently only used for 'OCCU'
+	 * 
+	 * @param type $person
+	 * @param type $tag
+	 * @return string
+	 */
+	
+	private function printFact($person, $tag) {
+		$facts = $person->getFacts();
+		foreach ($facts as $fact) {
+			if ($fact->getTag() == $tag) {
+				$html = ', ' . rtrim($fact->getValue(), ".");
+				return $html;
+			}
 		}
 	}
 
