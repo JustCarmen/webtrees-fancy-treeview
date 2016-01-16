@@ -1023,7 +1023,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 				}
 				break;
-			default: // BAPM or	CHR
+			case 'BAPM': 
+			case 'CHR':
 				if ($is_spouse == true) {
 					$html .= '. ';
 					if ($person->isDead()) {
