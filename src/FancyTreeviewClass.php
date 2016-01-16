@@ -478,8 +478,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		if ($person->CanShow()) {
 			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
-			if ($this->options('show_occu') == true) {
-				$html .= $this->printFact($person, 'OCCU');
+			if ($this->options('show_occu')) {
+				$html .= $this->printOccupations($person);
 			}
 
 			$html .= $this->printParents($person) . $this->printLifespan($person) . '.';
@@ -859,6 +859,43 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 
 	/**
+	 * Print occupations
+	 *
+	 * @param type $person
+	 * @param type $tag
+	 * @return string
+	 */
+	private function printOccupations($person) {
+		$html = '';
+		$occupations = $person->getFacts('OCCU', true);
+		$count = count($occupations);
+		foreach ($occupations as $num => $fact) {			
+			if ($num > 0 && $num === $count - 1) {
+				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+			} else {
+				$html .= ', ';
+			}
+			
+			// In the Gedcom file most occupations are probably written with a capital (as a single word)
+			// but use lcase/ucase to be sure the occupation is spelled the right way since we are using
+			// it in the middle of a sentence.
+			// In German all occupations are written with a capital.
+			// Are there any other languages where this is the case?
+			if (in_array(WT_LOCALE, array('de'))) {
+				$html .= rtrim(ucfirst($fact->getValue()), ".");
+			} else {
+				$html .= rtrim(lcfirst($fact->getValue()), ".");
+			}
+			
+			$date = $this->printDate($fact);
+			if ($date) {
+				$html .= ' (' . trim($date) . ')';
+			}
+		}
+		return $html;
+	}
+
+	/**
 	 * Print the lifespan of this person
 	 *
 	 * @param type $person
@@ -978,7 +1015,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
 					}
 				} else {
-					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+					$this->printParents($person) || $this->printOccupations($person) ? $html .= ', ' : $html .= ' ';
 					if ($person->isDead()) {
 						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
 					} else {
@@ -995,7 +1032,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was baptized') : $html .= I18N::translateContext('PRESENT', 'He was baptized');
 					}
 				} else {
-					$this->printParents($person) || $this->printFact($person, 'OCCU') ? $html .= ', ' : $html .= ' ';
+					$this->printParents($person) || $this->printOccupations($person) ? $html .= ', ' : $html .= ' ';
 					if ($person->isDead()) {
 						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PAST (MALE)', 'was baptized');
 					} else {
@@ -1117,23 +1154,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 			}
 			return $html;
-		}
-	}
-
-	/**
-	 * Print facts. Currently only used for 'OCCU'
-	 *
-	 * @param type $person
-	 * @param type $tag
-	 * @return string
-	 */
-	private function printFact($person, $tag) {
-		$facts = $person->getFacts();
-		foreach ($facts as $fact) {
-			if ($fact->getTag() == $tag) {
-				$html = ', ' . rtrim($fact->getValue(), ".");
-				return $html;
-			}
 		}
 	}
 
