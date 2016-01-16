@@ -38,10 +38,10 @@ use PDO;
  * Class FancyTreeview
  */
 class FancyTreeviewClass extends FancyTreeviewModule {
-	
+
 	/**
 	 * Set the default module options
-	 * 
+	 *
 	 * @param type $key
 	 * @return string
 	 */
@@ -65,7 +65,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		);
 		return $FTV_DEFAULT[$key];
 	}
-	
+
 	/**
 	 * Get module options
 	 * @param type $k
@@ -81,10 +81,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return($FTV_OPTIONS[$this->tree_id][$key]);
 		}
 	}
-	
+
 	/**
 	 * Get Indis from surname input - see: WT\Controller\Branches.php - loadIndividuals
-	 * 
+	 *
 	 * @param type $surname
 	 * @param type $russell
 	 * @param type $daitchMokotoff
@@ -127,10 +127,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $data;
 	}
-	
+
 	/**
 	 * Get surname from pid
-	 * 
+	 *
 	 * @param type $pid
 	 * @return type
 	 */
@@ -143,10 +143,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$data = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
 	}
-	
+
 	/**
 	 * Search within a multiple dimensional array
-	 * 
+	 *
 	 * @param type $array
 	 * @param type $key
 	 * @param type $value
@@ -164,10 +164,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $results;
 	}
-	
+
 	/**
 	 * Sort the array according to the $key['SORT'] input.
-	 * 
+	 *
 	 * @param type $array
 	 * @param type $sort_by
 	 * @return array values
@@ -190,10 +190,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return array_values($return_array);
 	}
-	
+
 	/**
 	 * Get the page link to store in the database
-	 * 
+	 *
 	 * @param type $pid
 	 * @return string
 	 */
@@ -210,10 +210,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $link;
 	}
-	
+
 	/**
 	 * Get a list of all used countries
-	 * 
+	 *
 	 * @return list
 	 */
 	protected function getCountryList() {
@@ -231,10 +231,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $list;
 	}
-	
+
 	/**
 	 * Since we can't use Flashmessages here, use our own message system
-	 * 
+	 *
 	 * @param type $id
 	 * @param type $type
 	 * @param type $hidden
@@ -256,7 +256,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return '<p class="ui-state-error">' . $message . '</p>';
 		}
 	}
-	
+
 	/**
 	 * Get the root ID
 	 * @return ID
@@ -267,7 +267,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	/**
 	 * Print the Fancy Treeview page
-	 * 
+	 *
 	 * @return html
 	 */
 	protected function printPage() {
@@ -321,7 +321,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	/**
 	 * Print the tabcontent for this person on the individual page
-	 * 
+	 *
 	 * @param type $pid
 	 * @return string (html)
 	 */
@@ -365,10 +365,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Print a generation
-	 * 
+	 *
 	 * @param type $generation
 	 * @param type $i
 	 * @return string
@@ -388,10 +388,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $html;
 	}
-	
+
 	/**
 	 * Print the header of each generation block
-	 * 
+	 *
 	 * @param type $i
 	 * @return string
 	 */
@@ -402,9 +402,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$this->printBackToTopLink($i) .
 			'</div>';
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param type $generation
 	 * @return string
 	 */
@@ -428,10 +428,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$html .= '</ol>';
 		return $html;
 	}
-	
+
 	/**
 	 * Print back-to-top link
-	 * 
+	 *
 	 * @param type $i
 	 * @return string
 	 */
@@ -440,10 +440,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
 		}
 	}
-	
+
 	/**
 	 * Print read-more link
-	 * 
+	 *
 	 * @param type $root
 	 * @return string
 	 */
@@ -455,10 +455,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'</a>' .
 			'</div>';
 	}
-	
+
 	/**
 	 * Print private block content
-	 * 
+	 *
 	 * @return string
 	 */
 	private function printPrivateBlock() {
@@ -467,10 +467,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			I18N::translate('The details of this generation are private.') .
 			'</div>';
 	}
-	
+
 	/**
 	 * Print the content for one individual
-	 * 
+	 *
 	 * @param type $person
 	 * @return string (html)
 	 */
@@ -531,10 +531,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Print the content for a spouse
-	 * 
+	 *
 	 * @param type $family
 	 * @param type $person
 	 * @param type $spouse
@@ -549,16 +549,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($count > 1) {
 			// we assume no one married more then ten times.
 			$wordcount = array(
-				I18N::translateContext('First marriage','first'),
-				I18N::translateContext('Second marriage','second'),
-				I18N::translateContext('Third marriage','third'),
-				I18N::translateContext('Fourth marriage','fourth'),
-				I18N::translateContext('Fifth marriage','fifth'),
-				I18N::translateContext('Sixth marriage','sixth'),
-				I18N::translateContext('Seventh marriage','seventh'),
-				I18N::translateContext('Eight marriage','eighth'),
-				I18N::translateContext('Ninth marriage','ninth'),
-				I18N::translateContext('Tenth marriage','tenth')
+				I18N::translateContext('First marriage', 'first'),
+				I18N::translateContext('Second marriage', 'second'),
+				I18N::translateContext('Third marriage', 'third'),
+				I18N::translateContext('Fourth marriage', 'fourth'),
+				I18N::translateContext('Fifth marriage', 'fifth'),
+				I18N::translateContext('Sixth marriage', 'sixth'),
+				I18N::translateContext('Seventh marriage', 'seventh'),
+				I18N::translateContext('Eight marriage', 'eighth'),
+				I18N::translateContext('Ninth marriage', 'ninth'),
+				I18N::translateContext('Tenth marriage', 'tenth')
 			);
 			switch ($person->getSex()) {
 				case 'M':
@@ -608,8 +608,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 			$marriage = $family->getFirstFact('MARR');
 			if ($marriage) {
-				$html .= $this->printDate($marriage) .
-						 $this->printPlace($marriage);
+				$html .= $this->printDate($marriage) . $this->printPlace($marriage);
 			}
 
 			if ($this->printLifespan($spouse, true)) {
@@ -624,10 +623,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Print the content for a non-married partner
-	 * 
+	 *
 	 * @param type $family
 	 * @param type $person
 	 * @param type $spouse
@@ -656,13 +655,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($family->getFirstFact('_NMR') && $this->printLifespan($spouse, true)) {
 			$html .= $this->printLifespan($spouse, true);
 		}
-		
+
 		return '. ' . $html;
 	}
-	
+
 	/**
 	 * Print the childrens list
-	 * 
+	 *
 	 * @param type $family
 	 * @param type $person
 	 * @param type $spouse
@@ -764,10 +763,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Print the parents
-	 * 
+	 *
 	 * @param type $person
 	 * @return string
 	 */
@@ -822,10 +821,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $html;
 		}
 	}
-	
+
 	/**
 	 * Print the full name of a person
-	 * 
+	 *
 	 * @param type $person
 	 * @return string
 	 */
@@ -835,10 +834,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$person->getFullName() .
 			'</indexentry>';
 	}
-	
+
 	/**
 	 * Print the name of a person with the link to the individual page
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $xref
 	 * @return string
@@ -858,24 +857,24 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'</a>' .
 			'</indexentry>';
 	}
-	
+
 	/**
 	 * Print the lifespan of this person
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $is_spouse
 	 * @return string
 	 */
 	private function printLifespan($person, $is_spouse = false) {
 		$html = '';
-				
+
 		$is_bfact = false;
 		foreach (explode('|', WT_EVENTS_BIRT) as $event) {
 			$bfact = $person->getFirstFact($event);
 			if ($bfact) {
 				$bdate  = $this->printDate($bfact);
 				$bplace = $this->printPlace($bfact);
-				
+
 				if ($bdate || $bplace) {
 					$is_bfact = true;
 					$html .= $this->printBirthText($person, $event, $is_spouse) . $bdate . $bplace;
@@ -883,14 +882,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 			}
 		}
-		
+
 		$is_dfact = false;
 		foreach (explode('|', WT_EVENTS_DEAT) as $event) {
 			$dfact = $person->getFirstFact($event);
 			if ($dfact) {
 				$ddate  = $this->printDate($dfact);
 				$dplace = $this->printPlace($dfact);
-				
+
 				if ($ddate || $dplace) {
 					$is_dfact = true;
 					$html .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
@@ -898,17 +897,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 			}
 		}
-		
+
 		if ($is_bfact && $is_dfact && $bdate && $ddate) {
 			$html .= $this->printAgeOfDeath($bfact, $dfact);
 		}
 
 		return $html;
 	}
-	
+
 	/**
 	 * Print the relationship between spouses (optional)
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $spouse
 	 * @return string
@@ -923,10 +922,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Print the Fancy thumbnail for this individual
-	 * 
+	 *
 	 * @param type $person
 	 * @return thumbnail
 	 */
@@ -937,15 +936,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			if ($this->options('resize_thumbs') && is_file($cache_filename)) {
 				$imgsize = getimagesize($cache_filename);
 				// Use the Fancy thumbnail image
-				$image =
-				'<img' .
-				' dir="' . 'auto' . '"' . // For the tool-tip
-				' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
-				' alt="' . strip_tags($person->getFullName()) . '"' .
-				' title="' . strip_tags($person->getFullName()) . '"' .
-				' ' . $imgsize[3] . // height="yyy" width="xxx"
-				'>';
-				return		
+				$image = '<img' .
+					' dir="' . 'auto' . '"' . // For the tool-tip
+					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
+					' alt="' . strip_tags($person->getFullName()) . '"' .
+					' title="' . strip_tags($person->getFullName()) . '"' .
+					' ' . $imgsize[3] . // height="yyy" width="xxx"
+					'>';
+				return
 					'<a' .
 					' class="' . 'gallery' . '"' .
 					' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
@@ -959,10 +957,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Print the birth text (born or baptized)
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $event
 	 * @param type $is_spouse
@@ -1008,10 +1006,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Print the death text (death or buried)
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $event
 	 * @param type $is_bfact
@@ -1020,7 +1018,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	private function printDeathText($person, $event, $is_bfact) {
 		$html = '';
 		switch ($event) {
-			case 'DEAT':				
+			case 'DEAT':
 				if ($is_bfact) {
 					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
 					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
@@ -1044,18 +1042,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is cremated') : $html .= '. ' . I18N::translate('He is cremated');
 				}
 				break;
-				
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Print the age at death/bury
 	 * @param type $bfact
 	 * @param type $dfact
 	 * @return string
 	 */
-	private function printAgeOfDeath($bfact, $dfact){
+	private function printAgeOfDeath($bfact, $dfact) {
 		$bdate = $bfact->getDate();
 		$ddate = $dfact->getDate();
 		$html = '';
@@ -1068,11 +1065,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 		return $html;
-	}	
-	
+	}
+
 	/**
 	 * Function to print dates with the right syntax
-	 * 
+	 *
 	 * @param type $fact
 	 * @return type
 	 */
@@ -1093,10 +1090,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Print places
-	 * 
+	 *
 	 * @param Place $place
 	 * @param type $tree
 	 * @return string
@@ -1125,12 +1122,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	/**
 	 * Print facts. Currently only used for 'OCCU'
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $tag
 	 * @return string
 	 */
-	
 	private function printFact($person, $tag) {
 		$facts = $person->getFacts();
 		foreach ($facts as $fact) {
@@ -1143,26 +1139,26 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	/**
 	 * Get individual object from PID
-	 * 
+	 *
 	 * @param type $pid
 	 * @return object
 	 */
 	protected function getPerson($pid) {
 		return Individual::getInstance($pid, $this->tree);
 	}
-	
+
 	/**
 	 * Get object of the rootperson of this tree
-	 * 
+	 *
 	 * @return object
 	 */
 	protected function getRootPerson() {
 		return $this->getPerson($this->rootId());
 	}
-	
+
 	/**
 	 * Get the family object of an individual
-	 * 
+	 *
 	 * @param type $person
 	 * @return object
 	 */
@@ -1171,10 +1167,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $family;
 		}
 	}
-	
+
 	/**
 	 * Get an array of xrefs for the next descendant generation of this person
-	 * 
+	 *
 	 * @param type $pid
 	 * @return array of xrefs
 	 */
@@ -1197,7 +1193,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/**
 	 * check if a person has parents in the same generation
 	 * this function prevents listing the same person twice
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $generation
 	 * @return boolean
@@ -1218,10 +1214,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * check if this date has any date qualifiers. Return true if no date qualifiers are found.
-	 * 
+	 *
 	 * @param type $fact
 	 * @return boolean
 	 */
@@ -1230,10 +1226,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * check (blood) relationship between partners
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $spouse
 	 * @return string (relationship name)
@@ -1259,10 +1255,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if this is a private record
-	 * 
+	 *
 	 * @param type $record
 	 * @param type $xrefs
 	 * @return boolean
@@ -1281,13 +1277,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Determine if the family parents are married.
-	 * 
+	 *
 	 * Don't use the default function because we want to privatize the record but display the name
 	 * and the parents of the spouse if the spouse him/herself is not private.
-	 * 
+	 *
 	 * @param type $family
 	 * @return boolean
 	 */
@@ -1299,10 +1295,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if this person is an adopted or foster child
-	 * 
+	 *
 	 * @param type $person
 	 * @param type $parents
 	 * @return attribute
@@ -1317,26 +1313,26 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 		return $pedi;
 	}
-	
+
 	/**
 	 * Get the ftv_cache directory
-	 * 
+	 *
 	 * @return directory name
 	 */
 	protected function cacheDir() {
 		return WT_DATA_DIR . 'ftv_cache/thumbs/';
 	}
-	
+
 	/**
 	 * Get the filename of the cached image
-	 * 
+	 *
 	 * @param Media $mediaobject
 	 * @return filename
 	 */
 	protected function cacheFileName(Media $mediaobject) {
 		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
-	
+
 	/**
 	 * remove all old cached files for this tree
 	 */
@@ -1350,10 +1346,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if thumbnails from cache should be recreated
-	 * 
+	 *
 	 * @param type $mediaobject
 	 * @return string filename
 	 */
@@ -1366,7 +1362,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		if (file_exists($mediaobject->getServerFilename())) {
 			$cache_filename = $this->cacheFileName($mediaobject);
-			
+
 			if (!is_file($cache_filename)) {
 				$thumbnail = $this->fancyThumb($mediaobject);
 				$mimetype = $mediaobject->mimeType();
@@ -1379,28 +1375,28 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 			}
 			return $cache_filename;
-		}		
+		}
 	}
-	
+
 	/**
 	 * Get the Fancy thumbnail (highlighted image)
-	 * 
+	 *
 	 * @param type $mediaobject
 	 * @return image
 	 */
 	private function fancyThumb($mediaobject) {
 		// option 1 = percentage of original webtrees thumbnail
-		// option 2 = size in pixels		
+		// option 2 = size in pixels
 		$resize_format = $this->options('thumb_resize_format');
 		if ($resize_format === '1') {
 			$mediasrc = $mediaobject->getServerFilename('thumb');
 		} else {
 			$mediasrc = $mediaobject->getServerFilename('main');
 		}
-		
+
 		if (is_file($mediasrc)) {
 			$thumbsize = $this->options('thumb_size');
-			$thumbwidth = $thumbheight = $thumbsize; 
+			$thumbwidth = $thumbheight = $thumbsize;
 
 			$mimetype = $mediaobject->mimeType();
 			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png') {
@@ -1475,17 +1471,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
 
 				imagedestroy($process);
-				imagedestroy($image);				
+				imagedestroy($image);
 
 				return $thumb;
 			}
 		}
 	}
-	
+
 	/**
-	 * Get the Fancy treeview theme corresponding with the current user theme	 * 
+	 * Get the Fancy treeview theme corresponding with the current user theme	 *
 	 * Take into account the use of a custom childtheme
-	 * 
+	 *
 	 * @return theme directory
 	 */
 	private function theme() {
@@ -1503,10 +1499,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the stylesheet which correspondents with the current user theme
-	 * 
+	 *
 	 * @return stylesheet
 	 */
 	protected function getStylesheet() {
@@ -1520,13 +1516,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		return $stylesheet;
 	}
-	
+
 	/**
 	 * Determine which javascript file we need
-	 * 
+	 *
 	 * @param type $controller
 	 * @param type $page
-	 * 
+	 *
 	 * @return inline and/or external Javascript
 	 */
 	protected function includeJs($controller, $page) {
@@ -1590,12 +1586,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				break;
 		}
 	}
-	
+
 	/**
 	 * Add Inline Javascript
-	 * 
+	 *
 	 * @param type $controller
-	 * 
+	 *
 	 * @return javascript
 	 */
 	private function includeJsInline($controller) {
@@ -1632,10 +1628,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			});
 		');
 	}
-	
+
 	/**
 	 * Use javascript to include the stylesheet(s) in the header
-	 * 
+	 *
 	 * @param type $css
 	 * @return javascript
 	 */
