@@ -312,7 +312,7 @@ class AdminTemplate extends FancyTreeviewClass {
 															</td>
 															<!-- DELETE BUTTON -->
 															<td>
-																<button name="delete" type="button" class="btn btn-danger btn-sm" title="<?php I18N::translate('Delete'); ?>">
+																<button name="delete" type="button" class="btn btn-danger btn-sm" data-key="<?php echo $key ?>" title="<?php I18N::translate('Delete'); ?>">
 																	<i class="fa fa-trash-o"></i>
 																</button>
 															</td>
