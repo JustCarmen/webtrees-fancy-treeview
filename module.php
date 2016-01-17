@@ -75,7 +75,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	 * 
 	 * Class functions are called with $this inside the source directory.
 	 */
-	private function module() {
+	protected function module() {
 		return new FancyTreeviewClass;
 	}
 

@@ -1367,7 +1367,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param Media $mediaobject
 	 * @return filename
 	 */
-	protected function cacheFileName(Media $mediaobject) {
+	public function cacheFileName(Media $mediaobject) {
 		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 
