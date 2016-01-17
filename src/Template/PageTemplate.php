@@ -45,6 +45,9 @@ class PageTemplate extends FancyTreeviewClass {
 
 		// add javascript files and scripts
 		$this->includeJs($controller, 'page');
+		if ($this->pdf()) {
+			$this->pdf()->includeJs($controller);
+		}
 		
 	}
 	

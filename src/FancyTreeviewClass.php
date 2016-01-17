@@ -1601,10 +1601,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					->addInlineJavascript('autocomplete();')
 					->addExternalJavascript($this->directory . '/js/page.js');
 
-				if ($this->options('show_pdf_icon') >= Auth::accessLevel($this->tree)) {
-					$controller->addExternalJavascript($this->directory . '/js/pdf.js');
-				}
-
 				// some files needs an extra js script
 				if ($this->theme()) {
 					$js = $this->theme() . '/' . basename($this->theme()) . '.js';
