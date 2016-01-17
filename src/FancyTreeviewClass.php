@@ -270,10 +270,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 *
 	 * @return html
 	 */
-	protected function printPage() {
+	public function printPage($numblocks) {
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
 		$pids = Filter::get('pids');
-		$numblocks = $this->options('numblocks');
 
 		if ($numblocks == 0) {
 			$numblocks = 99;
@@ -1343,7 +1342,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return directory name
 	 */
 	protected function cacheDir() {
-		return WT_DATA_DIR . 'ftv_cache/thumbs/';
+		return WT_DATA_DIR . 'ftv_cache/';
 	}
 
 	/**

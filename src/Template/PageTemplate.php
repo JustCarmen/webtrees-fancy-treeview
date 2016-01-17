@@ -82,7 +82,7 @@ class PageTemplate extends FancyTreeviewClass {
 					</form>
 					<div id="error"></div>
 				<?php endif; ?>
-				<ol id="fancy_treeview"><?php echo $this->printPage(); ?></ol>
+					<ol id="fancy_treeview"><?php echo $this->printPage($this->options('numblocks')); ?></ol>
 				<div id="btn_next">
 					<input
 						class="btn btn-primary"
