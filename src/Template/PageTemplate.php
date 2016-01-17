@@ -19,7 +19,9 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
+use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class PageTemplate extends FancyTreeviewClass {
 	
@@ -52,12 +54,11 @@ class PageTemplate extends FancyTreeviewClass {
 		<div id="fancy_treeview-page">
 			<div id="page-header">
 				<h2><?php echo $controller->getPageTitle(); ?></h2>
-				<?php if ($this->options('show_pdf_icon') >= Auth::accessLevel($this->tree)): ?>
-					<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
-						<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
-					</div>
-					<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
-				<?php endif; ?>
+				<?php 
+				if ($this->pdf()) {
+					echo $this->pdf()->getPdfIcon(); 
+				}
+				?>
 			</div>
 			<div id="page-body">
 				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree)): ?>

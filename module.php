@@ -25,6 +25,7 @@ use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Log;
 use Fisharebest\Webtrees\Media;
 use Fisharebest\Webtrees\Menu;
+use Fisharebest\Webtrees\Module;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
@@ -33,6 +34,7 @@ use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PdfTemplate;
+use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
@@ -430,6 +432,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			} else {
 				return $WT_TREE;
 			}
+		}
+	}
+	
+	protected function pdf() {
+		if (Module::getModuleByName('fancy_treeview_pdf')) {
+			return new FancyTreeviewPdfClass;
 		}
 	}
 

@@ -844,10 +844,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	private function printName($person) {
-		return
-			'<indexentry content="' . $this->getSortName($person) . '">' .
-			$person->getFullName() .
-			'</indexentry>';
+		$name = $person->getFullName();
+		if ($this->pdf()) {
+			return $this->pdf()->printName($person, $name);
+		} else {
+			return $name;
+		}
 	}
 
 	/**
@@ -863,14 +865,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		} else {
 			$name = '';
 		}
-
-		// we need the index entry tag for generation the index page in pdf
-		return
-			'<indexentry content="' . $this->getSortName($person) . '">' .
-			'<a' . $name . ' href="' . $person->getHtmlUrl() . '">' .
-			$person->getFullName() .
-			'</a>' .
-			'</indexentry>';
+		
+		$url = '<a' . $name . ' href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
+		
+		if ($this->pdf()) {
+			return $this->pdf()->printNameUrl($person, $url);
+		} else {
+			return $url;
+		}
 	}
 
 	/**
