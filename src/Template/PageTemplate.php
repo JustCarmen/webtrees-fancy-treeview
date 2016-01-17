@@ -19,9 +19,7 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\PageController;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Module;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
-use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class PageTemplate extends FancyTreeviewClass {
 	

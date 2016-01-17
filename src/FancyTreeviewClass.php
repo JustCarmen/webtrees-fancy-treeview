@@ -145,21 +145,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 
 	/**
-	 * The sortname is used in the pdf index
-	 * 
-	 * @param type $person
-	 * @return type
-	 */
-	private function getSortName($person) {
-		$sortname = $person->getSortName();
-		$text1 = I18N::translateContext('Unknown given name', '…');
-		$text2 = I18N::translateContext('Unknown surname', '…');
-		$search = array(',', '@P.N.', '@N.N.');
-		$replace = array(', ', $text1, $text2);
-		return str_replace($search, $replace, $sortname);
-	}
-
-	/**
 	 * Search within a multiple dimensional array
 	 *
 	 * @param type $array
