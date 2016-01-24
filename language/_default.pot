@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2015-09-05 22:12+0200\n"
+"POT-Creation-Date: 2016-01-24 23:08+0100\n"
 "PO-Revision-Date: 2015-07-04 21:06+0200\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -17,543 +17,575 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: src/FancyTreeviewClass.php:928
+#: src/FancyTreeviewClass.php:1133
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr ""
 
-#. I18N: Warning whenu using the “Check relationship between partners” configuration setting
-#: src/Template/AdminTemplate.php:395
+#. I18N: Warning when using the “Check relationship between partners” configuration setting
+#: src/Template/AdminTemplate.php:394
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
 msgstr ""
 
 #. I18N: Description of the module
-#: module.php:92
+#: module.php:95
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr ""
 
-#: src/Template/PageTemplate.php:66
+#: src/Template/PageTemplate.php:65
 msgid "Change root person"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:387
+#: src/Template/AdminTemplate.php:386
 msgid "Check relationship between partners"
 msgstr ""
 
 #. I18N: %s is the surname of the root individual
-#: module.php:366 src/FancyTreeviewClass.php:165 src/Schema/Migration0.php:42
-#: src/Template/AdminTemplate.php:283
+#: module.php:409 src/FancyTreeviewClass.php:221 src/Schema/Migration0.php:42
+#: src/Template/AdminTemplate.php:282
 #, php-format
 msgid "Descendants of the %s family"
 msgstr ""
 
-#: module.php:183
+#: module.php:184
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr ""
 
-#: module.php:164
+#: module.php:165
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr ""
 
-#: module.php:162
+#: module.php:163
 msgid "Error: The root person belonging to this surname already exists"
 msgstr ""
 
-#: module.php:154
+#: module.php:155
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr ""
 
-#: src/Template/PdfTemplate.php:105
+#: src/Template/PdfTemplate.php:103
 msgid "Error: the pdf file could not be generated."
 msgstr ""
 
-#: module.php:358
+#: module.php:401
 msgid "Family tree overview"
 msgstr ""
 
 #. I18N: Name of the module
-#: module.php:83 src/Template/AdminTemplate.php:40
+#: module.php:86 src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
 msgstr ""
 
-#: src/Template/PageTemplate.php:57
+#: src/Template/PageTemplate.php:56
 msgid "Generate PDF"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:320
+#: src/FancyTreeviewClass.php:416
 msgid "Go"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:521
+#: src/FancyTreeviewClass.php:656
 msgid "He had a relationship with"
 msgstr ""
 
 #. I18N: %s is a number
-#: src/FancyTreeviewClass.php:448
+#: src/FancyTreeviewClass.php:581
 #, php-format
 msgid "He married %s times"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:737
+#: src/FancyTreeviewClass.php:1046
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:739
+#: src/FancyTreeviewClass.php:1048
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:720
+#: src/FancyTreeviewClass.php:1028
 msgctxt "PAST"
 msgid "He was born"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:722
+#: src/FancyTreeviewClass.php:1030
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr ""
 
 #. I18N: Help text for the “Resize thumbnails” configuration setting
-#: src/Template/AdminTemplate.php:451
+#: src/Template/AdminTemplate.php:450
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
 msgstr ""
 
 #. I18N: Help text for the “Select your country” configuration setting
-#: src/Template/AdminTemplate.php:429
+#: src/Template/AdminTemplate.php:428
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
 msgstr ""
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
-#: src/Template/AdminTemplate.php:416
+#: src/Template/AdminTemplate.php:415
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
 msgstr ""
 
-#: src/Template/PdfTemplate.php:99
+#: src/Template/PdfTemplate.php:97
 msgid "Index"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:365
+#: src/Template/AdminTemplate.php:364
 msgid "Number of generation blocks to show"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:343
+#: src/Template/AdminTemplate.php:342
 #, php-format
 msgid "Options for %s"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:140
+#: src/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:167 src/Template/AdminTemplate.php:237
+#: src/Template/AdminTemplate.php:166 src/Template/AdminTemplate.php:236
 msgid "Page title"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:93
+#: src/Template/AdminTemplate.php:92
 msgid "Pages"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:356
+#: src/FancyTreeviewClass.php:469
 msgid "Read more"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:445
+#: src/Template/AdminTemplate.php:444
 msgid "Resize thumbnails"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:163 src/Template/AdminTemplate.php:233
+#: src/Template/AdminTemplate.php:162 src/Template/AdminTemplate.php:232
 msgid "Root person"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:147 src/Template/PageTemplate.php:71
+#: src/Template/AdminTemplate.php:146 src/Template/PageTemplate.php:70
 msgid "Search ID by name"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:115
+#: src/Template/AdminTemplate.php:114
 msgid "Search root person"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:423
+#: src/Template/AdminTemplate.php:422
 msgid "Select your country"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:524
+#: src/FancyTreeviewClass.php:659
 msgid "She had a relationship with"
 msgstr ""
 
 #. I18N: %s is a number
-#: src/FancyTreeviewClass.php:454
+#: src/FancyTreeviewClass.php:587
 #, php-format
 msgid "She married %s times"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:737
+#: src/FancyTreeviewClass.php:1046
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:739
+#: src/FancyTreeviewClass.php:1048
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:720
+#: src/FancyTreeviewClass.php:1028
 msgctxt "PAST"
 msgid "She was born"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:722
+#: src/FancyTreeviewClass.php:1030
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:494
+#: src/Template/AdminTemplate.php:493
 msgid "Show PDF icon?"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:503
+#: src/Template/AdminTemplate.php:502
 msgid "Show a Fancy Treeview tab on the individual page"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:485
+#: src/Template/AdminTemplate.php:484
 msgid "Show form to change start person"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:436
+#: src/Template/AdminTemplate.php:435
 msgid "Show occupations"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:401
+#: src/Template/AdminTemplate.php:400
 msgid "Show places?"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:376
+#: src/Template/AdminTemplate.php:375
 msgid "Show single persons"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:165 src/Template/AdminTemplate.php:235
+#: src/Template/AdminTemplate.php:164 src/Template/AdminTemplate.php:234
 msgid "Surname in page title"
 msgstr ""
 
 #. I18N: %s is an ordinal
-#: src/FancyTreeviewClass.php:450
+#: src/FancyTreeviewClass.php:583
 #, php-format
 msgid "The %s time he married"
 msgstr ""
 
 #. I18N: %s is an ordinal
-#: src/FancyTreeviewClass.php:456
+#: src/FancyTreeviewClass.php:589
 #, php-format
 msgid "The %s time she married"
 msgstr ""
 
 #. I18N: %s is an ordinal
-#: src/FancyTreeviewClass.php:462
+#: src/FancyTreeviewClass.php:595
 #, php-format
 msgid "The %s time this individual married"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:364
+#: src/FancyTreeviewClass.php:482
 msgid "The details of this generation are private."
 msgstr ""
 
-#: src/Template/AdminTemplate.php:350
+#: src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:349
+#: src/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
 msgstr ""
 
-#: src/Template/PageTemplate.php:58
+#: src/Template/PageTemplate.php:57
 msgid "The pdf contains only visible generation blocks."
 msgstr ""
 
-#: src/Template/AdminTemplate.php:312
+#: src/Template/AdminTemplate.php:311
 #, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:225
+#: src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:527
+#: src/FancyTreeviewClass.php:662
 msgid "This individual had a relationship with"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:474
+#: src/FancyTreeviewClass.php:607
 msgid "This individual married"
 msgstr ""
 
 #. I18N: %s is a number
-#: src/FancyTreeviewClass.php:460
+#: src/FancyTreeviewClass.php:593
 #, php-format
 msgid "This individual married %s times"
 msgstr ""
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
-#: src/Template/AdminTemplate.php:370
+#: src/Template/AdminTemplate.php:369
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
 msgstr ""
 
-#: src/Template/AdminTemplate.php:456
+#: src/Template/AdminTemplate.php:455
 msgid "Thumbnail size"
 msgstr ""
 
 #. I18N: Help text for the “Show single persons” configuration setting
-#: src/Template/AdminTemplate.php:381
+#: src/Template/AdminTemplate.php:380
 msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
 msgstr ""
 
-#: src/Template/AdminTemplate.php:410
+#: src/Template/AdminTemplate.php:409
 msgid "Use default GEDCOM settings to abbreviate place names?"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:356
+#: src/Template/AdminTemplate.php:355
 msgid "Use fullname in menu"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:476
+#: src/Template/AdminTemplate.php:475
 msgid "Use square thumbnails"
 msgstr ""
 
 #. I18N: Help text for creating Fancy Treeview pages
-#: src/Template/AdminTemplate.php:105
+#: src/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
 msgstr ""
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
-#: src/Template/AdminTemplate.php:393
+#: src/Template/AdminTemplate.php:392
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
 msgstr ""
 
-#: src/FancyTreeviewClass.php:602
+#: src/FancyTreeviewClass.php:746
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:605
+#: src/FancyTreeviewClass.php:749
 msgctxt "MALE"
 msgid "adopted child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:667
+#: src/FancyTreeviewClass.php:817
 msgid "adopted child of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:658
+#: src/FancyTreeviewClass.php:808
 msgid "adopted daughter of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:649
+#: src/FancyTreeviewClass.php:799
 msgid "adopted son of"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:509 src/FancyTreeviewClass.php:548
-#: src/FancyTreeviewClass.php:561 src/FancyTreeviewClass.php:578
-#: src/FancyTreeviewClass.php:680 src/FancyTreeviewClass.php:788
+#: src/FancyTreeviewClass.php:636 src/FancyTreeviewClass.php:692
+#: src/FancyTreeviewClass.php:705 src/FancyTreeviewClass.php:722
+#: src/FancyTreeviewClass.php:830 src/FancyTreeviewClass.php:889
+#: src/FancyTreeviewClass.php:1076 src/FancyTreeviewClass.php:1084
+#: src/FancyTreeviewClass.php:1092
 msgid "and "
 msgstr ""
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
-#: src/FancyTreeviewClass.php:805
+#: src/FancyTreeviewClass.php:1115
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr ""
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
-#: src/FancyTreeviewClass.php:807
+#: src/FancyTreeviewClass.php:1117
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:1152
+#: src/FancyTreeviewClass.php:1596
 msgid "cancel"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:669
+#: src/FancyTreeviewClass.php:819
 msgid "child of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:789
+#: src/FancyTreeviewClass.php:1077
 msgctxt "FEMALE"
 msgid "died"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:789
+#: src/FancyTreeviewClass.php:1077
 msgctxt "MALE"
 msgid "died"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:441
+#. I18N: eighth marriage
+#: src/FancyTreeviewClass.php:574
 msgid "eighth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:438
+#. I18N: fifth marriage
+#: src/FancyTreeviewClass.php:571
 msgid "fifth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:434
+#. I18N: first marriage
+#: src/FancyTreeviewClass.php:567
 msgid "first"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:1150
+#: src/FancyTreeviewClass.php:1594
 msgid "follow"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:592
+#: src/FancyTreeviewClass.php:736
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:595
+#: src/FancyTreeviewClass.php:739
 msgctxt "MALE"
 msgid "foster child"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:665
+#: src/FancyTreeviewClass.php:815
 msgid "foster child of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:656
+#: src/FancyTreeviewClass.php:806
 msgid "foster daughter of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:647
+#: src/FancyTreeviewClass.php:797
 msgid "foster son of"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:437
+#. I18N: fourth marriage
+#: src/FancyTreeviewClass.php:570
 msgid "fourth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:569
+#: src/FancyTreeviewClass.php:713
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:551 src/FancyTreeviewClass.php:571
+#: src/FancyTreeviewClass.php:695 src/FancyTreeviewClass.php:715
 msgctxt "One parent/one child"
 msgid "had"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:563
+#: src/FancyTreeviewClass.php:707
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:549 src/FancyTreeviewClass.php:565
+#: src/FancyTreeviewClass.php:693 src/FancyTreeviewClass.php:709
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:934
+#: src/FancyTreeviewClass.php:1139
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:937
+#: src/FancyTreeviewClass.php:1142
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:955
+#: src/FancyTreeviewClass.php:1159
 msgctxt "before placesnames"
 msgid "in "
 msgstr ""
 
-#: src/FancyTreeviewClass.php:442
+#. I18N: ninth marriage
+#: src/FancyTreeviewClass.php:575
 msgid "ninth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:1151 src/Template/AdminTemplate.php:153
+#: src/FancyTreeviewClass.php:1595 src/Template/AdminTemplate.php:152
 msgid "ok"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: src/FancyTreeviewClass.php:931
+#: src/FancyTreeviewClass.php:1136
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr ""
 
-#: src/Template/AdminTemplate.php:469
+#: src/Template/AdminTemplate.php:468
 msgid "percent"
 msgstr ""
 
-#: src/Template/AdminTemplate.php:133
+#: src/Template/AdminTemplate.php:132
 msgid "search"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:435
+#. I18N: second marriage
+#: src/FancyTreeviewClass.php:568
 msgid "second"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:440
+#. I18N: seventh marriage
+#: src/FancyTreeviewClass.php:573
 msgid "seventh"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:439
+#. I18N: sixth marriage
+#: src/FancyTreeviewClass.php:572
 msgid "sixth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:443
+#. I18N: tenth marriage
+#: src/FancyTreeviewClass.php:576
 msgid "tenth"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:436
+#. I18N: third marriage
+#: src/FancyTreeviewClass.php:569
 msgid "third"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:746
+#: src/FancyTreeviewClass.php:1055
 msgctxt "PRESENT (MALE)"
 msgid "was bapitized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:744
+#: src/FancyTreeviewClass.php:1053
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:744
+#: src/FancyTreeviewClass.php:1053
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:746
+#: src/FancyTreeviewClass.php:1055
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:727
+#: src/FancyTreeviewClass.php:1035
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:727
+#: src/FancyTreeviewClass.php:1035
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:729
+#: src/FancyTreeviewClass.php:1037
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:729
+#: src/FancyTreeviewClass.php:1037
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr ""
 
-#: src/FancyTreeviewClass.php:509
+#: src/FancyTreeviewClass.php:1085
+msgctxt "FEMALE"
+msgid "was buried"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:1085
+msgctxt "MALE"
+msgid "was buried"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:1093
+msgctxt "FEMALE"
+msgid "was cremated"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:1093
+msgctxt "MALE"
+msgid "was cremated"
+msgstr ""
+
+#: src/FancyTreeviewClass.php:636
 msgid "were divorced"
 msgstr ""
