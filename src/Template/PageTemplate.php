@@ -57,12 +57,13 @@ class PageTemplate extends FancyTreeviewClass {
 				<h2><?php echo $controller->getPageTitle(); ?></h2>
 				<?php 
 				if ($this->pdf()) {
-					echo $this->pdf()->getPdfIcon(); 
+					echo $this->pdf()->getPdfIcon();
 				}
 				?>
 			</div>
 			<div id="page-body">
 				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree)): ?>
+					<?php echo $this->pdf()->getPdfWaitingMessage(); ?>
 					<form id="change_root">
 						<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 						<input
