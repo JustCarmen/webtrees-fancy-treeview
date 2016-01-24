@@ -391,7 +391,7 @@ class AdminTemplate extends FancyTreeviewClass {
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?php echo /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.'); ?></p>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
-										<?php echo /* I18N: Warning whenu using the “Check relationship between partners” configuration setting */ I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all.'); ?>
+										<?php echo /* I18N: Warning when using the “Check relationship between partners” configuration setting */ I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all.'); ?>
 									</p>
 								</div>
 								<!-- SHOW PLACES -->
