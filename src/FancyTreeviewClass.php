@@ -1082,17 +1082,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			case 'BURI':
 				if ($is_bfact) {
 					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is buried') : $html .= I18N::translateContext('MALE', 'buried');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'was buried') : $html .= I18N::translateContext('MALE', 'was buried');
 				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is buried') : $html .= '. ' . I18N::translate('He is buried');
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She was buried') : $html .= '. ' . I18N::translate('He was buried');
 				}
 				break;
 			case 'CREM':
 				if ($is_bfact) {
 					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'is cremated') : $html .= I18N::translateContext('MALE', 'cremated');
+					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'was cremated') : $html .= I18N::translateContext('MALE', 'was cremated');
 				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She is cremated') : $html .= '. ' . I18N::translate('He is cremated');
+					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She was cremated') : $html .= '. ' . I18N::translate('He was cremated');
 				}
 				break;
 		}
