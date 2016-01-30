@@ -3,7 +3,7 @@ Fancy Tree View
 
 Fancy Tree View module for webtrees.
 
-This module requires [webtrees 1.7.0](https://github.com/fisharebest/webtrees) or later. Download the latest stable release of this module [here](https://github.com/JustCarmen/fancy_treeview/releases/tag/1.7.2).
+This module requires [webtrees 1.7.0](https://github.com/fisharebest/webtrees) or later. Download the latest stable release of this module [here](https://github.com/JustCarmen/fancy_treeview/releases).
 
 Description
 -----------
@@ -14,6 +14,10 @@ On the Fancy Tree View configuration page you have some options. To start using 
 The package comes with a language file to translate the module into your own language. At the moment the module is already translated into 14 different languages. The module supports rtl-languages.
 
 Stylesheets for all the core webtrees themes, the JustBlack and the JustLight theme and the Rural theme are added to the module package as well.
+
+Fancy Treeview PDF
+------------------
+Longtime users of Fancy Treeview are used to have the PDF-option inside the module by enabling it at the configuration page. This is changed now. From now on the Fancy Treeview PDF-option is offered as a separate download. Goto https://github.com/JustCarmen/fancy_treeview_pdf for more information.
 
 Installation, updating and translations
 ---------------------------------------
