@@ -487,15 +487,6 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform'), 'class="form-control"'); ?>
 									</div>
 								</div>
-								<!-- SHOW PDF -->
-								<div class="form-group">
-									<label class="control-label col-sm-4">
-										<?php echo I18N::translate('Show PDF icon?'); ?>
-									</label>
-									<div class="col-sm-4">
-										<?php echo FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_PDF_ICON]', $this->options('show_pdf_icon'), 'class="form-control"'); ?>
-									</div>
-								</div>
 								<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
 								<div class="form-group fullname">
 									<label class="control-label col-sm-4">

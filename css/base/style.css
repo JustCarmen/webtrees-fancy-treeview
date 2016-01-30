@@ -39,6 +39,20 @@
 	top: 0;
 }
 
+#fancy_treeview-page .pdf-waiting-message {
+	color: red;
+    float: left;
+    font-weight: bold;
+    margin-left: 40px;
+}
+
+#fancy_treeview-page .pdf-waiting-message:after {
+	content:url("loading.gif");
+	margin-left: 7px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
 #fancy_treeview-page #page-body {
 	line-height: 1.5em;
 	margin-top: 2em;

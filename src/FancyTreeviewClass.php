@@ -145,21 +145,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	}
 
 	/**
-	 * The sortname is used in the pdf index
-	 * 
-	 * @param type $person
-	 * @return type
-	 */
-	private function getSortName($person) {
-		$sortname = $person->getSortName();
-		$text1 = I18N::translateContext('Unknown given name', '…');
-		$text2 = I18N::translateContext('Unknown surname', '…');
-		$search = array(',', '@P.N.', '@N.N.');
-		$replace = array(', ', $text1, $text2);
-		return str_replace($search, $replace, $sortname);
-	}
-
-	/**
 	 * Search within a multiple dimensional array
 	 *
 	 * @param type $array
@@ -285,10 +270,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 *
 	 * @return html
 	 */
-	protected function printPage() {
+	public function printPage($numblocks) {
 		$gen = Filter::get('gen', WT_REGEX_INTEGER);
 		$pids = Filter::get('pids');
-		$numblocks = $this->options('numblocks');
 
 		if ($numblocks == 0) {
 			$numblocks = 99;
@@ -844,10 +828,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	private function printName($person) {
-		return
-			'<indexentry content="' . $this->getSortName($person) . '">' .
-			$person->getFullName() .
-			'</indexentry>';
+		$name = $person->getFullName();
+		if ($this->pdf()) {
+			return $this->pdf()->printName($person, $name);
+		} else {
+			return $name;
+		}
 	}
 
 	/**
@@ -863,14 +849,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		} else {
 			$name = '';
 		}
-
-		// we need the index entry tag for generation the index page in pdf
-		return
-			'<indexentry content="' . $this->getSortName($person) . '">' .
-			'<a' . $name . ' href="' . $person->getHtmlUrl() . '">' .
-			$person->getFullName() .
-			'</a>' .
-			'</indexentry>';
+		
+		$url = '<a' . $name . ' href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
+		
+		if ($this->pdf()) {
+			return $this->pdf()->printNameUrl($person, $url);
+		} else {
+			return $url;
+		}
 	}
 
 	/**
@@ -1356,7 +1342,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return directory name
 	 */
 	protected function cacheDir() {
-		return WT_DATA_DIR . 'ftv_cache/thumbs/';
+		return WT_DATA_DIR . 'ftv_cache/';
 	}
 
 	/**
@@ -1365,7 +1351,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param Media $mediaobject
 	 * @return filename
 	 */
-	protected function cacheFileName(Media $mediaobject) {
+	public function cacheFileName(Media $mediaobject) {
 		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 
@@ -1598,10 +1584,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
 					->addInlineJavascript('autocomplete();')
 					->addExternalJavascript($this->directory . '/js/page.js');
-
-				if ($this->options('show_pdf_icon') >= Auth::accessLevel($this->tree)) {
-					$controller->addExternalJavascript($this->directory . '/js/pdf.js');
-				}
 
 				// some files needs an extra js script
 				if ($this->theme()) {

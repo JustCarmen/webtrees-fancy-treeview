@@ -43,6 +43,9 @@ class PageTemplate extends FancyTreeviewClass {
 
 		// add javascript files and scripts
 		$this->includeJs($controller, 'page');
+		if ($this->pdf()) {
+			$this->pdf()->includeJs($controller);
+		}
 		
 	}
 	
@@ -52,15 +55,15 @@ class PageTemplate extends FancyTreeviewClass {
 		<div id="fancy_treeview-page">
 			<div id="page-header">
 				<h2><?php echo $controller->getPageTitle(); ?></h2>
-				<?php if ($this->options('show_pdf_icon') >= Auth::accessLevel($this->tree)): ?>
-					<div id="dialog-confirm" title="<?php echo I18N::translate('Generate PDF'); ?>" style="display:none">
-						<p><?php echo I18N::translate('The pdf contains only visible generation blocks.'); ?></p>
-					</div>
-					<a id="pdf" href="#"><i class="icon-mime-application-pdf"></i></a>
-				<?php endif; ?>
+				<?php 
+				if ($this->pdf()) {
+					echo $this->pdf()->getPdfIcon();
+				}
+				?>
 			</div>
 			<div id="page-body">
 				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree)): ?>
+					<?php echo $this->pdf()->getPdfWaitingMessage(); ?>
 					<form id="change_root">
 						<label class="label"><?php echo I18N::translate('Change root person'); ?></label>
 						<input
@@ -80,7 +83,7 @@ class PageTemplate extends FancyTreeviewClass {
 					</form>
 					<div id="error"></div>
 				<?php endif; ?>
-				<ol id="fancy_treeview"><?php echo $this->printPage(); ?></ol>
+					<ol id="fancy_treeview"><?php echo $this->printPage($this->options('numblocks')); ?></ol>
 				<div id="btn_next">
 					<input
 						class="btn btn-primary"

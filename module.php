@@ -25,6 +25,7 @@ use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Log;
 use Fisharebest\Webtrees\Media;
 use Fisharebest\Webtrees\Menu;
+use Fisharebest\Webtrees\Module;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
@@ -32,7 +33,7 @@ use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
-use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PdfTemplate;
+use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
@@ -73,7 +74,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	 * 
 	 * Class functions are called with $this inside the source directory.
 	 */
-	private function module() {
+	protected function module() {
 		return new FancyTreeviewClass;
 	}
 
@@ -316,25 +317,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				}
 				break;
 
-			case 'show_pdf':
-				$template = new PdfTemplate();
-				return $template->pageBody();
-
-			case 'pdf_data':
-				$template = new PdfTemplate;
-				return $template->pageData();
-
-			case 'pdf_thumb_data':
-				$xref			= Filter::get('mid');
-				$mediaobject	= Media::getInstance($xref, $this->tree);
-				$thumb			= Filter::get('thumb');
-				if ($thumb === '2') { // Fancy thumb
-					echo $this->module()->cacheFileName($mediaobject);
-				} else {
-					echo $mediaobject->getServerFilename('thumb');
-				}
-				break;
-
 			default:
 				http_response_code(404);
 				break;
@@ -430,6 +412,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			} else {
 				return $WT_TREE;
 			}
+		}
+	}
+	
+	protected function pdf() {
+		if (Module::getModuleByName('fancy_treeview_pdf')) {
+			return new FancyTreeviewPdfClass;
 		}
 	}
 
