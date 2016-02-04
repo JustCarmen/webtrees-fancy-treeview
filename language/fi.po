@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-01-30 09:04+0100\n"
-"PO-Revision-Date: 2015-10-21 21:10+0200\n"
+"PO-Revision-Date: 2016-02-01 21:21+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -40,7 +40,7 @@ msgstr "Tarkista puolisoiden väliset suhteet"
 
 #: fancy_treeview_pdf/src/FancyTreeviewPdfClass.php:46
 msgid "Creating PDF file. This process may take a while. Please wait..."
-msgstr ""
+msgstr "PDF-tiedostoa luodaan. Tämä prosessi voi kestää jonkin aikaa. Odota..."
 
 #. I18N: %s is the surname of the root individual
 #: fancy_treeview/module.php:391 fancy_treeview/src/FancyTreeviewClass.php:206
@@ -85,14 +85,13 @@ msgstr "Hieno puunäkymä"
 #. I18N: Name of the Fancy Treeview PDF-module
 #: fancy_treeview_pdf/module.php:57
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
-#, fuzzy
 msgid "Fancy Treeview PDF"
-msgstr "Hieno puunäkymä"
+msgstr "Hieno puunäkymä PDF"
 
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:62
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr ""
+msgstr "Hieno puunäkymä moduulin laajennus: tarjoa käyttäjillesi mahdollisuus ladata Hieno puunäkymä sivu PDF:nä."
 
 #: fancy_treeview/src/Template/PageTemplate.php:81
 msgid "Go"
@@ -145,7 +144,7 @@ msgstr "Jos olet valinnut ”Näytä paikat” vaihtoehdon, voit käyttää GEDC
 
 #: fancy_treeview_pdf/src/Template/PdfTemplate.php:102
 msgid "Index"
-msgstr ""
+msgstr "Indeksi"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:364
 msgid "Number of generation blocks to show"
@@ -584,22 +583,22 @@ msgstr "syntyi"
 #: fancy_treeview/src/FancyTreeviewClass.php:1071
 msgctxt "FEMALE"
 msgid "was buried"
-msgstr ""
+msgstr "haudattiin"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1071
 msgctxt "MALE"
 msgid "was buried"
-msgstr ""
+msgstr "haudattiin"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1079
 msgctxt "FEMALE"
 msgid "was cremated"
-msgstr ""
+msgstr "polttohaudattiin"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1079
 msgctxt "MALE"
 msgid "was cremated"
-msgstr ""
+msgstr "polttohaudattiin"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:620
 msgid "were divorced"

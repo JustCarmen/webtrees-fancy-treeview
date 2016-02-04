@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-01-30 09:04+0100\n"
-"PO-Revision-Date: 2015-10-21 21:00+0200\n"
+"PO-Revision-Date: 2016-02-01 21:26+0200\n"
 "Last-Translator: Meliza <meliza@amitys.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -40,7 +40,7 @@ msgstr "בדוק מערכת יחסים בין בני זוג"
 
 #: fancy_treeview_pdf/src/FancyTreeviewPdfClass.php:46
 msgid "Creating PDF file. This process may take a while. Please wait..."
-msgstr ""
+msgstr "קובץ PDF נוצר. תהליך זה עשוי להימשך זמן מה. המתן בבקשה..."
 
 #. I18N: %s is the surname of the root individual
 #: fancy_treeview/module.php:391 fancy_treeview/src/FancyTreeviewClass.php:206
@@ -85,14 +85,13 @@ msgstr "תצוגת עץ מפוארת"
 #. I18N: Name of the Fancy Treeview PDF-module
 #: fancy_treeview_pdf/module.php:57
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
-#, fuzzy
 msgid "Fancy Treeview PDF"
-msgstr "תצוגת עץ מפוארת"
+msgstr "תצוגת עץ מפוארת PDF"
 
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:62
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr ""
+msgstr "הרחבת מודול קישורי מחקר מפוארים: הציע למשתמשים שלך להוריד דף קישורי מחקר מפוארים כ-PDF."
 
 #: fancy_treeview/src/Template/PageTemplate.php:81
 msgid "Go"
@@ -145,7 +144,7 @@ msgstr "אם בחרת את האפשרות ”הצג מקומות”, אתה יכ
 
 #: fancy_treeview_pdf/src/Template/PdfTemplate.php:102
 msgid "Index"
-msgstr ""
+msgstr "אינדקס"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:364
 msgid "Number of generation blocks to show"
@@ -584,22 +583,22 @@ msgstr "נולד"
 #: fancy_treeview/src/FancyTreeviewClass.php:1071
 msgctxt "FEMALE"
 msgid "was buried"
-msgstr ""
+msgstr "נקברה"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1071
 msgctxt "MALE"
 msgid "was buried"
-msgstr ""
+msgstr "נקבר"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1079
 msgctxt "FEMALE"
 msgid "was cremated"
-msgstr ""
+msgstr "נשרפה"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1079
 msgctxt "MALE"
 msgid "was cremated"
-msgstr ""
+msgstr "נשרף"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:620
 msgid "were divorced"
