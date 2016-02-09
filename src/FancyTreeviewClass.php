@@ -61,7 +61,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'THUMB_RESIZE_FORMAT'	 => '2',
 			'USE_SQUARE_THUMBS'		 => '1',
 			'SHOW_USERFORM'			 => '2',
-			'SHOW_PDF_ICON'			 => '2',
 			'FTV_TAB'				 => '1',
 		);
 		return $FTV_DEFAULT[$key];
