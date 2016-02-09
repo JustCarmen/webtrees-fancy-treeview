@@ -69,17 +69,20 @@
 }
 
 /* ===== menu ===== */
-li.menu-fancy_treeview {
+#primary-menu-nav .primary-menu > li.menu-fancy_treeview,
+#primary-menu-nav .primary-menu > li.open.menu-fancy_treeview {
 	background: url(menu-ftv.png) no-repeat 50% 25%;
 	background-size: 40px;
 }
 
-li.menu-fancy_treeview ul li {
+#primary-menu-nav .primary-menu > li ul li.menu-fancy_treeview ul li,
+#primary-menu-nav .primary-menu > li.open.menu-fancy_treeview ul li {
 	background: url(menu-ftv-small.png) no-repeat 1% 0;
 	background-size: 20px;
 }
 
-[dir=rtl] li.menu-fancy_treeview ul li {
+[dir=rtl] #primary-menu-nav .primary-menu > li ul li.menu-fancy_treeview ul li,
+[dir=rtl] #primary-menu-nav .primary-menu > li.open.menu-fancy_treeview ul li {
 	background-position: 99% 0;
 }
 
