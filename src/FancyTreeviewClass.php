@@ -1352,20 +1352,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return filename
 	 */
 	public function cacheFileName(Media $mediaobject) {
-		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
+		return $this->cacheDir() . str_replace('.' . $mediaobject->extension(), '', basename($mediaobject->getServerFilename())) . '_' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 
 	/**
-	 * remove all old cached files for this tree
+	 * remove all old cached files
 	 */
 	protected function emptyCache() {
 		foreach (glob($this->cacheDir() . '*') as $cache_file) {
 			if (is_file($cache_file)) {
-				$tmp = explode('-', basename($cache_file));
-				$tree_id = intval($tmp[0]);
-				if ($tree_id === $this->tree_id) {
-					unlink($cache_file);
-				}
+				unlink($cache_file);
 			}
 		}
 	}
