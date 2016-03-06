@@ -971,12 +971,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$mediaobject = $person->findHighlightedMedia();
 		if ($mediaobject) {
 			$cache_filename = $this->getThumbnail($mediaobject);
-			if ($this->options('resize_thumbs') && is_file($cache_filename)) {
+			if (is_file($cache_filename)) {
 				$imgsize = getimagesize($cache_filename);
-				// Use the Fancy thumbnail image
 				$image = '<img' .
 					' dir="' . 'auto' . '"' . // For the tool-tip
-					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
+					' src="' . WT_BASE_URL . 'module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' . // We need the WT_BASE_URL for pdf-output (full path is neccessary)
 					' alt="' . strip_tags($person->getFullName()) . '"' .
 					' title="' . strip_tags($person->getFullName()) . '"' .
 					' ' . $imgsize[3] . // height="yyy" width="xxx"
@@ -1383,14 +1382,25 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$cache_filename = $this->cacheFileName($mediaobject);
 
 			if (!is_file($cache_filename)) {
-				$thumbnail = $this->fancyThumb($mediaobject);
-				$mimetype = $mediaobject->mimeType();
-				if ($mimetype === 'image/jpeg') {
-					imagejpeg($thumbnail, $cache_filename);
-				} elseif ($mimetype === 'image/png') {
-					imagepng($thumbnail, $cache_filename);
+				if($this->options('resize_thumbs')) {
+					$thumbnail = $this->fancyThumb($mediaobject);
+					$mimetype = $mediaobject->mimeType();
+					if ($mimetype === 'image/jpeg') {
+						imagejpeg($thumbnail, $cache_filename);
+					} elseif ($mimetype === 'image/png') {
+						imagepng($thumbnail, $cache_filename);
+					} else {
+						return;
+					}
 				} else {
-					return;
+					// if we are using the original webtrees thumbnails, copy them to the ftv_cache folder
+					// so we can cache them either and output them in the same way we would output the fancy thumbnail.
+					try {
+						copy($mediaobject->getServerFilename('thumb'), $cache_filename);
+					} catch (Exception $ex) {
+						// something went wrong while copying the default webtrees image to the ftv cache folder
+						// there is a fallback in the function printThumbnail(): output $mediaobject->displayImage();
+					}					
 				}
 			}
 			return $cache_filename;
