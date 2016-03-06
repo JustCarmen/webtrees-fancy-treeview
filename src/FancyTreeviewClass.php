@@ -975,9 +975,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				$imgsize = getimagesize($cache_filename);
 				$image = '<img' .
 					' dir="' . 'auto' . '"' . // For the tool-tip
-					' src="' . WT_BASE_URL . 'module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' . // We need the WT_BASE_URL for pdf-output (full path is neccessary)
+					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
 					' alt="' . strip_tags($person->getFullName()) . '"' .
 					' title="' . strip_tags($person->getFullName()) . '"' .
+					' data-cachefilename="' . basename($cache_filename) . '"' .
 					' ' . $imgsize[3] . // height="yyy" width="xxx"
 					'>';
 				return
@@ -1340,7 +1341,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 *
 	 * @return directory name
 	 */
-	protected function cacheDir() {
+	public function cacheDir() {
 		return WT_DATA_DIR . 'ftv_cache/';
 	}
 
@@ -1351,7 +1352,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return filename
 	 */
 	public function cacheFileName(Media $mediaobject) {
-		return $this->cacheDir() . str_replace('.' . $mediaobject->extension(), '', basename($mediaobject->getServerFilename())) . '_' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
+		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 
 	/**
