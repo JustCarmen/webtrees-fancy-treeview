@@ -35,6 +35,8 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
+define('FTV_VERSION', '1.7.4-dev');
+
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
 	// How to update the database schema for this module
