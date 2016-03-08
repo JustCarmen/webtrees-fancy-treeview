@@ -488,13 +488,16 @@ class AdminTemplate extends FancyTreeviewClass {
 									</div>
 								</div>
 								<!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
-								<div class="form-group fullname">
+								<div class="form-group">
 									<label class="control-label col-sm-4">
 										<?php echo I18N::translate('Show a Fancy Treeview tab on the individual page') ?>
 									</label>
 									<div class="col-sm-8">
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $this->options('ftv_tab'), 'class="radio-inline"') ?>
 									</div>
+									<p class="col-sm-8 col-sm-offset-4 small text-muted">
+										<?php echo /* I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting */ I18N::translate('If you enable this option, a Fancy Treeview tab with the title ’Descendants’ will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this persons has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page with this person as root person and all his descendants.') ?>
+									</p>									
 								</div>
 								<!-- BUTTONS -->
 								<button name="save-options" class="btn btn-primary" type="submit">
