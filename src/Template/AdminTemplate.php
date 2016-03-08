@@ -347,6 +347,7 @@ class AdminTemplate extends FancyTreeviewClass {
 					<div class="panel-body">
 						<?php echo $this->addMessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')) ?>
 						<?php echo $this->addMessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')) ?>
+						<?php echo $this->addMessage('copy-options', 'success', true, I18N::translate('The options for this tree are succesfully saved and copied to all other trees')) ?>
 						<div id="ftv-options-form" class="form-group">
 							<form class="form-horizontal" method="post" name="form5">
 								<!-- USE FULLNAME IN MENU -->
@@ -500,14 +501,26 @@ class AdminTemplate extends FancyTreeviewClass {
 									</p>									
 								</div>
 								<!-- BUTTONS -->
-								<button name="save-options" class="btn btn-primary" type="submit">
-									<i class="fa fa-check"></i>
-									<?php echo I18N::translate('save') ?>
-								</button>
-								<button name="reset-options" class="btn btn-primary" type="reset">
-									<i class="fa fa-recycle"></i>
-									<?php echo I18N::translate('reset') ?>
-								</button>
+								<div class="form-group">
+									<div class="col-md-6">
+										<button name="save-options" class="btn btn-primary" type="submit">
+											<i class="fa fa-check"></i>
+											<?php echo I18N::translate('save') ?>
+										</button>
+										<button name="reset-options" class="btn btn-primary" type="reset">
+											<i class="fa fa-recycle"></i>
+											<?php echo I18N::translate('reset') ?>
+										</button>
+									</div>
+									<?php if (count(Tree::getAll()) > 1): ?>
+									<div class="col-md-6 text-right">
+										<button id="save-and-copy" name="copy-options" class="btn btn-primary" type="button">
+											<i class="fa fa-check"></i>
+											<?php echo I18N::translate('save and copy options to other trees') ?>
+										</button>
+									</div>
+									<?php endif; ?>
+								</div>
 							</form>
 						</div>
 					</div>

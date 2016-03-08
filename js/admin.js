@@ -166,7 +166,7 @@ jQuery("#ftv-options-form").on("submit", "form[name=form5]", function (e) {
 			});
 			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
 			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function () {
-				jQuery("#reset-options").hide();
+				jQuery("#reset-options, #copy-options").hide();
 				jQuery("#save-options").fadeIn();
 				var target = jQuery("#save-options").offset().top - 60;
 				jQuery("html, body").animate({
@@ -190,9 +190,32 @@ jQuery("#ftv-options-form").on("reset", "form[name=form5]", function (e) {
 			});
 			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
 			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function () {
-				jQuery("#save-options").hide();
+				jQuery("#save-options, #copy-options").hide();
 				jQuery("#reset-options").fadeIn();
 				var target = jQuery("#reset-options").offset().top - 60;
+				jQuery("html, body").animate({
+					scrollTop: target
+				}, 800);
+			});
+		}
+	});
+});
+
+// copy options to other trees
+jQuery("#ftv-options-form").on("click", "#save-and-copy", function () {
+	jQuery.ajax({
+		type: "POST",
+		url: "module.php?mod=" + ModuleName + "&mod_action=admin_copy",
+		data: jQuery("form[name=form5]").serialize(),
+		success: function () {
+			jQuery("#ftv-search-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-search-form form", function () {
+				jQuery(this).find("#search-result-table").hide().removeClass("hidden");
+			});
+			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
+			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function () {
+				jQuery("#save-options, #reset-options").hide();
+				jQuery("#copy-options").fadeIn();
+				var target = jQuery("#copy-options").offset().top - 60;
 				jQuery("html, body").animate({
 					scrollTop: target
 				}, 800);

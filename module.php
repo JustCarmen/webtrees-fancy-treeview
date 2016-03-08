@@ -31,6 +31,7 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Theme;
+use Fisharebest\Webtrees\Tree;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
@@ -234,6 +235,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
 				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' config updated');
+				
+				// the cache has to be recreated because the image options could have been changed
+				$this->module()->emptyCache();
+				break;
+			
+			case 'admin_copy':
+				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+				foreach (Tree::getAll() as $tree) {
+					$FTV_OPTIONS[$tree->getTreeId()] = Filter::postArray('NEW_FTV_OPTIONS');
+				}
+				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+				Log::addConfigurationLog($this->getTitle() . ' config saved and copied to all trees');
 				
 				// the cache has to be recreated because the image options could have been changed
 				$this->module()->emptyCache();
