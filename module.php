@@ -90,7 +90,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	public function getTabTitle() {
-		return /* I18N: Title used in the tab panel */ I18N::translate('Generations');
+		return /* I18N: Title used in the tab panel */ I18N::translate('Descendants');
 	}
 
 	/** {@inheritdoc} */
