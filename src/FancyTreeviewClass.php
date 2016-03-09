@@ -708,53 +708,57 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					$html .= ':<ol>';
 
 					foreach ($children as $child) {
-						$html .= '<li class="child">' . $this->printNameUrl($child);
-						$pedi = $this->checkPedi($child, $family);
+						if ($child->canShow()) {
+							$html .= '<li class="child">' . $this->printNameUrl($child);
+							$pedi = $this->checkPedi($child, $family);
 
-						if ($pedi) {
-							$html .= ' <span class="pedi">';
-							switch ($pedi) {
-								case 'foster':
-									switch ($child->getSex()) {
-										case 'F':
-											$html .= I18N::translateContext('FEMALE', 'foster child');
-											break;
-										default:
-											$html .= I18N::translateContext('MALE', 'foster child');
-											break;
-									}
-									break;
-								case 'adopted':
-									switch ($child->getSex()) {
-										case 'F':
-											$html .= I18N::translateContext('FEMALE', 'adopted child');
-											break;
-										default:
-											$html .= I18N::translateContext('MALE', 'adopted child');
-											break;
-									}
-									break;
+							if ($pedi) {
+								$html .= ' <span class="pedi">';
+								switch ($pedi) {
+									case 'foster':
+										switch ($child->getSex()) {
+											case 'F':
+												$html .= I18N::translateContext('FEMALE', 'foster child');
+												break;
+											default:
+												$html .= I18N::translateContext('MALE', 'foster child');
+												break;
+										}
+										break;
+									case 'adopted':
+										switch ($child->getSex()) {
+											case 'F':
+												$html .= I18N::translateContext('FEMALE', 'adopted child');
+												break;
+											default:
+												$html .= I18N::translateContext('MALE', 'adopted child');
+												break;
+										}
+										break;
+								}
+								$html .= '</span>';
 							}
-							$html .= '</span>';
-						}
 
-						if ($child->CanShow() && ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK())) {
-							$html .= '<span class="lifespan"> (' . $child->getLifeSpan() . ')</span>';
-						}
+							if ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK()) {
+								$html .= '<span class="lifespan"> (' . $child->getLifeSpan() . ')</span>';
+							}
 
-						$child_family = $this->getFamily($child);
+							$child_family = $this->getFamily($child);
 
-						// do not load this part of the code in the fancy treeview tab on the individual page.
-						if (WT_SCRIPT_NAME !== 'individual.php') {
-							if ($child->canShow() && $child_family) {
-								$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
-							} else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
-								if ($this->options('show_singles') == true) {
-									$html .= ' - <a class="scroll" href="#S' . $child->getXref() . '"></a>';
+							// do not load this part of the code in the fancy treeview tab on the individual page.
+							if (WT_SCRIPT_NAME !== 'individual.php') {
+								if ($child_family) {
+									$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
+								} else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
+									if ($this->options('show_singles') == true) {
+										$html .= ' - <a class="scroll" href="#S' . $child->getXref() . '"></a>';
+									}
 								}
 							}
+							$html .= '</li>';
+						} else {
+							$html .= '<li class="child private">' . I18N::translate('Private') . '</li>';
 						}
-						$html .= '</li>';
 					}
 					$html .= '</ol></div>';
 				}
