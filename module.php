@@ -431,7 +431,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 	
 	protected function pdf() {
-		if (Module::getModuleByName('fancy_treeview_pdf')) {
+		if (Filter::get('mod_action') === 'page' && Module::getModuleByName('fancy_treeview_pdf')) {
 			return new FancyTreeviewPdfClass;
 		}
 	}
