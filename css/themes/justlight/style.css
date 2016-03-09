@@ -39,3 +39,11 @@
 #fancy_treeview-page li.child .lifespan {
 	font-size: inherit;
 }
+
+.fancy_treeview-tab a {
+	color: #337ab7;
+}
+
+.fancy_treeview-tab a:hover {
+	color: #23527c;
+}
