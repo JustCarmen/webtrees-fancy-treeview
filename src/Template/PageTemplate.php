@@ -22,11 +22,11 @@ use Fisharebest\Webtrees\I18N;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class PageTemplate extends FancyTreeviewClass {
-	
+
 	protected function pageContent() {
 		global $controller;
 		$controller = new PageController;
-		
+
 		if ($this->getRootPerson() && $this->getRootPerson()->canShowName()) {
 			return
 				$this->pageHeader($controller) .
@@ -46,16 +46,15 @@ class PageTemplate extends FancyTreeviewClass {
 		if ($this->pdf()) {
 			$this->pdf()->includeJs($controller);
 		}
-		
 	}
-	
+
 	private function pageBody(PageController $controller) {
 		?>
 		<!-- FANCY TREEVIEW PAGE -->
 		<div id="fancy_treeview-page">
 			<div id="page-header">
 				<h2><?php echo $controller->getPageTitle() ?></h2>
-				<?php 
+				<?php
 				if ($this->pdf()) {
 					echo $this->pdf()->getPdfIcon();
 				}
@@ -63,9 +62,9 @@ class PageTemplate extends FancyTreeviewClass {
 			</div>
 			<div id="page-body">
 				<?php
-					if ($this->pdf()) {
-						echo $this->pdf()->getPdfWaitingMessage();
-					}
+				if ($this->pdf()) {
+					echo $this->pdf()->getPdfWaitingMessage();
+				}
 				?>
 				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree)): ?>					
 					<form id="change_root">
@@ -87,7 +86,7 @@ class PageTemplate extends FancyTreeviewClass {
 					</form>
 					<div id="error"></div>
 				<?php endif; ?>
-					<ol id="fancy_treeview"><?php echo $this->printPage($this->options('numblocks')) ?></ol>
+				<ol id="fancy_treeview"><?php echo $this->printPage($this->options('numblocks')) ?></ol>
 				<div id="btn_next">
 					<input
 						class="btn btn-primary"
@@ -98,14 +97,14 @@ class PageTemplate extends FancyTreeviewClass {
 				</div>
 			</div>
 		</div>
-		<?php		
+		<?php
 	}
-	
+
 	private function pageMessage($controller) {
 		http_response_code(404);
 		$controller->pageHeader();
 		echo $this->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
 		return;
 	}
-}
 
+}

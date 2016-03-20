@@ -73,7 +73,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function options($k) {
 		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-		$key = strtoupper($k);
+		$key		 = strtoupper($k);
 
 		if (empty($FTV_OPTIONS[$this->tree_id]) || (is_array($FTV_OPTIONS[$this->tree_id]) && !array_key_exists($key, $FTV_OPTIONS[$this->tree_id]))) {
 			return $this->setDefault($key);
@@ -91,13 +91,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return type
 	 */
 	protected function indisArray($surname, $russell, $daitchMokotoff) {
-		$sql = "SELECT DISTINCT i_id AS xref, i_file AS tree_id, i_gedcom AS gedcom" .
+		$sql	 = "SELECT DISTINCT i_id AS xref, i_file AS tree_id, i_gedcom AS gedcom" .
 			" FROM `##individuals`" .
 			" JOIN `##name` ON (i_id = n_id AND i_file = n_file)" .
 			" WHERE n_file = :tree_id" .
 			" AND n_type != '_MARNM'" .
 			" AND (n_surn = :surname1 OR n_surname = :surname2";
-		$args = array(
+		$args	 = array(
 			'tree_id'	 => $this->tree_id,
 			'surname1'	 => $surname,
 			'surname2'	 => $surname
@@ -117,13 +117,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 		$sql .= ')';
-		$rows = Database::prepare($sql)
+		$rows	 = Database::prepare($sql)
 			->execute($args)
 			->fetchAll();
-		$data = array();
+		$data	 = array();
 		foreach ($rows as $row) {
-			$tree = Tree::findById($row->tree_id);
-			$data[] = Individual::getInstance($row->xref, $tree, $row->gedcom);
+			$tree	 = Tree::findById($row->tree_id);
+			$data[]	 = Individual::getInstance($row->xref, $tree, $row->gedcom);
 		}
 		return $data;
 	}
@@ -135,12 +135,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return type
 	 */
 	public function getSurname($pid) {
-		$sql = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
-		$args = array(
+		$sql	 = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
+		$args	 = array(
 			'tree_id'	 => $this->tree_id,
 			'pid'		 => $pid
 		);
-		$data = Database::prepare($sql)->execute($args)->fetchOne();
+		$data	 = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
 	}
 
@@ -184,8 +184,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$return_array = array();
 		foreach ($tmp_array as $pos => $val) {
 			foreach ($array_keys as $key) {
-				$key = strtoupper($key);
-				$return_array[$pos][$key] = $array[$pos][$key];
+				$key						 = strtoupper($key);
+				$return_array[$pos][$key]	 = $array[$pos][$key];
 			}
 		}
 		return array_values($return_array);
@@ -217,9 +217,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return list
 	 */
 	protected function getCountryList() {
-		$list = '';
-		$sql = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
-		$args = array(
+		$list	 = '';
+		$sql	 = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
+		$args	 = array(
 			'parent_id'	 => '0',
 			'tree_id'	 => $this->tree_id
 		);
@@ -271,8 +271,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return html
 	 */
 	public function printPage($numblocks) {
-		$gen = Filter::get('gen', WT_REGEX_INTEGER);
-		$pids = Filter::get('pids');
+		$gen	 = Filter::get('gen', WT_REGEX_INTEGER);
+		$pids	 = Filter::get('pids');
 
 		if ($numblocks == 0) {
 			$numblocks = 99;
@@ -280,9 +280,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$html = '';
 		if (!isset($gen) && !isset($pids)) {
-			$gen = 1;
-			$numblocks = $numblocks - 1;
-			$generation = array($this->rootId());
+			$gen		 = 1;
+			$numblocks	 = $numblocks - 1;
+			$generation	 = array($this->rootId());
 			$html .= $this->printGeneration($generation, $gen);
 		} else {
 			$generation = explode('|', $pids);
@@ -325,10 +325,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string (html)
 	 */
 	protected function printTabContent($pid) {
-		$html = '';
-		$gen = 1;
-		$root = $pid; // save value for read more link
-		$generation = array($pid);
+		$html		 = '';
+		$gen		 = 1;
+		$root		 = $pid; // save value for read more link
+		$generation	 = array($pid);
 		$html .= $this->printGeneration($generation, $gen);
 
 		while (count($generation) > 0 && $gen < 4) {
@@ -548,16 +548,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($count > 1) {
 			// we assume no one married more then ten times.
 			$wordcount = array(
-				/* I18N: first marriage  */  I18N::translate('first'),
+				/* I18N: first marriage  */ I18N::translate('first'),
 				/* I18N: second marriage  */ I18N::translate('second'),
-				/* I18N: third marriage  */  I18N::translate('third'),
+				/* I18N: third marriage  */ I18N::translate('third'),
 				/* I18N: fourth marriage  */ I18N::translate('fourth'),
-				/* I18N: fifth marriage  */  I18N::translate('fifth'),
-				/* I18N: sixth marriage  */  I18N::translate('sixth'),
-				/* I18N: seventh marriage  */I18N::translate('seventh'),
+				/* I18N: fifth marriage  */ I18N::translate('fifth'),
+				/* I18N: sixth marriage  */ I18N::translate('sixth'),
+				/* I18N: seventh marriage  */ I18N::translate('seventh'),
 				/* I18N: eighth marriage  */ I18N::translate('eighth'),
-				/* I18N: ninth marriage  */  I18N::translate('ninth'),
-				/* I18N: tenth marriage  */  I18N::translate('tenth'),
+				/* I18N: ninth marriage  */ I18N::translate('ninth'),
+				/* I18N: tenth marriage  */ I18N::translate('tenth'),
 			);
 			switch ($person->getSex()) {
 				case 'M':
@@ -808,8 +808,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 			}
 
-			$father = $parents->getHusband();
-			$mother = $parents->getWife();
+			$father	 = $parents->getHusband();
+			$mother	 = $parents->getWife();
 
 			if ($father) {
 				$html .= $this->printName($father);
@@ -853,9 +853,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		} else {
 			$name = '';
 		}
-		
+
 		$url = '<a' . $name . ' href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
-		
+
 		if ($this->pdf()) {
 			return $this->pdf()->printNameUrl($person, $url);
 		} else {
@@ -871,16 +871,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	private function printOccupations($person) {
-		$html = '';
+		$html		 = '';
 		$occupations = $person->getFacts('OCCU', true);
-		$count = count($occupations);
-		foreach ($occupations as $num => $fact) {			
+		$count		 = count($occupations);
+		foreach ($occupations as $num => $fact) {
 			if ($num > 0 && $num === $count - 1) {
 				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
 			} else {
 				$html .= ', ';
 			}
-			
+
 			// In the Gedcom file most occupations are probably written with a capital (as a single word)
 			// but use lcase/ucase to be sure the occupation is spelled the right way since we are using
 			// it in the middle of a sentence.
@@ -891,7 +891,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			} else {
 				$html .= rtrim(lcfirst($fact->getValue()), ".");
 			}
-			
+
 			$date = $this->printDate($fact);
 			if ($date) {
 				$html .= ' (' . trim($date) . ')';
@@ -914,8 +914,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		foreach (explode('|', WT_EVENTS_BIRT) as $event) {
 			$bfact = $person->getFirstFact($event);
 			if ($bfact) {
-				$bdate  = $this->printDate($bfact);
-				$bplace = $this->printPlace($bfact);
+				$bdate	 = $this->printDate($bfact);
+				$bplace	 = $this->printPlace($bfact);
 
 				if ($bdate || $bplace) {
 					$is_bfact = true;
@@ -929,8 +929,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		foreach (explode('|', WT_EVENTS_DEAT) as $event) {
 			$dfact = $person->getFirstFact($event);
 			if ($dfact) {
-				$ddate  = $this->printDate($dfact);
-				$dplace = $this->printPlace($dfact);
+				$ddate	 = $this->printDate($dfact);
+				$dplace	 = $this->printPlace($dfact);
 
 				if ($ddate || $dplace) {
 					$is_dfact = true;
@@ -977,7 +977,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$cache_filename = $this->getThumbnail($mediaobject);
 			if (is_file($cache_filename)) {
 				$imgsize = getimagesize($cache_filename);
-				$image = '<img' .
+				$image	 = '<img' .
 					' dir="' . 'auto' . '"' . // For the tool-tip
 					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
 					' alt="' . strip_tags($person->getFullName()) . '"' .
@@ -1028,7 +1028,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 				}
 				break;
-			case 'BAPM': 
+			case 'BAPM':
 			case 'CHR':
 				if ($is_spouse == true) {
 					$html .= '. ';
@@ -1096,9 +1096,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	private function printAgeOfDeath($bfact, $dfact) {
-		$bdate = $bfact->getDate();
-		$ddate = $dfact->getDate();
-		$html = '';
+		$bdate	 = $bfact->getDate();
+		$ddate	 = $dfact->getDate();
+		$html	 = '';
 		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
 			$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($bdate, $ddate), false);
 			if (Date::getAge($bdate, $ddate, 0) < 2) {
@@ -1145,13 +1145,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		global $WT_TREE;
 		$place = $fact->getAttribute('PLAC');
 		if ($place && $this->options('show_places') == true) {
-			$place = new Place($place, $WT_TREE);
-			$html = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
+			$place	 = new Place($place, $WT_TREE);
+			$html	 = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
 			if ($this->options('use_gedcom_places') == true) {
 				$html .= $place->getShortName();
 			} else {
-				$country = $this->options('country');
-				$new_place = array_reverse(explode(", ", $place->getGedcomName()));
+				$country	 = $this->options('country');
+				$new_place	 = array_reverse(explode(", ", $place->getGedcomName()));
 				if (!empty($country) && $new_place[0] == $country) {
 					unset($new_place[0]);
 					$html .= '<span dir="auto">' . Filter::escapeHtml(implode(', ', array_reverse($new_place))) . '</span>';
@@ -1201,15 +1201,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return array of xrefs
 	 */
 	private function getNextGen($pid) {
-		$person = $this->getPerson($pid);
-		$ng = array();
+		$person	 = $this->getPerson($pid);
+		$ng		 = array();
 		foreach ($person->getSpouseFamilies() as $family) {
 			$children = $family->getChildren();
 			if ($children) {
 				foreach ($children as $key => $child) {
-					$key = $family->getXref() . '-' . $key; // be sure the key is unique.
-					$ng[$key]['pid'] = $child->getXref();
-					$child->getSpouseFamilies(Auth::PRIV_HIDE) ? $ng[$key]['desc'] = 1 : $ng[$key]['desc'] = 0;
+					$key				 = $family->getXref() . '-' . $key; // be sure the key is unique.
+					$ng[$key]['pid']	 = $child->getXref();
+					$child->getSpouseFamilies(Auth::PRIV_HIDE) ? $ng[$key]['desc']	 = 1 : $ng[$key]['desc']	 = 0;
 				}
 			}
 		}
@@ -1227,8 +1227,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	private function hasParentsInSameGeneration($person, $generation) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
-			$father = $parents->getHusband();
-			$mother = $parents->getWife();
+			$father	 = $parents->getHusband();
+			$mother	 = $parents->getWife();
 			if ($father) {
 				$father = $father->getXref();
 			}
@@ -1261,8 +1261,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string (relationship name)
 	 */
 	private function checkRelationship($person, $spouse) {
-		$controller = new RelationshipController();
-		$paths = $controller->calculateRelationships($person, $spouse, 1);
+		$controller	 = new RelationshipController();
+		$paths		 = $controller->calculateRelationships($person, $spouse, 1);
 		foreach ($paths as $path) {
 			$relationships = $controller->oldStyleRelationshipPath($path);
 			if (empty($relationships)) {
@@ -1387,9 +1387,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$cache_filename = $this->cacheFileName($mediaobject);
 
 			if (!is_file($cache_filename)) {
-				if($this->options('resize_thumbs')) {
-					$thumbnail = $this->fancyThumb($mediaobject);
-					$mimetype = $mediaobject->mimeType();
+				if ($this->options('resize_thumbs')) {
+					$thumbnail	 = $this->fancyThumb($mediaobject);
+					$mimetype	 = $mediaobject->mimeType();
 					if ($mimetype === 'image/jpeg') {
 						imagejpeg($thumbnail, $cache_filename);
 					} elseif ($mimetype === 'image/png') {
@@ -1405,7 +1405,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					} catch (Exception $ex) {
 						// something went wrong while copying the default webtrees image to the ftv cache folder
 						// there is a fallback in the function printThumbnail(): output $mediaobject->displayImage();
-					}					
+					}
 				}
 			}
 			return $cache_filename;
@@ -1429,8 +1429,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		}
 
 		if (is_file($mediasrc)) {
-			$thumbsize = $this->options('thumb_size');
-			$thumbwidth = $thumbheight = $thumbsize;
+			$thumbsize	 = $this->options('thumb_size');
+			$thumbwidth	 = $thumbheight = $thumbsize;
 
 			$mimetype = $mediaobject->mimeType();
 			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png') {
@@ -1441,10 +1441,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 				switch ($mimetype) {
 					case 'image/jpeg':
-						$image = imagecreatefromjpeg($mediasrc);
+						$image	 = imagecreatefromjpeg($mediasrc);
 						break;
 					case 'image/png':
-						$image = imagecreatefrompng($mediasrc);
+						$image	 = imagecreatefrompng($mediasrc);
 						break;
 				}
 
@@ -1456,7 +1456,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 
 				if ($resize_format === '1') {
-					$thumbwidth = $thumbwidth / 100 * $imagewidth;
+					$thumbwidth	 = $thumbwidth / 100 * $imagewidth;
 					$thumbheight = $thumbheight / 100 * $imageheight;
 				}
 
@@ -1464,25 +1464,25 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				if ($square == true) {
 					$thumbheight = $thumbwidth;
 					if ($ratio < 1) {
-						$new_height = $thumbwidth / $ratio;
-						$new_width = $thumbwidth;
+						$new_height	 = $thumbwidth / $ratio;
+						$new_width	 = $thumbwidth;
 					} else {
-						$new_width = $thumbheight * $ratio;
-						$new_height = $thumbheight;
+						$new_width	 = $thumbheight * $ratio;
+						$new_height	 = $thumbheight;
 					}
 				} else {
 					if ($resize_format === '1') {
-						$new_width = $thumbwidth;
-						$new_height = $thumbheight;
+						$new_width	 = $thumbwidth;
+						$new_height	 = $thumbheight;
 					} elseif ($imagewidth > $imageheight) {
-						$new_height = $thumbheight / $ratio;
-						$new_width = $thumbwidth;
+						$new_height	 = $thumbheight / $ratio;
+						$new_width	 = $thumbwidth;
 					} elseif ($imageheight > $imagewidth) {
-						$new_width = $thumbheight * $ratio;
-						$new_height = $thumbheight;
+						$new_width	 = $thumbheight * $ratio;
+						$new_height	 = $thumbheight;
 					} else {
-						$new_width = $thumbwidth;
-						$new_height = $thumbheight;
+						$new_width	 = $thumbwidth;
+						$new_height	 = $thumbheight;
 					}
 				}
 				$process = imagecreatetruecolor(round($new_width), round($new_height));
@@ -1523,7 +1523,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if (file_exists($theme_dir . Theme::theme()->themeId())) {
 			return $theme_dir . theme::theme()->themeId();
 		} else {
-			$parentclass = get_parent_class(Theme::theme());
+			$parentclass	 = get_parent_class(Theme::theme());
 			$parentclassname = explode('\\', $parentclass);
 			if (end($parentclassname) !== 'AbstractTheme') {
 				$parenttheme = new $parentclass;

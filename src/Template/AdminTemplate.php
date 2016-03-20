@@ -513,12 +513,12 @@ class AdminTemplate extends FancyTreeviewClass {
 										</button>
 									</div>
 									<?php if (count(Tree::getAll()) > 1): ?>
-									<div class="col-md-6 text-right">
-										<button id="save-and-copy" name="copy-options" class="btn btn-primary" type="button">
-											<i class="fa fa-check"></i>
-											<?php echo I18N::translate('save and copy options to other trees') ?>
-										</button>
-									</div>
+										<div class="col-md-6 text-right">
+											<button id="save-and-copy" name="copy-options" class="btn btn-primary" type="button">
+												<i class="fa fa-check"></i>
+												<?php echo I18N::translate('save and copy options to other trees') ?>
+											</button>
+										</div>
 									<?php endif; ?>
 								</div>
 							</form>

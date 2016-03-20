@@ -41,13 +41,13 @@ define('FTV_VERSION', '1.7.4-dev');
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
 	// How to update the database schema for this module
-	const SCHEMA_TARGET_VERSION = 8;
-	const SCHEMA_SETTING_NAME = 'FTV_SCHEMA_VERSION';
-	const SCHEMA_MIGRATION_PREFIX = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
-	
+	const SCHEMA_TARGET_VERSION	 = 8;
+	const SCHEMA_SETTING_NAME		 = 'FTV_SCHEMA_VERSION';
+	const SCHEMA_MIGRATION_PREFIX	 = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
+
 	/** @var object tree */
 	var $tree;
-	
+
 	/** @var integer The tree's ID number */
 	var $tree_id;
 
@@ -61,10 +61,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function __construct() {
 		parent::__construct('fancy_treeview');
 
-		$this->tree = $this->tree();
-		$this->tree_id = $this->tree->getTreeId();
+		$this->tree		 = $this->tree();
+		$this->tree_id	 = $this->tree->getTreeId();
 		$this->directory = WT_MODULES_DIR . $this->getName();
-		$this->action = Filter::get('mod_action');
+		$this->action	 = Filter::get('mod_action');
 
 		// register the namespaces
 		$loader = new ClassLoader();
@@ -145,10 +145,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			case 'admin_search':
 				// new settings
 				$surname = Filter::post('SURNAME');
-				$pid = Filter::post('PID');
+				$pid	 = Filter::post('PID');
 				if ($surname) {
 					$soundex_std = Filter::postBool('soundex_std');
-					$soundex_dm = Filter::postBool('soundex_dm');
+					$soundex_dm	 = Filter::postBool('soundex_dm');
 
 					$indis = $this->module()->indisArray($surname, $soundex_std, $soundex_dm);
 					usort($indis, 'Fisharebest\Webtrees\Individual::compareBirthDate');
@@ -171,8 +171,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					} else {
 						$record = Individual::getInstance($pid, $this->tree);
 						if ($record) {
-							$root = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
-							$title = $this->module()->getPageLink($pid);
+							$root	 = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
+							$title	 = $this->module()->getPageLink($pid);
 
 							$result = array(
 								'access_level'	 => '2', // default access level = show to visitors
@@ -194,9 +194,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_add':
-				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-				$NEW_FTV_SETTINGS = $FTV_SETTINGS;
-				$NEW_FTV_SETTINGS[] = array(
+				$FTV_SETTINGS		 = unserialize($this->getSetting('FTV_SETTINGS'));
+				$NEW_FTV_SETTINGS	 = $FTV_SETTINGS;
+				$NEW_FTV_SETTINGS[]	 = array(
 					'TREE'			 => Filter::getInteger('tree'),
 					'SURNAME'		 => Filter::post('surname'),
 					'PID'			 => Filter::post('pid'),
@@ -210,9 +210,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			case 'admin_update':
 				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
-				$new_surname = Filter::postArray('surname');
-				$new_access_level = Filter::postArray('access_level');
-				$new_sort = Filter::postArray('sort');
+				$new_surname		 = Filter::postArray('surname');
+				$new_access_level	 = Filter::postArray('access_level');
+				$new_sort			 = Filter::postArray('sort');
 
 				foreach ($new_surname as $key => $new_surname) {
 					$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
@@ -231,15 +231,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_save':
-				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+				$FTV_OPTIONS							 = unserialize($this->getSetting('FTV_OPTIONS'));
 				$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
 				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' config updated');
-				
+
 				// the cache has to be recreated because the image options could have been changed
 				$this->module()->emptyCache();
 				break;
-			
+
 			case 'admin_copy':
 				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 				foreach (Tree::getAll() as $tree) {
@@ -247,7 +247,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				}
 				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' config saved and copied to all trees');
-				
+
 				// the cache has to be recreated because the image options could have been changed
 				$this->module()->emptyCache();
 				break;
@@ -269,38 +269,38 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			case 'page':
 				$template = new PageTemplate;
 				return $template->pageContent();
-			
+
 			// See mediafirewall.php
 			case 'thumbnail':
-				$mid			= Filter::get('mid', WT_REGEX_XREF);
-				$media			= Media::getInstance($mid, $this->tree);
-				$mimetype		= $media->mimeType();
-				$cache_filename = $this->module()->cacheFileName($media);
-				$filetime       = filemtime($cache_filename);
-				$filetimeHeader = gmdate('D, d M Y H:i:s', $filetime) . ' GMT';
-				$expireOffset   = 3600 * 24 * 7; // tell browser to cache this image for 7 days
-				$expireHeader	= gmdate('D, d M Y H:i:s', WT_TIMESTAMP + $expireOffset) . ' GMT';
-				$etag			= $media->getEtag();
-				$filesize		= filesize($cache_filename);
-				
+				$mid			 = Filter::get('mid', WT_REGEX_XREF);
+				$media			 = Media::getInstance($mid, $this->tree);
+				$mimetype		 = $media->mimeType();
+				$cache_filename	 = $this->module()->cacheFileName($media);
+				$filetime		 = filemtime($cache_filename);
+				$filetimeHeader	 = gmdate('D, d M Y H:i:s', $filetime) . ' GMT';
+				$expireOffset	 = 3600 * 24 * 7; // tell browser to cache this image for 7 days
+				$expireHeader	 = gmdate('D, d M Y H:i:s', WT_TIMESTAMP + $expireOffset) . ' GMT';
+				$etag			 = $media->getEtag();
+				$filesize		 = filesize($cache_filename);
+
 				// parse IF_MODIFIED_SINCE header from client
 				$if_modified_since = 'x';
 				if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
 					$if_modified_since = preg_replace('/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE']);
 				}
-				
+
 				// parse IF_NONE_MATCH header from client
 				$if_none_match = 'x';
 				if (isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
 					$if_none_match = str_replace('"', '', $_SERVER['HTTP_IF_NONE_MATCH']);
 				}
-				
+
 				// add caching headers.  allow browser to cache file, but not proxy
 				header('Last-Modified: ' . $filetimeHeader);
 				header('ETag: "' . $etag . '"');
 				header('Expires: ' . $expireHeader);
 				header('Cache-Control: max-age=' . $expireOffset . ', s-maxage=0, proxy-revalidate');
-				
+
 				// if this file is already in the user’s cache, don’t resend it
 				// first check if the if_modified_since param matches
 				if ($if_modified_since === $filetimeHeader) {
@@ -315,7 +315,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				header('Content-Type: ' . $mimetype);
 				header('Content-Disposition: filename="' . basename($cache_filename) . '"');
 				header('Content-Length: ' . $filesize);
-						
+
 				// Some servers disable fpassthru() and readfile()
 				if (function_exists('readfile')) {
 					readfile($cache_filename);
@@ -328,7 +328,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 							echo fread($fp, 65536);
 						}
 					}
-					fclose($fp);					
+					fclose($fp);
 				}
 				break;
 
@@ -394,8 +394,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 						}
 					}
 
-					$tree_name = Filter::escapeUrl($this->tree->getName());
-					$menu = new Menu(I18N::translate('Family tree overview'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview');
+					$tree_name	 = Filter::escapeUrl($this->tree->getName());
+					$menu		 = new Menu(I18N::translate('Family tree overview'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview');
 
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 						$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree);
@@ -429,7 +429,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			}
 		}
 	}
-	
+
 	protected function pdf() {
 		if ((Filter::get('mod_action') === 'page' || Filter::get('mod_action') === 'full_pdf') && Module::getModuleByName('fancy_treeview_pdf')) {
 			return new FancyTreeviewPdfClass;
