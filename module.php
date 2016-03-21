@@ -96,7 +96,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function getDescription() {
-		return /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way.') . '<br><span class="small text-muted">' . I18N::translate('Version') . ' ' . FTV_VERSION . ' | by JustCarmen | <a href="http://www.justcarmen.nl/fancy-modules/fancy-treeview/">' . I18N::translate('Show details') . '</a></span>';
+		$description = /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way.');
+		if (WT_SCRIPT_NAME === 'admin_modules.php') {
+			$description .= '<br><span class="small text-muted">' . I18N::translate('Version') . ' ' . FTV_VERSION . ' | by JustCarmen | <a href="http://www.justcarmen.nl/fancy-modules/fancy-treeview/">' . I18N::translate('Show details') . '</a></span>';
+		}
+		return  $description;
 	}
 
 	/** {@inheritdoc} */
