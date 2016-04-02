@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2016-03-20 21:11+0100\n"
+"POT-Creation-Date: 2016-04-02 21:34+0200\n"
 "PO-Revision-Date: 2015-07-04 22:18+0200\n"
 "Last-Translator: oleg alexandrov <opalexandrov@gmail.com>\n"
 "Language-Team: \n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr ""
 
-#: fancy_treeview/src/Template/PageTemplate.php:72
+#: fancy_treeview/src/Template/PageTemplate.php:71
 msgid "Change root person"
 msgstr ""
 
@@ -39,37 +39,37 @@ msgstr ""
 msgid "Check relationship between partners"
 msgstr ""
 
-#: fancy_treeview/src/FancyTreeviewClass.php:704
+#: fancy_treeview_pdf/src/FancyTreeviewPdfClass.php:47
 msgid "Creating PDF file. This process may take a while. Please wait..."
 msgstr ""
 
 #. I18N: %s is the surname of the root individual
-#: fancy_treeview/module.php:406 fancy_treeview/src/FancyTreeviewClass.php:206
+#: fancy_treeview/module.php:410 fancy_treeview/src/FancyTreeviewClass.php:206
 #: fancy_treeview/src/Schema/Migration0.php:42
 #: fancy_treeview/src/Template/AdminTemplate.php:282
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Потомки %s"
 
-#: fancy_treeview/module.php:188
+#: fancy_treeview/module.php:192
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr ""
 
-#: fancy_treeview/module.php:169
+#: fancy_treeview/module.php:173
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr ""
 
-#: fancy_treeview/module.php:167
+#: fancy_treeview/module.php:171
 msgid "Error: The root person belonging to this surname already exists"
 msgstr ""
 
-#: fancy_treeview/module.php:159
+#: fancy_treeview/module.php:163
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr ""
 
-#: fancy_treeview/module.php:398
+#: fancy_treeview/module.php:402
 msgid "Family tree overview"
 msgstr ""
 
@@ -80,18 +80,18 @@ msgid "Fancy Treeview"
 msgstr "Родословная роспись"
 
 #. I18N: Name of the Fancy Treeview PDF-module
-#: fancy_treeview_pdf/module.php:72
+#: fancy_treeview_pdf/module.php:101
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
 #, fuzzy
 msgid "Fancy Treeview PDF"
 msgstr "Родословная роспись"
 
 #. I18N: Description of the module
-#: fancy_treeview_pdf/module.php:77
+#: fancy_treeview_pdf/module.php:106
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
 msgstr ""
 
-#: fancy_treeview/src/Template/PageTemplate.php:85
+#: fancy_treeview/src/Template/PageTemplate.php:84
 msgid "Go"
 msgstr ""
 
@@ -187,7 +187,7 @@ msgid "Root person"
 msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:146
-#: fancy_treeview/src/Template/PageTemplate.php:77
+#: fancy_treeview/src/Template/PageTemplate.php:76
 msgid "Search ID by name"
 msgstr ""
 
@@ -349,9 +349,18 @@ msgstr ""
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
 msgstr ""
 
-#: fancy_treeview_pdf/module.php:41
+#: fancy_treeview_pdf/module.php:68
 #, php-format
-msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s to use this module."
+msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
+msgstr ""
+
+#: fancy_treeview_pdf/module.php:59
+msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
+msgstr ""
+
+#: fancy_treeview_pdf/module.php:51
+#, php-format
+msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
 msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
