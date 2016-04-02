@@ -36,7 +36,8 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
-define('FTV_VERSION', '1.7.4');
+define('FTV_VERSION', '1.7.4.1');
+define('FTV_PDF_COMPATIBLE_VERSION', '1.7.4.1');
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
