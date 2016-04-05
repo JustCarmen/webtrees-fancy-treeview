@@ -400,7 +400,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					}
 
 					$tree_name	 = Filter::escapeUrl($this->tree->getName());
-					$menu		 = new Menu(I18N::translate('Family tree overview'), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_GED_SETTINGS[0]['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview');
+					$menu		 = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
 
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 						$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree);
