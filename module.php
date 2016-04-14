@@ -46,12 +46,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	const SCHEMA_SETTING_NAME		 = 'FTV_SCHEMA_VERSION';
 	const SCHEMA_MIGRATION_PREFIX	 = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
 
-	/** @var object tree */
-	var $tree;
-
-	/** @var integer The tree's ID number */
-	var $tree_id;
-
 	/** @var string location of the fancy treeview module files */
 	var $directory;
 
@@ -61,9 +55,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct('fancy_treeview');
-
-		$this->tree		 = $this->tree();
-		$this->tree_id	 = $this->tree->getTreeId();
+		
 		$this->directory = WT_MODULES_DIR . $this->getName();
 		$this->action	 = Filter::get('mod_action');
 
@@ -141,7 +133,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-
+		
 		switch ($mod_action) {
 			case 'admin_config':
 				$template = new AdminTemplate;
@@ -174,7 +166,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 							$result['error'] = I18N::translate('Error: A root person with ID %s already exists', $pid);
 						}
 					} else {
-						$record = Individual::getInstance($pid, $this->tree);
+						$record = Individual::getInstance($pid, $this->tree());
 						if ($record) {
 							$root	 = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
 							$title	 = $this->module()->getPageLink($pid);
@@ -278,7 +270,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			// See mediafirewall.php
 			case 'thumbnail':
 				$mid			 = Filter::get('mid', WT_REGEX_XREF);
-				$media			 = Media::getInstance($mid, $this->tree);
+				$media			 = Media::getInstance($mid, $this->tree());
 				$mimetype		 = $media->mimeType();
 				$cache_filename	 = $this->module()->cacheFileName($media);
 				$filetime		 = filemtime($cache_filename);
@@ -380,7 +372,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			if (!empty($FTV_SETTINGS)) {
 
 				foreach ($FTV_SETTINGS as $FTV_ITEM) {
-					if ($FTV_ITEM['TREE'] == $this->tree_id && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($this->tree)) {
+					if ($FTV_ITEM['TREE'] == $this->tree()->getTreeId() && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($this->tree())) {
 						$FTV_GED_SETTINGS[] = $FTV_ITEM;
 					}
 				}
@@ -399,11 +391,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 						}
 					}
 
-					$tree_name	 = Filter::escapeUrl($this->tree->getName());
+					$tree_name	 = Filter::escapeUrl($this->tree()->getName());
 					$menu		 = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
 
 					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
-						$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree);
+						$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree());
 						if ($record && $record->canShowName()) {
 							if ($this->module()->options('use_fullname') == true) {
 								$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
@@ -422,7 +414,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		}
 	}
 
-	private function tree() {
+	protected function tree() {
 		global $WT_TREE;
 
 		if ($WT_TREE) {

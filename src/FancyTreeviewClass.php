@@ -75,10 +75,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
 		$key		 = strtoupper($k);
 
-		if (empty($FTV_OPTIONS[$this->tree_id]) || (is_array($FTV_OPTIONS[$this->tree_id]) && !array_key_exists($key, $FTV_OPTIONS[$this->tree_id]))) {
+		if (empty($FTV_OPTIONS[$this->tree()->getTreeId()]) || (is_array($FTV_OPTIONS[$this->tree()->getTreeId()]) && !array_key_exists($key, $FTV_OPTIONS[$this->tree()->getTreeId()]))) {
 			return $this->setDefault($key);
 		} else {
-			return($FTV_OPTIONS[$this->tree_id][$key]);
+			return($FTV_OPTIONS[$this->tree()->getTreeId()][$key]);
 		}
 	}
 
@@ -98,7 +98,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			" AND n_type != '_MARNM'" .
 			" AND (n_surn = :surname1 OR n_surname = :surname2";
 		$args	 = array(
-			'tree_id'	 => $this->tree_id,
+			'tree_id'	 => $this->tree()->getTreeId(),
 			'surname1'	 => $surname,
 			'surname2'	 => $surname
 		);
@@ -137,7 +137,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	public function getSurname($pid) {
 		$sql	 = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
 		$args	 = array(
-			'tree_id'	 => $this->tree_id,
+			'tree_id'	 => $this->tree()->getTreeId(),
 			'pid'		 => $pid
 		);
 		$data	 = Database::prepare($sql)->execute($args)->fetchOne();
@@ -198,10 +198,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	protected function getPageLink($pid) {
-		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $this->tree->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
+		$link = '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;ged=' . $this->tree()->getNameHtml() . '&amp;rootid=' . $pid . '" target="_blank">';
 
 		if ($this->options('use_fullname') == true) {
-			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid, $this->tree)->getFullName());
+			$link .= I18N::translate('Descendants of %s', Individual::getInstance($pid, $this->tree())->getFullName());
 		} else {
 			$link .= I18N::translate('Descendants of the %s family', $this->getSurname($pid));
 		}
@@ -221,7 +221,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$sql	 = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
 		$args	 = array(
 			'parent_id'	 => '0',
-			'tree_id'	 => $this->tree_id
+			'tree_id'	 => $this->tree()->getTreeId()
 		);
 
 		$countries = Database::prepare($sql)->execute($args)->fetchAll(PDO::FETCH_ASSOC);
@@ -449,7 +449,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	private function printReadMoreLink($root) {
 		return
 			'<div id="read-more-link">' .
-			'<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . Filter::escapeUrl(Tree::findById($this->tree_id)->getName()) . '">' .
+			'<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . Filter::escapeUrl(Tree::findById($this->tree()->getTreeId())->getName()) . '">' .
 			I18N::translate('Read more') .
 			'</a>' .
 			'</div>';
@@ -1170,7 +1170,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return object
 	 */
 	protected function getPerson($pid) {
-		return Individual::getInstance($pid, $this->tree);
+		return Individual::getInstance($pid, $this->tree());
 	}
 
 	/**
@@ -1314,7 +1314,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return boolean
 	 */
 	private function getMarriage($family) {
-		$record = GedcomRecord::getInstance($family->getXref(), $this->tree);
+		$record = GedcomRecord::getInstance($family->getXref(), $this->tree());
 		foreach ($record->getFacts('MARR', false, Auth::PRIV_HIDE) as $fact) {
 			if ($fact) {
 				return true;
@@ -1356,7 +1356,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return filename
 	 */
 	public function cacheFileName(Media $mediaobject) {
-		return $this->cacheDir() . $this->tree_id . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
+		return $this->cacheDir() . $this->tree()->getTreeId() . '-' . $mediaobject->getXref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 
 	/**
@@ -1605,7 +1605,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 				}
 
-				if ($this->options('show_userform') >= Auth::accessLevel($this->tree)) {
+				if ($this->options('show_userform') >= Auth::accessLevel($this->tree())) {
 					$this->includeJsInline($controller);
 				}
 				break;

@@ -67,7 +67,7 @@ class AdminTemplate extends FancyTreeviewClass {
 				<div class="col-sm-4">
 					<select id="tree" name="NEW_FIB_TREE" class="form-control">
 						<?php foreach (Tree::getAll() as $tree): ?>
-							<?php if ($tree->getTreeId() == $this->tree_id): ?>
+							<?php if ($tree->getTreeId() == $this->tree()->getTreeId()): ?>
 								<option value="<?php echo $tree->getTreeId(); ?>" data-ged="<?php echo $tree->getNameHtml() ?>" selected="selected">
 									<?php echo $tree->getTitleHtml() ?>
 								</option>
@@ -95,7 +95,7 @@ class AdminTemplate extends FancyTreeviewClass {
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-						<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree_id))): ?>
+						<?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))): ?>
 							<div class="alert alert-info alert-dismissible" role="alert">
 								<button type="button" class="close" data-dismiss="alert" aria-label="' . I18N::translate('close') . '">
 									<span aria-hidden="true">&times;</span>
@@ -223,7 +223,7 @@ class AdminTemplate extends FancyTreeviewClass {
 						<?php echo $this->addMessage("error", "danger", true) ?>
 						<?php echo $this->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')) ?>
 						<div id="fancy-treeview-form" class="form-group">
-							<?php if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', $this->tree_id)): ?>
+							<?php if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId())): ?>
 								<form class="form-horizontal" method="post" name="form4">
 									<!-- TABLE -->
 									<table id="fancy-treeview-table" class="table table-hover">
@@ -240,8 +240,8 @@ class AdminTemplate extends FancyTreeviewClass {
 										</thead>
 										<tbody>
 											<?php foreach ($FTV_SETTINGS as $key => $this_ITEM): ?>
-												<?php if ($this_ITEM['TREE'] == $this->tree_id): ?>
-													<?php if (Individual::getInstance($this_ITEM['PID'], $this->tree)): ?>
+												<?php if ($this_ITEM['TREE'] == $this->tree()->getTreeId()): ?>
+													<?php if (Individual::getInstance($this_ITEM['PID'], $this->tree())): ?>
 														<tr class="sortme">
 															<!-- ROOT PERSONS FULL NAME -->
 															<td>
@@ -255,8 +255,8 @@ class AdminTemplate extends FancyTreeviewClass {
 																	type="hidden"
 																	value="<?php echo $this_ITEM['SORT'] ?>"
 																	>
-																	<?php echo Individual::getInstance($this_ITEM['PID'], $this->tree)->getFullName() . '' ?>
-																(<?php echo Individual::getInstance($this_ITEM['PID'], $this->tree)->getLifeSpan() ?>)
+																	<?php echo Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName() . '' ?>
+																(<?php echo Individual::getInstance($this_ITEM['PID'], $this->tree())->getLifeSpan() ?>)
 															</td>
 															<?php if (!$this->options('use_fullname')): ?>
 																<!-- SURNAME IN PAGE TITLE -->
@@ -274,10 +274,10 @@ class AdminTemplate extends FancyTreeviewClass {
 															<?php endif ?>
 															<!-- PAGE TITLE -->
 															<td>
-																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=page&amp;ged=<?php echo $this->tree->getNameHtml(); ?>&amp;rootid=<?php echo $this_ITEM['PID'] ?>" target="_blank">
+																<a href="module.php?mod=<?php echo $this->getName(); ?>&amp;mod_action=page&amp;ged=<?php echo $this->tree()->getNameHtml(); ?>&amp;rootid=<?php echo $this_ITEM['PID'] ?>" target="_blank">
 																	<?php
 																	if ($this->options('use_fullname') == true) {
-																		echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $this->tree)->getFullName());
+																		echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName());
 																	} else {
 																		echo I18N::translate('Descendants of the %s family', $this_ITEM['SURNAME']);
 																	}
@@ -339,7 +339,7 @@ class AdminTemplate extends FancyTreeviewClass {
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-target="#collapseTwo" href="#" class="collapsed">
-							<?php echo I18N::translate('Options for %s', $this->tree->getTitleHtml()) ?>
+							<?php echo I18N::translate('Options for %s', $this->tree()->getTitleHtml()) ?>
 						</a>
 					</h4>
 				</div>
