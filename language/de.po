@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-02 21:34+0200\n"
-"PO-Revision-Date: 2016-03-21 19:39+0100\n"
-"Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2016-04-16 12:10+0000\n"
+"Last-Translator: Rico Sonntag <mail@ricosonntag.de>\n"
+"Language-Team: German <http://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.5\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
@@ -24,7 +24,7 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr "<b>Notiz</b>: Diese Option kann besondern bei großen Stammbäumen viel Zeit und/oder Speicher benötigen und damit zu einem sehr langsames Laden der Seite oder einem ’execution time out error’ auf Ihrem Server führen. Wenn Sie ein solches Verhalten feststellen, reduzieren Sie bitte die Anzahl der auf einmal zu erstellenden Generationen oder nutzen Sie es nicht in Verbindung mit der vorherigen Option ’Einzelpersonen anzeigen’. Nutzen Sie diese Option überhaupt nicht, wenn weiterhin Probleme auftreten."
+msgstr "<strong>Notiz</strong>: Diese Option kann besondern bei großen Stammbäumen viel Zeit und/oder Speicher benötigen und damit zu einem sehr langsames Laden der Seite oder einem ’execution time out error’ auf Ihrem Server führen. Wenn Sie ein solches Verhalten feststellen, reduzieren Sie bitte die Anzahl der auf einmal zu erstellenden Generationen oder nutzen Sie es nicht in Verbindung mit der vorherigen Option ’Einzelpersonen anzeigen’. Nutzen Sie diese Option überhaupt nicht, wenn weiterhin Probleme auftreten."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:99
@@ -240,7 +240,7 @@ msgstr "Berufe anzeigen"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:401
 msgid "Show places?"
-msgstr "Orte anzeigen"
+msgstr "Orte anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
 msgid "Show single persons"
@@ -283,7 +283,7 @@ msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich gespeichert."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich gespeichert."
+msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich gespeichert und für die anderen Stammbäume kopiert."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
 #, php-format
@@ -324,7 +324,7 @@ msgstr "Aktivieren Sie diese Option, wenn Sie auch Personen in den Generationen 
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Standardeinstellungen zur Abkürzung von Ortsnamen übernehmen"
+msgstr "Standardeinstellungen zur Abkürzung von Ortsnamen übernehmen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
