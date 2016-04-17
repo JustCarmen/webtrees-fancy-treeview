@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-02 21:34+0200\n"
-"PO-Revision-Date: 2015-07-04 22:18+0200\n"
-"Last-Translator: Wooc\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2016-04-17 09:09+0000\n"
+"Last-Translator: Łukasz Wileński <lukas.the.best@poczta.fm>\n"
+"Language-Team: Polish <http://translate.webtrees.net/projects/justcarmen/fancy-tree-view/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.5\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
@@ -81,9 +81,8 @@ msgstr "Ozdobny widok drzewa"
 #. I18N: Name of the Fancy Treeview PDF-module
 #: fancy_treeview_pdf/module.php:101
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
-#, fuzzy
 msgid "Fancy Treeview PDF"
-msgstr "Ozdobny widok drzewa"
+msgstr "Ozdobny widok drzewa PDF"
 
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:106
@@ -105,16 +104,14 @@ msgid "He married %s times"
 msgstr "Brał ślub %s razy"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1036
-#, fuzzy
 msgctxt "PAST"
 msgid "He was baptized"
-msgstr "Urodził się"
+msgstr "Został ochrzczony"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1038
-#, fuzzy
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "Urodził się"
+msgstr "Został ochrzczony"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1018
 msgctxt "PAST"
@@ -138,19 +135,17 @@ msgstr ""
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
-#, fuzzy
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr "Gdy ta opcja jest wybrana będzie można ustawić własny kraj. Będą wyświetlane pełne nazwy miejsc, ale gdy nazwa będzie zwierała ustawiną nazwę kraju, ta nazwa nie będzie wyświetlana.Gdy nie będzie wybrany żaden kraj wszystkie miejsca będą wyświetlane w pełnej postaci."
+msgstr "Gdy ta opcja jest wybrana będzie można ustawić domyślny (własny) kraj. Będą wyświetlane pełne nazwy miejsc włącznie z krajem, ale gdy nazwa miejsca będzie zwierała wybraną nazwę kraju, ta nazwa kraju nie będzie wyświetlana. Gdy nie będzie wybrany żaden kraj wszystkie miejsca będą wyświetlane w pełnej postaci."
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:416
-#, fuzzy
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
 msgstr "Jeśli została wybrana opcja „Pokaż miejsca” będzie można użyć domyślnych ustawień drzewa odnoszących się do skracania nazw miejsc. Jeśli ta opcja nie zostanie ustawiona będą pokazane pełne nazwy miejsc."
 
 #: fancy_treeview_pdf/src/Template/PdfTemplate.php:104
 msgid "Index"
-msgstr ""
+msgstr "Indeks"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:365
 msgid "Number of generation blocks to show"
@@ -159,29 +154,28 @@ msgstr "Liczba bloków pokoleń do wyświetlenia"
 #: fancy_treeview/src/Template/AdminTemplate.php:342
 #, php-format
 msgid "Options for %s"
-msgstr ""
+msgstr "Ustawienia dla %s"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
-msgstr ""
+msgstr "Lub wprowadź identyfikator"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:166
 #: fancy_treeview/src/Template/AdminTemplate.php:236
 msgid "Page title"
-msgstr ""
+msgstr "Tytuł strony"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:92
 msgid "Pages"
-msgstr ""
+msgstr "Strony"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:453
 msgid "Read more"
-msgstr ""
+msgstr "Czytaj więcej"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:445
-#, fuzzy
 msgid "Resize thumbnails"
-msgstr "Użyj kwadratowych mianiaturek"
+msgstr "Użyj kwadratowych miniaturek"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:162
 #: fancy_treeview/src/Template/AdminTemplate.php:232
@@ -191,10 +185,9 @@ msgstr "Probant"
 #: fancy_treeview/src/Template/AdminTemplate.php:146
 #: fancy_treeview/src/Template/PageTemplate.php:76
 msgid "Search ID by name"
-msgstr ""
+msgstr "Wyszukaj po nazwisku"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:114
-#, fuzzy
 msgid "Search root person"
 msgstr "Zmień probanta"
 
@@ -213,16 +206,14 @@ msgid "She married %s times"
 msgstr "Brała ślub %s razy"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1036
-#, fuzzy
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr "Urodziła się"
+msgstr "Została ochrzczona"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1038
-#, fuzzy
 msgctxt "PRESENT"
 msgid "She was baptized"
-msgstr "Urodziła się"
+msgstr "Została ochrzczona"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1018
 msgctxt "PAST"
@@ -257,19 +248,19 @@ msgstr "Pokaż niezamężne i nieżonate osoby"
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
 msgid "Surname in page title"
-msgstr ""
+msgstr "Nazwisko w tytule strony"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:567
 #, php-format
 msgid "The %s time he married"
-msgstr "%s razem ożenił się"
+msgstr "%s razem ożenił się z"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:573
 #, php-format
 msgid "The %s time she married"
-msgstr "%s razem wyszła za"
+msgstr "%s razem wyszła za mąż za"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:579
@@ -294,9 +285,9 @@ msgid "The options for this tree are succesfully saved and copied to all other t
 msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy, php-format
+#, php-format
 msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr "Błąd: Osoba z identyfikatorem %s nie istnieje w danym drzewie."
+msgstr "Osoba z identyfikatorem %s nie istnieje w danym drzewie"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
@@ -318,9 +309,8 @@ msgstr ""
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:370
-#, fuzzy
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr "Dana opcja jest szczególnie użyteczna w przypadku dużych drzew. Gdy zauważone zostanie wolne ładowanie strony, w tym miejscu można ustawić mniejszą liczbę bloków pokoleń ładowanych w jednej chwili.Poniżej ostatniego pokolenia zostanie wyświetlony przycisk dodający kolejne bloki pokoleń. Nowe bloki będą dodawane do tych, które już są wyświetlone.Kliknięcie na odnośnik „przejdź do” znajdujący się w ostatnim bloku również spowoduje załadowanie następnych bloków pokoleń."
+msgstr "Dana opcja jest szczególnie użyteczna w przypadku dużych drzew. Gdy zauważone zostanie wolne ładowanie strony, w tym miejscu można ustawić mniejszą liczbę bloków pokoleń ładowanych w jednej chwili. Poniżej ostatniego pokolenia zostanie wyświetlony przycisk dodający kolejne bloki pokoleń. Nowe bloki będą dodawane do tych, które już są wyświetlone. Kliknięcie na odnośnik „przejdź do” znajdujący się w ostatnim bloku również spowoduje załadowanie następnych bloków pokoleń."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
@@ -328,14 +318,12 @@ msgstr "Rozmiar miniaturki"
 
 #. I18N: Help text for the “Show single persons” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
-msgstr "Należy włączyć tą opcję aby pokazać osoby samotne w blokach pokoleń. Osoby samotne to osoby nie posiadające współmażonka i dzieci.Gdy ta opcja jest włączona każde dziecko rodziny będzie pokazane szczegółowo w bloku następnego pokolenia."
+msgstr "Należy włączyć tą opcję aby pokazać osoby samotne w blokach pokoleń. Osoby samotne to osoby nie posiadające współmałżonka i dzieci. Gdy ta opcja jest włączona każde dziecko rodziny będzie pokazane szczegółowo w bloku następnego pokolenia."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
-#, fuzzy
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Użyj domyślnych ustawień drzewa do skracania nazw miejsc"
+msgstr "Użyj domyślnych ustawień drzewa do skracania nazw miejsc."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
@@ -343,7 +331,7 @@ msgstr "Użyj pełnych nazw w menu"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr "Użyj kwadratowych mianiaturek"
+msgstr "Użyj kwadratowych miniaturek"
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/src/Template/AdminTemplate.php:104
@@ -352,9 +340,8 @@ msgstr ""
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
-#, fuzzy
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "Gdy ta opcja jest włączona program sprawdzi czy małżonkowie posiadają wspólnych przodków.Gdy pokrewieństwo pomiędzy małżonkami będzie znalezione zostanie wyświetlony pomiędzy imionami małżonków tekst w nawiasie oznaczający pokrewieństwo.Uwaga: opcja ta powoduje wolniejsze ładowanie strony, szczególnie przy dużych drzewach. Gdy takie działanie zostanie zauważone należy zredukować liczbę bloków pokoleń ładowanych w danym momencie (poprzednia opcja)."
+msgstr "Gdy ta opcja jest włączona program sprawdzi czy małżonkowie posiadają wspólnych przodków. Gdy pokrewieństwo pomiędzy małżonkami będzie znalezione zostanie wyświetlony pomiędzy imionami małżonków tekst w nawiasie oznaczający pokrewieństwo."
 
 #: fancy_treeview_pdf/module.php:68
 #, php-format
@@ -403,7 +390,7 @@ msgstr ""
 #: fancy_treeview/src/FancyTreeviewClass.php:1074
 #: fancy_treeview/src/FancyTreeviewClass.php:1082
 msgid "and "
-msgstr ""
+msgstr "i "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: fancy_treeview/src/FancyTreeviewClass.php:1105
@@ -421,23 +408,21 @@ msgstr "w wieku %s"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1594
 msgid "cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:807
 msgid "child of"
 msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1067
-#, fuzzy
 msgctxt "FEMALE"
 msgid "died"
-msgstr "rozwiedli się"
+msgstr "zmarła"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1067
-#, fuzzy
 msgctxt "MALE"
 msgid "died"
-msgstr "rozwiedli się"
+msgstr "zmarł"
 
 #. I18N: eighth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:558
@@ -511,7 +496,7 @@ msgstr "ma"
 #: fancy_treeview/src/FancyTreeviewClass.php:1129
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "w roku "
+msgstr "w "
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1132
@@ -533,7 +518,7 @@ msgstr ""
 #: fancy_treeview/src/FancyTreeviewClass.php:1593
 #: fancy_treeview/src/Template/AdminTemplate.php:152
 msgid "ok"
-msgstr ""
+msgstr "OK"
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1126
@@ -551,7 +536,7 @@ msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
-msgstr ""
+msgstr "Szukaj"
 
 #. I18N: second marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:552
@@ -621,22 +606,22 @@ msgstr "urodził się"
 #: fancy_treeview/src/FancyTreeviewClass.php:1075
 msgctxt "FEMALE"
 msgid "was buried"
-msgstr ""
+msgstr "została pochowana"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1075
 msgctxt "MALE"
 msgid "was buried"
-msgstr ""
+msgstr "został pochowany"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1083
 msgctxt "FEMALE"
 msgid "was cremated"
-msgstr ""
+msgstr "została skremowana"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1083
 msgctxt "MALE"
 msgid "was cremated"
-msgstr ""
+msgstr "został skremowany"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:620
 msgid "were divorced"
