@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-02 21:34+0200\n"
-"PO-Revision-Date: 2016-04-16 12:10+0000\n"
-"Last-Translator: Rico Sonntag <mail@ricosonntag.de>\n"
-"Language-Team: German <http://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
+"PO-Revision-Date: 2016-04-19 16:12+0000\n"
+"Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
+"Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -347,17 +347,16 @@ msgstr "Hier überprüft das Skript, ob ein (Ehe-) Paar gemeinsame Vorfahren hat
 #: fancy_treeview_pdf/module.php:68
 #, php-format
 msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
-msgstr ""
+msgstr "Sie haben die Fancy Treeview-Version %s installiert und aktiviert. Diese Modulversion benötigt die Fancy Treeview PDF-Version %s. Bitte aktualisieren Sie Ihre Fancy Treeview PDF-Installation auf die richtige Version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\" target=\"_blank\">Hier finden Sie die richtige Version</a>."
 
 #: fancy_treeview_pdf/module.php:59
-#, fuzzy
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne die passende, installierte und aktivierte Version von Fancy Treeview. Bitte installieren und aktivieren Sie die Fancy Treeview-Version %s, um dieses Modul nutzen zu können."
+msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne das aktivierte Fancy Treeview-Modul. Bitte aktivieren Sie Fancy Treeview, um dieses Modul nutzen zu können."
 
 #: fancy_treeview_pdf/module.php:51
-#, fuzzy, php-format
+#, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
-msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne die passende, installierte und aktivierte Version von Fancy Treeview. Bitte installieren und aktivieren Sie die Fancy Treeview-Version %s, um dieses Modul nutzen zu können."
+msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne die passende, installierte und aktivierte Fancy Treeview-Version. Bitte installieren und aktivieren Sie die Fancy Treeview-Version %s oder höher, um dieses Modul nutzen zu können. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\" target=\"_blank\">Hier können Sie die aktuelle Version herunterladen</a>."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
