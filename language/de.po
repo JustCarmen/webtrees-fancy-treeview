@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-02 21:34+0200\n"
-"PO-Revision-Date: 2016-04-19 16:17+0000\n"
+"PO-Revision-Date: 2016-04-19 16:25+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
@@ -37,7 +37,7 @@ msgstr "Startperson wechseln"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
-msgstr "Beziehung zwischen Partnern prüfen"
+msgstr "Beziehung zwischen Partnern prüfen?"
 
 #: fancy_treeview_pdf/src/FancyTreeviewPdfClass.php:47
 msgid "Creating PDF file. This process may take a while. Please wait..."
@@ -176,7 +176,7 @@ msgstr "Lies mehr"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:445
 msgid "Resize thumbnails"
-msgstr "Miniaturbilder anpassen"
+msgstr "Miniaturbilder anpassen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:162
 #: fancy_treeview/src/Template/AdminTemplate.php:232
@@ -228,7 +228,7 @@ msgstr "Sie wurde geboren"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr "Fancy Treeview-Reiter auf der Personenseite anzeigen"
+msgstr "Fancy Treeview-Reiter auf der Personenseite anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -236,7 +236,7 @@ msgstr "Eingabefeld zum Wechsel der Startperson"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:436
 msgid "Show occupations"
-msgstr "Berufe anzeigen"
+msgstr "Berufe anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:401
 msgid "Show places?"
@@ -244,7 +244,7 @@ msgstr "Orte anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
 msgid "Show single persons"
-msgstr "Einzelpersonen anzeigen"
+msgstr "Einzelpersonen anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
@@ -328,11 +328,11 @@ msgstr "Standardeinstellungen zur Abkürzung von Ortsnamen übernehmen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
-msgstr "Alle Namensteile im Hauptmenu verwenden"
+msgstr "Alle Namensteile im Hauptmenu verwenden?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr "Quadratische Miniaturbilder nutzen"
+msgstr "Quadratische Miniaturbilder nutzen?"
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/src/Template/AdminTemplate.php:104
@@ -533,7 +533,7 @@ msgstr "Prozent"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr "Sichern und Einstellungen zu anderem Stammbaum kopieren"
+msgstr "Sichern und Einstellungen zu anderen Stammbäumen kopieren"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
