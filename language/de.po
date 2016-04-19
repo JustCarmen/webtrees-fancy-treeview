@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-02 21:34+0200\n"
-"PO-Revision-Date: 2016-04-19 16:12+0000\n"
+"PO-Revision-Date: 2016-04-19 16:17+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
@@ -232,7 +232,7 @@ msgstr "Fancy Treeview-Reiter auf der Personenseite anzeigen"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
-msgstr "Eingabefeld zum Wechsel der Startperson anzeigen"
+msgstr "Eingabefeld zum Wechsel der Startperson"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:436
 msgid "Show occupations"
