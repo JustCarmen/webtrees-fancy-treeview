@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-02 21:34+0200\n"
-"PO-Revision-Date: 2016-02-01 21:26+0200\n"
-"Last-Translator: Meliza <meliza@amitys.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2016-04-21 19:22+0000\n"
+"Last-Translator: Meliza Amity <meliza@amitys.com>\n"
+"Language-Team: Hebrew <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
-"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.5\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
@@ -281,9 +281,8 @@ msgid "The options for this tree are succesfully saved"
 msgstr "האפשרויות עבור העץ הזה נשמרו בהצלחה"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
-#, fuzzy
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "האפשרויות עבור העץ הזה נשמרו בהצלחה"
+msgstr "האפשרויות עבור העץ הזה נשמרו בהצלחה והועתקו לכל העצים האחרים"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
 #, php-format
@@ -342,7 +341,7 @@ msgstr "השתמש בטופס החיפוש שלמטה כדי לחפש אדם מ�
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקת אם לזוג (נשוי) יש אותם אבות. אם נמצאו יחסים בין בני הזוג, יופיע טקסט בסוגריים אחרי שמו של בן הזוג כדי לציין את מערכת היחסים. "
+msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקת אם לזוג (נשוי) יש אותם אבות. אם נמצאו יחסים בין בני הזוג, יופיע טקסט בסוגריים אחרי שמו של בן הזוג כדי לציין את מערכת היחסים."
 
 #: fancy_treeview_pdf/module.php:68
 #, php-format
@@ -533,7 +532,7 @@ msgstr "אחוז"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr ""
+msgstr "שמור והעתק את האפשרויות לעצם אחרים"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
