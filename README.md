@@ -19,8 +19,12 @@ Fancy Treeview PDF
 ------------------
 Longtime users of Fancy Treeview are used to have the PDF-option inside the module by enabling it at the configuration page. This is changed now. From now on the Fancy Treeview PDF-option is offered as a separate download. Goto https://github.com/JustCarmen/fancy_treeview_pdf for more information.
 
-Installation, updating and translations
----------------------------------------
+Translations
+------------
+You can help to translate this module. Updates to translations should be made at https://translate.webtrees.net/projects/justcarmen/. Changes made there will be pushed to the git repository periodically and will be available on the development version of the module. They will be included in the next release of this module.
+
+Installation & upgrading
+------------------------
 For more information about these subjects go to the JustCarmen help pages: http://www.justcarmen.nl/help
 
 Bugs and feature requests
