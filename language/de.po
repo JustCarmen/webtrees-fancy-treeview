@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2016-04-02 21:34+0200\n"
+"POT-Creation-Date: 2016-04-28 18:11+0200\n"
 "PO-Revision-Date: 2016-04-19 16:25+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
@@ -27,7 +27,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr "<strong>Notiz</strong>: Diese Option kann besondern bei großen Stammbäumen viel Zeit und/oder Speicher benötigen und damit zu einem sehr langsames Laden der Seite oder einem ’execution time out error’ auf Ihrem Server führen. Wenn Sie ein solches Verhalten feststellen, reduzieren Sie bitte die Anzahl der auf einmal zu erstellenden Generationen oder nutzen Sie es nicht in Verbindung mit der vorherigen Option ’Einzelpersonen anzeigen’. Nutzen Sie diese Option überhaupt nicht, wenn weiterhin Probleme auftreten."
 
 #. I18N: Description of the module
-#: fancy_treeview/module.php:99
+#: fancy_treeview/module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Eine ausführliche Übersicht über die Nachkommen einer Familie."
 
@@ -44,49 +44,49 @@ msgid "Creating PDF file. This process may take a while. Please wait..."
 msgstr "Eine PDF-Datei wird erstellt. Dies kann eine Weile dauern. Bitte warten Sie …"
 
 #. I18N: %s is the surname of the root individual
-#: fancy_treeview/module.php:410 fancy_treeview/src/FancyTreeviewClass.php:206
+#: fancy_treeview/module.php:403 fancy_treeview/src/FancyTreeviewClass.php:206
 #: fancy_treeview/src/Schema/Migration0.php:42
 #: fancy_treeview/src/Template/AdminTemplate.php:282
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Nachkommen der Familie %s"
 
-#: fancy_treeview/module.php:192
+#: fancy_treeview/module.php:185
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr "Fehler: Eine Person mit der ID %s existiert nicht in diesem Stammbaum."
 
-#: fancy_treeview/module.php:173
+#: fancy_treeview/module.php:166
 #, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr "Fehler: Eine Startperson mit dieser ID %s existiert schon."
 
-#: fancy_treeview/module.php:171
+#: fancy_treeview/module.php:164
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "Fehler: Die Startperson zu diesem Namen existiert bereits."
 
-#: fancy_treeview/module.php:163
+#: fancy_treeview/module.php:156
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Fehler: Der eingegebene Name existiert nicht in diesem Stammbaum."
 
-#: fancy_treeview/module.php:402
+#: fancy_treeview/module.php:395
 msgid "Family tree overview"
 msgstr "Stammbaumübersicht"
 
 #. I18N: Name of the module
-#: fancy_treeview/module.php:90
+#: fancy_treeview/module.php:83
 #: fancy_treeview/src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
 #. I18N: Name of the Fancy Treeview PDF-module
-#: fancy_treeview_pdf/module.php:101
+#: fancy_treeview_pdf/module.php:94
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
 msgid "Fancy Treeview PDF"
 msgstr "Fancy Treeview PDF"
 
 #. I18N: Description of the module
-#: fancy_treeview_pdf/module.php:106
+#: fancy_treeview_pdf/module.php:99
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
 msgstr "Fancy Treeview-Erweiterung: Bietet Ihren Besuchern das Herunterladen der Nachkommenliste als PDF-Datei an."
 
@@ -131,7 +131,8 @@ msgstr "Hier können Sie auswählen, ob Sie die Größe der Standardminiaturbild
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
-msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this person has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page with this person as root person and all his descendants."
+#, fuzzy
+msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
 msgstr "Wenn Sie diese Option aktivieren wird auf der Personenseite ein Reiter mit dem Titel ’Nachkommen’ angezeigt. Hier wird die aktuelle Person mit ihrer Familie und den nächsten zwei Generationen (falls solche vorhanden sind) beschrieben. Wenn diese Person mehr Nachkommen als die angezeigten zwei Generationen hat, wird ein Link zur kompletten Nachkommenliste mit dieser Person als Startperson und allen Nachkommen angezeigt. <b>Hinweis</b>: Wenn das Erweiterungsmodul Fancy Treeview PDF installiert und aktiviert ist, kann dort ein Link zum Herunterladen der kompletten Nachkommenliste als PDF-Datei angezeigt werden."
 
 #. I18N: Help text for the “Select your country” configuration setting
@@ -243,7 +244,8 @@ msgid "Show places?"
 msgstr "Orte anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-msgid "Show single persons"
+#, fuzzy
+msgid "Show singles"
 msgstr "Einzelpersonen anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
@@ -285,14 +287,14 @@ msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich gespeichert."
 msgid "The options for this tree are succesfully saved and copied to all other trees"
 msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich gespeichert und für die anderen Stammbäume kopiert."
 
-#: fancy_treeview/src/Template/AdminTemplate.php:311
-#, php-format
-msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr "Die Person mit der ID %s existiert nicht mehr in diesem Stammbaum."
-
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
 msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich aktualisiert."
+
+#: fancy_treeview/src/Template/AdminTemplate.php:311
+#, fuzzy
+msgid "This individual doesn’t exist anymore in this tree"
+msgstr "Die Person mit der ID %s existiert nicht mehr in diesem Stammbaum."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -317,9 +319,10 @@ msgstr "Diese Option ist besonders bei großen Stammbäumen nützlich. Wenn Sie 
 msgid "Thumbnail size"
 msgstr "Größe der Miniaturbilder"
 
-#. I18N: Help text for the “Show single persons” configuration setting
+#. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
+#, fuzzy
+msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 msgstr "Aktivieren Sie diese Option, wenn Sie auch Personen in den Generationen anzeigen wollen, die weder Partner noch Kinder haben. Mit aktivierter Option werden alle Kinder einer Familie in ausführlicher Weise in der folgenden Generation angezeigt."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410

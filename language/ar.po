@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2016-04-02 21:34+0200\n"
+"POT-Creation-Date: 2016-04-28 18:11+0200\n"
 "PO-Revision-Date: 2015-07-04 21:49+0200\n"
 "Last-Translator: Et3rnal\n"
 "Language-Team: \n"
@@ -26,7 +26,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr ""
 
 #. I18N: Description of the module
-#: fancy_treeview/module.php:99
+#: fancy_treeview/module.php:92
 #, fuzzy
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "A Fancy overview of the descendants of one family(branch) in a narrative way."
@@ -44,52 +44,52 @@ msgid "Creating PDF file. This process may take a while. Please wait..."
 msgstr ""
 
 #. I18N: %s is the surname of the root individual
-#: fancy_treeview/module.php:410 fancy_treeview/src/FancyTreeviewClass.php:206
+#: fancy_treeview/module.php:403 fancy_treeview/src/FancyTreeviewClass.php:206
 #: fancy_treeview/src/Schema/Migration0.php:42
 #: fancy_treeview/src/Template/AdminTemplate.php:282
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "أحفاد عائلة %s"
 
-#: fancy_treeview/module.php:192
+#: fancy_treeview/module.php:185
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
 msgstr ""
 
-#: fancy_treeview/module.php:173
+#: fancy_treeview/module.php:166
 #, fuzzy, php-format
 msgid "Error: A root person with ID %s already exists"
 msgstr "خطأ: الرأس الذي ينتمي الى هذه العائلة موجود مسبقا."
 
-#: fancy_treeview/module.php:171
+#: fancy_treeview/module.php:164
 msgid "Error: The root person belonging to this surname already exists"
 msgstr "خطأ: الرأس الذي ينتمي الى هذه العائلة موجود مسبقا."
 
-#: fancy_treeview/module.php:163
+#: fancy_treeview/module.php:156
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "خطأ: اسم العائلة الذي ادخلته غير موجود في الشجرة."
 
-#: fancy_treeview/module.php:402
+#: fancy_treeview/module.php:395
 #, fuzzy
 msgid "Family tree overview"
 msgstr "Fancy Treeview"
 
 #. I18N: Name of the module
-#: fancy_treeview/module.php:90
+#: fancy_treeview/module.php:83
 #: fancy_treeview/src/Template/AdminTemplate.php:40
 #, fuzzy
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
 #. I18N: Name of the Fancy Treeview PDF-module
-#: fancy_treeview_pdf/module.php:101
+#: fancy_treeview_pdf/module.php:94
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
 #, fuzzy
 msgid "Fancy Treeview PDF"
 msgstr "Fancy Treeview"
 
 #. I18N: Description of the module
-#: fancy_treeview_pdf/module.php:106
+#: fancy_treeview_pdf/module.php:99
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
 msgstr ""
 
@@ -136,7 +136,7 @@ msgstr ""
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
-msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this person has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page with this person as root person and all his descendants."
+msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
 msgstr ""
 
 #. I18N: Help text for the “Select your country” configuration setting
@@ -253,7 +253,8 @@ msgid "Show places?"
 msgstr "أظهار الأماكن؟"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-msgid "Show single persons"
+#, fuzzy
+msgid "Show singles"
 msgstr "أظهار الاشخاص المنفردين"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
@@ -295,14 +296,14 @@ msgstr ""
 msgid "The options for this tree are succesfully saved and copied to all other trees"
 msgstr ""
 
-#: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy, php-format
-msgid "The person with root id %s doesn’t exist anymore in this tree"
-msgstr "خطأ: لا يوجد شخص بالمعرف %s في هذه العائلة."
-
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
 msgstr ""
+
+#: fancy_treeview/src/Template/AdminTemplate.php:311
+#, fuzzy
+msgid "This individual doesn’t exist anymore in this tree"
+msgstr "خطأ: لا يوجد شخص بالمعرف %s في هذه العائلة."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -328,10 +329,10 @@ msgstr "هذا الخيار مفيد للمشجرات الكبيرة خصوصا�
 msgid "Thumbnail size"
 msgstr "حجم الصورة المصغرة"
 
-#. I18N: Help text for the “Show single persons” configuration setting
+#. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
 #, fuzzy
-msgid "Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
+msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 msgstr ""
 "فعل هذا الخيار لاجل اظهار الاشخاص الغير مرتبطين في كل جيل. الاشخاص الغير متبطين هم اشخاص لم يذكر ابائهم واولادهم.\n"
 "عند تفعيل هذا الخيار سيظهر كل ابناء العائلة مع تفاصيلهم في حقل الجيل اللاحق."

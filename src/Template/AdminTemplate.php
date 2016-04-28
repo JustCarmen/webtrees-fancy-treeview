@@ -308,7 +308,7 @@ class AdminTemplate extends FancyTreeviewClass {
 															</td>
 															<!-- ERROR MESSAGE -->
 															<td colspan="4" class="error">
-																<?php echo I18N::translate('The person with root id %s doesn’t exist anymore in this tree', $this_ITEM['PID']) ?>
+																<?php echo I18N::translate('This individual doesn’t exist anymore in this tree') ?>
 															</td>
 															<!-- DELETE BUTTON -->
 															<td>
@@ -373,12 +373,12 @@ class AdminTemplate extends FancyTreeviewClass {
 								<!-- SHOW SINGLES -->
 								<div class="form-group">
 									<label class="control-label col-sm-4">
-										<?php echo I18N::translate('Show single persons') ?>
+										<?php echo I18N::translate('Show singles') ?>
 									</label>
 									<div class="col-sm-8">
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles'), 'class="radio-inline"') ?>									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
-										<?php echo /* I18N: Help text for the “Show single persons” configuration setting */ I18N::translate('Turn this option on if you want to show single persons in the generation blocks. Single persons are persons without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block.') ?>
+										<?php echo /* I18N: Help text for the “Show singles” configuration setting */ I18N::translate('Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block.') ?>
 									</p>
 								</div>
 								<!-- CHECK RELATIONSHIP -->
@@ -497,7 +497,7 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $this->options('ftv_tab'), 'class="radio-inline"') ?>
 									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
-										<?php echo /* I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting */ I18N::translate('If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this person has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page with this person as root person and all his descendants.') ?>
+										<?php echo /* I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting */ I18N::translate('If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants.') ?>
 									</p>									
 								</div>
 								<!-- BUTTONS -->
