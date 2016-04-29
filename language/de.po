@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-19 16:25+0000\n"
+"PO-Revision-Date: 2016-04-29 12:01+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
@@ -131,9 +131,8 @@ msgstr "Hier können Sie auswählen, ob Sie die Größe der Standardminiaturbild
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
-#, fuzzy
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr "Wenn Sie diese Option aktivieren wird auf der Personenseite ein Reiter mit dem Titel ’Nachkommen’ angezeigt. Hier wird die aktuelle Person mit ihrer Familie und den nächsten zwei Generationen (falls solche vorhanden sind) beschrieben. Wenn diese Person mehr Nachkommen als die angezeigten zwei Generationen hat, wird ein Link zur kompletten Nachkommenliste mit dieser Person als Startperson und allen Nachkommen angezeigt. <b>Hinweis</b>: Wenn das Erweiterungsmodul Fancy Treeview PDF installiert und aktiviert ist, kann dort ein Link zum Herunterladen der kompletten Nachkommenliste als PDF-Datei angezeigt werden."
+msgstr "Wenn Sie diese Option aktivieren, wird ein Reiter \"Nachkommen\" auf der Personenseite angezeigt. Dort wird die aktuelle Person mit seiner Familie und den nächsten zwei Generationen (falls solche vorhanden sind) beschrieben. Wenn diese Person mehr Nachkommen als die angezeigten zwei Generationen hat, wird ein Link zur kompletten Nachkommenliste dieser Person mit allen ihren Nachkommen angezeigt. <b>Hinweis</b>: Wenn das Erweiterungsmodul Fancy Treeview PDF installiert und aktiviert ist, kann dort ein Link zum Herunterladen der kompletten Nachkommenliste als PDF-Datei angezeigt werden."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
@@ -244,9 +243,8 @@ msgid "Show places?"
 msgstr "Orte anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
-msgstr "Einzelpersonen anzeigen?"
+msgstr "Unverheiratete Personen anzeigen?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
@@ -292,9 +290,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich aktualisiert."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Die Person mit der ID %s existiert nicht mehr in diesem Stammbaum."
+msgstr "Diese Person existiert nicht mehr in diesem Stammbaum."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -321,9 +318,8 @@ msgstr "Größe der Miniaturbilder"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
-msgstr "Aktivieren Sie diese Option, wenn Sie auch Personen in den Generationen anzeigen wollen, die weder Partner noch Kinder haben. Mit aktivierter Option werden alle Kinder einer Familie in ausführlicher Weise in der folgenden Generation angezeigt."
+msgstr "Aktivieren Sie diese Option, wenn Sie auch unveheiratete Personen in den jeweils folgenden Generationen anzeigen wollen. Mit aktivierter Option werden alle Kinder einer Familie in ausführlicher Weise in der folgenden Generation angezeigt."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
