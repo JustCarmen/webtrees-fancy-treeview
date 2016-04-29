@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-29 11:29+0000\n"
+"PO-Revision-Date: 2016-04-29 11:30+0000\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: Dutch <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nl/>\n"
 "Language: nl\n"
@@ -58,11 +58,11 @@ msgstr "Fout: Een persoon met ID %s bestaat niet in deze stamboom"
 #: fancy_treeview/module.php:166
 #, php-format
 msgid "Error: A root person with ID %s already exists"
-msgstr "Fout: Een startpersoon met ID %s bestaat al."
+msgstr "Fout: Een startpersoon met ID %s bestaat al"
 
 #: fancy_treeview/module.php:164
 msgid "Error: The root person belonging to this surname already exists"
-msgstr "Fout: De startpersoon die bij deze achternaam hoort bestaat al."
+msgstr "Fout: De startpersoon die bij deze achternaam hoort bestaat al"
 
 #: fancy_treeview/module.php:156
 msgid "Error: The surname you entered doesn’t exist in this tree."
