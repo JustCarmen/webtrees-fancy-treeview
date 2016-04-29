@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-02 21:47+0200\n"
+"PO-Revision-Date: 2016-04-29 11:29+0000\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
-"Language-Team: \n"
+"Language-Team: Dutch <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.5\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
@@ -130,9 +130,8 @@ msgstr "Hier kunt u de keuze maken om het formaat van de standaard webtrees mini
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
-#, fuzzy
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr "Wanneer u deze optie inschakelt, verschijnt er op de persoonspagina een Fancy Treeview tab met de titel “Afstammelingen”. De tab beschrijft de huidige persoon met zijn familie en de volgende twee generaties (als die er zijn). Wanneer deze persoon meer afstammelingen heeft dan de twee getoonde generaties, verschijnt er een link naar de volledige Fancy Treeview pagina waarop deze persoon als rootpersoon wordt getoond met al zijn afstammelingen."
+msgstr "Wanneer u deze optie inschakelt, verschijnt er op de persoonspagina een Fancy Treeview tab met de titel “Afstammelingen”. De tab beschrijft de huidige persoon met zijn familie en de volgende twee generaties (als die er zijn). Wanneer deze persoon meer afstammelingen heeft dan de twee getoonde generaties, verschijnt er een link naar de volledige Fancy Treeview pagina waarop deze persoon wordt getoond met al zijn afstammelingen."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
@@ -243,7 +242,6 @@ msgid "Show places?"
 msgstr "Toon plaatsen"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
 msgstr "Toon alleenstaande personen"
 
@@ -291,9 +289,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "De instellingen voor deze stamboom zijn succesvol opgeslagen"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "De persoon met start id %s bestaat niet meer in deze stamboom."
+msgstr "Deze persoon bestaat niet meer in deze stamboom"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -320,7 +317,6 @@ msgstr "Afmeting van de miniaturen"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 msgstr "Zet deze optie aan als u alleenstaande personen wilt tonen in de generatie blokken. Alleenstaande personen zijn personen zonder partner en kinderen.Wanneer deze optie is aangevinkt wordt elk kind uit een familie in het volgende generatie blok getoond op een gedetailleerde manier."
 
