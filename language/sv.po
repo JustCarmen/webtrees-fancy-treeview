@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-21 19:17+0000\n"
+"PO-Revision-Date: 2016-05-02 06:49+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Swedish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/sv/>\n"
 "Language: sv\n"
@@ -131,7 +131,7 @@ msgstr "Här kan du välja att ändra storlek på standard webtrees miniatyrer s
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr ""
+msgstr "Om du aktiverar det här alternativet, kommer en Fantasiträdvy flik med titeln \"Ättlingar\" att visas på personsidan. Fliken kommer att beskriva den nuvarande personen med sin familj och med de närmaste två generationerna (om det finns några). Om denna person har flera ättlingar än de två generationerna som visas, kommer en länk att visas för hela Fantasiträdvyn, där denna person kommer att visas med alla sina ättlingar."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
@@ -242,7 +242,6 @@ msgid "Show places?"
 msgstr "Visa platser?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
 msgstr "Visa ensamstående"
 
@@ -290,9 +289,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "Alternativen för detta träd har framgångsrikt uppdaterats"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Startpersonen med id %s finns inte längre i detta träd"
+msgstr "Denna person finns inte längre i detta träd"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -319,7 +317,6 @@ msgstr "Miniatyrbildens storlek"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 msgstr "Aktivera detta alternativ för att visa ensamstående personer i generationblocken. Ensamstående är personer utan partner och barn. När detta alternativ är aktiverat, kommer alla barn i en familj att visas detaljerat i följande generationsblock."
 
@@ -349,15 +346,17 @@ msgstr "Med det här alternativet aktiverat, kontrollerar skriptet om ett (gift)
 #, php-format
 msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
 msgstr ""
+"Du har installerat och aktiverat Fantasiträdvy modul versionen %s. Denna version av modulen behöver Fantasiträdvy PDF-versionen %s. Vänligen uppdatera din installation av Fantasiträdvy PDF modulen till rätt version. \n"
+"<a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\"> Klicka här för att hitta den korrekta versionen</a>."
 
 #: fancy_treeview_pdf/module.php:59
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr ""
+msgstr "Du har installerat Finaträdvy PDF modulen. Denna modul fungerar inte utan att Finaträdvy-modulen har aktiverats. Du måsta möjliggöra Finaträdvyn för att använda denna modul."
 
 #: fancy_treeview_pdf/module.php:51
 #, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
-msgstr ""
+msgstr "Du har installerat Fantasiträdvy PDF modulen. Denna modul fungerar inte utan att rätt version av Fantasiträdvy-modulen är installerad och aktiverad. Installera och aktivera Fantasiträdvy versionen %s eller högre för att använda denna modul. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\"> Klicka här för att hämta den senaste versionen</a>."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
