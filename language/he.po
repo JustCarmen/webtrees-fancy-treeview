@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-21 19:22+0000\n"
+"PO-Revision-Date: 2016-05-02 07:22+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Hebrew <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/he/>\n"
 "Language: he\n"
@@ -131,7 +131,7 @@ msgstr "כאן תוכל לשנות את גודל התמונות הממוזערו
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr ""
+msgstr "אם תאפשר אפשרות זו, חוצץ תצוגת עץ מפוארת עם הכותרת \"צאצאים\" תוצג בדף האישי. החוצץ יתאר את האדם הנוכחי עם משפחתו ואת שני הדורות הבאים (אם יש כאלה). אם לאדם זה יש יותר צאצאים משני הדורות, קישור יוצג אל דף תצוגת עץ מפוארת המלא שבו אדם זה יוצג עם כל צאצאיו."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
@@ -242,7 +242,6 @@ msgid "Show places?"
 msgstr "הצג מקומות?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
 msgstr "הצג רווקים"
 
@@ -290,9 +289,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "האפשרויות עבור העץ הזה עודכנו בהצלחה"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "אדם המוצא עם קוד מזהה %s כבר לא קיים בעץ הזה"
+msgstr "אדם זה כבר לא קיים בעץ הזה"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -319,7 +317,6 @@ msgstr "גודל תמונה ממוזערת"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 msgstr "הפעל אפשרות זו באם אתה רוצה להראות אנשים בודדים בבלוקי הדורות. אנשים בודדים הם אנשים ללא בן זוג וילדים. כאשר אפשרות זו מופעלת, כל ילד של המשפחה יוצג באופן מפורט בבלוק של הדור הבא."
 
@@ -348,16 +345,16 @@ msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקת אם ל
 #: fancy_treeview_pdf/module.php:68
 #, php-format
 msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
-msgstr ""
+msgstr "התקנת ואפשרת %s גרסת מודול TreeView פנסים . גרסה זו של מודול צריך %s גרסת הפנסים TreeView PDF . עדכן את ההתקנה של מודול PDF TreeView הפנסים לגרסה הנכונה . <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\"> לחץ כאן כדי למצוא את </a> שחרור הנכון."
 
 #: fancy_treeview_pdf/module.php:59
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr ""
+msgstr "התקנת מודול תצוגת עץ מפוארת PDF. מודול זה לא יעבוד אם מודול תצוגת עץ מפוארת אינו מופעל. אנא אפשר לתצוגת עץ מפוארת להשתמש במודול זה."
 
 #: fancy_treeview_pdf/module.php:51
 #, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
-msgstr ""
+msgstr "התקנת מודול תצוגת עץ מפוארת PDF. מודול זה לא יעבוד בלי הגרסה הנכונה של מודול תצוגת עץ מפוארת מותקנת ומופעלת. אנא התקן ואפשר גרסה תצוגת עץ מפוארת %s ומעלה כדי להשתמש במודול זה. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">  לחץ כאן כדי להוריד את המהדורה האחרונה</a>."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
@@ -498,7 +495,7 @@ msgstr "היה"
 #: fancy_treeview/src/FancyTreeviewClass.php:1129
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "ב"
+msgstr "ב- "
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1132
