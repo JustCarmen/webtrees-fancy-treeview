@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-05-02 07:22+0000\n"
+"PO-Revision-Date: 2016-05-02 20:00+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Hebrew <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/he/>\n"
 "Language: he\n"
@@ -28,7 +28,7 @@ msgstr "<strong>הערה</strong>: אפשרות זו עלולה להשתמש ב�
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
-msgstr "סקירה מפוארת של הצאצאים של משפחה אחת (ענף) בדרך סיפורית."
+msgstr "סקירה מהודרת של הצאצאים של משפחה אחת (ענף) בדרך סיפורית."
 
 #: fancy_treeview/src/Template/PageTemplate.php:71
 msgid "Change root person"
@@ -76,18 +76,18 @@ msgstr "סקירת עץ משפחה"
 #: fancy_treeview/module.php:83
 #: fancy_treeview/src/Template/AdminTemplate.php:40
 msgid "Fancy Treeview"
-msgstr "תצוגת עץ מפוארת"
+msgstr "תצוגת עץ מהודרת"
 
 #. I18N: Name of the Fancy Treeview PDF-module
 #: fancy_treeview_pdf/module.php:94
 #: fancy_treeview_pdf/src/Template/AdminTemplate.php:38
 msgid "Fancy Treeview PDF"
-msgstr "תצוגת עץ מפוארת PDF"
+msgstr "תצוגת עץ מהודרת PDF"
 
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:99
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr "הרחבת מודול קישורי מחקר מפוארים: הציע למשתמשים שלך להוריד דף קישורי מחקר מפוארים כ-PDF."
+msgstr "הרחבת מודול קישורי מחקר מהודרים: הציע למשתמשים שלך להוריד דף קישורי מחקר מהודרים כ-PDF."
 
 #: fancy_treeview/src/Template/PageTemplate.php:84
 msgid "Go"
@@ -126,17 +126,17 @@ msgstr "הוא נולד"
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr "כאן תוכל לשנות את גודל התמונות הממוזערות של ברירת המחדל של webtrees במיוחד עבור דפי תצוגת עץ מהודרת. באפשרותך להגדיר גודל מותאם אישית באחוזים או בפיקסלים. אם תבחר ”לא” הממוזערות של webtrees יהיו בשימוש בתבניות שהגדרת בדף התצורה של העץ."
+msgstr "כאן תוכל לשנות את גודל התמונות הממוזערות של ברירת המחדל של webtrees במיוחד עבור דפי תצוגת עץ מהודרת. באפשרותך להגדיר גודל מותאם אישית באחוזים או בפיקסלים. אם תבחר ”לא” התמונות הממוזערות של webtrees יהיו בשימוש בתבניות שהגדרת בדף התצורה של העץ."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr "אם תאפשר אפשרות זו, חוצץ תצוגת עץ מפוארת עם הכותרת \"צאצאים\" תוצג בדף האישי. החוצץ יתאר את האדם הנוכחי עם משפחתו ואת שני הדורות הבאים (אם יש כאלה). אם לאדם זה יש יותר צאצאים משני הדורות, קישור יוצג אל דף תצוגת עץ מפוארת המלא שבו אדם זה יוצג עם כל צאצאיו."
+msgstr "אם תאפשר אפשרות זו, חוצץ תצוגת עץ מהודרת עם הכותרת \"צאצאים\" תוצג בדף האישי. החוצץ יתאר את האדם הנוכחי עם משפחתו ואת שני הדורות הבאים (אם יש כאלה). אם לאדם זה יש יותר צאצאים משני הדורות, יוצג קישור לדף המלא של תצוגת עץ מהודרת שבו אדם זה יוצג עם כל צאצאיו."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr "אם בחרת את האפשרות ”הצג מקומות”, אבל לא את האפשרות לקצר את שמות המקומות, באפשרותך להגדיר את המדינה שלך כאן. מקומות מלאים יופיעו בעמודי תצוגת עץ מהודרות, אבל כאשר המקום כולל את שם המדינה שלך, שם זה אינו נכלל. אם לא תבחר מדינה אז כל המדינות תוצגנה, כולל המדינה שלך."
+msgstr "אם בחרת את האפשרות ”הצג מקומות”, אבל לא את האפשרות לקצר את שמות המקומות, באפשרותך להגדיר את המדינה שלך כאן. מקומות מלאים יופיעו בעמודי תצוגת עץ מהודרת, אבל כאשר המקום כולל את שם המדינה שלך, שם זה אינו נכלל. אם לא תבחר מדינה אז כל המדינות תוצגנה, כולל המדינה שלך."
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:416
@@ -227,7 +227,7 @@ msgstr "היא נולדה"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr "הצג לשונית של עץ משפחה מפוארת על דף האישי"
+msgstr "הצג לשונית של עץ משפחה מהודרת על דף האישי"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -309,7 +309,7 @@ msgstr "האדם הזה התחתן %s פעמים"
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:370
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr "אפשרות זו שימושית במיוחד עבור עצים גדולים. כאשר אתה שם לב שיש טעינה אטית של הדף, אתה יכול להגדיר כאן את מספר בלוקי דור שיש לטעון בבת אחת לרמה נמוכה יותר. מתחת לבלוק הדור האחרון יופיע כפתור שבעזרתו ניתן  להוסיף את הסט הבא של בלוקי דור. הבלוקים החדשים יתווספו לבלוקים שכבר נטענו. לחיצה על קישור ”עקוב” בבלוק הדור הגלוי האחרון,  יטעון גם כן את הסט הבא של בלוקי דור."
+msgstr "אפשרות זו שימושית במיוחד עבור עצים גדולים. כאשר אתה שם לב שיש טעינה אטית של הדף, אתה יכול להגדיר כאן את מספר בלוקי דור שיש לטעון בבת אחת לרמה נמוכה יותר. מתחת לבלוק הדור האחרון יופיע כפתור שבעזרתו ניתן  להוסיף את הסט הבא של בלוקי דור. הבלוקים החדשים יתווספו לבלוקים שכבר נטענו. לחיצה על קישור ”עקוב” בבלוק הדור הגלוי האחרון,  יטען גם כן את הסט הבא של בלוקי דור."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
@@ -335,7 +335,7 @@ msgstr "השתמש בתמונות ממוזערות מרובעות"
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/src/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr "השתמש בטופס החיפוש שלמטה כדי לחפש אדם מוצא. לאחר חיפוש מוצלח דף תצוגת עץ מפוארת נוצר באופן אוטומטי. אתה יכול להוסיף אנשי מוצא רבים ככל שתרצה."
+msgstr "השתמש בטופס החיפוש שלמטה כדי לחפש אדם מוצא. לאחר חיפוש מוצלח דף תצוגת עץ מהודרת נוצר באופן אוטומטי. אתה יכול להוסיף אנשי מוצא רבים ככל שתרצה."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
@@ -345,16 +345,18 @@ msgstr "כאשר אפשרות זו מופעלת, התוכנה בודקת אם ל
 #: fancy_treeview_pdf/module.php:68
 #, php-format
 msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
-msgstr "התקנת ואפשרת %s גרסת מודול TreeView פנסים . גרסה זו של מודול צריך %s גרסת הפנסים TreeView PDF . עדכן את ההתקנה של מודול PDF TreeView הפנסים לגרסה הנכונה . <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\"> לחץ כאן כדי למצוא את </a> שחרור הנכון."
+msgstr ""
+"התקנת ואפשרת %s גרסת מודול תצוגת עץ מהודרת. גרסה זו של המודול צריכה גרסת  תצוגת עץ מהודרת PDF %s. עדכן את ההתקנה של מודול PDF תצוגת עץ מהודרת לגרסה הנכונה.\n"
+" <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\"> לחץ כאן כדי למצוא את </a> הגרסה הנכונה."
 
 #: fancy_treeview_pdf/module.php:59
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr "התקנת מודול תצוגת עץ מפוארת PDF. מודול זה לא יעבוד אם מודול תצוגת עץ מפוארת אינו מופעל. אנא אפשר לתצוגת עץ מפוארת להשתמש במודול זה."
+msgstr "התקנת מודול תצוגת עץ מהודרת PDF. מודול זה לא יעבוד אם מודול תצוגת עץ מהודרת אינו מופעל. אנא אפשר לתצוגת עץ מהודרת להשתמש במודול זה."
 
 #: fancy_treeview_pdf/module.php:51
 #, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
-msgstr "התקנת מודול תצוגת עץ מפוארת PDF. מודול זה לא יעבוד בלי הגרסה הנכונה של מודול תצוגת עץ מפוארת מותקנת ומופעלת. אנא התקן ואפשר גרסה תצוגת עץ מפוארת %s ומעלה כדי להשתמש במודול זה. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">  לחץ כאן כדי להוריד את המהדורה האחרונה</a>."
+msgstr "התקנת מודול תצוגת עץ מהודרת PDF. מודול זה לא יעבוד בלי שהגרסה הנכונה של מודול תצוגת עץ מהודרת מותקנת ומופעלת. אנא התקן ואפשר גרסת תצוגת עץ מהודרת %s ומעלה כדי להשתמש במודול זה. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">  לחץ כאן כדי להוריד את המהדורה האחרונה</a>."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
