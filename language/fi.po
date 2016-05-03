@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-21 19:15+0000\n"
+"PO-Revision-Date: 2016-05-03 07:09+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Finnish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/fi/>\n"
 "Language: fi\n"
@@ -131,7 +131,7 @@ msgstr "Täällä voit muuttaa webtreesin oletuspikkukuvien koon Hienoa puunäky
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr ""
+msgstr "Jos otat tämän vaihtoehdon käyttöön, Hieno puunäkymä välilehti, jonka otsikko on \"Jälkeläiset\", näkyy henkilön sivulla. Välilehti kuvaa nykyisen henkilön, hänen perheensä ja kaksi seuraavaa sukupolvea (jos ovat olemassa). Jos tällä henkilöllä on enemmän jälkeläisiä kuin ne kaksi sukupolvea jotka näytetään, näytetään linkki täydelle Hieno puunäkymä sivulle, jossa tämä henkilö ja kaikki hänen jälkeläisensä näytetään."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
@@ -242,7 +242,6 @@ msgid "Show places?"
 msgstr "Näytä paikat?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
 msgstr "Näytä naimattomat henkilöt"
 
@@ -255,7 +254,7 @@ msgstr "Sukunimi sivun otsikossa"
 #: fancy_treeview/src/FancyTreeviewClass.php:567
 #, php-format
 msgid "The %s time he married"
-msgstr "%s kerralla puoliso:"
+msgstr "%s kerralla puoliso"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:573
@@ -271,11 +270,11 @@ msgstr "%s kerralla tämän henkilön puoliso:"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:466
 msgid "The details of this generation are private."
-msgstr "Tämän sukupolven tiedot ovat yksityissuojattuja"
+msgstr "Tämän sukupolven tiedot ovat yksityissuojattuja."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Tämän puun vaihtoehdot on onnistuneesti palautettu oletusasetuksiin"
+msgstr "tämän puun vaihtoehdot on onnistuneesti palautettu oletusasetuksiin"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
@@ -283,16 +282,15 @@ msgstr "Tämän puun vaihtoehdot on onnistuneesti talletettu"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Tämän puun vaihtoehdot on onnistuneesti talletettu ja kopioitu kaikkiin muihin puihin"
+msgstr "tämän puun vaihtoehdot on onnistuneesti talletettu ja kopioitu kaikkiin muihin puihin"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
 msgstr "Tämän puun vaihtoehdot on onnistuneesti päivitetty"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Alkuhenkilö, jonka tunnus on %s, ei ole enää tässä puussa"
+msgstr "Tämä henkilö ei ole enää tässä puussa"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -319,7 +317,6 @@ msgstr "Pienoiskuvan koko"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 msgstr "Valitse tämä vaihtoehto, jos haluat näyttää naimattomat henkilöt sukupolvien lohkoissa. Naimattomat henkilöt ovat henkilöitä ilman kumppania ja lapsia. Kun tämä vaihtoehto on käytössä, jokainen perheen lapsi näkyy yksityiskohtaisesti seuraavan sukupolven lohkossa."
 
@@ -348,16 +345,18 @@ msgstr "Kun tämä asetus on käytössä, komentojono tarkistaa, onko (naimisiss
 #: fancy_treeview_pdf/module.php:68
 #, php-format
 msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
-msgstr ""
+msgstr "Olet asentanut ja mahdollisttanut Hienon puunäkymämoduuli version %s. Tämä moduulin versio tarvitsee Hienon puunäkymä PDF version %s. Päivitä Hieno puunäkymä PDF moduulin oikea versio. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\"> Valitse tästä oikea versio</a>."
 
 #: fancy_treeview_pdf/module.php:59
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr ""
+msgstr "Olet asentanut Hieno puunäkymä PDF-moduulin. Tämä moduuli ei toimi jos Hienoa puunäkymä moduulia ei ole mahdollistettu. Salli Hienon puunäkymän käyttää tätä moduulia."
 
 #: fancy_treeview_pdf/module.php:51
 #, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
 msgstr ""
+"Olet asentanut Hieno puunäkymä PDF-moduulin. Tämä moduuli ei toimi jos oikeaa Hieno puunäkymä moduuli versiota ei ole asennettu ja mahdollistettu. Asenna ja mahdollista, että Hieno puunäkymä versio %s tai korkeampi voi käyttää tätä moduulia.\n"
+"<a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\"> Lataa tästä uusin versio</a>."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
