@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-05-02 06:49+0000\n"
+"PO-Revision-Date: 2016-05-03 07:19+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Swedish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/sv/>\n"
 "Language: sv\n"
@@ -23,12 +23,12 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr "<strong>Obs!</strong> detta alternativ kan vara tid- och/eller minneskrävande, speciellt på stora träd. Det kan orsaka att sidan laddas ner mycket långsamt eller ett ’avrättning timeout fel’ på din server. Om du märker ett sådant beteende, minska antalet generationsblock som laddas på en gång eller använd  inte det i kombination med möjligheten att visa ensamstående (se ovanstående alternativ). Om du fortfarande har några problem ska du inte använda det här alternativet alls."
+msgstr "<strong>Obs!</strong> detta alternativ kan vara tid- och/eller minneskrävande, speciellt på stora träd. Det kan orsaka att sidan laddas ner mycket långsamt eller ett ’avrättning timeout fel’ på din server. Om du märker ett sådant beteende, minska antalet generationsblock som laddas på en gång eller använd inte det i kombination med möjligheten att visa ensamstående (se ovanstående alternativ). Om du fortfarande har några problem ska du inte använda det här alternativet alls."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
-msgstr "En Fancy översikt av ättlingar till en familj (gren) i ett berättande sätt."
+msgstr "En Fin översikt av ättlingarna till en familj (gren) i ett berättande sätt."
 
 #: fancy_treeview/src/Template/PageTemplate.php:71
 msgid "Change root person"
@@ -274,7 +274,7 @@ msgstr "Denna generations detaljer är privata."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Alternativen för detta träd har framgångsrikt återställts till standardinställningarna"
+msgstr "alternativen för detta träd har framgångsrikt återställts till standardinställningarna"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
@@ -282,7 +282,7 @@ msgstr "Alternativen för detta träd har framgångsrikt sparats"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Alternativen för detta träd har framgångsrikt sparats och kopierats till alla andra träd"
+msgstr "alternativen för detta träd har framgångsrikt sparats och kopierats till alla andra träd"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
