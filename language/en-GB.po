@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-14 22:36+0000\n"
+"PO-Revision-Date: 2016-05-09 20:42+0000\n"
 "Last-Translator: Greg Roach <fisharebest@gmail.com>\n"
-"Language-Team: English (United Kingdom) <http://translate.webtrees.net/projects/justcarmen/fancy-tree-view/en-GB/>\n"
+"Language-Team: English (United Kingdom) <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/en-GB/>\n"
 "Language: en-GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +133,6 @@ msgstr "Here you can choose to resize the default webtrees thumbnails especially
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
-#, fuzzy
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
 msgstr "If you enable this option, a Fancy Treeview tab with the title ‘Descendants’ will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page with this individual as root individual and all his descendants."
 
@@ -246,9 +245,8 @@ msgid "Show places?"
 msgstr "Show places?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
-msgstr "Show single individuals"
+msgstr "Show single"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
@@ -294,9 +292,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "The settings for this tree are succesfully updated"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "The individual with root id %s doesn’t exist anymore in this tree"
+msgstr "This individual doesn’t exist anymore in this tree"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -323,9 +320,8 @@ msgstr "Thumbnail size"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
-msgstr "Turn this option on if you want to show single individuals in the generation blocks. Single individuals are individuals without partner and children. With this option turned on, every child of a family will be shown in a detailed way in the next generation block."
+msgstr "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
