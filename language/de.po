@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-29 12:01+0000\n"
+"PO-Revision-Date: 2016-05-10 20:30+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
@@ -319,7 +319,7 @@ msgstr "Größe der Miniaturbilder"
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
-msgstr "Aktivieren Sie diese Option, wenn Sie auch unveheiratete Personen in den jeweils folgenden Generationen anzeigen wollen. Mit aktivierter Option werden alle Kinder einer Familie in ausführlicher Weise in der folgenden Generation angezeigt."
+msgstr "Aktivieren Sie diese Option, wenn Sie auch unverheiratete und kinderlose Personen in den jeweils folgenden Generationen anzeigen wollen. Mit aktivierter Option werden alle Kinder einer Familie in ausführlicher Weise in der folgenden Generation angezeigt."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
