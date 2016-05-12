@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-04-25 04:35+0000\n"
+"PO-Revision-Date: 2016-05-12 16:50+0000\n"
 "Last-Translator: hrnwebtrees <hrnwebtrees@yahoo.com>\n"
 "Language-Team: Norwegian Nynorsk <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nn/>\n"
 "Language: nn\n"
@@ -242,9 +242,8 @@ msgid "Show places?"
 msgstr "Vis stader?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
-msgstr "Vis ugifte/single personar"
+msgstr "Vis einslege personar"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
@@ -290,9 +289,8 @@ msgid "The settings for this tree are succesfully updated"
 msgstr "Innstillingane for dette slektstreet er oppdaterte"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Personen med start id %s eksisterer ikkje lenger i dette treet"
+msgstr "Denne personen eksisterer ikkje lenger i dette treet"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
