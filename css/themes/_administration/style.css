@@ -29,6 +29,10 @@
 	content:"\f054";
 }
 
+[dir=rtl] .panel-heading a.collapsed:after {
+	content:"\f053";
+}
+
 label[for="tree"] {
 	width: auto;
 }
