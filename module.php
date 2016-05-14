@@ -366,6 +366,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			if ($menu !== null && count($menu->getSubmenus()) > 0) {
 				return $menu;
 			}
+			
+			if (Theme::theme()->themeId() !== '_administration') {
+				// load the module stylesheets
+				echo $this->module()->getStylesheet();
+
+				// add javascript files and scripts
+				$this->module()->includeJs($controller, 'menu');
+
+				if (WT_SCRIPT_NAME === 'individual.php') {
+					$this->module()->includeJs($controller, 'tab');
+				}
+			}
 
 			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
 
@@ -376,21 +388,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 						$FTV_GED_SETTINGS[] = $FTV_ITEM;
 					}
 				}
-
+					
 				if (!empty($FTV_GED_SETTINGS)) {
-
-					if (Theme::theme()->themeId() !== '_administration') {
-						// load the module stylesheets
-						echo $this->module()->getStylesheet();
-
-						// add javascript files and scripts
-						$this->module()->includeJs($controller, 'menu');
-
-						if (WT_SCRIPT_NAME === 'individual.php') {
-							$this->module()->includeJs($controller, 'tab');
-						}
-					}
-
 					$tree_name	 = Filter::escapeUrl($this->tree()->getName());
 					$menu		 = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
 
