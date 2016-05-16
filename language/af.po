@@ -2,17 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-05-12 16:50+0000\n"
-"Last-Translator: hrnwebtrees <hrnwebtrees@yahoo.com>\n"
-"Language-Team: Norwegian Nynorsk <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nn/>\n"
-"Language: nn\n"
+"PO-Revision-Date: 2016-05-15 17:14+0000\n"
+"Last-Translator: Chris Theron <tronsmit@gmail.com>\n"
+"Language-Team: Afrikaans <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/af/>\n"
+"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.5\n"
-"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
+"X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
+"X-Poedit-SearchPath-0: fancy_treeview\n"
+"X-Poedit-SearchPath-1: fancy_treeview_pdf\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
 #: fancy_treeview/src/FancyTreeviewClass.php:1123
@@ -23,24 +26,24 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr "<strong>Merk</strong>: denne operasjonen kan vere tid- og minnekrevande, særskilt ved store familietre. Det kan medføre veldig sein lasting av sider, eller ’execution time out error’ på din server. Om du opplever dette, reduser tal på generasjonar som skal synast, eller avstå frå å nytte denne i kombinasjon med single personar (sjå førre val). Om du framleis opplever problem, avstå frå å bruke denne operasjonen."
+msgstr "<strong>Pasop</strong>: Hierdie opsie kan baie tyd en/of geheue in beslag neem, veral in die geval van groot stambome. Dit kan veroorsaak dat bladsye baie stadig laai of tot 'n 'execution time out error' op jou bediener lei. Wanneer jy dit agterkom, verminder die aantal geslagte wat tegerlykertyd ingelaai moet word na 'n laer waarde of moenie hierdie opsie gebruik saam met die opsie om enkelpersone te wys nie (sien die vorige opsies). As jy nog steeds probleme ervaar, moet glad nie van hierdie opsie gebruik maak nie."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
-msgstr "Ein oversikt over etterkomarar i forteljande stil."
+msgstr "'n Fancy oorsig van die nageslag van 'n familietak in 'n verhalende trant."
 
 #: fancy_treeview/src/Template/PageTemplate.php:71
 msgid "Change root person"
-msgstr "Vel ein annan startperson"
+msgstr "Verander die beginpersoon"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
-msgstr "Endra relasjon mellom partnerar"
+msgstr "Vind verwantskappe tussen metgeselle"
 
 #: fancy_treeview_pdf/src/FancyTreeviewPdfClass.php:47
 msgid "Creating PDF file. This process may take a while. Please wait..."
-msgstr "Opprettar PDF-fil. Dette kan ta tid. Ver venleg og vent …"
+msgstr "PDF lêer word geskep. Dit mag tyd neem. Wag asseblief..."
 
 #. I18N: %s is the surname of the root individual
 #: fancy_treeview/module.php:403 fancy_treeview/src/FancyTreeviewClass.php:206
@@ -48,29 +51,29 @@ msgstr "Opprettar PDF-fil. Dette kan ta tid. Ver venleg og vent …"
 #: fancy_treeview/src/Template/AdminTemplate.php:282
 #, php-format
 msgid "Descendants of the %s family"
-msgstr "Etterkomarar etter %s familie"
+msgstr "Die familie %s se nageslag"
 
 #: fancy_treeview/module.php:185
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
-msgstr "Feil: Ein person med ID %s finnast ikkje i dette treet"
+msgstr "Fout: ’n Persoon met ID %s bestaan nie in hierdie stamboom nie"
 
 #: fancy_treeview/module.php:166
 #, php-format
 msgid "Error: A root person with ID %s already exists"
-msgstr "Feil: Startpersonen med ID %s finnast allereie"
+msgstr "Fout: 'n Beginpersoon met ID %s bestaan nie"
 
 #: fancy_treeview/module.php:164
 msgid "Error: The root person belonging to this surname already exists"
-msgstr "Feil: Startpersonen til dette etternamnet finst alt"
+msgstr "Fout: Die beginpersoon met hierdie van bestaan reeds"
 
 #: fancy_treeview/module.php:156
 msgid "Error: The surname you entered doesn’t exist in this tree."
-msgstr "Feil: Etternamnet du skreiv inn finst ikkje i dette slektstreet."
+msgstr "Fout: Die van wat jy ingevoer het, bestaan nie in hierdie stamboom nie."
 
 #: fancy_treeview/module.php:395
 msgid "Family tree overview"
-msgstr "Oversyn"
+msgstr "Stamboom oorsig"
 
 #. I18N: Name of the module
 #: fancy_treeview/module.php:83
@@ -87,261 +90,260 @@ msgstr "Fancy Treeview PDF"
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:99
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr "Fancy Treeview modulutvidelse: tilbyr brukarar å laste ned Fancy Treeview-sider som PDF."
+msgstr "Fancy Treeview module-uitbreiding: laat gebruikers toe om ’n Fancy Treeview bladsy as 'n PDF lêer af te laai."
 
 #: fancy_treeview/src/Template/PageTemplate.php:84
 msgid "Go"
-msgstr "Utfør"
+msgstr "Begin"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:640
 msgid "He had a relationship with"
-msgstr "Han hadde eit forhold med"
+msgstr "Hy was in ’n verhouding met"
 
 #. I18N: %s is a number
 #: fancy_treeview/src/FancyTreeviewClass.php:565
 #, php-format
 msgid "He married %s times"
-msgstr "Han gifta seg %s gongar"
+msgstr "Hy het %s keer getrou"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1036
 msgctxt "PAST"
 msgid "He was baptized"
-msgstr "Han vart døypt"
+msgstr "Hy is gedoop"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1038
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "Han er døypt"
+msgstr "Hy is gedoop"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1018
 msgctxt "PAST"
 msgid "He was born"
-msgstr "Han vart fødd"
+msgstr "Hy is gebore"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1020
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Han er fødd"
+msgstr "Hy is gebore"
 
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr "Her kan du velge å endre størrelse på miniatyrbilete i etterkomarrapporten. Du kan sette størrelse i prosent eller pixlar. Om du vel «nei» vil standard størrelse for miniatyrbilete verte nytta."
+msgstr "Hier kan jy kies om die grootte van verstek miniature wat webtrees gebruik aan te pas vir die Fancy Treeview bladsye. Jy kan die grootte of as ’n persentasie of in pixels aandui. As jy \"nee\" kies word die verstek miniature gebruik wat jy ingestel het op die stamboom konfigurasiebladsy."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr ""
+msgstr "As jy hierdie opsie ontsper, sal ’n Fancy Treeview oortjie met opskrif \"Nageslag\" op die persoonsbladsy vertoon word. Die oortjie beskryf die huidge persoon en die volgende twee geslagte (as daar is). Wanneer hierdie persoon meer as die twee nageslagte het, verskyn daar 'n skakel na die volledige Fancy Treeview bladsy waarop hierdie persoon met al sy nageslagte vertoon sal word."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr "Om du har valt innstillinga «Syn stadnamn», kan du sette ditt eige land her. Heile stadnamn vert synte, men men namn på eige land vert teke bort. Om du ikkje vel eit land, vert alle land synte, inkludert ditt eige."
+msgstr "As jy die \"Vertoon plekke\" opsie ontsper het, maar NIE die opsie om plekname af te kort, gekies het nie, kan jy jou eie land hier invoer. Volledige plekname sal dan op die Fancy Treevie bladsye gelys word, maar vir plekke in jou land sal die landsnaam uitgelaat word. As jy hier geen keuse uitoefen nie, sal al die landsname vertoon word, insluitend jou eie."
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:416
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
-msgstr "Om du har valt «Syn stadnamn», kan du velge å bruke standard GEDCOM instillingar for å korte stadnamna. Om du ikkje vel dette alternativet, vil fullt namn synast."
+msgstr "As jy die opsie \"Vertoon plekke\" ontsper het, kan jy hier kies om die verstek GEDCOM instellings te gebruik wat plekname sal afkort. Wanneer jy hieerdie opsie nie ontsper nie, sal die volledige plekname vertoon word."
 
 #: fancy_treeview_pdf/src/Template/PdfTemplate.php:104
 msgid "Index"
-msgstr "Index"
+msgstr "Inhoudsopgawe"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:365
 msgid "Number of generation blocks to show"
-msgstr "Tal generasjoner som skal visast"
+msgstr "Aantal nageslagte om te vertoon"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:342
 #, php-format
 msgid "Options for %s"
-msgstr "Val for %s"
+msgstr "Opsies vir %s"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
-msgstr "Eller skriv inn ein ID"
+msgstr "Of voer ’n ID in"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:166
 #: fancy_treeview/src/Template/AdminTemplate.php:236
 msgid "Page title"
-msgstr "Sidetittel"
+msgstr "Bladsy opsrif"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:92
 msgid "Pages"
-msgstr "Sider"
+msgstr "Bladsye"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:453
 msgid "Read more"
-msgstr "Les meir"
+msgstr "Lees meer"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:445
 msgid "Resize thumbnails"
-msgstr "Endra storleik på miniatyrbilete"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:162
 #: fancy_treeview/src/Template/AdminTemplate.php:232
 msgid "Root person"
-msgstr "Startperson"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:146
 #: fancy_treeview/src/Template/PageTemplate.php:76
 msgid "Search ID by name"
-msgstr "Søk ID etter namn"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:114
 msgid "Search root person"
-msgstr "Søk startperson"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:423
 msgid "Select your country"
-msgstr "Vel land"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:643
 msgid "She had a relationship with"
-msgstr "Ho hadde eit forhold med"
+msgstr ""
 
 #. I18N: %s is a number
 #: fancy_treeview/src/FancyTreeviewClass.php:571
 #, php-format
 msgid "She married %s times"
-msgstr "Ho gifta seg %s gongar"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1036
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr "Ho vart døypt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1038
 msgctxt "PRESENT"
 msgid "She was baptized"
-msgstr "Ho er døypt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1018
 msgctxt "PAST"
 msgid "She was born"
-msgstr "Ho vart fødd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1020
 msgctxt "PRESENT"
 msgid "She was born"
-msgstr "Ho er fødd"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr "Syn Fancy Treeview som ei fane på personsider"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
-msgstr "Syn feltet for å endre startperson"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:436
 msgid "Show occupations"
-msgstr "Syn yrke"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:401
 msgid "Show places?"
-msgstr "Vis stader?"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
 msgid "Show singles"
-msgstr "Vis einslege personar"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
 msgid "Surname in page title"
-msgstr "Etternamn i sidetittel"
+msgstr ""
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:567
 #, php-format
 msgid "The %s time he married"
-msgstr "I %s ekteskapet med"
+msgstr ""
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:573
 #, php-format
 msgid "The %s time she married"
-msgstr "I %s ekteskapet med"
+msgstr ""
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:579
 #, php-format
 msgid "The %s time this individual married"
-msgstr "Den %s gong denne personen gifta seg"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:466
 msgid "The details of this generation are private."
-msgstr "Detaljane om denne generasjonen er utilgjengelege av omsyn til personvern."
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Innstillingane for dette slektstreet er sette attende til opphavelege innstillingar"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
-msgstr "Innstillingane for dette slektstreet er lagra"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Innstillingane for dette treet er lagra og kopiert til alle andre slektstre"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
-msgstr "Innstillingane for dette slektstreet er oppdaterte"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Denne personen eksisterer ikkje lenger i dette treet"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
-msgstr "Denne personen hadde eit forhold med"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:591
 msgid "This individual married"
-msgstr "Denne personen gifta seg"
+msgstr ""
 
 #. I18N: %s is a number
 #: fancy_treeview/src/FancyTreeviewClass.php:577
 #, php-format
 msgid "This individual married %s times"
-msgstr "Denne personen gifta seg %s gongar"
+msgstr ""
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:370
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr "Dette valet er særs anvendeleg for store slektstre. Om du opplever sein lasting av sider, kan du her redusere tal på generasjonsblokker som skal lastast. Under den siste generasjonsblokka vil det synast ei lenkje til neste bolk av generasjonsblokker. Den neste blokka vil leggast til den allereie synte blokka. Klikk på «neste» for å laste neste bolk av generasjonsblokker."
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
-msgstr "Storleik på miniatyrbilete"
+msgstr ""
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
-msgstr "Aktiver denne innstillinga om du vil syne einslege personar i generasjonsblokkene. Einslege personar er personar utan partnar eller barn. Med denne innstillinga aktivert vil alle born av alle familier verte synt i detalj i neste generasjonsblokk."
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Bruke standard GEDCOM instillingar til å korte stadnamn?"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
-msgstr "Bruk fullt namn i menyen"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr "Bruk kvadratiske miniatyrbilete"
+msgstr ""
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/src/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr "Bruk søkeskjemaet under for å søke etter ein startperson. Etter å ha funne riktig person, vil etterkommarrapporten opprettast automatisk. Du kan legge til så mange startpersonar som du ynskjer."
+msgstr ""
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "Med dette alternativet aktivert, sjekkar scriptet om eit (gift) par har felles forfedre. Dersom eit forhold mellom to partnarar vert funne, visast ein tekst i parantes etter ektefellen sitt namn for å indikere forholdet.  Merk: Dette alternativet kan resultere i at sider vert lasta seinare, særskilt for store tre. Om du opplever dette, reduser tal på generasjonsblokker som skal lastes samtidig."
+msgstr ""
 
 #: fancy_treeview_pdf/module.php:68
 #, php-format
@@ -360,24 +362,24 @@ msgstr ""
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr "adoptert barn"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:734
 msgctxt "MALE"
 msgid "adopted child"
-msgstr "adoptert barn"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:805
 msgid "adopted child of"
-msgstr "adoptert barn av"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:796
 msgid "adopted daughter of"
-msgstr "adoptert dotter av"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:787
 msgid "adopted son of"
-msgstr "adoptert son av"
+msgstr ""
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:620
@@ -390,242 +392,239 @@ msgstr "adoptert son av"
 #: fancy_treeview/src/FancyTreeviewClass.php:1074
 #: fancy_treeview/src/FancyTreeviewClass.php:1082
 msgid "and "
-msgstr "og "
+msgstr ""
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: fancy_treeview/src/FancyTreeviewClass.php:1105
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "i ein alder av %s år"
+msgstr ""
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: fancy_treeview/src/FancyTreeviewClass.php:1107
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr "i ein alder av %s år"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1594
 msgid "cancel"
-msgstr "avbryt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:807
 msgid "child of"
-msgstr "barn av"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1067
 msgctxt "FEMALE"
 msgid "died"
-msgstr "døydde"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1067
 msgctxt "MALE"
 msgid "died"
-msgstr "døydde"
+msgstr ""
 
 #. I18N: eighth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:558
 msgid "eighth"
-msgstr "åttande"
+msgstr ""
 
 #. I18N: fifth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:555
 msgid "fifth"
-msgstr "femte"
+msgstr ""
 
 #. I18N: first marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:551
 msgid "first"
-msgstr "første"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1592
 msgid "follow"
-msgstr "gå til"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:721
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr "fosterbarn"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:724
 msgctxt "MALE"
 msgid "foster child"
-msgstr "fosterbarn"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:803
 msgid "foster child of"
-msgstr "fosterbarn av"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:794
 msgid "foster daughter of"
-msgstr "fosterdotter av"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:785
 msgid "foster son of"
-msgstr "fosterson av"
+msgstr ""
 
 #. I18N: fourth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:554
 msgid "fourth"
-msgstr "fjerde"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:697
 msgctxt "One parent/multiple children"
 msgid "had"
-msgstr "fekk"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:679
 #: fancy_treeview/src/FancyTreeviewClass.php:699
 msgctxt "One parent/one child"
 msgid "had"
-msgstr "fekk"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:691
 msgctxt "Two parents/multiple children"
 msgid "had"
-msgstr "fekk"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:677
 #: fancy_treeview/src/FancyTreeviewClass.php:693
 msgctxt "Two parents/one child"
 msgid "had"
-msgstr "fekk"
+msgstr ""
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1129
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "i "
+msgstr ""
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1132
 msgctxt "before dateformat yyyy"
 msgid "in "
-msgstr "i "
+msgstr ""
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1149
 msgctxt "before placesnames"
 msgid "in "
-msgstr "i "
+msgstr ""
 
 #. I18N: ninth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:559
 msgid "ninth"
-msgstr "niande"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1593
 #: fancy_treeview/src/Template/AdminTemplate.php:152
 msgid "ok"
-msgstr "ok"
+msgstr ""
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1126
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
-msgstr "den "
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:469
 msgid "percent"
-msgstr "prosent"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr "lagre og kopier innstillingar til andre slektstre"
+msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
-msgstr "søk"
+msgstr ""
 
 #. I18N: second marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:552
 msgid "second"
-msgstr "andre"
+msgstr ""
 
 #. I18N: seventh marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:557
 msgid "seventh"
-msgstr "sjuande"
+msgstr ""
 
 #. I18N: sixth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:556
 msgid "sixth"
-msgstr "sjette"
+msgstr ""
 
 #. I18N: tenth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:560
 msgid "tenth"
-msgstr "tiande"
+msgstr ""
 
 #. I18N: third marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:553
 msgid "third"
-msgstr "tredje"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1045
 msgctxt "PRESENT (MALE)"
 msgid "was bapitized"
-msgstr "er døypt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1043
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
-msgstr "vart døypt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1043
 msgctxt "PAST (MALE)"
 msgid "was baptized"
-msgstr "vart døypt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1045
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
-msgstr "er døypt"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1025
 msgctxt "PAST (FEMALE)"
 msgid "was born"
-msgstr "vart fødd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1025
 msgctxt "PAST (MALE)"
 msgid "was born"
-msgstr "vart fødd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1027
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
-msgstr "er fødd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1027
 msgctxt "PRESENT (MALE)"
 msgid "was born"
-msgstr "er fødd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1075
 msgctxt "FEMALE"
 msgid "was buried"
-msgstr "vart gravlagd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1075
 msgctxt "MALE"
 msgid "was buried"
-msgstr "vart gravlagd"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1083
 msgctxt "FEMALE"
 msgid "was cremated"
-msgstr "vart kremert"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1083
 msgctxt "MALE"
 msgid "was cremated"
-msgstr "vart kremert"
+msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:620
 msgid "were divorced"
-msgstr "vart skilde"
-
-#~ msgid "Error: the pdf file could not be generated."
-#~ msgstr "Feil: PDF-fila kunne ikkje genererast."
+msgstr ""
