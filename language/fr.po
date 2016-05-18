@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2015-08-10 22:02+0200\n"
-"Last-Translator: phicome <phicome@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2016-05-18 18:29+0000\n"
+"Last-Translator: Greg Roach <fisharebest@gmail.com>\n"
+"Language-Team: French <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.5\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
@@ -62,7 +62,7 @@ msgstr "Erreur : Une personne racine avec ID%s existe déjà"
 
 #: fancy_treeview/module.php:164
 msgid "Error: The root person belonging to this surname already exists"
-msgstr "Erreur: La personne racine de ce nom est déjà utilisée."
+msgstr "Erreur: La personne racine de ce nom est déjà utilisée"
 
 #: fancy_treeview/module.php:156
 msgid "Error: The surname you entered doesn’t exist in this tree."
@@ -96,13 +96,13 @@ msgstr "Lancer"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:640
 msgid "He had a relationship with"
-msgstr "Il avait une relation avec "
+msgstr "Il avait une relation avec"
 
 #. I18N: %s is a number
 #: fancy_treeview/src/FancyTreeviewClass.php:565
 #, php-format
 msgid "He married %s times"
-msgstr "Il s'est marié %s fois "
+msgstr "Il s'est marié %s fois"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1036
 #, fuzzy
@@ -157,24 +157,24 @@ msgstr "Nombre de générations à afficher"
 #: fancy_treeview/src/Template/AdminTemplate.php:342
 #, php-format
 msgid "Options for %s"
-msgstr "Options pour %s "
+msgstr "Options pour %s"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
-msgstr "Ou saisir un ID "
+msgstr "Ou saisir un ID"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:166
 #: fancy_treeview/src/Template/AdminTemplate.php:236
 msgid "Page title"
-msgstr "Titre de page "
+msgstr "Titre de page"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:92
 msgid "Pages"
-msgstr "Pages "
+msgstr "Pages"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:453
 msgid "Read more"
-msgstr "En savoir plus "
+msgstr "En savoir plus"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:445
 msgid "Resize thumbnails"
@@ -188,7 +188,7 @@ msgstr "Personne racine"
 #: fancy_treeview/src/Template/AdminTemplate.php:146
 #: fancy_treeview/src/Template/PageTemplate.php:76
 msgid "Search ID by name"
-msgstr "Rech. d'ID par le nom "
+msgstr "Rech. d'ID par le nom"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:114
 msgid "Search root person"
@@ -200,7 +200,7 @@ msgstr "Sélectionnez votre lieu"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:643
 msgid "She had a relationship with"
-msgstr "Elle avait une relation avec "
+msgstr "Elle avait une relation avec"
 
 #. I18N: %s is a number
 #: fancy_treeview/src/FancyTreeviewClass.php:571
@@ -232,7 +232,7 @@ msgstr "Elle est née"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr "Afficher un onglet dans \"Ma fiche\" avec les arborescences proposées "
+msgstr "Afficher un onglet dans \"Ma fiche\" avec les arborescences proposées"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -244,7 +244,7 @@ msgstr "Affichage des professions"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:401
 msgid "Show places?"
-msgstr "Affichage des lieux"
+msgstr "Affichage des lieux ?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
 #, fuzzy
@@ -254,7 +254,7 @@ msgstr "Afficher les personnes seules "
 #: fancy_treeview/src/Template/AdminTemplate.php:164
 #: fancy_treeview/src/Template/AdminTemplate.php:234
 msgid "Surname in page title"
-msgstr "Nom dans le titre de page "
+msgstr "Nom dans le titre de page"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/src/FancyTreeviewClass.php:567
@@ -280,11 +280,11 @@ msgstr "Les détails de cette génération sont privés."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Les options de cet arbre sont rétablies avec succès avec les paramètres par défaut "
+msgstr "Les options de cet arbre sont rétablies avec succès avec les paramètres par défaut"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
-msgstr "Les options de cet arbre sont enregistrées avec succès "
+msgstr "Les options de cet arbre sont enregistrées avec succès"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
 #, fuzzy
@@ -293,7 +293,7 @@ msgstr "Les options de cet arbre sont enregistrées avec succès "
 
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
-msgstr "Les paramètres de cet arbre sont mis à jour avec succès "
+msgstr "Les paramètres de cet arbre sont mis à jour avec succès"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
 #, fuzzy
@@ -302,22 +302,22 @@ msgstr "La personne racine avec l'id % s n'existe plus dans cet arbre "
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
-msgstr "Cette personne a une relation avec "
+msgstr "Cette personne a une relation avec"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:591
 msgid "This individual married"
-msgstr "Cette personne est mariée "
+msgstr "Cette personne est mariée"
 
 #. I18N: %s is a number
 #: fancy_treeview/src/FancyTreeviewClass.php:577
 #, php-format
 msgid "This individual married %s times"
-msgstr "Cette personne s'est mariée %s fois "
+msgstr "Cette personne s'est mariée %s fois"
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:370
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr "Cette option est particulièrement utile pour les grands arbres. Lorsque vous remarquez qu'une page est lente à charger, ici, vous pouvez diminuer le nombre de blocs de génération à charger à la fois. Après le dernier bloc de génération, un bouton apparaîtra pour afficher la prochaine série de blocs de génération. Les nouveaux blocs seront alors ajoutés aux blocs déjà chargés. En cliquant sur le lien \"suivant\" dans le dernier bloc de génération visible , la série suivante de blocs de génération sera chargée.  "
+msgstr "Cette option est particulièrement utile pour les grands arbres. Lorsque vous remarquez qu'une page est lente à charger, ici, vous pouvez diminuer le nombre de blocs de génération à charger à la fois. Après le dernier bloc de génération, un bouton apparaîtra pour afficher la prochaine série de blocs de génération. Les nouveaux blocs seront alors ajoutés aux blocs déjà chargés. En cliquant sur le lien \"suivant\" dans le dernier bloc de génération visible , la série suivante de blocs de génération sera chargée."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
@@ -331,7 +331,7 @@ msgstr "Activez cette option si vous voulez afficher les personnes seules dans l
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Utiliser les paramètres par défaut de GEDCOM pour abréger les noms de lieux?"
+msgstr "Utiliser les paramètres par défaut de GEDCOM pour abréger les noms de lieux ?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
@@ -344,12 +344,12 @@ msgstr "Utiliser des vignettes carrées"
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/src/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr "Utilisez le formulaire ci-dessous pour chercher une personne racine. Après une recherche fructueuse, la page de l'arborescence souhaitée sera automatiquement créé. Vous pouvez ajouter autant de personnes racines que vous le souhaitez. "
+msgstr "Utilisez le formulaire ci-dessous pour chercher une personne racine. Après une recherche fructueuse, la page de l'arborescence souhaitée sera automatiquement créé. Vous pouvez ajouter autant de personnes racines que vous le souhaitez."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "Si cette option est activée, le script vérifie si un couple (marié) a les mêmes ancêtres . Si une relation entre les partenaires est trouvée, un texte apparaît entre parenthèses après le nom des époux pour indiquer le lien de sang. "
+msgstr "Si cette option est activée, le script vérifie si un couple (marié) a les mêmes ancêtres . Si une relation entre les partenaires est trouvée, un texte apparaît entre parenthèses après le nom des époux pour indiquer le lien de sang."
 
 #: fancy_treeview_pdf/module.php:68
 #, php-format
@@ -368,12 +368,12 @@ msgstr ""
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr "enfant adoptif "
+msgstr "enfant adoptif"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:734
 msgctxt "MALE"
 msgid "adopted child"
-msgstr "enfant adoptif "
+msgstr "enfant adoptif"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:805
 msgid "adopted child of"
@@ -381,11 +381,11 @@ msgstr "enfant adoptif de"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:796
 msgid "adopted daughter of"
-msgstr "fille adoptif de "
+msgstr "fille adoptif de"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:787
 msgid "adopted son of"
-msgstr "fils adoptif de "
+msgstr "fils adoptif de"
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:620
@@ -416,11 +416,11 @@ msgstr "à l’âge de %s ans"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1594
 msgid "cancel"
-msgstr "annuler "
+msgstr "annuler"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:807
 msgid "child of"
-msgstr "enfant de "
+msgstr "enfant de"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1067
 msgctxt "FEMALE"
@@ -435,7 +435,7 @@ msgstr ""
 #. I18N: eighth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:558
 msgid "eighth"
-msgstr "huitième "
+msgstr "huitième"
 
 #. I18N: fifth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:555
@@ -449,29 +449,29 @@ msgstr ""
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1592
 msgid "follow"
-msgstr "suivant "
+msgstr "suivant"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:721
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr "enfant adoptif "
+msgstr "enfant adoptif"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:724
 msgctxt "MALE"
 msgid "foster child"
-msgstr "enfant adoptif "
+msgstr "enfant adoptif"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:803
 msgid "foster child of"
-msgstr "enfant adoptif de "
+msgstr "enfant adoptif de"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:794
 msgid "foster daughter of"
-msgstr "fille adoptive de "
+msgstr "fille adoptive de"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:785
 msgid "foster son of"
-msgstr "fils adoptif de "
+msgstr "fils adoptif de"
 
 #. I18N: fourth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:554
@@ -521,12 +521,12 @@ msgstr "à "
 #. I18N: ninth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:559
 msgid "ninth"
-msgstr "neuvième "
+msgstr "neuvième"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1593
 #: fancy_treeview/src/Template/AdminTemplate.php:152
 msgid "ok"
-msgstr "ok "
+msgstr "ok"
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/src/FancyTreeviewClass.php:1126
@@ -536,7 +536,7 @@ msgstr "le "
 
 #: fancy_treeview/src/Template/AdminTemplate.php:469
 msgid "percent"
-msgstr "pourcent "
+msgstr "pourcent"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
@@ -544,7 +544,7 @@ msgstr ""
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
-msgstr "Chercher "
+msgstr "chercher"
 
 #. I18N: second marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:552
@@ -554,17 +554,17 @@ msgstr "deuxième"
 #. I18N: seventh marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:557
 msgid "seventh"
-msgstr "septième "
+msgstr "septième"
 
 #. I18N: sixth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:556
 msgid "sixth"
-msgstr "sixième "
+msgstr "sixième"
 
 #. I18N: tenth marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:560
 msgid "tenth"
-msgstr "dixième "
+msgstr "dixième"
 
 #. I18N: third marriage
 #: fancy_treeview/src/FancyTreeviewClass.php:553
