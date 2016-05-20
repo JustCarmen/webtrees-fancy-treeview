@@ -36,14 +36,15 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\Template\AdminTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
-define('FTV_VERSION', '1.7.5-dev');
-
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
+	
+	const CUSTOM_VERSION = '1.7.5-dev';
+	const CUSTOM_WEBSITE = 'http://www.justcarmen.nl/fancy-modules/fancy-treeview/';
 
 	// How to update the database schema for this module
-	const SCHEMA_TARGET_VERSION	 = 8;
-	const SCHEMA_SETTING_NAME		 = 'FTV_SCHEMA_VERSION';
-	const SCHEMA_MIGRATION_PREFIX	 = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
+	const SCHEMA_TARGET_VERSION			= 8;
+	const SCHEMA_SETTING_NAME			= 'FTV_SCHEMA_VERSION';
+	const SCHEMA_MIGRATION_PREFIX		= '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
 
 	/** @var string location of the fancy treeview module files */
 	var $directory;
@@ -88,11 +89,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function getDescription() {
-		$description = /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way.');
-		if (WT_SCRIPT_NAME === 'admin_modules.php') {
-			$description .= '<br><span class="small text-muted">' . I18N::translate('Version') . ' ' . FTV_VERSION . ' | by JustCarmen | <a href="http://www.justcarmen.nl/fancy-modules/fancy-treeview/">' . I18N::translate('Show details') . '</a></span>';
-		}
-		return  $description;
+		return /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way.');
 	}
 
 	/** {@inheritdoc} */
