@@ -46,6 +46,10 @@
     margin-left: 40px;
 }
 
+[dir=rtl] #fancy_treeview-page .pdf-waiting-message {
+	float: right;
+}
+
 #fancy_treeview-page .pdf-waiting-message:after {
 	content:url("loading.gif");
 	margin-left: 7px;
