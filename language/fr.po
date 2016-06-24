@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-06-23 22:09+0000\n"
+"PO-Revision-Date: 2016-06-24 05:10+0000\n"
 "Last-Translator: Michael <mike_jpr@outlook.com>\n"
 "Language-Team: French <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/fr/>\n"
 "Language: fr\n"
@@ -445,12 +445,12 @@ msgstr "suivant"
 #: fancy_treeview/src/FancyTreeviewClass.php:721
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr "enfant adopté"
+msgstr "fille adoptée"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:724
 msgctxt "MALE"
 msgid "foster child"
-msgstr "enfant adopté"
+msgstr "fils adopté"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:803
 msgid "foster child of"
