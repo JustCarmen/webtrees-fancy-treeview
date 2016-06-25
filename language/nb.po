@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-06-25 18:26+0000\n"
+"PO-Revision-Date: 2016-06-25 18:44+0000\n"
 "Last-Translator: Thomas Rindal <thomas@rindal.net>\n"
 "Language-Team: Norwegian Bokmål <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nb/>\n"
 "Language: nb\n"
@@ -70,7 +70,7 @@ msgstr "Feil: Etternavnet du skrev inn finnes ikke i slektstreet."
 
 #: fancy_treeview/module.php:395
 msgid "Family tree overview"
-msgstr "Oversikt familietre"
+msgstr "Slektstreoversikt"
 
 #. I18N: Name of the module
 #: fancy_treeview/module.php:83
@@ -126,7 +126,7 @@ msgstr "Han er født"
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr "Her kan du velge å endre størrelse på miniatyrbilder spesielt for Tree View. Du kan sette størrelse i prosent eller pixler. Dersom du velger «nei» vil standard størrelse for miniatyrbilder benyttes."
+msgstr "Her kan du velge å endre størrelse på miniatyrbilder spesielt for Fancy Treeview. Du kan sette størrelse i prosent eller punkter. Dersom du velger «nei» vil standard størrelse for miniatyrbilder benyttes."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
@@ -141,15 +141,15 @@ msgstr "Hvis du har valgt innstillingen «Vis stedsnavn», kan du sette ditt ege
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:416
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
-msgstr "Hvis du har huket av «Vis stedsnavn» alternativet, kan du velge å bruke standard GEDCOM instillinger for å forkorte stedsnavn. Hvis du ikke setter dette alternativet, vil fullt navn vises for stedet."
+msgstr "Hvis du har huket av «Vis stedsnavn»-alternativet, kan du velge å bruke standard GEDCOM-instillinger for å forkorte stedsnavn. Hvis du ikke setter dette alternativet, vil fullt navn for stedet vist."
 
 #: fancy_treeview_pdf/src/Template/PdfTemplate.php:104
 msgid "Index"
-msgstr "Index"
+msgstr "Indeks"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:365
 msgid "Number of generation blocks to show"
-msgstr "Antall generasjonsblokker som skal vises"
+msgstr "Antall generasjoner som skal vises"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:342
 #, php-format
@@ -193,7 +193,7 @@ msgstr "Søk startperson"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:423
 msgid "Select your country"
-msgstr "Velg land"
+msgstr "Velg ditt land"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:643
 msgid "She had a relationship with"
@@ -227,7 +227,7 @@ msgstr "Hun er født"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr "Vis Fancy Tree som en fane på personsider"
+msgstr "Vis Fancy Treeview som en fane på personsider"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -322,7 +322,7 @@ msgstr "Aktiver denne innstillingen hvis du vil vise enslige personer i generasj
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Bruke standard GEDCOM instillinger til å forkorte stedsnavn?"
+msgstr "Bruke standard GEDCOM-instillinger til å forkorte stedsnavn?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
@@ -335,12 +335,12 @@ msgstr "Bruk kvadratiske miniatyrbilder"
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/src/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr "Bruk søkeskjemaet under for å søke etter en startperson. Etter å ha funnet riktig person, vil etterkommerrapporten opprettes automatisk. Du kan legge til så mange startpersoner som du ønsker."
+msgstr "Bruk søkeskjemaet under for å søke etter en startperson. Etter å ha funnet riktig person, vil etterkommeroversikten opprettes automatisk. Du kan legge til så mange startpersoner som du ønsker."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "Med dette alternativet aktivert, sjekker scriptet om et (gift) par har samme forfedre. Hvis et forhold mellom to partnere er funnet, vises en tekst i parantes etter ektefellens navn for å indikere forholdet.  Merk: Dette alternativet kan forårsake at sider lastes saktere, spesielt for store trær. Hvis du opplever dette, redusér antall generasjonsblokker som skal lastes samtidig (se tidligere alternativ)."
+msgstr "Med dette alternativet aktivert, sjekker skriptet om et (gift) par har samme forfedre. Hvis et forhold mellom to partnere er funnet, vises en tekst i parantes etter ektefellens navn for å indikere forholdet.  Merk: Dette alternativet kan forårsake at sider lastes saktere, spesielt for store slektstrær. Hvis du opplever dette, redusér antall generasjoner som skal lastes samtidig (se tidligere alternativ)."
 
 #: fancy_treeview_pdf/module.php:68
 #, php-format
@@ -396,14 +396,14 @@ msgstr "og "
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "i en alder av %s"
+msgstr "i en alder av %s år"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: fancy_treeview/src/FancyTreeviewClass.php:1107
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr "i en alder av %s"
+msgstr "i en alder av %s år"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1594
 msgid "cancel"
@@ -531,7 +531,7 @@ msgstr "prosent"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr "lagre og kopier innstillingar til andre slektstre"
+msgstr "lagre og kopier innstillinger til andre slektstrær"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
