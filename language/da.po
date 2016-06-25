@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-03-14 23:14+0200\n"
-"Last-Translator: Meliza <meliza@amitys.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2016-06-25 07:19+0000\n"
+"Last-Translator: Jamie Jaconelli <jamie@jaconelli.dk>\n"
+"Language-Team: Danish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.5\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
@@ -23,7 +23,7 @@ msgstr "Prefix for datoer, efterfulgt med ordene født, død, gift, skilt ect. L
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr ""
+msgstr "<strong>Bemærk</strong>: denne mulighed kan kræve store tid og/eller ressourcer, på specielt store træer. Det kan forårsage meget langsom indlæsning eller 'gennemførelsestid med fejl \"på din server. Hvis du bemærker en sådan adfærd, bør du reducere antallet af generations blokke til at indlæse på en gang eller ikke bruge det i kombination med mulighed for at vise singler (se de tidligere indstillinger). Hvis du stadig oplever problemer, skal du slet ikke bruge denne indstilling."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
@@ -40,7 +40,7 @@ msgstr "Check relationerne mellem partnerne"
 
 #: fancy_treeview_pdf/src/FancyTreeviewPdfClass.php:47
 msgid "Creating PDF file. This process may take a while. Please wait..."
-msgstr ""
+msgstr "Danner PDF fil. Processen tager et øjeblik. Vent venligst..."
 
 #. I18N: %s is the surname of the root individual
 #: fancy_treeview/module.php:403 fancy_treeview/src/FancyTreeviewClass.php:206
@@ -87,7 +87,7 @@ msgstr "Smart Træ PDF"
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:99
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr ""
+msgstr "Fancy Treeview tillægsmodul: tilbyder dine brugere til at downloade Fancy Treeview siden som PDF."
 
 #: fancy_treeview/src/Template/PageTemplate.php:84
 msgid "Go"
@@ -131,7 +131,7 @@ msgstr "Her kan du vælge størrelse på miniaturerne vist på Fancy siderne. Du
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
 msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
-msgstr ""
+msgstr "Hvis du aktiverer denne indstilling, vil en Fancy Treeview fane med titlen “Efterkommere“ blive vist på den enkelte side. Fanen vil beskrive den aktuelle person med sin familie, og de næste to generationer (hvis der er nogen). Hvis denne person har flere efterkommere vil disse to generationer også blive vist, et link vil blive vist til den komplette Fancy Treeview Page hvor denne person vil blive vist med alle sine efterkommere."
 
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
@@ -242,7 +242,6 @@ msgid "Show places?"
 msgstr "Vis stednavne?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:376
-#, fuzzy
 msgid "Show singles"
 msgstr "Vis enkelte personer"
 
@@ -282,18 +281,16 @@ msgid "The options for this tree are succesfully saved"
 msgstr "Indstillingerne er gemt"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:350
-#, fuzzy
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Indstillingerne er gemt"
+msgstr "Indstillingerne er gemt og kopieret til andre træer"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
 msgstr "Indstillingerne er opdateret"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:311
-#, fuzzy
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Fejl: Den valgte ID %s findes ikke."
+msgstr "Den valgte person  findes ikke i dette træ"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:646
 msgid "This individual had a relationship with"
@@ -320,9 +317,8 @@ msgstr "Miniature størrelse"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:381
-#, fuzzy
 msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
-msgstr "Ved dette valg, vil samtlige børn blive vist. Derved også personer uden partner og børn"
+msgstr "Ved dette valg, vil samtlige børn blive vist. Derved også personer uden partner og børn."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
@@ -349,16 +345,16 @@ msgstr "Ved dette valg, vil der blive søgt på om partnere har samme aner. Hvis
 #: fancy_treeview_pdf/module.php:68
 #, php-format
 msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
-msgstr ""
+msgstr "Du har installeret og aktiveret Fancy Treeview modul version %s 1. Denne version behøver Fancy Treeview PDF version %s 2. Opdater venligst installationen til den korrekte version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\"> 3 Klik for at finde den korrekte version</a> 4."
 
 #: fancy_treeview_pdf/module.php:59
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr ""
+msgstr "Du har installeret Fancy Treeview PDF modulet. Dette modul virker ikke uden at Fancy Treeview modulet er aktiveret. Venligst aktiver Fancy Treeview for at bruge PDF delen."
 
 #: fancy_treeview_pdf/module.php:51
 #, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
-msgstr ""
+msgstr "Du har installeret og aktiveret Fancy Treeview PDF modulet. Dette module behøver den korrekte version af Fancy Treeview . Opdater venligst installationen til den korrekte version. %s 1 <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\"> 23 Klik for at finde den korrekte version</a> 3."
 
 #: fancy_treeview/src/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
@@ -535,7 +531,7 @@ msgstr "procent"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr ""
+msgstr "gem og kopier indstillinger til andre træer"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:132
 msgid "search"
@@ -609,22 +605,22 @@ msgstr "blev født"
 #: fancy_treeview/src/FancyTreeviewClass.php:1075
 msgctxt "FEMALE"
 msgid "was buried"
-msgstr ""
+msgstr "blev begravet"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1075
 msgctxt "MALE"
 msgid "was buried"
-msgstr ""
+msgstr "blev begravet"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1083
 msgctxt "FEMALE"
 msgid "was cremated"
-msgstr ""
+msgstr "blev kremeret"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:1083
 msgctxt "MALE"
 msgid "was cremated"
-msgstr ""
+msgstr "blev kremeret"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:620
 msgid "were divorced"
