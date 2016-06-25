@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-04-28 18:11+0200\n"
-"PO-Revision-Date: 2016-06-25 07:19+0000\n"
+"PO-Revision-Date: 2016-06-25 07:20+0000\n"
 "Last-Translator: Jamie Jaconelli <jamie@jaconelli.dk>\n"
 "Language-Team: Danish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/da/>\n"
 "Language: da\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: fancy_treeview/src/FancyTreeviewClass.php:1123
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
-msgstr "Prefix for datoer, efterfulgt med ordene født, død, gift, skilt ect. Læs kommentaren for flere detaljer."
+msgstr " - "
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:395
@@ -126,7 +126,7 @@ msgstr "Han var født"
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr "Her kan du vælge størrelse på miniaturerne vist på Fancy siderne. Du kan bruge brugerdef. størrelse i pixels. Hvis du vælger “nej” miniaturen vil blive vist i webtrees standard, som du har opsat i kontrolpanelet"
+msgstr "Her kan du vælge størrelse på miniaturerne vist på Fancy siderne. Du kan bruge brugerdef. størrelse i pixels. Hvis du vælger “nej” miniaturen vil blive vist i webtrees standard, som du har opsat i kontrolpanelet."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:500
@@ -136,12 +136,12 @@ msgstr "Hvis du aktiverer denne indstilling, vil en Fancy Treeview fane med titl
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:429
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr "Hvis du har aktiveret vis steder funktionen, kan du vælge land. Fuld definerede stednavne vil bliv vist på Fancy siderne, men hvis et stednavn indeholder landet, vil dette blive udeladt. Ellers vises alle lande, incl. eget land"
+msgstr "Hvis du har aktiveret vis steder funktionen, kan du vælge land. Fuld definerede stednavne vil bliv vist på Fancy siderne, men hvis et stednavn indeholder landet, vil dette blive udeladt. Ellers vises alle lande, incl. eget land."
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:416
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
-msgstr "Hvis du har valgt “Vis steder”, kan du vælge at bruge standard opsætningen fra GEDCOM indstillingerne. Hvis du ikke bruger denne indstillinger, vil de fulde sted betegnelser blive vist"
+msgstr "Hvis du har valgt “Vis steder”, kan du vælge at bruge standard opsætningen fra GEDCOM indstillingerne. Hvis du ikke bruger denne indstillinger, vil de fulde sted betegnelser blive vist."
 
 #: fancy_treeview_pdf/src/Template/PdfTemplate.php:104
 msgid "Index"
@@ -270,7 +270,7 @@ msgstr "Den %s gang dette individ var gift"
 
 #: fancy_treeview/src/FancyTreeviewClass.php:466
 msgid "The details of this generation are private."
-msgstr "Detaljerne for denne generation er private"
+msgstr "Detaljerne for denne generation er private."
 
 #: fancy_treeview/src/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
@@ -322,7 +322,7 @@ msgstr "Ved dette valg, vil samtlige børn blive vist. Derved også personer ude
 
 #: fancy_treeview/src/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names?"
-msgstr "Brug standard GEDCOM indstillinger til visning af stednavne"
+msgstr "Brug standard GEDCOM indstillinger til visning af stednavne?"
 
 #: fancy_treeview/src/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
@@ -340,7 +340,7 @@ msgstr "Brug søgefunktionen nedenfor til at søge efter en rod person. Efter en
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/src/Template/AdminTemplate.php:393
 msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "Ved dette valg, vil der blive søgt på om partnere har samme aner. Hvis der findes nogen, vil der fremkomme en tekst der indikerer slægtskabet. NB! Dette vil gøre siden langsommere"
+msgstr "Ved dette valg, vil der blive søgt på om partnere har samme aner. Hvis der findes nogen, vil der fremkomme en tekst der indikerer slægtskabet. NB! Dette vil gøre siden langsommere."
 
 #: fancy_treeview_pdf/module.php:68
 #, php-format
