@@ -1394,6 +1394,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						imagejpeg($thumbnail, $cache_filename);
 					} elseif ($mimetype === 'image/png') {
 						imagepng($thumbnail, $cache_filename);
+					} elseif ($mimetype === 'image/gif') {
+						imagegif($thumbnail, $cache_filename);
 					} else {
 						return;
 					}
@@ -1433,7 +1435,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$thumbwidth	 = $thumbheight = $thumbsize;
 
 			$mimetype = $mediaobject->mimeType();
-			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png') {
+			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png' || $mimetype === 'image/gif') {
 
 				if (!list($imagewidth, $imageheight) = getimagesize($mediasrc)) {
 					return null;
@@ -1445,6 +1447,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						break;
 					case 'image/png':
 						$image	 = imagecreatefrompng($mediasrc);
+						break;
+					case 'image/gif':
+						$image	 = imagecreatefromgif($mediasrc);
 						break;
 				}
 
