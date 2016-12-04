@@ -353,23 +353,20 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function getMenu() {
 		global $controller;
 
-		if (!Auth::isSearchEngine()) {
+		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
 
-			Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
+		if (Theme::theme()->themeId() !== '_administration') {
+			// load the module stylesheets
+			echo $this->module()->getStylesheet();
 
-			if (Theme::theme()->themeId() !== '_administration') {
-				// load the module stylesheets
-				echo $this->module()->getStylesheet();
+			// add javascript files and scripts
+			$this->module()->includeJs($controller, 'menu');
 
-				// add javascript files and scripts
-				$this->module()->includeJs($controller, 'menu');
-
-				if (WT_SCRIPT_NAME === 'individual.php') {
-					$this->module()->includeJs($controller, 'tab');
-				}
+			if (WT_SCRIPT_NAME === 'individual.php') {
+				$this->module()->includeJs($controller, 'tab');
 			}
-			return $this->menuFancyTreeview();
 		}
+		return $this->menuFancyTreeview();
 	}
 
 	public function menuFancyTreeview() {
