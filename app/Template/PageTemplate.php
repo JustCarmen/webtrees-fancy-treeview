@@ -36,9 +36,13 @@ class PageTemplate extends FancyTreeviewClass {
 		}
 	}
 
+	protected function pageTitle() {
+		/* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
+	}
+
 	private function pageHeader(PageController $controller) {
 		$controller
-			->setPageTitle(/* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName()))
+			->setPageTitle($this->pageTitle())
 			->pageHeader();
 
 		// add javascript files and scripts
@@ -66,7 +70,7 @@ class PageTemplate extends FancyTreeviewClass {
 					echo $this->pdf()->getPdfWaitingMessage();
 				}
 				?>
-				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>					
+				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>
 					<form id="change_root">
 						<label class="label"><?php echo I18N::translate('Change root person') ?></label>
 						<input
@@ -86,7 +90,7 @@ class PageTemplate extends FancyTreeviewClass {
 					</form>
 					<div id="error"></div>
 				<?php endif; ?>
-				<ol id="fancy_treeview"><?php echo $this->printPage($this->options('numblocks')) ?></ol>
+					<ol id="fancy_treeview"><?php echo $this->pageBodyContent() ?></ol>
 				<div id="btn_next">
 					<input
 						class="btn btn-primary"
@@ -98,6 +102,10 @@ class PageTemplate extends FancyTreeviewClass {
 			</div>
 		</div>
 		<?php
+	}
+
+	protected function pageBodyContent() {
+		return $this->printPage($this->options('numblocks'));
 	}
 
 	private function pageMessage($controller) {
