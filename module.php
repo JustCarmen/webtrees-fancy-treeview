@@ -37,7 +37,7 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\Template\PageTemplate;
 use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
-	
+
 	const CUSTOM_VERSION = '1.7.7-dev';
 	const CUSTOM_WEBSITE = 'http://www.justcarmen.nl/fancy-modules/fancy-treeview/';
 
@@ -55,7 +55,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function __construct() {
 		parent::__construct('fancy_treeview');
-		
+
 		$this->directory = WT_MODULES_DIR . $this->getName();
 		$this->action	 = Filter::get('mod_action');
 
@@ -67,7 +67,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/**
 	 * Get the module class.
-	 * 
+	 *
 	 * Class functions are called with $this inside the source directory.
 	 */
 	protected function module() {
@@ -129,7 +129,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
 		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-		
+
 		switch ($mod_action) {
 			case 'admin_config':
 				$template = new AdminTemplate;
@@ -357,12 +357,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 			Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
 
-			static $menu;
-			// Function has already run
-			if ($menu !== null && count($menu->getSubmenus()) > 0) {
-				return $menu;
-			}
-			
 			if (Theme::theme()->themeId() !== '_administration') {
 				// load the module stylesheets
 				echo $this->module()->getStylesheet();
@@ -374,36 +368,43 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 					$this->module()->includeJs($controller, 'tab');
 				}
 			}
+			return $this->menuFancyTreeview();
+		}
+	}
 
-			$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+	public function menuFancyTreeview() {
+		static $menu;
+		// Function has already run
+		if ($menu !== null && count($menu->getSubmenus()) > 0) {
+			return $menu;
+		}
 
-			if (!empty($FTV_SETTINGS)) {
+		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		if (!empty($FTV_SETTINGS)) {
+			foreach ($FTV_SETTINGS as $FTV_ITEM) {
+				if ($FTV_ITEM['TREE'] == $this->tree()->getTreeId() && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($this->tree())) {
+					$FTV_GED_SETTINGS[] = $FTV_ITEM;
+				}
+			}
 
-				foreach ($FTV_SETTINGS as $FTV_ITEM) {
-					if ($FTV_ITEM['TREE'] == $this->tree()->getTreeId() && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($this->tree())) {
-						$FTV_GED_SETTINGS[] = $FTV_ITEM;
+			if (!empty($FTV_GED_SETTINGS)) {
+				$tree_name	 = Filter::escapeUrl($this->tree()->getName());
+				$menu		 = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
+
+				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
+					$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree());
+					if ($record && $record->canShowName()) {
+						if ($this->module()->options('use_fullname') == true) {
+							$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+						} else {
+							$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+						}
+						$menu->addSubmenu($submenu);
 					}
 				}
-					
-				if (!empty($FTV_GED_SETTINGS)) {
-					$tree_name	 = Filter::escapeUrl($this->tree()->getName());
-					$menu		 = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
 
-					foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
-						$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree());
-						if ($record && $record->canShowName()) {
-							if ($this->module()->options('use_fullname') == true) {
-								$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
-							} else {
-								$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
-							}
-							$menu->addSubmenu($submenu);
-						}
-					}
-
-					if (count($menu->getSubmenus()) > 0) {
-						return $menu;
-					}
+				if (count($menu->getSubmenus()) > 0) {
+					return $menu;
 				}
 			}
 		}
