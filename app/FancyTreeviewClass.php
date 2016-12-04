@@ -435,7 +435,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	protected function printBackToTopLink($i) {
-		if ($this->action === 'page' && $i > 1) {
+		if ($i > 1) {
 			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
 		}
 	}
