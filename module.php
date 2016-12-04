@@ -385,16 +385,19 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			}
 
 			if (!empty($FTV_GED_SETTINGS)) {
-				$tree_name	 = Filter::escapeUrl($this->tree()->getName());
-				$menu		 = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
+				$menu = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
-					$record = Individual::getInstance($FTV_ITEM['PID'], $this->tree());
+					$xref		= $FTV_ITEM['PID'];
+					$surname	= $FTV_ITEM['SURNAME'];
+					$record		= Individual::getInstance($xref, $this->tree());
+					$tree_name	= Filter::escapeUrl($this->tree()->getName());
+
 					if ($record && $record->canShowName()) {
 						if ($this->module()->options('use_fullname') == true) {
-							$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+							$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $xref . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $xref);
 						} else {
-							$submenu = new Menu(I18N::translate('Descendants of the %s family', $FTV_ITEM['SURNAME']), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $FTV_ITEM['PID'] . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $FTV_ITEM['PID']);
+							$submenu = new Menu(I18N::translate('Descendants of the %s family', $surname), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $xref . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $xref);
 						}
 						$menu->addSubmenu($submenu);
 					}
