@@ -372,7 +372,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $i
 	 * @return string
 	 */
-	private function printGeneration($generation, $i) {
+	protected function printGeneration($generation, $i) {
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $generation) . '">' .
 			$this->printBlockHeader($i);
@@ -394,7 +394,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $i
 	 * @return string
 	 */
-	private function printBlockHeader($i) {
+	protected function printBlockHeader($i) {
 		return
 			'<div class="blockheader ui-state-default">' .
 			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>' .
@@ -407,7 +407,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $generation
 	 * @return string
 	 */
-	private function printBlockContent($generation) {
+	protected function printBlockContent($generation) {
 		$html = '<ol class="blockcontent generation">';
 		foreach ($generation as $pid) {
 			$person = $this->getPerson($pid);
@@ -434,7 +434,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $i
 	 * @return string
 	 */
-	private function printBackToTopLink($i) {
+	protected function printBackToTopLink($i) {
 		if ($this->action === 'page' && $i > 1) {
 			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
 		}
@@ -446,7 +446,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $root
 	 * @return string
 	 */
-	private function printReadMoreLink($root) {
+	protected function printReadMoreLink($root) {
 		return
 			'<div id="read-more-link">' .
 			'<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . Filter::escapeUrl(Tree::findById($this->tree()->getTreeId())->getName()) . '">' .
@@ -460,7 +460,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 *
 	 * @return string
 	 */
-	private function printPrivateBlock() {
+	protected function printPrivateBlock() {
 		return
 			'<div class="blockcontent generation private">' .
 			I18N::translate('The details of this generation are private.') .
@@ -473,7 +473,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return string (html)
 	 */
-	private function printIndividual($person) {
+	protected function printIndividual($person) {
 
 		if ($person->CanShow()) {
 			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
@@ -541,7 +541,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $count
 	 * @return string
 	 */
-	private function printSpouse($family, $person, $spouse, $i, $count) {
+	protected function printSpouse($family, $person, $spouse, $i, $count) {
 
 		$html = ' ';
 
@@ -631,7 +631,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $spouse
 	 * @return type
 	 */
-	private function printPartner($family, $person, $spouse) {
+	protected function printPartner($family, $person, $spouse) {
 
 		$html = ' ';
 
@@ -666,7 +666,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $spouse
 	 * @return string
 	 */
-	private function printChildren($family, $person, $spouse) {
+	protected function printChildren($family, $person, $spouse) {
 		$html = '';
 
 		$match = null;
@@ -773,7 +773,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return string
 	 */
-	private function printParents($person) {
+	protected function printParents($person) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
 			$pedi = $this->checkPedi($person, $parents);
@@ -831,7 +831,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return string
 	 */
-	private function printName($person) {
+	protected function printName($person) {
 		$name = $person->getFullName();
 		if ($this->pdf()) {
 			return $this->pdf()->printName($person, $name);
@@ -847,7 +847,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $xref
 	 * @return string
 	 */
-	private function printNameUrl($person, $xref = '') {
+	protected function printNameUrl($person, $xref = '') {
 		if ($xref) {
 			$name = ' name="' . $xref . '"';
 		} else {
@@ -870,7 +870,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $tag
 	 * @return string
 	 */
-	private function printOccupations($person) {
+	protected function printOccupations($person) {
 		$html		 = '';
 		$occupations = $person->getFacts('OCCU', true);
 		$count		 = count($occupations);
@@ -907,7 +907,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $is_spouse
 	 * @return string
 	 */
-	private function printLifespan($person, $is_spouse = false) {
+	protected function printLifespan($person, $is_spouse = false) {
 		$html = '';
 
 		$is_bfact = false;
@@ -954,7 +954,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $spouse
 	 * @return string
 	 */
-	private function printRelationship($person, $spouse) {
+	protected function printRelationship($person, $spouse) {
 		$html = '';
 		if ($this->options('check_relationship')) {
 			$relationship = $this->checkRelationship($person, $spouse);
@@ -971,7 +971,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return thumbnail
 	 */
-	private function printThumbnail($person) {
+	protected function printThumbnail($person) {
 		$mediaobject = $person->findHighlightedMedia();
 		if ($mediaobject) {
 			$cache_filename = $this->getThumbnail($mediaobject);
@@ -1008,7 +1008,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $is_spouse
 	 * @return string
 	 */
-	private function printBirthText($person, $event, $is_spouse = false) {
+	protected function printBirthText($person, $event, $is_spouse = false) {
 		$html = '';
 		switch ($event) {
 			case 'BIRT':
@@ -1058,7 +1058,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $is_bfact
 	 * @return string
 	 */
-	private function printDeathText($person, $event, $is_bfact) {
+	protected function printDeathText($person, $event, $is_bfact) {
 		$html = '';
 		switch ($event) {
 			case 'DEAT':
@@ -1095,7 +1095,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $dfact
 	 * @return string
 	 */
-	private function printAgeOfDeath($bfact, $dfact) {
+	protected function printAgeOfDeath($bfact, $dfact) {
 		$bdate	 = $bfact->getDate();
 		$ddate	 = $dfact->getDate();
 		$html	 = '';
@@ -1116,7 +1116,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $fact
 	 * @return type
 	 */
-	private function printDate($fact) {
+	protected function printDate($fact) {
 		$date = $fact->getDate();
 		if ($date && $date->isOK()) {
 			if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->getAttribute('DATE'))) {
@@ -1141,7 +1141,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $tree
 	 * @return string
 	 */
-	private function printPlace($fact) {
+	protected function printPlace($fact) {
 		global $WT_TREE;
 		$place = $fact->getAttribute('PLAC');
 		if ($place && $this->options('show_places') == true) {
