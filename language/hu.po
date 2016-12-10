@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-07-08 09:31+0200\n"
-"PO-Revision-Date: 2015-07-04 21:06+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2016-12-10 08:56+0000\n"
+"Last-Translator: Gyönyör János <gyj@centrum.sk>\n"
+"Language-Team: Hungarian <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Weblate 2.8\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
@@ -31,19 +31,19 @@ msgstr ""
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
-msgstr ""
+msgstr "Fancy áttekintő egy családi(ágazat) utódainak leírása elbeszélő módban."
 
 #: fancy_treeview/app/Template/PageTemplate.php:71
 msgid "Change root person"
-msgstr ""
+msgstr "Válassza meg a kiinduló személyt"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
-msgstr ""
+msgstr "Társak közti rokoni kapcsolat ellenőrzés"
 
 #: fancy_treeview_pdf/app/FancyTreeviewPdfClass.php:47
 msgid "Creating PDF file. This process may take a while. Please wait..."
-msgstr ""
+msgstr "PDF fájl létrehozása. Ez a művelet időigényes. Várjon kérem..."
 
 #. I18N: %s is the surname of the root individual
 #: fancy_treeview/app/FancyTreeviewClass.php:206
@@ -52,50 +52,50 @@ msgstr ""
 #: fancy_treeview/module.php:398
 #, php-format
 msgid "Descendants of the %s family"
-msgstr ""
+msgstr "A %s család leszármazottai"
 
 #: fancy_treeview/module.php:181
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
-msgstr ""
+msgstr "Hiba: %s azonosítószámmal rendelkező személy nem található ebben a fában"
 
 #: fancy_treeview/module.php:162
 #, php-format
 msgid "Error: A root person with ID %s already exists"
-msgstr ""
+msgstr "Hiba: A %s azonosítószámmal rendelkező kiinduló személy már létezik"
 
 #: fancy_treeview/module.php:160
 msgid "Error: The root person belonging to this surname already exists"
-msgstr ""
+msgstr "Hiba: E családnévbe tartozó kiinduló személy már létezik"
 
 #: fancy_treeview/module.php:152
 msgid "Error: The surname you entered doesn’t exist in this tree."
-msgstr ""
+msgstr "Hiba: A megadott családnév nem fordul elő ebben a fában."
 
 #: fancy_treeview/module.php:390
 msgid "Family tree overview"
-msgstr ""
+msgstr "Családfa áttekintő"
 
 #. I18N: Name of the module
 #: fancy_treeview/app/Template/AdminTemplate.php:40
 #: fancy_treeview/module.php:83
 msgid "Fancy Treeview"
-msgstr ""
+msgstr "Fancy Famegjelenítés"
 
 #. I18N: Name of the Fancy Treeview PDF-module
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:38
 #: fancy_treeview_pdf/module.php:85
 msgid "Fancy Treeview PDF"
-msgstr ""
+msgstr "Fancy PDF Famegjelenítés"
 
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:90
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr ""
+msgstr "Fancy Famegjelenítő modul kiterjesztés: A Fancy Famegjelenítő oldal PDF fájl letöltés lehetősége a felhasználóknak."
 
 #: fancy_treeview/app/Template/PageTemplate.php:84
 msgid "Go"
-msgstr ""
+msgstr "Mehet"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:640
 msgid "He had a relationship with"
@@ -105,27 +105,27 @@ msgstr ""
 #: fancy_treeview/app/FancyTreeviewClass.php:565
 #, php-format
 msgid "He married %s times"
-msgstr ""
+msgstr "%s alkalommal házasodott"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1036
 msgctxt "PAST"
 msgid "He was baptized"
-msgstr ""
+msgstr "Keresztelve"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1038
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr ""
+msgstr "Keresztelve"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1018
 msgctxt "PAST"
 msgid "He was born"
-msgstr ""
+msgstr "Született"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1020
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr ""
+msgstr "Született"
 
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:451
@@ -149,7 +149,7 @@ msgstr ""
 
 #: fancy_treeview_pdf/app/Template/PdfTemplate.php:101
 msgid "Index"
-msgstr ""
+msgstr "Jegyzék"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:365
 msgid "Number of generation blocks to show"
@@ -158,20 +158,20 @@ msgstr ""
 #: fancy_treeview/app/Template/AdminTemplate.php:342
 #, php-format
 msgid "Options for %s"
-msgstr ""
+msgstr "%s beállításai"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
-msgstr ""
+msgstr "Vagy adjon meg egy azonosítószámot"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:166
 #: fancy_treeview/app/Template/AdminTemplate.php:236
 msgid "Page title"
-msgstr ""
+msgstr "Oldalnév"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:92
 msgid "Pages"
-msgstr ""
+msgstr "Oldal"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:453
 msgid "Read more"
@@ -179,12 +179,12 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:445
 msgid "Resize thumbnails"
-msgstr ""
+msgstr "Bélyegkép átméretezés"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:162
 #: fancy_treeview/app/Template/AdminTemplate.php:232
 msgid "Root person"
-msgstr ""
+msgstr "Kiinduló személy"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:146
 #: fancy_treeview/app/Template/PageTemplate.php:76
@@ -193,57 +193,57 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:114
 msgid "Search root person"
-msgstr ""
+msgstr "Kiindulószemély keresés"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:423
 msgid "Select your country"
-msgstr ""
+msgstr "Válassza ki az országot"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:643
 msgid "She had a relationship with"
-msgstr ""
+msgstr "Rokoni kapcsolat vele"
 
 #. I18N: %s is a number
 #: fancy_treeview/app/FancyTreeviewClass.php:571
 #, php-format
 msgid "She married %s times"
-msgstr ""
+msgstr "%s alakalommal házasodott"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1036
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr ""
+msgstr "Megkeresztelve"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1038
 msgctxt "PRESENT"
 msgid "She was baptized"
-msgstr ""
+msgstr "Megkeresztelve"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1018
 msgctxt "PAST"
 msgid "She was born"
-msgstr ""
+msgstr "Született"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1020
 msgctxt "PRESENT"
 msgid "She was born"
-msgstr ""
+msgstr "Született"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr ""
+msgstr "A Fancy Famegjelenítő fül mutatása a Személyoldalon"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
-msgstr ""
+msgstr "Kiindulószemély csereűrlap mutatása"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:436
 msgid "Show occupations"
-msgstr ""
+msgstr "Foglalkozás megjelenítése"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
 msgid "Show places?"
-msgstr ""
+msgstr "Mutassa a helyeket?"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
@@ -252,19 +252,19 @@ msgstr ""
 #: fancy_treeview/app/Template/AdminTemplate.php:164
 #: fancy_treeview/app/Template/AdminTemplate.php:234
 msgid "Surname in page title"
-msgstr ""
+msgstr "Családnév a az oldalnévben"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:567
 #, php-format
 msgid "The %s time he married"
-msgstr ""
+msgstr "%s alakalommal házasodott"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:573
 #, php-format
 msgid "The %s time she married"
-msgstr ""
+msgstr "%s alakalommal házasodott"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:579
@@ -274,23 +274,23 @@ msgstr ""
 
 #: fancy_treeview/app/FancyTreeviewClass.php:466
 msgid "The details of this generation are private."
-msgstr ""
+msgstr "E nemzedék adatai nem nyilvánosak."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr ""
+msgstr "E fa alapértelmezett beállításainak visszaállítása sikeresen megtörtént"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
-msgstr ""
+msgstr "E fa beállításai sikeres mentése megtörtént"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr ""
+msgstr "E fa beállításai mentése és többi fába való másolása sikeresen megtörtént"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
-msgstr ""
+msgstr "E fa beállításainak módosítása sikeresen megtörtént"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:311
 msgid "This individual doesn’t exist anymore in this tree"
@@ -317,7 +317,7 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
-msgstr ""
+msgstr "Bélyegkép mérete"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:381
@@ -334,7 +334,7 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr ""
+msgstr "Négyzetkép használat"
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/app/Template/AdminTemplate.php:104
@@ -358,12 +358,12 @@ msgstr ""
 #: fancy_treeview/app/FancyTreeviewClass.php:731
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr ""
+msgstr "örökbefogadott gyermek"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:734
 msgctxt "MALE"
 msgid "adopted child"
-msgstr ""
+msgstr "örökbefogadott gyermek"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:805
 msgid "adopted child of"
@@ -388,25 +388,25 @@ msgstr ""
 #: fancy_treeview/app/FancyTreeviewClass.php:1074
 #: fancy_treeview/app/FancyTreeviewClass.php:1082
 msgid "and "
-msgstr ""
+msgstr "és "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: fancy_treeview/app/FancyTreeviewClass.php:1105
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr ""
+msgstr "%s éves korában"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40
 #: fancy_treeview/app/FancyTreeviewClass.php:1107
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr ""
+msgstr "%s éves korában"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1594
 msgid "cancel"
-msgstr ""
+msgstr "mégse"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:807
 msgid "child of"
@@ -534,7 +534,7 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:132
 msgid "search"
-msgstr ""
+msgstr "keresés"
 
 #. I18N: second marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:552
@@ -584,22 +584,22 @@ msgstr ""
 #: fancy_treeview/app/FancyTreeviewClass.php:1025
 msgctxt "PAST (FEMALE)"
 msgid "was born"
-msgstr ""
+msgstr "Született"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1025
 msgctxt "PAST (MALE)"
 msgid "was born"
-msgstr ""
+msgstr "született"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1027
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
-msgstr ""
+msgstr "született"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1027
 msgctxt "PRESENT (MALE)"
 msgid "was born"
-msgstr ""
+msgstr "született"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1075
 msgctxt "FEMALE"
