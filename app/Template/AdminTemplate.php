@@ -398,7 +398,7 @@ class AdminTemplate extends FancyTreeviewClass {
 								<!-- SHOW PLACES -->
 								<div id="places" class="form-group">
 									<label class="control-label col-sm-4">
-										<?php echo I18N::translate('Show places?') ?>
+										<?php echo I18N::translate('Show places') ?>
 									</label>
 									<div class="col-sm-8">
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places'), 'class="radio-inline"') ?>
@@ -407,7 +407,7 @@ class AdminTemplate extends FancyTreeviewClass {
 								<!-- USE GEDCOM PLACE SETTING -->
 								<div id="gedcom_places" class="form-group<?php if (!$this->options('show_places')) echo ' collapse' ?>">
 									<label class="control-label col-sm-4">
-										<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names?') ?>
+										<?php echo I18N::translate('Use default GEDCOM settings to abbreviate place names') ?>
 									</label>
 									<div class="col-sm-8">
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $this->options('use_gedcom_places'), 'class="radio-inline"') ?>
