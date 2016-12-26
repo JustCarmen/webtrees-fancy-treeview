@@ -1099,7 +1099,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			if (Date::getAge($bdate, $ddate, 0) < 2) {
 				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
 			} else {
-				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40 */ I18N::translateContext('age in years', 'at the age of %s', $ageOfdeath);
+				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string */ I18N::translateContext('age in years', 'at the age of %s', filter_var($ageOfdeath, FILTER_SANITIZE_NUMBER_INT));
 			}
 		}
 		return $html;
