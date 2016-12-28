@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-26 16:41+0100\n"
-"PO-Revision-Date: 2016-12-10 08:56+0000\n"
+"PO-Revision-Date: 2016-12-28 16:45+0000\n"
 "Last-Translator: Gyönyör János <gyj@centrum.sk>\n"
 "Language-Team: Hungarian <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/hu/>\n"
 "Language: hu\n"
@@ -242,9 +242,8 @@ msgid "Show occupations"
 msgstr "Foglalkozás megjelenítése"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
-#, fuzzy
 msgid "Show places"
-msgstr "Mutassa a helyeket?"
+msgstr "Helyek megjelenítése"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
