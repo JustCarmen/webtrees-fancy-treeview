@@ -351,27 +351,34 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function getMenu() {
-		global $controller;
-
 		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-
-		if (Theme::theme()->themeId() !== '_administration') {
-			// load the module stylesheets
-			echo $this->module()->getStylesheet();
-
-			// add javascript files and scripts
-			$this->module()->includeJs($controller, 'menu');
-
-			if (WT_SCRIPT_NAME === 'individual.php') {
-				$this->module()->includeJs($controller, 'tab');
-			}
-		}
+		
+		$this->getPreLoadModuleContent();
 		return $this->menuFancyTreeview();
+	}
+	
+	public function getPreloadModuleContent() {
+		global $controller;
+		
+		if (Theme::theme()->themeId() === '_administration') {
+			return null;
+		}
+		
+		// load the module stylesheets
+		echo $this->module()->getStylesheet();
+
+		// add javascript files and scripts
+		$this->module()->includeJs($controller, 'menu');
+
+		if (WT_SCRIPT_NAME === 'individual.php') {
+			$this->module()->includeJs($controller, 'tab');
+		}
 	}
 
 	public function menuFancyTreeview() {
+		
+		// Function has already run. We need this to re-use the menu in extensions
 		static $menu;
-		// Function has already run
 		if ($menu !== null && count($menu->getSubmenus()) > 0) {
 			return $menu;
 		}
