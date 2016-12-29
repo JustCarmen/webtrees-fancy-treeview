@@ -240,9 +240,39 @@
 
 /* ===== Fancy Treeview Tab ===== */
 #fancy_treeview-page.fancy_treeview-tab {
+	position: relative;
 	margin-top: 20px;
 	width: 100%;
 	max-width: none;
+}
+
+#fancy_treeview-page.fancy_treeview-tab .pdf-waiting-message {
+	float: none;
+	margin-left: 10px;
+	margin-top: -15px;
+	font-size: 85%;
+}
+
+#fancy_treeview-page.fancy_treeview-tab #pdf {
+	position: relative;
+	display: block;	
+}
+
+.fancy_treeview-tab .icon-mime-application-pdf {
+	background-image: url("pdf-icon-small.png");
+	background-position: 0;
+	position: absolute;
+	height: 25px;
+	width: 25px;
+	top: -5px;
+	left: auto;
+	right: 10px;
+	z-index: 999;
+}
+
+[dir=rtl] .fancy_treeview-tab .icon-mime-application-pdf {
+	left: 10px;
+	right: auto;
 }
 
 #fancy_treeview-page.fancy_treeview-tab .blockheader {

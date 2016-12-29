@@ -336,12 +336,19 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		global $controller;
 
 		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-
-		return
-			'<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>' .
-			'<div id="fancy_treeview-page" class="fancy_treeview-tab">' .
-			'<ol id="fancy_treeview">' . $this->module()->printTabContent($controller->record->getXref()) . '</ol>' .
-			'</div>';
+		
+		$html =	'<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>';
+		if ($this->pdf()) {
+			$html .= $this->pdf()->includeJs($controller, true);			
+		}
+		$html .= '<div id="fancy_treeview-page" class="fancy_treeview-tab">';
+		if ($this->pdf()) {
+			$html .= $this->pdf()->getPdfWaitingMessage();
+			$html .= $this->pdf()->getPdfIcon();
+		}
+		$html .= '<ol id="fancy_treeview">' . $this->module()->printTabContent($controller->record->getXref()) . '</ol>';
+		$html .= '</div>';
+		return $html;
 	}
 
 	/** {@inheritdoc} */
