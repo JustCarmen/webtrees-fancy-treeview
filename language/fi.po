@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-26 16:41+0100\n"
-"PO-Revision-Date: 2016-05-03 07:09+0000\n"
+"PO-Revision-Date: 2016-12-30 19:08+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Finnish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/fi/>\n"
 "Language: fi\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.5\n"
+"X-Generator: Weblate 2.10\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -239,9 +239,8 @@ msgid "Show occupations"
 msgstr "Näytä ammatit"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
-#, fuzzy
 msgid "Show places"
-msgstr "Näytä paikat?"
+msgstr "Näytä paikat"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
@@ -323,9 +322,8 @@ msgid "Turn this option on if you want to display singles in the next generation
 msgstr "Valitse tämä vaihtoehto, jos haluat näyttää naimattomat henkilöt sukupolvien lohkoissa. Naimattomat henkilöt ovat henkilöitä ilman kumppania ja lapsia. Kun tämä vaihtoehto on käytössä, jokainen perheen lapsi näkyy yksityiskohtaisesti seuraavan sukupolven lohkossa."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:410
-#, fuzzy
 msgid "Use default GEDCOM settings to abbreviate place names"
-msgstr "Käytä Gedcomin oletusasetuksia paikannimien lyhennyksiin?"
+msgstr "Käytä Gedcomin oletusasetuksia paikannimien lyhennyksiin"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
