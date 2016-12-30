@@ -37,7 +37,7 @@ class PageTemplate extends FancyTreeviewClass {
 	}
 
 	protected function pageTitle() {
-		/* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
+		return /* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
 	}
 
 	protected function pageHeader(PageController $controller) {
