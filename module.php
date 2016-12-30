@@ -344,7 +344,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		$html .= '<div id="fancy_treeview-page" class="fancy_treeview-tab">';
 		if ($this->pdf()) {
 			$html .= $this->pdf()->getPdfWaitingMessage();
-			$html .= $this->pdf()->getPdfIcon();
+			if ($this->pdf()->tab()) {
+				$html .= $this->pdf()->getPdfIcon();
+			}
 		}
 		$html .= '<ol id="fancy_treeview">' . $this->module()->printTabContent($controller->record->getXref()) . '</ol>';
 		$html .= '</div>';
