@@ -37,10 +37,10 @@ class PageTemplate extends FancyTreeviewClass {
 	}
 
 	protected function pageTitle() {
-		return /* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
+		/* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
 	}
 
-	private function pageHeader(PageController $controller) {
+	protected function pageHeader(PageController $controller) {
 		$controller
 			->setPageTitle($this->pageTitle())
 			->pageHeader();
@@ -52,7 +52,7 @@ class PageTemplate extends FancyTreeviewClass {
 		}
 	}
 
-	private function pageBody(PageController $controller) {
+	protected function pageBody(PageController $controller) {
 		?>
 		<!-- FANCY TREEVIEW PAGE -->
 		<div id="fancy_treeview-page">
