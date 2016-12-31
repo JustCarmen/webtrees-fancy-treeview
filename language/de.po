@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2016-12-26 16:41+0100\n"
+"POT-Creation-Date: 2016-12-31 17:45+0100\n"
 "PO-Revision-Date: 2016-12-27 07:59+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: fancy_treeview/app/FancyTreeviewClass.php:1118
+#: fancy_treeview/app/FancyTreeviewClass.php:1124
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -31,6 +31,11 @@ msgstr "<strong>Notiz</strong>: Diese Option kann besondern bei großen Stammbä
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
 msgstr "Eine ausführliche Übersicht über die Nachkommen einer Familie."
 
+#. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
+#: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
+msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
+msgstr ""
+
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
 msgstr "Startperson wechseln"
@@ -39,15 +44,15 @@ msgstr "Startperson wechseln"
 msgid "Check relationship between partners"
 msgstr "Beziehung zwischen Partnern prüfen?"
 
-#: fancy_treeview_pdf/app/FancyTreeviewPdfClass.php:47
+#: fancy_treeview_pdf/app/FancyTreeviewPdfClass.php:48
 msgid "Creating PDF file. This process may take a while. Please wait..."
 msgstr "Eine PDF-Datei wird erstellt. Dies kann eine Weile dauern. Bitte warten Sie …"
 
 #. I18N: %s is the surname of the root individual
-#: fancy_treeview/app/FancyTreeviewClass.php:210
+#: fancy_treeview/app/FancyTreeviewClass.php:209
 #: fancy_treeview/app/Schema/Migration0.php:42
 #: fancy_treeview/app/Template/AdminTemplate.php:282
-#: fancy_treeview/module.php:400
+#: fancy_treeview/module.php:416
 #, php-format
 msgid "Descendants of the %s family"
 msgstr "Nachkommen der Familie %s"
@@ -70,7 +75,7 @@ msgstr "Fehler: Die Startperson zu diesem Namen existiert bereits."
 msgid "Error: The surname you entered doesn’t exist in this tree."
 msgstr "Fehler: Der eingegebene Name existiert nicht in diesem Stammbaum."
 
-#: fancy_treeview/module.php:388
+#: fancy_treeview/module.php:404
 msgid "Family tree overview"
 msgstr "Stammbaumübersicht"
 
@@ -95,32 +100,32 @@ msgstr "Fancy Treeview-Erweiterung: Bietet Ihren Besuchern das Herunterladen der
 msgid "Go"
 msgstr "Los"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:643
+#: fancy_treeview/app/FancyTreeviewClass.php:641
 msgid "He had a relationship with"
 msgstr "Er hatte eine Beziehung mit"
 
 #. I18N: %s is a number
-#: fancy_treeview/app/FancyTreeviewClass.php:569
+#: fancy_treeview/app/FancyTreeviewClass.php:566
 #, php-format
 msgid "He married %s times"
 msgstr "Er heiratete %s mal"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1031
+#: fancy_treeview/app/FancyTreeviewClass.php:1037
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr "Er wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1033
+#: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr "Er wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1013
+#: fancy_treeview/app/FancyTreeviewClass.php:1019
 msgctxt "PAST"
 msgid "He was born"
 msgstr "Er wurde geboren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1015
+#: fancy_treeview/app/FancyTreeviewClass.php:1021
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "Er wurde geboren"
@@ -171,7 +176,7 @@ msgstr "Seitentitel"
 msgid "Pages"
 msgstr "Seiten"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:457
+#: fancy_treeview/app/FancyTreeviewClass.php:454
 msgid "Read more"
 msgstr "Lies mehr"
 
@@ -197,32 +202,32 @@ msgstr "Startperson suchen"
 msgid "Select your country"
 msgstr "Ihr Land auswählen"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:646
+#: fancy_treeview/app/FancyTreeviewClass.php:644
 msgid "She had a relationship with"
 msgstr "Sie hatte eine Beziehung mit"
 
 #. I18N: %s is a number
-#: fancy_treeview/app/FancyTreeviewClass.php:575
+#: fancy_treeview/app/FancyTreeviewClass.php:572
 #, php-format
 msgid "She married %s times"
 msgstr "Sie heiratete %s mal"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1031
+#: fancy_treeview/app/FancyTreeviewClass.php:1037
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr "Sie wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1033
+#: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr "Sie wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1013
+#: fancy_treeview/app/FancyTreeviewClass.php:1019
 msgctxt "PAST"
 msgid "She was born"
 msgstr "Sie wurde geboren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1015
+#: fancy_treeview/app/FancyTreeviewClass.php:1021
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Sie wurde geboren"
@@ -230,6 +235,10 @@ msgstr "Sie wurde geboren"
 #: fancy_treeview/app/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
 msgstr "Fancy Treeview-Reiter auf der Personenseite anzeigen?"
+
+#: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
+msgid "Show a PDF icon in the Fancy Treeview tab"
+msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -253,24 +262,24 @@ msgid "Surname in page title"
 msgstr "Name im Seitentitel"
 
 #. I18N: %s is an ordinal
-#: fancy_treeview/app/FancyTreeviewClass.php:571
+#: fancy_treeview/app/FancyTreeviewClass.php:568
 #, php-format
 msgid "The %s time he married"
 msgstr "Das %s Mal heiratete er"
 
 #. I18N: %s is an ordinal
-#: fancy_treeview/app/FancyTreeviewClass.php:577
+#: fancy_treeview/app/FancyTreeviewClass.php:574
 #, php-format
 msgid "The %s time she married"
 msgstr "Das %s Mal heiratete sie"
 
 #. I18N: %s is an ordinal
-#: fancy_treeview/app/FancyTreeviewClass.php:583
+#: fancy_treeview/app/FancyTreeviewClass.php:580
 #, php-format
 msgid "The %s time this individual married"
 msgstr "Das %s Mal heiratete diese Person"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:470
+#: fancy_treeview/app/FancyTreeviewClass.php:467
 msgid "The details of this generation are private."
 msgstr "Die Einzelheiten zu dieser Generation sind nicht öffentlich."
 
@@ -294,16 +303,16 @@ msgstr "Die Einstellungen für diesen Stammbaum wurden erfolgreich aktualisiert.
 msgid "This individual doesn’t exist anymore in this tree"
 msgstr "Diese Person existiert nicht mehr in diesem Stammbaum."
 
-#: fancy_treeview/app/FancyTreeviewClass.php:649
+#: fancy_treeview/app/FancyTreeviewClass.php:647
 msgid "This individual had a relationship with"
 msgstr "Diese Person hatte eine Beziehung mit"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:595
+#: fancy_treeview/app/FancyTreeviewClass.php:592
 msgid "This individual married"
 msgstr "Diese Person heiratete"
 
 #. I18N: %s is a number
-#: fancy_treeview/app/FancyTreeviewClass.php:581
+#: fancy_treeview/app/FancyTreeviewClass.php:578
 #, php-format
 msgid "This individual married %s times"
 msgstr "Diese Person heiratete %s Mal"
@@ -353,171 +362,171 @@ msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktio
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
 msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne die passende, installierte und aktivierte Fancy Treeview-Version. Bitte installieren und aktivieren Sie die Fancy Treeview-Version %s oder höher, um dieses Modul nutzen zu können. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\" target=\"_blank\">Hier können Sie die aktuelle Version herunterladen</a>."
 
-#: fancy_treeview/app/FancyTreeviewClass.php:734
+#: fancy_treeview/app/FancyTreeviewClass.php:732
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr "adoptiertes Kind"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:737
+#: fancy_treeview/app/FancyTreeviewClass.php:735
 msgctxt "MALE"
 msgid "adopted child"
 msgstr "adoptiertes Kind"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:808
+#: fancy_treeview/app/FancyTreeviewClass.php:806
 msgid "adopted child of"
 msgstr "adoptiertes Kind von"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:799
+#: fancy_treeview/app/FancyTreeviewClass.php:797
 msgid "adopted daughter of"
 msgstr "adoptierte Tochter von"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:790
+#: fancy_treeview/app/FancyTreeviewClass.php:788
 msgid "adopted son of"
 msgstr "adoptierter Sohn von"
 
 #. I18N: Note the space at the end of the string
-#: fancy_treeview/app/FancyTreeviewClass.php:624
-#: fancy_treeview/app/FancyTreeviewClass.php:679
-#: fancy_treeview/app/FancyTreeviewClass.php:692
-#: fancy_treeview/app/FancyTreeviewClass.php:709
-#: fancy_treeview/app/FancyTreeviewClass.php:821
-#: fancy_treeview/app/FancyTreeviewClass.php:875
-#: fancy_treeview/app/FancyTreeviewClass.php:1061
-#: fancy_treeview/app/FancyTreeviewClass.php:1069
-#: fancy_treeview/app/FancyTreeviewClass.php:1077
+#: fancy_treeview/app/FancyTreeviewClass.php:621
+#: fancy_treeview/app/FancyTreeviewClass.php:677
+#: fancy_treeview/app/FancyTreeviewClass.php:690
+#: fancy_treeview/app/FancyTreeviewClass.php:707
+#: fancy_treeview/app/FancyTreeviewClass.php:819
+#: fancy_treeview/app/FancyTreeviewClass.php:880
+#: fancy_treeview/app/FancyTreeviewClass.php:1067
+#: fancy_treeview/app/FancyTreeviewClass.php:1075
+#: fancy_treeview/app/FancyTreeviewClass.php:1083
 msgid "and "
 msgstr "und "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
-#: fancy_treeview/app/FancyTreeviewClass.php:1100
+#: fancy_treeview/app/FancyTreeviewClass.php:1106
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr "im Alter von %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
-#: fancy_treeview/app/FancyTreeviewClass.php:1102
+#: fancy_treeview/app/FancyTreeviewClass.php:1108
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "im Alter von %s Jahren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1590
+#: fancy_treeview/app/FancyTreeviewClass.php:1600
 msgid "cancel"
 msgstr "Zurück"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:810
+#: fancy_treeview/app/FancyTreeviewClass.php:808
 msgid "child of"
 msgstr "Kind von"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1062
+#: fancy_treeview/app/FancyTreeviewClass.php:1068
 msgctxt "FEMALE"
 msgid "died"
 msgstr "starb"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1062
+#: fancy_treeview/app/FancyTreeviewClass.php:1068
 msgctxt "MALE"
 msgid "died"
 msgstr "starb"
 
 #. I18N: eighth marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:562
+#: fancy_treeview/app/FancyTreeviewClass.php:559
 msgid "eighth"
 msgstr "achte"
 
 #. I18N: fifth marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:559
+#: fancy_treeview/app/FancyTreeviewClass.php:556
 msgid "fifth"
 msgstr "fünfte"
 
 #. I18N: first marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:555
+#: fancy_treeview/app/FancyTreeviewClass.php:552
 msgid "first"
 msgstr "erste"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1588
+#: fancy_treeview/app/FancyTreeviewClass.php:1598
 msgid "follow"
 msgstr "Weiter"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:724
+#: fancy_treeview/app/FancyTreeviewClass.php:722
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr "Pflegetochter"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:727
+#: fancy_treeview/app/FancyTreeviewClass.php:725
 msgctxt "MALE"
 msgid "foster child"
 msgstr "Pflegesohn"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:806
+#: fancy_treeview/app/FancyTreeviewClass.php:804
 msgid "foster child of"
 msgstr "Pflegekind von"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:797
+#: fancy_treeview/app/FancyTreeviewClass.php:795
 msgid "foster daughter of"
 msgstr "Pflegetochter von"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:788
+#: fancy_treeview/app/FancyTreeviewClass.php:786
 msgid "foster son of"
 msgstr "Pflegesohn von"
 
 #. I18N: fourth marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:558
+#: fancy_treeview/app/FancyTreeviewClass.php:555
 msgid "fourth"
 msgstr "vierte"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:700
+#: fancy_treeview/app/FancyTreeviewClass.php:698
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "hatte"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:682
-#: fancy_treeview/app/FancyTreeviewClass.php:702
+#: fancy_treeview/app/FancyTreeviewClass.php:680
+#: fancy_treeview/app/FancyTreeviewClass.php:700
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "hatte"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:694
+#: fancy_treeview/app/FancyTreeviewClass.php:692
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "hatte"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:680
-#: fancy_treeview/app/FancyTreeviewClass.php:696
+#: fancy_treeview/app/FancyTreeviewClass.php:678
+#: fancy_treeview/app/FancyTreeviewClass.php:694
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "hatte"
 
 #. I18N: Note the space at the end of the string
-#: fancy_treeview/app/FancyTreeviewClass.php:1124
+#: fancy_treeview/app/FancyTreeviewClass.php:1130
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "im "
 
 #. I18N: Note the space at the end of the string
-#: fancy_treeview/app/FancyTreeviewClass.php:1127
+#: fancy_treeview/app/FancyTreeviewClass.php:1133
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "im Jahr "
 
 #. I18N: Note the space at the end of the string
-#: fancy_treeview/app/FancyTreeviewClass.php:1144
+#: fancy_treeview/app/FancyTreeviewClass.php:1150
 msgctxt "before placesnames"
 msgid "in "
 msgstr "in "
 
 #. I18N: ninth marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:563
+#: fancy_treeview/app/FancyTreeviewClass.php:560
 msgid "ninth"
 msgstr "neunte"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1589
+#: fancy_treeview/app/FancyTreeviewClass.php:1599
 #: fancy_treeview/app/Template/AdminTemplate.php:152
 msgid "ok"
 msgstr "Los"
 
 #. I18N: Note the space at the end of the string
-#: fancy_treeview/app/FancyTreeviewClass.php:1121
+#: fancy_treeview/app/FancyTreeviewClass.php:1127
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "am "
@@ -535,91 +544,91 @@ msgid "search"
 msgstr "Suchen"
 
 #. I18N: second marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:556
+#: fancy_treeview/app/FancyTreeviewClass.php:553
 msgid "second"
 msgstr "zweite"
 
 #. I18N: seventh marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:561
+#: fancy_treeview/app/FancyTreeviewClass.php:558
 msgid "seventh"
 msgstr "siebente"
 
 #. I18N: sixth marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:560
+#: fancy_treeview/app/FancyTreeviewClass.php:557
 msgid "sixth"
 msgstr "sechste"
 
 #. I18N: tenth marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:564
+#: fancy_treeview/app/FancyTreeviewClass.php:561
 msgid "tenth"
 msgstr "zehnte"
 
 #. I18N: third marriage
-#: fancy_treeview/app/FancyTreeviewClass.php:557
+#: fancy_treeview/app/FancyTreeviewClass.php:554
 msgid "third"
 msgstr "dritte"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1040
+#: fancy_treeview/app/FancyTreeviewClass.php:1046
 msgctxt "PRESENT (MALE)"
 msgid "was bapitized"
 msgstr "wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1038
+#: fancy_treeview/app/FancyTreeviewClass.php:1044
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr "wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1038
+#: fancy_treeview/app/FancyTreeviewClass.php:1044
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr "wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1040
+#: fancy_treeview/app/FancyTreeviewClass.php:1046
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "wurde getauft"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1020
+#: fancy_treeview/app/FancyTreeviewClass.php:1026
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "wurde geboren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1020
+#: fancy_treeview/app/FancyTreeviewClass.php:1026
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "wurde geboren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1022
+#: fancy_treeview/app/FancyTreeviewClass.php:1028
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "wurde geboren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1022
+#: fancy_treeview/app/FancyTreeviewClass.php:1028
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "wurde geboren"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1070
+#: fancy_treeview/app/FancyTreeviewClass.php:1076
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "wurde begraben"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1070
+#: fancy_treeview/app/FancyTreeviewClass.php:1076
 msgctxt "MALE"
 msgid "was buried"
 msgstr "wurde begraben"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1078
+#: fancy_treeview/app/FancyTreeviewClass.php:1084
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr "wurde eingeäschert"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:1078
+#: fancy_treeview/app/FancyTreeviewClass.php:1084
 msgctxt "MALE"
 msgid "was cremated"
 msgstr "wurde eingeäschert"
 
-#: fancy_treeview/app/FancyTreeviewClass.php:624
+#: fancy_treeview/app/FancyTreeviewClass.php:621
 msgid "were divorced"
 msgstr "wurden geschieden"
 
