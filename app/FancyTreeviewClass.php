@@ -1284,14 +1284,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 	/**
 	 * Check if this is a private record
-	 *
+	 * $records can be an array of xrefs or an array of objects
+	 * 
 	 * @param type $record
 	 * @param type $xrefs
 	 * @return boolean
 	 */
-	private function checkPrivacy($record, $xrefs = false) {
+	private function checkPrivacy($records, $xrefs = false) {
 		$count = 0;
-		foreach ($record as $person) {
+		foreach ($records as $person) {
 			if ($xrefs) {
 				$person = $this->getPerson($person);
 			}
