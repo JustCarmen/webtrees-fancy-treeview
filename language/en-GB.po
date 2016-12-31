@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-12-27 06:21+0000\n"
+"PO-Revision-Date: 2016-12-31 18:44+0000\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: English (United Kingdom) <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/en-GB/>\n"
 "Language: en-GB\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.8\n"
+"X-Generator: Weblate 2.10\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
@@ -36,7 +36,7 @@ msgstr "A Fancy overview of the descendants of one family (branch) in a narrativ
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -240,7 +240,7 @@ msgstr "Show a Fancy Treeview tab on the individual page"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Show a PDF icon in the Fancy Treeview tab"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
