@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-26 16:41+0100\n"
-"PO-Revision-Date: 2016-05-15 18:54+0000\n"
+"PO-Revision-Date: 2016-12-27 09:52+0000\n"
 "Last-Translator: Chris Theron <tronsmit@gmail.com>\n"
 "Language-Team: Afrikaans <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/af/>\n"
 "Language: af\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.5\n"
+"X-Generator: Weblate 2.8\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
@@ -242,7 +242,6 @@ msgid "Show occupations"
 msgstr "Vertoon beroepe"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
-#, fuzzy
 msgid "Show places"
 msgstr "Vertoon plekke"
 
@@ -326,9 +325,8 @@ msgid "Turn this option on if you want to display singles in the next generation
 msgstr "Ontsper hierdie instelling as jy enkelpersone wil vertoon in die daaropvolgende geslag-blokke. Enkelpersone is persone sonder metgeselle of kinders. Wanneer hierdie instelling ontsper word, sal elke kind van ’n gesin in die volgende geslag-blok in detail vertoon word."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:410
-#, fuzzy
 msgid "Use default GEDCOM settings to abbreviate place names"
-msgstr "Moet die verstek GEDCOM instellinge gebruik word om plekname af te kort?"
+msgstr "Gebruik die verstek GEDCOM instellinge om plekname af te kort"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
