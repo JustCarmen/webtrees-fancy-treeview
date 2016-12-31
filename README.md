@@ -1,7 +1,7 @@
-Fancy Tree View
+Fancy Treeview
 ===============
 
-Fancy Tree View module for webtrees.
+Fancy Treeview module for webtrees.
 
 This module requires [webtrees 1.7.0](https://github.com/fisharebest/webtrees) or later. Download the latest stable release of this module [here](https://github.com/JustCarmen/fancy_treeview/releases/latest).
 
@@ -9,7 +9,7 @@ Description
 -----------
 With this module it is possible to add multiple pages for several branches in your family tree. The branches will be listed from the first generation down to the last one in a narrative way. It gives your users a quick overview of your family tree. Of course privacy rules are respected.
 
-On the Fancy Tree View configuration page you have some options. To start using the module enter a surname in the text field. The script will automatically search for the oldest person with this surname. It is also possible to manually enter the ID of the person you want to set as root person. After adding the root person you can set several other options. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.
+On the Fancy Treeview configuration page you have some options. To start using the module enter a surname in the text field. The script will automatically search for the oldest person with this surname. It is also possible to manually enter the ID of the person you want to set as root person. After adding the root person you can set several other options. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.
 
 The package comes with a language file to translate the module into your own language. At the moment the module is already translated into 14 different languages. The module supports rtl-languages.
 
