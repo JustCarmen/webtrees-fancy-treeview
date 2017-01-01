@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-01-01 18:52+0000\n"
+"PO-Revision-Date: 2017-01-01 18:56+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
@@ -34,7 +34,7 @@ msgstr "Eine ausführliche Übersicht über die Nachkommen einer Familie."
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Das PDF-Symbol ist standardmäßig auf der Fancy Treeview-Seite sichtbar. Wenn Sie diese Option aktivieren, wird das PDF-Symbol auch auf dem Fancy Treeview-Reiter der Personenseite angezeigt."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
