@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-01-01 18:56+0000\n"
+"PO-Revision-Date: 2017-01-01 19:09+0000\n"
 "Last-Translator: Martin Pannier <der@bauschaffen.de>\n"
 "Language-Team: German <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/de/>\n"
 "Language: de\n"
@@ -24,7 +24,7 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr "<strong>Notiz</strong>: Diese Option kann besondern bei großen Stammbäumen viel Zeit und/oder Speicher benötigen und damit zu einem sehr langsames Laden der Seite oder einem ’execution time out error’ auf Ihrem Server führen. Wenn Sie ein solches Verhalten feststellen, reduzieren Sie bitte die Anzahl der auf einmal zu erstellenden Generationen oder nutzen Sie es nicht in Verbindung mit der vorherigen Option ’Einzelpersonen anzeigen’. Nutzen Sie diese Option überhaupt nicht, wenn weiterhin Probleme auftreten."
+msgstr "<strong>Notiz</strong>: Diese Option kann besondern bei großen Stammbäumen viel Zeit und/oder Speicher benötigen und damit zu einem sehr langsames Laden der Seite oder einem ’execution time out error’ auf Ihrem Server führen. Wenn Sie ein solches Verhalten feststellen, reduzieren Sie bitte die Anzahl der auf einmal zu erstellenden Generationen oder verwenden Sie es nicht in Verbindung mit der vorherigen Option ’Einzelpersonen anzeigen’. Verwenden Sie diese Option überhaupt nicht, wenn weiterhin Probleme auftreten."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
@@ -34,7 +34,7 @@ msgstr "Eine ausführliche Übersicht über die Nachkommen einer Familie."
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr "Das PDF-Symbol ist standardmäßig auf der Fancy Treeview-Seite sichtbar. Wenn Sie diese Option aktivieren, wird das PDF-Symbol auch auf dem Fancy Treeview-Reiter der Personenseite angezeigt."
+msgstr "Das PDF-Symbol ist standardmäßig auf der Fancy Treeview-Seite sichtbar. Wenn Sie diese Einstellung aktivieren, wird das PDF-Symbol auch auf dem Fancy Treeview-Reiter der Personenseite angezeigt."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -42,7 +42,7 @@ msgstr "Startperson wechseln"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
-msgstr "Beziehung zwischen Partnern prüfen?"
+msgstr "Beziehung zwischen Partnern prüfen"
 
 #: fancy_treeview_pdf/app/FancyTreeviewPdfClass.php:48
 msgid "Creating PDF file. This process may take a while. Please wait..."
@@ -133,7 +133,7 @@ msgstr "Er wurde geboren"
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr "Hier können Sie auswählen, ob Sie die Größe der Standardminiaturbilder für die Fancy Treeview-Seiten verändern möchten. Sie können die Größe in Prozent oder in Pixeln angeben. Falls Sie ’nein’ wählen, wird das Standardminiaturbild in der Größe benutzt, wie Sie es in den Stammbaumeinstellungen angegeben haben."
+msgstr "Hier können Sie auswählen, ob Sie die Größe der Standardminiaturbilder für die Fancy Treeview-Seiten verändern möchten. Sie können die Größe in Prozent oder in Pixeln angeben. Falls Sie ’nein’ wählen, wird das Standardminiaturbild in der Größe verwendet, wie Sie es in den Stammbaumeinstellungen angegeben haben."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:500
@@ -182,7 +182,7 @@ msgstr "Lies mehr"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:445
 msgid "Resize thumbnails"
-msgstr "Miniaturbilder anpassen?"
+msgstr "Miniaturbilder anpassen"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:162
 #: fancy_treeview/app/Template/AdminTemplate.php:232
@@ -234,7 +234,7 @@ msgstr "Sie wurde geboren"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr "Fancy Treeview-Reiter auf der Personenseite anzeigen?"
+msgstr "Fancy Treeview-Reiter auf der Personenseite anzeigen"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
@@ -246,15 +246,15 @@ msgstr "Eingabefeld zum Wechsel der Startperson"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:436
 msgid "Show occupations"
-msgstr "Berufe anzeigen?"
+msgstr "Berufe anzeigen"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
 msgid "Show places"
-msgstr "Orte anzeigen?"
+msgstr "Orte anzeigen"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
-msgstr "Unverheiratete Personen anzeigen?"
+msgstr "Unverheiratete Personen anzeigen"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:164
 #: fancy_treeview/app/Template/AdminTemplate.php:234
@@ -333,20 +333,20 @@ msgstr "Aktivieren Sie diese Option, wenn Sie auch unverheiratete und kinderlose
 
 #: fancy_treeview/app/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names"
-msgstr "Standardeinstellungen zur Abkürzung von Ortsnamen übernehmen?"
+msgstr "webtrees-Einstellungen zur Abkürzung von Ortsnamen verwenden"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
-msgstr "Alle Namensteile im Hauptmenu verwenden?"
+msgstr "Vollständigen Namen im Menu verwenden"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr "Quadratische Miniaturbilder nutzen?"
+msgstr "Quadratische Miniaturbilder verwenden"
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/app/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr "Nutzen Sie die folgende Suchmaske zur Suche einer Startperson. Nach der erfolgreichen Suche wird die Fancy Treeview-Seite automatisch erstellt. Sie können beliebig viele Startpersonen hinzufügen."
+msgstr "Verwenden Sie die folgende Suchmaske zur Suche einer Startperson. Nach der erfolgreichen Suche wird die Fancy Treeview-Seite automatisch erstellt. Sie können beliebig viele Startpersonen hinzufügen."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:393
@@ -355,12 +355,12 @@ msgstr "Hier überprüft das Skript, ob ein (Ehe-) Paar gemeinsame Vorfahren hat
 
 #: fancy_treeview_pdf/module.php:61
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne das aktivierte Fancy Treeview-Modul. Bitte aktivieren Sie Fancy Treeview, um dieses Modul nutzen zu können."
+msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne das aktivierte Fancy Treeview-Modul. Bitte aktivieren Sie Fancy Treeview, um dieses Modul verwenden zu können."
 
 #: fancy_treeview_pdf/module.php:53
 #, php-format
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
-msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne die passende, installierte und aktivierte Fancy Treeview-Version. Bitte installieren und aktivieren Sie die Fancy Treeview-Version %s oder höher, um dieses Modul nutzen zu können. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\" target=\"_blank\">Hier können Sie die aktuelle Version herunterladen</a>."
+msgstr "Sie haben das Fancy Treeview PDF-Modul installiert. Dieses Modul funktioniert nicht ohne die passende, installierte und aktivierte Fancy Treeview-Version. Bitte installieren und aktivieren Sie die Fancy Treeview-Version %s oder höher, um dieses Modul verwenden zu können. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\" target=\"_blank\">Hier können Sie die aktuelle Version herunterladen</a>."
 
 #: fancy_treeview/app/FancyTreeviewClass.php:732
 msgctxt "FEMALE"
