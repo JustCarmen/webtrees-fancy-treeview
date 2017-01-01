@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-12-27 09:52+0000\n"
+"PO-Revision-Date: 2017-01-01 06:56+0000\n"
 "Last-Translator: Chris Theron <tronsmit@gmail.com>\n"
 "Language-Team: Afrikaans <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/af/>\n"
 "Language: af\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.8\n"
+"X-Generator: Weblate 2.10\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
@@ -36,7 +36,7 @@ msgstr "'n Fancy oorsig van die nageslag van 'n familietak in 'n verhalende tran
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "By verstek is die PDF ikoon sigbaar op die Fancy Treeview bladsy. As jy hierdie opsie ontsper, is die PDF ikoon ook sigbaar in die Fancy Treeview oortjie op die persoonsbladsy."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -240,7 +240,7 @@ msgstr "Vertoon ’n Fancy Treeview oortjie op die persoonsbladsy"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Vertoon ’n PDF ikoon in die Fancy Treeview oortjie"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
