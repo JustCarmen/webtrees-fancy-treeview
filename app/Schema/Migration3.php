@@ -27,17 +27,17 @@ class Migration3 implements MigrationInterface {
 	/** {@inheritDoc} */
 	public function upgrade() {
 		// Add new options 'NUMBLOCKS' and 'CHECK_RELATIONSHIP'
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
 			foreach ($options as $option) {
-				$option['NUMBLOCKS'] = '0';
-				$option['CHECK_RELATIONSHIP'] = '0';
-				$new_options[] = $option;
+				$option['NUMBLOCKS']			 = '0';
+				$option['CHECK_RELATIONSHIP']	 = '0';
+				$new_options[]					 = $option;
 			}
 			if (isset($new_options)) {
 				Database::prepare(

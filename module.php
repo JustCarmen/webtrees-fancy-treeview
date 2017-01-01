@@ -38,13 +38,12 @@ use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
-	const CUSTOM_VERSION = '1.7.7-dev';
-	const CUSTOM_WEBSITE = 'http://www.justcarmen.nl/fancy-modules/fancy-treeview/';
-
+	const CUSTOM_VERSION			 = '1.7.7-dev';
+	const CUSTOM_WEBSITE			 = 'http://www.justcarmen.nl/fancy-modules/fancy-treeview/';
 	// How to update the database schema for this module
-	const SCHEMA_TARGET_VERSION			= 8;
-	const SCHEMA_SETTING_NAME			= 'FTV_SCHEMA_VERSION';
-	const SCHEMA_MIGRATION_PREFIX		= '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
+	const SCHEMA_TARGET_VERSION	 = 8;
+	const SCHEMA_SETTING_NAME		 = 'FTV_SCHEMA_VERSION';
+	const SCHEMA_MIGRATION_PREFIX	 = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
 
 	/** @var string location of the fancy treeview module files */
 	var $directory;
@@ -336,10 +335,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		global $controller;
 
 		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-		
-		$html =	'<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>';
+
+		$html = '<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>';
 		if ($this->pdf()) {
-			$html .= $this->pdf()->includeJs($controller, true);			
+			$html .= $this->pdf()->includeJs($controller, true);
 		}
 		$html .= '<div id="fancy_treeview-page" class="fancy_treeview-tab">';
 		if ($this->pdf()) {
@@ -361,18 +360,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	/** {@inheritdoc} */
 	public function getMenu() {
 		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-		
+
 		$this->getPreLoadModuleContent();
 		return $this->menuFancyTreeview();
 	}
-	
+
 	public function getPreloadModuleContent() {
 		global $controller;
-		
+
 		if (Theme::theme()->themeId() === '_administration') {
 			return null;
 		}
-		
+
 		// load the module stylesheets
 		echo $this->module()->getStylesheet();
 
@@ -385,7 +384,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	public function menuFancyTreeview() {
-		
+
 		// Function has already run. We need this to re-use the menu in extensions
 		static $menu;
 		if ($menu !== null && count($menu->getSubmenus()) > 0) {
@@ -404,10 +403,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				$menu = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
-					$xref		= $FTV_ITEM['PID'];
-					$surname	= $FTV_ITEM['SURNAME'];
-					$record		= Individual::getInstance($xref, $this->tree());
-					$tree_name	= Filter::escapeUrl($this->tree()->getName());
+					$xref		 = $FTV_ITEM['PID'];
+					$surname	 = $FTV_ITEM['SURNAME'];
+					$record		 = Individual::getInstance($xref, $this->tree());
+					$tree_name	 = Filter::escapeUrl($this->tree()->getName());
 
 					if ($record && $record->canShowName()) {
 						if ($this->module()->options('use_fullname') == true) {

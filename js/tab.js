@@ -15,7 +15,7 @@
  */
 
 // set style dynamically on parents blocks with an image
-jQuery(".parents").each(function () {
+jQuery(".parents").each(function() {
 	if (jQuery(this).find(".gallery").length > 0) {
 		var height = jQuery(this).find(".gallery img").height() + 10 + "px";
 		jQuery(this).css({
@@ -25,7 +25,7 @@ jQuery(".parents").each(function () {
 });
 
 // remove the empty hyphen on childrens lifespan if death date is unknown.
-jQuery(".lifespan span:last-child").each(function () {
+jQuery(".lifespan span:last-child").each(function() {
 	if (jQuery(this).attr("title") === "") {
 		jQuery(this).parent().html(jQuery(this).prev("span")).prepend(" (").append(")");
 	}

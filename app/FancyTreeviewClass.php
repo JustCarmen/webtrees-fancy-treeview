@@ -40,9 +40,9 @@ use PDO;
  */
 class FancyTreeviewClass extends FancyTreeviewModule {
 	
-	/* var array of xrefs */
+	/** var array of xrefs */
 	public $generation;
-	
+
 	/**
 	 * Set the default module options
 	 *
@@ -283,8 +283,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$html = '';
 		if (!isset($gen) && !isset($pids)) {
-			$gen		 = 1;
-			$numblocks	 = $numblocks - 1;
+			$gen				 = 1;
+			$numblocks			 = $numblocks - 1;
 			$this->generation	 = array($this->rootId());
 			$html .= $this->printGeneration($gen);
 		} else {
@@ -328,10 +328,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string (html)
 	 */
 	protected function printTabContent($pid) {
-		$html		 = '';
-		$gen		 = 1;
-		$root		 = $pid; // save value for read more link
-		$this->generation = array($pid);
+		$html				 = '';
+		$gen				 = 1;
+		$root				 = $pid; // save value for read more link
+		$this->generation	 = array($pid);
 		$html .= $this->printGeneration($gen);
 
 		while (count($this->generation) > 0 && $gen < 4) {

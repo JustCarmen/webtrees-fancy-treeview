@@ -27,16 +27,16 @@ class Migration6 implements MigrationInterface {
 	/** {@inheritDoc} */
 	public function upgrade() {
 		// add new option 'USE_FTV_THUMBS'
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
 			foreach ($options as $option) {
-				$option['USE_FTV_THUMBS'] = '1';
-				$new_options[] = $option;
+				$option['USE_FTV_THUMBS']	 = '1';
+				$new_options[]				 = $option;
 			}
 			if (isset($new_options)) {
 				Database::prepare(

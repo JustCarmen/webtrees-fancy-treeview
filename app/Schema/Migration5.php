@@ -27,8 +27,8 @@ class Migration5 implements MigrationInterface {
 	/** {@inheritDoc} */
 	public function upgrade() {
 
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
@@ -36,7 +36,7 @@ class Migration5 implements MigrationInterface {
 		if (!empty($options)) {
 			foreach ($options as $option) {
 				$option['SHOW_PDF_ICON'] = '2';
-				$new_options[] = $option;
+				$new_options[]			 = $option;
 			}
 			if (isset($new_options)) {
 				Database::prepare(

@@ -15,11 +15,11 @@
  */
 
 function setStyle() {
-	jQuery('li.generation-block div.blockheader').each(function () {
+	jQuery('li.generation-block div.blockheader').each(function() {
 		jQuery(this).replaceWith('<table class="blockheader" cellspacing="0" cellpadding="0"><tbody><tr><td class="blockh1"></td><td class="blockh2"><div class="blockhc">' + jQuery(this).html() + '</div></td><td class="blockh3"></td>')
 	});
 }
 setStyle();
-jQuery(document).ajaxComplete(function () {
+jQuery(document).ajaxComplete(function() {
 	setStyle();
 })

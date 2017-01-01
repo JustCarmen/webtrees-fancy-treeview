@@ -27,18 +27,18 @@ class Migration4 implements MigrationInterface {
 	/** {@inheritDoc} */
 	public function upgrade() {
 		// Add options 'THUMB_SIZE', 'USE_SQUARE_THUMBS and 'SHOW_USERFORM'
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
 			foreach ($options as $option) {
-				$option['THUMB_SIZE'] = '60';
+				$option['THUMB_SIZE']		 = '60';
 				$option['USE_SQUARE_THUMBS'] = '1';
-				$option['SHOW_USERFORM'] = '2';
-				$new_options[] = $option;
+				$option['SHOW_USERFORM']	 = '2';
+				$new_options[]				 = $option;
 			}
 			if (isset($new_options)) {
 				Database::prepare(

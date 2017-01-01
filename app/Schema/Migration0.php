@@ -31,7 +31,7 @@ class Migration0 implements MigrationInterface {
 		// add key 'LINK' to FTV_SETTINGS
 		// change options to multidimensional array with array key = tree id.
 		$module_settings = 'FTV_SETTINGS';
-		$ftv_settings = Database::prepare(
+		$ftv_settings	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_settings))->fetchOne();
 
@@ -40,7 +40,7 @@ class Migration0 implements MigrationInterface {
 			foreach ($settings as $setting) {
 				if (!array_key_exists('LINK', $setting)) {
 					$setting['LINK'] = /* I18N: %s is the surname of the root individual */ I18N::translate('Descendants of the %s family', $setting['SURNAME']);
-					$new_settings[] = $setting;
+					$new_settings[]	 = $setting;
 				}
 			}
 			if (isset($new_settings)) {
@@ -51,16 +51,16 @@ class Migration0 implements MigrationInterface {
 			unset($new_settings);
 		}
 
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
 			$show_places = array_key_exists('SHOW_PLACES', $options) ? $options['SHOW_PLACES'] : '1';
-			$country = array_key_exists('COUNTRY', $options) ? $options['COUNTRY'] : '';
-			$show_occu = array_key_exists('SHOW_OCCU', $options) ? $options['SHOW_OCCU'] : '1';
+			$country	 = array_key_exists('COUNTRY', $options) ? $options['COUNTRY'] : '';
+			$show_occu	 = array_key_exists('SHOW_OCCU', $options) ? $options['SHOW_OCCU'] : '1';
 
 			foreach (Tree::getAll() as $tree) {
 				$new_options[$tree->getTreeId()] = array(

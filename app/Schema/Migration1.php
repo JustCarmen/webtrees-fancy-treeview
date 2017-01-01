@@ -28,7 +28,7 @@ class Migration1 implements MigrationInterface {
 	public function upgrade() {
 		// remove key 'LINK' from FTV_SETTINGS
 		$module_settings = 'FTV_SETTINGS';
-		$ftv_asettings = Database::prepare(
+		$ftv_asettings	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_settings))->fetchOne();
 
@@ -56,8 +56,8 @@ class Migration1 implements MigrationInterface {
 		if (!empty($bsettings)) {
 			foreach ($bsettings as $bsetting) {
 				if (!array_key_exists('DISPLAY_NAME', $bsetting)) {
-					$bsetting['DISPLAY_NAME'] = $bsetting['SURNAME'];
-					$new_bsettings[] = $bsetting;
+					$bsetting['DISPLAY_NAME']	 = $bsetting['SURNAME'];
+					$new_bsettings[]			 = $bsetting;
 				}
 			}
 			if (isset($new_bsettings)) {
@@ -68,16 +68,16 @@ class Migration1 implements MigrationInterface {
 			unset($new_bsettings);
 		}
 
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
 			foreach ($options as $option) {
-				$option['USE_FULLNAME'] = '0';
-				$new_options[] = $option;
+				$option['USE_FULLNAME']	 = '0';
+				$new_options[]			 = $option;
 			}
 			if (isset($new_options)) {
 				Database::prepare(
@@ -87,4 +87,5 @@ class Migration1 implements MigrationInterface {
 			unset($new_options);
 		}
 	}
+
 }

@@ -27,16 +27,16 @@ class Migration2 implements MigrationInterface {
 	/** {@inheritDoc} */
 	public function upgrade() {
 		// add option 'SHOW SINGLES'
-		$module_options = 'FTV_OPTIONS';
-		$ftv_options = Database::prepare(
+		$module_options	 = 'FTV_OPTIONS';
+		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
 			)->execute(array($module_options))->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
 			foreach ($options as $option) {
-				$option['SHOW_SINGLES'] = '0';
-				$new_options[] = $option;
+				$option['SHOW_SINGLES']	 = '0';
+				$new_options[]			 = $option;
 			}
 			if (isset($new_options)) {
 				Database::prepare(

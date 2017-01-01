@@ -18,8 +18,8 @@
 
 // setup numbers for scroll reference
 function addScrollNumbers() {
-	jQuery(".generation-block:visible").each(function () {
-		jQuery(this).find("a.scroll").each(function () {
+	jQuery(".generation-block:visible").each(function() {
+		jQuery(this).find("a.scroll").each(function() {
 			if (jQuery(this).text() === "" || jQuery(this).hasClass("add_num")) {
 				var id = jQuery(this).attr("href");
 				var fam_id = jQuery(id);
@@ -56,7 +56,7 @@ function btnRemove() {
 
 // set style dynamically on parents blocks with an image
 function setImageBlock() {
-	jQuery(".parents").each(function () {
+	jQuery(".parents").each(function() {
 		if (jQuery(this).find(".gallery").length > 0) {
 			var height = jQuery(this).find(".gallery img").height() + 10 + "px";
 			jQuery(this).css({
@@ -82,18 +82,18 @@ btnRemove();
 setImageBlock();
 
 // remove the empty hyphen on childrens lifespan if death date is unknown.
-jQuery(".lifespan span:last-child").each(function () {
+jQuery(".lifespan span:last-child").each(function() {
 	if (jQuery(this).attr("title") === "") {
 		jQuery(this).parent().html(jQuery(this).prev("span")).prepend(" (").append(")");
 	}
 });
 
 // prevent duplicate id\'s
-jQuery("li.family[id]").each(function () {
+jQuery("li.family[id]").each(function() {
 	var family = jQuery("[id=" + this.id + "]");
 	if (family.length > 1) {
 		i = 1;
-		family.each(function () {
+		family.each(function() {
 			famID = jQuery(this).attr("id");
 			anchor = jQuery("#fancy_treeview a.scroll[href$=" + this.id + "]:first");
 			anchor.attr("href", "#" + famID + "_" + i);
@@ -104,7 +104,7 @@ jQuery("li.family[id]").each(function () {
 });
 
 // scroll to anchors
-jQuery("#fancy_treeview-page").on("click", ".scroll", function (event) {
+jQuery("#fancy_treeview-page").on("click", ".scroll", function(event) {
 	var id = jQuery(this).attr("href");
 	if (jQuery(id).is(":hidden") || jQuery(id).length === 0) {
 		jQuery(this).addClass("link_next").trigger("click");
@@ -114,7 +114,7 @@ jQuery("#fancy_treeview-page").on("click", ".scroll", function (event) {
 });
 
 //button or link to retrieve next generations
-jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", function () {
+jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", function() {
 	if (jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
 		var id = jQuery(this).attr("href");
 		scroll = true;
@@ -133,7 +133,7 @@ jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", functi
 	lastBlock.after("<div class=\"loading-image\">");
 	jQuery("#btn_next").hide();
 
-	jQuery.get(url, function (data) {
+	jQuery.get(url, function(data) {
 		var blocks = jQuery(".generation-block", data);
 		jQuery(lastBlock).after(blocks);
 		// hidden block must be set before calling addScrollNumbers function.
