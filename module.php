@@ -443,6 +443,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			return new FancyTreeviewPdfClass;
 		}
 	}
+	
+	public static function intVersion() {
+		$version = (int) str_replace(".", "", str_replace("-dev", "", self::CUSTOM_VERSION));
+		if ($version > 999) {
+			return $version / 10;
+		} else {
+			return $version;
+		}
+	}
 
 }
 
