@@ -38,7 +38,7 @@ use JustCarmen\WebtreesAddOns\FancyTreeviewPdf\FancyTreeviewPdfClass;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterface, ModuleTabInterface, ModuleMenuInterface {
 
-	const CUSTOM_VERSION			 = '1.7.7-dev';
+	const CUSTOM_VERSION			 = '1.7.9';
 	const CUSTOM_WEBSITE			 = 'http://www.justcarmen.nl/fancy-modules/fancy-treeview/';
 	// How to update the database schema for this module
 	const SCHEMA_TARGET_VERSION	 = 8;
