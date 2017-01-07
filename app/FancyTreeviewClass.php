@@ -474,7 +474,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return string (html)
 	 */
-	protected function printIndividual($person) {
+	protected function printIndividual(Individual $person) {
 
 		if ($person->CanShow()) {
 			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
@@ -774,7 +774,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return string
 	 */
-	protected function printParents($person) {
+	protected function printParents(Individual $person) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
 			$pedi = $this->checkPedi($person, $parents);
@@ -832,7 +832,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return string
 	 */
-	protected function printName($person) {
+	protected function printName(Individual $person) {
 		$name = $person->getFullName();
 		if ($this->pdf()) {
 			return $this->pdf()->printName($person, $name);
@@ -871,7 +871,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $tag
 	 * @return string
 	 */
-	protected function printOccupations($person) {
+	protected function printOccupations(Individual $person) {
 		$html		 = '';
 		$occupations = $person->getFacts('OCCU', true);
 		$count		 = count($occupations);
@@ -972,7 +972,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return thumbnail
 	 */
-	protected function printThumbnail($person) {
+	protected function printThumbnail(Individual $person) {
 		$mediaobject = $person->findHighlightedMedia();
 		if ($mediaobject) {
 			$cache_filename = $this->getThumbnail($mediaobject);
@@ -1189,7 +1189,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return object
 	 */
-	private function getFamily($person) {
+	private function getFamily(Individual $person) {
 		foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 			return $family;
 		}
@@ -1224,7 +1224,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $person
 	 * @return boolean
 	 */
-	private function hasParentsInSameGeneration($person) {
+	private function hasParentsInSameGeneration(Individual $person) {
 		$parents = $person->getPrimaryChildFamily();
 		if ($parents) {
 			$father	 = $parents->getHusband();
