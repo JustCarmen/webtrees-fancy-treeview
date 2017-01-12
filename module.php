@@ -428,13 +428,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	protected function tree() {
 		global $WT_TREE;
 
-		if ($WT_TREE) {
-			$tree = $WT_TREE->findByName(Filter::get('ged'));
-			if ($tree) {
-				return $tree;
-			} else {
-				return $WT_TREE;
-			}
+		$tree = Tree::findByName(Filter::get('ged'));
+		if ($tree) {
+			return $tree;
+		} else {
+			return $WT_TREE;
 		}
 	}
 
