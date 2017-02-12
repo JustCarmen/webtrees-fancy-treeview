@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-05-05 13:38+0000\n"
+"PO-Revision-Date: 2017-02-12 13:40+0000\n"
 "Last-Translator: Łukasz Wileński <lukas.the.best@poczta.fm>\n"
 "Language-Team: Polish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/pl/>\n"
 "Language: pl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.5\n"
+"X-Generator: Weblate 2.10\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -33,7 +33,7 @@ msgstr "Ozdobny widok potomków rodziny prezentowany w stylu narracyjnym."
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Domyślnie ikona PDF jest widoczna na stronie Ozdobnego widoku drzewa. Po włączeniu tej opcji ikona PDF wyświetlana jest również w zakładce Ozdobnego widoku drzewa na stronach osób."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -237,7 +237,7 @@ msgstr "Pokaż zakładkę Ozdobnego widoku drzewa na stronie informacji o osobie
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Pokaż ikonę PDF w zakładce Ozdobnego widoku drzewa"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -248,7 +248,6 @@ msgid "Show occupations"
 msgstr "Pokaż zawody"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
-#, fuzzy
 msgid "Show places"
 msgstr "Pokaż miejsca"
 
@@ -332,9 +331,8 @@ msgid "Turn this option on if you want to display singles in the next generation
 msgstr "Należy włączyć tą opcję aby pokazać osoby samotne w blokach pokoleń. Osoby samotne to osoby nie posiadające współmałżonka i dzieci. Gdy ta opcja jest włączona każde dziecko rodziny będzie pokazane szczegółowo w bloku następnego pokolenia."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:410
-#, fuzzy
 msgid "Use default GEDCOM settings to abbreviate place names"
-msgstr "Użyj domyślnych ustawień drzewa do skracania nazw miejsc."
+msgstr "Użyj domyślnych ustawień drzewa do skracania nazw miejsc"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
