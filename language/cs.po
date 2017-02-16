@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-02-15 17:33+0000\n"
+"PO-Revision-Date: 2017-02-16 10:24+0000\n"
 "Last-Translator: Josef Prause <josef.prause@gmail.com>\n"
 "Language-Team: Czech <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/cs/>\n"
 "Language: cs\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
-msgstr "Nastavte výchozí osobu"
+msgstr "Změňit probanta"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
@@ -67,11 +67,11 @@ msgstr ""
 #: fancy_treeview/module.php:162
 #, php-format
 msgid "Error: A root person with ID %s already exists"
-msgstr ""
+msgstr "Chyba: probant s identifikátorem ID %s už existuje"
 
 #: fancy_treeview/module.php:160
 msgid "Error: The root person belonging to this surname already exists"
-msgstr ""
+msgstr "Chyba: probant patřící k tomuto příjmení už existuje"
 
 #: fancy_treeview/module.php:152
 msgid "Error: The surname you entered doesn’t exist in this tree."
@@ -189,7 +189,7 @@ msgstr ""
 #: fancy_treeview/app/Template/AdminTemplate.php:162
 #: fancy_treeview/app/Template/AdminTemplate.php:232
 msgid "Root person"
-msgstr "Výchozí osoba"
+msgstr "Probant"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:146
 #: fancy_treeview/app/Template/PageTemplate.php:80
@@ -198,7 +198,7 @@ msgstr "Vyhledat ID podle jména"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:114
 msgid "Search root person"
-msgstr "Vyhledat výchozí osobu"
+msgstr "Vyhledat probanta"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:423
 msgid "Select your country"
