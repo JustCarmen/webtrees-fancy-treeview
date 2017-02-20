@@ -42,6 +42,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	
 	/** var array of xrefs (individual id's) */
 	public $pids;
+	
+	/** var integer generation number */
+	public $generation;
 
 	/**
 	 * Set the default module options
@@ -275,23 +278,23 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return html
 	 */
 	public function printPage($numblocks) {
-		$gen		= Filter::get('gen', WT_REGEX_INTEGER);
-		$this->pids	= explode('|', Filter::get('pids'));
+		$this->generation	= Filter::get('gen', WT_REGEX_INTEGER);
+		$this->pids			= explode('|', Filter::get('pids'));
 
 		if ($numblocks == 0) {
 			$numblocks = 99;
 		}
 
 		$html = '';
-		if (!isset($gen) && !array_filter($this->pids)) {
-			$gen				 = 1;
+		if (!$this->generation && !array_filter($this->pids)) {
+			$this->generation	 = 1;
 			$numblocks			 = $numblocks - 1;
 			$this->pids			 = array($this->rootId());
-			$html .= $this->printGeneration($gen);
+			$html .= $this->printGeneration();
 		}
 
-		$lastblock = $gen + $numblocks + 1; // + 1 to get one hidden block.
-		while (count($this->pids) > 0 && $gen < $lastblock) {
+		$lastblock = $this->generation + $numblocks + 1; // + 1 to get one hidden block.
+		while (count($this->pids) > 0 && $this->generation < $lastblock) {
 			$pids = $this->pids;
 			unset($this->pids); // empty the array (will be filled with the next generation)
 
@@ -310,8 +313,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 
 			if (!empty($this->pids)) {
-				$gen++;
-				$html .= $this->printGeneration($gen);
+				$this->generation++;
+				$html .= $this->printGeneration();
 				unset($next_gen, $descendants, $pids);
 			} else {
 				return $html;
@@ -328,12 +331,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printTabContent($pid) {
 		$html				 = '';
-		$gen				 = 1;
+		$this->generation	 = 1;
 		$root				 = $pid; // save value for read more link
 		$this->pids	 		 = array($pid);
-		$html .= $this->printGeneration($gen);
+		$html .= $this->printGeneration();
 
-		while (count($this->pids) > 0 && $gen < 4) {
+		while (count($this->pids) > 0 && $this->generation < 4) {
 			$pids = $this->pids;
 			unset($this->pids); // empty the array (will be filled with the next generation)
 
@@ -352,12 +355,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 
 			if (!empty($this->pids)) {
-				if ($gen === 3) {
+				if ($this->generation === 3) {
 					$html .= $this->printReadMoreLink($root);
 					return $html;
 				} else {
-					$gen++;
-					$html .= $this->printGeneration($gen);
+					$this->generation++;
+					$html .= $this->printGeneration();
 					unset($next_gen, $descendants, $pids);
 				}
 			} else {
@@ -373,10 +376,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $i
 	 * @return string
 	 */
-	protected function printGeneration($i) {
+	protected function printGeneration() {
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $this->pids) . '">' .
-			$this->printBlockHeader($i);
+		$html = '<li class="block generation-block" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
+			$this->printBlockHeader();
 
 		if ($this->checkPrivacy($this->pids, true)) {
 			$html .= $this->printPrivateBlock();
@@ -395,11 +398,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $i
 	 * @return string
 	 */
-	protected function printBlockHeader($i) {
+	protected function printBlockHeader() {
 		return
 			'<div class="blockheader ui-state-default">' .
-			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $i . '</span>' .
-			$this->printBackToTopLink($i) .
+			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $this->generation . '</span>' .
+			$this->printBackToTopLink() .
 			'</div>';
 	}
 
@@ -430,8 +433,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $i
 	 * @return string
 	 */
-	protected function printBackToTopLink($i) {
-		if ($i > 1) {
+	protected function printBackToTopLink() {
+		if ($this->generation > 1) {
 			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
 		}
 	}
