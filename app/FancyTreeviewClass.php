@@ -849,13 +849,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	protected function printNameUrl($person, $xref = '') {
-		if ($xref) {
-			$name = ' name="' . $xref . '"';
-		} else {
-			$name = '';
-		}
-
-		$url = '<a' . $name . ' href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
+		$url = '<a href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
 
 		if ($this->pdf()) {
 			return $this->pdf()->printNameUrl($person, $url);
