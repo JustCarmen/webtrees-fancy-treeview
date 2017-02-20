@@ -415,14 +415,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			if (!$this->hasParentsInSameGeneration($person)) {
 				$family = $this->getFamily($person);
 				if (!empty($family)) {
-					$id = $family->getXref();
-				} else {
-					if ($this->options('show_singles') == true || !$person->getSpouseFamilies()) {
-						$id = 'S' . $pid;
-					} // Added prefix (S = Single) to prevent double id's.
+					$pid = $family->getXref();
 				}
 				$class = $person->canShow() ? 'family' : 'family private';
-				$html .= '<li id="' . $id . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
+				$html .= '<li id="' . $pid . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
 			}
 		}
 		$html .= '</ol>';
@@ -750,10 +746,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 							if (WT_SCRIPT_NAME !== 'individual.php') {
 								if ($child_family) {
 									$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
-								} else { // just go to the person details in the next generation (added prefix 'S'for Single Individual, to prevent double ID's.)
-									if ($this->options('show_singles') == true) {
-										$html .= ' - <a class="scroll" href="#S' . $child->getXref() . '"></a>';
-									}
+								} elseif ($this->options('show_singles') == true) {
+									$html .= ' - <a class="scroll" href="#' . $child->getXref() . '"></a>';
 								}
 							}
 							$html .= '</li>';
