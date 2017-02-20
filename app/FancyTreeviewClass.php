@@ -40,8 +40,8 @@ use PDO;
  */
 class FancyTreeviewClass extends FancyTreeviewModule {
 	
-	/** var array of xrefs */
-	public $generation;
+	/** var array of xrefs (individual id's) */
+	public $pids;
 
 	/**
 	 * Set the default module options
@@ -274,27 +274,25 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return html
 	 */
 	public function printPage($numblocks) {
-		$gen	 = Filter::get('gen', WT_REGEX_INTEGER);
-		$pids	 = Filter::get('pids');
+		$gen		= Filter::get('gen', WT_REGEX_INTEGER);
+		$this->pids	= explode('|', Filter::get('pids'));
 
 		if ($numblocks == 0) {
 			$numblocks = 99;
 		}
 
 		$html = '';
-		if (!isset($gen) && !isset($pids)) {
+		if (!isset($gen) && !array_filter($this->pids)) {
 			$gen				 = 1;
 			$numblocks			 = $numblocks - 1;
-			$this->generation	 = array($this->rootId());
+			$this->pids			 = array($this->rootId());
 			$html .= $this->printGeneration($gen);
-		} else {
-			$this->generation = explode('|', $pids);
 		}
 
 		$lastblock = $gen + $numblocks + 1; // + 1 to get one hidden block.
-		while (count($this->generation) > 0 && $gen < $lastblock) {
-			$pids = $this->generation;
-			unset($this->generation);
+		while (count($this->pids) > 0 && $gen < $lastblock) {
+			$pids = $this->pids;
+			unset($this->pids); // empty the array (will be filled with the next generation)
 
 			foreach ($pids as $pid) {
 				$next_gen[] = $this->getNextGen($pid);
@@ -304,13 +302,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				if (count($descendants) > 0) {
 					foreach ($descendants as $descendant) {
 						if ($this->options('show_singles') == true || $descendant['desc'] == 1) {
-							$this->generation[] = $descendant['pid'];
+							$this->pids[] = $descendant['pid'];
 						}
 					}
 				}
 			}
 
-			if (!empty($this->generation)) {
+			if (!empty($this->pids)) {
 				$gen++;
 				$html .= $this->printGeneration($gen);
 				unset($next_gen, $descendants, $pids);
@@ -331,12 +329,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$html				 = '';
 		$gen				 = 1;
 		$root				 = $pid; // save value for read more link
-		$this->generation	 = array($pid);
+		$this->pids	 		 = array($pid);
 		$html .= $this->printGeneration($gen);
 
-		while (count($this->generation) > 0 && $gen < 4) {
-			$pids = $this->generation;
-			unset($this->generation);
+		while (count($this->pids) > 0 && $gen < 4) {
+			$pids = $this->pids;
+			unset($this->pids); // empty the array (will be filled with the next generation)
 
 			foreach ($pids as $pid) {
 				$next_gen[] = $this->getNextGen($pid);
@@ -346,13 +344,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				if (count($descendants) > 0) {
 					foreach ($descendants as $descendant) {
 						if ($this->options('show_singles') == true || $descendant['desc'] == 1) {
-							$this->generation[] = $descendant['pid'];
+							$this->pids[] = $descendant['pid'];
 						}
 					}
 				}
 			}
 
-			if (!empty($this->generation)) {
+			if (!empty($this->pids)) {
 				if ($gen === 3) {
 					$html .= $this->printReadMoreLink($root);
 					return $html;
@@ -376,10 +374,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printGeneration($i) {
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $this->generation) . '">' .
+		$html = '<li class="block generation-block" data-gen="' . $i . '" data-pids="' . implode('|', $this->pids) . '">' .
 			$this->printBlockHeader($i);
 
-		if ($this->checkPrivacy($this->generation, true)) {
+		if ($this->checkPrivacy($this->pids, true)) {
 			$html .= $this->printPrivateBlock();
 		} else {
 			$html .= $this->printBlockContent();
@@ -410,7 +408,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printBlockContent() {
 		$html = '<ol class="blockcontent generation">';
-		foreach (array_unique($this->generation) as $pid) {
+		foreach (array_unique($this->pids) as $pid) {
 			$person = $this->getPerson($pid);
 			if (!$this->hasParentsInSameGeneration($person)) {
 				$family = $this->getFamily($person);
@@ -1223,7 +1221,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			if ($mother) {
 				$mother = $mother->getXref();
 			}
-			if (in_array($father, $this->generation) || in_array($mother, $this->generation)) {
+			if (in_array($father, $this->pids) || in_array($mother, $this->pids)) {
 				return true;
 			}
 		}
