@@ -112,7 +112,7 @@ msgstr "Han blev gift %s gange"
 #: fancy_treeview/app/FancyTreeviewClass.php:1037
 msgctxt "PAST"
 msgid "He was baptized"
-msgstr "Han var døbt"
+msgstr "Han blev døbt"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
@@ -127,7 +127,7 @@ msgstr "Han blev født"
 #: fancy_treeview/app/FancyTreeviewClass.php:1021
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Han var født"
+msgstr "Han blev født"
 
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:451
@@ -214,7 +214,7 @@ msgstr "Hun blev gift %s gange"
 #: fancy_treeview/app/FancyTreeviewClass.php:1037
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr "Hun var født"
+msgstr "Hun blev født"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
@@ -224,7 +224,7 @@ msgstr "Hun blev født"
 #: fancy_treeview/app/FancyTreeviewClass.php:1019
 msgctxt "PAST"
 msgid "She was born"
-msgstr "Hun var født"
+msgstr "Hun blev født"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1021
 msgctxt "PRESENT"
@@ -258,7 +258,7 @@ msgstr "Vis enkelte personer"
 #: fancy_treeview/app/Template/AdminTemplate.php:164
 #: fancy_treeview/app/Template/AdminTemplate.php:234
 msgid "Surname in page title"
-msgstr "Efternavn i side titlen"
+msgstr "Efternavn i sidetitlen"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:568
@@ -276,7 +276,7 @@ msgstr "%s hun blev gift"
 #: fancy_treeview/app/FancyTreeviewClass.php:580
 #, php-format
 msgid "The %s time this individual married"
-msgstr "Den %s gang dette individ var gift"
+msgstr "Den %s gang dette individ blev gift"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:467
 msgid "The details of this generation are private."
@@ -300,21 +300,21 @@ msgstr "Indstillingerne er opdateret"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:311
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Den valgte person  findes ikke i dette træ"
+msgstr "Det valgte individ findes ikke i dette træ"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:647
 msgid "This individual had a relationship with"
-msgstr "Denne person havde relation til"
+msgstr "Dette individ havde relation til"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:592
 msgid "This individual married"
-msgstr "Denne person blev gift"
+msgstr "Dette individ blev gift"
 
 #. I18N: %s is a number
 #: fancy_treeview/app/FancyTreeviewClass.php:578
 #, php-format
 msgid "This individual married %s times"
-msgstr "Denne blev gift %s gange"
+msgstr "Dette individ blev gift %s gange"
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:370
@@ -340,12 +340,12 @@ msgstr "Brug fulde navn i menuen"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr "Brug lodrette miniaturer"
+msgstr "Brug kvadratiske miniaturer"
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/app/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr "Brug søgefunktionen nedenfor til at søge efter en rod person. Efter en vellykket søgning vil Fancy siden vil blive automatisk oprettet. Du kan tilføje så mange probands, som du ønsker."
+msgstr "Brug søgefunktionen nedenfor til at søge efter en proband. Efter en vellykket søgning vil Fancy siden vil blive automatisk oprettet. Du kan tilføje så mange probands, som du ønsker."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:393
@@ -401,14 +401,14 @@ msgstr "og "
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "i alderen af %s"
+msgstr "%s år gammel"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
 #: fancy_treeview/app/FancyTreeviewClass.php:1108
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
-msgstr "i alderen af %s år"
+msgstr "%s år gammel"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1600
 msgid "cancel"
@@ -575,12 +575,12 @@ msgstr "blev døbt"
 #: fancy_treeview/app/FancyTreeviewClass.php:1044
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
-msgstr "var døbt"
+msgstr "blev døbt"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1044
 msgctxt "PAST (MALE)"
 msgid "was baptized"
-msgstr "var døbt"
+msgstr "blev døbt"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1046
 msgctxt "PRESENT (FEMALE)"
@@ -590,12 +590,12 @@ msgstr "blev døbt"
 #: fancy_treeview/app/FancyTreeviewClass.php:1026
 msgctxt "PAST (FEMALE)"
 msgid "was born"
-msgstr "var født"
+msgstr "blev født"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1026
 msgctxt "PAST (MALE)"
 msgid "was born"
-msgstr "var født"
+msgstr "blev født"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1028
 msgctxt "PRESENT (FEMALE)"
