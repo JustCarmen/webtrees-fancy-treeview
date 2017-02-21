@@ -46,6 +46,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/** var integer generation number */
 	public $generation;
 
+	/** var integer used for follow index */
+	public $index;
+
 	/**
 	 * Set the default module options
 	 *
@@ -379,6 +382,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	protected function printGeneration() {
+		// reset the index
+		$this->index = 1;
+
 		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
 		$html = '<li class="block generation-block" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
 			$this->printBlockHeader();
@@ -750,10 +756,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 							// do not load this part of the code in the fancy treeview tab on the individual page.
 							if (WT_SCRIPT_NAME !== 'individual.php') {
+								$text_follow = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
 								if ($child_family) {
-									$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '"></a>';
+									$html .= ' - <a class="scroll" href="#' . $child_family->getXref() . '">' . $text_follow . '</a>';
+									$this->index++;
 								} elseif ($this->options('show_singles') == true) {
-									$html .= ' - <a class="scroll" href="#' . $child->getXref() . '"></a>';
+									$html .= ' - <a class="scroll" href="#' . $child->getXref() . '">' . $text_follow . '</a>';
+									$this->index++;
 								}
 							}
 							$html .= '</li>';
