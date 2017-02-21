@@ -16,28 +16,6 @@
 
 /* global TextFollow, OptionsNumBlocks, RootID, ModuleName */
 
-// setup numbers for scroll reference
-function addScrollNumbers() {
-	jQuery(".generation-block:visible").each(function() {
-		jQuery(this).find("a.scroll").each(function() {
-			if (jQuery(this).text() === "" || jQuery(this).hasClass("add_num")) {
-				var id = jQuery(this).attr("href");
-				var fam_id = jQuery(id);
-				var fam_id_index = fam_id.index() + 1;
-				var gen_id_index = fam_id.parents(".generation-block").data("gen");
-				if (fam_id.length > 0) {
-					jQuery(this).text(TextFollow + " " + gen_id_index + "." + fam_id_index).removeClass("add_num");
-				} else { // fam to follow is in a generation block after the last hidden block.
-					jQuery(this).text(TextFollow).addClass("add_num");
-				}
-			}
-		});
-	});
-	if (jQuery(".generation-block.hidden").length > 0) { // there are next generations so prepare the links
-		jQuery(".generation-block.hidden").prev().find("a.scroll").not(".header-link").addClass("link_next").removeClass("scroll");
-	}
-}
-
 function scrollToTarget(id) {
 	var offset = 60;
 	var target = jQuery(id).offset().top - offset;
@@ -66,14 +44,11 @@ function setImageBlock() {
 	});
 }
 
-// Hide last generation block (only needed in the DOM for scroll reference. Must be set before calling addScrollNumbers function.)
+// Hide last generation block (only needed in the DOM for scroll reference.
 var lastBlock = jQuery(".generation-block:last");
 if (OptionsNumBlocks > 0 && lastBlock.data("gen") > OptionsNumBlocks) {
 	lastBlock.addClass("hidden").hide();
 }
-
-// add scroll numbers to visible generation blocks when page is loaded
-addScrollNumbers();
 
 // Remove button if there are no more generations to catch
 btnRemove();
@@ -136,13 +111,12 @@ jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", functi
 	jQuery.get(url, function(data) {
 		var blocks = jQuery(".generation-block", data);
 		jQuery(lastBlock).after(blocks);
-		// hidden block must be set before calling addScrollNumbers function.
+		
 		if (blocks.length === numBlocks + 1) {
 			jQuery(".generation-block:last").addClass("hidden").hide();
 		}
 
 		// scroll
-		addScrollNumbers();
 		if (scroll === true) {
 			scrollToTarget(id);
 		}
