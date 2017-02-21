@@ -39,10 +39,10 @@ use PDO;
  * Class FancyTreeview
  */
 class FancyTreeviewClass extends FancyTreeviewModule {
-	
+
 	/** var array of xrefs (individual id's) */
 	public $pids;
-	
+
 	/** var integer generation number */
 	public $generation;
 
@@ -123,6 +123,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 		}
 		$sql .= ')';
+
 		$rows	 = Database::prepare($sql)
 			->execute($args)
 			->fetchAll();
@@ -277,8 +278,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return html
 	 */
 	public function printPage($numblocks) {
-		$this->generation	= Filter::get('gen', WT_REGEX_INTEGER);
-		$this->pids			= explode('|', Filter::get('pids'));
+		$this->generation	 = Filter::get('gen', WT_REGEX_INTEGER);
+		$this->pids			 = explode('|', Filter::get('pids'));
 
 		if ($numblocks == 0) {
 			$numblocks = 99;
@@ -289,6 +290,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$this->generation	 = 1;
 			$numblocks			 = $numblocks - 1;
 			$this->pids			 = array($this->rootId());
+
 			$html .= $this->printGeneration();
 		}
 
@@ -332,7 +334,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$html				 = '';
 		$this->generation	 = 1;
 		$root				 = $pid; // save value for read more link
-		$this->pids	 		 = array($pid);
+		$this->pids			 = array($pid);
+
 		$html .= $this->printGeneration();
 
 		while (count($this->pids) > 0 && $this->generation < 4) {
@@ -419,6 +422,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					$pid = $family->getXref();
 				}
 				$class = $person->canShow() ? 'family' : 'family private';
+
 				$html .= '<li id="' . $pid . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
 			}
 		}
@@ -518,6 +522,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
 			foreach ($person->getSpouseFamilies(Auth::PRIV_HIDE) as $family) {
 				$spouse = $family->getSpouse($person);
+
 				$html .= $this->printChildren($family, $person, $spouse);
 			}
 
@@ -580,20 +585,20 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		} else {
 			switch ($person->getSex()) {
 				case 'M':
-					$html .= I18N::translate('He married');
+					$html	 .= I18N::translate('He married');
 					break;
 				case 'F':
-					$html .= I18N::translate('She married');
+					$html	 .= I18N::translate('She married');
 					break;
 				default:
-					$html .= I18N::translate('This individual married');
+					$html	 .= I18N::translate('This individual married');
 					break;
 			}
 		}
 
-		$html .= ' ' . $this->printNameUrl($spouse);
-		$html .= $this->printRelationship($person, $spouse);
-		$html .= $this->printParents($spouse);
+		$html	 .= ' ' . $this->printNameUrl($spouse);
+		$html	 .= $this->printRelationship($person, $spouse);
+		$html	 .= $this->printParents($spouse);
 
 		if (!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
 			$html .= '.';
@@ -635,19 +640,19 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		switch ($person->getSex()) {
 			case 'M':
-				$html .= I18N::translate('He had a relationship with');
+				$html	 .= I18N::translate('He had a relationship with');
 				break;
 			case 'F':
-				$html .= I18N::translate('She had a relationship with');
+				$html	 .= I18N::translate('She had a relationship with');
 				break;
 			default:
-				$html .= I18N::translate('This individual had a relationship with');
+				$html	 .= I18N::translate('This individual had a relationship with');
 				break;
 		}
 
-		$html .= ' ' . $this->printNameUrl($spouse);
-		$html .= $this->printRelationship($person, $spouse);
-		$html .= $this->printParents($spouse);
+		$html	 .= ' ' . $this->printNameUrl($spouse);
+		$html	 .= $this->printRelationship($person, $spouse);
+		$html	 .= $this->printParents($spouse);
 
 		if ($family->getFirstFact('_NMR') && $this->printLifespan($spouse, true)) {
 			$html .= $this->printLifespan($spouse, true);
@@ -671,8 +676,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1] == 0) {
 			$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
 			if ($spouse && $spouse->CanShow()) {
-				$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
-				$html .= I18N::translateContext('Two parents/one child', 'had');
+				$html	 .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
+				$html	 .= I18N::translateContext('Two parents/one child', 'had');
 			} else {
 				$html .= I18N::translateContext('One parent/one child', 'had');
 			}
@@ -707,8 +712,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 					foreach ($children as $child) {
 						if ($child->canShow()) {
-							$html .= '<li class="child">' . $this->printNameUrl($child);
-							$pedi = $this->checkPedi($child, $family);
+							$html	 .= '<li class="child">' . $this->printNameUrl($child);
+							$pedi	 = $this->checkPedi($child, $family);
 
 							if ($pedi) {
 								$html .= ' <span class="pedi">';
@@ -716,20 +721,20 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 									case 'foster':
 										switch ($child->getSex()) {
 											case 'F':
-												$html .= I18N::translateContext('FEMALE', 'foster child');
+												$html	 .= I18N::translateContext('FEMALE', 'foster child');
 												break;
 											default:
-												$html .= I18N::translateContext('MALE', 'foster child');
+												$html	 .= I18N::translateContext('MALE', 'foster child');
 												break;
 										}
 										break;
 									case 'adopted':
 										switch ($child->getSex()) {
 											case 'F':
-												$html .= I18N::translateContext('FEMALE', 'adopted child');
+												$html	 .= I18N::translateContext('FEMALE', 'adopted child');
 												break;
 											default:
-												$html .= I18N::translateContext('MALE', 'adopted child');
+												$html	 .= I18N::translateContext('MALE', 'adopted child');
 												break;
 										}
 										break;
@@ -908,8 +913,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				$bplace	 = $this->printPlace($bfact);
 
 				if ($bdate || $bplace) {
-					$is_bfact = true;
-					$html .= $this->printBirthText($person, $event, $is_spouse) . $bdate . $bplace;
+					$is_bfact	 = true;
+					$html		 .= $this->printBirthText($person, $event, $is_spouse) . $bdate . $bplace;
 					break;
 				}
 			}
@@ -923,8 +928,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				$dplace	 = $this->printPlace($dfact);
 
 				if ($ddate || $dplace) {
-					$is_dfact = true;
-					$html .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
+					$is_dfact	 = true;
+					$html		 .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
 					break;
 				}
 			}
@@ -1005,16 +1010,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				if ($is_spouse == true) {
 					$html .= '. ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was born') : $html .= I18N::translateContext('PAST', 'He was born');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was born') : $html	 .= I18N::translateContext('PAST', 'He was born');
 					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was born') : $html .= I18N::translateContext('PRESENT', 'He was born');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was born') : $html	 .= I18N::translateContext('PRESENT', 'He was born');
 					}
 				} else {
-					$this->printParents($person) || $this->printOccupations($person) ? $html .= ', ' : $html .= ' ';
+					$this->printParents($person) || $this->printOccupations($person) ? $html	 .= ', ' : $html	 .= ' ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html .= I18N::translateContext('PAST (MALE)', 'was born');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PAST (MALE)', 'was born');
 					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html .= I18N::translateContext('PRESENT (MALE)', 'was born');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was born');
 					}
 				}
 				break;
@@ -1023,16 +1028,16 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				if ($is_spouse == true) {
 					$html .= '. ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST', 'She was baptized') : $html .= I18N::translateContext('PAST', 'He was baptized');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was baptized') : $html	 .= I18N::translateContext('PAST', 'He was baptized');
 					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT', 'She was baptized') : $html .= I18N::translateContext('PRESENT', 'He was baptized');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was baptized') : $html	 .= I18N::translateContext('PRESENT', 'He was baptized');
 					}
 				} else {
-					$this->printParents($person) || $this->printOccupations($person) ? $html .= ', ' : $html .= ' ';
+					$this->printParents($person) || $this->printOccupations($person) ? $html	 .= ', ' : $html	 .= ' ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PAST (MALE)', 'was baptized');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PAST (MALE)', 'was baptized');
 					} else {
-						$person->getSex() == 'F' ? $html .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
+						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
 					}
 				}
 				break;
@@ -1053,26 +1058,26 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		switch ($event) {
 			case 'DEAT':
 				if ($is_bfact) {
-					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'died') : $html .= I18N::translateContext('MALE', 'died');
+					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'died') : $html	 .= I18N::translateContext('MALE', 'died');
 				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She died') : $html .= '. ' . I18N::translate('He died');
+					$person->getSex() == 'F' ? $html	 .= '. ' . I18N::translate('She died') : $html	 .= '. ' . I18N::translate('He died');
 				}
 				break;
 			case 'BURI':
 				if ($is_bfact) {
-					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'was buried') : $html .= I18N::translateContext('MALE', 'was buried');
+					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was buried') : $html	 .= I18N::translateContext('MALE', 'was buried');
 				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She was buried') : $html .= '. ' . I18N::translate('He was buried');
+					$person->getSex() == 'F' ? $html	 .= '. ' . I18N::translate('She was buried') : $html	 .= '. ' . I18N::translate('He was buried');
 				}
 				break;
 			case 'CREM':
 				if ($is_bfact) {
-					$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html .= I18N::translateContext('FEMALE', 'was cremated') : $html .= I18N::translateContext('MALE', 'was cremated');
+					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+					$person->getSex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was cremated') : $html	 .= I18N::translateContext('MALE', 'was cremated');
 				} else {
-					$person->getSex() == 'F' ? $html .= '. ' . I18N::translate('She was cremated') : $html .= '. ' . I18N::translate('He was cremated');
+					$person->getSex() == 'F' ? $html	 .= '. ' . I18N::translate('She was cremated') : $html	 .= '. ' . I18N::translate('He was cremated');
 				}
 				break;
 		}
@@ -1274,7 +1279,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	/**
 	 * Check if this is a private record
 	 * $records can be an array of xrefs or an array of objects
-	 * 
+	 *
 	 * @param type $record
 	 * @param type $xrefs
 	 * @return boolean
