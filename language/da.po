@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-12-30 19:14+0000\n"
-"Last-Translator: Meliza Amity <meliza@amitys.com>\n"
+"PO-Revision-Date: 2017-02-22 03:55+0000\n"
+"Last-Translator: Jamie Jaconelli <jamie@jaconelli.dk>\n"
 "Language-Team: Danish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "En smart visning af efterkommere i en faldende sorterings-orden."
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Som standard er PDF-ikonet synligt på Fancy Treeview siden. Hvis du aktiverer denne indstilling, vil et PDF-ikon vises på fanen Fancy Treeview på hver eneste side."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -237,7 +237,7 @@ msgstr "Vis Fancy oversigten som en fane på fakta siden"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Vis et PDF-ikon under Fancy Treeview fanebladet"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
