@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-02-22 03:55+0000\n"
-"Last-Translator: Jamie Jaconelli <jamie@jaconelli.dk>\n"
+"PO-Revision-Date: 2017-02-22 20:42+0000\n"
+"Last-Translator: Patrick Kongshammer <patrickkongshammer@gmail.com>\n"
 "Language-Team: Danish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "%s han blev gift"
 #: fancy_treeview/app/FancyTreeviewClass.php:574
 #, php-format
 msgid "The %s time she married"
-msgstr "%s hun blev gift"
+msgstr "%s gang hun blev gift"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:580
