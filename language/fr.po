@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-02-26 09:40+0000\n"
+"PO-Revision-Date: 2017-02-26 09:42+0000\n"
 "Last-Translator: Michael <mike_jpr@outlook.com>\n"
 "Language-Team: French <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/fr/>\n"
 "Language: fr\n"
@@ -284,11 +284,11 @@ msgstr "Les détails de cette génération sont privés."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Les paramètres de cet arbre sont réinitialisés avec succès aux paramètres par défaut."
+msgstr "Les paramètres de cet arbre ont été réinitialisé avec succès aux paramètres par défaut."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
-msgstr "Les options de cet arbre sont enregistrées avec succès."
+msgstr "Les options de cet arbre ont été enregistré avec succès."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
