@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-06-25 18:44+0000\n"
-"Last-Translator: Thomas Rindal <thomas@rindal.net>\n"
+"PO-Revision-Date: 2017-03-07 09:28+0000\n"
+"Last-Translator: Rolf Holte <rolf.holte@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.5\n"
+"X-Generator: Weblate 2.10\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -23,7 +23,7 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr "<strong>Merk</strong>: denne operasjonen kan være tid- og minnekrevende, spesielt for store slektstrær. Det kan medføre veldig sen lasting av sider, eller ’execution time out error’ på din server. Om du opplever dette, reduser antall generasjoner som skal lastes, eller avstå fra å bruke denne i kombinasjon med single personer (se forrige valg). Om du fortsatt opplever problemer, avstå fra å bruke denne funksjonen."
+msgstr "<strong>Merk</strong>: denne operasjonen kan være tid- og minnekrevende, spesielt for store slektstrær. Siden kan lastes veldig sakte , eller gi  en ’execution time out error’ på din server. Om du opplever dette, reduser antall generasjoner som skal lastes, eller avstå fra å bruke denne i kombinasjon med single personer (se forrige valg). Om du fortsatt opplever problemer, avstå fra å bruke denne funksjonen."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
@@ -33,11 +33,11 @@ msgstr "En presentasjon over etterkommere av en familie eller en person i en for
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Som standard er PDF-ikonet synlig på Fancy Treeview siden. Hvis du aktiverer denne innstillingen vil et PDF-ikon vises på fanen Fancy Treeview for individer."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
-msgstr "Velg annen startperson"
+msgstr "Velg annen proband"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
@@ -237,7 +237,7 @@ msgstr "Vis Fancy Treeview som en fane på personsider"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Vis et PDF-ikon under fane for Fancy Treeview"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
@@ -248,9 +248,8 @@ msgid "Show occupations"
 msgstr "Vis yrker"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
-#, fuzzy
 msgid "Show places"
-msgstr "Vis stedsnavn?"
+msgstr "Vis stedsnavn"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
@@ -332,9 +331,8 @@ msgid "Turn this option on if you want to display singles in the next generation
 msgstr "Aktiver denne innstillingen hvis du vil vise enslige personer i generasjonsavsnittene. Enslige personer er personer uten partner eller barn. Med denne innstillingen aktivert vil alle barn av alle familier bli vist i detalj i neste generasjonsavsnitt."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:410
-#, fuzzy
 msgid "Use default GEDCOM settings to abbreviate place names"
-msgstr "Bruke standard GEDCOM-instillinger til å forkorte stedsnavn?"
+msgstr "Bruke standard GEDCOM innstillinger til å forkorte stedsnavn"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
