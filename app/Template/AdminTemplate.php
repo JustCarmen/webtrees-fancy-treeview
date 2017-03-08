@@ -497,7 +497,7 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?php echo FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $this->options('ftv_tab'), 'class="radio-inline"') ?>
 									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
-										<?php echo /* I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting */ I18N::translate('If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants.') ?>
+										<?php echo /* I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting */ I18N::translate('If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants than the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants.') ?>
 									</p>									
 								</div>
 								<!-- BUTTONS -->
