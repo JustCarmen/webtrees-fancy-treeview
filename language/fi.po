@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-12-30 19:08+0000\n"
+"PO-Revision-Date: 2017-03-08 13:20+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Finnish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/fi/>\n"
 "Language: fi\n"
@@ -33,7 +33,7 @@ msgstr "Hieno kerrontatyylinen katsaus yhden perheen (haaran) jälkeläisistä."
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Oletuksena PDF-kuvake on näkyvissä Hieno puunäkymä sivulla. Jos valitset tämän vaihtoehdon, PDF kuvake näytetään myös henkilön sivun Hieno puunäkymä välilehdessä."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -237,7 +237,7 @@ msgstr "Näytä Hieno puunäkymä-välilehti henkilön sivulla"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Näytä PDF-kuvake Hieno puunäkymä-välilehdellä"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
