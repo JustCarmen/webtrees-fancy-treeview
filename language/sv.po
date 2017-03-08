@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-12-30 19:10+0000\n"
+"PO-Revision-Date: 2017-03-08 13:16+0000\n"
 "Last-Translator: Meliza Amity <meliza@amitys.com>\n"
 "Language-Team: Swedish <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/sv/>\n"
 "Language: sv\n"
@@ -33,7 +33,7 @@ msgstr "En Fin översikt av ättlingarna till en familj (gren) i ett berättande
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Som standard är PDF-ikonen synlig på Fantasiträdvy sidan. Om du aktiverar det här alternativet visas en PDF ikon även på Fantasiträdvy fliken på personsidan."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -237,7 +237,7 @@ msgstr "Visa en Fantasiträdvy-flik på individuella sidan"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Visa en PDF ikon på Fantasiträdvy-fliken"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
