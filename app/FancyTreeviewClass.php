@@ -56,7 +56,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	private function setDefault($key) {
-		$FTV_DEFAULT = array(
+		$FTV_DEFAULT = [
 			'USE_FULLNAME'			 => '0',
 			'NUMBLOCKS'				 => '0',
 			'CHECK_RELATIONSHIP'	 => '0',
@@ -71,7 +71,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'USE_SQUARE_THUMBS'		 => '1',
 			'SHOW_USERFORM'			 => '2',
 			'FTV_TAB'				 => '1',
-		);
+		];
 		return $FTV_DEFAULT[$key];
 	}
 
@@ -106,11 +106,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			" WHERE n_file = :tree_id" .
 			" AND n_type != '_MARNM'" .
 			" AND (n_surn = :surname1 OR n_surname = :surname2";
-		$args	 = array(
+		$args	 = [
 			'tree_id'	 => $this->tree()->getTreeId(),
 			'surname1'	 => $surname,
 			'surname2'	 => $surname
-		);
+		];
 		if ($russell) { // works only with latin letters. For other letters it outputs the code '0000'.
 			foreach (explode(':', Soundex::russell($surname)) as $value) {
 				if ($value != '0000') {
@@ -130,7 +130,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$rows	 = Database::prepare($sql)
 			->execute($args)
 			->fetchAll();
-		$data	 = array();
+		$data	 = [];
 		foreach ($rows as $row) {
 			$tree	 = Tree::findById($row->tree_id);
 			$data[]	 = Individual::getInstance($row->xref, $tree, $row->gedcom);
@@ -146,10 +146,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	public function getSurname($pid) {
 		$sql	 = "SELECT n_surname AS surname FROM `##name` WHERE n_file = :tree_id AND n_id = :pid AND n_type = 'NAME'";
-		$args	 = array(
+		$args	 = [
 			'tree_id'	 => $this->tree()->getTreeId(),
 			'pid'		 => $pid
-		);
+		];
 		$data	 = Database::prepare($sql)->execute($args)->fetchOne();
 		return $data;
 	}
@@ -163,7 +163,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return results
 	 */
 	protected function searchArray($array, $key, $value) {
-		$results = array();
+		$results = [];
 		if (is_array($array)) {
 			if (isset($array[$key]) && $array[$key] == $value) {
 				$results[] = $array;
@@ -184,14 +184,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function sortArray($array, $sort_by) {
 
-		$array_keys = array('tree', 'surname', 'pid', 'access_level', 'sort');
+		$array_keys = ['tree', 'surname', 'pid', 'access_level', 'sort'];
 
 		foreach ($array as $pos => $val) {
 			$tmp_array[$pos] = $val[$sort_by];
 		}
 		asort($tmp_array);
 
-		$return_array = array();
+		$return_array = [];
 		foreach ($tmp_array as $pos => $val) {
 			foreach ($array_keys as $key) {
 				$key						 = strtoupper($key);
@@ -229,10 +229,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	protected function getCountryList() {
 		$list	 = '';
 		$sql	 = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
-		$args	 = array(
+		$args	 = [
 			'parent_id'	 => '0',
 			'tree_id'	 => $this->tree()->getTreeId()
-		);
+		];
 
 		$countries = Database::prepare($sql)->execute($args)->fetchAll(PDO::FETCH_ASSOC);
 
@@ -292,7 +292,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if (!$this->generation && !array_filter($this->pids)) {
 			$this->generation	 = 1;
 			$numblocks			 = $numblocks - 1;
-			$this->pids			 = array($this->rootId());
+			$this->pids			 = [$this->rootId()];
 
 			$html .= $this->printGeneration();
 		}
@@ -337,7 +337,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		$html				 = '';
 		$this->generation	 = 1;
 		$root				 = $pid; // save value for read more link
-		$this->pids			 = array($pid);
+		$this->pids			 = [$pid];
 
 		$html .= $this->printGeneration();
 
@@ -556,7 +556,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		if ($count > 1) {
 			// we assume no one married more then ten times.
-			$wordcount = array(
+			$wordcount = [
 				/* I18N: first marriage  */ I18N::translate('first'),
 				/* I18N: second marriage  */ I18N::translate('second'),
 				/* I18N: third marriage  */ I18N::translate('third'),
@@ -567,7 +567,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				/* I18N: eighth marriage  */ I18N::translate('eighth'),
 				/* I18N: ninth marriage  */ I18N::translate('ninth'),
 				/* I18N: tenth marriage  */ I18N::translate('tenth'),
-			);
+			];
 			switch ($person->getSex()) {
 				case 'M':
 					if ($i == 0) {
@@ -890,7 +890,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			// it in the middle of a sentence.
 			// In German all occupations are written with a capital.
 			// Are there any other languages where this is the case?
-			if (in_array(WT_LOCALE, array('de'))) {
+			if (in_array(WT_LOCALE, ['de'])) {
 				$html .= rtrim(ucfirst($fact->getValue()), ".");
 			} else {
 				$html .= rtrim(lcfirst($fact->getValue()), ".");
@@ -1206,7 +1206,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	private function getNextGen($pid) {
 		$person	 = $this->getPerson($pid);
-		$ng		 = array();
+		$ng		 = [];
 		foreach ($person->getSpouseFamilies() as $family) {
 			$children = $family->getChildren();
 			if ($children) {

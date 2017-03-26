@@ -30,7 +30,7 @@ class Migration6 implements MigrationInterface {
 		$module_options	 = 'FTV_OPTIONS';
 		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-			)->execute(array($module_options))->fetchOne();
+			)->execute([$module_options])->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
@@ -41,7 +41,7 @@ class Migration6 implements MigrationInterface {
 			if (isset($new_options)) {
 				Database::prepare(
 					"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
-				)->execute(array(serialize($new_options), $module_options));
+				)->execute([serialize($new_options), $module_options]);
 			}
 			unset($new_options);
 		}

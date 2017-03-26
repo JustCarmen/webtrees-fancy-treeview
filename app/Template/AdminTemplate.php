@@ -365,7 +365,7 @@ class AdminTemplate extends FancyTreeviewClass {
 										<?= I18N::translate('Number of generation blocks to show') ?>
 									</label>
 									<div class="col-sm-4">
-										<?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[NUMBLOCKS]', array(I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'), null, $this->options('numblocks'), 'class="form-control"') ?>									</div>
+										<?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[NUMBLOCKS]', [I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], null, $this->options('numblocks'), 'class="form-control"') ?>									</div>
 									<p class="col-sm-8 col-sm-offset-4 small text-muted">
 										<?= /* I18N: Help text for the “Number of generation blocks to show” configuration setting */ I18N::translate('This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.') ?>
 									</p>
@@ -466,7 +466,7 @@ class AdminTemplate extends FancyTreeviewClass {
 												>
 										</div>
 										<div class="col-sm-2">
-											<?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', array('1' => I18N::translate('percent'), '2' => I18N::translate('pixels')), null, $this->options('thumb_resize_format'), 'class="form-control"') ?>
+											<?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', ['1' => I18N::translate('percent'), '2' => I18N::translate('pixels')], null, $this->options('thumb_resize_format'), 'class="form-control"') ?>
 										</div>
 									</div>
 								</div>

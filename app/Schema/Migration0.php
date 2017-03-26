@@ -33,7 +33,7 @@ class Migration0 implements MigrationInterface {
 		$module_settings = 'FTV_SETTINGS';
 		$ftv_settings	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-			)->execute(array($module_settings))->fetchOne();
+			)->execute([$module_settings])->fetchOne();
 
 		$settings = unserialize($ftv_settings);
 		if (!empty($settings)) {
@@ -46,7 +46,7 @@ class Migration0 implements MigrationInterface {
 			if (isset($new_settings)) {
 				Database::prepare(
 					"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
-				)->execute(array(serialize($new_settings), $module_settings));
+				)->execute([serialize($new_settings), $module_settings]);
 			}
 			unset($new_settings);
 		}
@@ -54,7 +54,7 @@ class Migration0 implements MigrationInterface {
 		$module_options	 = 'FTV_OPTIONS';
 		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-			)->execute(array($module_options))->fetchOne();
+			)->execute([$module_options])->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
@@ -63,16 +63,16 @@ class Migration0 implements MigrationInterface {
 			$show_occu	 = array_key_exists('SHOW_OCCU', $options) ? $options['SHOW_OCCU'] : '1';
 
 			foreach (Tree::getAll() as $tree) {
-				$new_options[$tree->getTreeId()] = array(
+				$new_options[$tree->getTreeId()] = [
 					'SHOW_PLACES'	 => $show_places,
 					'COUNTRY'		 => $country,
 					'SHOW_OCCU'		 => $show_occu
-				);
+				];
 			}
 			if (isset($new_options)) {
 				Database::prepare(
 					"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
-				)->execute(array(serialize($new_options), $module_options));
+				)->execute([serialize($new_options), $module_options]);
 			}
 			unset($new_options);
 		}
