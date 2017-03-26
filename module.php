@@ -166,7 +166,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 							$root	 = $record->getFullName() . ' (' . $record->getLifeSpan() . ')';
 							$title	 = $this->module()->getPageLink($pid);
 
-							$result = array(
+							$result = [
 								'access_level'	 => '2', // default access level = show to visitors
 								'pid'			 => $pid,
 								'root'			 => $root,
@@ -174,7 +174,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 								'surname'		 => $this->module()->getSurname($pid),
 								'title'			 => $title,
 								'tree'			 => Filter::getInteger('tree')
-							);
+							];
 						} else {
 							if (empty($result['error'])) {
 								$result['error'] = I18N::translate('Error: A person with ID %s does not exist in this tree', $pid);
@@ -188,13 +188,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			case 'admin_add':
 				$FTV_SETTINGS		 = unserialize($this->getSetting('FTV_SETTINGS'));
 				$NEW_FTV_SETTINGS	 = $FTV_SETTINGS;
-				$NEW_FTV_SETTINGS[]	 = array(
+				$NEW_FTV_SETTINGS[]	 = [
 					'TREE'			 => Filter::getInteger('tree'),
 					'SURNAME'		 => Filter::post('surname'),
 					'PID'			 => Filter::post('pid'),
 					'ACCESS_LEVEL'	 => Filter::postInteger('access_level'),
 					'SORT'			 => Filter::postInteger('sort'),
-				);
+				];
 				$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
 				Log::addConfigurationLog($this->getTitle() . ' config updated');
 				break;

@@ -30,7 +30,7 @@ class Migration1 implements MigrationInterface {
 		$module_settings = 'FTV_SETTINGS';
 		$ftv_asettings	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-			)->execute(array($module_settings))->fetchOne();
+			)->execute([$module_settings])->fetchOne();
 
 		$asettings = unserialize($ftv_asettings);
 		if (!empty($asettings)) {
@@ -43,14 +43,14 @@ class Migration1 implements MigrationInterface {
 			if (isset($new_asettings)) {
 				Database::prepare(
 					"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
-				)->execute(array(serialize($new_asettings), $module_settings));
+				)->execute([serialize($new_asettings), $module_settings]);
 			}
 			unset($new_asettings);
 		}
 
 		$ftv_bsettings = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-			)->execute(array($module_settings))->fetchOne();
+			)->execute([$module_settings])->fetchOne();
 
 		$bsettings = unserialize($ftv_bsettings);
 		if (!empty($bsettings)) {
@@ -63,7 +63,7 @@ class Migration1 implements MigrationInterface {
 			if (isset($new_bsettings)) {
 				Database::prepare(
 					"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
-				)->execute(array(serialize($new_bsettings), $module_settings));
+				)->execute([serialize($new_bsettings), $module_settings]);
 			}
 			unset($new_bsettings);
 		}
@@ -71,7 +71,7 @@ class Migration1 implements MigrationInterface {
 		$module_options	 = 'FTV_OPTIONS';
 		$ftv_options	 = Database::prepare(
 				"SELECT setting_value FROM `##module_setting` WHERE setting_name=?"
-			)->execute(array($module_options))->fetchOne();
+			)->execute([$module_options])->fetchOne();
 
 		$options = unserialize($ftv_options);
 		if (!empty($options)) {
@@ -82,7 +82,7 @@ class Migration1 implements MigrationInterface {
 			if (isset($new_options)) {
 				Database::prepare(
 					"UPDATE `##module_setting` SET setting_value=? WHERE setting_name=?"
-				)->execute(array(serialize($new_options), $module_options));
+				)->execute([serialize($new_options), $module_options]);
 			}
 			unset($new_options);
 		}
