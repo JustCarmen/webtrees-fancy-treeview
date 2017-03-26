@@ -57,7 +57,7 @@ class PageTemplate extends FancyTreeviewClass {
 		<!-- FANCY TREEVIEW PAGE -->
 		<div id="fancy_treeview-page">
 			<div id="page-header">
-				<h2><?php echo $controller->getPageTitle() ?></h2>
+				<h2><?= $controller->getPageTitle() ?></h2>
 				<?php
 				if ($this->pdf()) {
 					echo $this->pdf()->getPdfIcon();
@@ -72,12 +72,12 @@ class PageTemplate extends FancyTreeviewClass {
 				?>
 				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>
 					<form id="change_root">
-						<label class="label"><?php echo I18N::translate('Change root person') ?></label>
+						<label class="label"><?= I18N::translate('Change root person') ?></label>
 						<input
 							data-autocomplete-type="INDI"
 							id="new_rootid"
 							name="new_rootid"
-							placeholder="<?php echo I18N::translate('Search ID by name') ?>"
+							placeholder="<?= I18N::translate('Search ID by name') ?>"
 							type="text"
 							>
 						<input
@@ -85,18 +85,18 @@ class PageTemplate extends FancyTreeviewClass {
 							class="btn btn-primary btn-sm"
 							name="btn_go"
 							type="submit"
-							value="<?php echo I18N::translate('Go') ?>"
+							value="<?= I18N::translate('Go') ?>"
 							>
 					</form>
 					<div id="error"></div>
 				<?php endif; ?>
-				<ol id="fancy_treeview"><?php echo $this->pageBodyContent() ?></ol>
+				<ol id="fancy_treeview"><?= $this->pageBodyContent() ?></ol>
 				<div id="btn_next">
 					<input
 						class="btn btn-primary"
 						type="button"
 						name="next"
-						value="<?php echo I18N::translate('next') ?>"
+						value="<?= I18N::translate('next') ?>"
 						>
 				</div>
 			</div>
