@@ -18,7 +18,6 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Composer\Autoload\ClassLoader;
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -40,10 +39,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	const CUSTOM_VERSION			 = '1.8.0-dev';
 	const CUSTOM_WEBSITE			 = 'http://www.justcarmen.nl/fancy-modules/fancy-treeview/';
-	// How to update the database schema for this module
-	const SCHEMA_TARGET_VERSION	 = 8;
-	const SCHEMA_SETTING_NAME		 = 'FTV_SCHEMA_VERSION';
-	const SCHEMA_MIGRATION_PREFIX	 = '\JustCarmen\WebtreesAddOns\FancyTreeview\Schema';
 
 	/** @var string location of the fancy treeview module files */
 	var $directory;
@@ -127,8 +122,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function modAction($mod_action) {
-		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-
 		switch ($mod_action) {
 			case 'admin_config':
 				$template = new AdminTemplate;
@@ -334,8 +327,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function getTabContent() {
 		global $controller;
 
-		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-
 		$html = '<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>';
 		if ($this->pdf()) {
 			$html .= $this->pdf()->includeJs($controller, true);
@@ -359,8 +350,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function getMenu() {
-		Database::updateSchema(self::SCHEMA_MIGRATION_PREFIX, self::SCHEMA_SETTING_NAME, self::SCHEMA_TARGET_VERSION);
-
 		$this->getPreLoadModuleContent();
 		return $this->menuFancyTreeview();
 	}
