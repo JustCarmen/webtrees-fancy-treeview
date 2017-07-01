@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2016-12-31 18:43+0000\n"
+"PO-Revision-Date: 2017-07-01 11:17+0000\n"
 "Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
 "Language-Team: Dutch <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nl/>\n"
 "Language: nl\n"
@@ -319,7 +319,7 @@ msgstr "Deze persoon trouwde %s keer"
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:370
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr "Deze optie is vooral handig voor grote stambomen. Wanneer u merkt dat pagina’s traag laden, kunt u hier het aantal generaties dat tegelijkertijd wordt geladen op een lager niveau instellen.Onder het laatste generatie block verschijnt een knop om de volgende set generatie blokken toe te voegen. De nieuwe blokken worden toegevoegd aan de al geladen blokken. De volgende set generatie blokken wordt ook geladen wanneer u klikt op een “volg” link in het laatste zichtbare generatie blok."
+msgstr "Deze optie is vooral handig voor grote stambomen. Wanneer u merkt dat pagina’s traag laden, kunt u hier het aantal generaties dat tegelijkertijd wordt geladen op een lager niveau instellen. Onder het laatste generatie block verschijnt een knop om de volgende set generatie blokken toe te voegen. De nieuwe blokken worden toegevoegd aan de al geladen blokken. De volgende set generatie blokken wordt ook geladen wanneer u klikt op een “volg” link in het laatste zichtbare generatie blok."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
