@@ -58,7 +58,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	private function setDefault($key) {
 		$FTV_DEFAULT = [
 			'USE_FULLNAME'			 => '0',
-			'NUMBLOCKS'				 => '0',
+			'GENERATIONS'				 => '0',
 			'CHECK_RELATIONSHIP'	 => '0',
 			'SHOW_SINGLES'			 => '0',
 			'SHOW_PLACES'			 => '1',
@@ -66,9 +66,8 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			'COUNTRY'				 => '',
 			'SHOW_OCCU'				 => '1',
 			'RESIZE_THUMBS'			 => '1',
-			'THUMB_SIZE'			 => '60',
-			'THUMB_RESIZE_FORMAT'	 => '2',
-			'USE_SQUARE_THUMBS'		 => '1',
+			'THUMBNAIL_WIDTH'			 => '60',
+			'CROP_THUMBNAILS'		 => '0',
 			'SHOW_USERFORM'			 => '2',
 			'FTV_TAB'				 => '1',
 		];
@@ -81,7 +80,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return type
 	 */
 	protected function options($k) {
-		$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+		$FTV_OPTIONS = unserialize($this->getPreference('FTV_OPTIONS'));
 		$key		 = strtoupper($k);
 
 		if (empty($FTV_OPTIONS[$this->tree()->getTreeId()]) || (is_array($FTV_OPTIONS[$this->tree()->getTreeId()]) && !array_key_exists($key, $FTV_OPTIONS[$this->tree()->getTreeId()]))) {
@@ -235,7 +234,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$countries = Database::prepare($sql)->execute($args)->fetchAll(PDO::FETCH_ASSOC);
 
-		$list = [];
+    $list = [];
 		foreach ($countries as $country) {
 			$country_name        = $country['country'];
       $list[$country_name] = $country_name; // set the country name as key to display as option value.
@@ -247,25 +246,22 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * Since we can't use Flashmessages here, use our own message system
 	 *
 	 * @param type $id
-	 * @param type $type
+	 * @param type $level
 	 * @param type $hidden
 	 * @param type $message
 	 * @return type
 	 */
-	protected function addMessage($id, $type, $hidden, $message = '') {
+	protected function addMessage($id, $level, $hidden, $message = '') {
 		$style = $hidden ? ' style="display:none"' : '';
 
-		if (Theme::theme()->themeId() === '_administration') {
-			return
-				'<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
-				'<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
-				'<span aria-hidden="true">&times;</span>' .
-				'</button>' .
-				'<span class="message">' . $message . '</span>' .
-				'</div>';
-		} else {
-			return '<p class="ui-state-error">' . $message . '</p>';
-		}
+    return
+      '<div id="' . $id . '" class="alert-message"' . $style . '>' .
+      '<div class="alert alert-' . $level . ' alert-dismissible" role="alert">' .
+      '<button type="button" class="close" data-dismiss="alert" aria-label="' . I18N::translate('close') . '">' .
+      '<span aria-hidden="true">&times;</span>' .
+      '</button>' .
+      '<span class="message">' . $message . '</span>' .
+      '</div></div>';
 	}
 
 	/**
@@ -273,32 +269,53 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return ID
 	 */
 	protected function rootId() {
-		return Filter::get('rootid', WT_REGEX_XREF);
+    if ($this->isTab()) {
+      return Filter::get('pid', WT_REGEX_XREF);
+    } else {
+      return Filter::get('rootid', WT_REGEX_XREF);
+    }
 	}
+
+  /**
+   * Set the number of generations to display
+   * @return integer
+   */
+  protected function generations() {
+    if ($this->isTab()) {
+      $generations = 3;
+    } else {
+      $generations = $this->options('generations');
+
+      if ($generations === 0 || $this->action === 'full_pdf') {
+        $generations = 99;
+      } else {
+        $generations = $generations + (Filter::getBool('readmore') ? 3 : 0);
+      }
+    }
+
+    return $generations;
+  }
 
 	/**
 	 * Print the Fancy Treeview page
 	 *
 	 * @return html
 	 */
-	public function printPage($numblocks) {
-		$this->generation	 = Filter::get('gen', WT_REGEX_INTEGER);
-		$this->pids			 = explode('|', Filter::get('pids'));
-
-		if ($numblocks == 0) {
-			$numblocks = 99;
-		}
+	public function printPage() {
+		$this->generation	= Filter::get('gen', WT_REGEX_INTEGER);
+		$this->pids       	= explode('|', Filter::get('pids'));
+    	$generations      	= $this->generations();
 
 		$html = '';
 		if (!$this->generation && !array_filter($this->pids)) {
 			$this->generation	 = 1;
-			$numblocks			 = $numblocks - 1;
-			$this->pids			 = [$this->rootId()];
+			$generations	= $generations - 1;
+			$this->pids     = [$this->rootId()];
 
 			$html .= $this->printGeneration();
 		}
 
-		$lastblock = $this->generation + $numblocks + 1; // + 1 to get one hidden block.
+		$lastblock = $this->generation + $generations + 1; // + 1 to get one hidden block.
 		while (count($this->pids) > 0 && $this->generation < $lastblock) {
 			$pids = $this->pids;
 			unset($this->pids); // empty the array (will be filled with the next generation)
@@ -318,57 +335,14 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			}
 
 			if (!empty($this->pids)) {
-				$this->generation++;
-				$html .= $this->printGeneration();
-				unset($next_gen, $descendants, $pids);
-			} else {
-				return $html;
-			}
-		}
-		return $html;
-	}
-
-	/**
-	 * Print the tabcontent for this person on the individual page
-	 *
-	 * @param type $pid
-	 * @return string (html)
-	 */
-	protected function printTabContent($pid) {
-		$html				 = '';
-		$this->generation	 = 1;
-		$root				 = $pid; // save value for read more link
-		$this->pids			 = [$pid];
-
-		$html .= $this->printGeneration();
-
-		while (count($this->pids) > 0 && $this->generation < 4) {
-			$pids = $this->pids;
-			unset($this->pids); // empty the array (will be filled with the next generation)
-
-			foreach ($pids as $pid) {
-				$next_gen[] = $this->getNextGen($pid);
-			}
-
-			foreach ($next_gen as $descendants) {
-				if (count($descendants) > 0) {
-					foreach ($descendants as $descendant) {
-						if ($this->options('show_singles') == true || $descendant['desc'] == 1) {
-							$this->pids[] = $descendant['pid'];
-						}
-					}
-				}
-			}
-
-			if (!empty($this->pids)) {
-				if ($this->generation === 3) {
-					$html .= $this->printReadMoreLink($root);
+        if ($this->isTab() && $this->generation > $generations) {
+          $html .= $this->printReadMoreLink();
 					return $html;
 				} else {
-					$this->generation++;
-					$html .= $this->printGeneration();
-					unset($next_gen, $descendants, $pids);
-				}
+          $this->generation++;
+          $html .= $this->printGeneration();
+          unset($next_gen, $descendants, $pids);
+        }
 			} else {
 				return $html;
 			}
@@ -386,9 +360,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		// reset the index
 		$this->index = 1;
 
-		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = '<li class="block generation-block" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
-			$this->printBlockHeader();
+    $class_hidden   = $this->generations() > 0 && $this->generation > $this->generations() ? ' generation-block-hidden' : '';
+    $class_bmargin  = $this->isTab() ? 'mb-2' : 'mb-4';
+
+		// add data attributes to retrieve values easily with jquery (for scroll reference en next generations)
+		$html = '<li class="generation-block mb-4' . $class_hidden . '" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
+						'<div class="card wt-block ' . $class_bmargin . '">' . $this->printBlockHeader();
 
 		if ($this->checkPrivacy($this->pids, true)) {
 			$html .= $this->printPrivateBlock();
@@ -396,7 +373,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$html .= $this->printBlockContent();
 		}
 
-		$html .= '</li>';
+		$html .= '</div></li>';
 
 		return $html;
 	}
@@ -409,10 +386,11 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printBlockHeader() {
 		return
-			'<div class="blockheader ui-state-default">' .
+			'<div class="card-header wt-block-header">' .
+			'<div class="header-title-container d-flex justify-content-between">' .
 			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $this->generation . '</span>' .
 			$this->printBackToTopLink() .
-			'</div>';
+			'</div></div>';
 	}
 
 	/**
@@ -420,7 +398,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return string
 	 */
 	protected function printBlockContent() {
-		$html = '<ol class="blockcontent generation">';
+		$html = '<div class="card-block wt-block-content">' .
+						'<ol class="generation p-0">';
+
 		foreach (array_unique($this->pids) as $pid) {
 			$person = $this->getPerson($pid);
 			if (!$this->hasParentsInSameGeneration($person)) {
@@ -430,10 +410,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 				$class = $person->canShow() ? 'family' : 'family private';
 
-				$html .= '<li id="' . $pid . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
+				$html .= '<li id="' . $pid . '" class="' . $class . ' d-flex flex-wrap">' . $this->printIndividual($person) . '</li>';
 			}
 		}
-		$html .= '</ol>';
+		$html .= '</ol></div>';
 		return $html;
 	}
 
@@ -445,7 +425,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printBackToTopLink() {
 		if ($this->generation > 1) {
-			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
+			return '<a href="#fancy-treeview-page" class="small text-muted back-to-top scroll">' . I18N::translate('back to top') . '</a>';
 		}
 	}
 
@@ -455,13 +435,13 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @param type $root
 	 * @return string
 	 */
-	protected function printReadMoreLink($root) {
-		return
-			'<div id="read-more-link">' .
-			'<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . Filter::escapeUrl(Tree::findById($this->tree()->getTreeId())->getName()) . '">' .
-			I18N::translate('Read more') .
-			'</a>' .
-			'</div>';
+	protected function printReadMoreLink() {
+    return
+      '<div class="read-more text-right">' .
+      '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $this->rootId() . '&amp;ged=' . Filter::escapeUrl(Tree::findById($this->tree()->getTreeId())->getName()) . '&readmore=true">' .
+      I18N::translate('Read more') .
+      '</a>' .
+      '</div>';
 	}
 
 	/**
@@ -471,9 +451,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printPrivateBlock() {
 		return
-			'<div class="blockcontent generation private">' .
+			'<div class="card-block wt-block-content">' .
+			'<div class="generation private">' .
 			I18N::translate('The details of this generation are private.') .
-			'</div>';
+			'</div></div>';
 	}
 
 	/**
@@ -485,7 +466,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	protected function printIndividual(Individual $person) {
 
 		if ($person->CanShow()) {
-			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->getXref());
+			$html = '<div class="parents d-inline-flex px-2">' . $this->printThumbnail($person) . '<p class="parents-data">' . $this->printNameUrl($person, $person->getXref());
 			if ($this->options('show_occu')) {
 				$html .= $this->printOccupations($person);
 			}
@@ -536,7 +517,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			return $html;
 		} else {
 			if ($person->getTree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
-				return I18N::translate('The details of this family are private.');
+				return '<p>' . I18N::translate('The details of this family are private.') . '</p>';
 			}
 		}
 	}
@@ -681,7 +662,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$match = null;
 		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1] == 0) {
-			$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
+			$html .= '<div class="children mb-4 px-2 ml-5"><p class="children-data">' . $this->printName($person) . ' ';
 			if ($spouse && $spouse->CanShow()) {
 				$html	 .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
 				$html	 .= I18N::translateContext('Two parents/one child', 'had');
@@ -693,7 +674,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$children = $family->getChildren();
 			if ($children) {
 				if ($this->checkPrivacy($children)) {
-					$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
+					$html .= '<div class="children mb-4 px-2 ml-5"><p class="children-data">' . $this->printName($person) . ' ';
 					// needs multiple translations for the word 'had' to serve different languages.
 					if ($spouse && $spouse->CanShow()) {
 						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
@@ -711,15 +692,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					}
 					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
 				} else {
-					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $this->printName($person);
+					$html .= '<div class="children mb-4 px-2 ml-5"><p class="children-data">' . I18N::translate('Children of ') . $this->printName($person);
 					if ($spouse && $spouse->CanShow()) {
 						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
 					}
-					$html .= ':<ol>';
+					$html .= ':<ol class="p-0">';
 
 					foreach ($children as $child) {
 						if ($child->canShow()) {
-							$html	 .= '<li class="child">' . $this->printNameUrl($child);
+							$html	 .= '<li class="child d-flex"><div class="child-data px-2">' . $this->printNameUrl($child);
 							$pedi	 = $this->checkPedi($child, $family);
 
 							if ($pedi) {
@@ -766,9 +747,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 									$this->index++;
 								}
 							}
-							$html .= '</li>';
+							$html .= '</div></li>';
 						} else {
-							$html .= '<li class="child private">' . I18N::translate('Private') . '</li>';
+							$html .= '<li class="child d-flex private"><div class="child-data px-2">' . I18N::translate('Private') . '</div></li>';
 						}
 					}
 					$html .= '</ol></div>';
@@ -984,15 +965,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				$imgsize = getimagesize($cache_filename);
 				$image	 = '<img' .
 					' dir="' . 'auto' . '"' . // For the tool-tip
-					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
+          ' class="pt-1 pr-2"' .
+					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;cb=' . $mediaobject->getEtag() . '"' .
 					' alt="' . strip_tags($person->getFullName()) . '"' .
 					' title="' . strip_tags($person->getFullName()) . '"' .
+          ' data-pdf="1"' .
 					' data-cachefilename="' . basename($cache_filename) . '"' .
 					' ' . $imgsize[3] . // height="yyy" width="xxx"
 					'>';
 				return
 					'<a' .
-					' class="' . 'gallery' . '"' .
+					' class="gallery"' .
 					' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
 					' type="' . $mediaobject->mimeType() . '"' .
 					' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
@@ -1000,7 +983,15 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					' data-title="' . strip_tags($person->getFullName()) . '"' .
 					'>' . $image . '</a>';
 			} else {
-				return $mediaobject->displayImage();
+        // fallback
+        $thumbwidth = $thumbheight = $this->options('thumbnail_width');
+        if ($this->options('crop_thumbnails')) {
+          $resizetype = 'crop';
+        } else {
+          $resizetype = 'contain';
+        }
+        // set data-pdf = 0; default webtrees images can not be converted to pdf
+				return $mediaobject->displayImage($thumbwidth, $thumbheight, $resizetype, ['class' => 'pt-1 pr-2', 'data-pdf' => '0']);
 			}
 		}
 	}
@@ -1290,7 +1281,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * Check if this is a private record
 	 * $records can be an array of xrefs or an array of objects
 	 *
-	 * @param type $record
+	 * @param type $records
 	 * @param type $xrefs
 	 * @return boolean
 	 */
@@ -1392,28 +1383,17 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 			$cache_filename = $this->cacheFileName($mediaobject);
 
 			if (!is_file($cache_filename)) {
-				if ($this->options('resize_thumbs')) {
-					$thumbnail	 = $this->fancyThumb($mediaobject);
-					$mimetype	 = $mediaobject->mimeType();
-					if ($mimetype === 'image/jpeg') {
-						imagejpeg($thumbnail, $cache_filename);
-					} elseif ($mimetype === 'image/png') {
-						imagepng($thumbnail, $cache_filename);
-					} elseif ($mimetype === 'image/gif') {
-						imagegif($thumbnail, $cache_filename);
-					} else {
-						return;
-					}
-				} else {
-					// if we are using the original webtrees thumbnails, copy them to the ftv_cache folder
-					// so we can cache them either and output them in the same way we would output the fancy thumbnail.
-					try {
-						copy($mediaobject->getServerFilename('thumb'), $cache_filename);
-					} catch (Exception $ex) {
-						// something went wrong while copying the default webtrees image to the ftv cache folder
-						// there is a fallback in the function printThumbnail(): output $mediaobject->displayImage();
-					}
-				}
+        $thumbnail	 = $this->fancyThumb($mediaobject);
+        $mimetype	 = $mediaobject->mimeType();
+        if ($mimetype === 'image/jpeg') {
+          imagejpeg($thumbnail, $cache_filename);
+        } elseif ($mimetype === 'image/png') {
+          imagepng($thumbnail, $cache_filename);
+        } elseif ($mimetype === 'image/gif') {
+          imagegif($thumbnail, $cache_filename);
+        } else {
+          return;
+        }
 			}
 			return $cache_filename;
 		}
@@ -1426,19 +1406,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return image
 	 */
 	private function fancyThumb($mediaobject) {
-		// option 1 = percentage of original webtrees thumbnail
-		// option 2 = size in pixels
-		$resize_format = $this->options('thumb_resize_format');
-		if ($resize_format === '1') {
-			$mediasrc = $mediaobject->getServerFilename('thumb');
-		} else {
-			$mediasrc = $mediaobject->getServerFilename('main');
-		}
+		$mediasrc = $mediaobject->getServerFilename('main');
 
 		if (is_file($mediasrc)) {
-			$thumbsize	 = $this->options('thumb_size');
-			$thumbwidth	 = $thumbheight = $thumbsize;
-
 			$mimetype = $mediaobject->mimeType();
 			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png' || $mimetype === 'image/gif') {
 
@@ -1465,13 +1435,9 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 					$ratio = 1;
 				}
 
-				if ($resize_format === '1') {
-					$thumbwidth	 = $thumbwidth / 100 * $imagewidth;
-					$thumbheight = $thumbheight / 100 * $imageheight;
-				}
-
-				$square = $this->options('use_square_thumbs');
-				if ($square == true) {
+        $thumbwidth = $this->options('thumbnail_width');
+				$crop = $this->options('crop_thumbnails');
+				if ($crop) {
 					$thumbheight = $thumbwidth;
 					if ($ratio < 1) {
 						$new_height	 = $thumbwidth / $ratio;
@@ -1481,20 +1447,12 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 						$new_height	 = $thumbheight;
 					}
 				} else {
-					if ($resize_format === '1') {
-						$new_width	 = $thumbwidth;
-						$new_height	 = $thumbheight;
-					} elseif ($imagewidth > $imageheight) {
-						$new_height	 = $thumbheight / $ratio;
-						$new_width	 = $thumbwidth;
-					} elseif ($imageheight > $imagewidth) {
-						$new_width	 = $thumbheight * $ratio;
-						$new_height	 = $thumbheight;
-					} else {
-						$new_width	 = $thumbwidth;
-						$new_height	 = $thumbheight;
-					}
+          // resize proportionally
+          $thumbheight = $thumbwidth / $imagewidth * $imageheight;
+          $new_width = $thumbwidth;
+          $new_height = $thumbheight;
 				}
+
 				$process = imagecreatetruecolor(round($new_width), round($new_height));
 				if ($mimetype == 'image/png') { // keep transparancy for png files.
 					imagealphablending($process, false);
@@ -1502,7 +1460,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				}
 				imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $imagewidth, $imageheight);
 
-				if ($square) {
+				if ($crop) {
 					$thumb = imagecreatetruecolor($thumbwidth, $thumbheight);
 				} else {
 					$thumb = imagecreatetruecolor($new_width, $new_height);
@@ -1520,171 +1478,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 				return $thumb;
 			}
 		}
-	}
-
-	/**
-	 * Get the Fancy treeview theme corresponding with the current user theme	 *
-	 * Take into account the use of a custom childtheme
-	 *
-	 * @return theme directory
-	 */
-	private function theme() {
-		$theme_dir = $this->directory . '/css/themes/';
-		if (file_exists($theme_dir . Theme::theme()->themeId())) {
-			return $theme_dir . theme::theme()->themeId();
-		} else {
-			$parentclass	 = get_parent_class(Theme::theme());
-			$parentclassname = explode('\\', $parentclass);
-			if (end($parentclassname) !== 'AbstractTheme') {
-				$parenttheme = new $parentclass;
-				if (file_exists($theme_dir . $parenttheme->themeId())) {
-					return $theme_dir . $parenttheme->themeId();
-				}
-			}
-		}
-	}
-
-	/**
-	 * Get the stylesheet which correspondents with the current user theme
-	 *
-	 * @return stylesheet
-	 */
-	protected function getStylesheet() {
-		$stylesheet = '';
-
-		$stylesheet .= $this->includeCss($this->directory . '/css/base/style.css');
-
-		if ($this->theme()) {
-			$stylesheet .= $this->includeCss($this->theme() . '/style.css');
-		}
-
-		return $stylesheet;
-	}
-
-	/**
-	 * Determine which javascript file we need
-	 *
-	 * @param type $controller
-	 * @param type $page
-	 *
-	 * @return inline and/or external Javascript
-	 */
-	protected function includeJs($controller, $page) {
-
-		switch ($page) {
-			case 'admin':
-				$controller->addInlineJavascript('
-				var ModuleDir			= "' . $this->directory . '";
-				var ModuleName			= "' . $this->getName() . '";
-				var ThemeID				= "' . Theme::theme()->themeId() . '";
-			', BaseController::JS_PRIORITY_HIGH);
-				$controller
-					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
-					->addInlineJavascript('autocomplete();')
-					->addExternalJavascript($this->directory . '/js/admin.js');
-				break;
-
-			case 'menu':
-				$controller->addInlineJavascript('
-				var ModuleDir			= "' . $this->directory . '";
-				var ModuleName			= "' . $this->getName() . '";
-				var ThemeID				= "' . Theme::theme()->themeId() . '";
-			', BaseController::JS_PRIORITY_HIGH);
-				$controller->addInlineJavascript('jQuery(".fancy-treeview-script").remove();', BaseController::JS_PRIORITY_LOW);
-				break;
-
-			case 'page':
-				$controller
-					->addInlineJavascript('
-				var PageTitle			= "' . urlencode(strip_tags($controller->getPageTitle())) . '";
-				var RootID				= "' . $this->rootId() . '";
-				var OptionsNumBlocks	= ' . $this->options('numblocks') . ';
-				var TextFollow			= "' . I18N::translate('follow') . '";
-				var TextOk				= "' . I18N::translate('ok') . '";
-				var TextCancel			= "' . I18N::translate('cancel') . '";
-			', BaseController::JS_PRIORITY_HIGH)
-					->addExternalJavascript(WT_AUTOCOMPLETE_JS_URL)
-					->addInlineJavascript('autocomplete();')
-					->addExternalJavascript($this->directory . '/js/page.js');
-
-				// some files needs an extra js script
-				if ($this->theme()) {
-					$js = $this->theme() . '/' . basename($this->theme()) . '.js';
-					if (file_exists($js)) {
-						$controller->addExternalJavascript($js);
-					}
-				}
-
-				if ($this->options('show_userform') >= Auth::accessLevel($this->tree())) {
-					$this->includeJsInline($controller);
-				}
-				break;
-			case 'tab':
-				$controller->addInlineJavascript('
-					jQuery("a[href$=' . $this->getName() . ']").text("' . $this->getTabTitle() . '");
-				');
-				break;
-		}
-	}
-
-	/**
-	 * Add Inline Javascript
-	 *
-	 * @param type $controller
-	 *
-	 * @return javascript
-	 */
-	private function includeJsInline($controller) {
-		$controller->addInlineJavascript('
-			jQuery("#new_rootid").autocomplete({
-				source: "autocomplete.php?field=INDI",
-				html: true
-			});
-
-			// submit form to change root id
-			jQuery( "form#change_root" ).submit(function(e) {
-				e.preventDefault();
-				var new_rootid = jQuery("form #new_rootid").val();
-				var url = jQuery(location).attr("pathname") + "?mod=' . $this->getName() . '&mod_action=page&rootid=" + new_rootid;
-				jQuery.ajax({
-					url: url,
-					csrf: WT_CSRF_TOKEN,
-					success: function() {
-						window.location = url;
-					},
-					statusCode: {
-						404: function() {
-							var msg = "' . I18N::translate('This individual does not exist or you do not have permission to view it.') . '";
-							jQuery("#error").text(msg).addClass("ui-state-error").show();
-							setTimeout(function() {
-								jQuery("#error").fadeOut("slow");
-							}, 3000);
-							jQuery("form #new_rootid")
-								.val("")
-								.focus();
-						}
-					}
-				});
-			});
-		');
-	}
-
-	/**
-	 * Use javascript to include the stylesheet(s) in the header
-	 *
-	 * @param type $css
-	 * @return javascript
-	 */
-	protected function includeCss($css) {
-		return
-			'<script class="fancy-treeview-script">
-				var newSheet=document.createElement("link");
-				newSheet.setAttribute("href","' . $css . '");
-				newSheet.setAttribute("type","text/css");
-				newSheet.setAttribute("rel","stylesheet");
-				newSheet.setAttribute("media","all");
-				document.getElementsByTagName("head")[0].appendChild(newSheet);
-			</script>';
 	}
 
 }

@@ -1,133 +1,140 @@
-/*
+/*!
  * webtrees: online genealogy
- * Copyright (C) 2017 webtrees development team
- * Copyright (C) 2017 JustCarmen
+ * Copyright (C) 2017 JustCarmen (http://www.justcarmen.nl)
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* global TextFollow, OptionsNumBlocks, RootID, ModuleName */
+var moduleName = qstring('mod');
 
-function scrollToTarget(id) {
-	var offset = 60;
-	var target = jQuery(id).offset().top - offset;
-	jQuery("html, body").animate({
-		scrollTop: target
-	}, 1000);
-	return false;
+// Scroll function
+$.fn.jcScroll = function(options) {
+  var defaults = {
+    offset: 60,
+    time: 800
+  };
+  var option = $.extend(defaults, options);
+
+  var target = $(this).offset().top - option.offset;
+  this.fadeIn();
+  $("html, body").animate({
+    scrollTop: target
+  }, option.time);
+  return false;
+};
+
+// Get querystring
+function qstring(key, url) {
+  'use strict';
+  var KeysValues, KeyValue, i;
+  if (url === null || url === undefined) {
+    url = window.location.href;
+  }
+  KeysValues = url.split(/[\?&]+/);
+  for (i = 0; i < KeysValues.length; i++) {
+    KeyValue = KeysValues[i].split("=");
+    if (KeyValue[0] === key) {
+      return KeyValue[1];
+    }
+  }
 }
 
-// remove button if there are no more generations to catch (if there is no hidden block there is no next generation)
-function btnRemove() {
-	if (jQuery(".generation-block.hidden").length === 0) {
-		jQuery("#btn_next").remove();
-	}
-}
-
-// set style dynamically on parents blocks with an image
-function setImageBlock() {
-	jQuery(".parents").each(function() {
-		if (jQuery(this).find(".gallery").length > 0) {
-			var height = jQuery(this).find(".gallery img").height() + 10 + "px";
-			jQuery(this).css({
-				"min-height": height
-			});
-		}
-	});
-}
-
-// Hide last generation block (only needed in the DOM for scroll reference.
-var lastBlock = jQuery(".generation-block:last");
-if (OptionsNumBlocks > 0 && lastBlock.data("gen") > OptionsNumBlocks) {
-	lastBlock.addClass("hidden").hide();
-}
-
-// Remove button if there are no more generations to catch
-btnRemove();
-
-// Set css class on parents blocks with an image
-setImageBlock();
-
-// remove the empty hyphen on childrens lifespan if death date is unknown.
-jQuery(".lifespan span:last-child").each(function() {
-	if (jQuery(this).attr("title") === "") {
-		jQuery(this).parent().html(jQuery(this).prev("span")).prepend(" (").append(")");
-	}
+// Close alerts without removal so we can use them again
+$(".alert").on("click", ".close", function() {
+  $(this).parents(".alert-message").hide();
+  return false;
 });
 
-// prevent duplicate id\'s
-jQuery("li.family[id]").each(function() {
-	var family = jQuery("[id=" + this.id + "]");
+// =============================================================================
+// Fancy Treeview Page
+// =============================================================================
+
+// prevent duplicate id\'s - a family may appear twice when the parents are related
+$("li.family[id]").each(function() {
+	var family = $("[id=" + this.id + "]");
 	if (family.length > 1) {
 		i = 1;
 		family.each(function() {
-			famID = jQuery(this).attr("id");
-			anchor = jQuery("#fancy_treeview a.scroll[href$=" + this.id + "]:first");
-			anchor.attr("href", "#" + famID + "_" + i);
-			jQuery(this).attr("id", famID + "_" + i);
+			var famId = $(this).attr("id");
+      $(this).attr("id", famId + "-" + i);
+      // renumber the anchors
+			var anchor = $("#fancy-treeview-page a.scroll[href$=" + this.id + "]:first");
+			anchor.attr("href", "#" + famId + "-" + i);
 			i++;
 		});
 	}
 });
 
 // scroll to anchors
-jQuery("#fancy_treeview-page").on("click", ".scroll", function(event) {
-	var id = jQuery(this).attr("href");
-	if (jQuery(id).is(":hidden") || jQuery(id).length === 0) {
-		jQuery(this).addClass("link_next").trigger("click");
+$("#fancy-treeview-page").on("click", ".scroll", function() {
+  if ($(this).hasClass("link-next")) {
+    return false;
+  }
+	var famId = $(this).attr("href");
+	if ($(famId).is(":hidden") || $(famId).length === 0) {
+		$(this).addClass("link-next").trigger("click");
 		return false;
 	}
-	scrollToTarget(id);
+	$(famId).jcScroll();
 });
 
 //button or link to retrieve next generations
-jQuery("#fancy_treeview-page").on("click", "#btn_next input, .link_next", function() {
-	if (jQuery(this).hasClass("link_next")) { // prepare for scrolling after new blocks are loaded
-		var id = jQuery(this).attr("href");
+$("#fancy-treeview-page").on("click", "#btn-next input, .link-next", function() {
+
+	if ($(this).hasClass("link-next")) { // prepare for scrolling after new blocks are loaded
+		var famId = $(this).attr("href");
 		scroll = true;
 	}
 
 	// remove the last hidden block to retrieve the correct data from the previous last block
-	jQuery(".generation-block.hidden").remove();
+	$(".generation-block-hidden").remove();
 
-	var numBlocks = OptionsNumBlocks;
-	var lastBlock = jQuery(".generation-block:last");
+  var rootId = $(".generation-block:first").data("pids");
+	var lastBlock = $(".generation-block:last");
 	var pids = lastBlock.data("pids");
 	var gen = lastBlock.data("gen");
-	var url = jQuery(location).attr("pathname") + "?mod=" + ModuleName + "&mod_action=page&rootid=" + RootID + "&gen=" + gen + "&pids=" + pids;
 
-	lastBlock.find("a.link_next").addClass("scroll").removeClass("link_next");
+	lastBlock.find("a.link-next").removeClass("link-next");
 	lastBlock.after("<div class=\"loading-image\">");
-	jQuery("#btn_next").hide();
+	$("#btn-next").hide();
 
-	jQuery.get(url, function(data) {
-		var blocks = jQuery(".generation-block", data);
-		jQuery(lastBlock).after(blocks);
-		
-		if (blocks.length === numBlocks + 1) {
-			jQuery(".generation-block:last").addClass("hidden").hide();
+  $.ajax({
+		type: "GET",
+		url: "module.php?mod=" + moduleName + "&mod_action=page&ged=" + WT_GEDCOM + "&rootid=" + rootId + "&gen=" + gen + "&pids=" + pids,
+		success: function(data) {
+			var blocks = $(".generation-block", data);
+      $(lastBlock).after(blocks);
+
+      if (blocks.length < parseInt(FTV_GENERATIONS) + 1) {
+        $(".generation-block").removeClass("generation-block-hidden");
+        $("#btn-next").remove();
+      } else {
+        $(".generation-block:not(:last)").removeClass("generation-block-hidden");
+        $("#btn-next").show();
+      }
+
+      $(".loading-image").remove();
+
+      // scroll
+      if (scroll === true) {
+        $(famId).jcScroll();
+      }
 		}
-
-		// scroll
-		if (scroll === true) {
-			scrollToTarget(id);
-		}
-
-		jQuery(".loading-image").remove();
-		jQuery("#btn_next").show();
-
-		// check if button should be removed
-		btnRemove();
-
-		// check for parents blocks with images
-		setImageBlock();
 	});
+});
+
+/*** FTV PAGE FORM ***/
+// Get the page for the root person of choice
+$( "#change-root" ).submit(function(e) {
+  e.preventDefault();
+  var rootId = $("#new-pid").val();
+  window.location = "module.php?mod=" + moduleName + "&mod_action=page&ged=" + WT_GEDCOM + "&rootid=" + rootId;
 });

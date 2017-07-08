@@ -17,8 +17,12 @@
 namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Controller\BaseController;
 use Fisharebest\Webtrees\Controller\PageController;
+use Fisharebest\Webtrees\Filter;
+use Fisharebest\Webtrees\Functions\FunctionsEdit;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class PageTemplate extends FancyTreeviewClass {
@@ -43,69 +47,73 @@ class PageTemplate extends FancyTreeviewClass {
 	protected function pageHeader(PageController $controller) {
 		$controller
 			->setPageTitle($this->pageTitle())
-			->pageHeader();
+			->pageHeader()
+      ->addInlineJavascript('var FTV_GENERATIONS = "' . $this->options('generations') . '";', BaseController::JS_PRIORITY_HIGH)
+      ->addExternalJavascript($this->directory . '/js/page.js');
 
-		// add javascript files and scripts
-		$this->includeJs($controller, 'page');
 		if ($this->pdf()) {
 			$this->pdf()->includeJs($controller);
 		}
 	}
 
 	protected function pageBody(PageController $controller) {
+		ob_start();
 		?>
 		<!-- FANCY TREEVIEW PAGE -->
-		<div id="fancy_treeview-page">
-			<div id="page-header">
-				<h2><?= $controller->getPageTitle() ?></h2>
-				<?php
-				if ($this->pdf()) {
-					echo $this->pdf()->getPdfIcon();
-				}
-				?>
-			</div>
-			<div id="page-body">
-				<?php
-				if ($this->pdf()) {
-					echo $this->pdf()->getPdfWaitingMessage();
-				}
-				?>
-				<?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>
-					<form id="change_root">
-						<label class="label"><?= I18N::translate('Change root person') ?></label>
-						<input
-							data-autocomplete-type="INDI"
-							id="new_rootid"
-							name="new_rootid"
-							placeholder="<?= I18N::translate('Search ID by name') ?>"
-							type="text"
-							>
-						<input
-							id="btn_go"
-							class="btn btn-primary btn-sm"
-							name="btn_go"
-							type="submit"
-							value="<?= I18N::translate('Go') ?>"
-							>
-					</form>
-					<div id="error"></div>
-				<?php endif; ?>
-				<ol id="fancy_treeview"><?= $this->pageBodyContent() ?></ol>
-				<div id="btn_next">
-					<input
-						class="btn btn-primary"
-						type="button"
-						name="next"
-						value="<?= I18N::translate('next') ?>"
-						>
-				</div>
-			</div>
-		</div>
+		<div class="fancy-treeview container theme-<?= Theme::theme()->themeId() ?>">
+      <div id="fancy-treeview-page" class="fancy-treeview-page">
+        <div class="page-header d-flex">
+          <h2 class="text-center col"><?= $controller->getPageTitle() ?></h2>
+          <?php
+          if ($this->pdf()) {
+            echo $this->pdf()->getPdfIcon();
+          }
+          ?>
+        </div>
+        <?php
+        if ($this->pdf()) {
+          echo $this->pdf()->getPdfWaitingMessage();
+        }
+        ?>
+        <div class="page-body px-3">
+        <?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>
+          <form id="change-root">
+            <div class="row form-group justify-content-end">
+              <label class="col-form-label col-md-4"><?= I18N::translate('Change root person') ?></label>
+              <div class="col-md-3">
+                <div class="input-group">
+                  <?= FunctionsEdit::formControlIndividual(null, ['id' => 'new-pid', 'name' => 'PID']) ?>
+                  <span class="input-group-btn">
+                    <button name="btn-go" class="btn btn-primary" type="submit">
+                      <?= I18N::translate('Go') ?>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div id="error"></div>
+          <?php endif; ?>
+          <ol class="fancy-treeview-content m-0 p-0"><?= $this->pageBodyContent() ?></ol>
+          <?php if ($this->generations() > 0 && $this->generation > $this->generations()): ?>
+          <div id="btn-next" class="d-flex justify-content-end">
+            <input
+              class="btn btn-primary"
+              type="button"
+              name="next"
+              value="<?= I18N::translate('next') ?>"
+              >
+          </div>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
 		<?php
+		ob_get_contents();
 	}
 
 	protected function pageBodyContent() {
-		return $this->printPage($this->options('numblocks'));
+    return $this->printPage();
 	}
 
 	private function pageMessage($controller) {

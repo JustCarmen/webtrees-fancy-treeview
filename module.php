@@ -18,6 +18,7 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Composer\Autoload\ClassLoader;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Controller\BaseController;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
@@ -50,7 +51,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function __construct() {
 		parent::__construct('fancy_treeview');
 
-		$this->directory = WT_MODULES_DIR . $this->getName();
+		$this->directory = WT_STATIC_URL . WT_MODULES_DIR . $this->getName();
 		$this->action	 = Filter::get('mod_action');
 
 		// register the namespaces
@@ -68,6 +69,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		return new FancyTreeviewClass;
 	}
 
+  /**
+	 * Provide a unique internal name for this module
+	 * This function is neccessary to distinguis this module from its submodules
+   *
+	 * @return string
+	 */
 	public function getName() {
 		return 'fancy_treeview';
 	}
@@ -117,7 +124,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 	/** {@inheritdoc} */
 	public function canLoadAjax() {
-		return !Auth::isSearchEngine(); // Search engines cannot use AJAX
+		return true;
 	}
 
 	/** {@inheritdoc} */
@@ -146,8 +153,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				}
 
 				if (isset($pid)) {
-					$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
-					if ($this->module()->searchArray($this->module()->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree')), 'PID', $pid)) {
+					$FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
+					if ($this->module()->searchArray($this->module()->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()), 'PID', $pid)) {
 						if ($surname) {
 							$result['error'] = I18N::translate('Error: The root person belonging to this surname already exists');
 						} else {
@@ -161,12 +168,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 							$result = [
 								'access_level'	 => '2', // default access level = show to visitors
-								'pid'			 => $pid,
+								'pid'        => $pid,
 								'root'			 => $root,
-								'sort'			 => count($this->module()->searchArray($FTV_SETTINGS, 'TREE', Filter::getInteger('tree'))) + 1,
+								'sort'			 => count($this->module()->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId())) + 1,
 								'surname'		 => $this->module()->getSurname($pid),
 								'title'			 => $title,
-								'tree'			 => Filter::getInteger('tree')
+								'tree'			 => $this->tree()->getTreeId()
 							];
 						} else {
 							if (empty($result['error'])) {
@@ -179,25 +186,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_add':
-				$FTV_SETTINGS		 = unserialize($this->getSetting('FTV_SETTINGS'));
+				$FTV_SETTINGS		 = unserialize($this->getPreference('FTV_SETTINGS'));
 				$NEW_FTV_SETTINGS	 = $FTV_SETTINGS;
 				$NEW_FTV_SETTINGS[]	 = [
-					'TREE'			 => Filter::getInteger('tree'),
-					'SURNAME'		 => Filter::post('surname'),
-					'PID'			 => Filter::post('pid'),
-					'ACCESS_LEVEL'	 => Filter::postInteger('access_level'),
+					'TREE'          => $this->tree()->getTreeId(),
+					'SURNAME'       => Filter::post('surname'),
+					'PID'           => Filter::post('pid'),
+					'ACCESS_LEVEL'	=> Filter::postInteger('access_level'),
 					'SORT'			 => Filter::postInteger('sort'),
 				];
-				$this->setSetting('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
+				$this->setPreference('FTV_SETTINGS', serialize(array_values($NEW_FTV_SETTINGS)));
 				Log::addConfigurationLog($this->getTitle() . ' config updated');
 				break;
 
 			case 'admin_update':
-				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+				$FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
 
-				$new_surname		 = Filter::postArray('surname');
-				$new_access_level	 = Filter::postArray('access_level');
-				$new_sort			 = Filter::postArray('sort');
+				$new_surname        = Filter::postArray('surname');
+				$new_access_level   = Filter::postArray('access_level');
+				$new_sort           = Filter::postArray('sort');
 
 				foreach ($new_surname as $key => $new_surname) {
 					$FTV_SETTINGS[$key]['SURNAME'] = $new_surname;
@@ -212,13 +219,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				}
 
 				$NEW_FTV_SETTINGS = $this->module()->sortArray($FTV_SETTINGS, 'SORT');
-				$this->setSetting('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
+				$this->setPreference('FTV_SETTINGS', serialize($NEW_FTV_SETTINGS));
 				break;
 
 			case 'admin_save':
-				$FTV_OPTIONS							 = unserialize($this->getSetting('FTV_OPTIONS'));
-				$FTV_OPTIONS[Filter::getInteger('tree')] = Filter::postArray('NEW_FTV_OPTIONS');
-				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+				$FTV_OPTIONS							 = unserialize($this->getPreference('FTV_OPTIONS'));
+				$FTV_OPTIONS[$this->tree()->getTreeId()] = Filter::postArray('NEW_FTV_OPTIONS');
+				$this->setPreference('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' config updated');
 
 				// the cache has to be recreated because the image options could have been changed
@@ -226,11 +233,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_copy':
-				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
+				$FTV_OPTIONS = unserialize($this->getPreference('FTV_OPTIONS'));
 				foreach (Tree::getAll() as $tree) {
 					$FTV_OPTIONS[$tree->getTreeId()] = Filter::postArray('NEW_FTV_OPTIONS');
 				}
-				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+				$this->setPreference('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' config saved and copied to all trees');
 
 				// the cache has to be recreated because the image options could have been changed
@@ -238,16 +245,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				break;
 
 			case 'admin_reset':
-				$FTV_OPTIONS = unserialize($this->getSetting('FTV_OPTIONS'));
-				unset($FTV_OPTIONS[Filter::getInteger('tree')]);
-				$this->setSetting('FTV_OPTIONS', serialize($FTV_OPTIONS));
+				$FTV_OPTIONS = unserialize($this->getPreference('FTV_OPTIONS'));
+				unset($FTV_OPTIONS[$this->tree()->getTreeId()]);
+				$this->setPreference('FTV_OPTIONS', serialize($FTV_OPTIONS));
 				Log::addConfigurationLog($this->getTitle() . ' options set to default');
 				break;
 
 			case 'admin_delete':
-				$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+				$FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
 				unset($FTV_SETTINGS[Filter::getInteger('key')]);
-				$this->setSetting('FTV_SETTINGS', serialize($FTV_SETTINGS));
+				$this->setPreference('FTV_SETTINGS', serialize($FTV_SETTINGS));
 				Log::addConfigurationLog($this->getTitle() . ' item deleted');
 				break;
 
@@ -255,7 +262,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 				$template = new PageTemplate;
 				return $template->pageContent();
 
-			// See mediafirewall.php
+			// See app/Media.php
 			case 'thumbnail':
 				$mid			 = Filter::get('mid', WT_REGEX_XREF);
 				$media			 = Media::getInstance($mid, $this->tree());
@@ -327,49 +334,40 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	public function getTabContent() {
 		global $controller;
 
-		$html = '<script src="' . WT_STATIC_URL . $this->directory . '/js/tab.js" defer="defer"></script>';
-		if ($this->pdf()) {
+    $html = '';
+		if ($this->pdf()->tab()) {
 			$html .= $this->pdf()->includeJs($controller, true);
 		}
-		$html .= '<div id="fancy_treeview-page" class="fancy_treeview-tab">';
-		if ($this->pdf()) {
+
+		$html .=  '<div class="fancy-treeview theme-' . Theme::theme()->themeId() . '">' .
+              '<div id="fancy-treeview-tab" class="fancy-treeview-tab">';
+
+		if ($this->pdf()->tab()) {
+			$html .= '<div class="d-flex justify-content-between">';
 			$html .= $this->pdf()->getPdfWaitingMessage();
-			if ($this->pdf()->tab()) {
-				$html .= $this->pdf()->getPdfIcon();
-			}
+			$html .= $this->pdf()->getPdfIcon();
+			$html .= '</div>';
 		}
-		$html .= '<ol id="fancy_treeview">' . $this->module()->printTabContent($controller->record->getXref()) . '</ol>';
-		$html .= '</div>';
+
+		$html .= '<ol class="fancy-treeview-content m-0 p-0">' . $this->module()->printPage() . '</ol>';
+		$html .= '</div></div>';
+
 		return $html;
 	}
 
 	/** {@inheritdoc} */
 	public function getPreLoadContent() {
-		return false;
+    global $controller;
+
+		$controller->addInlineJavascript('
+			$("#individual-tabs a.nav-link[href$=' . $this->getName() . ']").text("' . $this->getTabTitle() . '");
+		', BaseController::JS_PRIORITY_HIGH);
 	}
 
 	/** {@inheritdoc} */
 	public function getMenu() {
-		$this->getPreLoadModuleContent();
+		echo $this->includeCss();
 		return $this->menuFancyTreeview();
-	}
-
-	public function getPreloadModuleContent() {
-		global $controller;
-
-		if (Theme::theme()->themeId() === '_administration') {
-			return null;
-		}
-
-		// load the module stylesheets
-		echo $this->module()->getStylesheet();
-
-		// add javascript files and scripts
-		$this->module()->includeJs($controller, 'menu');
-
-		if (WT_SCRIPT_NAME === 'individual.php') {
-			$this->module()->includeJs($controller, 'tab');
-		}
 	}
 
 	public function menuFancyTreeview() {
@@ -380,7 +378,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			return $menu;
 		}
 
-		$FTV_SETTINGS = unserialize($this->getSetting('FTV_SETTINGS'));
+		$FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
 		if (!empty($FTV_SETTINGS)) {
 			foreach ($FTV_SETTINGS as $FTV_ITEM) {
 				if ($FTV_ITEM['TREE'] == $this->tree()->getTreeId() && !empty($FTV_ITEM['PID']) && $FTV_ITEM['ACCESS_LEVEL'] >= Auth::accessLevel($this->tree())) {
@@ -389,7 +387,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 			}
 
 			if (!empty($FTV_GED_SETTINGS)) {
-				$menu = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy_treeview');
+				$menu = new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy-treeview theme-' . Theme::theme()->themeId());
 
 				foreach ($FTV_GED_SETTINGS as $FTV_ITEM) {
 					$xref		 = $FTV_ITEM['PID'];
@@ -399,9 +397,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
 					if ($record && $record->canShowName()) {
 						if ($this->module()->options('use_fullname') == true) {
-							$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $xref . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $xref);
+							$submenu = new Menu(I18N::translate('Descendants of %s', $record->getFullName()), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $xref . '&amp;ged=' . $tree_name, 'menu-fancy-treeview-item');
 						} else {
-							$submenu = new Menu(I18N::translate('Descendants of the %s family', $surname), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $xref . '&amp;ged=' . $tree_name, 'menu-fancy_treeview-' . $xref);
+							$submenu = new Menu(I18N::translate('Descendants of the %s family', $surname), 'module.php?mod=' . $this->getName() . '&amp;mod_action=page&amp;rootid=' . $xref . '&amp;ged=' . $tree_name, 'menu-fancy-treeview-item');
 						}
 						$menu->addSubmenu($submenu);
 					}
@@ -414,6 +412,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		}
 	}
 
+	 /**
+   * Default Fancy script to load a module stylesheet
+   *
+   * The code to place the stylesheet in the header renders quicker than the default webtrees solution
+   * because we do not have to wait until the page is fully loaded
+   *
+   * @return javascript
+   */
+  protected function includeCss() {
+    return
+        '<script>
+          var newSheet=document.createElement("link");
+          newSheet.setAttribute("rel","stylesheet");
+          newSheet.setAttribute("type","text/css");
+          newSheet.setAttribute("href","' . $this->directory . '/css/style.css");
+          document.getElementsByTagName("head")[0].appendChild(newSheet);
+        </script>';
+  }
+
 	protected function tree() {
 		global $WT_TREE;
 
@@ -425,12 +442,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		}
 	}
 
+  protected function isTab() {
+    if (WT_SCRIPT_NAME === 'individual.php') {
+      return true;
+    }
+  }
+
 	protected function pdf() {
 		if (Module::getModuleByName('fancy_treeview_pdf')) {
 			return new FancyTreeviewPdfClass;
 		}
 	}
-	
+
 	public static function intVersion() {
 		$version = (int) str_replace(".", "", str_replace("-dev", "", self::CUSTOM_VERSION));
 		if ($version > 999) {
