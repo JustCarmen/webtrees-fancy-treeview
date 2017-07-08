@@ -1,51 +1,51 @@
 /* Page */
 .fancy-treeview-page {
 
-	ol.fancy-treeview-content {
-			counter-reset: first-level;
-	}
-	
-	li.generation-block {
-		counter-reset: second-level;
-		
-		&:before {
-			counter-increment: first-level;
-			content: "";
-		}
+  ol.fancy-treeview-content {
+    counter-reset: first-level;
+  }
 
-		&.generation-block-hidden {
-			display: none;
-		}
-	}
+  li.generation-block {
+    counter-reset: second-level;
 
-	li.family {
-		counter-reset: third-level;
+    &:before {
+      counter-increment: first-level;
+      content: "";
+    }
 
-		&:before {
-			counter-increment: second-level;
-			@include jc-direction (content, counter(first-level) "." counter(second-level));
-			flex: 0 0 3rem;
-		}
+    &.generation-block-hidden {
+      display: none;
+    }
+  }
 
-		.parents {
-			flex: 1 1 0;
-		}
+  li.family {
+    counter-reset: third-level;
 
-		.children {
-			flex: 1 1 100%;
-		}
-	}
-	
-	li.child {
-		&:before {
-			counter-increment: third-level;
-			@include jc-direction (content, counter(first-level) "." counter(second-level) "." counter(third-level));
-			flex: 0 1 4rem;
-		}
-		.child-data {
-			flex: 1 0 0;
-		}
-	}
+    &:before {
+      counter-increment: second-level;
+      @include jc-direction (content, counter(first-level) "." counter(second-level));
+      flex: 0 0 3rem;
+    }
+
+    .parents {
+      flex: 1 1 0;
+    }
+
+    .children {
+      flex: 1 1 100%;
+    }
+  }
+
+  li.child {
+    &:before {
+      counter-increment: third-level;
+      @include jc-direction (content, counter(first-level) "." counter(second-level) "." counter(third-level));
+      flex: 0 1 4rem;
+    }
+    .child-data {
+      flex: 1 0 0;
+    }
+  }
 
   .theme-clouds &,
   .theme-colors & {

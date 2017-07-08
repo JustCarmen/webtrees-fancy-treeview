@@ -1,17 +1,17 @@
 // styles for the fancy treeview tab on the individual page
 .fancy-treeview-tab {
-	@extend .fancy-treeview-page;
+  @extend .fancy-treeview-page;
 
-	.icon-mime-application-pdf {
-		background-image: url("images/pdf-icon-small.png");
-		background-position: right;
-	}
+  .icon-mime-application-pdf {
+    background-image: url("images/pdf-icon-small.png");
+    background-position: right;
+  }
 
-	.pdf-icon {
-		@extend %pm-0;
-	}
+  .pdf-icon {
+    @extend %pm-0;
+  }
 
-	.back-to-top {
-		display: none;
-	}
+  .back-to-top {
+    display: none;
+  }
 }
