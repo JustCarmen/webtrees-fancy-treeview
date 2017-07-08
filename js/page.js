@@ -59,18 +59,18 @@ $(".alert").on("click", ".close", function() {
 
 // prevent duplicate id\'s - a family may appear twice when the parents are related
 $("li.family[id]").each(function() {
-	var family = $("[id=" + this.id + "]");
-	if (family.length > 1) {
-		i = 1;
-		family.each(function() {
-			var famId = $(this).attr("id");
+  var family = $("[id=" + this.id + "]");
+  if (family.length > 1) {
+    i = 1;
+    family.each(function() {
+      var famId = $(this).attr("id");
       $(this).attr("id", famId + "-" + i);
       // renumber the anchors
-			var anchor = $("#fancy-treeview-page a.scroll[href$=" + this.id + "]:first");
-			anchor.attr("href", "#" + famId + "-" + i);
-			i++;
-		});
-	}
+      var anchor = $("#fancy-treeview-page a.scroll[href$=" + this.id + "]:first");
+      anchor.attr("href", "#" + famId + "-" + i);
+      i++;
+    });
+  }
 });
 
 // scroll to anchors
@@ -78,39 +78,39 @@ $("#fancy-treeview-page").on("click", ".scroll", function() {
   if ($(this).hasClass("link-next")) {
     return false;
   }
-	var famId = $(this).attr("href");
-	if ($(famId).is(":hidden") || $(famId).length === 0) {
-		$(this).addClass("link-next").trigger("click");
-		return false;
-	}
-	$(famId).jcScroll();
+  var famId = $(this).attr("href");
+  if ($(famId).is(":hidden") || $(famId).length === 0) {
+    $(this).addClass("link-next").trigger("click");
+    return false;
+  }
+  $(famId).jcScroll();
 });
 
 //button or link to retrieve next generations
 $("#fancy-treeview-page").on("click", "#btn-next input, .link-next", function() {
 
-	if ($(this).hasClass("link-next")) { // prepare for scrolling after new blocks are loaded
-		var famId = $(this).attr("href");
-		scroll = true;
-	}
+  if ($(this).hasClass("link-next")) { // prepare for scrolling after new blocks are loaded
+    var famId = $(this).attr("href");
+    scroll = true;
+  }
 
-	// remove the last hidden block to retrieve the correct data from the previous last block
-	$(".generation-block-hidden").remove();
+  // remove the last hidden block to retrieve the correct data from the previous last block
+  $(".generation-block-hidden").remove();
 
   var rootId = $(".generation-block:first").data("pids");
-	var lastBlock = $(".generation-block:last");
-	var pids = lastBlock.data("pids");
-	var gen = lastBlock.data("gen");
+  var lastBlock = $(".generation-block:last");
+  var pids = lastBlock.data("pids");
+  var gen = lastBlock.data("gen");
 
-	lastBlock.find("a.link-next").removeClass("link-next");
-	lastBlock.after("<div class=\"loading-image\">");
-	$("#btn-next").hide();
+  lastBlock.find("a.link-next").removeClass("link-next");
+  lastBlock.after("<div class=\"loading-image\">");
+  $("#btn-next").hide();
 
   $.ajax({
-		type: "GET",
-		url: "module.php?mod=" + moduleName + "&mod_action=page&ged=" + WT_GEDCOM + "&rootid=" + rootId + "&gen=" + gen + "&pids=" + pids,
-		success: function(data) {
-			var blocks = $(".generation-block", data);
+    type: "GET",
+    url: "module.php?mod=" + moduleName + "&mod_action=page&ged=" + WT_GEDCOM + "&rootid=" + rootId + "&gen=" + gen + "&pids=" + pids,
+    success: function(data) {
+      var blocks = $(".generation-block", data);
       $(lastBlock).after(blocks);
 
       if (blocks.length < parseInt(FTV_GENERATIONS) + 1) {
@@ -127,13 +127,13 @@ $("#fancy-treeview-page").on("click", "#btn-next input, .link-next", function() 
       if (scroll === true) {
         $(famId).jcScroll();
       }
-		}
-	});
+    }
+  });
 });
 
 /*** FTV PAGE FORM ***/
 // Get the page for the root person of choice
-$( "#change-root" ).submit(function(e) {
+$("#change-root").submit(function(e) {
   e.preventDefault();
   var rootId = $("#new-pid").val();
   window.location = "module.php?mod=" + moduleName + "&mod_action=page&ged=" + WT_GEDCOM + "&rootid=" + rootId;

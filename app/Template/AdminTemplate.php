@@ -29,32 +29,32 @@ use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class AdminTemplate extends FancyTreeviewClass {
 
-	protected function pageContent() {
-		$controller = new PageController;
-		return
-			$this->pageHeader($controller) .
-			$this->pageBody($controller);
-	}
+  protected function pageContent() {
+    $controller = new PageController;
+    return
+        $this->pageHeader($controller) .
+        $this->pageBody($controller);
+  }
 
-	private function pageHeader(PageController $controller) {
-		$controller
-			->restrictAccess(Auth::isAdmin())
-			->setPageTitle(I18N::translate('Fancy Treeview'))
-			->pageHeader()
-      ->addExternalJavascript('https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js')
-      ->addExternalJavascript($this->directory . '/js/admin.js');
+  private function pageHeader(PageController $controller) {
+    $controller
+        ->restrictAccess(Auth::isAdmin())
+        ->setPageTitle(I18N::translate('Fancy Treeview'))
+        ->pageHeader()
+        ->addExternalJavascript('https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js')
+        ->addExternalJavascript($this->directory . '/js/admin.js');
 
     echo $this->includeCss();
-	}
+  }
 
-	private function pageBody(PageController $controller) {
-		global $WT_TREE;
+  private function pageBody(PageController $controller) {
+    global $WT_TREE;
 
-		echo Bootstrap4::breadcrumbs([
-			'admin.php'			 => I18N::translate('Control panel'),
-			'admin_modules.php'	 => I18N::translate('Module administration'),
-			], $controller->getPageTitle());
-		?>
+    echo Bootstrap4::breadcrumbs([
+        'admin.php'         => I18N::translate('Control panel'),
+        'admin_modules.php' => I18N::translate('Module administration'),
+        ], $controller->getPageTitle());
+    ?>
 
     <div class="fancy-treeview">
       <div class="fancy-treeview-admin">
@@ -86,11 +86,11 @@ class AdminTemplate extends FancyTreeviewClass {
             <div id="card-pages-content" class="collapse show" role="tabpanel" aria-labelledby="card-pages-header">
               <div class="card-block">
                 <?php
-                  $FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
-                  if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))) {
-                    $html = /* I18N: Help text for creating Fancy Treeview pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want.');
-                    echo Theme::theme()->htmlAlert($html, 'info', true);
-                  }
+                $FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
+                if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))) {
+                  $html = /* I18N: Help text for creating Fancy Treeview pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want.');
+                  echo Theme::theme()->htmlAlert($html, 'info', true);
+                }
                 ?>
 
                 <!-- *** FORM 2 *** -->
@@ -208,7 +208,7 @@ class AdminTemplate extends FancyTreeviewClass {
                 <div id="fancy-treeview-form" class="form-group">
                   <?php if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId())): ?>
 
-                     <!-- *** FORM 4 *** -->
+                    <!-- *** FORM 4 *** -->
                     <form class="form-horizontal" name="form4">
                       <!-- TABLE -->
                       <table id="fancy-treeview-table" class="table table-hover">
@@ -241,7 +241,7 @@ class AdminTemplate extends FancyTreeviewClass {
                                       value="<?= $this_ITEM['SORT'] ?>"
                                       >
                                       <?= Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName() . '' ?>
-                                      (<?= Individual::getInstance($this_ITEM['PID'], $this->tree())->getLifeSpan() ?>)
+                                    (<?= Individual::getInstance($this_ITEM['PID'], $this->tree())->getLifeSpan() ?>)
                                   </td>
                                   <?php if (!$this->options('use_fullname')): ?>
                                     <!-- SURNAME IN PAGE TITLE -->
@@ -430,17 +430,17 @@ class AdminTemplate extends FancyTreeviewClass {
                         <?= I18N::translate('Thumbnail width in pixels') ?>
                       </label>
                       <div class="form-inline col-sm-8">
-                          <input
-                            class="form-control mr-4"
-                            id="NEW_FTV_OPTIONS[THUMBNAIL_SIZE]"
-                            name="NEW_FTV_OPTIONS[THUMBNAIL_WIDTH]"
-                            type="text"
-                            value="<?= $this->options('thumbnail_width') ?>"
-                            >
+                        <input
+                          class="form-control mr-4"
+                          id="NEW_FTV_OPTIONS[THUMBNAIL_SIZE]"
+                          name="NEW_FTV_OPTIONS[THUMBNAIL_WIDTH]"
+                          type="text"
+                          value="<?= $this->options('thumbnail_width') ?>"
+                          >
                       </div>
-                       <p class="col-sm-8 offset-sm-4 small text-muted">
-                          <?= /* I18N: Help text for the “Thumbnail width in pixels” configuration setting */ I18N::translate('Here you can set the width of the thumbnails which will be displayed on the Fancy Treeview page. The height will be automatically calculated.') ?>
-                       </p>
+                      <p class="col-sm-8 offset-sm-4 small text-muted">
+                        <?= /* I18N: Help text for the “Thumbnail width in pixels” configuration setting */ I18N::translate('Here you can set the width of the thumbnails which will be displayed on the Fancy Treeview page. The height will be automatically calculated.') ?>
+                      </p>
                     </div>
                     <!-- CROP THUMBNAILS -->
                     <div id="crop-thumbnails" class="row form-group">
@@ -451,8 +451,8 @@ class AdminTemplate extends FancyTreeviewClass {
                         <?= Bootstrap4::radiobuttons('NEW_FTV_OPTIONS[CROP_THUMBNAILS]', FunctionsEdit::optionsNoYes(), $this->options('crop_thumbnails'), true) ?>
                       </div>
                       <p class="col-sm-8 offset-sm-4 small text-muted">
-                          <?= /* I18N: Help text for the “Crop thumbnails” configuration setting */ I18N::translate('If you choose “yes” the thumbnails will be resized to square thumbnails (same width and height) and cropped if neccessary. If you choose “no” the thumbnails will be resized proportionally.') ?>
-                       </p>
+                        <?= /* I18N: Help text for the “Crop thumbnails” configuration setting */ I18N::translate('If you choose “yes” the thumbnails will be resized to square thumbnails (same width and height) and cropped if neccessary. If you choose “no” the thumbnails will be resized proportionally.') ?>
+                      </p>
                     </div>
                     <!-- SHOW USERFORM -->
                     <div class="row form-group">
@@ -504,7 +504,7 @@ class AdminTemplate extends FancyTreeviewClass {
         </div>
       </div>
     </div>
-		<?php
-	}
+    <?php
+  }
 
 }

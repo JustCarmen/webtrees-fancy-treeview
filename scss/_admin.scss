@@ -1,18 +1,18 @@
 // Configuration page
 .fancy-treeview-admin {
-	.card-header a {
-		&:after {
-			@include jc-icon($chevron-down, null, $gray, right);
-		}
+  .card-header a {
+    &:after {
+      @include jc-icon($chevron-down, null, $gray, right);
+    }
 
-		&.collapsed:after {
-			@include jc-icon($chevron-right, $chevron-left);
-		}
-	}
+    &.collapsed:after {
+      @include jc-icon($chevron-right, $chevron-left);
+    }
+  }
 
-	.tree-label {
-		text-align: start;
-	}
+  .tree-label {
+    text-align: start;
+  }
 
   .sortme {
     cursor: move;
@@ -27,9 +27,9 @@
     display: none;
   }
 
-	@at-root #search-result-table {
-			margin-top: 30px;
-	}
+  @at-root #search-result-table {
+    margin-top: 30px;
+  }
 }
 
 /*Correction for rtl-pages*/
