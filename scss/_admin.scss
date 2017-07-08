@@ -1,0 +1,38 @@
+// Configuration page
+.fancy-treeview-admin {
+	.card-header a {
+		&:after {
+			@include jc-icon($chevron-down, null, $gray, right);
+		}
+
+		&.collapsed:after {
+			@include jc-icon($chevron-right, $chevron-left);
+		}
+	}
+
+	.tree-label {
+		text-align: start;
+	}
+
+  .sortme {
+    cursor: move;
+  }
+
+  .showname {
+    cursor: text;
+    font-weight: normal;
+  }
+
+  .editname {
+    display: none;
+  }
+
+	@at-root #search-result-table {
+			margin-top: 30px;
+	}
+}
+
+/*Correction for rtl-pages*/
+[dir=rtl] .form-inline .checkbox-inline {
+  padding-right: 20px;
+}

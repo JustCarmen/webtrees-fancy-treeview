@@ -1,6 +1,4 @@
-/*
- * Fancy Treeview admin configuration page script
- *
+/*!
  * webtrees: online genealogy
  * Copyright (C) 2018 JustCarmen (http://justcarmen.nl)
  * This program is free software: you can redistribute it and/or modify
@@ -15,48 +13,112 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* global ModuleName */
+var moduleName = qstring('mod');
 
-// Close the alerts without removal (Bootstrap default)
-jQuery(".alert .close").on("click", function() {
-	jQuery(this).parent().hide();
+// Sortable table - https://github.com/RubaXa/Sortable
+// Script: https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js
+$.fn.jcSort = function() {
+  // only use function if external javascript is loaded
+  if (typeof Sortable === "function") {
+    var sortRows = this[0];
+    new Sortable(sortRows, {
+      animation: 150,
+      draggable: ".sortme",
+      onSort: function(evt) {
+        $(evt.item).parent().find('input[name^=sort]').each(function(index, value) {
+          value.value = index + 1;
+        });
+      }
+    });
+  }
+};
+
+// Scroll function
+$.fn.jcScroll = function(options) {
+  var defaults = {
+    offset: 60,
+    time: 800
+  };
+  var option = $.extend(defaults, options);
+
+  var target = $(this).offset().top - option.offset;
+  this.fadeIn();
+  $("html, body").animate({
+    scrollTop: target
+  }, option.time);
+  return false;
+};
+
+// Get querystring
+function qstring(key, url) {
+  'use strict';
+  var KeysValues, KeyValue, i;
+  if (url === null || url === undefined) {
+    url = window.location.href;
+  }
+  KeysValues = url.split(/[\?&]+/);
+  for (i = 0; i < KeysValues.length; i++) {
+    KeyValue = KeysValues[i].split("=");
+    if (KeyValue[0] === key) {
+      return KeyValue[1];
+    }
+  }
+}
+
+// Close alerts without removal so we can use them again
+$(".alert").on("click", ".close", function() {
+  $(this).parents(".alert-message").hide();
+  return false;
+});
+
+// Activate tooltips
+$('[data-toggle="tooltip"]').tooltip();
+
+// =============================================================================
+// Fancy Treeview admin
+// =============================================================================
+
+// Rebind functions after ajax call (all forms)
+$(document).ajaxComplete(function() {
+  $("#ftv-sort").jcSort();
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 /*** FORM 1 ***/
-jQuery("#tree").change(function() {
+$("#tree").change(function() {
 	// get the config page for the selected tree
-	var tree_name = jQuery(this).find("option:selected").data("ged");
-	window.location = "module.php?mod=" + ModuleName + "&mod_action=admin_config&ged=" + tree_name;
+	var tree = $(this).find("option:selected").val();
+	window.location = "module.php?mod=" + moduleName + "&mod_action=admin_config&ged=" + tree;
 });
 
 /*** FORM 2 ***/
 // add search values from form2 to form3
-jQuery("#ftv-search-form").on("submit", "form[name=form2]", function(e) {
+$("#ftv-search-form").on("submit", "form[name=form2]", function(e) {
 	e.preventDefault();
-	var tree = jQuery("#tree").find("option:selected").val();
-	var table = jQuery("#search-result-table");
-	jQuery.ajax({
+	var tree = $("#tree").find("option:selected").val();
+	var table = $("#search-result-table");
+	$.ajax({
 		type: "POST",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_search&tree=" + tree,
-		data: jQuery(this).serialize(),
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_search&ged=" + tree,
+		data: $(this).serialize(),
 		dataType: "json",
 		success: function(data) {
-			jQuery(".ui-autocomplete").hide();
 			if (data.hasOwnProperty("error")) {
-				jQuery("form[name=form3] table").hide();
-				jQuery("#error .message").html(data.error).parent().fadeIn();
+				$("form[name=form3] table").hide();
+				$("#error").find(".message").text(data.error).end().fadeIn();
 			} else {
-				jQuery("#error").hide();
+				$("#error").hide();
 				table.find("input[name=pid]").val(data.pid);
 				table.find("input[name=sort]").val(data.sort);
 				table.find("#root span").html(data.root);
 				table.find("input[name=surname]").val(data.surname);
-				table.find("#surn label").text(data.surname);
+				table.find(".showname").text(data.surname).show();
+        table.find(".editname").hide();
 				table.find("#title").html(data.title);
 				table.show();
 			}
-			jQuery("input#pid-search").val("");
-			jQuery("input#surname-search").val("").focus();
+			$("#pid-search").val(null).trigger("change"); // select2 selectbox
+			$("#surname-search").val(null).focus();
 		}
 	});
 });
@@ -64,85 +126,61 @@ jQuery("#ftv-search-form").on("submit", "form[name=form2]", function(e) {
 /*** FORM 3 ***/
 // add search results to table
 /** @param {event} e */
-jQuery("#ftv-search-form").on("submit", "form[name=form3]", function(e) {
+$("#ftv-search-form").on("submit", "form[name=form3]", function(e) {
 	e.preventDefault();
-	var tree = jQuery("#tree").find("option:selected").val();
-	jQuery.ajax({
+	var tree = $("#tree").find("option:selected").val();
+	$.ajax({
 		type: "POST",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_add&tree=" + tree,
-		data: jQuery(this).serialize(),
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_add&ged=" + tree,
+		data: $(this).serialize(),
 		success: function() {
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
-			jQuery("#ftv-search-form input").val("");
-			jQuery("#search-result-table").fadeOut("slow");
+			$("#fancy-treeview-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #fancy-treeview-form form");
+			$("#ftv-search-form input").val("");
+			$("#search-result-table").fadeOut("slow");
 		}
 	});
 });
 
 /*** FORM 3 AND 4 ***/
 // click on a surname to get an input textfield to change the surname to a more appropriate name.
-jQuery("#panel1").on("click", ".showname", function() {
-	jQuery(this).hide();
-	jQuery(this).next(".editname").show();
+$(".fancy-treeview-admin").on("click", ".showname", function() {
+	$(this).hide();
+	$(this).parent().find(".editname").show();
 });
 
 /*** FORM 4 ***/
-// make the table sortable
-jQuery("#fancy-treeview-form").sortable({
-	items: ".sortme",
-	forceHelperSize: true,
-	forcePlaceholderSize: true,
-	opacity: 0.7,
-	cursor: "move",
-	axis: "y"
-});
-
-//-- update the order numbers after drag-n-drop sorting is complete
-jQuery("#fancy-treeview-form").bind("sortupdate", function(event, ui) {
-	jQuery("#" + jQuery(this).attr("id") + " input[name^=sort]").each(
-		function(index, value) {
-			value.value = index + 1;
-		});
-});
+$("#ftv-sort").jcSort();
 
 // update settings form4
-jQuery("#fancy-treeview-form").on("submit", "form[name=form4]", function(e) {
+$("#fancy-treeview-form").on("submit", "form[name=form4]", function(e) {
 	e.preventDefault();
-	jQuery.ajax({
+	$.ajax({
 		type: "POST",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_update",
-		data: jQuery(this).serialize(),
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_update",
+		data: $(this).serialize(),
 		success: function() {
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form", function() {
-				jQuery("#update-settings").fadeIn();
-				var target = jQuery("#update-settings").offset().top - 60;
-				jQuery("html, body").animate({
-					scrollTop: target
-				}, 800);
+			$("#fancy-treeview-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #fancy-treeview-form form", function() {
+				$("#update-settings").jcScroll();
 			});
 		}
 	});
 });
 
 // delete row from form4
-jQuery("#fancy-treeview-form").on("click", "button[name=delete]", function(e) {
+$("#fancy-treeview-form").on("click", "button[name=delete]", function(e) {
 	e.preventDefault();
-	var key = jQuery(this).data("key");
-	var row = jQuery(this).parents("tr");
-	var rowCount = jQuery("#fancy-treeview-table > tbody > tr").length - 1;
-	jQuery.ajax({
+	var key = $(this).data("key");
+	var row = $(this).parents("tr");
+	var rowCount = $("#fancy-treeview-table > tbody > tr").length - 1;
+	$.ajax({
 		type: "GET",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_delete&key=" + key,
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_delete&key=" + key,
 		success: function() {
 			row.remove();
 			if (rowCount === 0) {
-				jQuery("#fancy-treeview-form form").remove();
+				$("#fancy-treeview-form form").remove();
 			}
-			jQuery("#update-settings").fadeIn();
-			var target = jQuery("#update-settings").offset().top - 60;
-			jQuery("html, body").animate({
-				scrollTop: target
-			}, 800);
+			$("#update-settings").jcScroll();
 		}
 	});
 
@@ -151,86 +189,69 @@ jQuery("#fancy-treeview-form").on("click", "button[name=delete]", function(e) {
 /*** FORM 5 ***/
 // update options
 /** @param {event} e */
-jQuery("#ftv-options-form").on("submit", "form[name=form5]", function(e) {
+$("#ftv-options-form").on("submit", "form[name=form5]", function(e) {
 	e.preventDefault();
-	var tree = jQuery("#tree").find("option:selected").val();
-	jQuery.ajax({
+	var tree = $("#tree").find("option:selected").val();
+	$.ajax({
 		type: "POST",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_save&tree=" + tree,
-		data: jQuery(this).serialize(),
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_save&tree=" + tree,
+		data: $(this).serialize(),
 		success: function() {
-			jQuery("#ftv-search-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-search-form form", function() {
-				jQuery(this).find("#search-result-table").hide().removeClass("hidden");
+			$("#ftv-search-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #ftv-search-form form", function() {
+				$(this).find("#search-result-table").hide().removeClass("hidden");
 			});
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
-			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function() {
-				jQuery("#reset-options, #copy-options").hide();
-				jQuery("#save-options").fadeIn();
-				var target = jQuery("#save-options").offset().top - 60;
-				jQuery("html, body").animate({
-					scrollTop: target
-				}, 800);
+			$("#fancy-treeview-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #fancy-treeview-form form");
+			$("#ftv-options-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #ftv-options-form form", function() {
+				$("#reset-options, #copy-options").hide();
+				$("#save-options").jcScroll();
 			});
 		}
 	});
 });
 
 // reset options
-jQuery("#ftv-options-form").on("reset", "form[name=form5]", function(e) {
+$("#ftv-options-form").on("reset", "form[name=form5]", function(e) {
 	e.preventDefault();
-	var tree = jQuery("#tree").find("option:selected").val();
-	jQuery.ajax({
+	var tree = $("#tree").find("option:selected").val();
+	$.ajax({
 		type: "GET",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_reset&tree=" + tree,
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_reset&tree=" + tree,
 		success: function() {
-			jQuery("#ftv-search-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-search-form form", function() {
-				jQuery(this).find("#search-result-table").hide().removeClass("hidden");
+			$("#ftv-search-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #ftv-search-form form", function() {
+				$(this).find("#search-result-table").hide().removeClass("hidden");
 			});
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
-			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function() {
-				jQuery("#save-options, #copy-options").hide();
-				jQuery("#reset-options").fadeIn();
-				var target = jQuery("#reset-options").offset().top - 60;
-				jQuery("html, body").animate({
-					scrollTop: target
-				}, 800);
+			$("#fancy-treeview-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #fancy-treeview-form form");
+			$("#ftv-options-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #ftv-options-form form", function() {
+				$("#save-options, #copy-options").hide();
+				$("#reset-options").jcScroll();
 			});
 		}
 	});
 });
 
 // copy options to other trees
-jQuery("#ftv-options-form").on("click", "#save-and-copy", function() {
-	jQuery.ajax({
+$("#ftv-options-form").on("click", "#save-and-copy", function() {
+	$.ajax({
 		type: "POST",
-		url: "module.php?mod=" + ModuleName + "&mod_action=admin_copy",
-		data: jQuery("form[name=form5]").serialize(),
+		url: "module.php?mod=" + moduleName + "&mod_action=admin_copy",
+		data: $("form[name=form5]").serialize(),
 		success: function() {
-			jQuery("#ftv-search-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-search-form form", function() {
-				jQuery(this).find("#search-result-table").hide().removeClass("hidden");
+			$("#ftv-search-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #ftv-search-form form", function() {
+				$(this).find("#search-result-table").hide().removeClass("hidden");
 			});
-			jQuery("#fancy-treeview-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #fancy-treeview-form form");
-			jQuery("#ftv-options-form").load("module.php?mod=" + ModuleName + "&mod_action=admin_config #ftv-options-form form", function() {
-				jQuery("#save-options, #reset-options").hide();
-				jQuery("#copy-options").fadeIn();
-				var target = jQuery("#copy-options").offset().top - 60;
-				jQuery("html, body").animate({
-					scrollTop: target
-				}, 800);
+			$("#fancy-treeview-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #fancy-treeview-form form");
+			$("#ftv-options-form").load("module.php?mod=" + moduleName + "&mod_action=admin_config #ftv-options-form form", function() {
+				$("#save-options, #reset-options").hide();
+				$("#copy-options").jcScroll();
 			});
 		}
 	});
 });
 
-jQuery("#ftv-options-form").on("click", "#resize_thumbs input[type=radio]", function() {
-	var field = jQuery("#ftv-options-form").find("#thumb_size, #square_thumbs");
-	jQuery(this).val() === "1" ? field.fadeIn() : field.fadeOut();
-});
-
-jQuery("#ftv-options-form").on("click", "#places input[type=radio]", function() {
-	var field1 = jQuery("#ftv-options-form").find("#gedcom_places");
-	var field2 = jQuery("#ftv-options-form").find("#country_list");
-	if (jQuery(this).val() === "1") {
+$("#ftv-options-form").on("click", "#places input[type=radio]", function() {
+	var field1 = $("#ftv-options-form").find("#gedcom_places");
+	var field2 = $("#ftv-options-form").find("#country_list");
+	if ($(this).val() === "1") {
 		field1.fadeIn();
 		if (field1.find("input[type=radio]:checked").val() === "0")
 			field2.fadeIn();
@@ -240,7 +261,7 @@ jQuery("#ftv-options-form").on("click", "#places input[type=radio]", function() 
 	}
 });
 
-jQuery("#ftv-options-form").on("click", "#gedcom_places input[type=radio]", function() {
-	var field = jQuery("#ftv-options-form").find("#country_list");
-	jQuery(this).val() === "0" ? field.fadeIn() : field.fadeOut();
+$("#ftv-options-form").on("click", "#gedcom_places input[type=radio]", function() {
+	var field = $("#ftv-options-form").find("#country_list");
+	$(this).val() === "0" ? field.fadeIn() : field.fadeOut();
 });
