@@ -220,7 +220,6 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return list
 	 */
 	protected function getCountryList() {
-		$list	 = '';
 		$sql	 = "SELECT SQL_CACHE p_place as country FROM `##places` WHERE p_parent_id=:parent_id AND p_file=:tree_id";
 		$args	 = array(
 			'parent_id'	 => '0',
@@ -229,8 +228,10 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 
 		$countries = Database::prepare($sql)->execute($args)->fetchAll(PDO::FETCH_ASSOC);
 
+		$list = [];
 		foreach ($countries as $country) {
-			$list[$country['country']] = $country['country']; // set the country as key to display as option value.
+			$country_name        = $country['country'];
+      $list[$country_name] = $country_name; // set the country name as key to display as option value.
 		}
 		return $list;
 	}
