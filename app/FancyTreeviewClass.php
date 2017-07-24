@@ -16,7 +16,6 @@
 namespace JustCarmen\WebtreesAddOns\FancyTreeview;
 
 use Fisharebest\Webtrees\Auth;
-use Fisharebest\Webtrees\Controller\BaseController;
 use Fisharebest\Webtrees\Controller\RelationshipController;
 use Fisharebest\Webtrees\Database;
 use Fisharebest\Webtrees\Date;
@@ -25,12 +24,12 @@ use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\Functions\Functions;
 use Fisharebest\Webtrees\Functions\FunctionsDate;
 use Fisharebest\Webtrees\GedcomRecord;
+use Fisharebest\Webtrees\Html;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\Media;
 use Fisharebest\Webtrees\Place;
 use Fisharebest\Webtrees\Soundex;
-use Fisharebest\Webtrees\Theme;
 use Fisharebest\Webtrees\Tree;
 use PDO;
 
@@ -978,7 +977,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
             ' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
             ' type="' . $mediaobject->mimeType() . '"' .
             ' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
-            ' data-obje-note="' . Filter::escapeHtml($mediaobject->getNote()) . '"' .
+            ' data-obje-note="' . Html::escape($mediaobject->getNote()) . '"' .
             ' data-title="' . strip_tags($person->getFullName()) . '"' .
             '>' . $image . '</a>';
       } else {
@@ -1149,7 +1148,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
         $new_place = array_reverse(explode(", ", $place->getGedcomName()));
         if (!empty($country) && $new_place[0] == $country) {
           unset($new_place[0]);
-          $html .= '<span dir="auto">' . Filter::escapeHtml(implode(', ', array_reverse($new_place))) . '</span>';
+          $html .= '<span dir="auto">' . Html::escape(implode(', ', array_reverse($new_place))) . '</span>';
         } else {
           $html .= $place->getFullName();
         }
