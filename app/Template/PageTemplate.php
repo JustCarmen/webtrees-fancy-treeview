@@ -78,7 +78,7 @@ class PageTemplate extends FancyTreeviewClass {
         <div class="page-body px-3">
           <?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>
             <form id="change-root">
-              <div class="row form-group justify-content-end">
+              <div class="row form-group justify-content-end jc-change-root">
                 <label class="col-form-label col-md-4"><?= I18N::translate('Change root person') ?></label>
                 <div class="col-md-3">
                   <div class="input-group">
