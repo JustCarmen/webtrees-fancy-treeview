@@ -393,7 +393,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
           $xref      = $FTV_ITEM['PID'];
           $surname   = $FTV_ITEM['SURNAME'];
           $record    = Individual::getInstance($xref, $this->tree());
-          $tree_name = Filter::escapeUrl($this->tree()->getName());
+          $tree_name = rawurlencode($this->tree()->getName());
 
           if ($record && $record->canShowName()) {
             if ($this->module()->options('use_fullname') == true) {
