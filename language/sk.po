@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-08-08 11:40+0000\n"
+"PO-Revision-Date: 2017-08-08 13:03+0000\n"
 "Last-Translator: Ladislav Jurdik <laco@jurdik.sk>\n"
 "Language-Team: Slovak <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/sk/>\n"
 "Language: sk\n"
@@ -125,12 +125,12 @@ msgstr "Bol pokrstený"
 #: fancy_treeview/app/FancyTreeviewClass.php:1019
 msgctxt "PAST"
 msgid "He was born"
-msgstr "Narodil sa"
+msgstr "Narodil(la) sa"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1021
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Narodil sa"
+msgstr "Narodil(la) sa"
 
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:451
@@ -212,7 +212,7 @@ msgstr "Mala vzťah s"
 #: fancy_treeview/app/FancyTreeviewClass.php:572
 #, php-format
 msgid "She married %s times"
-msgstr "Ona si vzala %s časy"
+msgstr "Ona si vzala %s obdobie"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1037
 msgctxt "PAST"
@@ -531,7 +531,7 @@ msgstr "ok"
 #: fancy_treeview/app/FancyTreeviewClass.php:1127
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
-msgstr "na "
+msgstr " "
 
 #: fancy_treeview/app/Template/AdminTemplate.php:469
 msgid "percent"
