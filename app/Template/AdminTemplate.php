@@ -42,7 +42,7 @@ class AdminTemplate extends FancyTreeviewClass {
         ->restrictAccess(Auth::isAdmin())
         ->setPageTitle(I18N::translate('Fancy Treeview'))
         ->pageHeader()
-        ->addExternalJavascript('https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js')
+        ->addExternalJavascript(WT_SORTABLE_JS_URL)
         ->addExternalJavascript($this->directory . '/js/admin.js');
 
     echo $this->includeCss();
