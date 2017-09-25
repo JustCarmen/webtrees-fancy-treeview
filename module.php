@@ -262,7 +262,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
         $template = new PageTemplate;
         return $template->pageContent();
 
-      // See app/Media.php
+      // We use the code from the old cache system from app/media.php, which is removed from webtrees 2.0.0.
+	  // We cannot use the default mediafirewall system, since these thumbnails could not be used to generate the pdf.
       case 'thumbnail':
         $mid            = Filter::get('mid', WT_REGEX_XREF);
         $media          = Media::getInstance($mid, $this->tree());
@@ -272,7 +273,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
         $filetimeHeader = gmdate('D, d M Y H:i:s', $filetime) . ' GMT';
         $expireOffset   = 3600 * 24 * 7; // tell browser to cache this image for 7 days
         $expireHeader   = gmdate('D, d M Y H:i:s', WT_TIMESTAMP + $expireOffset) . ' GMT';
-        $etag           = $media->getEtag();
+		$etag_string	= basename($media->getServerFilename()) . $filetime . $this->tree()->getName() . Auth::accessLevel($this->tree());
+        $etag           = dechex(crc32($etag_string));
         $filesize       = filesize($cache_filename);
 
         // parse IF_MODIFIED_SINCE header from client
@@ -289,7 +291,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 
         // add caching headers.  allow browser to cache file, but not proxy
         header('Last-Modified: ' . $filetimeHeader);
-        header('ETag: "' . $etag . '"');
+        header('Etag: "' . $etag . '"');
         header('Expires: ' . $expireHeader);
         header('Cache-Control: max-age=' . $expireOffset . ', s-maxage=0, proxy-revalidate');
 

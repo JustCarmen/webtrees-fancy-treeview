@@ -965,7 +965,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
         $image   = '<img' .
             ' dir="' . 'auto' . '"' . // For the tool-tip
             ' class="pt-1 pr-2"' .
-            ' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '&amp;cb=' . $mediaobject->getEtag() . '"' .
+            ' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->getXref() . '"' .
             ' alt="' . strip_tags($person->getFullName()) . '"' .
             ' title="' . strip_tags($person->getFullName()) . '"' .
             ' data-pdf="1"' .
@@ -973,14 +973,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
             ' ' . $imgsize[3] . // height="yyy" width="xxx"
             '>';
         return
-            '<a' .
-            ' class="gallery"' .
-            ' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
-            ' type="' . $mediaobject->mimeType() . '"' .
-            ' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
-            ' data-obje-note="' . Html::escape($mediaobject->getNote()) . '"' .
-            ' data-title="' . strip_tags($person->getFullName()) . '"' .
-            '>' . $image . '</a>';
+            '<a class="gallery" href="' . Html::escape($mediaobject->imageUrl(0, 0, '')) . '">' . $image . '</a>';
       } else {
         // fallback
         $thumbwidth  = $thumbheight = $this->options('thumbnail_width');
