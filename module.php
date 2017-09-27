@@ -337,14 +337,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
     global $controller;
 
     $html = '';
-    if ($this->pdf()->tab()) {
+    if ($this->pdf() && $this->pdf()->tab()) {
       $html .= $this->pdf()->includeJs($controller, true);
     }
 
     $html .= '<div class="fancy-treeview theme-' . Theme::theme()->themeId() . '">' .
         '<div id="fancy-treeview-tab" class="fancy-treeview-tab">';
 
-    if ($this->pdf()->tab()) {
+    if ($this->pdf() && $this->pdf()->tab()) {
       $html .= '<div class="d-flex justify-content-between">';
       $html .= $this->pdf()->getPdfWaitingMessage();
       $html .= $this->pdf()->getPdfIcon();
