@@ -437,7 +437,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
   protected function printReadMoreLink() {
     return
         '<div class="read-more text-right">' .
-        '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $this->rootId() . '&amp;ged=' . Filter::escapeUrl(Tree::findById($this->tree()->getTreeId())->getName()) . '&readmore=true">' .
+        '<a href="module.php?mod=' . $this->getName() . '&amp;mod_action=page&rootid=' . $this->rootId() . '&amp;ged=' . rawurlencode(Tree::findById($this->tree()->getTreeId())->getName()) . '&readmore=true">' .
         I18N::translate('Read more') .
         '</a>' .
         '</div>';
