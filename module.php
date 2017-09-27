@@ -263,7 +263,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
         return $template->pageContent();
 
       // We use the code from the old cache system from app/media.php, which is removed from webtrees 2.0.0.
-	  // We cannot use the default mediafirewall system, since these thumbnails could not be used to generate the pdf.
+      // We cannot use the default mediafirewall system, since these thumbnails could not be used to generate the pdf.
       case 'thumbnail':
         $mid            = Filter::get('mid', WT_REGEX_XREF);
         $media          = Media::getInstance($mid, $this->tree());
@@ -273,7 +273,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
         $filetimeHeader = gmdate('D, d M Y H:i:s', $filetime) . ' GMT';
         $expireOffset   = 3600 * 24 * 7; // tell browser to cache this image for 7 days
         $expireHeader   = gmdate('D, d M Y H:i:s', WT_TIMESTAMP + $expireOffset) . ' GMT';
-		$etag_string	= basename($media->getServerFilename()) . $filetime . $this->tree()->getName() . Auth::accessLevel($this->tree());
+        $etag_string    = basename($media->getServerFilename()) . $filetime . $this->tree()->getName() . Auth::accessLevel($this->tree());
         $etag           = dechex(crc32($etag_string));
         $filesize       = filesize($cache_filename);
 
