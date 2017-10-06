@@ -396,7 +396,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
    * @return string
    */
   protected function printBlockContent() {
-    $html = '<div class="card-block wt-block-content">' .
+    $html = '<div class="card-body wt-block-content">' .
         '<ol class="generation p-0">';
 
     foreach (array_unique($this->pids) as $pid) {
@@ -449,7 +449,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
    */
   protected function printPrivateBlock() {
     return
-        '<div class="card-block wt-block-content">' .
+        '<div class="card-body wt-block-content">' .
         '<div class="generation private">' .
         I18N::translate('The details of this generation are private.') .
         '</div></div>';
