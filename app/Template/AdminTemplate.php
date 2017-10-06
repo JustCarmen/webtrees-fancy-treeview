@@ -85,7 +85,7 @@ class AdminTemplate extends FancyTreeviewClass {
               </h5>
             </div>
             <div id="card-pages-content" class="collapse show" role="tabpanel" aria-labelledby="card-pages-header">
-              <div class="card-block">
+              <div class="card-body">
                 <?php
                 $FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
                 if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))) {
@@ -328,7 +328,7 @@ class AdminTemplate extends FancyTreeviewClass {
               </h5>
             </div>
             <div id="card-options-content" class="collapse" role="tabpanel" aria-labelledby="card-options-header">
-              <div class="card-block">
+              <div class="card-body">
                 <?= $this->addMessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')) ?>
                 <?= $this->addMessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')) ?>
                 <?= $this->addMessage('copy-options', 'success', true, I18N::translate('The options for this tree are succesfully saved and copied to all other trees')) ?>
