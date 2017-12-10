@@ -19,62 +19,57 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Controller\BaseController;
 use Fisharebest\Webtrees\Controller\PageController;
-use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\Functions\FunctionsEdit;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Theme;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class PageTemplate extends FancyTreeviewClass {
+	protected function pageContent() {
+		global $controller;
+		$controller = new PageController;
 
-  protected function pageContent() {
-    global $controller;
-    $controller = new PageController;
+		if ($this->getRootPerson() && $this->getRootPerson()->canShowName()) {
+			return
+		  $this->pageHeader($controller) .
+		  $this->pageBody($controller);
+		} else {
+			return $this->pageMessage($controller);
+		}
+	}
 
-    if ($this->getRootPerson() && $this->getRootPerson()->canShowName()) {
-      return
-          $this->pageHeader($controller) .
-          $this->pageBody($controller);
-    } else {
-      return $this->pageMessage($controller);
-    }
-  }
+	protected function pageTitle() {
+		return /* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
+	}
 
-  protected function pageTitle() {
-    return /* I18N: %s is the name of the root individual */ I18N::translate('Descendants of %s', $this->getRootPerson()->getFullName());
-  }
+	protected function pageHeader(PageController $controller) {
+		$controller
+		->setPageTitle($this->pageTitle())
+		->pageHeader()
+		->addInlineJavascript('var FTV_GENERATIONS = "' . $this->options('generations') . '";', BaseController::JS_PRIORITY_HIGH)
+		->addExternalJavascript($this->directory . '/js/page.js');
 
-  protected function pageHeader(PageController $controller) {
-    $controller
-        ->setPageTitle($this->pageTitle())
-        ->pageHeader()
-        ->addInlineJavascript('var FTV_GENERATIONS = "' . $this->options('generations') . '";', BaseController::JS_PRIORITY_HIGH)
-        ->addExternalJavascript($this->directory . '/js/page.js');
+		if ($this->pdf()) {
+			$this->pdf()->includeJs($controller);
+		}
+	}
 
-    if ($this->pdf()) {
-      $this->pdf()->includeJs($controller);
-    }
-  }
-
-  protected function pageBody(PageController $controller) {
-    ob_start();
-    ?>
+	protected function pageBody(PageController $controller) {
+		ob_start(); ?>
     <!-- FANCY TREEVIEW PAGE -->
     <div class="fancy-treeview container theme-<?= Theme::theme()->themeId() ?>">
       <div id="fancy-treeview-page" class="fancy-treeview-page">
         <div class="page-header d-flex">
           <h2 class="text-center col"><?= $controller->getPageTitle() ?></h2>
           <?php
-          if ($this->pdf()) {
-            echo $this->pdf()->getPdfIcon();
-          }
-          ?>
+		  if ($this->pdf()) {
+		  	echo $this->pdf()->getPdfIcon();
+		  } ?>
         </div>
         <?php
-        if ($this->pdf()) {
-          echo $this->pdf()->getPdfWaitingMessage();
-        }
-        ?>
+		if ($this->pdf()) {
+			echo $this->pdf()->getPdfWaitingMessage();
+		} ?>
         <div class="page-body px-3">
           <?php if ($this->options('show_userform') >= Auth::accessLevel($this->tree())): ?>
             <form id="change-root">
@@ -109,18 +104,17 @@ class PageTemplate extends FancyTreeviewClass {
       </div>
     </div>
     <?php
-    ob_get_contents();
-  }
+	ob_get_contents();
+	}
 
-  protected function pageBodyContent() {
-    return $this->printPage();
-  }
+	protected function pageBodyContent() {
+		return $this->printPage();
+	}
 
-  private function pageMessage($controller) {
-    http_response_code(404);
-    $controller->pageHeader();
-    echo $this->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
-    return;
-  }
-
+	private function pageMessage($controller) {
+		http_response_code(404);
+		$controller->pageHeader();
+		echo $this->addMessage('alert', 'warning', false, I18N::translate('This individual does not exist or you do not have permission to view it.'));
+		return;
+	}
 }
