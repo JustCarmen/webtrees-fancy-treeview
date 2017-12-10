@@ -17,7 +17,6 @@ namespace JustCarmen\WebtreesAddOns\FancyTreeview\Template;
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Bootstrap4;
-use Fisharebest\Webtrees\Controller\BaseController;
 use Fisharebest\Webtrees\Controller\PageController;
 use Fisharebest\Webtrees\Filter;
 use Fisharebest\Webtrees\Functions\FunctionsEdit;
@@ -28,33 +27,31 @@ use Fisharebest\Webtrees\Tree;
 use JustCarmen\WebtreesAddOns\FancyTreeview\FancyTreeviewClass;
 
 class AdminTemplate extends FancyTreeviewClass {
+	protected function pageContent() {
+		$controller = new PageController;
+		return
+		$this->pageHeader($controller) .
+		$this->pageBody($controller);
+	}
 
-  protected function pageContent() {
-    $controller = new PageController;
-    return
-        $this->pageHeader($controller) .
-        $this->pageBody($controller);
-  }
+	private function pageHeader(PageController $controller) {
+		$controller
+		->restrictAccess(Auth::isAdmin())
+		->setPageTitle(I18N::translate('Fancy Treeview'))
+		->pageHeader()
+		->addExternalJavascript(WT_SORTABLE_JS_URL)
+		->addExternalJavascript($this->directory . '/js/admin.js');
 
-  private function pageHeader(PageController $controller) {
-    $controller
-        ->restrictAccess(Auth::isAdmin())
-        ->setPageTitle(I18N::translate('Fancy Treeview'))
-        ->pageHeader()
-        ->addExternalJavascript(WT_SORTABLE_JS_URL)
-        ->addExternalJavascript($this->directory . '/js/admin.js');
+		echo $this->includeCss();
+	}
 
-    echo $this->includeCss();
-  }
+	private function pageBody(PageController $controller) {
+		global $WT_TREE;
 
-  private function pageBody(PageController $controller) {
-    global $WT_TREE;
-
-    echo Bootstrap4::breadcrumbs([
-        'admin.php'         => I18N::translate('Control panel'),
-        'admin_modules.php' => I18N::translate('Module administration'),
-        ], $controller->getPageTitle());
-    ?>
+		echo Bootstrap4::breadcrumbs([
+		'admin.php'         => I18N::translate('Control panel'),
+		'admin_modules.php' => I18N::translate('Module administration'),
+		], $controller->getPageTitle()); ?>
 
     <div class="fancy-treeview">
       <div class="fancy-treeview-admin">
@@ -86,12 +83,11 @@ class AdminTemplate extends FancyTreeviewClass {
             <div id="card-pages-content" class="collapse show" role="tabpanel" aria-labelledby="card-pages-header">
               <div class="card-body">
                 <?php
-                $FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
-                if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))) {
-                  $html = /* I18N: Help text for creating Fancy Treeview pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want.');
-                  echo Theme::theme()->htmlAlert($html, 'info', true);
-                }
-                ?>
+				$FTV_SETTINGS = unserialize($this->getPreference('FTV_SETTINGS'));
+		if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))) {
+			$html = /* I18N: Help text for creating Fancy Treeview pages */ I18N::translate('Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want.');
+			echo Theme::theme()->htmlAlert($html, 'info', true);
+		} ?>
 
                 <!-- *** FORM 2 *** -->
                 <div id="ftv-search-form" class="form-group alert alert-info">
@@ -260,12 +256,11 @@ class AdminTemplate extends FancyTreeviewClass {
                                   <td>
                                     <a href="module.php?mod=<?= $this->getName(); ?>&amp;mod_action=page&amp;ged=<?= $this->tree()->getNameHtml(); ?>&amp;rootid=<?= $this_ITEM['PID'] ?>" target="_blank">
                                       <?php
-                                      if ($this->options('use_fullname') == true) {
-                                        echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName());
-                                      } else {
-                                        echo I18N::translate('Descendants of the %s family', $this_ITEM['SURNAME']);
-                                      }
-                                      ?>
+									  if ($this->options('use_fullname') == true) {
+									  	echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName());
+									  } else {
+									  	echo I18N::translate('Descendants of the %s family', $this_ITEM['SURNAME']);
+									  } ?>
                                     </a>
                                   </td>
                                   <!-- ACCESS LEVEL -->
@@ -390,7 +385,9 @@ class AdminTemplate extends FancyTreeviewClass {
                       </div>
                     </div>
                     <!-- USE GEDCOM PLACE SETTING -->
-                    <div id="gedcom_places" class="row form-group<?php if (!$this->options('show_places')) echo ' collapse' ?>">
+                    <div id="gedcom_places" class="row form-group<?php if (!$this->options('show_places')) {
+									  	echo ' collapse';
+									  } ?>">
                       <label class="col-form-label col-sm-4">
                         <?= I18N::translate('Use default GEDCOM settings to abbreviate place names') ?>
                       </label>
@@ -403,7 +400,9 @@ class AdminTemplate extends FancyTreeviewClass {
                     </div>
                     <!-- GET COUNTRYLIST -->
                     <?php if ($this->getCountrylist()): ?>
-                      <div id="country_list" class="row form-group<?php if (!$this->options('show_places') || $this->options('use_gedcom_places')) echo ' collapse' ?>">
+                      <div id="country_list" class="row form-group<?php if (!$this->options('show_places') || $this->options('use_gedcom_places')) {
+									  	echo ' collapse';
+									  } ?>">
                         <label class="col-form-label col-sm-4">
                           <?= I18N::translate('Select your country') ?>
                         </label>
@@ -505,6 +504,5 @@ class AdminTemplate extends FancyTreeviewClass {
       </div>
     </div>
     <?php
-  }
-
+	}
 }
