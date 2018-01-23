@@ -111,7 +111,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function hasTabContent() {
+	public function hasTabContent(Individual $individual) {
 		if ($this->module()->options('ftv_tab')) {
 			return true;
 		} else {
@@ -120,7 +120,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function isGrayedOut() {
+	public function isGrayedOut(Individual $individual) {
 		return false;
 	}
 
@@ -335,7 +335,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function getTabContent() {
+	public function getTabContent(Individual $individual) {
 		global $controller;
 
 		$html = '';
