@@ -953,7 +953,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 * @return thumbnail
 	 */
 	protected function printThumbnail(Individual $person) {
-		$mediaobject = $person->findHighlightedMedia();
+		$mediaobject = $person->findHighlightedMediaFile();
 		if ($mediaobject) {
 			$cache_filename = $this->getThumbnail($mediaobject);
 			if (is_file($cache_filename)) {
