@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2018-03-14 18:48+0000\n"
+"PO-Revision-Date: 2018-03-14 21:18+0000\n"
 "Last-Translator: Vitalii Oleshkevych <mar2008m@gmail.com>\n"
 "Language-Team: Russian <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/ru/>\n"
 "Language: ru\n"
@@ -24,7 +24,7 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr "<strong>Примечание</strong>: этот параметр может увеличить время работы и/или использовать много памяти, особенно с большими деревьями. Это может привести к очень медленной загрузке страницы или ошибке «времени выполнения» на вашем сервере. Если Вы заметили такое поведение, уменьшите количество блоков поколения для загрузки сразу или не использовать его в сочетании с возможностью просмотра синглов (см. предыдущие варианты). Если у Вас по-прежнему возникают какие-либо проблемы, не используйте эту опцию вообще."
+msgstr "<strong>Примечание</strong>: этот параметр может увеличить время работы и/или использовать много памяти, особенно с большими деревьями. Это может привести к очень медленной загрузке страницы или ошибке «времени выполнения» на Вашем сервере. Если Вы заметили такое поведение, уменьшите количество блоков поколения для загрузки сразу или не использовать его в сочетании с возможностью просмотра одиноких людей (см. предыдущие варианты). Если у Вас по-прежнему возникают какие-либо проблемы, не используйте эту опцию вообще."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
@@ -34,7 +34,7 @@ msgstr "Родословная роспись - обзор потомков од
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr "Значок PDF отображается на странице 'Родословная роспись' по умолчанию. Если Вы включите эту опцию, значок PDF также будет отображаться на вкладке 'Родословная роспись' на отдельной странице."
+msgstr "Значок PDF, по умолчанию отображается на странице 'Родословная роспись'. Если Вы включите эту опцию, значок PDF также будет отображаться на вкладке 'Родословная роспись' на отдельной странице."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -98,7 +98,7 @@ msgstr "Расширенный модуль 'Родословная роспис
 
 #: fancy_treeview/app/Template/PageTemplate.php:88
 msgid "Go"
-msgstr "Идти"
+msgstr "Ок"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:641
 msgid "He had a relationship with"
@@ -133,7 +133,7 @@ msgstr "Он родился "
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr "Здесь Вы можете изменить размер по умолчанию Webtrees-миниатюр, особенно для страниц 'Родословная роспись'. Вы можете установить нестандартный размер в процентах или в пикселях. Если Вы выберете «нет», по умолчанию Webtrees-миниатюры будет использоваться с форматами, которые Вы установили на странице конфигурации дерева."
+msgstr "Здесь Вы можете изменить стандартный размер Webtrees-миниатюр, особенно для страниц 'Родословная роспись'. Вы можете установить нестандартный размер в процентах или в пикселях. Если Вы выберете «нет», стандартные Webtrees-миниатюры будут использоваться с форматами, которые Вы установили на странице конфигурации дерева."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:500
@@ -143,12 +143,12 @@ msgstr "Если Вы включите этот параметр, на отде�
 #. I18N: Help text for the “Select your country” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:429
 msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
-msgstr "Если Вы отметили опцию «Показывать места», но не можете сокращать имена мест, Вы можете указать свою страну здесь. Полные места будут указаны на страницах 'Родословная роспись', но когда место включает название Вашей собственной страны, это имя будет опущено. Если Вы не выберите страну, тогда будут показаны все страны, в том числе Ваши собственные."
+msgstr "Если Вы отметили опцию «Показывать места», но не можете сокращать имена мест, то здесь Вы можете указать свою страну. Полные места будут указаны на страницах 'Родословная роспись', но когда место включает название Вашей собственной страны, это имя будет опущено. Если Вы не выберите страну, тогда будут показаны все страны, в том числе Ваши собственные."
 
 #. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:416
 msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
-msgstr "Если Вы отметили опцию «Показывать места», Вы можете использовать настройки по умолчанию GEDCOM для сокращения названия мест. Если Вы не установите этот параметр, будут показаны полные названия мест."
+msgstr "Если Вы отметили опцию «Показывать места», Вы можете использовать стандартные настройки GEDCOM для сокращения названия мест. Если Вы не установите этот параметр, будут показаны полные названия мест."
 
 #: fancy_treeview_pdf/app/Template/PdfTemplate.php:101
 msgid "Index"
@@ -165,7 +165,7 @@ msgstr "Параметры для %s"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
-msgstr "Или введите ID персоны"
+msgstr "или введите ID"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:166
 #: fancy_treeview/app/Template/AdminTemplate.php:236
@@ -192,11 +192,11 @@ msgstr "Основная персона"
 #: fancy_treeview/app/Template/AdminTemplate.php:146
 #: fancy_treeview/app/Template/PageTemplate.php:80
 msgid "Search ID by name"
-msgstr "Поиск ID по имени"
+msgstr "Поиск по ID"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:114
 msgid "Search root person"
-msgstr "Поиск основной персоны"
+msgstr "Поиск персоны"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:423
 msgid "Select your country"
@@ -254,7 +254,7 @@ msgstr "Показать места"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
-msgstr "Показать холостяков"
+msgstr "Показать одиноких людей"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:164
 #: fancy_treeview/app/Template/AdminTemplate.php:234
@@ -265,13 +265,13 @@ msgstr "Фамилия в названии страницы"
 #: fancy_treeview/app/FancyTreeviewClass.php:568
 #, php-format
 msgid "The %s time he married"
-msgstr "В %s раз он женился на: "
+msgstr "В %s раз он женился на"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:574
 #, php-format
 msgid "The %s time she married"
-msgstr "В %s раз она вышла замуж за: "
+msgstr "В %s раз она вышла замуж за"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:580
@@ -285,7 +285,7 @@ msgstr "Сведения об этой семье являются частны�
 
 #: fancy_treeview/app/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Параметры этого дерева успешно сбрасываются до настроек по умолчанию"
+msgstr "Параметры этого дерева успешно сбрасываются до стандартных настроек"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
@@ -320,7 +320,7 @@ msgstr "Этот человек женился %s раз"
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:370
 msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
-msgstr "Этот параметр особенно полезен для больших деревьев. Когда Вы заметили медленную загрузку страницы, Вы можете установить количество блоков генерации для загрузки, сразу на более низкий уровень. Ниже блока последнего поколения появится кнопка, которая добавит следующий набор блоков поколений. Новые блоки будут добавлены к уже существующим блокам. Нажав на ссылку «следить» в последнем видимом блоке поколений, также загрузит следующий набор блоков поколения."
+msgstr "Этот параметр особенно полезен для больших деревьев. Когда Вы заметили медленную загрузку страницы, Вы можете установить количество блоков генерации для загрузки, сразу на более низкий уровень. Ниже блока последнего поколения появится кнопка, которая добавит следующий набор блоков поколений. Новые блоки будут добавлены к уже существующим блокам. Нажатие на ссылку «перейти к» в последнем видимом блоке поколений, также загрузит следующий набор блоков поколения."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
@@ -446,7 +446,7 @@ msgstr "первый"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1598
 msgid "follow"
-msgstr "следить"
+msgstr "перейти к"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:722
 msgctxt "FEMALE"
@@ -529,7 +529,7 @@ msgstr "ок"
 #: fancy_treeview/app/FancyTreeviewClass.php:1127
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
-msgstr "на "
+msgstr " "
 
 #: fancy_treeview/app/Template/AdminTemplate.php:469
 msgid "percent"
