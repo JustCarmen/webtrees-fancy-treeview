@@ -54,7 +54,10 @@ class PageTemplate extends FancyTreeviewClass {
 	}
 
 	protected function pageBody(PageController $controller) {
+		global $WT_TREE;
+
 		ob_start(); ?>
+
     <!-- FANCY TREEVIEW PAGE -->
     <div class="fancy-treeview container theme-<?= Theme::theme()->themeId() ?>">
       <div id="fancy-treeview-page" class="fancy-treeview-page">
@@ -76,7 +79,7 @@ class PageTemplate extends FancyTreeviewClass {
                 <label class="col-form-label col-md-4"><?= I18N::translate('Change root person') ?></label>
                 <div class="col-md-3">
                   <div class="input-group">
-                    <?= FunctionsEdit::formControlIndividual(null, ['id' => 'new-pid', 'name' => 'PID']) ?>
+                    <?= FunctionsEdit::formControlIndividual($WT_TREE, null, ['id' => 'new-pid', 'name' => 'PID']) ?>
                     <span class="input-group-btn">
                       <button name="btn-go" class="btn btn-primary" type="submit">
                         <?= I18N::translate('Go') ?>
