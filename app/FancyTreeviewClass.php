@@ -462,7 +462,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 	 */
 	protected function printIndividual(Individual $person) {
 		if ($person->CanShow()) {
-			$html = '<div class="parents d-inline-flex px-2">' . $this->printThumbnail($person) . '<p class="parents-data">' . $this->printNameUrl($person, $person->getXref());
+			$html = '<div class="parents d-inline-flex px-2"><p class="parents-data">' . $this->printNameUrl($person, $person->getXref());
 			if ($this->options('show_occu')) {
 				$html .= $this->printOccupations($person);
 			}
