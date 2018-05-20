@@ -39,7 +39,6 @@ class AdminTemplate extends FancyTreeviewClass {
 		->restrictAccess(Auth::isAdmin())
 		->setPageTitle(I18N::translate('Fancy Treeview'))
 		->pageHeader()
-		->addExternalJavascript(WT_SORTABLE_JS_URL)
 		->addExternalJavascript($this->directory . '/js/admin.js');
 
 		echo $this->includeCss();
@@ -122,7 +121,7 @@ class AdminTemplate extends FancyTreeviewClass {
 							<?= I18N::translate('Or enter a name') ?>
 						  </label>
 						  <div class="col-sm-6">
-							<?= FunctionsEdit::formControlIndividual(null, ['id' => 'pid-search', 'name' => 'PID']) ?>
+							<?= FunctionsEdit::formControlIndividual($WT_TREE, null, ['id' => 'pid-search', 'name' => 'PID']) ?>
 						  </div>
 						  <button name="Ok" class="btn btn-primary col-sm-1" type="submit">
 							<i class="fa fa-check"></i>
@@ -254,7 +253,7 @@ class AdminTemplate extends FancyTreeviewClass {
 									  <?php endif ?>
 									  <!-- PAGE TITLE -->
 									  <td>
-										<a href="module.php?mod=<?= $this->getName(); ?>&amp;mod_action=page&amp;ged=<?= $this->tree()->getNameHtml(); ?>&amp;rootid=<?= $this_ITEM['PID'] ?>" target="_blank">
+										<a href="module.php?mod=<?= $this->getName(); ?>&amp;mod_action=page&amp;ged=<?= e($this->tree()->getName()); ?>&amp;rootid=<?= $this_ITEM['PID'] ?>" target="_blank">
 										  <?php
 										  if ($this->options('use_fullname') == true) {
 										  	echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName());
@@ -317,7 +316,7 @@ class AdminTemplate extends FancyTreeviewClass {
 				<div class="card-header" role="tab" id="card-options-header">
 				  <h5 class="mb-0">
 					<a data-toggle="collapse" data-parent="#accordion" href="#card-options-content" aria-expanded="true" aria-controls="card-options-content">
-					  <?= I18N::translate('Options for %s', $this->tree()->getTitleHtml()) ?>
+					  <?= I18N::translate('Options for %s', e($this->tree()->getTitle())) ?>
 					</a>
 				  </h5>
 				</div>
