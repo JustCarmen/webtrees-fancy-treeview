@@ -281,7 +281,7 @@ class FancyTreeviewClass extends FancyTreeviewModule {
 		if ($this->isTab()) {
 			$generations = 3;
 		} else {
-			$generations = $this->options('generations');
+			$generations = (int)$this->options('generations');
 
 			if ($generations === 0 || $this->action === 'full_pdf') {
 				$generations = 99;
