@@ -369,7 +369,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function getMenu() {
+	public function getMenu(Tree $tree) {
 		echo $this->includeCss();
 		return $this->menuFancyTreeview();
 	}
