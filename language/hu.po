@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-07-17 10:46+0000\n"
+"PO-Revision-Date: 2018-07-11 21:34+0000\n"
 "Last-Translator: Gyönyör János <gyj@centrum.sk>\n"
 "Language-Team: Hungarian <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/hu/>\n"
 "Language: hu\n"
@@ -26,7 +26,7 @@ msgstr ""
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:395
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
-msgstr ""
+msgstr "<strong>Megjegyzés</strong>: a művelet terjedelmes fák esetén idő és/vagy memória igényes. Ez nagyon lassú oldalbetöltést vagy ’időtúllépési hibát’ okozhat a kiszolgálón. Ha ilyen viselkedést észlel, csökkentse az egyszerre betöltendő generációs blokkok számát, vagy ne használja azegyének megjelenítésének lehetőségével (lásd az előző beállításokat).Ha még mindig problémákat tapasztal, ne használja ezt a lehetőséget."
 
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
@@ -36,7 +36,7 @@ msgstr "Fancy áttekintő egy családi(ágazat) utódainak leírása elbeszélő
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
 msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
-msgstr ""
+msgstr "Alapértelmezés szerint a PDF ikon látható a Fancy famegelenítő oldalon. Ha engedélyezi ezt a lehetőséget, a PDF ikon a személyek lapjának Fancy famegjelenítő tábláján is megjelenik."
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
@@ -103,9 +103,8 @@ msgid "Go"
 msgstr "Mehet"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:641
-#, fuzzy
 msgid "He had a relationship with"
-msgstr "kapcsolatban áll vele"
+msgstr "kapcsolatban állt vele"
 
 #. I18N: %s is a number
 #: fancy_treeview/app/FancyTreeviewClass.php:566
@@ -136,7 +135,7 @@ msgstr "Született"
 #. I18N: Help text for the “Resize thumbnails” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:451
 msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
-msgstr ""
+msgstr "Itt választhatja meg az alapértelmezett webtrees bélyegképek méretét különösképp a Fancy famegjelenítő oldalakat tekintve. Az egyéni méret százalékban vagy képpontokban válaszható. Ha a \"nem\" lehetőséget választja, a webtrees alapértelmezett bélyegképei lesznek használva a fa beállításainak oldalán megadott értékekkel."
 
 #. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:500
@@ -540,7 +539,7 @@ msgstr "százalék"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr ""
+msgstr "a beállítások mentése és másolása egyéb fákra"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:132
 msgid "search"
