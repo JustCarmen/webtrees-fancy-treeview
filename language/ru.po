@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2018-03-14 21:18+0000\n"
+"PO-Revision-Date: 2018-07-12 13:15+0000\n"
 "Last-Translator: Vitalii Oleshkevych <mar2008m@gmail.com>\n"
 "Language-Team: Russian <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/ru/>\n"
 "Language: ru\n"
@@ -174,7 +174,7 @@ msgstr "Заголовок страницы"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:92
 msgid "Pages"
-msgstr "Страниц"
+msgstr "Страницы"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:454
 msgid "Read more"
@@ -285,7 +285,7 @@ msgstr "Сведения об этой семье являются частны�
 
 #: fancy_treeview/app/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Параметры этого дерева успешно сбрасываются до стандартных настроек"
+msgstr "Параметры этого дерева успешно восстановлены до стандартных настроек"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
@@ -293,11 +293,11 @@ msgstr "Параметры этого дерева успешно сохране
 
 #: fancy_treeview/app/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Параметры этого дерева успешно сохраняются и копируются на все остальные деревья"
+msgstr "Параметры этого дерева успешно сохранены и скопированы на все другие деревья"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
-msgstr "Настройки для этого дерева успешно обновляются"
+msgstr "Настройки для этого дерева успешно обновились"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:311
 msgid "This individual doesn’t exist anymore in this tree"
