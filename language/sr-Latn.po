@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2018-08-22 10:19+0000\n"
+"PO-Revision-Date: 2018-08-23 09:19+0000\n"
 "Last-Translator: Enes <enes_s@yahoo.com>\n"
 "Language-Team: Serbian (latin) <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/sr-Latn/>\n"
 "Language: sr-Latn\n"
@@ -31,7 +31,7 @@ msgstr "<strong>Pažnja</strong>: ova opcija može zauzeti dosta procesorskog vr
 #. I18N: Description of the module
 #: fancy_treeview/module.php:92
 msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
-msgstr "Vrlo lep pregled potomaka jedne porodice (grane) u tekstualnoj formi."
+msgstr "Vrlo lep pregled potomaka jedne porodice (stabla) u tekstualnoj formi."
 
 #. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
@@ -100,7 +100,7 @@ msgstr "Fancy Treeview modul ekstenzija: omogućava korisnicima da download-uju 
 
 #: fancy_treeview/app/Template/PageTemplate.php:88
 msgid "Go"
-msgstr "Kreni"
+msgstr "Počni"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:641
 msgid "He had a relationship with"
@@ -120,7 +120,7 @@ msgstr "Kršten je"
 #: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "Krstio se"
+msgstr "Kršten je"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1019
 msgctxt "PAST"
@@ -217,7 +217,7 @@ msgstr "Udavala se %s puta"
 #: fancy_treeview/app/FancyTreeviewClass.php:1037
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr "Krstila se"
+msgstr "Krštena je"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
@@ -287,23 +287,23 @@ msgstr "Detalji ove generacije su privatni."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr "Opcije za ovu granu uspešno su vraćeni na početna podešavanja"
+msgstr "Opcije za ovo stablo uspešno su vraćeni na početna podešavanja"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
-msgstr "Opcije za ovu granu su uspešno snimljene"
+msgstr "Opcije za ovo stablo su uspešno snimljene"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr "Opcije za ovu granu su uspešno smimljene i kopirane su na sve ostale grane"
+msgstr "Opcije za ovo stablo su uspešno smimljene i kopirane su na sva ostala stabla"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
-msgstr "Podešavanja za ovu granu su uspešno izmenjena"
+msgstr "Podešavanja za ovo stablo su uspešno izmenjena"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:311
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr "Osoba više ne postoji na ovoj grani"
+msgstr "Osoba više ne postoji na ovom stablu"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:647
 msgid "This individual had a relationship with"
@@ -434,7 +434,7 @@ msgstr "umro"
 #. I18N: eighth marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:559
 msgid "eighth"
-msgstr "osmi"
+msgstr "Osmi"
 
 #. I18N: fifth marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:556
@@ -448,7 +448,7 @@ msgstr "Prvi"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1598
 msgid "follow"
-msgstr "prati"
+msgstr "veza ka"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:722
 msgctxt "FEMALE"
@@ -475,7 +475,7 @@ msgstr "usvojen od"
 #. I18N: fourth marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:555
 msgid "fourth"
-msgstr "četvrti"
+msgstr "Četvrti"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:698
 msgctxt "One parent/multiple children"
@@ -503,13 +503,13 @@ msgstr "imaju"
 #: fancy_treeview/app/FancyTreeviewClass.php:1130
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "u "
+msgstr "  "
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/app/FancyTreeviewClass.php:1133
 msgctxt "before dateformat yyyy"
 msgid "in "
-msgstr "u "
+msgstr "  "
 
 #. I18N: Note the space at the end of the string
 #: fancy_treeview/app/FancyTreeviewClass.php:1150
@@ -539,7 +539,7 @@ msgstr "procenat"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr "sačuvaj i kopiraj opcije na druge grane"
+msgstr "sačuvaj i kopiraj opcije na druga stabla"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:132
 msgid "search"
