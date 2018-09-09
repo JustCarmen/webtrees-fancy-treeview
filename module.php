@@ -74,12 +74,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	 *
 	 * @return string
 	 */
-	public function getName() {
+	public function getName(): string {
 		return 'fancy_treeview';
 	}
 
 	/** {@inheritdoc} */
-	public function getTitle() {
+	public function getTitle(): string {
 		return /* I18N: Name of the module */ I18N::translate('Fancy Treeview');
 	}
 
@@ -88,12 +88,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function getDescription() {
+	public function getDescription(): string {
 		return /* I18N: Description of the module */ I18N::translate('A Fancy overview of the descendants of one family(branch) in a narrative way.');
 	}
 
 	/** {@inheritdoc} */
-	public function getConfigLink() {
+	public function getConfigLink(): string {
 		return Html::url('module.php', [
 			'mod'        => $this->getName(),
 			'mod_action' => 'admin_config',
@@ -101,17 +101,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function defaultMenuOrder() {
+	public function defaultMenuOrder(): int {
 		return 10;
 	}
 
 	/** {@inheritdoc} */
-	public function defaultTabOrder() {
+	public function defaultTabOrder(): int {
 		return 25;
 	}
 
 	/** {@inheritdoc} */
-	public function hasTabContent(Individual $individual) {
+	public function hasTabContent(Individual $individual): bool {
 		if ($this->module()->options('ftv_tab')) {
 			return true;
 		} else {
@@ -120,12 +120,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function isGrayedOut(Individual $individual) {
+	public function isGrayedOut(Individual $individual): bool {
 		return false;
 	}
 
 	/** {@inheritdoc} */
-	public function canLoadAjax() {
+	public function canLoadAjax(): bool {
 		return true;
 	}
 
@@ -335,7 +335,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 	}
 
 	/** {@inheritdoc} */
-	public function getTabContent(Individual $individual) {
+	public function getTabContent(Individual $individual): string {
 		global $controller;
 
 		$html = '';
