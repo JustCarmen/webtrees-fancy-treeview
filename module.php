@@ -51,7 +51,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleConfigInterfac
 		parent::__construct('fancy_treeview');
 
 		$this->directory = WT_MODULES_DIR . $this->getName();
-		$this->action    = Filter::get('mod_action');
+		$this->action    = $this->request->get('mod_action');
 
 		// register the namespaces
 		$loader = new ClassLoader();
