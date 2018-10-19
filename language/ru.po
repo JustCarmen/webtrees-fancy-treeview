@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2018-07-12 13:15+0000\n"
+"PO-Revision-Date: 2018-10-19 18:57+0000\n"
 "Last-Translator: Vitalii Oleshkevych <mar2008m@gmail.com>\n"
 "Language-Team: Russian <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/ru/>\n"
 "Language: ru\n"
@@ -277,7 +277,7 @@ msgstr "В %s раз она вышла замуж за"
 #: fancy_treeview/app/FancyTreeviewClass.php:580
 #, php-format
 msgid "The %s time this individual married"
-msgstr "В %s раз этот человек женился:"
+msgstr "В %s раз этот человек женился"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:467
 msgid "The details of this generation are private."
@@ -374,7 +374,7 @@ msgstr "приемный ребенок"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:806
 msgid "adopted child of"
-msgstr "приемный ребенок из"
+msgstr "приемный ребенок от"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:797
 msgid "adopted daughter of"
@@ -417,7 +417,7 @@ msgstr "отменить"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:808
 msgid "child of"
-msgstr "ребенок из"
+msgstr "ребенок от"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1068
 msgctxt "FEMALE"
