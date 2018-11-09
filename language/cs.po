@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
 "POT-Creation-Date: 2016-12-31 17:45+0100\n"
-"PO-Revision-Date: 2017-07-17 09:01+0000\n"
-"Last-Translator: Gyönyör János <gyj@centrum.sk>\n"
+"PO-Revision-Date: 2018-11-09 18:24+0000\n"
+"Last-Translator: Josef Prause <josef.prause@gmail.com>\n"
 "Language-Team: Czech <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.10\n"
+"X-Generator: Weblate 2.11\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
@@ -40,15 +40,15 @@ msgstr ""
 
 #: fancy_treeview/app/Template/PageTemplate.php:75
 msgid "Change root person"
-msgstr "Změňit probanta"
+msgstr "Změnit probanta"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:387
 msgid "Check relationship between partners"
-msgstr ""
+msgstr "Kontrolovat spřízněnost mezi partnery"
 
 #: fancy_treeview_pdf/app/FancyTreeviewPdfClass.php:48
 msgid "Creating PDF file. This process may take a while. Please wait..."
-msgstr "Vytváří se soubor PDF. Proces může chvíli trvat. Prosím, čekejte..."
+msgstr "Vytváří­ se soubor PDF. Proces může chvíli trvat. Prosím, čekejte..."
 
 #. I18N: %s is the surname of the root individual
 #: fancy_treeview/app/FancyTreeviewClass.php:209
@@ -62,7 +62,7 @@ msgstr "Potomci rodu %s"
 #: fancy_treeview/module.php:181
 #, php-format
 msgid "Error: A person with ID %s does not exist in this tree"
-msgstr ""
+msgstr "Chyba: Osoba s ID %s v rodokmenu neexistuje"
 
 #: fancy_treeview/module.php:162
 #, php-format
@@ -71,32 +71,32 @@ msgstr "Chyba: probant s identifikátorem ID %s už existuje"
 
 #: fancy_treeview/module.php:160
 msgid "Error: The root person belonging to this surname already exists"
-msgstr "Chyba: probant patřící k tomuto příjmení už existuje"
+msgstr "Chyba: probant patřící k tomuto příjmení­ už existuje"
 
 #: fancy_treeview/module.php:152
 msgid "Error: The surname you entered doesn’t exist in this tree."
-msgstr ""
+msgstr "Chyba: Zadané příjmení v rodokmenu neexistuje."
 
 #: fancy_treeview/module.php:404
 msgid "Family tree overview"
-msgstr "Popis generací"
+msgstr "Přehled generací"
 
 #. I18N: Name of the module
 #: fancy_treeview/app/Template/AdminTemplate.php:40
 #: fancy_treeview/module.php:83
 msgid "Fancy Treeview"
-msgstr ""
+msgstr "Popis generací"
 
 #. I18N: Name of the Fancy Treeview PDF-module
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:38
 #: fancy_treeview_pdf/module.php:89
 msgid "Fancy Treeview PDF"
-msgstr ""
+msgstr "Popis generací ve formátu PDF"
 
 #. I18N: Description of the module
 #: fancy_treeview_pdf/module.php:94
 msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
-msgstr ""
+msgstr "Rozšíření modulu Popis generací: nabízí uživateli stáhnout popis generací ve formátu PDF."
 
 #: fancy_treeview/app/Template/PageTemplate.php:88
 msgid "Go"
@@ -104,7 +104,7 @@ msgstr "Provést"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:641
 msgid "He had a relationship with"
-msgstr "Je spřízněn s"
+msgstr "Byl spřízněn s"
 
 #. I18N: %s is a number
 #: fancy_treeview/app/FancyTreeviewClass.php:566
@@ -154,29 +154,29 @@ msgstr ""
 
 #: fancy_treeview_pdf/app/Template/PdfTemplate.php:101
 msgid "Index"
-msgstr ""
+msgstr "Rejstřík"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:365
 msgid "Number of generation blocks to show"
-msgstr ""
+msgstr "Počet generačních bloků k zobrazení"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:342
 #, php-format
 msgid "Options for %s"
-msgstr ""
+msgstr "Volby pro %s"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:139
 msgid "Or enter an ID"
-msgstr ""
+msgstr "Nebo zadejte ID"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:166
 #: fancy_treeview/app/Template/AdminTemplate.php:236
 msgid "Page title"
-msgstr ""
+msgstr "Titul stránky"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:92
 msgid "Pages"
-msgstr ""
+msgstr "Stránky"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:454
 msgid "Read more"
@@ -184,7 +184,7 @@ msgstr "Zobrazit více"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:445
 msgid "Resize thumbnails"
-msgstr ""
+msgstr "Změnit rozměry náhledových obrázků"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:162
 #: fancy_treeview/app/Template/AdminTemplate.php:232
@@ -202,11 +202,11 @@ msgstr "Vyhledat probanta"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:423
 msgid "Select your country"
-msgstr ""
+msgstr "Vyberte svoji zem"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:644
 msgid "She had a relationship with"
-msgstr "Byla spřízněná s"
+msgstr "Byla spřízněna s"
 
 #. I18N: %s is a number
 #: fancy_treeview/app/FancyTreeviewClass.php:572
@@ -222,7 +222,7 @@ msgstr "Byla pokřtěna"
 #: fancy_treeview/app/FancyTreeviewClass.php:1039
 msgctxt "PRESENT"
 msgid "She was baptized"
-msgstr "Je pokřtěna"
+msgstr "Byla pokřtěna"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1019
 msgctxt "PAST"
@@ -236,32 +236,32 @@ msgstr "Narodila se"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:494
 msgid "Show a Fancy Treeview tab on the individual page"
-msgstr ""
+msgstr "Zobrazit panel Popis generací na stránce osoby"
 
 #: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
 msgid "Show a PDF icon in the Fancy Treeview tab"
-msgstr ""
+msgstr "Zobrazit ikonu PDF na panelu Popisu generací"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:485
 msgid "Show form to change start person"
-msgstr ""
+msgstr "Zobrazit formulář pro změnu probanta"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:436
 msgid "Show occupations"
-msgstr ""
+msgstr "Zobrazit zaměstnání"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:401
 msgid "Show places"
-msgstr ""
+msgstr "Zobrazit místa"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:376
 msgid "Show singles"
-msgstr ""
+msgstr "Zobrazit svobodné osoby"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:164
 #: fancy_treeview/app/Template/AdminTemplate.php:234
 msgid "Surname in page title"
-msgstr ""
+msgstr "Příjmení v titulu stránky"
 
 #. I18N: %s is an ordinal
 #: fancy_treeview/app/FancyTreeviewClass.php:568
@@ -287,23 +287,23 @@ msgstr "Podrobnosti o této generaci jsou soukromé."
 
 #: fancy_treeview/app/Template/AdminTemplate.php:349
 msgid "The options for this tree are succesfully reset to the default settings"
-msgstr ""
+msgstr "Volby pro tento rodokmen jsou úspěšně nastaveny na předvolené hodnoty"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:348
 msgid "The options for this tree are succesfully saved"
-msgstr ""
+msgstr "Volby pro tento rodokmen jsou úspěšně uloženy"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:350
 msgid "The options for this tree are succesfully saved and copied to all other trees"
-msgstr ""
+msgstr "Volby pro tento rodokmen jsou úspěšně uloženy a okopírovány do ostatních rodokmenů"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:224
 msgid "The settings for this tree are succesfully updated"
-msgstr ""
+msgstr "Volby pro tento rodokmen jsou úspěšně aktualizovány"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:311
 msgid "This individual doesn’t exist anymore in this tree"
-msgstr ""
+msgstr "Tato osoba v tomto rodokmenu už neexistuje"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:647
 msgid "This individual had a relationship with"
@@ -317,7 +317,7 @@ msgstr "Tato osoba si vzala"
 #: fancy_treeview/app/FancyTreeviewClass.php:578
 #, php-format
 msgid "This individual married %s times"
-msgstr "Tato osoba uzavřela %s sňatků"
+msgstr "Tato osoba uzavřela sňatek %s krát"
 
 #. I18N: Help text for the “Number of generation blocks to show” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:370
@@ -326,7 +326,7 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:456
 msgid "Thumbnail size"
-msgstr ""
+msgstr "Rozměr náhledového obrázku"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:381
@@ -335,20 +335,20 @@ msgstr ""
 
 #: fancy_treeview/app/Template/AdminTemplate.php:410
 msgid "Use default GEDCOM settings to abbreviate place names"
-msgstr ""
+msgstr "Ke zkrácení názvů míst použít nastavení GEDCOM"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:356
 msgid "Use fullname in menu"
-msgstr ""
+msgstr "V menu použít plné jméno"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:476
 msgid "Use square thumbnails"
-msgstr ""
+msgstr "Použít čtvercové náhledové obrázky"
 
 #. I18N: Help text for creating Fancy Treeview pages
 #: fancy_treeview/app/Template/AdminTemplate.php:104
 msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
-msgstr ""
+msgstr "Pomocí níže zobrazeného formuláře vyhledat probanta. Po úspěšném nalezení se automaticky vytvoří stránka Popisu generací. Je možno přidat libovolný počet probantů."
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: fancy_treeview/app/Template/AdminTemplate.php:393
@@ -357,7 +357,7 @@ msgstr ""
 
 #: fancy_treeview_pdf/module.php:61
 msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
-msgstr ""
+msgstr "Instalovali jste modul Popis generací PDF. Tento modul nebude pracovat, není-li povolen modul Popis generací."
 
 #: fancy_treeview_pdf/module.php:53
 #, php-format
@@ -419,7 +419,7 @@ msgstr "odvolat"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:808
 msgid "child of"
-msgstr "dítě"
+msgstr "dítě (čí)"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1068
 msgctxt "FEMALE"
@@ -439,7 +439,7 @@ msgstr "osmý"
 #. I18N: fifth marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:556
 msgid "fifth"
-msgstr "páté"
+msgstr "pátý"
 
 #. I18N: first marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:552
@@ -448,7 +448,7 @@ msgstr "první"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1598
 msgid "follow"
-msgstr "přejdi na"
+msgstr "přejít na"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:722
 msgctxt "FEMALE"
@@ -462,11 +462,11 @@ msgstr "pěstounské dítě"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:804
 msgid "foster child of"
-msgstr "pěstounské dítě"
+msgstr "pěstounské dítě (čí)"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:795
 msgid "foster daughter of"
-msgstr "pěstounská dcera"
+msgstr "pěsrounská dcera"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:786
 msgid "foster son of"
@@ -475,7 +475,7 @@ msgstr "pěstounský syn"
 #. I18N: fourth marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:555
 msgid "fourth"
-msgstr "čtvrté"
+msgstr "čtvrtý"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:698
 msgctxt "One parent/multiple children"
@@ -520,7 +520,7 @@ msgstr "v "
 #. I18N: ninth marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:560
 msgid "ninth"
-msgstr "deváté"
+msgstr "devátý"
 
 #: fancy_treeview/app/FancyTreeviewClass.php:1599
 #: fancy_treeview/app/Template/AdminTemplate.php:152
@@ -539,11 +539,11 @@ msgstr "procent"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:519
 msgid "save and copy options to other trees"
-msgstr ""
+msgstr "uložit a okopírovat hodnoty voleb do ostatních rodokmenů"
 
 #: fancy_treeview/app/Template/AdminTemplate.php:132
 msgid "search"
-msgstr ""
+msgstr "vyhledat"
 
 #. I18N: second marriage
 #: fancy_treeview/app/FancyTreeviewClass.php:553
