@@ -1,8 +1,0 @@
-// General Fancy Treeview styles
-.fancy-treeview {
-  @include select2();
-
-  ol {
-    @extend %list;
-  }
-}
