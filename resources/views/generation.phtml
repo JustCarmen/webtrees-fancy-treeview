@@ -2,8 +2,13 @@
 use Fisharebest\Webtrees\Registry;
 ?>
 
-<li class="block generation-block">
-    <?php foreach ($list as $record): ?>
-    <?= var_dump($record->gedcom()) ?>
-    <?php endforeach ?>
-</li>
+<ul class="block generation-block">
+    <?php foreach ($individuals as $individual): ?>
+    <li class="family">
+        <?= $individual->fullName() ?>
+            <?php foreach ($individual->spouseFamilies() as $family): ?>
+                <?= $family->spouse($individual)->fullName() ?>
+            <?php endforeach ?>
+        <?php endforeach ?>
+    </li>
+</ul>
