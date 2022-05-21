@@ -1,0 +1,52 @@
+<?php
+
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\I18N;
+
+// THIS IS AN EXAMPLE!!!
+?>
+
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+
+<h1><?= $title ?></h1>
+
+<form method="post" name="jc-simple-menu" class="form-horizontal">
+    <?= csrf_field() ?>
+    <div class="row form-group">
+        <label for="menu-title" class="col-sm-3 col-form-label">
+            <?= I18N::translate('Menu title') ?>
+        </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="menu-title" id="menu-title"
+                value="<?= e($menu_title) ?>">
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <label for="page-title" class="col-sm-3 col-form-label">
+            <?= I18N::translate('Page title') ?>
+        </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="page-title" id="page-title"
+                value="<?= e($page_title) ?>">
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <label for="page-body" class="col-sm-3 col-form-label">
+            <?= I18N::translate('Page text') ?>
+        </label>
+        <div class="col-sm-9">
+            <textarea name="page-body" id="page-body" class="form-control html-edit" rows="10"><?= e($page_body) ?></textarea>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="offset-sm-3 col-sm-9">
+            <button type="submit" class="btn btn-primary">
+                <?= view('icons/save') ?>
+                <?= I18N::translate('save') ?>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,9 @@
+<?php
+use Fisharebest\Webtrees\Registry;
+?>
+
+<li class="block generation-block">
+    <?php foreach ($list as $record): ?>
+    <?= var_dump($record->gedcom()) ?>
+    <?php endforeach ?>
+</li>

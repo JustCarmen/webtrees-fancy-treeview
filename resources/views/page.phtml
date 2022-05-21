@@ -1,0 +1,19 @@
+<?php
+
+use Fisharebest\Webtrees\I18N;
+
+?>
+
+<div class="jc-fancy-treeview-page col-lg-9 mx-auto">
+    <?php if ($is_admin) : ?>
+        <div class="jc-fancy-treeview-page-edit text-right">
+            <a href="<?= e(route('module', ['module' => $module, 'action' => 'Admin'])) ?>">
+                <?= I18N::translate('Edit') ?>
+            </a>
+        </div>
+    <?php endif ?>
+    <h2 class="wt-page-title jc-fancy-treeview-page-title"><?= $page_title ?></h2>
+    <div class="jc-fancy-treeview-page-body">
+        <?= view($module . '::generation', ['individuals' => $individuals]); ?>
+    </div>
+</div>
