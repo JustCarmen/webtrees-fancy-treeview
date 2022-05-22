@@ -481,7 +481,8 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	protected function printIndividual(Individual $person) {
 
 		if ($person->canShow()) {
-			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
+			// $html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
+			$html = '<div class="parents"><p class="desc">' . $this->printNameUrl($person, $person->xref());
 			if ($this->options('show-occu')) {
 				$html .= $this->printOccupations($person);
 			}
@@ -935,12 +936,9 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	} */
 
 	/**
-	 * Print the Fancy thumbnail for this individual
-	 *
-	 * @param type $person
-	 * @return thumbnail
+	 * Print the Fancy thumbnail for this individual	 *
 	 */
-	protected function printThumbnail(Individual $person) {
+	/* protected function printThumbnail(Individual $person) {
 		$mediaobject = $person->findHighlightedMediaFile();
 		if ($mediaobject) {
 			$cache_filename = $this->getThumbnail($mediaobject);
@@ -967,7 +965,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				return $mediaobject->displayImage();
 			}
 		}
-	}
+	} */
 
 	/**
 	 * Print the birth text (born or baptized)
@@ -1299,31 +1297,26 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 	/**
 	 * Get the filename of the cached image
-	 *
-	 * @param Media $mediaobject
-	 * @return filename
 	 */
-	public function cacheFileName(Media $mediaobject) {
+	/* public function cacheFileName(Media $mediaobject) {
 		return self::CACHE_DIR . $this->tree->id() . '-' . $mediaobject->xref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
-	}
+	} */
 
 	/**
 	 * remove all old cached files
 	 */
-	protected function emptyCache() {
+	/* protected function emptyCache() {
 		foreach (glob(self::CACHE_DIR . '*') as $cache_file) {
 			if (is_file($cache_file)) {
 				unlink($cache_file);
 			}
 		}
-	}
+	} */
 
 	/**
 	 * Check if thumbnails from cache should be recreated
-	 *
-	 * @return string filename
 	 */
-	private function getThumbnail(Media $mediaobject)
+	/* private function getThumbnail(Media $mediaobject)
 	{
 		if (!file_exists(self::CACHE_DIR)) {
 			mkdir(self::CACHE_DIR);
@@ -1358,15 +1351,12 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			}
 			return $cache_filename;
 		}
-	}
+	} */
 
 	/**
-	 * Get the Fancy thumbnail (highlighted image)
-	 *
-	 * @param type $mediaobject
-	 * @return image
+	 * Get the Fancy thumbnail (highlighted image)	 *
 	 */
-	private function fancyThumb($mediaobject) {
+	/* private function fancyThumb($mediaobject) {
 		// option 1 = percentage of original webtrees thumbnail
 		// option 2 = size in pixels
 		$resize_format = $this->options('thumb_resize_format');
@@ -1461,7 +1451,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				return $thumb;
 			}
 		}
-	}
+	} */
 
 
      /**
