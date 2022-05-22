@@ -11,7 +11,10 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Media;
 use Aura\Router\RouterContainer;
+use Fisharebest\Webtrees\Family;
+use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Webtrees;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\FlashMessages;
@@ -63,6 +66,12 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     // Limits
     protected const MINIMUM_GENERATIONS = 2;
     protected const MAXIMUM_GENERATIONS = 10;
+
+	/**
+	* @var string
+	*/
+   private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
+
 
     /** var array of xrefs (individual id's) */
 	public $pids;
@@ -292,6 +301,28 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         ]);
     }
 
+	public function options(string $option) : string
+	{
+		$default = match ($option) {
+			'use-fullname' 			=> '0',
+			'numblocks' 			=> '0',
+			'check-relationship' 	=> '0',
+			'show-singles'			=> '0',
+			'show-places' 			=> '1',
+			'use-gedcom-places' 	=> '0',
+			'country'				=> '',
+			'show-occu' 			=> '1',
+			'resize-thumbs'			=> '1',
+			'thumb-size' 			=> '60',
+			'thumb-resize-format'	=> '2',
+			'use-square-thumbs'		=> '1',
+			'show-userform'			=> '2',
+			'ftv-tab' 				=> '1'
+		};
+
+		return $this->getPreference($option, $default);
+	}
+
     /**
 	 * Print the Fancy Treeview page
 	 *
@@ -313,60 +344,10 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				$next_gen[] = $this->getNextGen($pid);
 			}
 
-            $show_singles = true; // test option ($this->options('show_singles'))
-
 			foreach ($next_gen as $descendants) {
 				if (count($descendants) > 0) {
 					foreach ($descendants as $descendant) {
-						if ($show_singles == true || $descendant['desc'] == 1) {
-							$this->pids[] = $descendant['pid'];
-						}
-					}
-				}
-			}
-
-			if (!empty($this->pids)) {
-				if ($this->generation === 3) {
-					$html .= $this->printReadMoreLink($root);
-					return $html;
-				} else {
-					$this->generation++;
-					$html .= $this->printGeneration();
-					unset($next_gen, $descendants, $pids);
-				}
-			} else {
-				return $html;
-			}
-		}
-		return $html;
-	}
-
-	/**
-	 * Print the tabcontent for this person on the individual page
-	 *
-	 * @param type $pid
-	 * @return string (html)
-	 */
-	protected function printTabContent($pid) {
-		$html				 = '';
-		$this->generation	 = 1;
-		$root				 = $pid; // save value for read more link
-		$this->pids			 = [$pid];
-
-		$html .= $this->printGeneration();
-
-		while (count($this->pids) > 0 && $this->generation < 4) {
-			$pids = $this->pids;
-			unset($this->pids); // empty the array (will be filled with the next generation)
-
-			foreach ($pids as $pid) {
-				$next_gen[] = $this->getNextGen($pid);
-			}
-
-			foreach ($next_gen as $descendants) {
-				if (count($descendants) > 0) {
-					foreach ($descendants as $descendant) {
-						if ($this->options('show_singles') == true || $descendant['desc'] == 1) {
+						if ($this->options('show-singles') == true || $descendant['desc'] == 1) {
 							$this->pids[] = $descendant['pid'];
 						}
 					}
@@ -492,14 +473,13 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the content for one individual
 	 *
-	 * @param type $person
 	 * @return string (html)
 	 */
 	protected function printIndividual(Individual $person) {
 
-		if ($person->CanShow()) {
+		if ($person->canShow()) {
 			$html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
-			if ($this->options('show_occu')) {
+			if ($this->options('show-occu')) {
 				$html .= $this->printOccupations($person);
 			}
 
@@ -511,7 +491,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			 */
 			$spousecount = 0;
 			foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
-				$spouse = $family->getSpouse($person);
+				$spouse = $family->spouse($person);
 				if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
 					$spousecount++;
 				}
@@ -525,7 +505,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			if ($spousecount > 0) {
 				$spouseindex = 0;
 				foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
-					$spouse = $family->getSpouse($person);
+					$spouse = $family->spouse($person);
 					if ($spouse && $spouse->canShow()) {
 						if ($this->getMarriage($family)) {
 							$html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
@@ -541,14 +521,14 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
 			foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
-				$spouse = $family->getSpouse($person);
+				$spouse = $family->spouse($person);
 
 				$html .= $this->printChildren($family, $person, $spouse);
 			}
 
 			return $html;
 		} else {
-			if ($person->getTree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
+			if ($person->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
 				return I18N::translate('The details of this family are private.');
 			}
 		}
@@ -557,14 +537,9 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the content for a spouse
 	 *
-	 * @param type $family
-	 * @param type $person
-	 * @param type $spouse
-	 * @param type $i
-	 * @param type $count
 	 * @return string
 	 */
-	protected function printSpouse($family, $person, $spouse, $i, $count) {
+	protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count) {
 
 		$html = ' ';
 
@@ -582,7 +557,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				/* I18N: ninth marriage  */ I18N::translate('ninth'),
 				/* I18N: tenth marriage  */ I18N::translate('tenth'),
 			];
-			switch ($person->getSex()) {
+			switch ($person->sex()) {
 				case 'M':
 					if ($i == 0) {
 						$html .= /* I18N: %s is a number  */ I18N::translate('He married %s times', $count) . '. ';
@@ -603,7 +578,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 					break;
 			}
 		} else {
-			switch ($person->getSex()) {
+			switch ($person->sex()) {
 				case 'M':
 					$html	 .= I18N::translate('He married');
 					break;
@@ -628,7 +603,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				$html .= ',';
 			}
 
-			$marriage = $family->getFirstFact('MARR');
+			$marriage = $family->facts(['MARR'])->first();
 			if ($marriage) {
 				$html .= $this->printDate($marriage) . $this->printPlace($marriage);
 			}
@@ -638,7 +613,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			}
 			$html .= '. ';
 
-			$divorce = $family->getFirstFact('DIV');
+			$divorce = $family->facts(['DIV'])->first();
 			if ($divorce) {
 				$html .= $this->printName($person) . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
 			}
@@ -648,17 +623,13 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 	/**
 	 * Print the content for a non-married partner
-	 *
-	 * @param type $family
-	 * @param type $person
-	 * @param type $spouse
-	 * @return type
+	 * @return string
 	 */
-	protected function printPartner($family, $person, $spouse) {
+	protected function printPartner(Family $family, Individual $person, Individual $spouse) {
 
 		$html = ' ';
 
-		switch ($person->getSex()) {
+		switch ($person->sex()) {
 			case 'M':
 				$html	 .= I18N::translate('He had a relationship with');
 				break;
@@ -674,7 +645,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		$html	 .= $this->printRelationship($person, $spouse);
 		$html	 .= $this->printParents($spouse);
 
-		if ($family->getFirstFact('_NMR') && $this->printLifespan($spouse, true)) {
+		if ($family->facts(['_NMR'])->first() && $this->printLifespan($spouse, true)) {
 			$html .= $this->printLifespan($spouse, true);
 		}
 
@@ -684,18 +655,15 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the childrens list
 	 *
-	 * @param type $family
-	 * @param type $person
-	 * @param type $spouse
 	 * @return string
 	 */
-	protected function printChildren($family, $person, $spouse) {
+	protected function printChildren(Family $family, Individual $person, Individual $spouse) {
 		$html = '';
 
 		$match = null;
-		if (preg_match('/\n1 NCHI (\d+)/', $family->getGedcom(), $match) && $match[1] == 0) {
+		if (preg_match('/\n1 NCHI (\d+)/', $family->gedcom(), $match) && $match[1] == 0) {
 			$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
-			if ($spouse && $spouse->CanShow()) {
+			if ($spouse && $spouse->canShow()) {
 				$html	 .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
 				$html	 .= I18N::translateContext('Two parents/one child', 'had');
 			} else {
@@ -703,12 +671,12 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			}
 			$html .= ' ' . I18N::translate('none') . ' ' . I18N::translate('children') . '.</p></div>';
 		} else {
-			$children = $family->getChildren();
+			$children = $family->children();
 			if ($children) {
 				if ($this->checkPrivacy($children)) {
 					$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
 					// needs multiple translations for the word 'had' to serve different languages.
-					if ($spouse && $spouse->CanShow()) {
+					if ($spouse && $spouse->canShow()) {
 						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
 						if (count($children) > 1) {
 							$html .= I18N::translateContext('Two parents/multiple children', 'had');
@@ -725,7 +693,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
 				} else {
 					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $this->printName($person);
-					if ($spouse && $spouse->CanShow()) {
+					if ($spouse && $spouse->canShow()) {
 						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
 					}
 					$html .= ':<ol>';
@@ -739,7 +707,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 								$html .= ' <span class="pedi">';
 								switch ($pedi) {
 									case 'foster':
-										switch ($child->getSex()) {
+										switch ($child->sex()) {
 											case 'F':
 												$html	 .= I18N::translateContext('FEMALE', 'foster child');
 												break;
@@ -749,7 +717,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 										}
 										break;
 									case 'adopted':
-										switch ($child->getSex()) {
+										switch ($child->sex()) {
 											case 'F':
 												$html	 .= I18N::translateContext('FEMALE', 'adopted child');
 												break;
@@ -763,13 +731,13 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 							}
 
 							if ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK()) {
-								$html .= '<span class="lifespan"> (' . $child->getLifeSpan() . ')</span>';
+								$html .= '<span class="lifespan"> (' . $child->lifespan() . ')</span>';
 							}
 
 							$child_family = $this->getFamily($child);
 
-							// do not load this part of the code in the fancy treeview tab on the individual page.
-							if (WT_SCRIPT_NAME !== 'individual.php') {
+							// TODO: do not load this part of the code in the fancy treeview tab on the individual page.
+							// if (WT_SCRIPT_NAME !== 'individual.php') { // old code
 								$text_follow = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
 								if ($child_family) {
 									$html .= ' - <a class="scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
@@ -778,7 +746,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 									$html .= ' - <a class="scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
 									$this->index++;
 								}
-							}
+							// }
 							$html .= '</li>';
 						} else {
 							$html .= '<li class="child private">' . I18N::translate('Private') . '</li>';
@@ -803,7 +771,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			$pedi = $this->checkPedi($person, $parents);
 
 			$html = '';
-			switch ($person->getSex()) {
+			switch ($person->sex()) {
 				case 'M':
 					if ($pedi === 'foster') {
 						$html .= ', ' . I18N::translate('foster son of') . ' ';
@@ -904,10 +872,12 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			// it in the middle of a sentence.
 			// In German all occupations are written with a capital.
 			// Are there any other languages where this is the case?
-			if (in_array(WT_LOCALE, ['de'])) {
-				$html .= rtrim(ucfirst($fact->getValue()), ".");
-			} else {
-				$html .= rtrim(lcfirst($fact->getValue()), ".");
+			foreach (I18N::activeLocales() as $locale) {
+				if ($locale->languageTag() === 'de') {
+					$html .= rtrim(ucfirst($fact->getValue()), ".");
+				} else {
+					$html .= rtrim(lcfirst($fact->getValue()), ".");
+				}
 			}
 
 			$date = $this->printDate($fact);
@@ -921,16 +891,14 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the lifespan of this person
 	 *
-	 * @param type $person
-	 * @param type $is_spouse
 	 * @return string
 	 */
-	protected function printLifespan($person, $is_spouse = false) {
+	protected function printLifespan(Individual $person, bool $is_spouse = false) {
 		$html = '';
 
 		$is_bfact = false;
-		foreach (explode('|', WT_EVENTS_BIRT) as $event) {
-			$bfact = $person->getFirstFact($event);
+		foreach (Gedcom::BIRTH_EVENTS as $event) {
+			$bfact = $person->facts($event)->first();
 			if ($bfact) {
 				$bdate	 = $this->printDate($bfact);
 				$bplace	 = $this->printPlace($bfact);
@@ -944,8 +912,8 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 
 		$is_dfact = false;
-		foreach (explode('|', WT_EVENTS_DEAT) as $event) {
-			$dfact = $person->getFirstFact($event);
+		foreach (Gedcom::DEATH_EVENTS as $event) {
+			$dfact = $person->facts($event)->first();
 			if ($dfact) {
 				$ddate	 = $this->printDate($dfact);
 				$dplace	 = $this->printPlace($dfact);
@@ -1009,7 +977,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 					' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
 					' type="' . $mediaobject->mimeType() . '"' .
 					' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
-					' data-obje-note="' . Filter::escapeHtml($mediaobject->getNote()) . '"' .
+					' data-obje-note="' . e($mediaobject->getNote()) . '"' .
 					' data-title="' . strip_tags($person->getFullName()) . '"' .
 					'>' . $image . '</a>';
 			} else {
@@ -1021,28 +989,25 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the birth text (born or baptized)
 	 *
-	 * @param type $person
-	 * @param type $event
-	 * @param type $is_spouse
 	 * @return string
 	 */
-	protected function printBirthText($person, $event, $is_spouse = false) {
+	protected function printBirthText(Individual $person, $event, bool $is_spouse = false) {
 		$html = '';
 		switch ($event) {
 			case 'BIRT':
 				if ($is_spouse == true) {
 					$html .= '. ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was born') : $html	 .= I18N::translateContext('PAST', 'He was born');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was born') : $html	 .= I18N::translateContext('PAST', 'He was born');
 					} else {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was born') : $html	 .= I18N::translateContext('PRESENT', 'He was born');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was born') : $html	 .= I18N::translateContext('PRESENT', 'He was born');
 					}
 				} else {
 					$this->printParents($person) || $this->printOccupations($person) ? $html	 .= ', ' : $html	 .= ' ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PAST (MALE)', 'was born');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PAST (MALE)', 'was born');
 					} else {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was born');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was born');
 					}
 				}
 				break;
@@ -1051,16 +1016,16 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				if ($is_spouse == true) {
 					$html .= '. ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was baptized') : $html	 .= I18N::translateContext('PAST', 'He was baptized');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was baptized') : $html	 .= I18N::translateContext('PAST', 'He was baptized');
 					} else {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was baptized') : $html	 .= I18N::translateContext('PRESENT', 'He was baptized');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was baptized') : $html	 .= I18N::translateContext('PRESENT', 'He was baptized');
 					}
 				} else {
 					$this->printParents($person) || $this->printOccupations($person) ? $html	 .= ', ' : $html	 .= ' ';
 					if ($person->isDead()) {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PAST (MALE)', 'was baptized');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PAST (MALE)', 'was baptized');
 					} else {
-						$person->getSex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
+						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
 					}
 				}
 				break;
@@ -1082,25 +1047,25 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			case 'DEAT':
 				if ($is_bfact) {
 					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'died') : $html	 .= I18N::translateContext('MALE', 'died');
+					$person->sex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'died') : $html	 .= I18N::translateContext('MALE', 'died');
 				} else {
-					$person->getSex() == 'F' ? $html	 .= '. ' . I18N::translate('She died') : $html	 .= '. ' . I18N::translate('He died');
+					$person->sex() == 'F' ? $html	 .= '. ' . I18N::translate('She died') : $html	 .= '. ' . I18N::translate('He died');
 				}
 				break;
 			case 'BURI':
 				if ($is_bfact) {
 					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was buried') : $html	 .= I18N::translateContext('MALE', 'was buried');
+					$person->sex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was buried') : $html	 .= I18N::translateContext('MALE', 'was buried');
 				} else {
-					$person->getSex() == 'F' ? $html	 .= '. ' . I18N::translate('She was buried') : $html	 .= '. ' . I18N::translate('He was buried');
+					$person->sex() == 'F' ? $html	 .= '. ' . I18N::translate('She was buried') : $html	 .= '. ' . I18N::translate('He was buried');
 				}
 				break;
 			case 'CREM':
 				if ($is_bfact) {
 					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->getSex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was cremated') : $html	 .= I18N::translateContext('MALE', 'was cremated');
+					$person->sex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was cremated') : $html	 .= I18N::translateContext('MALE', 'was cremated');
 				} else {
-					$person->getSex() == 'F' ? $html	 .= '. ' . I18N::translate('She was cremated') : $html	 .= '. ' . I18N::translate('He was cremated');
+					$person->sex() == 'F' ? $html	 .= '. ' . I18N::translate('She was cremated') : $html	 .= '. ' . I18N::translate('He was cremated');
 				}
 				break;
 		}
@@ -1313,7 +1278,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			if ($xrefs) {
 				$person = $this->getPerson($person);
 			}
-			if ($person->CanShow()) {
+			if ($person->canShow()) {
 				$count++;
 			}
 		}
@@ -1359,15 +1324,6 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	}
 
 	/**
-	 * Get the ftv_cache directory
-	 *
-	 * @return directory name
-	 */
-	public function cacheDir() {
-		return DATA_DIR . 'ftv_cache/';
-	}
-
-	/**
 	 * Get the filename of the cached image
 	 *
 	 * @param Media $mediaobject
@@ -1394,12 +1350,10 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @param type $mediaobject
 	 * @return string filename
 	 */
-	private function getThumbnail(Media $mediaobject) {
-
-		$cache_dir = $this->cacheDir();
-
-		if (!file_exists($cache_dir)) {
-			File::mkdir($cache_dir);
+	private function getThumbnail(Media $mediaobject)
+	{
+		if (!file_exists(self::CACHE_DIR)) {
+			mkdir(self::CACHE_DIR);
 		}
 
 		if (file_exists($mediaobject->getServerFilename())) {
