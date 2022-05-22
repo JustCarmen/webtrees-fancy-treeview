@@ -12,6 +12,7 @@ use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Media;
+use Fisharebest\Webtrees\Place;
 use Aura\Router\RouterContainer;
 use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Gedcom;
@@ -73,6 +74,8 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	* @var string
 	*/
    private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
+
+   private const ROOT_ID = 'I8';
 
 
     /** var array of xrefs (individual id's) */
@@ -261,14 +264,12 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $page_title = $this->getPreference('page-title');
         $menu_title = $this->getPreference('menu-title');
 
-        $pid = 'I8';
-
         $url = route(static::class, [
             'tree' => $tree->name(),
             'module' => str_replace("_", "", $this->name()),
             'menu' => $this->getslug($menu_title),
             'page' => $this->getslug($page_title),
-            'pid' => $pid,
+            'pid' => self::ROOT_ID,
             'generations' => '10'
         ]);
 
@@ -1101,22 +1102,22 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @param type $tree
 	 * @return string
 	 */
-	protected function printPlace($fact) {
+	protected function printPlace(Fact $fact) {
 		global $WT_TREE;
-		$place = $fact->getAttribute('PLAC');
+		$place = $fact->attribute('PLAC');
 		if ($place && $this->options('show_places') == true) {
 			$place	 = new Place($place, $WT_TREE);
 			$html	 = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
 			if ($this->options('use_gedcom_places') == true) {
-				$html .= $place->getShortName();
+				$html .= $place->shortName();
 			} else {
 				$country	 = $this->options('country');
-				$new_place	 = array_reverse(explode(", ", $place->getGedcomName()));
+				$new_place	 = array_reverse(explode(", ", $place->gedcomName()));
 				if (!empty($country) && $new_place[0] == $country) {
 					unset($new_place[0]);
 					$html .= '<span dir="auto">' .e(implode(', ', array_reverse($new_place))) . '</span>';
 				} else {
-					$html .= $place->getFullName();
+					$html .= $place->fullName();
 				}
 			}
 			return $html;
@@ -1139,7 +1140,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return object
 	 */
 	protected function getRootPerson() {
-		return $this->getPerson($this->rootId());
+		return $this->getPerson(self::ROOT_ID);
 	}
 
 	/**
@@ -1270,8 +1271,8 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return boolean
 	 */
 	private function getMarriage($family) {
-		$record = GedcomRecord::getInstance($family->xref(), $this->tree());
-		foreach ($record->getFacts('MARR', false, Auth::PRIV_HIDE) as $fact) {
+		$record = Registry::gedcomRecordFactory()->make($family->xref(), $this->tree);
+		foreach ($record->facts(['MARR'], false, Auth::PRIV_HIDE) as $fact) {
 			if ($fact) {
 				return true;
 			}
@@ -1303,14 +1304,14 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return filename
 	 */
 	public function cacheFileName(Media $mediaobject) {
-		return $this->cacheDir() . $this->tree()->getTreeId() . '-' . $mediaobject->xref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
+		return self::CACHE_DIR . $this->tree->id() . '-' . $mediaobject->xref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	}
 
 	/**
 	 * remove all old cached files
 	 */
 	protected function emptyCache() {
-		foreach (glob($this->cacheDir() . '*') as $cache_file) {
+		foreach (glob(self::CACHE_DIR . '*') as $cache_file) {
 			if (is_file($cache_file)) {
 				unlink($cache_file);
 			}
@@ -1320,7 +1321,6 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Check if thumbnails from cache should be recreated
 	 *
-	 * @param type $mediaobject
 	 * @return string filename
 	 */
 	private function getThumbnail(Media $mediaobject)
