@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace JustCarmen\Webtrees\Module\FancyTreeview;
 
+use Fisharebest\Webtrees\Age;
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Tree;
@@ -838,13 +840,11 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print occupations
 	 *
-	 * @param type $person
-	 * @param type $tag
 	 * @return string
 	 */
 	protected function printOccupations(Individual $person) {
 		$html		 = '';
-		$occupations = $person->getFacts('OCCU', true);
+		$occupations = $person->facts(['OCCU'], true);
 		$count		 = count($occupations);
 		foreach ($occupations as $num => $fact) {
 			if ($num > 0 && $num === $count - 1) {
@@ -860,9 +860,9 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			// Are there any other languages where this is the case?
 			foreach (I18N::activeLocales() as $locale) {
 				if ($locale->languageTag() === 'de') {
-					$html .= rtrim(ucfirst($fact->getValue()), ".");
+					$html .= rtrim(ucfirst($fact->value()), ".");
 				} else {
-					$html .= rtrim(lcfirst($fact->getValue()), ".");
+					$html .= rtrim(lcfirst($fact->value()), ".");
 				}
 			}
 
@@ -913,7 +913,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 
 		if ($is_bfact && $is_dfact && isset($bdate) && isset($ddate)) {
-			$html .= $this->printAgeOfDeath($bfact, $dfact);
+			$html .= $this->printAgeAtDeath($bfact, $dfact);
 		}
 
 		return $html;
@@ -1022,12 +1022,9 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the death text (death or buried)
 	 *
-	 * @param type $person
-	 * @param type $event
-	 * @param type $is_bfact
 	 * @return string
 	 */
-	protected function printDeathText($person, $event, $is_bfact) {
+	protected function printDeathText(Individual $person, $event, bool $is_bfact) {
 		$html = '';
 		switch ($event) {
 			case 'DEAT':
@@ -1064,16 +1061,16 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @param type $dfact
 	 * @return string
 	 */
-	protected function printAgeOfDeath($bfact, $dfact) {
+	protected function printAgeAtDeath($bfact, $dfact) {
 		$bdate	 = $bfact->getDate();
 		$ddate	 = $dfact->getDate();
 		$html	 = '';
 		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
-			$ageOfdeath = FunctionsDate::getAgeAtEvent(Date::GetAgeGedcom($bdate, $ddate), false);
-			if (Date::getAge($bdate, $ddate, 0) < 2) {
-				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageOfdeath);
+			$ageAtdeath = (int) new Age($bdate, $ddate);
+			if ($ageAtdeath < 2) {
+				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageAtdeath);
 			} else {
-				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string */ I18N::translateContext('age in years', 'at the age of %s', filter_var($ageOfdeath, FILTER_SANITIZE_NUMBER_INT));
+				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string */ I18N::translateContext('age in years', 'at the age of %s', filter_var($ageAtDeath, FILTER_SANITIZE_NUMBER_INT));
 			}
 		}
 		return $html;
@@ -1081,14 +1078,12 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 	/**
 	 * Function to print dates with the right syntax
-	 *
-	 * @param type $fact
-	 * @return type
+	 * @return string
 	 */
-	protected function printDate($fact) {
-		$date = $fact->getDate();
+	protected function printDate(Fact $fact) {
+		$date = $fact->date();
 		if ($date && $date->isOK()) {
-			if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->getAttribute('DATE'))) {
+			if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
 				return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
 			}
 			if ($date->minimumDate()->d > 0) {
@@ -1123,7 +1118,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				$new_place	 = array_reverse(explode(", ", $place->getGedcomName()));
 				if (!empty($country) && $new_place[0] == $country) {
 					unset($new_place[0]);
-					$html .= '<span dir="auto">' . Filter::escapeHtml(implode(', ', array_reverse($new_place))) . '</span>';
+					$html .= '<span dir="auto">' .e(implode(', ', array_reverse($new_place))) . '</span>';
 				} else {
 					$html .= $place->getFullName();
 				}
