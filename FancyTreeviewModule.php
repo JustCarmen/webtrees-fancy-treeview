@@ -594,7 +594,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 
 		$html	 .= ' ' . $this->printNameUrl($spouse);
-		$html	 .= $this->printRelationship($person, $spouse);
+		// $html	 .= $this->printRelationship($person, $spouse);
 		$html	 .= $this->printParents($spouse);
 
 		if (!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
@@ -644,7 +644,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 
 		$html	 .= ' ' . $this->printNameUrl($spouse);
-		$html	 .= $this->printRelationship($person, $spouse);
+		// $html	 .= $this->printRelationship($person, $spouse);
 		$html	 .= $this->printParents($spouse);
 
 		if ($family->facts(['_NMR'])->first() && $this->printLifespan($spouse, true)) {
@@ -921,12 +921,8 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 	/**
 	 * Print the relationship between spouses (optional)
-	 *
-	 * @param type $person
-	 * @param type $spouse
-	 * @return string
 	 */
-	protected function printRelationship($person, $spouse) {
+	/* protected function printRelationship($person, $spouse) {
 		$html = '';
 		if ($this->options('check_relationship')) {
 			$relationship = $this->checkRelationship($person, $spouse);
@@ -935,7 +931,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			}
 		}
 		return $html;
-	}
+	} */
 
 	/**
 	 * Print the Fancy thumbnail for this individual
@@ -1217,13 +1213,9 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	}
 
 	/**
-	 * check (blood) relationship between partners
-	 *
-	 * @param type $person
-	 * @param type $spouse
-	 * @return string (relationship name)
+	 * check (blood) relationship between partners	 *
 	 */
-	private function checkRelationship($person, $spouse) {
+	/* private function checkRelationship($person, $spouse) {
 		$controller	 = new RelationshipController();
 		$paths		 = $controller->calculateRelationships($person, $spouse, 1);
 		foreach ($paths as $path) {
@@ -1243,7 +1235,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				}
 			}
 		}
-	}
+	} */
 
 	/**
 	 * Check if this is a private record
