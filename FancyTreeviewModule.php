@@ -746,7 +746,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 								if ($child_family) {
 									$html .= ' - <a class="scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
 									$this->index++;
-								} elseif ($this->options('show_singles') == true) {
+								} elseif ($this->options('show-singles') == true) {
 									$html .= ' - <a class="scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
 									$this->index++;
 								}
@@ -770,7 +770,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return string
 	 */
 	protected function printParents(Individual $person) {
-		$parents = $person->getPrimaryChildFamily();
+		$parents = $person->childFamilies()->first();
 		if ($parents) {
 			$pedi = $this->checkPedi($person, $parents);
 
@@ -886,7 +886,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 		$is_bfact = false;
 		foreach (Gedcom::BIRTH_EVENTS as $event) {
-			$bfact = $person->facts($event)->first();
+			$bfact = $person->facts([$event])->first();
 			if ($bfact) {
 				$bdate	 = $this->printDate($bfact);
 				$bplace	 = $this->printPlace($bfact);
@@ -901,7 +901,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
 		$is_dfact = false;
 		foreach (Gedcom::DEATH_EVENTS as $event) {
-			$dfact = $person->facts($event)->first();
+			$dfact = $person->facts([$event])->first();
 			if ($dfact) {
 				$ddate	 = $this->printDate($dfact);
 				$dplace	 = $this->printPlace($dfact);
@@ -1057,11 +1057,11 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return string
 	 */
 	protected function printAgeAtDeath($bfact, $dfact) {
-		$bdate	 = $bfact->getDate();
-		$ddate	 = $dfact->getDate();
+		$bdate	 = $bfact->date();
+		$ddate	 = $dfact->date();
 		$html	 = '';
 		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
-			$ageAtdeath = (int) new Age($bdate, $ddate);
+			$ageAtdeath = (string) new Age($bdate, $ddate);
 			if ($ageAtdeath < 2) {
 				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageAtdeath);
 			} else {
@@ -1081,13 +1081,13 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
 				return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
 			}
-			if ($date->minimumDate()->d > 0) {
+			if ($date->minimumDate()->day > 0) {
 				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
 			}
-			if ($date->minimumDate()->m > 0) {
+			if ($date->minimumDate()->month > 0) {
 				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat mmm yyyy', 'in ') . $date->Display();
 			}
-			if ($date->minimumDate()->y > 0) {
+			if ($date->minimumDate()->year > 0) {
 				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
 			}
 		}
@@ -1101,12 +1101,11 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return string
 	 */
 	protected function printPlace(Fact $fact) {
-		global $WT_TREE;
 		$place = $fact->attribute('PLAC');
-		if ($place && $this->options('show_places') == true) {
-			$place	 = new Place($place, $WT_TREE);
+		if ($place && $this->options('show-places') == true) {
+			$place	 = new Place($place, $this->tree);
 			$html	 = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
-			if ($this->options('use_gedcom_places') == true) {
+			if ($this->options('use-gedcom-places') == true) {
 				$html .= $place->shortName();
 			} else {
 				$country	 = $this->options('country');
@@ -1206,7 +1205,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 * @return boolean
 	 */
 	private function isDateDMY($fact) {
-		if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->getAttribute('DATE'))) {
+		if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
 			return true;
 		}
 	}
@@ -1286,9 +1285,9 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	 */
 	private function checkPedi($person, $parents) {
 		$pedi = "";
-		foreach ($person->getFacts('FAMC') as $fact) {
-			if ($fact->getTarget() === $parents) {
-				$pedi = $fact->getAttribute('PEDI');
+		foreach ($person->facts(['FAMC']) as $fact) {
+			if ($fact->target() === $parents) {
+				$pedi = $fact->attribute('PEDI');
 				break;
 			}
 		}
