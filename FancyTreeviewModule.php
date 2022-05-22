@@ -820,33 +820,19 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	/**
 	 * Print the full name of a person
 	 *
-	 * @param type $person
 	 * @return string
 	 */
 	protected function printName(Individual $person) {
-		$name = $person->getFullName();
-		if ($this->pdf()) {
-			return $this->pdf()->printName($person, $name);
-		} else {
-			return $name;
-		}
+		return $person->fullname();
 	}
 
 	/**
 	 * Print the name of a person with the link to the individual page
 	 *
-	 * @param type $person
-	 * @param type $xref
 	 * @return string
 	 */
-	protected function printNameUrl($person, $xref = '') {
-		$url = '<a href="' . $person->getHtmlUrl() . '">' . $person->getFullName() . '</a>';
-
-		if ($this->pdf()) {
-			return $this->pdf()->printNameUrl($person, $url);
-		} else {
-			return $url;
-		}
+	protected function printNameUrl(Individual $person, $xref = '') {
+		return '<a href="' . $person->url() . '">' . $person->fullname() . '</a>';
 	}
 
 	/**
@@ -926,7 +912,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 			}
 		}
 
-		if ($is_bfact && $is_dfact && $bdate && $ddate) {
+		if ($is_bfact && $is_dfact && isset($bdate) && isset($ddate)) {
 			$html .= $this->printAgeOfDeath($bfact, $dfact);
 		}
 
@@ -965,7 +951,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 				$imgsize = getimagesize($cache_filename);
 				$image	 = '<img' .
 					' dir="' . 'auto' . '"' . // For the tool-tip
-					' src="module.php?mod=' . $this->getName() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->xref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
+					' src="module.php?mod=' . $this->name() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->xref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
 					' alt="' . strip_tags($person->getFullName()) . '"' .
 					' title="' . strip_tags($person->getFullName()) . '"' .
 					' data-cachefilename="' . basename($cache_filename) . '"' .
