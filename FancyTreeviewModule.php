@@ -34,7 +34,7 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
 
-Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleMenuInterface, ModuleConfigInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleMenuInterface, ModuleConfigInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
     use ModuleMenuTrait;
@@ -42,7 +42,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     protected const ROUTE_URL = '/tree/{tree}/{module}/{menu}/{page}/{pid}/{generations}';
 
-     /**
+    /**
      * @var string
      */
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -51,17 +51,17 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * @var string
      */
     public const CUSTOM_VERSION = '2.0-dev';
-     /**
+    /**
      * @var string
      */
     public const GITHUB_REPO = 'webtrees-fancy-treeview';
 
-     /**
+    /**
      * @var string
      */
     public const AUTHOR_WEBSITE = 'https://justcarmen.nl';
 
-     /**
+    /**
      * @var string
      */
     public const CUSTOM_SUPPORT_URL = self::AUTHOR_WEBSITE . '/modules-webtrees-2/fancy-treeview/';
@@ -70,37 +70,37 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected const MINIMUM_GENERATIONS = 2;
     protected const MAXIMUM_GENERATIONS = 10;
 
-	/**
-	* @var string
-	*/
-   private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
+    /**
+     * @var string
+     */
+    private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
 
-   private const ROOT_ID = 'I8';
+    private const ROOT_ID = 'I8';
 
 
     /** var array of xrefs (individual id's) */
-	public $pids;
+    public $pids;
 
-	/** var integer generation number */
-	public $generation;
+    /** var integer generation number */
+    public $generation;
 
-	/** var integer used for follow index */
-	public $index;
+    /** var integer used for follow index */
+    public $index;
 
-     /** @var ChartService */
-     private $chart_service;
+    /** @var ChartService */
+    private $chart_service;
 
-     private Tree $tree;
+    private Tree $tree;
 
-     /**
-      * FancyTreeviewModule constructor.
-      *
-      * @param ChartService $chart_service
-      */
-     public function __construct(ChartService $chart_service)
-     {
-         $this->chart_service = $chart_service;
-     }
+    /**
+     * FancyTreeviewModule constructor.
+     *
+     * @param ChartService $chart_service
+     */
+    public function __construct(ChartService $chart_service)
+    {
+        $this->chart_service = $chart_service;
+    }
 
     /**
      * How should this module be identified in the control panel, etc.?
@@ -163,7 +163,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return 'https://github.com/' . self::CUSTOM_AUTHOR . '/' . self::GITHUB_REPO . '/releases/latest';
     }
 
-     /**
+    /**
      * {@inheritDoc}
      * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleSupportUrl()
      */
@@ -187,7 +187,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         View::registerNamespace($this->name(), $this->resourcesFolder() . 'views/');
     }
 
-     /**
+    /**
      * Where does this module store its resources
      *
      * @return string
@@ -197,7 +197,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return __DIR__ . '/resources/';
     }
 
-     /**
+    /**
      * @param ServerRequestInterface $request
      *
      * @return ResponseInterface
@@ -235,7 +235,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return redirect(route(ModulesMenusAction::class));
     }
 
-     /**
+    /**
      * The default position for this menu.  It can be changed in the control panel.
      *
      * @return int
@@ -276,7 +276,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return new Menu($menu_title, e($url), 'jc-fancy-treeview-' . e(strtolower($menu_title)));
     }
 
-     /**
+    /**
      * @param ServerRequestInterface $request
      *
      * @return ResponseInterface
@@ -304,627 +304,644 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         ]);
     }
 
-	public function options(string $option) : string
-	{
-		$default = match ($option) {
-			'use-fullname' 			=> '0',
-			'numblocks' 			=> '0',
-			'check-relationship' 	=> '0',
-			'show-singles'			=> '0',
-			'show-places' 			=> '1',
-			'use-gedcom-places' 	=> '0',
-			'country'				=> '',
-			'show-occu' 			=> '1',
-			'resize-thumbs'			=> '1',
-			'thumb-size' 			=> '60',
-			'thumb-resize-format'	=> '2',
-			'use-square-thumbs'		=> '1',
-			'show-userform'			=> '2',
-			'ftv-tab' 				=> '1'
-		};
+    public function options(string $option): string
+    {
+        $default = match ($option) {
+            'use-fullname'             => '0',
+            'numblocks'             => '0',
+            'check-relationship'     => '0',
+            'show-singles'            => '0',
+            'show-places'             => '1',
+            'use-gedcom-places'     => '0',
+            'country'                => '',
+            'show-occu'             => '1',
+            'resize-thumbs'            => '1',
+            'thumb-size'             => '60',
+            'thumb-resize-format'    => '2',
+            'use-square-thumbs'        => '1',
+            'show-userform'            => '2',
+            'ftv-tab'                 => '1'
+        };
 
-		return $this->getPreference($option, $default);
-	}
+        return $this->getPreference($option, $default);
+    }
 
     /**
-	 * Print the Fancy Treeview page
-	 *
-	 * @return html
-	 */
-	public function printPage(Tree $tree, string $pid, int $generations) {
-		$html				 = '';
-		$this->generation	 = 1;
-		$root				 = $pid; // save value for read more link
-		$this->pids			 = [$pid];
+     * Print the Fancy Treeview page
+     *
+     * @return html
+     */
+    public function printPage(Tree $tree, string $pid, int $generations)
+    {
+        $html                 = '';
+        $this->generation     = 1;
+        $root                 = $pid; // save value for read more link
+        $this->pids             = [$pid];
 
-		$html .= $this->printGeneration();
+        $html .= $this->printGeneration();
 
-		while (count($this->pids) > 0 && $this->generation < $generations) {
-			$pids = $this->pids;
-			unset($this->pids); // empty the array (will be filled with the next generation)
+        while (count($this->pids) > 0 && $this->generation < $generations) {
+            $pids = $this->pids;
+            unset($this->pids); // empty the array (will be filled with the next generation)
 
-			foreach ($pids as $pid) {
-				$next_gen[] = $this->getNextGen($pid);
-			}
+            foreach ($pids as $pid) {
+                $next_gen[] = $this->getNextGen($pid);
+            }
 
-			foreach ($next_gen as $descendants) {
-				if (count($descendants) > 0) {
-					foreach ($descendants as $descendant) {
-						if ($this->options('show-singles') == true || $descendant['desc'] == 1) {
-							$this->pids[] = $descendant['pid'];
-						}
-					}
-				}
-			}
+            foreach ($next_gen as $descendants) {
+                if (count($descendants) > 0) {
+                    foreach ($descendants as $descendant) {
+                        if ($this->options('show-singles') == true || $descendant['desc'] == 1) {
+                            $this->pids[] = $descendant['pid'];
+                        }
+                    }
+                }
+            }
 
-			if (!empty($this->pids)) {
-				if ($this->generation === 3) {
-					$html .= $this->printReadMoreLink($root);
-					return $html;
-				} else {
-					$this->generation++;
-					$html .= $this->printGeneration();
-					unset($next_gen, $descendants, $pids);
-				}
-			} else {
-				return $html;
-			}
-		}
-		return $html;
-	}
+            if (!empty($this->pids)) {
+                if ($this->generation === 3) {
+                    $html .= $this->printReadMoreLink($root);
+                    return $html;
+                } else {
+                    $this->generation++;
+                    $html .= $this->printGeneration();
+                    unset($next_gen, $descendants, $pids);
+                }
+            } else {
+                return $html;
+            }
+        }
+        return $html;
+    }
 
-	/**
-	 * Print a generation
-	 *
-	 * @param type $i
-	 * @return string
-	 */
-	protected function printGeneration() {
-		// reset the index
-		$this->index = 1;
+    /**
+     * Print a generation
+     *
+     * @param type $i
+     * @return string
+     */
+    protected function printGeneration()
+    {
+        // reset the index
+        $this->index = 1;
 
-		// added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-		$html = '<li class="block generation-block" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
-			$this->printBlockHeader();
+        // added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
+        $html = '<li class="block generation-block" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
+            $this->printBlockHeader();
 
-		if ($this->checkPrivacy($this->pids, true)) {
-			$html .= $this->printPrivateBlock();
-		} else {
-			$html .= $this->printBlockContent();
-		}
+        if ($this->checkPrivacy($this->pids, true)) {
+            $html .= $this->printPrivateBlock();
+        } else {
+            $html .= $this->printBlockContent();
+        }
 
-		$html .= '</li>';
+        $html .= '</li>';
 
-		return $html;
-	}
+        return $html;
+    }
 
-	/**
-	 * Print the header of each generation block
-	 *
-	 * @param type $i
-	 * @return string
-	 */
-	protected function printBlockHeader() {
-		return
-			'<div class="blockheader ui-state-default">' .
-			'<span class="header-title">' . I18N::translate('Generation') . ' ' . $this->generation . '</span>' .
-			$this->printBackToTopLink() .
-			'</div>';
-	}
+    /**
+     * Print the header of each generation block
+     *
+     * @param type $i
+     * @return string
+     */
+    protected function printBlockHeader()
+    {
+        return
+            '<div class="blockheader ui-state-default">' .
+            '<span class="header-title">' . I18N::translate('Generation') . ' ' . $this->generation . '</span>' .
+            $this->printBackToTopLink() .
+            '</div>';
+    }
 
-	/**
-	 *
-	 * @return string
-	 */
-	protected function printBlockContent() {
-		$html = '<ol class="blockcontent generation">';
-		foreach (array_unique($this->pids) as $pid) {
-			$person = $this->getPerson($pid);
-			if (!$this->hasParentsInSameGeneration($person)) {
-				$family = $this->getFamily($person);
-				if (!empty($family)) {
-					$pid = $family->xref();
-				}
-				$class = $person->canShow() ? 'family' : 'family private';
+    /**
+     *
+     * @return string
+     */
+    protected function printBlockContent()
+    {
+        $html = '<ol class="blockcontent generation">';
+        foreach (array_unique($this->pids) as $pid) {
+            $person = $this->getPerson($pid);
+            if (!$this->hasParentsInSameGeneration($person)) {
+                $family = $this->getFamily($person);
+                if (!empty($family)) {
+                    $pid = $family->xref();
+                }
+                $class = $person->canShow() ? 'family' : 'family private';
 
-				$html .= '<li id="' . $pid . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
-			}
-		}
-		$html .= '</ol>';
-		return $html;
-	}
+                $html .= '<li id="' . $pid . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
+            }
+        }
+        $html .= '</ol>';
+        return $html;
+    }
 
-	/**
-	 * Print back-to-top link
-	 *
-	 * @param type $i
-	 * @return string
-	 */
-	protected function printBackToTopLink() {
-		if ($this->generation > 1) {
-			return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
-		}
-	}
+    /**
+     * Print back-to-top link
+     *
+     * @param type $i
+     * @return string
+     */
+    protected function printBackToTopLink()
+    {
+        if ($this->generation > 1) {
+            return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
+        }
+    }
 
-	/**
-	 * Print read-more link
-	 *
-	 * @param type $root
-	 * @return string
-	 */
-	protected function printReadMoreLink($root) {
-		return
-			'<div id="read-more-link">' .
-			'<a href="module.php?mod=' . $this->name() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . $this->tree->name() . '">' .
-			I18N::translate('Read more') .
-			'</a>' .
-			'</div>';
-	}
+    /**
+     * Print read-more link
+     *
+     * @param type $root
+     * @return string
+     */
+    protected function printReadMoreLink($root)
+    {
+        return
+            '<div id="read-more-link">' .
+            '<a href="module.php?mod=' . $this->name() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . $this->tree->name() . '">' .
+            I18N::translate('Read more') .
+            '</a>' .
+            '</div>';
+    }
 
-	/**
-	 * Print private block content
-	 *
-	 * @return string
-	 */
-	protected function printPrivateBlock() {
-		return
-			'<div class="blockcontent generation private">' .
-			I18N::translate('The details of this generation are private.') .
-			'</div>';
-	}
+    /**
+     * Print private block content
+     *
+     * @return string
+     */
+    protected function printPrivateBlock()
+    {
+        return
+            '<div class="blockcontent generation private">' .
+            I18N::translate('The details of this generation are private.') .
+            '</div>';
+    }
 
-	/**
-	 * Print the content for one individual
-	 *
-	 * @return string (html)
-	 */
-	protected function printIndividual(Individual $person) {
+    /**
+     * Print the content for one individual
+     *
+     * @return string (html)
+     */
+    protected function printIndividual(Individual $person)
+    {
 
-		if ($person->canShow()) {
-			// $html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
-			$html = '<div class="parents"><p class="desc">' . $this->printNameUrl($person, $person->xref());
-			if ($this->options('show-occu')) {
-				$html .= $this->printOccupations($person);
-			}
+        if ($person->canShow()) {
+            // $html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
+            $html = '<div class="parents"><p class="desc">' . $this->printNameUrl($person, $person->xref());
+            if ($this->options('show-occu')) {
+                $html .= $this->printOccupations($person);
+            }
 
-			$html .= $this->printParents($person) . $this->printLifespan($person) . '.';
+            $html .= $this->printParents($person) . $this->printLifespan($person) . '.';
 
-			// get a list of all the spouses
-			/*
+            // get a list of all the spouses
+            /*
 			 * First, determine the true number of spouses by checking the family gedcom
 			 */
-			$spousecount = 0;
-			foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
-				$spouse = $family->spouse($person);
-				if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
-					$spousecount++;
-				}
-			}
-			/*
+            $spousecount = 0;
+            foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
+                $spouse = $family->spouse($person);
+                if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
+                    $spousecount++;
+                }
+            }
+            /*
 			 * Now iterate thru spouses
 			 * $spouseindex is used for ordinal rather than array index
 			 * as not all families have a spouse
 			 * $spousecount is passed rather than doing each time inside function get_spouse
 			 */
-			if ($spousecount > 0) {
-				$spouseindex = 0;
-				foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
-					$spouse = $family->spouse($person);
-					if ($spouse && $spouse->canShow()) {
-						if ($this->getMarriage($family)) {
-							$html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
-							$spouseindex++;
-						} else {
-							$html .= $this->printPartner($family, $person, $spouse);
-						}
-					}
-				}
-			}
+            if ($spousecount > 0) {
+                $spouseindex = 0;
+                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
+                    $spouse = $family->spouse($person);
+                    if ($spouse && $spouse->canShow()) {
+                        if ($this->getMarriage($family)) {
+                            $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
+                            $spouseindex++;
+                        } else {
+                            $html .= $this->printPartner($family, $person, $spouse);
+                        }
+                    }
+                }
+            }
 
-			$html .= '</p></div>';
+            $html .= '</p></div>';
 
-			// get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
-			foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
-				$spouse = $family->spouse($person);
+            // get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
+            foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
+                $spouse = $family->spouse($person);
 
-				$html .= $this->printChildren($family, $person, $spouse);
-			}
+                $html .= $this->printChildren($family, $person, $spouse);
+            }
 
-			return $html;
-		} else {
-			if ($person->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
-				return I18N::translate('The details of this family are private.');
-			}
-		}
-	}
+            return $html;
+        } else {
+            if ($person->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
+                return I18N::translate('The details of this family are private.');
+            }
+        }
+    }
 
-	/**
-	 * Print the content for a spouse
-	 *
-	 * @return string
-	 */
-	protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count) {
+    /**
+     * Print the content for a spouse
+     *
+     * @return string
+     */
+    protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count)
+    {
 
-		$html = ' ';
+        $html = ' ';
 
-		if ($count > 1) {
-			// we assume no one married more then ten times.
-			$wordcount = [
-				/* I18N: first marriage  */ I18N::translate('first'),
-				/* I18N: second marriage  */ I18N::translate('second'),
-				/* I18N: third marriage  */ I18N::translate('third'),
-				/* I18N: fourth marriage  */ I18N::translate('fourth'),
-				/* I18N: fifth marriage  */ I18N::translate('fifth'),
-				/* I18N: sixth marriage  */ I18N::translate('sixth'),
-				/* I18N: seventh marriage  */ I18N::translate('seventh'),
-				/* I18N: eighth marriage  */ I18N::translate('eighth'),
-				/* I18N: ninth marriage  */ I18N::translate('ninth'),
-				/* I18N: tenth marriage  */ I18N::translate('tenth'),
-			];
-			switch ($person->sex()) {
-				case 'M':
-					if ($i == 0) {
-						$html .= /* I18N: %s is a number  */ I18N::translate('He married %s times', $count) . '. ';
-					}
-					$html .= /* I18N: %s is an ordinal */ I18N::translate('The %s time he married', $wordcount[$i]);
-					break;
-				case 'F':
-					if ($i == 0) {
-						$html .= /* I18N: %s is a number  */ I18N::translate('She married %s times', $count) . '. ';
-					}
-					$html .= /* I18N: %s is an ordinal */ I18N::translate('The %s time she married', $wordcount[$i]);
-					break;
-				default:
-					if ($i == 0) {
-						$html .= /* I18N: %s is a number  */ I18N::translate('This individual married %s times', $count) . '. ';
-					}
-					$html .= /* I18N: %s is an ordinal */ I18N::translate('The %s time this individual married', $wordcount[$i]);
-					break;
-			}
-		} else {
-			switch ($person->sex()) {
-				case 'M':
-					$html	 .= I18N::translate('He married');
-					break;
-				case 'F':
-					$html	 .= I18N::translate('She married');
-					break;
-				default:
-					$html	 .= I18N::translate('This individual married');
-					break;
-			}
-		}
+        if ($count > 1) {
+            // we assume no one married more then ten times.
+            $wordcount = [
+                /* I18N: first marriage  */
+                I18N::translate('first'),
+                /* I18N: second marriage  */ I18N::translate('second'),
+                /* I18N: third marriage  */ I18N::translate('third'),
+                /* I18N: fourth marriage  */ I18N::translate('fourth'),
+                /* I18N: fifth marriage  */ I18N::translate('fifth'),
+                /* I18N: sixth marriage  */ I18N::translate('sixth'),
+                /* I18N: seventh marriage  */ I18N::translate('seventh'),
+                /* I18N: eighth marriage  */ I18N::translate('eighth'),
+                /* I18N: ninth marriage  */ I18N::translate('ninth'),
+                /* I18N: tenth marriage  */ I18N::translate('tenth'),
+            ];
+            switch ($person->sex()) {
+                case 'M':
+                    if ($i == 0) {
+                        $html .= /* I18N: %s is a number  */ I18N::translate('He married %s times', $count) . '. ';
+                    }
+                    $html .= /* I18N: %s is an ordinal */ I18N::translate('The %s time he married', $wordcount[$i]);
+                    break;
+                case 'F':
+                    if ($i == 0) {
+                        $html .= /* I18N: %s is a number  */ I18N::translate('She married %s times', $count) . '. ';
+                    }
+                    $html .= /* I18N: %s is an ordinal */ I18N::translate('The %s time she married', $wordcount[$i]);
+                    break;
+                default:
+                    if ($i == 0) {
+                        $html .= /* I18N: %s is a number  */ I18N::translate('This individual married %s times', $count) . '. ';
+                    }
+                    $html .= /* I18N: %s is an ordinal */ I18N::translate('The %s time this individual married', $wordcount[$i]);
+                    break;
+            }
+        } else {
+            switch ($person->sex()) {
+                case 'M':
+                    $html     .= I18N::translate('He married');
+                    break;
+                case 'F':
+                    $html     .= I18N::translate('She married');
+                    break;
+                default:
+                    $html     .= I18N::translate('This individual married');
+                    break;
+            }
+        }
 
-		$html	 .= ' ' . $this->printNameUrl($spouse);
-		// $html	 .= $this->printRelationship($person, $spouse);
-		$html	 .= $this->printParents($spouse);
+        $html     .= ' ' . $this->printNameUrl($spouse);
+        // $html	 .= $this->printRelationship($person, $spouse);
+        $html     .= $this->printParents($spouse);
 
-		if (!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
-			$html .= '.';
-		} else {
-			// use the facts below only on none private records.
-			if ($this->printParents($spouse)) {
-				$html .= ',';
-			}
+        if (!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
+            $html .= '.';
+        } else {
+            // use the facts below only on none private records.
+            if ($this->printParents($spouse)) {
+                $html .= ',';
+            }
 
-			$marriage = $family->facts(['MARR'])->first();
-			if ($marriage) {
-				$html .= $this->printDate($marriage) . $this->printPlace($marriage);
-			}
+            $marriage = $family->facts(['MARR'])->first();
+            if ($marriage) {
+                $html .= $this->printDate($marriage) . $this->printPlace($marriage);
+            }
 
-			if ($this->printLifespan($spouse, true)) {
-				$html .= $this->printLifespan($spouse, true);
-			}
-			$html .= '. ';
+            if ($this->printLifespan($spouse, true)) {
+                $html .= $this->printLifespan($spouse, true);
+            }
+            $html .= '. ';
 
-			$divorce = $family->facts(['DIV'])->first();
-			if ($divorce) {
-				$html .= $this->printName($person) . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
-			}
-		}
-		return $html;
-	}
+            $divorce = $family->facts(['DIV'])->first();
+            if ($divorce) {
+                $html .= $this->printName($person) . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
+            }
+        }
+        return $html;
+    }
 
-	/**
-	 * Print the content for a non-married partner
-	 * @return string
-	 */
-	protected function printPartner(Family $family, Individual $person, Individual $spouse) {
+    /**
+     * Print the content for a non-married partner
+     * @return string
+     */
+    protected function printPartner(Family $family, Individual $person, Individual $spouse)
+    {
 
-		$html = ' ';
+        $html = ' ';
 
-		switch ($person->sex()) {
-			case 'M':
-				$html	 .= I18N::translate('He had a relationship with');
-				break;
-			case 'F':
-				$html	 .= I18N::translate('She had a relationship with');
-				break;
-			default:
-				$html	 .= I18N::translate('This individual had a relationship with');
-				break;
-		}
+        switch ($person->sex()) {
+            case 'M':
+                $html     .= I18N::translate('He had a relationship with');
+                break;
+            case 'F':
+                $html     .= I18N::translate('She had a relationship with');
+                break;
+            default:
+                $html     .= I18N::translate('This individual had a relationship with');
+                break;
+        }
 
-		$html	 .= ' ' . $this->printNameUrl($spouse);
-		// $html	 .= $this->printRelationship($person, $spouse);
-		$html	 .= $this->printParents($spouse);
+        $html     .= ' ' . $this->printNameUrl($spouse);
+        // $html	 .= $this->printRelationship($person, $spouse);
+        $html     .= $this->printParents($spouse);
 
-		if ($family->facts(['_NMR'])->first() && $this->printLifespan($spouse, true)) {
-			$html .= $this->printLifespan($spouse, true);
-		}
+        if ($family->facts(['_NMR'])->first() && $this->printLifespan($spouse, true)) {
+            $html .= $this->printLifespan($spouse, true);
+        }
 
-		return '. ' . $html;
-	}
+        return '. ' . $html;
+    }
 
-	/**
-	 * Print the childrens list
-	 *
-	 * @return string
-	 */
-	protected function printChildren(Family $family, Individual $person, Individual $spouse) {
-		$html = '';
+    /**
+     * Print the childrens list
+     *
+     * @return string
+     */
+    protected function printChildren(Family $family, Individual $person, Individual $spouse)
+    {
+        $html = '';
 
-		$match = null;
-		if (preg_match('/\n1 NCHI (\d+)/', $family->gedcom(), $match) && $match[1] == 0) {
-			$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
-			if ($spouse && $spouse->canShow()) {
-				$html	 .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
-				$html	 .= I18N::translateContext('Two parents/one child', 'had');
-			} else {
-				$html .= I18N::translateContext('One parent/one child', 'had');
-			}
-			$html .= ' ' . I18N::translate('none') . ' ' . I18N::translate('children') . '.</p></div>';
-		} else {
-			$children = $family->children();
-			if ($children) {
-				if ($this->checkPrivacy($children)) {
-					$html .= '<div class="children"><p>' . $this->printName($person) . ' ';
-					// needs multiple translations for the word 'had' to serve different languages.
-					if ($spouse && $spouse->canShow()) {
-						$html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
-						if (count($children) > 1) {
-							$html .= I18N::translateContext('Two parents/multiple children', 'had');
-						} else {
-							$html .= I18N::translateContext('Two parents/one child', 'had');
-						}
-					} else {
-						if (count($children) > 1) {
-							$html .= I18N::translateContext('One parent/multiple children', 'had');
-						} else {
-							$html .= I18N::translateContext('One parent/one child', 'had');
-						}
-					}
-					$html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
-				} else {
-					$html .= '<div class="children"><p>' . I18N::translate('Children of ') . $this->printName($person);
-					if ($spouse && $spouse->canShow()) {
-						$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
-					}
-					$html .= ':<ol>';
+        $match = null;
+        if (preg_match('/\n1 NCHI (\d+)/', $family->gedcom(), $match) && $match[1] == 0) {
+            $html .= '<div class="children"><p>' . $this->printName($person) . ' ';
+            if ($spouse && $spouse->canShow()) {
+                $html     .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
+                $html     .= I18N::translateContext('Two parents/one child', 'had');
+            } else {
+                $html .= I18N::translateContext('One parent/one child', 'had');
+            }
+            $html .= ' ' . I18N::translate('none') . ' ' . I18N::translate('children') . '.</p></div>';
+        } else {
+            $children = $family->children();
+            if ($children) {
+                if ($this->checkPrivacy($children)) {
+                    $html .= '<div class="children"><p>' . $this->printName($person) . ' ';
+                    // needs multiple translations for the word 'had' to serve different languages.
+                    if ($spouse && $spouse->canShow()) {
+                        $html .= /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ';
+                        if (count($children) > 1) {
+                            $html .= I18N::translateContext('Two parents/multiple children', 'had');
+                        } else {
+                            $html .= I18N::translateContext('Two parents/one child', 'had');
+                        }
+                    } else {
+                        if (count($children) > 1) {
+                            $html .= I18N::translateContext('One parent/multiple children', 'had');
+                        } else {
+                            $html .= I18N::translateContext('One parent/one child', 'had');
+                        }
+                    }
+                    $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
+                } else {
+                    $html .= '<div class="children"><p>' . I18N::translate('Children of ') . $this->printName($person);
+                    if ($spouse && $spouse->canShow()) {
+                        $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
+                    }
+                    $html .= ':<ol>';
 
-					foreach ($children as $child) {
-						if ($child->canShow()) {
-							$html	 .= '<li class="child">' . $this->printNameUrl($child);
-							$pedi	 = $this->checkPedi($child, $family);
+                    foreach ($children as $child) {
+                        if ($child->canShow()) {
+                            $html     .= '<li class="child">' . $this->printNameUrl($child);
+                            $pedi     = $this->checkPedi($child, $family);
 
-							if ($pedi) {
-								$html .= ' <span class="pedi">';
-								switch ($pedi) {
-									case 'foster':
-										switch ($child->sex()) {
-											case 'F':
-												$html	 .= I18N::translateContext('FEMALE', 'foster child');
-												break;
-											default:
-												$html	 .= I18N::translateContext('MALE', 'foster child');
-												break;
-										}
-										break;
-									case 'adopted':
-										switch ($child->sex()) {
-											case 'F':
-												$html	 .= I18N::translateContext('FEMALE', 'adopted child');
-												break;
-											default:
-												$html	 .= I18N::translateContext('MALE', 'adopted child');
-												break;
-										}
-										break;
-								}
-								$html .= '</span>';
-							}
+                            if ($pedi) {
+                                $html .= ' <span class="pedi">';
+                                switch ($pedi) {
+                                    case 'foster':
+                                        switch ($child->sex()) {
+                                            case 'F':
+                                                $html     .= I18N::translateContext('FEMALE', 'foster child');
+                                                break;
+                                            default:
+                                                $html     .= I18N::translateContext('MALE', 'foster child');
+                                                break;
+                                        }
+                                        break;
+                                    case 'adopted':
+                                        switch ($child->sex()) {
+                                            case 'F':
+                                                $html     .= I18N::translateContext('FEMALE', 'adopted child');
+                                                break;
+                                            default:
+                                                $html     .= I18N::translateContext('MALE', 'adopted child');
+                                                break;
+                                        }
+                                        break;
+                                }
+                                $html .= '</span>';
+                            }
 
-							if ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK()) {
-								$html .= '<span class="lifespan"> (' . $child->lifespan() . ')</span>';
-							}
+                            if ($child->getBirthDate()->isOK() || $child->getDeathdate()->isOK()) {
+                                $html .= '<span class="lifespan"> (' . $child->lifespan() . ')</span>';
+                            }
 
-							$child_family = $this->getFamily($child);
+                            $child_family = $this->getFamily($child);
 
-							// TODO: do not load this part of the code in the fancy treeview tab on the individual page.
-							// if (WT_SCRIPT_NAME !== 'individual.php') { // old code
-								$text_follow = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
-								if ($child_family) {
-									$html .= ' - <a class="scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
-									$this->index++;
-								} elseif ($this->options('show-singles') == true) {
-									$html .= ' - <a class="scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
-									$this->index++;
-								}
-							// }
-							$html .= '</li>';
-						} else {
-							$html .= '<li class="child private">' . I18N::translate('Private') . '</li>';
-						}
-					}
-					$html .= '</ol></div>';
-				}
-			}
-		}
-		return $html;
-	}
+                            // TODO: do not load this part of the code in the fancy treeview tab on the individual page.
+                            // if (WT_SCRIPT_NAME !== 'individual.php') { // old code
+                            $text_follow = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
+                            if ($child_family) {
+                                $html .= ' - <a class="scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
+                                $this->index++;
+                            } elseif ($this->options('show-singles') == true) {
+                                $html .= ' - <a class="scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
+                                $this->index++;
+                            }
+                            // }
+                            $html .= '</li>';
+                        } else {
+                            $html .= '<li class="child private">' . I18N::translate('Private') . '</li>';
+                        }
+                    }
+                    $html .= '</ol></div>';
+                }
+            }
+        }
+        return $html;
+    }
 
-	/**
-	 * Print the parents
-	 *
-	 * @param type $person
-	 * @return string
-	 */
-	protected function printParents(Individual $person) {
-		$parents = $person->childFamilies()->first();
-		if ($parents) {
-			$pedi = $this->checkPedi($person, $parents);
+    /**
+     * Print the parents
+     *
+     * @param type $person
+     * @return string
+     */
+    protected function printParents(Individual $person)
+    {
+        $parents = $person->childFamilies()->first();
+        if ($parents) {
+            $pedi = $this->checkPedi($person, $parents);
 
-			$html = '';
-			switch ($person->sex()) {
-				case 'M':
-					if ($pedi === 'foster') {
-						$html .= ', ' . I18N::translate('foster son of') . ' ';
-					} elseif ($pedi === 'adopted') {
-						$html .= ', ' . I18N::translate('adopted son of') . ' ';
-					} else {
-						$html .= ', ' . I18N::translate('son of') . ' ';
-					}
-					break;
-				case 'F':
-					if ($pedi === 'foster') {
-						$html .= ', ' . I18N::translate('foster daughter of') . ' ';
-					} elseif ($pedi === 'adopted') {
-						$html .= ', ' . I18N::translate('adopted daughter of') . ' ';
-					} else {
-						$html .= ', ' . I18N::translate('daughter of') . ' ';
-					}
-					break;
-				default:
-					if ($pedi === 'foster') {
-						$html .= ', ' . I18N::translate('foster child of') . ' ';
-					} elseif ($pedi === 'adopted') {
-						$html .= ', ' . I18N::translate('adopted child of') . ' ';
-					} else {
-						$html .= ', ' . I18N::translate('child of') . ' ';
-					}
-			}
+            $html = '';
+            switch ($person->sex()) {
+                case 'M':
+                    if ($pedi === 'foster') {
+                        $html .= ', ' . I18N::translate('foster son of') . ' ';
+                    } elseif ($pedi === 'adopted') {
+                        $html .= ', ' . I18N::translate('adopted son of') . ' ';
+                    } else {
+                        $html .= ', ' . I18N::translate('son of') . ' ';
+                    }
+                    break;
+                case 'F':
+                    if ($pedi === 'foster') {
+                        $html .= ', ' . I18N::translate('foster daughter of') . ' ';
+                    } elseif ($pedi === 'adopted') {
+                        $html .= ', ' . I18N::translate('adopted daughter of') . ' ';
+                    } else {
+                        $html .= ', ' . I18N::translate('daughter of') . ' ';
+                    }
+                    break;
+                default:
+                    if ($pedi === 'foster') {
+                        $html .= ', ' . I18N::translate('foster child of') . ' ';
+                    } elseif ($pedi === 'adopted') {
+                        $html .= ', ' . I18N::translate('adopted child of') . ' ';
+                    } else {
+                        $html .= ', ' . I18N::translate('child of') . ' ';
+                    }
+            }
 
-			$father	 = $parents->husband();
-			$mother	 = $parents->wife();
+            $father     = $parents->husband();
+            $mother     = $parents->wife();
 
-			if ($father) {
-				$html .= $this->printName($father);
-			}
-			if ($father && $mother) {
-				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-			}
-			if ($mother) {
-				$html .= $this->printName($mother);
-			}
+            if ($father) {
+                $html .= $this->printName($father);
+            }
+            if ($father && $mother) {
+                $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+            }
+            if ($mother) {
+                $html .= $this->printName($mother);
+            }
 
-			return $html;
-		}
-	}
+            return $html;
+        }
+    }
 
-	/**
-	 * Print the full name of a person
-	 *
-	 * @return string
-	 */
-	protected function printName(Individual $person) {
-		return $person->fullname();
-	}
+    /**
+     * Print the full name of a person
+     *
+     * @return string
+     */
+    protected function printName(Individual $person)
+    {
+        return $person->fullname();
+    }
 
-	/**
-	 * Print the name of a person with the link to the individual page
-	 *
-	 * @return string
-	 */
-	protected function printNameUrl(Individual $person, $xref = '') {
-		return '<a href="' . $person->url() . '">' . $person->fullname() . '</a>';
-	}
+    /**
+     * Print the name of a person with the link to the individual page
+     *
+     * @return string
+     */
+    protected function printNameUrl(Individual $person, $xref = '')
+    {
+        return '<a href="' . $person->url() . '">' . $person->fullname() . '</a>';
+    }
 
-	/**
-	 * Print occupations
-	 *
-	 * @return string
-	 */
-	protected function printOccupations(Individual $person) {
-		$html		 = '';
-		$occupations = $person->facts(['OCCU'], true);
-		$count		 = count($occupations);
-		foreach ($occupations as $num => $fact) {
-			if ($num > 0 && $num === $count - 1) {
-				$html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-			} else {
-				$html .= ', ';
-			}
+    /**
+     * Print occupations
+     *
+     * @return string
+     */
+    protected function printOccupations(Individual $person)
+    {
+        $html         = '';
+        $occupations = $person->facts(['OCCU'], true);
+        $count         = count($occupations);
+        foreach ($occupations as $num => $fact) {
+            if ($num > 0 && $num === $count - 1) {
+                $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+            } else {
+                $html .= ', ';
+            }
 
-			// In the Gedcom file most occupations are probably written with a capital (as a single word)
-			// but use lcase/ucase to be sure the occupation is spelled the right way since we are using
-			// it in the middle of a sentence.
-			// In German all occupations are written with a capital.
-			// Are there any other languages where this is the case?
-			foreach (I18N::activeLocales() as $locale) {
-				if ($locale->languageTag() === 'de') {
-					$html .= rtrim(ucfirst($fact->value()), ".");
-				} else {
-					$html .= rtrim(lcfirst($fact->value()), ".");
-				}
-			}
+            // In the Gedcom file most occupations are probably written with a capital (as a single word)
+            // but use lcase/ucase to be sure the occupation is spelled the right way since we are using
+            // it in the middle of a sentence.
+            // In German all occupations are written with a capital.
+            // Are there any other languages where this is the case?
+            foreach (I18N::activeLocales() as $locale) {
+                if ($locale->languageTag() === 'de') {
+                    $html .= rtrim(ucfirst($fact->value()), ".");
+                } else {
+                    $html .= rtrim(lcfirst($fact->value()), ".");
+                }
+            }
 
-			$date = $this->printDate($fact);
-			if ($date) {
-				$html .= ' (' . trim($date) . ')';
-			}
-		}
-		return $html;
-	}
+            $date = $this->printDate($fact);
+            if ($date) {
+                $html .= ' (' . trim($date) . ')';
+            }
+        }
+        return $html;
+    }
 
-	/**
-	 * Print the lifespan of this person
-	 *
-	 * @return string
-	 */
-	protected function printLifespan(Individual $person, bool $is_spouse = false) {
-		$html = '';
+    /**
+     * Print the lifespan of this person
+     *
+     * @return string
+     */
+    protected function printLifespan(Individual $person, bool $is_spouse = false)
+    {
+        $html = '';
 
-		$is_bfact = false;
-		foreach (Gedcom::BIRTH_EVENTS as $event) {
-			$bfact = $person->facts([$event])->first();
-			if ($bfact) {
-				$bdate	 = $this->printDate($bfact);
-				$bplace	 = $this->printPlace($bfact);
+        $is_bfact = false;
+        foreach (Gedcom::BIRTH_EVENTS as $event) {
+            $bfact = $person->facts([$event])->first();
+            if ($bfact) {
+                $bdate     = $this->printDate($bfact);
+                $bplace     = $this->printPlace($bfact);
 
-				if ($bdate || $bplace) {
-					$is_bfact	 = true;
-					$html		 .= $this->printBirthText($person, $event, $is_spouse) . $bdate . $bplace;
-					break;
-				}
-			}
-		}
+                if ($bdate || $bplace) {
+                    $is_bfact     = true;
+                    $html         .= $this->printBirthText($person, $event, $is_spouse) . $bdate . $bplace;
+                    break;
+                }
+            }
+        }
 
-		$is_dfact = false;
-		foreach (Gedcom::DEATH_EVENTS as $event) {
-			$dfact = $person->facts([$event])->first();
-			if ($dfact) {
-				$ddate	 = $this->printDate($dfact);
-				$dplace	 = $this->printPlace($dfact);
+        $is_dfact = false;
+        foreach (Gedcom::DEATH_EVENTS as $event) {
+            $dfact = $person->facts([$event])->first();
+            if ($dfact) {
+                $ddate     = $this->printDate($dfact);
+                $dplace     = $this->printPlace($dfact);
 
-				if ($ddate || $dplace) {
-					$is_dfact	 = true;
-					$html		 .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
-					break;
-				}
-			}
-		}
+                if ($ddate || $dplace) {
+                    $is_dfact     = true;
+                    $html         .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
+                    break;
+                }
+            }
+        }
 
-		if ($is_bfact && $is_dfact && isset($bdate) && isset($ddate)) {
-			$html .= $this->printAgeAtDeath($bfact, $dfact);
-		}
+        if ($is_bfact && $is_dfact && isset($bdate) && isset($ddate)) {
+            $html .= $this->printAgeAtDeath($bfact, $dfact);
+        }
 
-		return $html;
-	}
+        return $html;
+    }
 
-	/**
-	 * Print the relationship between spouses (optional)
-	 */
-	/* protected function printRelationship($person, $spouse) {
+    /**
+     * Print the relationship between spouses (optional)
+     */
+    /* protected function printRelationship($person, $spouse) {
 		$html = '';
 		if ($this->options('check_relationship')) {
 			$relationship = $this->checkRelationship($person, $spouse);
@@ -935,10 +952,10 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		return $html;
 	} */
 
-	/**
-	 * Print the Fancy thumbnail for this individual	 *
-	 */
-	/* protected function printThumbnail(Individual $person) {
+    /**
+     * Print the Fancy thumbnail for this individual	 *
+     */
+    /* protected function printThumbnail(Individual $person) {
 		$mediaobject = $person->findHighlightedMediaFile();
 		if ($mediaobject) {
 			$cache_filename = $this->getThumbnail($mediaobject);
@@ -967,253 +984,264 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 	} */
 
-	/**
-	 * Print the birth text (born or baptized)
-	 *
-	 * @return string
-	 */
-	protected function printBirthText(Individual $person, $event, bool $is_spouse = false) {
-		$html = '';
-		switch ($event) {
-			case 'BIRT':
-				if ($is_spouse == true) {
-					$html .= '. ';
-					if ($person->isDead()) {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was born') : $html	 .= I18N::translateContext('PAST', 'He was born');
-					} else {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was born') : $html	 .= I18N::translateContext('PRESENT', 'He was born');
-					}
-				} else {
-					$this->printParents($person) || $this->printOccupations($person) ? $html	 .= ', ' : $html	 .= ' ';
-					if ($person->isDead()) {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PAST (MALE)', 'was born');
-					} else {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was born');
-					}
-				}
-				break;
-			case 'BAPM':
-			case 'CHR':
-				if ($is_spouse == true) {
-					$html .= '. ';
-					if ($person->isDead()) {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST', 'She was baptized') : $html	 .= I18N::translateContext('PAST', 'He was baptized');
-					} else {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT', 'She was baptized') : $html	 .= I18N::translateContext('PRESENT', 'He was baptized');
-					}
-				} else {
-					$this->printParents($person) || $this->printOccupations($person) ? $html	 .= ', ' : $html	 .= ' ';
-					if ($person->isDead()) {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PAST (MALE)', 'was baptized');
-					} else {
-						$person->sex() == 'F' ? $html	 .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html	 .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
-					}
-				}
-				break;
-		}
-		return $html;
-	}
+    /**
+     * Print the birth text (born or baptized)
+     *
+     * @return string
+     */
+    protected function printBirthText(Individual $person, $event, bool $is_spouse = false)
+    {
+        $html = '';
+        switch ($event) {
+            case 'BIRT':
+                if ($is_spouse == true) {
+                    $html .= '. ';
+                    if ($person->isDead()) {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PAST', 'She was born') : $html     .= I18N::translateContext('PAST', 'He was born');
+                    } else {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PRESENT', 'She was born') : $html     .= I18N::translateContext('PRESENT', 'He was born');
+                    }
+                } else {
+                    $this->printParents($person) || $this->printOccupations($person) ? $html     .= ', ' : $html     .= ' ';
+                    if ($person->isDead()) {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PAST (FEMALE)', 'was born') : $html     .= I18N::translateContext('PAST (MALE)', 'was born');
+                    } else {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PRESENT (FEMALE)', 'was born') : $html     .= I18N::translateContext('PRESENT (MALE)', 'was born');
+                    }
+                }
+                break;
+            case 'BAPM':
+            case 'CHR':
+                if ($is_spouse == true) {
+                    $html .= '. ';
+                    if ($person->isDead()) {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PAST', 'She was baptized') : $html     .= I18N::translateContext('PAST', 'He was baptized');
+                    } else {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PRESENT', 'She was baptized') : $html     .= I18N::translateContext('PRESENT', 'He was baptized');
+                    }
+                } else {
+                    $this->printParents($person) || $this->printOccupations($person) ? $html     .= ', ' : $html     .= ' ';
+                    if ($person->isDead()) {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html     .= I18N::translateContext('PAST (MALE)', 'was baptized');
+                    } else {
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html     .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
+                    }
+                }
+                break;
+        }
+        return $html;
+    }
 
-	/**
-	 * Print the death text (death or buried)
-	 *
-	 * @return string
-	 */
-	protected function printDeathText(Individual $person, $event, bool $is_bfact) {
-		$html = '';
-		switch ($event) {
-			case 'DEAT':
-				if ($is_bfact) {
-					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->sex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'died') : $html	 .= I18N::translateContext('MALE', 'died');
-				} else {
-					$person->sex() == 'F' ? $html	 .= '. ' . I18N::translate('She died') : $html	 .= '. ' . I18N::translate('He died');
-				}
-				break;
-			case 'BURI':
-				if ($is_bfact) {
-					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->sex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was buried') : $html	 .= I18N::translateContext('MALE', 'was buried');
-				} else {
-					$person->sex() == 'F' ? $html	 .= '. ' . I18N::translate('She was buried') : $html	 .= '. ' . I18N::translate('He was buried');
-				}
-				break;
-			case 'CREM':
-				if ($is_bfact) {
-					$html	 .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-					$person->sex() == 'F' ? $html	 .= I18N::translateContext('FEMALE', 'was cremated') : $html	 .= I18N::translateContext('MALE', 'was cremated');
-				} else {
-					$person->sex() == 'F' ? $html	 .= '. ' . I18N::translate('She was cremated') : $html	 .= '. ' . I18N::translate('He was cremated');
-				}
-				break;
-		}
-		return $html;
-	}
+    /**
+     * Print the death text (death or buried)
+     *
+     * @return string
+     */
+    protected function printDeathText(Individual $person, $event, bool $is_bfact)
+    {
+        $html = '';
+        switch ($event) {
+            case 'DEAT':
+                if ($is_bfact) {
+                    $html     .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+                    $person->sex() == 'F' ? $html     .= I18N::translateContext('FEMALE', 'died') : $html     .= I18N::translateContext('MALE', 'died');
+                } else {
+                    $person->sex() == 'F' ? $html     .= '. ' . I18N::translate('She died') : $html     .= '. ' . I18N::translate('He died');
+                }
+                break;
+            case 'BURI':
+                if ($is_bfact) {
+                    $html     .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+                    $person->sex() == 'F' ? $html     .= I18N::translateContext('FEMALE', 'was buried') : $html     .= I18N::translateContext('MALE', 'was buried');
+                } else {
+                    $person->sex() == 'F' ? $html     .= '. ' . I18N::translate('She was buried') : $html     .= '. ' . I18N::translate('He was buried');
+                }
+                break;
+            case 'CREM':
+                if ($is_bfact) {
+                    $html     .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+                    $person->sex() == 'F' ? $html     .= I18N::translateContext('FEMALE', 'was cremated') : $html     .= I18N::translateContext('MALE', 'was cremated');
+                } else {
+                    $person->sex() == 'F' ? $html     .= '. ' . I18N::translate('She was cremated') : $html     .= '. ' . I18N::translate('He was cremated');
+                }
+                break;
+        }
+        return $html;
+    }
 
-	/**
-	 * Print the age at death/bury
-	 * @param type $bfact
-	 * @param type $dfact
-	 * @return string
-	 */
-	protected function printAgeAtDeath($bfact, $dfact) {
-		$bdate	 = $bfact->date();
-		$ddate	 = $dfact->date();
-		$html	 = '';
-		if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
-			$ageAtdeath = (string) new Age($bdate, $ddate);
-			if ($ageAtdeath < 2) {
-				$html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageAtdeath);
-			} else {
-				$html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string */ I18N::translateContext('age in years', 'at the age of %s', filter_var($ageAtDeath, FILTER_SANITIZE_NUMBER_INT));
-			}
-		}
-		return $html;
-	}
+    /**
+     * Print the age at death/bury
+     * @param type $bfact
+     * @param type $dfact
+     * @return string
+     */
+    protected function printAgeAtDeath($bfact, $dfact)
+    {
+        $bdate     = $bfact->date();
+        $ddate     = $dfact->date();
+        $html     = '';
+        if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
+            $ageAtdeath = (string) new Age($bdate, $ddate);
+            if ($ageAtdeath < 2) {
+                $html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageAtdeath);
+            } else {
+                $html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string */ I18N::translateContext('age in years', 'at the age of %s', filter_var($ageAtDeath, FILTER_SANITIZE_NUMBER_INT));
+            }
+        }
+        return $html;
+    }
 
-	/**
-	 * Function to print dates with the right syntax
-	 * @return string
-	 */
-	protected function printDate(Fact $fact) {
-		$date = $fact->date();
-		if ($date && $date->isOK()) {
-			if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
-				return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string. */ I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
-			}
-			if ($date->minimumDate()->day > 0) {
-				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
-			}
-			if ($date->minimumDate()->month > 0) {
-				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat mmm yyyy', 'in ') . $date->Display();
-			}
-			if ($date->minimumDate()->year > 0) {
-				return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
-			}
-		}
-	}
+    /**
+     * Function to print dates with the right syntax
+     * @return string
+     */
+    protected function printDate(Fact $fact)
+    {
+        $date = $fact->date();
+        if ($date && $date->isOK()) {
+            if (preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
+                return ' ' . /* I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc.
+				Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end
+				of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US)
+				does not need this string. */
+                    I18N::translateContext('prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details.', ' ') . $date->Display();
+            }
+            if ($date->minimumDate()->day > 0) {
+                return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat dd-mm-yyyy', 'on ') . $date->Display();
+            }
+            if ($date->minimumDate()->month > 0) {
+                return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat mmm yyyy', 'in ') . $date->Display();
+            }
+            if ($date->minimumDate()->year > 0) {
+                return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
+            }
+        }
+    }
 
-	/**
-	 * Print places
-	 *
-	 * @param Place $place
-	 * @param type $tree
-	 * @return string
-	 */
-	protected function printPlace(Fact $fact) {
-		$place = $fact->attribute('PLAC');
-		if ($place && $this->options('show-places') == true) {
-			$place	 = new Place($place, $this->tree);
-			$html	 = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
-			if ($this->options('use-gedcom-places') == true) {
-				$html .= $place->shortName();
-			} else {
-				$country	 = $this->options('country');
-				$new_place	 = array_reverse(explode(", ", $place->gedcomName()));
-				if (!empty($country) && $new_place[0] == $country) {
-					unset($new_place[0]);
-					$html .= '<span dir="auto">' .e(implode(', ', array_reverse($new_place))) . '</span>';
-				} else {
-					$html .= $place->fullName();
-				}
-			}
-			return $html;
-		}
-	}
+    /**
+     * Print places
+     *
+     * @param Place $place
+     * @param type $tree
+     * @return string
+     */
+    protected function printPlace(Fact $fact)
+    {
+        $place = $fact->attribute('PLAC');
+        if ($place && $this->options('show-places') == true) {
+            $place     = new Place($place, $this->tree);
+            $html     = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
+            if ($this->options('use-gedcom-places') == true) {
+                $html .= $place->shortName();
+            } else {
+                $country     = $this->options('country');
+                $new_place     = array_reverse(explode(", ", $place->gedcomName()));
+                if (!empty($country) && $new_place[0] == $country) {
+                    unset($new_place[0]);
+                    $html .= '<span dir="auto">' . e(implode(', ', array_reverse($new_place))) . '</span>';
+                } else {
+                    $html .= $place->fullName();
+                }
+            }
+            return $html;
+        }
+    }
 
-	/**
-	 * Get individual object from PID
-	 *
-	 * @param string $pid
-	 * @return object
-	 */
-	protected function getPerson(string $pid) {
-		return Registry::individualFactory()->make($pid, $this->tree);
-	}
+    /**
+     * Get individual object from PID	 *
+     */
+    protected function getPerson(string $pid)
+    {
+        return Registry::individualFactory()->make($pid, $this->tree);
+    }
 
-	/**
-	 * Get object of the rootperson of this tree
-	 *
-	 * @return object
-	 */
-	protected function getRootPerson() {
-		return $this->getPerson(self::ROOT_ID);
-	}
+    /**
+     * Get object of the rootperson of this tree
+     *
+     * @return object
+     */
+    protected function getRootPerson()
+    {
+        return $this->getPerson(self::ROOT_ID);
+    }
 
-	/**
-	 * Get the family object of an individual
-	 *
-	 * @param type $person
-	 * @return object
-	 */
-	private function getFamily(Individual $person) {
-		foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
-			return $family;
-		}
-	}
+    /**
+     * Get the family object of an individual
+     *
+     * @param type $person
+     * @return object
+     */
+    private function getFamily(Individual $person)
+    {
+        foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
+            return $family;
+        }
+    }
 
-	/**
-	 * Get an array of xrefs for the next descendant generation of this person
-	 *
-	 * @param type $pid
-	 * @return array of xrefs
-	 */
-	private function getNextGen($pid) {
-		$person	 = $this->getPerson($pid);
-		$ng		 = [];
-		foreach ($person->spouseFamilies() as $family) {
-			$children = $family->children();
-			if ($children) {
-				foreach ($children as $key => $child) {
-					$key				 = $family->xref() . '-' . $key; // be sure the key is unique.
-					$ng[$key]['pid']	 = $child->xref();
-					$child->spouseFamilies(Auth::PRIV_HIDE) ? $ng[$key]['desc']	 = 1 : $ng[$key]['desc']	 = 0;
-				}
-			}
-		}
-		return $ng;
-	}
+    /**
+     * Get an array of xrefs for the next descendant generation of this person
+     *
+     * @return array of xrefs
+     */
+    private function getNextGen(string $pid)
+    {
+        $person     = $this->getPerson($pid);
+        $ng         = [];
+        foreach ($person->spouseFamilies() as $family) {
+            $children = $family->children();
+            if ($children) {
+                foreach ($children as $key => $child) {
+                    $key                 = $family->xref() . '-' . $key; // be sure the key is unique.
+                    $ng[$key]['pid']     = $child->xref();
+                    $child->spouseFamilies(Auth::PRIV_HIDE) ? $ng[$key]['desc']     = 1 : $ng[$key]['desc']     = 0;
+                }
+            }
+        }
+        return $ng;
+    }
 
-	/**
-	 * check if a person has parents in the same generation
-	 * this function prevents listing the same person twice
-	 *
-	 * @param type $person
-	 * @return boolean
-	 */
-	private function hasParentsInSameGeneration(Individual $person) {
-		$parents = $person->childFamilies()->first();;
-		if ($parents) {
-			$father	 = $parents->husband();
-			$mother	 = $parents->wife();
-			if ($father) {
-				$father = $father->xref();
-			}
-			if ($mother) {
-				$mother = $mother->xref();
-			}
-			if (in_array($father, $this->pids) || in_array($mother, $this->pids)) {
-				return true;
-			}
-		}
-	}
+    /**
+     * check if a person has parents in the same generation
+     * this function prevents listing the same person twice
+     *
+     * @param type $person
+     * @return boolean
+     */
+    private function hasParentsInSameGeneration(Individual $person)
+    {
+        $parents = $person->childFamilies()->first();;
+        if ($parents) {
+            $father     = $parents->husband();
+            $mother     = $parents->wife();
+            if ($father) {
+                $father = $father->xref();
+            }
+            if ($mother) {
+                $mother = $mother->xref();
+            }
+            if (in_array($father, $this->pids) || in_array($mother, $this->pids)) {
+                return true;
+            }
+        }
+    }
 
-	/**
-	 * check if this date has any date qualifiers. Return true if no date qualifiers are found.
-	 *
-	 * @param type $fact
-	 * @return boolean
-	 */
-	private function isDateDMY($fact) {
-		if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
-			return true;
-		}
-	}
+    /**
+     * check if this date has any date qualifiers. Return true if no date qualifiers are found.
+     *
+     * @param type $fact
+     * @return boolean
+     */
+    private function isDateDMY($fact)
+    {
+        if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
+            return true;
+        }
+    }
 
-	/**
-	 * check (blood) relationship between partners	 *
-	 */
-	/* private function checkRelationship($person, $spouse) {
+    /**
+     * check (blood) relationship between partners	 *
+     */
+    /* private function checkRelationship($person, $spouse) {
 		$controller	 = new RelationshipController();
 		$paths		 = $controller->calculateRelationships($person, $spouse, 1);
 		foreach ($paths as $path) {
@@ -1235,76 +1263,79 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 	} */
 
-	/**
-	 * Check if this is a private record
-	 * $records can be an array of xrefs or an array of objects
-	 *
-	 * @param type $record
-	 * @param type $xrefs
-	 * @return boolean
-	 */
-	private function checkPrivacy($records, $xrefs = false) {
-		$count = 0;
-		foreach ($records as $person) {
-			if ($xrefs) {
-				$person = $this->getPerson($person);
-			}
-			if ($person->canShow()) {
-				$count++;
-			}
-		}
-		if ($count < 1) {
-			return true;
-		}
-	}
+    /**
+     * Check if this is a private record
+     * $records can be an array of xrefs or an array of objects
+     *
+     * @param type $record
+     * @param type $xrefs
+     * @return boolean
+     */
+    private function checkPrivacy($records, $xrefs = false)
+    {
+        $count = 0;
+        foreach ($records as $person) {
+            if ($xrefs) {
+                $person = $this->getPerson($person);
+            }
+            if ($person->canShow()) {
+                $count++;
+            }
+        }
+        if ($count < 1) {
+            return true;
+        }
+    }
 
-	/**
-	 * Determine if the family parents are married.
-	 *
-	 * Don't use the default function because we want to privatize the record but display the name
-	 * and the parents of the spouse if the spouse him/herself is not private.
-	 *
-	 * @param type $family
-	 * @return boolean
-	 */
-	private function getMarriage($family) {
-		$record = Registry::gedcomRecordFactory()->make($family->xref(), $this->tree);
-		foreach ($record->facts(['MARR'], false, Auth::PRIV_HIDE) as $fact) {
-			if ($fact) {
-				return true;
-			}
-		}
-	}
+    /**
+     * Determine if the family parents are married.
+     *
+     * Don't use the default function because we want to privatize the record but display the name
+     * and the parents of the spouse if the spouse him/herself is not private.
+     *
+     * @param type $family
+     * @return boolean
+     */
+    private function getMarriage($family)
+    {
+        $record = Registry::gedcomRecordFactory()->make($family->xref(), $this->tree);
+        foreach ($record->facts(['MARR'], false, Auth::PRIV_HIDE) as $fact) {
+            if ($fact) {
+                return true;
+            }
+        }
+    }
 
-	/**
-	 * Check if this person is an adopted or foster child
-	 *
-	 * @param type $person
-	 * @param type $parents
-	 * @return attribute
-	 */
-	private function checkPedi($person, $parents) {
-		$pedi = "";
-		foreach ($person->facts(['FAMC']) as $fact) {
-			if ($fact->target() === $parents) {
-				$pedi = $fact->attribute('PEDI');
-				break;
-			}
-		}
-		return $pedi;
-	}
+    /**
+     * Check if this person is an adopted or foster child
+     *
+     * @param type $person
+     * @param type $parents
+     * @return attribute
+     */
+    private function checkPedi($person, $parents)
+    {
+        $pedi = "";
+        foreach ($person->facts(['FAMC']) as $fact) {
+            if ($fact->target() === $parents) {
+                $pedi = $fact->attribute('PEDI');
+                break;
+            }
+        }
+        return $pedi;
+    }
 
-	/**
-	 * Get the filename of the cached image
-	 */
-	/* public function cacheFileName(Media $mediaobject) {
+    /**
+     * Get the filename of the cached image
+     */
+    /* public function cacheFileName(Media $mediaobject) {
 		return self::CACHE_DIR . $this->tree->id() . '-' . $mediaobject->xref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
 	} */
 
-	/**
-	 * remove all old cached files
-	 */
-	/* protected function emptyCache() {
+    /**
+     * remove all old cached files
+     */
+    /* protected function emptyCache() {
 		foreach (glob(self::CACHE_DIR . '*') as $cache_file) {
 			if (is_file($cache_file)) {
 				unlink($cache_file);
@@ -1312,10 +1343,10 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 	} */
 
-	/**
-	 * Check if thumbnails from cache should be recreated
-	 */
-	/* private function getThumbnail(Media $mediaobject)
+    /**
+     * Check if thumbnails from cache should be recreated
+     */
+    /* private function getThumbnail(Media $mediaobject)
 	{
 		if (!file_exists(self::CACHE_DIR)) {
 			mkdir(self::CACHE_DIR);
@@ -1352,10 +1383,10 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 	} */
 
-	/**
-	 * Get the Fancy thumbnail (highlighted image)	 *
-	 */
-	/* private function fancyThumb($mediaobject) {
+    /**
+     * Get the Fancy thumbnail (highlighted image)	 *
+     */
+    /* private function fancyThumb($mediaobject) {
 		// option 1 = percentage of original webtrees thumbnail
 		// option 2 = size in pixels
 		$resize_format = $this->options('thumb_resize_format');
@@ -1453,7 +1484,7 @@ Class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	} */
 
 
-     /**
+    /**
      * Get the url slug for this page
      */
     public function getSlug($string): String
