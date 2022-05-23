@@ -804,8 +804,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $html        = '';
         $occupations = $person->facts(['OCCU'], true);
         $count       = count($occupations);
-        foreach ($occupations as $index => $fact) {
-            if ($index > 0 && $index === $count - 1) {
+        foreach ($occupations as $key => $fact) {
+            if ($key > 0 && $key === $count - 1) {
                 $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
             } else {
                 $html .= ', ';
@@ -1157,11 +1157,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         foreach ($person->spouseFamilies() as $family) {
             $children = $family->children();
             if ($children) {
-                foreach ($children as $index => $child) {
-                    $index              = $family->xref() . '-' . $index; // be sure the index number is unique.
-                    $ng[$index]['pid']  = $child->xref();
+                foreach ($children as $key => $child) {
+                    $key              = $family->xref() . '-' . $key; // be sure the index number is unique.
+                    $ng[$key]['pid']  = $child->xref();
                     // does this child have descendants?
-                    $ng[$index]['desc'] = count($child->spouseFamilies(Auth::PRIV_HIDE)) > 0;
+                    $ng[$key]['desc'] = count($child->spouseFamilies(Auth::PRIV_HIDE)) > 0;
                 }
             }
         }
