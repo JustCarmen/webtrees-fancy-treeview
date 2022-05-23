@@ -42,53 +42,44 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleMenuTrait;
     use ModuleConfigTrait;
 
+    // Route
     protected const ROUTE_URL = '/tree/{tree}/{module}/{menu}/{page}/{pid}/{generations}';
 
-    /**
-     * @var string
-     */
+    // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
-
-    /**
-     * @var string
-     */
     public const CUSTOM_VERSION = '2.0-dev';
-    /**
-     * @var string
-     */
     public const GITHUB_REPO = 'webtrees-fancy-treeview';
-
-    /**
-     * @var string
-     */
     public const AUTHOR_WEBSITE = 'https://justcarmen.nl';
-
-    /**
-     * @var string
-     */
     public const CUSTOM_SUPPORT_URL = self::AUTHOR_WEBSITE . '/modules-webtrees-2/fancy-treeview/';
 
     // Limits
     protected const MINIMUM_GENERATIONS = 2;
     protected const MAXIMUM_GENERATIONS = 10;
 
-    /**
-     * @var string
-     */
+    // Image cache dir
     private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
 
+    // Root person (temporary in test fase)
     private const ROOT_ID = 'I8';
 
+    /**
+     * @var array
+     */
+    public array $pids;
 
-    /** var array of xrefs (individual id's) */
-    public $pids;
+    /**
+     * @var int
+     */
+    public int $generation;
 
-    /** var integer generation number */
-    public $generation;
+    /**
+     * @var int
+     */
+    public int $index;
 
-    /** var integer used for follow index */
-    public $index;
-
+    /**
+     * @var Tree
+     */
     private Tree $tree;
 
     /**
@@ -247,7 +238,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * TODO: MAKE THIS A MULTILEVEL MENU
-     * TODO: MAKE THE XREF DYNAMIC
      *
      * A menu, to be added to the main application menu.     *
      *
@@ -288,7 +278,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $generations    = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
 
         $page_title = $this->getPreference('page-title');
-        $page_body  = $this->printPage($this->tree, $pid, $generations);
+        $page_body  = $this->printPage($pid, $generations);
 
         return $this->viewResponse($this->name() . '::page', [
             'tree'          => $this->tree,
@@ -300,24 +290,31 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         ]);
     }
 
-    // This is php-8 code. We should have an alternative for php 7.4 users.
+    /**
+     * Set the default options.
+     * This is php-8 code. We should have an alternative for php 7.4 users.
+     *
+     * @param string $option
+     *
+     * @return string
+     */
     public function options(string $option): string
     {
         $default = match ($option) {
-            'use-fullname' => '0',
-            'numblocks' => '0',
-            'check-relationship' => '0',
-            'show-singles' => '0',
-            'show-places' => '1',
-            'use-gedcom-places' => '0',
-            'country' => '',
-            'show-occu' => '1',
-            'resize-thumbs' => '1',
-            'thumb-size' => '60',
-            'thumb-resize-format' => '2',
-            'use-square-thumbs' => '1',
-            'show-userform' => '2',
-            'ftv-tab' => '1'
+            'use-fullname'          => '0',
+            'numblocks'             => '0',
+            'check-relationship'    => '0',
+            'show-singles'          => '0',
+            'show-places'           => '1',
+            'use-gedcom-places'     => '0',
+            'country'               => '',
+            'show-occu'             => '1',
+            'resize-thumbs'         => '1',
+            'thumb-size'            => '60',
+            'thumb-resize-format'   => '2',
+            'use-square-thumbs'     => '1',
+            'show-userform'         => '2',
+            'ftv-tab'               => '1'
         };
 
         return $this->getPreference($option, $default);
@@ -326,14 +323,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the Fancy Treeview page
      *
-     * @return html
+     * @param string $pid
+     * @param int $generations
+     *
+     * @return string
      */
-    public function printPage(Tree $tree, string $pid, int $generations)
+    public function printPage(string $pid, int $generations): string
     {
         $html                 = '';
         $this->generation     = 1;
         $root                 = $pid; // save value for read more link
-        $this->pids             = [$pid];
+        $this->pids           = [$pid];
 
         $html .= $this->printGeneration();
 
@@ -374,10 +374,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print a generation
      *
-     * @param type $i
      * @return string
      */
-    protected function printGeneration()
+    protected function printGeneration(): string
     {
         // reset the index
         $this->index = 1;
@@ -400,10 +399,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the header of each generation block
      *
-     * @param type $i
      * @return string
      */
-    protected function printBlockHeader()
+    protected function printBlockHeader(): string
     {
         return
             '<div class="blockheader ui-state-default">' .
@@ -413,10 +411,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
+     * Print the content of each generation block
      *
      * @return string
      */
-    protected function printBlockContent()
+    protected function printBlockContent(): string
     {
         $html = '<ol class="blockcontent generation">';
         foreach (array_unique($this->pids) as $pid) {
@@ -438,23 +437,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print back-to-top link
      *
-     * @param type $i
      * @return string
      */
-    protected function printBackToTopLink()
+    protected function printBackToTopLink(): ?string
     {
         if ($this->generation > 1) {
             return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
         }
+
+        return null;
     }
 
     /**
      * Print read-more link
      *
-     * @param type $root
+     * @param string $root
+     *
      * @return string
      */
-    protected function printReadMoreLink($root)
+    protected function printReadMoreLink(string $root): string
     {
         return
             '<div id="read-more-link">' .
@@ -469,7 +470,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    protected function printPrivateBlock()
+    protected function printPrivateBlock(): string
     {
         return
             '<div class="blockcontent generation private">' .
@@ -480,9 +481,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the content for one individual
      *
-     * @return string (html)
+     * @param Individual $person
+     *
+     * @return string
      */
-    protected function printIndividual(Individual $person)
+    protected function printIndividual(Individual $person): string
     {
 
         if ($person->canShow()) {
@@ -546,9 +549,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the content for a spouse
      *
+     * @param Family $family
+     * @param Individual $person
+     * @param Individual $spouse
+     * @param int $i
+     * @param int $count
+     *
      * @return string
      */
-    protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count)
+    protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count): string
     {
 
         $html = ' ';
@@ -634,9 +643,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Print the content for a non-married partner
+     *
+     * @param Family $family
+     * @param Individual $person
+     * @param Individual $spouse
+     *
      * @return string
      */
-    protected function printPartner(Family $family, Individual $person, Individual $spouse)
+    protected function printPartner(Family $family, Individual $person, Individual $spouse): string
     {
 
         $html = ' ';
@@ -667,9 +681,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the childrens list
      *
+     * @param Family $family
+     * @param Individual $person
+     * @param Individual $spouse
+     *
      * @return string
      */
-    protected function printChildren(Family $family, Individual $person, Individual $spouse)
+    protected function printChildren(Family $family, Individual $person, Individual $spouse): string
     {
         $html = '';
 
@@ -775,10 +793,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the parents
      *
-     * @param type $person
+     * @param Individual $person
+     *
      * @return string
      */
-    protected function printParents(Individual $person)
+    protected function printParents(Individual $person): ?string
     {
         $parents = $person->childFamilies()->first();
         if ($parents) {
@@ -829,14 +848,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             return $html;
         }
+
+        return null;
     }
 
     /**
      * Print the full name of a person
      *
+     * @param Individual $person
+     *
      * @return string
      */
-    protected function printName(Individual $person)
+    protected function printName(Individual $person): string
     {
         return $person->fullname();
     }
@@ -854,9 +877,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print occupations
      *
+     * @param Individual $person
+     *
      * @return string
      */
-    protected function printOccupations(Individual $person)
+    protected function printOccupations(Individual $person): string
     {
         $html         = '';
         $occupations = $person->facts(['OCCU'], true);
@@ -892,9 +917,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the lifespan of this person
      *
+     * @param Individual $person
+     * @param bool $is_spouse
+     *
      * @return string
      */
-    protected function printLifespan(Individual $person, bool $is_spouse = false)
+    protected function printLifespan(Individual $person, bool $is_spouse = false): string
     {
         $html = '';
 
@@ -984,9 +1012,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the birth text (born or baptized)
      *
+     * @param Individual $person
+     * @param mixed $event
+     * @param bool $is_spouse
+     *
      * @return string
      */
-    protected function printBirthText(Individual $person, $event, bool $is_spouse = false)
+    protected function printBirthText(Individual $person, $event, bool $is_spouse = false): string
     {
         $html = '';
         switch ($event) {
@@ -1032,9 +1064,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the death text (death or buried)
      *
+     * @param Individual $person
+     * @param string $event
+     * @param bool $is_bfact
+     *
      * @return string
      */
-    protected function printDeathText(Individual $person, $event, bool $is_bfact)
+    protected function printDeathText(Individual $person, string $event, bool $is_bfact): string
     {
         $html = '';
         switch ($event) {
@@ -1068,11 +1104,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Print the age at death/bury
-     * @param type $bfact
-     * @param type $dfact
+     *
+     * @param Fact $bfact
+     * @param Fact $dfact
+     *
      * @return string
      */
-    protected function printAgeAtDeath($bfact, $dfact)
+    protected function printAgeAtDeath(Fact $bfact, Fact $dfact): string
     {
         $bdate     = $bfact->date();
         $ddate     = $dfact->date();
@@ -1090,9 +1128,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Function to print dates with the right syntax
+     *
+     * @param Fact $fact
+     *
      * @return string
      */
-    protected function printDate(Fact $fact)
+    protected function printDate(Fact $fact): string
     {
         $date = $fact->date();
         if ($date && $date->isOK()) {
@@ -1118,11 +1159,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print places
      *
-     * @param Place $place
-     * @param type $tree
+     * @param Fact $fact
+     *
      * @return string
      */
-    protected function printPlace(Fact $fact)
+    protected function printPlace(Fact $fact): ?string
     {
         $place = $fact->attribute('PLAC');
         if ($place && $this->options('show-places') == true) {
@@ -1142,12 +1183,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
             return $html;
         }
+
+        return null;
     }
 
     /**
-     * Get individual object from PID	 *
+     * Get individual object from PID
+     *
+     * @param string $pid
+     *
+     * @return object
      */
-    protected function getPerson(string $pid)
+    protected function getPerson(string $pid): object
     {
         return Registry::individualFactory()->make($pid, $this->tree);
     }
@@ -1157,7 +1204,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return object
      */
-    protected function getRootPerson()
+    protected function getRootPerson(): object
     {
         return $this->getPerson(self::ROOT_ID);
     }
@@ -1165,22 +1212,27 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Get the family object of an individual
      *
-     * @param type $person
+     * @param Individual $person
+     *
      * @return object
      */
-    private function getFamily(Individual $person)
+    private function getFamily(Individual $person): ?object
     {
         foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
             return $family;
         }
+
+        return null;
     }
 
     /**
      * Get an array of xrefs for the next descendant generation of this person
      *
-     * @return array of xrefs
+     * @param string $pid
+     *
+     * @return array
      */
-    private function getNextGen(string $pid)
+    private function getNextGen(string $pid): array
     {
         $person     = $this->getPerson($pid);
         $ng         = [];
@@ -1199,12 +1251,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * check if a person has parents in the same generation
-     * this function prevents listing the same person twice
+     * this function prevents the same person from being listed twice
      *
-     * @param type $person
-     * @return boolean
+     * @param Individual $person
+     *
+     * @return bool
      */
-    private function hasParentsInSameGeneration(Individual $person)
+    private function hasParentsInSameGeneration(Individual $person): bool
     {
         $parents = $person->childFamilies()->first();;
         if ($parents) {
@@ -1220,15 +1273,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 return true;
             }
         }
+
+        return false;
     }
 
     /**
      * check if this date has any date qualifiers. Return true if no date qualifiers are found.
      *
-     * @param type $fact
-     * @return boolean
+     * @param Fact $fact
+     *
+     * @return bool
      */
-    private function isDateDMY($fact)
+    private function isDateDMY(Fact $fact): bool
     {
         if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
             return true;
@@ -1264,11 +1320,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * Check if this is a private record
      * $records can be an array of xrefs or an array of objects
      *
-     * @param type $record
-     * @param type $xrefs
-     * @return boolean
+     * TODO: turn $this->pids ($records) into a Collection
+     *
+     * @param mixed $records
+     * @param bool $xrefs
+     *
+     * @return bool
      */
-    private function checkPrivacy($records, $xrefs = false)
+    private function checkPrivacy(mixed $records, bool $xrefs = false): bool
     {
         $count = 0;
         foreach ($records as $person) {
@@ -1282,6 +1341,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         if ($count < 1) {
             return true;
         }
+
+        return false;
     }
 
     /**
@@ -1290,10 +1351,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * Don't use the default function because we want to privatize the record but display the name
      * and the parents of the spouse if the spouse him/herself is not private.
      *
-     * @param type $family
-     * @return boolean
+     * @param Family $family
+     *
+     * @return bool
      */
-    private function getMarriage($family)
+    private function getMarriage(Family $family): bool
     {
         $record = Registry::gedcomRecordFactory()->make($family->xref(), $this->tree);
         foreach ($record->facts(['MARR'], false, Auth::PRIV_HIDE) as $fact) {
@@ -1301,16 +1363,19 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 return true;
             }
         }
+
+        return false;
     }
 
     /**
      * Check if this person is an adopted or foster child
      *
-     * @param type $person
-     * @param type $parents
-     * @return attribute
+     * @param Individual $person
+     * @param Family $parents
+     *
+     * @return string
      */
-    private function checkPedi($person, $parents)
+    private function checkPedi(Individual $person, Family $parents): string
     {
         $pedi = "";
         foreach ($person->facts(['FAMC']) as $fact) {
@@ -1483,8 +1548,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Get the url slug for this page
+     *
+     * @param string $string
+     *
+     * @return string
      */
-    public function getSlug($string): String
+    public function getSlug(string $string): string
     {
         return preg_replace('/\s+/', '-', strtolower(preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($string))));
     }
