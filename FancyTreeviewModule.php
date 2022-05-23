@@ -283,13 +283,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $this->tree = $request->getAttribute('tree');
-        assert($this->tree instanceof Tree);
-
-        $pid = $request->getAttribute('pid');
-        assert(is_string($pid));
-
-        $generations = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
+        $this->tree     = Validator::attributes($request)->tree();
+        $pid            = Validator::attributes($request)->string('pid');
+        $generations    = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
 
         $page_title = $this->getPreference('page-title');
         $page_body  = $this->printPage($this->tree, $pid, $generations);
