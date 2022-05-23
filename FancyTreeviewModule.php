@@ -304,23 +304,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         ]);
     }
 
+    // This is php-8 code. We should have an alternative for php 7.4 users.
     public function options(string $option): string
     {
         $default = match ($option) {
-            'use-fullname'             => '0',
-            'numblocks'             => '0',
-            'check-relationship'     => '0',
-            'show-singles'            => '0',
-            'show-places'             => '1',
-            'use-gedcom-places'     => '0',
-            'country'                => '',
-            'show-occu'             => '1',
-            'resize-thumbs'            => '1',
-            'thumb-size'             => '60',
-            'thumb-resize-format'    => '2',
-            'use-square-thumbs'        => '1',
-            'show-userform'            => '2',
-            'ftv-tab'                 => '1'
+            'use-fullname' => '0',
+            'numblocks' => '0',
+            'check-relationship' => '0',
+            'show-singles' => '0',
+            'show-places' => '1',
+            'use-gedcom-places' => '0',
+            'country' => '',
+            'show-occu' => '1',
+            'resize-thumbs' => '1',
+            'thumb-size' => '60',
+            'thumb-resize-format' => '2',
+            'use-square-thumbs' => '1',
+            'show-userform' => '2',
+            'ftv-tab' => '1'
         };
 
         return $this->getPreference($option, $default);
