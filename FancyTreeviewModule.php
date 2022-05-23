@@ -884,27 +884,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     protected function printOccupations(Individual $person): string
     {
-        $html         = '';
+        $html        = '';
         $occupations = $person->facts(['OCCU'], true);
-        $count         = count($occupations);
-        foreach ($occupations as $num => $fact) {
-            if ($num > 0 && $num === $count - 1) {
+        $count       = count($occupations);
+        foreach ($occupations as $index => $fact) {
+            if ($index > 0 && $index === $count - 1) {
                 $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
             } else {
                 $html .= ', ';
             }
 
             // In the Gedcom file most occupations are probably written with a capital (as a single word)
-            // but use lcase/ucase to be sure the occupation is spelled the right way since we are using
+            // but use lcase/ucase to be sure the occupation is spelled correctly since we are using
             // it in the middle of a sentence.
             // In German all occupations are written with a capital.
             // Are there any other languages where this is the case?
-            foreach (I18N::activeLocales() as $locale) {
-                if ($locale->languageTag() === 'de') {
-                    $html .= rtrim(ucfirst($fact->value()), ".");
-                } else {
-                    $html .= rtrim(lcfirst($fact->value()), ".");
-                }
+            if (I18N::languageTag() === 'de') {
+                $html .= rtrim(ucfirst($fact->value()), ".");
+            } else {
+                $html .= rtrim(lcfirst($fact->value()), ".");
             }
 
             $date = $this->printDate($fact);
