@@ -25,7 +25,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Module\AbstractModule;
-use Fisharebest\Webtrees\Services\ChartService;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
@@ -90,20 +89,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /** var integer used for follow index */
     public $index;
 
-    /** @var ChartService */
-    private $chart_service;
-
     private Tree $tree;
-
-    /**
-     * FancyTreeviewModule constructor.
-     *
-     * @param ChartService $chart_service
-     */
-    public function __construct(ChartService $chart_service)
-    {
-        $this->chart_service = $chart_service;
-    }
 
     /**
      * How should this module be identified in the control panel, etc.?
