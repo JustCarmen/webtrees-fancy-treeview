@@ -101,8 +101,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function description(): string
     {
-        /* I18N: Description of the “Simple Menu” module */
-        return I18N::translate('Easily add an extra mainmenu item and page to your webtrees website.');
+        /* I18N: Description of the “Fancy Treeview” module */
+        return I18N::translate('A Fancy overview of the descendants of one family (branch) in a narrative way.');
     }
 
     /**
