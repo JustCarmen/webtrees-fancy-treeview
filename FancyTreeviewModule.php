@@ -29,14 +29,17 @@ use Fisharebest\Webtrees\Services\ChartService;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
+use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleMenuInterface, ModuleConfigInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleConfigInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
+    use ModuleGlobalTrait;
     use ModuleMenuTrait;
     use ModuleConfigTrait;
 
@@ -195,6 +198,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function resourcesFolder(): string
     {
         return __DIR__ . '/resources/';
+    }
+
+    /**
+     * Raw content, to be added at the end of the <head> element.
+     * Typically, this will be <link> and <meta> elements.
+     *
+     * @return string
+     */
+    public function headContent(): string
+    {
+        return '<link rel="stylesheet" href="' . e($this->assetUrl('css/style.css')) . '">';
     }
 
     /**
