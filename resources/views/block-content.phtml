@@ -1,0 +1,16 @@
+<ol class="blockcontent generation">
+    <?php foreach (array_unique($pids) as $pid): ?>
+        <?php $person = $module->getPerson($pid) ?>
+        <?php if (!$module->hasParentsInSameGeneration($person)): ?>
+            <?php
+            $family = $module->getFamily($person);
+            if (!empty($family)) {
+                $pid = $family->xref();
+            }
+            $class = $person->canShow() ? 'family' : 'family private';
+            ?>
+
+            <li id="<?= $pid ?>" class="<?= $class ?>"><?= $module->printIndividual($person) ?></li>
+        <?php endif ?>
+    <?php endforeach ?>
+</ol>

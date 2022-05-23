@@ -252,17 +252,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             return '';
         }
 
-        $page_title = $this->getPreference('page-title');
         $menu_title = $this->getPreference('menu-title');
-
-        $url = route(static::class, [
-            'tree' => $tree->name(),
-            'module' => str_replace("_", "", $this->name()),
-            'menu' => $this->getslug($menu_title),
-            'page' => $this->getslug($page_title),
-            'pid' => self::ROOT_ID,
-            'generations' => self::GENERATIONS
-        ]);
+        $url = $this->getUrl(self::ROOT_ID);
 
         return new Menu($menu_title, e($url), 'jc-fancy-treeview-' . e(strtolower($menu_title)));
     }
@@ -369,6 +360,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 return $html;
             }
         }
+
         return $html;
     }
 
@@ -382,71 +374,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         // reset the index
         $this->index = 1;
 
-        // added data attributes to retrieve values easily with jquery (for scroll reference en next generations).
-        $html = '<li class="block generation-block" data-gen="' . $this->generation . '" data-pids="' . implode('|', $this->pids) . '">' .
-            $this->printBlockHeader();
-
-        if ($this->checkPrivacy($this->pids, true)) {
-            $html .= $this->printPrivateBlock();
-        } else {
-            $html .= $this->printBlockContent();
-        }
-
-        $html .= '</li>';
-
-        return $html;
-    }
-
-    /**
-     * Print the header of each generation block
-     *
-     * @return string
-     */
-    protected function printBlockHeader(): string
-    {
-        return
-            '<div class="blockheader ui-state-default">' .
-            '<span class="header-title">' . I18N::translate('Generation') . ' ' . $this->generation . '</span>' .
-            $this->printBackToTopLink() .
-            '</div>';
-    }
-
-    /**
-     * Print the content of each generation block
-     *
-     * @return string
-     */
-    protected function printBlockContent(): string
-    {
-        $html = '<ol class="blockcontent generation">';
-        foreach (array_unique($this->pids) as $pid) {
-            $person = $this->getPerson($pid);
-            if (!$this->hasParentsInSameGeneration($person)) {
-                $family = $this->getFamily($person);
-                if (!empty($family)) {
-                    $pid = $family->xref();
-                }
-                $class = $person->canShow() ? 'family' : 'family private';
-
-                $html .= '<li id="' . $pid . '" class="' . $class . '">' . $this->printIndividual($person) . '</li>';
-            }
-        }
-        $html .= '</ol>';
-        return $html;
-    }
-
-    /**
-     * Print back-to-top link
-     *
-     * @return string
-     */
-    protected function printBackToTopLink(): ?string
-    {
-        if ($this->generation > 1) {
-            return '<a href="#fancy_treeview-page" class="header-link scroll">' . I18N::translate('back to top') . '</a>';
-        }
-
-        return null;
+        return View($this->name() . '::generation', [
+            'generation'    => $this->generation,
+            'module'        => $this,
+            'pids'          => $this->pids,
+            'private_block' => $this->checkPrivacy($this->pids, true),
+            'title'         => $this->title(),
+            'tree'          => $this->tree,
+        ]);
     }
 
     /**
@@ -458,25 +393,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     protected function printReadMoreLink(string $root): string
     {
-        return
-            '<div id="read-more-link">' .
-            '<a href="module.php?mod=' . $this->name() . '&amp;mod_action=page&rootid=' . $root . '&amp;ged=' . $this->tree->name() . '">' .
-            I18N::translate('Read more') .
-            '</a>' .
-            '</div>';
-    }
-
-    /**
-     * Print private block content
-     *
-     * @return string
-     */
-    protected function printPrivateBlock(): string
-    {
-        return
-            '<div class="blockcontent generation private">' .
-            I18N::translate('The details of this generation are private.') .
-            '</div>';
+        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($root)]);
     }
 
     /**
@@ -486,7 +403,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    protected function printIndividual(Individual $person): string
+    public function printIndividual(Individual $person): string
     {
 
         if ($person->canShow()) {
@@ -1195,7 +1112,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return object
      */
-    protected function getPerson(string $pid): object
+    public function getPerson(string $pid): object
     {
         return Registry::individualFactory()->make($pid, $this->tree);
     }
@@ -1217,7 +1134,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return object
      */
-    private function getFamily(Individual $person): ?object
+    public function getFamily(Individual $person): ?object
     {
         foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
             return $family;
@@ -1259,7 +1176,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return bool
      */
-    private function hasParentsInSameGeneration(Individual $person): bool
+    public function hasParentsInSameGeneration(Individual $person): bool
     {
         $parents = $person->childFamilies()->first();;
         if ($parents) {
@@ -1549,6 +1466,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 		}
 	} */
 
+    /**
+     * Get the url for the Fancy treeview page
+     *
+     * @param string $pid
+     *
+     * @return string
+     */
+    private function getUrl(string $pid): string
+    {
+        return route(static::class, [
+            'tree' => $this->tree->name(),
+            'module' => str_replace("_", "", $this->name()),
+            'menu' => $this->getslug($this->getPreference('menu-title')),
+            'page' => $this->getslug($this->getPreference('page-title')),
+            'pid' =>  $pid,
+            'generations' => self::GENERATIONS
+        ]);
+    }
 
     /**
      * Get the url slug for this page

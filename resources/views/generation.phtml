@@ -1,14 +1,13 @@
 <?php
-use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\View;
 ?>
 
-<ul class="block generation-block">
-    <?php foreach ($individuals as $individual): ?>
-    <li class="family">
-        <?= $individual->fullName() ?>
-            <?php foreach ($individual->spouseFamilies() as $family): ?>
-                <?= $family->spouse($individual)->fullName() ?>
-            <?php endforeach ?>
-        <?php endforeach ?>
-    </li>
-</ul>
+<li class="block generation-block" data-gen="<?= $generation ?>" data-pids="<?= implode('|', $pids) ?>">
+    <?= View($module->name() . '::block-header', ['generation' => $generation]) ?>
+
+    <?php if ($private_block): ?>
+        <?= View($module->name() . '::private-block', ['generation' => $generation]) ?>
+    <?php else: ?>
+        <?= View($module->name() . '::block-content', ['module' => $module, 'pids' => $pids]) ?>
+    <?php endif ?>
+</li>
