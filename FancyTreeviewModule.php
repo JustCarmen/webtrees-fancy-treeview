@@ -54,13 +54,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     // Limits
     protected const MINIMUM_GENERATIONS = 2;
-    protected const MAXIMUM_GENERATIONS = 10;
+    protected const MAXIMUM_GENERATIONS = 25;
 
     // Image cache dir
     private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
 
-    // Root person (temporary in test fase)
-    private const ROOT_ID = 'I8';
+    // Temporary module constants (temporary in test fase)
+    private const ROOT_ID = 'I1993';
+    private const GENERATIONS = 16;
 
     /**
      * @var array
@@ -260,7 +261,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'menu' => $this->getslug($menu_title),
             'page' => $this->getslug($page_title),
             'pid' => self::ROOT_ID,
-            'generations' => '10'
+            'generations' => self::GENERATIONS
         ]);
 
         return new Menu($menu_title, e($url), 'jc-fancy-treeview-' . e(strtolower($menu_title)));
@@ -321,21 +322,21 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
-     * Print the Fancy Treeview page
+     * Print the Fancy Treeview page without the paging option as in webtrees 1
+     * We will implement that later
      *
      * @param string $pid
      * @param int $generations
      *
      * @return string
      */
-    public function printPage(string $pid, int $generations): string
+    public function printPage(string $pid, int $generations, int $limit = 0): string
     {
-        $html                 = '';
-        $this->generation     = 1;
-        $root                 = $pid; // save value for read more link
-        $this->pids           = [$pid];
+        $this->generation = 1;
+        $root_pid		  = $pid; // save value for read more link
+        $this->pids       = [$pid];
 
-        $html .= $this->printGeneration();
+        $html = $this->printGeneration();
 
         while (count($this->pids) > 0 && $this->generation < $generations) {
             $pids = $this->pids;
@@ -356,9 +357,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
 
             if (!empty($this->pids)) {
-                if ($this->generation === 3) {
-                    $html .= $this->printReadMoreLink($root);
-                    return $html;
+                if ($this->generation === $limit) {
+                    $html .= $this->printReadMoreLink($root_pid);
+					return $html;
                 } else {
                     $this->generation++;
                     $html .= $this->printGeneration();
@@ -687,7 +688,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    protected function printChildren(Family $family, Individual $person, Individual $spouse): string
+    protected function printChildren(Family $family, Individual $person, Individual $spouse = null): string
     {
         $html = '';
 
@@ -1133,7 +1134,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    protected function printDate(Fact $fact): string
+    protected function printDate(Fact $fact): ?string
     {
         $date = $fact->date();
         if ($date && $date->isOK()) {
@@ -1154,6 +1155,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 return ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before dateformat yyyy', 'in ') . $date->Display();
             }
         }
+
+        return null;
     }
 
     /**
@@ -1289,6 +1292,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
             return true;
         }
+
+        return false;
     }
 
     /**
