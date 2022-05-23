@@ -349,7 +349,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             foreach ($next_gen as $descendants) {
                 if (count($descendants) > 0) {
                     foreach ($descendants as $descendant) {
-                        if ($this->options('show-singles') == true || $descendant['desc'] == 1) {
+                        if ((bool) $this->options('show-singles') || (bool) $descendant['desc']) {
                             $this->pids[] = $descendant['pid'];
                         }
                     }
@@ -492,7 +492,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         if ($person->canShow()) {
             // $html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
             $html = '<div class="parents"><p class="desc">' . $this->printNameUrl($person, $person->xref());
-            if ($this->options('show-occu')) {
+            if ((bool) $this->options('show-occu')) {
                 $html .= $this->printOccupations($person);
             }
 
@@ -774,7 +774,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                             if ($child_family) {
                                 $html .= ' - <a class="scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
                                 $this->index++;
-                            } elseif ($this->options('show-singles') == true) {
+                            } elseif ((bool) $this->options('show-singles')) {
                                 $html .= ' - <a class="scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
                                 $this->index++;
                             }
@@ -1169,10 +1169,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printPlace(Fact $fact): ?string
     {
         $place = $fact->attribute('PLAC');
-        if ($place && $this->options('show-places') == true) {
+        if ($place && (bool) $this->options('show-places')) {
             $place     = new Place($place, $this->tree);
             $html     = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
-            if ($this->options('use-gedcom-places') == true) {
+            if ((bool) $this->options('use-gedcom-places')) {
                 $html .= $place->shortName();
             } else {
                 $country     = $this->options('country');
@@ -1242,10 +1242,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         foreach ($person->spouseFamilies() as $family) {
             $children = $family->children();
             if ($children) {
-                foreach ($children as $key => $child) {
-                    $key                 = $family->xref() . '-' . $key; // be sure the key is unique.
-                    $ng[$key]['pid']     = $child->xref();
-                    $child->spouseFamilies(Auth::PRIV_HIDE) ? $ng[$key]['desc']     = 1 : $ng[$key]['desc']     = 0;
+                foreach ($children as $index => $child) {
+                    $index              = $family->xref() . '-' . $index; // be sure the index number is unique.
+                    $ng[$index]['pid']  = $child->xref();
+                    // does this child have descendants?
+                    $ng[$index]['desc'] = count($child->spouseFamilies(Auth::PRIV_HIDE)) > 0;
                 }
             }
         }
