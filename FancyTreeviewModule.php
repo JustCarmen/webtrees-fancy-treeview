@@ -391,7 +391,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function printIndividual(Individual $person): string
     {
-
         if ($person->canShow()) {
             // $html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
             $html = '<div class="parents"><p class="desc">' . $this->printNameUrl($person, $person->xref());
