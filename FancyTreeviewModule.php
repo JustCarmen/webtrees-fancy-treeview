@@ -63,24 +63,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     private const ROOT_ID = 'I1993';
     private const GENERATIONS = 16;
 
-    /**
-     * @var array
-     */
+    // Module variables
     public array $pids;
-
-    /**
-     * @var int
-     */
     public int $generation;
-
-    /**
-     * @var int
-     */
     public int $index;
-
-    /**
-     * @var Tree
-     */
     private Tree $tree;
 
     /**
