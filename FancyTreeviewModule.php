@@ -364,7 +364,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'generation'    => $this->generation,
             'module'        => $this,
             'pids'          => $this->pids,
-            'private_block' => $this->checkPrivacy($this->pids, true),
             'title'         => $this->title(),
             'tree'          => $this->tree,
         ]);
@@ -384,6 +383,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Print the content for one individual
+     *
+     * We are not going to convert the html output to views from here.
+     * Besides it is a hell of a job, it gives unwanted results (extra spaces before punctuation marks is one thing),
      *
      * @param Individual $person
      *
@@ -1233,7 +1235,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return bool
      */
-    private function checkPrivacy(mixed $records, bool $xrefs = false): bool
+    public function checkPrivacy(mixed $records, bool $xrefs = false): bool
     {
         $count = 0;
         foreach ($records as $person) {

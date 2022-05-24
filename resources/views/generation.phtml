@@ -4,10 +4,5 @@ use Fisharebest\Webtrees\View;
 
 <li class="block generation-block" data-gen="<?= $generation ?>" data-pids="<?= implode('|', $pids) ?>">
     <?= View($module->name() . '::block-header', ['generation' => $generation]) ?>
-
-    <?php if ($private_block): ?>
-        <?= View($module->name() . '::private-block', ['generation' => $generation]) ?>
-    <?php else: ?>
-        <?= View($module->name() . '::block-content', ['module' => $module, 'pids' => $pids]) ?>
-    <?php endif ?>
+    <?= View($module->name() . '::block-content', ['module' => $module, 'pids' => $pids]) ?>
 </li>

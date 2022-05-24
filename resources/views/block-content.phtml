@@ -1,16 +1,28 @@
-<ol class="blockcontent generation">
-    <?php foreach (array_unique($pids) as $pid): ?>
-        <?php $person = $module->getPerson($pid) ?>
-        <?php if (!$module->hasParentsInSameGeneration($person)): ?>
-            <?php
-            $family = $module->getFamily($person);
-            if (!empty($family)) {
-                $pid = $family->xref();
-            }
-            $class = $person->canShow() ? 'family' : 'family private';
-            ?>
+<?php
 
-            <li id="<?= $pid ?>" class="<?= $class ?>"><?= $module->printIndividual($person) ?></li>
-        <?php endif ?>
-    <?php endforeach ?>
-</ol>
+use Fisharebest\Webtrees\I18N;
+
+?>
+
+<?php if ($module->checkPrivacy($pids, true)) : ?>
+    <div class="generation private">
+        <?php I18N::translate('The details of this generation are private.') ?>
+    </div>
+<?php else : ?>
+    <ol class="blockcontent generation">
+        <?php foreach (array_unique($pids) as $pid) : ?>
+            <?php $person = $module->getPerson($pid) ?>
+            <?php if (!$module->hasParentsInSameGeneration($person)) : ?>
+                <?php
+                $family = $module->getFamily($person);
+                if (!empty($family)) {
+                    $pid = $family->xref();
+                }
+                $class = $person->canShow() ? 'family' : 'family private';
+                ?>
+
+                <li id="<?= $pid ?>" class="<?= $class ?>"><?= $module->printIndividual($person) ?></li>
+            <?php endif ?>
+        <?php endforeach ?>
+    </ol>
+<?php endif ?>
