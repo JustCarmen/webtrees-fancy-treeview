@@ -253,7 +253,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
 
         $menu_title = $this->getPreference('menu-title');
-        $url = $this->getUrl(self::ROOT_ID);
+        $url = $this->getUrl($tree, self::ROOT_ID);
 
         return new Menu($menu_title, e($url), 'jc-fancy-treeview-' . e(strtolower($menu_title)));
     }
@@ -393,7 +393,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     protected function printReadMoreLink(string $root): string
     {
-        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($root)]);
+        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($this->tree, $root)]);
     }
 
     /**
@@ -1473,10 +1473,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    private function getUrl(string $pid): string
+    private function getUrl(Tree $tree, string $pid): string
     {
         return route(static::class, [
-            'tree' => $this->tree->name(),
+            'tree' => $tree->name(),
             'module' => str_replace("_", "", $this->name()),
             'menu' => $this->getslug($this->getPreference('menu-title')),
             'page' => $this->getslug($this->getPreference('page-title')),
