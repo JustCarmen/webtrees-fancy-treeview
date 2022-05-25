@@ -144,12 +144,13 @@
 }
 
 [dir=rtl] #fancy_treeview-page li.family:before {
-	counter(first-level) "." counter(second-level);margin-right: -4em;
+	content: counter(first-level) "." counter(second-level);
+    margin-right: -4em;
 	float: right;
 }
 
 [dir=rtl] #fancy_treeview-page li.child:before {
-	counter(first-level) "." counter(second-level) "." counter(third-level);
+	content: counter(first-level) "." counter(second-level) "." counter(third-level);
 }
 
 /* family-block */
