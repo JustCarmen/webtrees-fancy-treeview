@@ -11,7 +11,6 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
-use Fisharebest\Webtrees\Media;
 use Fisharebest\Webtrees\Place;
 use Aura\Router\RouterContainer;
 use Fisharebest\Webtrees\Family;
@@ -394,8 +393,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function printIndividual(Individual $person): string
     {
         if ($person->canShow()) {
-            // $html = '<div class="parents">' . $this->printThumbnail($person) . '<p class="desc">' . $this->printNameUrl($person, $person->xref());
-            $html = '<div class="parents"><p class="desc">' . $this->printNameUrl($person, $person->xref());
+            $html = '<div class="parents">';
+
+            if ($person->findHighlightedMediaFile() !== null && $person->findHighlightedMediaFile()->type() === 'photo') {
+                $html .= $person->displayImage(80, 80, 'contain', ['class' => 'jc-ftv-thumbnail']);
+            }
+
+            $html .= '<p class="desc">' . $this->printNameUrl($person, $person->xref());
+
             if ((bool) $this->options('show-occu')) {
                 $html .= $this->printOccupations($person);
             }
@@ -881,38 +886,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 	} */
 
     /**
-     * Print the Fancy thumbnail for this individual	 *
-     */
-    /* protected function printThumbnail(Individual $person) {
-		$mediaobject = $person->findHighlightedMediaFile();
-		if ($mediaobject) {
-			$cache_filename = $this->getThumbnail($mediaobject);
-			if (is_file($cache_filename)) {
-				$imgsize = getimagesize($cache_filename);
-				$image	 = '<img' .
-					' dir="' . 'auto' . '"' . // For the tool-tip
-					' src="module.php?mod=' . $this->name() . '&amp;mod_action=thumbnail&amp;mid=' . $mediaobject->xref() . '&amp;thumb=2&amp;cb=' . $mediaobject->getEtag() . '"' .
-					' alt="' . strip_tags($person->getFullName()) . '"' .
-					' title="' . strip_tags($person->getFullName()) . '"' .
-					' data-cachefilename="' . basename($cache_filename) . '"' .
-					' ' . $imgsize[3] . // height="yyy" width="xxx"
-					'>';
-				return
-					'<a' .
-					' class="' . 'gallery' . '"' .
-					' href="' . $mediaobject->getHtmlUrlDirect() . '"' .
-					' type="' . $mediaobject->mimeType() . '"' .
-					' data-obje-url="' . $mediaobject->getHtmlUrl() . '"' .
-					' data-obje-note="' . e($mediaobject->getNote()) . '"' .
-					' data-title="' . strip_tags($person->getFullName()) . '"' .
-					'>' . $image . '</a>';
-			} else {
-				return $mediaobject->displayImage();
-			}
-		}
-	} */
-
-    /**
      * Print the birth text (born or baptized)
      *
      * @param Individual $person
@@ -1099,7 +1072,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return object
      */
-    public function getPerson(string $pid): object
+    public function getPerson(string $pid): ?object
     {
         return Registry::individualFactory()->make($pid, $this->tree);
     }
@@ -1294,164 +1267,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
         return $pedi;
     }
-
-    /**
-     * Get the filename of the cached image
-     */
-    /* public function cacheFileName(Media $mediaobject) {
-		return self::CACHE_DIR . $this->tree->id() . '-' . $mediaobject->xref() . '-' . filemtime($mediaobject->getServerFilename()) . '.' . $mediaobject->extension();
-	} */
-
-    /**
-     * remove all old cached files
-     */
-    /* protected function emptyCache() {
-		foreach (glob(self::CACHE_DIR . '*') as $cache_file) {
-			if (is_file($cache_file)) {
-				unlink($cache_file);
-			}
-		}
-	} */
-
-    /**
-     * Check if thumbnails from cache should be recreated
-     */
-    /* private function getThumbnail(Media $mediaobject)
-	{
-		if (!file_exists(self::CACHE_DIR)) {
-			mkdir(self::CACHE_DIR);
-		}
-
-		if (file_exists($mediaobject->getServerFilename())) {
-			$cache_filename = $this->cacheFileName($mediaobject);
-
-			if (!is_file($cache_filename)) {
-				if ($this->options('resize_thumbs')) {
-					$thumbnail	 = $this->fancyThumb($mediaobject);
-					$mimetype	 = $mediaobject->mimeType();
-					if ($mimetype === 'image/jpeg') {
-						imagejpeg($thumbnail, $cache_filename);
-					} elseif ($mimetype === 'image/png') {
-						imagepng($thumbnail, $cache_filename);
-					} elseif ($mimetype === 'image/gif') {
-						imagegif($thumbnail, $cache_filename);
-					} else {
-						return;
-					}
-				} else {
-					// if we are using the original webtrees thumbnails, copy them to the ftv_cache folder
-					// so we can cache them either and output them in the same way we would output the fancy thumbnail.
-					try {
-						copy($mediaobject->getServerFilename('thumb'), $cache_filename);
-					} catch (Exception $ex) {
-						// something went wrong while copying the default webtrees image to the ftv cache folder
-						// there is a fallback in the function printThumbnail(): output $mediaobject->displayImage();
-					}
-				}
-			}
-			return $cache_filename;
-		}
-	} */
-
-    /**
-     * Get the Fancy thumbnail (highlighted image)	 *
-     */
-    /* private function fancyThumb($mediaobject) {
-		// option 1 = percentage of original webtrees thumbnail
-		// option 2 = size in pixels
-		$resize_format = $this->options('thumb_resize_format');
-		if ($resize_format === '1') {
-			$mediasrc = $mediaobject->getServerFilename('thumb');
-		} else {
-			$mediasrc = $mediaobject->getServerFilename('main');
-		}
-
-		if (is_file($mediasrc)) {
-			$thumbsize	 = $this->options('thumb_size');
-			$thumbwidth	 = $thumbheight = $thumbsize;
-
-			$mimetype = $mediaobject->mimeType();
-			if ($mimetype === 'image/jpeg' || $mimetype === 'image/png' || $mimetype === 'image/gif') {
-
-				if (!list($imagewidth, $imageheight) = getimagesize($mediasrc)) {
-					return null;
-				}
-
-				switch ($mimetype) {
-					case 'image/jpeg':
-						$image	 = imagecreatefromjpeg($mediasrc);
-						break;
-					case 'image/png':
-						$image	 = imagecreatefrompng($mediasrc);
-						break;
-					case 'image/gif':
-						$image	 = imagecreatefromgif($mediasrc);
-						break;
-				}
-
-				// fallback if image is in the database but not on the server
-				if (isset($imagewidth) && isset($imageheight)) {
-					$ratio = $imagewidth / $imageheight;
-				} else {
-					$ratio = 1;
-				}
-
-				if ($resize_format === '1') {
-					$thumbwidth	 = $thumbwidth / 100 * $imagewidth;
-					$thumbheight = $thumbheight / 100 * $imageheight;
-				}
-
-				$square = $this->options('use_square_thumbs');
-				if ($square == true) {
-					$thumbheight = $thumbwidth;
-					if ($ratio < 1) {
-						$new_height	 = $thumbwidth / $ratio;
-						$new_width	 = $thumbwidth;
-					} else {
-						$new_width	 = $thumbheight * $ratio;
-						$new_height	 = $thumbheight;
-					}
-				} else {
-					if ($resize_format === '1') {
-						$new_width	 = $thumbwidth;
-						$new_height	 = $thumbheight;
-					} elseif ($imagewidth > $imageheight) {
-						$new_height	 = $thumbheight / $ratio;
-						$new_width	 = $thumbwidth;
-					} elseif ($imageheight > $imagewidth) {
-						$new_width	 = $thumbheight * $ratio;
-						$new_height	 = $thumbheight;
-					} else {
-						$new_width	 = $thumbwidth;
-						$new_height	 = $thumbheight;
-					}
-				}
-				$process = imagecreatetruecolor(round($new_width), round($new_height));
-				if ($mimetype == 'image/png') { // keep transparancy for png files.
-					imagealphablending($process, false);
-					imagesavealpha($process, true);
-				}
-				imagecopyresampled($process, $image, 0, 0, 0, 0, $new_width, $new_height, $imagewidth, $imageheight);
-
-				if ($square) {
-					$thumb = imagecreatetruecolor($thumbwidth, $thumbheight);
-				} else {
-					$thumb = imagecreatetruecolor($new_width, $new_height);
-				}
-
-				if ($mimetype == 'image/png') {
-					imagealphablending($thumb, false);
-					imagesavealpha($thumb, true);
-				}
-				imagecopyresampled($thumb, $process, 0, 0, 0, 0, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight);
-
-				imagedestroy($process);
-				imagedestroy($image);
-
-				return $thumb;
-			}
-		}
-	} */
 
     /**
      * Get the url for the Fancy treeview page
