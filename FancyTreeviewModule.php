@@ -21,6 +21,7 @@ use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\FlashMessages;
 use Psr\Http\Message\ResponseInterface;
+use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Module\AbstractModule;
@@ -172,6 +173,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function headContent(): string
     {
         return '<link rel="stylesheet" href="' . e($this->assetUrl('css/style.css')) . '">';
+    }
+
+    /**
+     * Additional/updated translations.
+     *
+     * @param string $language
+     *
+     * @return string[]
+     */
+    public function customTranslations(string $language): array
+    {
+        $lang_dir   = $this->resourcesFolder() . 'lang/';
+        $file       = $lang_dir . $language . '.mo';
+        if (file_exists($file)) {
+            return (new Translation($file))->asArray();
+        } else {
+            return [];
+        }
     }
 
     /**

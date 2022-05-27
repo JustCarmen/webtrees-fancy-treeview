@@ -1,0 +1,647 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fancy Treeview\n"
+"POT-Creation-Date: 2016-12-31 17:45+0100\n"
+"PO-Revision-Date: 2017-07-01 11:17+0000\n"
+"Last-Translator: Carmen Pijpers <carmen@justcarmen.nl>\n"
+"Language-Team: Dutch <https://translate.webtrees.net/projects/justcarmen/fancy-tree-view/nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.10\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
+#: fancy_treeview/app/FancyTreeviewClass.php:1124
+msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
+msgid " "
+msgstr " "
+
+#. I18N: Warning when using the “Check relationship between partners” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:395
+msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior, reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options). If you still experience any problems, don’t use this option at all."
+msgstr "<strong>Let op</strong>: Deze optie kan veel tijd en/of geheugen in beslag nemen, zeker in grote stambomen. Het kan er voor zorgen dat pagina’s trager laden of een ’execution time out error’ veroorzaken op uw server. Wanneer u dit merkt, stel dan het aantal generatie blokken dat tegelijkertijd moet worden geladen in op een lager niveau of gebruik deze optie niet in combinatie met de optie om alleenstaande personen te tonen (zie de vorige opties). Wanneer u dan nog steeds problemen ervaart, schakel deze optie dan uit."
+
+#. I18N: Description of the module
+#: fancy_treeview/module.php:92
+msgid "A Fancy overview of the descendants of one family(branch) in a narrative way."
+msgstr "Een Fancy overzicht van de afstammelingen van één familietak op een verhalende manier."
+
+#. I18N: Help text for the “Show a PDF icon in the Fancy Treeview tab” configuration setting
+#: fancy_treeview_pdf/app/Template/AdminTemplate.php:78
+msgid "By default the PDF icon is visible on the Fancy Treeview page. If you enable this option, a PDF icon is also displayed in the Fancy Treeview tab on the individual page."
+msgstr "Op de Fancy Treeview pagina wordt het PDF pictogram standaard getoond. Wanneer u deze optie inschakelt, is het PDF pictogram ook beschikbaar in het Fancy Treeview tabblad op de persoonspagina."
+
+#: fancy_treeview/app/Template/PageTemplate.php:75
+msgid "Change root person"
+msgstr "Wijzig startpersoon"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:387
+msgid "Check relationship between partners"
+msgstr "Controleer de verwantschap tussen partners"
+
+#: fancy_treeview_pdf/app/FancyTreeviewPdfClass.php:48
+msgid "Creating PDF file. This process may take a while. Please wait..."
+msgstr "Het PDF-bestand wordt aangemaakt. Dit proces kan even duren. Even geduld a.u.b...."
+
+#. I18N: %s is the surname of the root individual
+#: fancy_treeview/app/FancyTreeviewClass.php:209
+#: fancy_treeview/app/Schema/Migration0.php:42
+#: fancy_treeview/app/Template/AdminTemplate.php:282
+#: fancy_treeview/module.php:416
+#, php-format
+msgid "Descendants of the %s family"
+msgstr "Parenteel van de familie %s"
+
+#: fancy_treeview/module.php:181
+#, php-format
+msgid "Error: A person with ID %s does not exist in this tree"
+msgstr "Fout: Een persoon met ID %s bestaat niet in deze stamboom"
+
+#: fancy_treeview/module.php:162
+#, php-format
+msgid "Error: A root person with ID %s already exists"
+msgstr "Fout: Een startpersoon met ID %s bestaat al"
+
+#: fancy_treeview/module.php:160
+msgid "Error: The root person belonging to this surname already exists"
+msgstr "Fout: De startpersoon die bij deze achternaam hoort bestaat al"
+
+#: fancy_treeview/module.php:152
+msgid "Error: The surname you entered doesn’t exist in this tree."
+msgstr "Fout: De achternaam die u heeft ingevoerd komt niet voor in deze stamboom."
+
+#: fancy_treeview/module.php:404
+msgid "Family tree overview"
+msgstr "Stamboom overzicht"
+
+#. I18N: Name of the module
+#: fancy_treeview/app/Template/AdminTemplate.php:40
+#: fancy_treeview/module.php:83
+msgid "Fancy Treeview"
+msgstr "Fancy Treeview"
+
+#. I18N: Name of the Fancy Treeview PDF-module
+#: fancy_treeview_pdf/app/Template/AdminTemplate.php:38
+#: fancy_treeview_pdf/module.php:89
+msgid "Fancy Treeview PDF"
+msgstr "Fancy Treeview PDF"
+
+#. I18N: Description of the module
+#: fancy_treeview_pdf/module.php:94
+msgid "Fancy Treeview module extension: offer your users to download a Fancy Treeview page as PDF."
+msgstr "Fancy Treeview module uitbreiding: geef uw gebruikers de mogelijkheid om een Fancy Treeview pagina als PDF-bestand te downloaden."
+
+#: fancy_treeview/app/Template/PageTemplate.php:88
+msgid "Go"
+msgstr "Ga"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:641
+msgid "He had a relationship with"
+msgstr "Hij had een relatie met"
+
+#. I18N: %s is a number
+#: fancy_treeview/app/FancyTreeviewClass.php:566
+#, php-format
+msgid "He married %s times"
+msgstr "Hij trouwde %s keer"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1037
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Hij is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1039
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Hij is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1019
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Hij werd geboren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1021
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Hij is geboren"
+
+#. I18N: Help text for the “Resize thumbnails” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:451
+msgid "Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page."
+msgstr "Hier kunt u de keuze maken om het formaat van de standaard webtrees miniaturen, speciaal voor de Fancy Treeview pagina's, aan te passen. U kunt een zelf gekozen grootte instellen in percentage of in pixels. Als u “nee” kiest worden de standaard webtrees miniaturen gebruikt met het formaat dat u heeft ingesteld op de stamboom configuratie pagina."
+
+#. I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:500
+msgid "If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants then the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants."
+msgstr "Wanneer u deze optie inschakelt, verschijnt er op de persoonspagina een Fancy Treeview tab met de titel “Afstammelingen”. De tab beschrijft de huidige persoon met zijn familie en de volgende twee generaties (als die er zijn). Wanneer deze persoon meer afstammelingen heeft dan de twee getoonde generaties, verschijnt er een link naar de volledige Fancy Treeview pagina waarop deze persoon wordt getoond met al zijn afstammelingen."
+
+#. I18N: Help text for the “Select your country” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:429
+msgid "If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own."
+msgstr "Wanneer u de “Toon plaatsen” optie heeft aangevinkt maar NIET de optie om plaatsnamen af te korten, kunt u hier uw eigen land invoeren. De volledige plaatsnamen worden getoond op de Fancy Treeview pagina’s, maar wanneer een plaats de naam van uw thuisland bevat, wordt deze naam weggelaten. Als u hier geen keuze maakt voor een bepaald land, worden alle landen getoond, inclusief uw thuisland."
+
+#. I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:416
+msgid "If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown."
+msgstr "Wanneer u de “Toon plaatsen” optie heeft aangevinkt, kunt u ervoor kiezen om de standaard GEDCOM instellingen voor het afkorten van plaatsnamen te gebruiken. Wanneer u deze optie niet instelt worden de volledige plaatsnamen getoond."
+
+#: fancy_treeview_pdf/app/Template/PdfTemplate.php:101
+msgid "Index"
+msgstr "Inhoudsopgave"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:365
+msgid "Number of generation blocks to show"
+msgstr "Aantal te tonen generatie blokken"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:342
+#, php-format
+msgid "Options for %s"
+msgstr "Opties voor %s"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:139
+msgid "Or enter an ID"
+msgstr "Of voer een ID in"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:166
+#: fancy_treeview/app/Template/AdminTemplate.php:236
+msgid "Page title"
+msgstr "Pagina titel"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:92
+msgid "Pages"
+msgstr "Pagina's"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:454
+msgid "Read more"
+msgstr "Lees meer"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:445
+msgid "Resize thumbnails"
+msgstr "Miniaturen aanpassen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:162
+#: fancy_treeview/app/Template/AdminTemplate.php:232
+msgid "Root person"
+msgstr "Startpersoon"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:146
+#: fancy_treeview/app/Template/PageTemplate.php:80
+msgid "Search ID by name"
+msgstr "Zoek ID met naam"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:114
+msgid "Search root person"
+msgstr "Zoek startpersoon"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:423
+msgid "Select your country"
+msgstr "Selecteer uw land"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:644
+msgid "She had a relationship with"
+msgstr "Zij had een relatie met"
+
+#. I18N: %s is a number
+#: fancy_treeview/app/FancyTreeviewClass.php:572
+#, php-format
+msgid "She married %s times"
+msgstr "Zij trouwde %s keer"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1037
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Zij is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1039
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Zij is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1019
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Zij werd geboren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1021
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Zij is geboren"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:494
+msgid "Show a Fancy Treeview tab on the individual page"
+msgstr "Toon een Fancy Treeview tab op de persoonspagina"
+
+#: fancy_treeview_pdf/app/Template/AdminTemplate.php:67
+msgid "Show a PDF icon in the Fancy Treeview tab"
+msgstr "Toon een PDF pictogram in het Fancy Treeview tabblad"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:485
+msgid "Show form to change start person"
+msgstr "Toon formulier om de startpersoon te wijzigen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:436
+msgid "Show occupations"
+msgstr "Toon beroepen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:401
+msgid "Show places"
+msgstr "Toon plaatsen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:376
+msgid "Show singles"
+msgstr "Toon alleenstaande personen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:164
+#: fancy_treeview/app/Template/AdminTemplate.php:234
+msgid "Surname in page title"
+msgstr "Achternaam in pagina titel"
+
+#. I18N: %s is an ordinal
+#: fancy_treeview/app/FancyTreeviewClass.php:568
+#, php-format
+msgid "The %s time he married"
+msgstr "De %s keer trouwde hij met"
+
+#. I18N: %s is an ordinal
+#: fancy_treeview/app/FancyTreeviewClass.php:574
+#, php-format
+msgid "The %s time she married"
+msgstr "De %s keer trouwde zij met"
+
+#. I18N: %s is an ordinal
+#: fancy_treeview/app/FancyTreeviewClass.php:580
+#, php-format
+msgid "The %s time this individual married"
+msgstr "De %s keer trouwde deze persoon met"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:467
+msgid "The details of this generation are private."
+msgstr "De details van deze generatie zijn privé."
+
+#: fancy_treeview/app/Template/AdminTemplate.php:349
+msgid "The options for this tree are succesfully reset to the default settings"
+msgstr "De opties voor deze stamboom zijn succesvol teruggezet naar de standaard instellingen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:348
+msgid "The options for this tree are succesfully saved"
+msgstr "De opties voor deze stamboom zijn succesvol opgeslagen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:350
+msgid "The options for this tree are succesfully saved and copied to all other trees"
+msgstr "De opties voor deze stamboom zijn succesvol opgeslagen en gekopieerd naar alle andere stambomen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:224
+msgid "The settings for this tree are succesfully updated"
+msgstr "De instellingen voor deze stamboom zijn succesvol opgeslagen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:311
+msgid "This individual doesn’t exist anymore in this tree"
+msgstr "Deze persoon bestaat niet meer in deze stamboom"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:647
+msgid "This individual had a relationship with"
+msgstr "Deze persoon had een relatie met"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:592
+msgid "This individual married"
+msgstr "Deze persoon trouwde met"
+
+#. I18N: %s is a number
+#: fancy_treeview/app/FancyTreeviewClass.php:578
+#, php-format
+msgid "This individual married %s times"
+msgstr "Deze persoon trouwde %s keer"
+
+#. I18N: Help text for the “Number of generation blocks to show” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:370
+msgid "This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks."
+msgstr "Deze optie is vooral handig voor grote stambomen. Wanneer u merkt dat pagina’s traag laden, kunt u hier het aantal generaties dat tegelijkertijd wordt geladen op een lager niveau instellen. Onder het laatste generatie block verschijnt een knop om de volgende set generatie blokken toe te voegen. De nieuwe blokken worden toegevoegd aan de al geladen blokken. De volgende set generatie blokken wordt ook geladen wanneer u klikt op een “volg” link in het laatste zichtbare generatie blok."
+
+#: fancy_treeview/app/Template/AdminTemplate.php:456
+msgid "Thumbnail size"
+msgstr "Afmeting van de miniaturen"
+
+#. I18N: Help text for the “Show singles” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:381
+msgid "Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block."
+msgstr "Zet deze optie aan als u alleenstaande personen wilt tonen in de generatie blokken. Alleenstaande personen zijn personen zonder partner en kinderen.Wanneer deze optie is aangevinkt wordt elk kind uit een familie in het volgende generatie blok getoond op een gedetailleerde manier."
+
+#: fancy_treeview/app/Template/AdminTemplate.php:410
+msgid "Use default GEDCOM settings to abbreviate place names"
+msgstr "Gebruik de standaard GEDCOM instellingen om plaatsnamen af te korten"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:356
+msgid "Use fullname in menu"
+msgstr "Gebruik de volledige naam in het menu"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:476
+msgid "Use square thumbnails"
+msgstr "Gebruik vierkante miniaturen"
+
+#. I18N: Help text for creating Fancy Treeview pages
+#: fancy_treeview/app/Template/AdminTemplate.php:104
+msgid "Use the search form below to search for a root person. After a successful search the Fancy Treeview page will be automatically created. You can add as many root persons as you want."
+msgstr "Gebruik het zoekformulier hieronder om naar een start persoon te zoeken. Na een succesvolle zoekactie worden de Fancy Treeview pagina's automatisch aangemaakt. U kunt net zoveel startpersonen toevoegen als u wilt."
+
+#. I18N: Help text for the “Check relationship between partners” configuration setting
+#: fancy_treeview/app/Template/AdminTemplate.php:393
+msgid "With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship."
+msgstr "Wanneer u deze optie aanzet, controleert het script of een (getrouwd) koppel dezelfde voorouders heeft. Als een verwantschap tussen de partners is gevonden, verschijnt er een tekst tussen haakjes achter de naam van de partner om de bloed verwantschap aan te geven."
+
+#: fancy_treeview_pdf/module.php:61
+msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the Fancy Treeview module enabled. Please enable Fancy Treeview to use this module."
+msgstr "U hebt de Fancy Treeview PDF module geïnstalleerd. Deze module werkt niet zonder dat de Fancy Treeview module ingeschakeld. Schakel de Fancy Treeview module in om deze module te kunnen gebruiken."
+
+#: fancy_treeview_pdf/module.php:53
+#, php-format
+msgid "You have installed the Fancy Treeview PDF module. This module won’t work without the correct version of the Fancy Treeview module installed and enabled. Please install and enable Fancy Treeview version %s or higher to use this module. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Click here to download the latest release</a>."
+msgstr "U hebt de Fancy Treeview PDF module geïnstalleerd. Deze module werkt niet zonder dat de juiste versie van de Fancy Treeview module is geïnstalleerd en ingeschakeld. Installeer Fancy Treeview versie %s of hoger en schakel deze in. Daarna kunt u deze module gebruiken. <a href=\"http://www.justcarmen.nl/fancy-modules/fancy-treeview/\">Klik hier om de laatste versie te downloaden.</a>."
+
+#: fancy_treeview/app/FancyTreeviewClass.php:732
+msgctxt "FEMALE"
+msgid "adopted child"
+msgstr "geadopteerd kind"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:735
+msgctxt "MALE"
+msgid "adopted child"
+msgstr "geadopteerd kind"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:806
+msgid "adopted child of"
+msgstr "geadopteerd kind van"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:797
+msgid "adopted daughter of"
+msgstr "geadopteerde dochter van"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:788
+msgid "adopted son of"
+msgstr "geadopteerde zoon van"
+
+#. I18N: Note the space at the end of the string
+#: fancy_treeview/app/FancyTreeviewClass.php:621
+#: fancy_treeview/app/FancyTreeviewClass.php:677
+#: fancy_treeview/app/FancyTreeviewClass.php:690
+#: fancy_treeview/app/FancyTreeviewClass.php:707
+#: fancy_treeview/app/FancyTreeviewClass.php:819
+#: fancy_treeview/app/FancyTreeviewClass.php:880
+#: fancy_treeview/app/FancyTreeviewClass.php:1067
+#: fancy_treeview/app/FancyTreeviewClass.php:1075
+#: fancy_treeview/app/FancyTreeviewClass.php:1083
+msgid "and "
+msgstr "en "
+
+#. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
+#: fancy_treeview/app/FancyTreeviewClass.php:1106
+#, php-format
+msgctxt "age in days/months"
+msgid "at the age of %s"
+msgstr "op de leeftijd van %s"
+
+#. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
+#: fancy_treeview/app/FancyTreeviewClass.php:1108
+#, php-format
+msgctxt "age in years"
+msgid "at the age of %s"
+msgstr "op %s-jarige leeftijd"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1600
+msgid "cancel"
+msgstr "annuleren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:808
+msgid "child of"
+msgstr "kind van"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1068
+msgctxt "FEMALE"
+msgid "died"
+msgstr "overleed"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1068
+msgctxt "MALE"
+msgid "died"
+msgstr "overleed"
+
+#. I18N: eighth marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:559
+msgid "eighth"
+msgstr "achtste"
+
+#. I18N: fifth marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:556
+msgid "fifth"
+msgstr "vijfde"
+
+#. I18N: first marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:552
+msgid "first"
+msgstr "eerste"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1598
+msgid "follow"
+msgstr "volg"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:722
+msgctxt "FEMALE"
+msgid "foster child"
+msgstr "pleegkind"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:725
+msgctxt "MALE"
+msgid "foster child"
+msgstr "pleegkind"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:804
+msgid "foster child of"
+msgstr "pleegkind van"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:795
+msgid "foster daughter of"
+msgstr "pleegdochter van"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:786
+msgid "foster son of"
+msgstr "pleegzoon van"
+
+#. I18N: fourth marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:555
+msgid "fourth"
+msgstr "vierde"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:698
+msgctxt "One parent/multiple children"
+msgid "had"
+msgstr "had"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:680
+#: fancy_treeview/app/FancyTreeviewClass.php:700
+msgctxt "One parent/one child"
+msgid "had"
+msgstr "had"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:692
+msgctxt "Two parents/multiple children"
+msgid "had"
+msgstr "hadden"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:678
+#: fancy_treeview/app/FancyTreeviewClass.php:694
+msgctxt "Two parents/one child"
+msgid "had"
+msgstr "hadden"
+
+#. I18N: Note the space at the end of the string
+#: fancy_treeview/app/FancyTreeviewClass.php:1130
+msgctxt "before dateformat mmm yyyy"
+msgid "in "
+msgstr "in "
+
+#. I18N: Note the space at the end of the string
+#: fancy_treeview/app/FancyTreeviewClass.php:1133
+msgctxt "before dateformat yyyy"
+msgid "in "
+msgstr "in "
+
+#. I18N: Note the space at the end of the string
+#: fancy_treeview/app/FancyTreeviewClass.php:1150
+msgctxt "before placesnames"
+msgid "in "
+msgstr "in "
+
+#. I18N: ninth marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:560
+msgid "ninth"
+msgstr "negende"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1599
+#: fancy_treeview/app/Template/AdminTemplate.php:152
+msgid "ok"
+msgstr "ok"
+
+#. I18N: Note the space at the end of the string
+#: fancy_treeview/app/FancyTreeviewClass.php:1127
+msgctxt "before dateformat dd-mm-yyyy"
+msgid "on "
+msgstr "op "
+
+#: fancy_treeview/app/Template/AdminTemplate.php:469
+msgid "percent"
+msgstr "procent"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:519
+msgid "save and copy options to other trees"
+msgstr "opslaan en kopieer opties naar andere stambomen"
+
+#: fancy_treeview/app/Template/AdminTemplate.php:132
+msgid "search"
+msgstr "zoek"
+
+#. I18N: second marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:553
+msgid "second"
+msgstr "tweede"
+
+#. I18N: seventh marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:558
+msgid "seventh"
+msgstr "zevende"
+
+#. I18N: sixth marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:557
+msgid "sixth"
+msgstr "zesde"
+
+#. I18N: tenth marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:561
+msgid "tenth"
+msgstr "tiende"
+
+#. I18N: third marriage
+#: fancy_treeview/app/FancyTreeviewClass.php:554
+msgid "third"
+msgstr "derde"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1046
+msgctxt "PRESENT (MALE)"
+msgid "was bapitized"
+msgstr "is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1044
+msgctxt "PAST (FEMALE)"
+msgid "was baptized"
+msgstr "is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1044
+msgctxt "PAST (MALE)"
+msgid "was baptized"
+msgstr "is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1046
+msgctxt "PRESENT (FEMALE)"
+msgid "was baptized"
+msgstr "is gedoopt"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1026
+msgctxt "PAST (FEMALE)"
+msgid "was born"
+msgstr "werd geboren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1026
+msgctxt "PAST (MALE)"
+msgid "was born"
+msgstr "werd geboren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1028
+msgctxt "PRESENT (FEMALE)"
+msgid "was born"
+msgstr "is geboren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1028
+msgctxt "PRESENT (MALE)"
+msgid "was born"
+msgstr "is geboren"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1076
+msgctxt "FEMALE"
+msgid "was buried"
+msgstr "is begraven"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1076
+msgctxt "MALE"
+msgid "was buried"
+msgstr "is begraven"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1084
+msgctxt "FEMALE"
+msgid "was cremated"
+msgstr "is gecremeerd"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:1084
+msgctxt "MALE"
+msgid "was cremated"
+msgstr "is gecremeerd"
+
+#: fancy_treeview/app/FancyTreeviewClass.php:621
+msgid "were divorced"
+msgstr "zijn gescheiden"
+
+#~ msgid "Error: the pdf file could not be generated."
+#~ msgstr "Fout: het pdf bestand kon niet worden gemaakt."
+
+#~ msgid "Generate PDF"
+#~ msgstr "Genereer PDF"
+
+#~ msgid "Show PDF icon?"
+#~ msgstr "Toon PDF icoon?"
+
+#~ msgid "The pdf contains only visible generation blocks."
+#~ msgstr "Het pdf-bestand bevat alleen zichbare generatie blokken."
+
+#~ msgid "You have installed and enabled Fancy Treeview module version %s. This version of the module needs Fancy Treeview PDF version %s. Please update your installation of the Fancy Treeview PDF module to the correct version. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Click here to find the correct release</a>."
+#~ msgstr "U hebt Fancy Treeview versie %s geïnstalleerd en ingeschakeld. Deze module werkt met Fancy Treeview PDF versie %s.  Update uw installatie van de Fancy Treeview PDF module naar de juiste versie. <a href=\"https://github.com/JustCarmen/fancy_treeview_pdf/releases\">Klik hier om de juiste versie te downloaden.</a>."
