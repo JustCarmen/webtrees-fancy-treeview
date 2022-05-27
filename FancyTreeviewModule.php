@@ -312,6 +312,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $root_pid		  = $pid; // save value for read more link
         $this->pids       = [$pid];
 
+        // check root access
+        $this->checkRootAccess($root_pid);
+
         $html = $this->printGeneration();
 
         while (count($this->pids) > 0 && $this->generation < $generations) {
@@ -1078,13 +1081,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
-     * Get object of the rootperson of this tree
+     * Check if the rootperson is accessible
      *
      * @return object
      */
-    protected function getRootPerson(): object
+    protected function checkRootAccess($root_pid): object
     {
-        return $this->getPerson(self::ROOT_ID);
+        return Auth::checkIndividualAccess($this->getPerson($root_pid));
     }
 
     /**
