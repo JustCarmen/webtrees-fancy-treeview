@@ -6,7 +6,7 @@ use Fisharebest\Webtrees\I18N;
 
 <?php if ($module->checkPrivacy($pids, true)) : ?>
     <div class="generation private">
-        <?php I18N::translate('The details of this generation are private.') ?>
+        <?= I18N::translate('The details of this generation are private.') ?>
     </div>
 <?php else : ?>
     <ol class="blockcontent generation">
