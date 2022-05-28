@@ -32,6 +32,7 @@ use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
+use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
@@ -40,12 +41,14 @@ use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
+use Fisharebest\Webtrees\Module\ModuleTabTrait;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleConfigInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleTabInterface, ModuleConfigInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
     use ModuleGlobalTrait;
     use ModuleMenuTrait;
+    use ModuleTabTrait;
     use ModuleConfigTrait;
 
     // Route
@@ -305,6 +308,63 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
+     * Is this tab empty? If so, we don't always need to display it.
+     *
+     * @param Individual $individual
+     *
+     * @return bool
+     */
+    public function hasTabContent(Individual $individual): bool
+    {
+        return (bool) $this->options('fancy-treeview-tab');
+    }
+
+    /**
+     * Can this tab load asynchronously?
+     *
+     * @return bool
+     */
+    public function canLoadAjax(): bool
+    {
+        return false;
+    }
+
+    /**
+     * A greyed out tab has no actual content, but may perhaps have
+     * options to create content.
+     *
+     * @param Individual $individual
+     *
+     * @return bool
+     */
+    public function isGrayedOut(Individual $individual): bool
+    {
+        return false;
+    }
+
+    /**
+     * Generate the HTML content of this tab.
+     *
+     * @param Individual $individual
+     *
+     * @return string
+     */
+    public function getTabContent(Individual $individual): string
+    {
+        $request = app(ServerRequestInterface::class);
+        assert($request instanceof ServerRequestInterface);
+
+        $this->tree  = Validator::attributes($request)->tree();
+        $xref        = Validator::attributes($request)->isXref()->string('xref', '');
+        $generations = self::MAXIMUM_GENERATIONS;
+        $limit       = 3;
+
+        return view($this->name() . '::tab', [
+            'tab_content' => $this->printPage($xref, $generations, $limit)
+        ]);
+    }
+
+    /**
      * Set the default options.
      * This is php-8 code. We should have an alternative for php 7.4 users.
      *
@@ -327,7 +387,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'crop-thumbs'           => '0',
             'media-type-photo'      => '1', // new option (boolean)
             'show-userform'         => '2',
-            'ftv-tab'               => '1'
+            'fancy-treeview-tab'    => '1'
         };
 
         return $this->getPreference($option, $default);
