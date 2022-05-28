@@ -17,8 +17,10 @@ use Fisharebest\Webtrees\Family;
 use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Webtrees;
+use Illuminate\Support\Collection;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
+use Fisharebest\Webtrees\GedcomRecord;
 use Fisharebest\Webtrees\FlashMessages;
 use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
@@ -26,6 +28,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
+use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
@@ -33,6 +36,9 @@ use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
+use Fisharebest\Webtrees\Services\RelationshipService;
+use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
+use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleConfigInterface, RequestHandlerInterface
@@ -67,7 +73,19 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public array $pids;
     public int $generation;
     public int $index;
+
     private Tree $tree;
+    private RelationshipService $relationship_service;
+
+    /**
+     * Fancy Treeview constructor.
+     *
+     * @param RelationshipService $relationship_service
+     */
+    public function __construct(RelationshipService $relationship_service)
+    {
+        $this->relationship_service = $relationship_service;
+    }
 
     /**
      * How should this module be identified in the control panel, etc.?
@@ -328,7 +346,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function printPage(string $pid, int $generations, int $limit = 0): string
     {
         $this->generation = 1;
-        $root_pid		  = $pid; // save value for read more link
+        $root_pid         = $pid; // save value for read more link
         $this->pids       = [$pid];
 
         // check root access
@@ -357,7 +375,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             if (!empty($this->pids)) {
                 if ($this->generation === $limit) {
                     $html .= $this->printReadMoreLink($root_pid);
-					return $html;
+                    return $html;
                 } else {
                     $this->generation++;
                     $html .= $this->printGeneration();
@@ -543,9 +561,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
         }
 
-        $html     .= ' ' . $this->printNameUrl($spouse);
-        // $html	 .= $this->printRelationship($person, $spouse);
-        $html     .= $this->printParents($spouse);
+        $html .= ' ' . $this->printNameUrl($spouse);
+        $html .= $this->printRelationship($person, $spouse);
+        $html .= $this->printParents($spouse);
 
         if (!$family->getMarriage()) { // use the default privatized function to determine if marriage details can be shown.
             $html .= '.';
@@ -599,9 +617,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 break;
         }
 
-        $html     .= ' ' . $this->printNameUrl($spouse);
-        // $html	 .= $this->printRelationship($person, $spouse);
-        $html     .= $this->printParents($spouse);
+        $html .= ' ' . $this->printNameUrl($spouse);
+        $html .= $this->printRelationship($person, $spouse);
+        $html .= $this->printParents($spouse);
 
         if ($family->facts(['_NMR'])->first() && $this->printLifespan($spouse, true)) {
             $html .= $this->printLifespan($spouse, true);
@@ -895,17 +913,23 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Print the relationship between spouses (optional)
+     *
+     * @param Individual $person
+     * @param Individual $spouse
+     *
+     * @return string
      */
-    /* protected function printRelationship($person, $spouse) {
-		$html = '';
-		if ($this->options('check_relationship')) {
-			$relationship = $this->checkRelationship($person, $spouse);
-			if ($relationship) {
-				$html .= ' (' . $relationship . ')';
-			}
-		}
-		return $html;
-	} */
+    protected function printRelationship(Individual $person, Individual $spouse): string
+    {
+        $html = '';
+        if ($this->options('check-relationship')) {
+            $relationship = $this->checkRelationship($person, $spouse);
+            if ($relationship) {
+                $html .= ' (' . $relationship . ')';
+            }
+        }
+        return $html;
+    }
 
     /**
      * Print the birth text (born or baptized)
@@ -1195,29 +1219,90 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
-     * check (blood) relationship between partners	 *
+     * Check (blood) relationship between partners
+     * See: app\Module\RelationshipsChartModule.php
+     *
+     * @param Individual $person
+     * @param Individual $spouse
+     *
+     * @return string
      */
-    /* private function checkRelationship($person, $spouse) {
-		$controller	 = new RelationshipController();
-		$paths		 = $controller->calculateRelationships($person, $spouse, 1);
-		foreach ($paths as $path) {
-			$relationships = $controller->oldStyleRelationshipPath($path);
-			if (empty($relationships)) {
-				// Cannot see one of the families/individuals, due to privacy;
-				continue;
-			}
-			foreach (array_keys($path) as $n) {
-				if ($n % 2 === 1) {
-					switch ($relationships[$n]) {
-						case 'sis':
-						case 'bro':
-						case 'sib':
-							return Functions::getRelationshipNameFromPath(implode('', $relationships), $person, $spouse);
-					}
-				}
-			}
-		}
-	} */
+    private function checkRelationship(Individual $person, Individual $spouse): string
+    {
+        $tree = $person->tree();
+        $paths = $this->calculateRelationships($person, $spouse);
+
+        $language = app(ModuleService::class)
+            ->findByInterface(ModuleLanguageInterface::class, true)
+            ->first(fn (ModuleLanguageInterface $language): bool => $language->locale()->languageTag() === I18N::languageTag());
+
+        foreach ($paths as $path) {
+            $relationships = $this->oldStyleRelationshipPath($tree, $path);
+
+            $nodes = Collection::make($path)
+                ->map(static function (string $xref, int $key) use ($tree): GedcomRecord {
+                    if ($key % 2 === 0) {
+                        return Registry::individualFactory()->make($xref, $tree);
+                    }
+                    return  Registry::familyFactory()->make($xref, $tree);
+                });
+
+            foreach ($path as $n => $xref) {
+                if ($n % 2 === 1) {
+                    switch ($relationships[$n]) {
+                        case 'sis':
+                        case 'bro':
+                        case 'sib':
+                            return $this->relationship_service->nameFromPath($nodes->all(), $language);
+                    }
+                }
+                unset($xref);
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * Calculate the shortest paths - or all paths - between two individuals.
+     *
+     * Retrieve the private function from app/RelationshipsChartModule
+     * https://stackoverflow.com/a/40441769
+     *
+     * @param Individual $individual1
+     * @param Individual $individual2
+     *
+     * @return string[][]
+     */
+    private function calculateRelationships(Individual $individual1, Individual $individual2): array
+    {
+        $calculateRelationships = function ($individual1, $individual2) {
+            return app(RelationshipsChartModule::class)->calculateRelationships($individual1, $individual2, 0, true);
+        };
+
+        return $calculateRelationships->call(app(RelationshipsChartModule::class), $individual1, $individual2);
+    }
+
+    /**
+     * Convert a path (list of XREFs) to an "old-style" string of relationships.
+     * Return an empty array, if privacy rules prevent us viewing any node.
+     *
+     * Retrieve the private function from app/RelationshipsChartModule
+     * https://stackoverflow.com/a/40441769
+     *
+     * @param Tree     $tree
+     * @param string[] $path Alternately Individual / Family
+     *
+     * @return string[]
+     */
+    private function oldStyleRelationshipPath(Tree $tree, array $path): array
+    {
+        $oldStyleRelationshipPath = function ($tree, $path) {
+            return app(RelationshipsChartModule::class)->oldStyleRelationshipPath($tree, $path);
+        };
+
+        return $oldStyleRelationshipPath->call(app(RelationshipsChartModule::class), $tree, $path);
+    }
 
     /**
      * Check if this is a private record
