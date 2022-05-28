@@ -323,10 +323,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'use-gedcom-places'     => '0',
             'country'               => '',
             'show-occu'             => '1',
-            'resize-thumbs'         => '1',
-            'thumb-size'            => '60',
-            'thumb-resize-format'   => '2',
-            'use-square-thumbs'     => '1',
+            'thumb-size'            => '80',
+            'crop-thumbs'           => '0',
+            'media-type-photo'      => '1', // new option (boolean)
             'show-userform'         => '2',
             'ftv-tab'               => '1'
         };
@@ -435,8 +434,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         if ($person->canShow()) {
             $html = '<div class="parents">';
 
-            if ($person->findHighlightedMediaFile() !== null && $person->findHighlightedMediaFile()->type() === 'photo') {
-                $html .= $person->displayImage(80, 80, 'contain', ['class' => 'jc-ftv-thumbnail']);
+            if ($person->findHighlightedMediaFile() !== null && (bool) $this->options('media-type-photo') ? $person->findHighlightedMediaFile()->type() === 'photo' : $person->findHighlightedMediaFile()) {
+                $html .= $person->displayImage((int) $this->options('thumb-size'), (int) $this->options('thumb-size'), (bool) $this->options('crop-thumbs') ? 'crop' : 'contain', ['class' => 'jc-ftv-thumbnail']);
             }
 
             $html .= '<p class="desc">' . $this->printNameUrl($person, $person->xref());
