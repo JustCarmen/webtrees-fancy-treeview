@@ -1,12 +1,27 @@
 <?php
 
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
 
 ?>
 
-<div class="blockheader">
-    <span class="header-title"><?= I18N::translate('Generation') . ' ' . $generation ?></span>
+<div class="d-flex justify-content-between align-items-center border-bottom border-primary mb-3">
+    <span class="fs-4"><?= I18N::translate('Generation') . ' ' . $generation ?></span>
     <?php if ($generation > 1) : ?>
-        <a href="#fancy_treeview-page" class="header-link scroll"><?php I18N::translate('back to top') ?></a>
+    <a href="#top"><?= I18N::translate('back to top') ?></a>
     <?php endif ?>
 </div>
+
+<?php View::push('styles') ?>
+<style>
+html {
+    scroll-behavior: smooth;
+}
+</style>
+<?php View::endpush() ?>
+
+<?php View::push('javascript') ?>
+<script>
+    $('html').attr('id', 'top');
+</script>
+<?php View::endpush() ?>
