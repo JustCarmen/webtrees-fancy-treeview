@@ -457,7 +457,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         // reset the index
         $this->index = 1;
 
-        return View($this->name() . '::generation', [
+        return View($this->name() . '::block', [
             'generation'    => $this->generation,
             'module'        => $this,
             'pids'          => $this->pids,
