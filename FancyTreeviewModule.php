@@ -386,7 +386,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb-size'            => '80',
             'crop-thumbs'           => '0',
             'media-type-photo'      => '1', // new option (boolean)
-            'show-userform'         => '2',
             'fancy-treeview-tab'    => '1'
         };
 
