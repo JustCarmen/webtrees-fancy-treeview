@@ -4,19 +4,7 @@ use Fisharebest\Webtrees\I18N;
 
 ?>
 
-<div id="fancy_treeview-page" class="jc-fancy-treeview-page col-lg-9 mx-auto">
-    <div id="page-header">
-    <?php if ($is_admin) : ?>
-        <div class="jc-fancy-treeview-page-edit text-right">
-            <a href="<?= e(route('module', ['module' => $module, 'action' => 'Admin'])) ?>">
-                <?= I18N::translate('Edit') ?>
-            </a>
-        </div>
-    <?php endif ?>
-    <h2 class="wt-page-title jc-fancy-treeview-page-title"><?= $page_title ?></h2>
-    </div>
-    <div id="page-body" class="jc-fancy-treeview-page-body">
-        <ol id="fancy_treeview"><?= $page_body ?></ol>
-    </div>
-    </div>
+<div id="jc-fancy-treeview-page" class="jc-fancy-treeview-page col-lg-9 mx-auto">
+    <h2 class="wt-page-title"><?= $page_title ?></h2>
+    <ol class="jc-fancy-treeview-page-body list-unstyled"><?= $page_body ?></ol>
 </div>
