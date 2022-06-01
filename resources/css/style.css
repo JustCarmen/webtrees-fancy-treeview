@@ -65,3 +65,10 @@ li.jc-child-li::before {
 [dir="rtl"] li.jc-child-li::before {
   padding-left: 0.5rem;
 }
+
+.jc-theme-justlight .jc-fancy-treeview-page :target {
+  display: block;
+  position: relative;
+  top: -200px;
+  visibility: hidden;
+}
