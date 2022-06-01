@@ -1,0 +1,41 @@
+/* Fancy Treeview List */
+ol {
+    &.jc-fancy-treeview-page-body {
+	    counter-reset: first-level;
+    }
+}
+
+li {
+    .jc-fancy-treeview-page & {
+        position: relative;
+        display: block;
+    }
+
+    &.jc-generation-block {
+	    counter-reset: second-level;
+
+        &::before {
+            counter-increment: first-level;
+            content: "";
+        }
+    }
+
+    &.jc-family-block {
+	    counter-reset: third-level;
+
+        &::before {
+            counter-increment: second-level;
+            content: counter(first-level) "." counter(second-level);
+            margin-left: -3rem;
+            float: left;
+        }
+    }
+
+    &.jc-child-li {
+        &::before {
+            counter-increment: third-level;
+            content: counter(first-level) "." counter(second-level) "." counter(third-level);
+            padding-right: .5rem;
+        }
+    }
+}

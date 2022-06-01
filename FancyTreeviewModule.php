@@ -491,19 +491,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function printIndividual(Individual $person): string
     {
         if ($person->canShow()) {
-            $html = '<div class="parents">';
+            $html = '<div class="jc-parents-block">';
 
+            $html .= '<div class="jc-person-block d-flex col">';
+
+            $html .= '<div class="jc-person-block-image mt-1 mb-3">';
             if ($person->findHighlightedMediaFile() !== null && (bool) $this->options('media-type-photo') ? $person->findHighlightedMediaFile()->type() === 'photo' : $person->findHighlightedMediaFile()) {
                 $html .= $person->displayImage((int) $this->options('thumb-size'), (int) $this->options('thumb-size'), (bool) $this->options('crop-thumbs') ? 'crop' : 'contain', ['class' => 'jc-ftv-thumbnail']);
             }
+            $html .= '</div>';
 
-            $html .= '<p class="desc">' . $this->printNameUrl($person, $person->xref());
+            $html .= '<div class="jc-person-block-text"><p>' . $this->printNameUrl($person, $person->xref());
 
             if ((bool) $this->options('show-occu')) {
                 $html .= $this->printOccupations($person);
             }
 
-            $html .= $this->printParents($person) . $this->printLifespan($person) . '.';
+            $html .= $this->printParents($person) . $this->printLifespan($person) . '.</p>';
+
+            $html .= '</div></div><div class="jc-spouse-block">';
 
             // get a list of all the spouses
             /*
@@ -537,7 +543,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 }
             }
 
-            $html .= '</p></div>';
+            $html .= '</div></div>';
 
             // get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
             foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
@@ -568,7 +574,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count): string
     {
 
-        $html = ' ';
+        $html = '<p>';
 
         if ($count > 1) {
             // we assume no one married more then ten times.
@@ -646,6 +652,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 $html .= $this->printName($person) . ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse) . ' ' . I18N::translate('were divorced') . $this->printDate($divorce) . '.';
             }
         }
+
+        $html .= '</p>';
+
         return $html;
     }
 
@@ -661,7 +670,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printPartner(Family $family, Individual $person, Individual $spouse): string
     {
 
-        $html = ' ';
+        $html = '<p>';
 
         switch ($person->sex()) {
             case 'M':
@@ -683,7 +692,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $html .= $this->printLifespan($spouse, true);
         }
 
-        return '. ' . $html;
+        $html .= '</p>';
+
+        return $html;
     }
 
     /**
@@ -731,7 +742,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     }
                     $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                 } else {
-                    $html .= '<div class="children"><p>' . I18N::translate('Children of ') . $this->printName($person);
+                    $html .= '<div class="jc-children-block mb-2"><p class="mb-1">' . I18N::translate('Children of ') . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
                         $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
                     }
@@ -739,7 +750,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
                     foreach ($children as $child) {
                         if ($child->canShow()) {
-                            $html     .= '<li class="child">' . $this->printNameUrl($child);
+                            $html     .= '<li class="jc-child-li">' . $this->printNameUrl($child);
                             $pedi     = $this->checkPedi($child, $family);
 
                             if ($pedi) {
@@ -779,16 +790,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                             // if (WT_SCRIPT_NAME !== 'individual.php') { // old code
                             $text_follow = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
                             if ($child_family) {
-                                $html .= ' - <a class="scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
+                                $html .= ' - <a class="jc-scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
                                 $this->index++;
                             } elseif ((bool) $this->options('show-singles')) {
-                                $html .= ' - <a class="scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
+                                $html .= ' - <a class="jc-scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
                                 $this->index++;
                             }
                             // }
                             $html .= '</li>';
                         } else {
-                            $html .= '<li class="child private">' . I18N::translate('Private') . '</li>';
+                            $html .= '<li class="jc-child-li jc-private">' . I18N::translate('Private') . '</li>';
                         }
                     }
                     $html .= '</ol></div>';

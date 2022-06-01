@@ -1,6 +1,7 @@
 <?php
 
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
 
 ?>
 
@@ -8,3 +9,17 @@ use Fisharebest\Webtrees\I18N;
     <h2 class="wt-page-title"><?= $page_title ?></h2>
     <ol class="jc-fancy-treeview-page-body list-unstyled"><?= $page_body ?></ol>
 </div>
+
+<?php View::push('styles') ?>
+<style>
+html {
+    scroll-behavior: smooth;
+}
+</style>
+<?php View::endpush() ?>
+
+<?php View::push('javascript') ?>
+<script>
+    $('html').attr('id', 'top');
+</script>
+<?php View::endpush() ?>

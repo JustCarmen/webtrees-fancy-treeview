@@ -5,23 +5,9 @@ use Fisharebest\Webtrees\View;
 
 ?>
 
-<div class="d-flex justify-content-between align-items-center border-bottom border-primary mb-3">
+<div class="jc-generation-block-header d-flex justify-content-between align-items-center border-bottom border-primary mb-3">
     <span class="fs-4"><?= I18N::translate('Generation') . ' ' . $generation ?></span>
     <?php if ($generation > 1) : ?>
     <a href="#top"><?= I18N::translate('back to top') ?></a>
     <?php endif ?>
 </div>
-
-<?php View::push('styles') ?>
-<style>
-html {
-    scroll-behavior: smooth;
-}
-</style>
-<?php View::endpush() ?>
-
-<?php View::push('javascript') ?>
-<script>
-    $('html').attr('id', 'top');
-</script>
-<?php View::endpush() ?>
