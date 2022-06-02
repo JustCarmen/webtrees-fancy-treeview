@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JustCarmen\Webtrees\Module\FancyTreeview;
 
+use Exception;
 use Fisharebest\Webtrees\Age;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
@@ -18,6 +19,7 @@ use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Capsule\Manager as DB;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\GedcomRecord;
@@ -27,6 +29,7 @@ use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Module\AbstractModule;
+use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
@@ -41,7 +44,7 @@ use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
-use Fisharebest\Webtrees\Module\ModuleTabTrait;
+use Fisharebest\Webtrees\Services\TreeService;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleTabInterface, ModuleConfigInterface, RequestHandlerInterface
 {
@@ -79,15 +82,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     private Tree $tree;
     private RelationshipService $relationship_service;
+    private TreeService $tree_service;
 
     /**
      * Fancy Treeview constructor.
      *
      * @param RelationshipService $relationship_service
      */
-    public function __construct(RelationshipService $relationship_service)
+    public function __construct(TreeService $tree_service, RelationshipService $relationship_service)
     {
         $this->relationship_service = $relationship_service;
+        $this->tree_service = $tree_service;
     }
 
     /**
@@ -223,11 +228,34 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $this->layout = 'layouts/administration';
 
+        $tree_id = $this->getPreference('last-tree-id', '');
+
+        try {
+            $tree = $this->tree_service->find((int)$tree_id);
+        } catch (Exception $ex) {
+            // the last tree saved doesn't exist anymore. Use the first tree instead.
+            $tree = $this->tree_service->all()->first();
+            $tree_id = $tree->id();
+
+            // remove settings from non existing tree from the database
+            DB::table('module_setting')
+                ->where('module_name', '=', $this->name())
+                ->where('setting_name', 'LIKE', '' . $this->getPreference('last-tree-id') . '-%' )
+                ->delete();
+
+            // reset the last tree id
+            $this->setPreference('last-tree-id', '');
+        }
+
         return $this->viewResponse($this->name() . '::settings', [
-            'title' => $this->title(),
-            'menu_title' => $this->getPreference('menu-title'),
-            'page_title' => $this->getPreference('page-title'),
-            'page_body'  => $this->getPreference('page-body'),
+            'all_trees'     => $this->tree_service->all(),
+            'soundex_std'   => $this->getPreference($tree_id . '-soundex_std', '0'),
+            'soundex_dm'   => $this->getPreference($tree_id . '-soundex_dm', '0'),
+            'title'         => $this->title(),
+            'tree_id'       => $tree_id,
+            'menu_title'    => $this->getPreference('menu-title'),
+            'page_title'    => $this->getPreference('page-title'),
+            'page_body'     => $this->getPreference('page-body'),
         ]);
     }
 
