@@ -91,7 +91,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @param RelationshipService $relationship_service
      */
-    public function __construct(CountryService $country_service, RelationshipService $relationship_service, TreeService $tree_service, )
+    public function __construct(CountryService $country_service, RelationshipService $relationship_service, TreeService $tree_service)
     {
         $this->country_service = $country_service;
         $this->relationship_service = $relationship_service;
@@ -309,7 +309,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             return '';
         }
 
-        $menu_title = $this->getPreference('menu-title');
+        $menu_title = $this->getPreference('menu-title', 'Fancy Treeview');
         $url = $this->getUrl($tree, self::ROOT_ID);
 
         return new Menu($menu_title, e($url), 'jc-fancy-treeview-' . e(strtolower($menu_title)));
