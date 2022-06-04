@@ -19,7 +19,6 @@ use Fisharebest\Webtrees\Gedcom;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
-use Illuminate\Database\Capsule\Manager as DB;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\GedcomRecord;
@@ -28,6 +27,8 @@ use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Fisharebest\Webtrees\Services\TreeService;
+use Illuminate\Database\Capsule\Manager as DB;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
@@ -43,8 +44,8 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Fisharebest\Webtrees\Statistics\Service\CountryService;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
-use Fisharebest\Webtrees\Services\TreeService;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleTabInterface, ModuleConfigInterface, RequestHandlerInterface
 {
@@ -81,6 +82,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public int $index;
 
     private Tree $tree;
+    private CountryService $country_service;
     private RelationshipService $relationship_service;
     private TreeService $tree_service;
 
@@ -89,8 +91,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @param RelationshipService $relationship_service
      */
-    public function __construct(TreeService $tree_service, RelationshipService $relationship_service)
+    public function __construct(CountryService $country_service, RelationshipService $relationship_service, TreeService $tree_service, )
     {
+        $this->country_service = $country_service;
         $this->relationship_service = $relationship_service;
         $this->tree_service = $tree_service;
     }
@@ -249,8 +252,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         return $this->viewResponse($this->name() . '::settings', [
             'all_trees'     => $this->tree_service->all(),
-            'soundex_std'   => $this->getPreference($tree_id . '-soundex_std', '0'),
-            'soundex_dm'   => $this->getPreference($tree_id . '-soundex_dm', '0'),
+            'FTV_SETTINGS'  => unserialize($this->getPreference('FTV_SETTINGS')),
+            'module'        => $this,
+            'tree'          => $tree,
             'title'         => $this->title(),
             'tree_id'       => $tree_id,
             'menu_title'    => $this->getPreference('menu-title'),
@@ -277,7 +281,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $message = I18N::translate('The preferences for the module “%s” have been updated.', $this->title());
         FlashMessages::addMessage($message, 'success');
 
-        return redirect(route(ModulesMenusAction::class));
+        return redirect($this->getConfigLink());
     }
 
     /**
@@ -1473,6 +1477,19 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
+     * @return array
+     */
+    public function getCountryList(): array
+    {
+        $all_countries = $this->country_service->getAllCountries();
+        foreach ($all_countries as $country_name) {
+            $country_names[$country_name] = $country_name; // set the country name as key to display as option value
+        }
+
+        return $country_names;
+    }
+
+    /**
      * Get the url for the Fancy treeview page
      *
      * @param string $pid
@@ -1502,4 +1519,48 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         return preg_replace('/\s+/', '-', strtolower(preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($string))));
     }
+
+    /**
+	 * Search within a multiple dimensional array
+     *
+	 * @param mixed $array
+	 * @param mixed $key
+	 * @param mixed $value
+	 *
+	 * @return [type]
+	 */
+	public function searchArray($array, $key, $value) {
+		$results = [];
+		if (is_array($array)) {
+			if (isset($array[$key]) && $array[$key] == $value) {
+				$results[] = $array;
+			}
+			foreach ($array as $subarray) {
+				$results = array_merge($results, $this->searchArray($subarray, $key, $value));
+			}
+		}
+		return $results;
+	}
+
+    /**
+	 * Since we can't use Flashmessages here, use our own message system
+     *
+	 * @param mixed $id
+	 * @param mixed $type
+	 * @param mixed $hidden
+	 * @param string $message
+	 *
+	 * @return [type]
+	 */
+	public function addMessage($id, $type, $hidden, $message = '') {
+		$style = $hidden ? ' style="display:none"' : '';
+
+        return
+            '<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
+            '<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
+            '<span aria-hidden="true">&times;</span>' .
+            '</button>' .
+            '<span class="message">' . $message . '</span>' .
+            '</div>';
+	}
 };
