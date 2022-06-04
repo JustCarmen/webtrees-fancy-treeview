@@ -2,6 +2,7 @@
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 
 ?>
@@ -14,7 +15,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
     <!-- ADMIN PAGE CONTENT -->
 
     <!-- *** FORM 1 *** -->
-    <form class="form-horizontal" method="post" name="form1" action="<?= e(route('module', ['module' => '_jc-fancy-treeview_', 'action' => 'Form1']) ?>">
+    <form class="form-horizontal" method="post" name="form1" action="<?= e(route('module', ['module' => '_jc-fancy-treeview_', 'action' => 'Form1'])) ?>">
         <?= csrf_field() ?>
         <input type="hidden" name="form1" id="form1" value="1">
         <input type="hidden" name="save1" id="save1" value="1">
@@ -23,7 +24,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label for=" tree"><?= I18N::translate('Family tree') ?></label>
             <div class="col-sm-9">
-                <select class="form-control" id="tree" name="tree-id" type="text" required>
+                <select class="form-control" id="tree" name="NEW_FIB_TREE" type="text" required>
                     <option value=""><?= I18N::translate('&lt;select&gt;') ?></option>
                     <?php foreach ($all_trees as $tree) : ?>
                         <?php if($tree->id() === (int)$tree_id) : ?>
@@ -52,7 +53,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId()))): ?>
+                    <?php if (empty($FTV_SETTINGS) || (!empty($FTV_SETTINGS) && !$module->searchArray($FTV_SETTINGS, 'TREE', $tree->id()))): ?>
                         <div class="alert alert-info alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="' . I18N::translate('close') . '">
                                 <span aria-hidden="true">&times;</span>
@@ -79,10 +80,10 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     type="text"
                                     >
                                 <label class="checkbox-inline">
-                                    <?= view('components/checkbox-inline', ['label' => I18N::translate('Russell'), 'name' => 'soundex_std', 'checked' => $soundex_std]) ?>
+                                    <?= view('components/checkbox-inline', ['label' => I18N::translate('Russell'), 'name' => 'soundex_std']) ?>
                                 </label>
                                 <label class="checkbox-inline">
-                                <?= view('components/checkbox-inline', ['label' => I18N::translate('Daitch-Mokotoff'), 'name' => 'soundex_dm', 'checked' => $soundex_dm]) ?>
+                                <?= view('components/checkbox-inline', ['label' => I18N::translate('Daitch-Mokotoff'), 'name' => 'soundex_dm']) ?>
                                 </label>
                                 <button name="search" class="btn btn-primary" type="submit">
                                     <i class="fa fa-search"></i>
@@ -117,7 +118,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                 <thead>
                                     <tr>
                                         <th><?= I18N::translate('Root person') ?></th>
-                                        <?php if (!$this->options('use_fullname')): ?>
+                                        <?php if (!$module->options('use-fullname')): ?>
                                             <th><?= I18N::translate('Surname in page title') ?></th>
                                         <?php endif; ?>
                                         <th><?= I18N::translate('Page title') ?></th>
@@ -129,7 +130,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <tr>
                                         <!-- ROOT PERSONS FULL NAME -->
                                         <td id="root">
-                                            <?php if ($this->options('use_fullname')): ?>
+                                            <?php if ($module->options('use-fullname')): ?>
                                                 <input
                                                     name="surname"
                                                     type="hidden"
@@ -148,7 +149,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                                 >
                                             <span></span>
                                         </td>
-                                        <?php if (!$this->options('use_fullname')): ?>
+                                        <?php if (!$module->options('use-fullname')): ?>
                                             <!-- SURNAME IN PAGE TITLE -->
                                             <td id="surn">
                                                 <label class="showname"></label>
@@ -164,7 +165,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                         <td id="title"></td>
                                         <!-- ACCESS LEVEL -->
                                         <td>
-                                        <?= view('components/select', ['name' => 'access-level', 'selected' => $tree->getPreference('access-level'), 'options' => array_slice(Auth::accessLevelNames(), 0, 2, true)]) ?>
+                                            <?= view('components/select', ['name' => 'access-level', 'selected' => $tree->getPreference('access-level'), 'options' => array_slice(Auth::accessLevelNames(), 0, 2, true)]) ?>
                                         </td>
                                         <!-- ADD BUTTON -->
                                         <td>
@@ -177,17 +178,17 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                             </table>
                         </form>
                     </div>
-                    <?= $this->addMessage("error", "danger", true) ?>
-                    <?= $this->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')) ?>
+                    <?= $module->addMessage("error", "danger", true) ?>
+                    <?= $module->addMessage('update-settings', 'success', true, I18N::translate('The settings for this tree are succesfully updated')) ?>
                     <div id="fancy-treeview-form" class="form-group">
-                        <?php if (!empty($FTV_SETTINGS) && $this->searchArray($FTV_SETTINGS, 'TREE', $this->tree()->getTreeId())): ?>
+                        <?php if (!empty($FTV_SETTINGS) && $module->searchArray($FTV_SETTINGS, 'TREE', $tree->id())): ?>
                             <form class="form-horizontal" method="post" name="form4">
                                 <!-- TABLE -->
                                 <table id="fancy-treeview-table" class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th><?= I18N::translate('Root person') ?></th>
-                                            <?php if (!$this->options('use_fullname')): ?>
+                                            <?php if (!$module->options('use-fullname')): ?>
                                                 <th><?= I18N::translate('Surname in page title') ?></th>
                                             <?php endif; ?>
                                             <th><?= I18N::translate('Page title') ?></th>
@@ -197,8 +198,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     </thead>
                                     <tbody>
                                         <?php foreach ($FTV_SETTINGS as $key => $this_ITEM): ?>
-                                            <?php if ($this_ITEM['TREE'] == $this->tree()->getTreeId()): ?>
-                                                <?php if (Individual::getInstance($this_ITEM['PID'], $this->tree())): ?>
+                                            <?php if ($this_ITEM['TREE'] == $tree->id()): ?>
+                                                <?php if (Registry::individualFactory()->make($this_ITEM['PID'], $tree)): ?>
                                                     <tr class="sortme">
                                                         <!-- ROOT PERSONS FULL NAME -->
                                                         <td>
@@ -212,10 +213,10 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                                                 type="hidden"
                                                                 value="<?= $this_ITEM['SORT'] ?>"
                                                                 >
-                                                                <?= Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName() . '' ?>
-                                                            (<?= Individual::getInstance($this_ITEM['PID'], $this->tree())->getLifeSpan() ?>)
+                                                                <?= Registry::individualFactory()->make($this_ITEM['PID'], $tree)->fullName() . '' ?>
+                                                            (<?= Registry::individualFactory()->make($this_ITEM['PID'], $tree)->lifespan() ?>)
                                                         </td>
-                                                        <?php if (!$this->options('use_fullname')): ?>
+                                                        <?php if (!$module->options('use-fullname')): ?>
                                                             <!-- SURNAME IN PAGE TITLE -->
                                                             <td>
                                                                 <label class="showname">
@@ -231,10 +232,10 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                                         <?php endif ?>
                                                         <!-- PAGE TITLE -->
                                                         <td>
-                                                            <a href="module.php?mod=<?= $this->getName(); ?>&amp;mod_action=page&amp;ged=<?= $this->tree()->getNameHtml(); ?>&amp;rootid=<?= $this_ITEM['PID'] ?>" target="_blank">
+                                                            <a href="module.php?mod=<?= $module->name(); ?>&amp;mod_action=page&amp;ged=<?= $tree->title(); ?>&amp;rootid=<?= $this_ITEM['PID'] ?>" target="_blank">
                                                                 <?php
-                                                                if ($this->options('use_fullname') == true) {
-                                                                    echo I18N::translate('Descendants of %s', Individual::getInstance($this_ITEM['PID'], $this->tree())->getFullName());
+                                                                if ($module->options('use-fullname') == true) {
+                                                                    echo I18N::translate('Descendants of %s', Registry::individualFactory()->make($this_ITEM['PID'], $tree)->fullName());
                                                                 } else {
                                                                     echo I18N::translate('Descendants of the %s family', $this_ITEM['SURNAME']);
                                                                 }
@@ -243,7 +244,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                                         </td>
                                                         <!-- ACCESS LEVEL -->
                                                         <td>
-                                                            <?= FunctionsEdit::editFieldAccessLevel('access_level[' . $key . ']', $this_ITEM['ACCESS_LEVEL'], 'class="form-control"') ?>
+                                                            <?= view('components/select', ['name' => 'access_level[' . $key . ']', 'selected' => $this_ITEM['ACCESS_LEVEL'], 'options' => Auth::accessLevelNames()]) ?>
                                                         </td>
                                                         <!-- DELETE BUTTON -->
                                                         <td>
@@ -295,14 +296,14 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <?= I18N::translate('Options for %s', $this->tree()->getTitleHtml()) ?>
+                    <?= I18N::translate('Options for %s', $tree->title()) ?>
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <?= $this->addMessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')) ?>
-                    <?= $this->addMessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')) ?>
-                    <?= $this->addMessage('copy-options', 'success', true, I18N::translate('The options for this tree are succesfully saved and copied to all other trees')) ?>
+                    <?= $module->addmessage('save-options', 'success', true, I18N::translate('The options for this tree are succesfully saved')) ?>
+                    <?= $module->addmessage('reset-options', 'success', true, I18N::translate('The options for this tree are succesfully reset to the default settings')) ?>
+                    <?= $module->addmessage('copy-options', 'success', true, I18N::translate('The options for this tree are succesfully saved and copied to all other trees')) ?>
                     <div id="ftv-options-form" class="form-group">
                         <form class="form-horizontal" method="post" name="form5">
                             <!-- USE FULLNAME IN MENU -->
@@ -311,7 +312,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Use fullname in menu') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_FULLNAME]', $this->options('use_fullname'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[USE_FULLNAME]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('use-fullname')]) ?>
                                 </div>
                             </div>
                             <!-- GENERATION BLOCKS -->
@@ -320,7 +321,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Number of generation blocks to show') ?>
                                 </label>
                                 <div class="col-sm-4">
-                                    <?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[NUMBLOCKS]', [I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], null, $this->options('numblocks'), 'class="form-control"') ?>									</div>
+                                    <?= view('components/select', ['name' => 'NEW_FTV_OPTIONS[NUMBLOCKS]', 'selected' => $module->options('numblocks'), 'options' => [I18N::translate('All'), '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']]) ?>
+                                </div>
                                 <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                     <?= /* I18N: Help text for the “Number of generation blocks to show” configuration setting */ I18N::translate('This option is especially usefull for large trees. When you notice a slow page load, here you can set the number of generation blocks to load at once to a lower level. Below the last generation block a button will appear to add the next set of generation blocks. The new blocks will be added to the blocks already loaded. Clicking on a “follow” link in the last visible generation block, will also load the next set of generation blocks.') ?>
                                 </p>
@@ -331,7 +333,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Show singles') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_SINGLES]', $this->options('show_singles'), 'class="radio-inline"') ?>									</div>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[SHOW_SINGLES]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('show-singles')]) ?>
+                                </div>
                                 <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                     <?= /* I18N: Help text for the “Show singles” configuration setting */ I18N::translate('Turn this option on if you want to display singles in the next generation blocks. Singles are individuals without partner and children. With this option turned on, every child of a family will be displayed in a detailed way in the next generation block.') ?>
                                 </p>
@@ -342,7 +345,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Check relationship between partners') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', $this->options('check_relationship'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[CHECK_RELATIONSHIP]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('check-relationship')]) ?>
                                 </div>
                                 <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                     <?= /* I18N: Help text for the “Check relationship between partners” configuration setting */ I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.') ?></p>
@@ -356,29 +359,29 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Show places') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_PLACES]', $this->options('show_places'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[SHOW_PLACES]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('show-places')]) ?>
                                 </div>
                             </div>
                             <!-- USE GEDCOM PLACE SETTING -->
-                            <div id="gedcom_places" class="form-group<?php if (!$this->options('show_places')) echo ' collapse' ?>">
+                            <div id="gedcom_places" class="form-group<?php if (!$module->options('show-places')) echo ' collapse' ?>">
                                 <label class="control-label col-sm-4">
                                     <?= I18N::translate('Use default GEDCOM settings to abbreviate place names') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', $this->options('use_gedcom_places'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[USE_GEDCOM_PLACES]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('use-gedcom-places')]) ?>
                                 </div>
                                 <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                     <?= /* I18N: Help text for the “Use default GEDCOM settings to abbreviate place names” configuration setting */ I18N::translate('If you have ticked the “Show places” option, you can choose to use the default GEDCOM settings to abbreviate placenames. If you don’t set this option, full place names will be shown.') ?>
                                 </p>
                             </div>
                             <!-- GET COUNTRYLIST -->
-                            <?php if ($this->getCountrylist()): ?>
-                                <div id="country_list" class="form-group<?php if (!$this->options('show_places') || $this->options('use_gedcom_places')) echo ' collapse' ?>">
+                            <?php if ($module->getCountrylist()): ?>
+                                <div id="country_list" class="form-group<?php if (!$module->options('show-places') || $module->options('use-gedcom-places')) echo ' collapse' ?>">
                                     <label class="control-label col-sm-4">
                                         <?= I18N::translate('Select your country') ?>
                                     </label>
                                     <div class="col-sm-8">
-                                        <?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[COUNTRY]', $this->getCountryList(), '', $this->options('country'), 'class="form-control"') ?>
+                                        <?= view('components/select', ['name' => 'NEW_FTV_OPTIONS[COUNTRY]', 'selected' => $module->options('country'), 'options' => $module->getCountryList()]) ?>
                                     </div>
                                     <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                         <?= /* I18N: Help text for the “Select your country” configuration setting */ I18N::translate('If you have ticked the “Show places” option but NOT the option to abbreviate placenames, you can set your own country here. Full places will be listed on the Fancy Treeview pages, but when a place includes the name of your own country, this name will be left out. If you don’t select a country then all countries will be shown, including your own.') ?>
@@ -391,7 +394,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Show occupations') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[SHOW_OCCU]', $this->options('show_occu'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[SHOW_OCCU]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('show-occu')]) ?>
                                 </div>
                             </div>
                             <!-- RESIZE THUMBS -->
@@ -400,13 +403,13 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Resize thumbnails') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[RESIZE_THUMBS]', $this->options('resize_thumbs'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[CROP_THUMBS]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('crop-thumbs')]) ?>
                                 </div>
                                 <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                     <?= /* I18N: Help text for the “Resize thumbnails” configuration setting */ I18N::translate('Here you can choose to resize the default webtrees thumbnails especially for the Fancy Treeview pages. You can set a custom size in percentage or in pixels. If you choose “no” the default webtrees thumbnails will be used with the formats you have set on the tree configuration page.') ?>									</p>
                             </div>
                             <!-- THUMB SIZE -->
-                            <div id="thumb_size" class="form-group<?php if (!$this->options('resize_thumbs')) echo ' collapse' ?>">
+                            <div id="thumb_size" class="form-group<?php if (!$module->options('crop-thumbs')) echo ' collapse' ?>">
                                 <label class="control-label col-sm-4">
                                     <?= I18N::translate('Thumbnail size') ?>
                                 </label>
@@ -417,30 +420,9 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                             id="NEW_FTV_OPTIONS[THUMB_SIZE]"
                                             name="NEW_FTV_OPTIONS[THUMB_SIZE]"
                                             type="text"
-                                            value="<?= $this->options('thumb_size') ?>"
+                                            value="<?= $module->options('thumb-size') ?>"
                                             >
                                     </div>
-                                    <div class="col-sm-2">
-                                        <?= FunctionsEdit::selectEditControl('NEW_FTV_OPTIONS[THUMB_RESIZE_FORMAT]', ['1' => I18N::translate('percent'), '2' => I18N::translate('pixels')], null, $this->options('thumb_resize_format'), 'class="form-control"') ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- SQUARE THUMBS -->
-                            <div id="square_thumbs" class="form-group<?php if (!$this->options('resize_thumbs')) echo ' collapse' ?>">
-                                <label class="control-label col-sm-4">
-                                    <?= I18N::translate('Use square thumbnails') ?>
-                                </label>
-                                <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[USE_SQUARE_THUMBS]', $this->options('use_square_thumbs'), 'class="radio-inline"') ?>
-                                </div>
-                            </div>
-                            <!-- SHOW USERFORM -->
-                            <div class="form-group">
-                                <label class="control-label col-sm-4">
-                                    <?= I18N::translate('Show form to change start person') ?>
-                                </label>
-                                <div class="col-sm-4">
-                                    <?= FunctionsEdit::editFieldAccessLevel('NEW_FTV_OPTIONS[SHOW_USERFORM]', $this->options('show_userform'), 'class="form-control"') ?>
                                 </div>
                             </div>
                             <!-- SHOW FANCY TREEVIEW ON INDI PAGE -->
@@ -449,7 +431,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                     <?= I18N::translate('Show a Fancy Treeview tab on the individual page') ?>
                                 </label>
                                 <div class="col-sm-8">
-                                    <?= FunctionsEdit::editFieldYesNo('NEW_FTV_OPTIONS[FTV_TAB]', $this->options('ftv_tab'), 'class="radio-inline"') ?>
+                                    <?= view('components/radios-inline', ['name' => 'NEW_FTV_OPTIONS[FANCY_TREEVIEW_TAB]', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$module->options('fancy-treeview-tab')]) ?>
                                 </div>
                                 <p class="col-sm-8 col-sm-offset-4 small text-muted">
                                     <?= /* I18N: Help text for the “Show Fancy Treeview on Indi Page” configuration setting */ I18N::translate('If you enable this option, a Fancy Treeview tab with the title “Descendants” will be shown on the individual page. The tab will describe the current individual with his family and the next two generations (if there are any). If this individual has more descendants than the two generations shown, a link will be displayed to the full Fancy Treeview Page where this individual will be displayed with all his descendants.') ?>
@@ -467,7 +449,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                                         <?= I18N::translate('reset') ?>
                                     </button>
                                 </div>
-                                <?php if (count(Tree::getAll()) > 1): ?>
+                                <?php if (count($all_trees) > 1): ?>
                                     <div class="col-md-6 text-right">
                                         <button id="save-and-copy" name="copy-options" class="btn btn-primary" type="button">
                                             <i class="fa fa-check"></i>
