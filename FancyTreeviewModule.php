@@ -47,7 +47,7 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Statistics\Service\CountryService;
 use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleTabInterface, ModuleConfigInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleTabInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
     use ModuleGlobalTrait;
@@ -220,68 +220,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         } else {
             return [];
         }
-    }
-
-    /**
-     * @param ServerRequestInterface $request
-     *
-     * @return ResponseInterface
-     */
-    public function getAdminAction(ServerRequestInterface $request): ResponseInterface
-    {
-        $this->layout = 'layouts/administration';
-
-        $tree_id = $this->getPreference('last-tree-id', '');
-
-        try {
-            $tree = $this->tree_service->find((int)$tree_id);
-        } catch (Exception $ex) {
-            // the last tree saved doesn't exist anymore. Use the first tree instead.
-            $tree = $this->tree_service->all()->first();
-            $tree_id = $tree->id();
-
-            // remove settings from non existing tree from the database
-            DB::table('module_setting')
-                ->where('module_name', '=', $this->name())
-                ->where('setting_name', 'LIKE', '' . $this->getPreference('last-tree-id') . '-%' )
-                ->delete();
-
-            // reset the last tree id
-            $this->setPreference('last-tree-id', '');
-        }
-
-        return $this->viewResponse($this->name() . '::settings', [
-            'all_trees'     => $this->tree_service->all(),
-            'FTV_SETTINGS'  => unserialize($this->getPreference('FTV_SETTINGS')),
-            'module'        => $this,
-            'tree'          => $tree,
-            'title'         => $this->title(),
-            'tree_id'       => $tree_id,
-            'menu_title'    => $this->getPreference('menu-title'),
-            'page_title'    => $this->getPreference('page-title'),
-            'page_body'     => $this->getPreference('page-body'),
-        ]);
-    }
-
-    /**
-     * Save the user preference.
-     *
-     * @param ServerRequestInterface $request
-     *
-     * @return ResponseInterface
-     */
-    public function postAdminAction(ServerRequestInterface $request): ResponseInterface
-    {
-        $params = (array) $request->getParsedBody();
-
-        $this->setPreference('menu-title', $params['menu-title']);
-        $this->setPreference('page-title', $params['page-title']);
-        $this->setPreference('page-body', $params['page-body']);
-
-        $message = I18N::translate('The preferences for the module “%s” have been updated.', $this->title());
-        FlashMessages::addMessage($message, 'success');
-
-        return redirect($this->getConfigLink());
     }
 
     /**
@@ -1501,8 +1439,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return route(static::class, [
             'tree' => $tree->name(),
             'module' => str_replace("_", "", $this->name()),
-            'menu' => $this->getslug($this->getPreference('menu-title')),
-            'page' => $this->getslug($this->getPreference('page-title')),
+            'menu' => $this->getslug($this->getPreference('menu-title', 'Fancy Treeview')),
+            'page' => $this->getslug($this->getPreference('page-title', 'Fancy Treeview Pagina')),
             'pid' =>  $pid,
             'generations' => self::GENERATIONS
         ]);
