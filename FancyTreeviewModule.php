@@ -305,7 +305,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $limit       = 3;
 
         return view($this->name() . '::tab', [
-            'tab_content' => $this->printAncestorsPage($xref, $generations, $limit)
+            'tab_content' => $this->printDescendantsPage($xref, $generations, $limit)
         ]);
     }
 
