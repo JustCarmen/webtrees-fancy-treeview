@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace JustCarmen\Webtrees\Module\FancyTreeview;
 
-use Exception;
 use Fisharebest\Webtrees\Age;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Place;
@@ -22,13 +20,11 @@ use Illuminate\Support\Collection;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\GedcomRecord;
-use Fisharebest\Webtrees\FlashMessages;
 use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Services\TreeService;
-use Illuminate\Database\Capsule\Manager as DB;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
@@ -37,17 +33,14 @@ use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
-use Fisharebest\Webtrees\Module\ModuleMenuInterface;
-use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Statistics\Service\CountryService;
-use Fisharebest\Webtrees\Http\RequestHandlers\ModulesMenusAction;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleMenuInterface, ModuleTabInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
     use ModuleGlobalTrait;
@@ -71,10 +64,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     // Image cache dir
     private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
-
-    // Temporary module constants (temporary in test fase)
-    private const ROOT_ID = 'I1993';
-    private const GENERATIONS = 16;
 
     // Module variables
     public array $pids;
@@ -230,27 +219,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function defaultMenuOrder(): int
     {
         return 99;
-    }
-
-    /**
-     * TODO: MAKE THIS A MULTILEVEL MENU
-     *
-     * A menu, to be added to the main application menu.     *
-     *
-     * @param Tree $tree
-     *
-     * @return Menu|null
-     */
-    public function getMenu(Tree $tree): ?Menu
-    {
-        if ($tree === null) {
-            return '';
-        }
-
-        $menu_title = $this->getPreference('menu-title', 'Fancy Treeview');
-        $url = $this->getUrl($tree, self::ROOT_ID);
-
-        return new Menu($menu_title, e($url), 'jc-fancy-treeview-' . e(strtolower($menu_title)));
     }
 
     /**
@@ -1442,7 +1410,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'menu' => $this->getslug($this->getPreference('menu-title', 'Fancy Treeview')),
             'page' => $this->getslug($this->getPreference('page-title', 'Fancy Treeview Pagina')),
             'pid' =>  $pid,
-            'generations' => self::GENERATIONS
+            'generations' => self::MAXIMUM_GENERATIONS
         ]);
     }
 
