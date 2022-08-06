@@ -233,7 +233,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $generations    = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
 
         $page_title = $this->getPreference('page-title');
-        $page_body  = $this->printPage($pid, $generations);
+        $page_body  = $this->printAncestorsPage($pid, $generations);
 
         return $this->viewResponse($this->name() . '::page', [
             'tree'          => $this->tree,
@@ -298,7 +298,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $limit       = 3;
 
         return view($this->name() . '::tab', [
-            'tab_content' => $this->printPage($xref, $generations, $limit)
+            'tab_content' => $this->printAncestorsPage($xref, $generations, $limit)
         ]);
     }
 
@@ -339,7 +339,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    public function printPage(string $pid, int $generations, int $limit = 0): string
+    public function printDescendantsPage(string $pid, int $generations, int $limit = 0): string
     {
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
@@ -376,6 +376,62 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     $this->generation++;
                     $html .= $this->printGeneration();
                     unset($next_gen, $descendants, $pids);
+                }
+            } else {
+                return $html;
+            }
+        }
+
+        return $html;
+    }
+
+     /**
+     * Print the Fancy Treeview page without the paging option as in webtrees 1
+     * We will implement that later
+     *
+     * @param string $pid
+     * @param int $generations
+     *
+     * @return string
+     */
+    public function printAncestorsPage(string $pid, int $generations, int $limit = 0): string
+    {
+        $this->generation = 1;
+        $root_pid         = $pid; // save value for read more link
+        $this->pids       = [$pid];
+
+        // check root access
+        $this->checkRootAccess($root_pid);
+
+        $html = $this->printGeneration();
+
+        while (count($this->pids) > 0 && $this->generation < $generations) {
+            $pids = $this->pids;
+            unset($this->pids); // empty the array (will be filled with the next generation)
+
+            foreach ($pids as $pid) {
+                $person  = $this->getPerson($pid);
+                $parents = $person->childFamilies()->first();;
+                if ($parents) {
+                    $father     = $parents->husband();
+                    $mother     = $parents->wife();
+                    if ($father) {
+                        $this->pids[] = $father->xref();
+                    }
+                    if ($mother) {
+                        $this->pids[] = $mother->xref();
+                    }
+                }
+            }
+
+            if (!empty($this->pids)) {
+                if ($this->generation === $limit) {
+                    $html .= $this->printReadMoreLink($root_pid, 'anc');
+                    return $html;
+                } else {
+                    $this->generation++;
+                    $html .= $this->printGeneration();
+                    unset($prev_gen, $ancestors, $pids);
                 }
             } else {
                 return $html;
