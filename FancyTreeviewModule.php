@@ -49,7 +49,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleConfigTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{menu}/{page}/{pid}/{generations}';
+    protected const ROUTE_URL = '/tree/{tree}/{module}/{page}/{pid}/{generations}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -60,7 +60,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     // Limits
     protected const MINIMUM_GENERATIONS = 2;
-    protected const MAXIMUM_GENERATIONS = 25;
+    protected const MAXIMUM_GENERATIONS = 20;
 
     // Image cache dir
     private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
@@ -1407,7 +1407,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return route(static::class, [
             'tree' => $tree->name(),
             'module' => str_replace("_", "", $this->name()),
-            'menu' => $this->getslug($this->getPreference('menu-title', 'Fancy Treeview')),
             'page' => $this->getslug($this->getPreference('page-title', 'Fancy Treeview Pagina')),
             'pid' =>  $pid,
             'generations' => self::MAXIMUM_GENERATIONS
