@@ -49,7 +49,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleConfigTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{page}/{pid}/{generations}';
+    protected const ROUTE_URL = '/tree/{tree}/{module}/{page}/{type}/{pid}/{generations}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -69,6 +69,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public array $pids;
     public int $generation;
     public int $index;
+    public string $type; // 'des' or 'anc'
 
     private Tree $tree;
     private CountryService $country_service;
@@ -231,9 +232,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->tree     = Validator::attributes($request)->tree();
         $pid            = Validator::attributes($request)->string('pid');
         $generations    = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
+        $this->type     = Validator::attributes($request)->string('type');
 
         $page_title = $this->getPreference('page-title');
-        $page_body  = $this->printAncestorsPage($pid, $generations);
+
+        if ($this->type === 'anc') {
+            $page_body  = $this->printAncestorsPage($pid, $generations);
+        } else {
+            $page_body  = $this->printDescendantsPage($pid, $generations);
+        }
 
         return $this->viewResponse($this->name() . '::page', [
             'tree'          => $this->tree,
@@ -344,6 +351,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
         $this->pids       = [$pid];
+        $this->type       = 'des';
 
         // check root access
         $this->checkRootAccess($root_pid);
@@ -399,6 +407,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
         $this->pids       = [$pid];
+        $this->type       = 'anc';
 
         // check root access
         $this->checkRootAccess($root_pid);
@@ -426,7 +435,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             if (!empty($this->pids)) {
                 if ($this->generation === $limit) {
-                    $html .= $this->printReadMoreLink($root_pid, 'anc');
+                    $html .= $this->printReadMoreLink($root_pid);
                     return $html;
                 } else {
                     $this->generation++;
@@ -503,49 +512,52 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             $html .= $this->printParents($person) . $this->printLifespan($person) . '.</p>';
 
-            $html .= '</div></div><div class="jc-spouse-block">';
+            $html .= '</div></div>';
 
-            // get a list of all the spouses
-            /*
-			 * First, determine the true number of spouses by checking the family gedcom
-			 */
-            $spousecount = 0;
-            foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
-                $spouse = $family->spouse($person);
-                if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
-                    $spousecount++;
-                }
-            }
-            /*
-			 * Now iterate thru spouses
-			 * $spouseindex is used for ordinal rather than array index
-			 * as not all families have a spouse
-			 * $spousecount is passed rather than doing each time inside function get_spouse
-			 */
-            if ($spousecount > 0) {
-                $spouseindex = 0;
+            if ($this->type === 'des') {
+                $html .= '<div class="jc-spouse-block">';
+
+                // get a list of all the spouses
+                /*
+                * First, determine the true number of spouses by checking the family gedcom
+                */
+                $spousecount = 0;
                 foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
                     $spouse = $family->spouse($person);
-                    if ($spouse && $spouse->canShow()) {
-                        if ($this->getMarriage($family)) {
-                            $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
-                            $spouseindex++;
-                        } else {
-                            $html .= $this->printPartner($family, $person, $spouse);
+                    if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
+                        $spousecount++;
+                    }
+                }
+                /*
+                * Now iterate thru spouses
+                * $spouseindex is used for ordinal rather than array index
+                * as not all families have a spouse
+                * $spousecount is passed rather than doing each time inside function get_spouse
+                */
+                if ($spousecount > 0) {
+                    $spouseindex = 0;
+                    foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
+                        $spouse = $family->spouse($person);
+                        if ($spouse && $spouse->canShow()) {
+                            if ($this->getMarriage($family)) {
+                                $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
+                                $spouseindex++;
+                            } else {
+                                $html .= $this->printPartner($family, $person, $spouse);
+                            }
                         }
                     }
                 }
+
+                $html .= '</div></div>';
+
+                // get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
+                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
+                    $spouse = $family->spouse($person);
+
+                    $html .= $this->printChildren($family, $person, $spouse);
+                }
             }
-
-            $html .= '</div></div>';
-
-            // get children for each couple (could be none or just one, $spouse could be empty, includes children of non-married couples)
-            foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
-                $spouse = $family->spouse($person);
-
-                $html .= $this->printChildren($family, $person, $spouse);
-            }
-
             return $html;
         } else {
             if ($person->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
@@ -1465,6 +1477,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'module' => str_replace("_", "", $this->name()),
             'page' => $this->getslug($this->getPreference('page-title', 'Fancy Treeview Pagina')),
             'pid' =>  $pid,
+            'type' => $this->type,
             'generations' => self::MAXIMUM_GENERATIONS
         ]);
     }
