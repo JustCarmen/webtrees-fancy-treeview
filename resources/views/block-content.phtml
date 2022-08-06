@@ -10,6 +10,14 @@ use Fisharebest\Webtrees\I18N;
     </div>
 <?php else : ?>
     <ol class="jc-generation-block-content list-unstyled">
+        <?php if ($module->type === 'anc' && $module->generation > 1): ?>
+            <div class="mb-3 small fst-italic">
+                <?= count($pids) . ' ' . I18N::translate('of') . ' ' .
+                    I18N::number(pow(2, $module->generation - 1)) . ' ' . strtolower(I18N::translate('Individuals')) .
+                    ' (' . I18N::percentage(count($pids) / pow(2, $module->generation - 1), 2) . ').'
+                ?>
+            </div>
+        <?php endif ?>
         <?php foreach (array_unique($pids) as $pid) : ?>
             <?php $person = $module->getPerson($pid) ?>
             <?php if (!$module->hasParentsInSameGeneration($person)) : ?>
