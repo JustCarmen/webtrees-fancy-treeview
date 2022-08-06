@@ -1425,48 +1425,4 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         return preg_replace('/\s+/', '-', strtolower(preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($string))));
     }
-
-    /**
-	 * Search within a multiple dimensional array
-     *
-	 * @param mixed $array
-	 * @param mixed $key
-	 * @param mixed $value
-	 *
-	 * @return [type]
-	 */
-	public function searchArray($array, $key, $value) {
-		$results = [];
-		if (is_array($array)) {
-			if (isset($array[$key]) && $array[$key] == $value) {
-				$results[] = $array;
-			}
-			foreach ($array as $subarray) {
-				$results = array_merge($results, $this->searchArray($subarray, $key, $value));
-			}
-		}
-		return $results;
-	}
-
-    /**
-	 * Since we can't use Flashmessages here, use our own message system
-     *
-	 * @param mixed $id
-	 * @param mixed $type
-	 * @param mixed $hidden
-	 * @param string $message
-	 *
-	 * @return [type]
-	 */
-	public function addMessage($id, $type, $hidden, $message = '') {
-		$style = $hidden ? ' style="display:none"' : '';
-
-        return
-            '<div id="' . $id . '" class="alert alert-' . $type . ' alert-dismissible"' . $style . '>' .
-            '<button type="button" class="close" aria-label="' . I18N::translate('close') . '">' .
-            '<span aria-hidden="true">&times;</span>' .
-            '</button>' .
-            '<span class="message">' . $message . '</span>' .
-            '</div>';
-	}
 };
