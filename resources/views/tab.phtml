@@ -1,3 +1,34 @@
+<?php
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
+
+?>
+
 <div id="jc-fancy-treeview-page" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1">
-    <ol class="jc-fancy-treeview-page-body"><?= $tab_content ?></ol>
+    <button id="jc-fancy-treeview-btn-descendants" class="btn btn-secondary collapse" type="button">
+        <?= I18N::translate('Show descendants') ?>
+    </button>
+    <button id="jc-fancy-treeview-btn-ancestors" class="btn btn-secondary collapse show" type="button" data-bs-toggle="collapse" data-bs-target="#jc-fancy-treeview-ancestors" aria-expanded="false" aria-controls="collapseExample">
+        <?= I18N::translate('Show ancestors') ?>
+    </button>
+    <ol id="jc-fancy-treeview-descendants" class="jc-fancy-treeview-page-body collapse show"><?= $tab_content_descendants ?></ol>
+    <ol id="jc-fancy-treeview-ancestors" class="jc-fancy-treeview-page-body collapse"><?= $tab_content_ancestors ?></ol>
 </div>
+
+<?php View::push('javascript') ?>
+<script>
+    $('#jc-fancy-treeview-btn-ancestors').on('click', function() {
+        $(this).removeClass('show');
+        $('#jc-fancy-treeview-descendants').removeClass('show');
+        $('#jc-fancy-treeview-btn-descendants, #jc-fancy-treeview-ancestors').addClass('show');
+    });
+
+    $('#jc-fancy-treeview-btn-descendants').on('click', function() {
+        $(this).removeClass('show');
+        $('#jc-fancy-treeview-ancestors').removeClass('show');
+        $('#jc-fancy-treeview-btn-ancestors, #jc-fancy-treeview-descendants').addClass('show');
+    });
+
+</script>
+<?php View::endpush() ?>
