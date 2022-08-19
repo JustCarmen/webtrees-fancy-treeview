@@ -69,7 +69,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public array $pids;
     public int $generation;
     public int $index;
-    public string $type; // 'des' or 'anc'
+    public string $type; // 'descendants' or 'ancestors'
 
     private Tree $tree;
     private CountryService $country_service;
@@ -236,7 +236,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         $page_title = $this->getPreference('page-title');
 
-        if ($this->type === 'anc') {
+        if ($this->type === 'ancestors') {
             $page_body  = $this->printAncestorsPage($pid, $generations);
         } else {
             $page_body  = $this->printDescendantsPage($pid, $generations);
@@ -323,7 +323,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'use-fullname'          => '0',
             'numblocks'             => '0',
             'check-relationship'    => '0',
-            'show-singles'          => '0',
+            'show-singles'          => '1',
             'show-places'           => '1',
             'use-gedcom-places'     => '0',
             'country'               => '',
@@ -369,7 +369,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             foreach ($next_gen as $descendants) {
                 if (count($descendants) > 0) {
                     foreach ($descendants as $descendant) {
-                        if ((bool) $this->options('show-singles') || (bool) $descendant['desc']) {
+                        if ((bool) $this->options('show-singles') || (bool) $descendant['descendants']) {
                             $this->pids[] = $descendant['pid'];
                         }
                     }
@@ -407,7 +407,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
         $this->pids       = [$pid];
-        $this->type       = 'anc';
+        $this->type       = 'ancestors';
 
         // check root access
         $this->checkRootAccess($root_pid);
@@ -1242,7 +1242,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     $key              = $family->xref() . '-' . $key; // be sure the index number is unique.
                     $ng[$key]['pid']  = $child->xref();
                     // does this child have descendants?
-                    $ng[$key]['desc'] = count($child->spouseFamilies(Auth::PRIV_HIDE)) > 0;
+                    $ng[$key]['descendants'] = count($child->spouseFamilies(Auth::PRIV_HIDE)) > 0;
                 }
             }
         }
@@ -1470,14 +1470,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    private function getUrl(Tree $tree, string $pid): string
+    private function getUrl(Tree $tree, string $pid, string $type = ''): string
     {
+        if ($type === '') {
+            $type = $this->type;
+        }
+
         return route(static::class, [
             'tree' => $tree->name(),
             'module' => str_replace("_", "", $this->name()),
             'page' => $this->getslug($this->getPreference('page-title', 'Fancy Treeview Pagina')),
             'pid' =>  $pid,
-            'type' => $this->type,
+            'type' => $type,
             'generations' => self::MAXIMUM_GENERATIONS
         ]);
     }
