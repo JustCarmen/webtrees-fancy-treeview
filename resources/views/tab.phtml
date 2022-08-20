@@ -6,13 +6,16 @@ use Fisharebest\Webtrees\View;
 ?>
 
 <div id="jc-fancy-treeview-page" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1">
-    <div class="d-flex justify-content-end">
-        <button id="jc-fancy-treeview-btn-descendants" class="btn btn-primary collapse" type="button">
-            <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants')) ?>
-        </button>
-        <button id="jc-fancy-treeview-btn-ancestors" class="btn btn-primary collapse show" type="button">
-        <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors')) ?>
-        </button>
+    <div class="d-flex">
+        <h2 class="wt-page-title justify-content-start"><?= $tab_page_title ?></h2>
+        <div class="justify-content-end">
+            <button id="jc-fancy-treeview-btn-descendants" class="btn btn-primary collapse" type="button">
+                <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants')) ?>
+            </button>
+            <button id="jc-fancy-treeview-btn-ancestors" class="btn btn-primary collapse show" type="button">
+            <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors')) ?>
+            </button>
+        </div>
     </div>
     <ol id="jc-fancy-treeview-descendants" class="jc-fancy-treeview-page-body collapse show"><?= $tab_content_descendants ?></ol>
     <ol id="jc-fancy-treeview-ancestors" class="jc-fancy-treeview-page-body collapse"><?= $tab_content_ancestors ?></ol>
