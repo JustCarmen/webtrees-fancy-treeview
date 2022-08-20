@@ -49,7 +49,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleConfigTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{page}/{type}/{pid}/{generations}';
+    protected const ROUTE_URL = '/tree/{tree}/{module}/{pid}/{page}/{type}/{generations}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -234,7 +234,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $generations    = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
         $this->type     = Validator::attributes($request)->string('type');
 
-        $page_title = $this->getPreference('page-title');
+        $page_title     = $this->printPageTitle($this->getPerson($pid), $this->type);
 
         if ($this->type === 'ancestors') {
             $page_body  = $this->printAncestorsPage($pid, $generations);
@@ -305,14 +305,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $limit       = 3;
 
         return view($this->name() . '::tab', [
-            'tab_content_descendants'   => $this->printDescendantsPage($xref, $generations, $limit),
-            'tab_content_ancestors'     => $this->printAncestorsPage($xref, $generations, $limit)
+            'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
+            'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
+            'tab_content_descendants'       => $this->printDescendantsPage($xref, $generations, $limit),
+            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $generations, $limit)
         ]);
     }
 
     /**
      * Set the default options.
      * This is php-8 code. We should have an alternative for php 7.4 users.
+     * TODO ADD DEFAULT TYPE (DESCENDANTS OR ANCESTORS)
      *
      * @param string $option
      *
@@ -352,7 +355,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
         $this->pids       = [$pid];
-        $this->type       = 'des';
+        $this->type       = 'descendants';
 
         // check root access
         $this->checkRootAccess($root_pid);
@@ -451,6 +454,22 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $html;
     }
 
+     /**
+     * Print page/tab title
+     *
+     * @param Individual $person
+     *
+     * @return string
+     */
+    protected function printPageTitle(Individual $person, string $type): string
+    {
+        if ($type === 'ancestors') {
+            return I18N::translate('Ancestors of %s', $person->fullName());
+        } else {
+            return I18N::translate('Descendants of %s', $person->fullName());
+        }
+    }
+
     /**
      * Print a generation
      *
@@ -515,7 +534,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             $html .= '</div></div>';
 
-            if ($this->type === 'des') {
+            if ($this->type === 'descendants') {
                 $html .= '<div class="jc-spouse-block">';
 
                 // get a list of all the spouses
@@ -1478,12 +1497,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
 
         return route(static::class, [
-            'tree' => $tree->name(),
-            'module' => str_replace("_", "", $this->name()),
-            'page' => $this->getslug($this->getPreference('page-title', 'Fancy Treeview Pagina')),
-            'pid' =>  $pid,
-            'type' => $type,
-            'generations' => self::MAXIMUM_GENERATIONS
+            'tree'          => $tree->name(),
+            'module'        => str_replace("_", "", $this->name()),
+            'page'          => $this->getslug(strip_tags($this->printName($this->getPerson($pid)))),
+            'pid'           =>  $pid,
+            'type'          => $type,
+            'generations'   => self::MAXIMUM_GENERATIONS
         ]);
     }
 
