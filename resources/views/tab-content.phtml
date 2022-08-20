@@ -1,0 +1,15 @@
+<?php
+
+use Fisharebest\Webtrees\I18N;
+
+?>
+
+<div class="d-flex">
+    <h3 class="wt-page-title justify-content-start"><?= $tab_page_title ?></h3>
+    <div class="justify-content-end">
+        <button class="jc-fancy-treeview-toggle-button btn btn-primary" type="button">
+            <?= I18N::translate('Show') . ' ' . I18N::translate($tab_type_title) ?>
+        </button>
+    </div>
+</div>
+<ol class="jc-fancy-treeview-page-body"><?= $tab_content ?></ol>

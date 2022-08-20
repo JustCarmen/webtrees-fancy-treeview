@@ -1,32 +1,23 @@
 <?php
 
-use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 
 ?>
 
 <div id="jc-fancy-treeview-tab-descendants" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse show">
-    <div class="d-flex">
-        <h3 class="wt-page-title justify-content-start"><?= $tab_page_title_descendants ?></h3>
-        <div class="justify-content-end">
-            <button class="jc-fancy-treeview-toggle-button btn btn-primary" type="button">
-                <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors')) ?>
-            </button>
-        </div>
-    </div>
-    <ol class="jc-fancy-treeview-page-body"><?= $tab_content_descendants ?></ol>
+    <?= View($module->name() . '::tab-content', [
+        'tab_type_title' => 'Descendants',
+        'tab_page_title' => $tab_page_title_descendants,
+        'tab_content'    => $tab_content_descendants
+    ]) ?>
 </div>
 
 <div id="jc-fancy-treeview-tab-ancestors" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse">
-    <div class="d-flex">
-        <h3 class="wt-page-title justify-content-start"><?= $tab_page_title_ancestors ?></h3>
-        <div class="justify-content-end">
-            <button class="jc-fancy-treeview-toggle-button btn btn-primary" type="button">
-                <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants')) ?>
-            </button>
-        </div>
-    </div>
-    <ol class="jc-fancy-treeview-page-body"><?= $tab_content_ancestors ?></ol>
+    <?= View($module->name() . '::tab-content', [
+        'tab_type_title' => 'Ancestors',
+        'tab_page_title' => $tab_page_title_ancestors,
+        'tab_content'    => $tab_content_ancestors
+    ]) ?>
 </div>
 
 <?php View::push('javascript') ?>
