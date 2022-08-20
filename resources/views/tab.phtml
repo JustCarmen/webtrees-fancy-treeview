@@ -5,36 +5,34 @@ use Fisharebest\Webtrees\View;
 
 ?>
 
-<div id="jc-fancy-treeview-page" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1">
+<div id="jc-fancy-treeview-tab-descendants" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse show">
     <div class="d-flex">
-        <h3 id="jc-fancy-treeview-title-ancestors" class="wt-page-title justify-content-start collapse"><?= $tab_page_title_ancestors ?></h3>
-        <h3 id="jc-fancy-treeview-title-descendants" class="wt-page-title justify-content-start collapse show"><?= $tab_page_title_descendants ?></h3>
+        <h3 class="wt-page-title justify-content-start"><?= $tab_page_title_descendants ?></h3>
         <div class="justify-content-end">
-            <button id="jc-fancy-treeview-btn-descendants" class="btn btn-primary collapse" type="button">
-                <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants')) ?>
-            </button>
-            <button id="jc-fancy-treeview-btn-ancestors" class="btn btn-primary collapse show" type="button">
-            <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors')) ?>
+            <button class="jc-fancy-treeview-toggle-button btn btn-primary" type="button">
+                <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors')) ?>
             </button>
         </div>
     </div>
-    <ol id="jc-fancy-treeview-descendants" class="jc-fancy-treeview-page-body collapse show"><?= $tab_content_descendants ?></ol>
-    <ol id="jc-fancy-treeview-ancestors" class="jc-fancy-treeview-page-body collapse"><?= $tab_content_ancestors ?></ol>
+    <ol class="jc-fancy-treeview-page-body"><?= $tab_content_descendants ?></ol>
+</div>
+
+<div id="jc-fancy-treeview-tab-ancestors" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse">
+    <div class="d-flex">
+        <h3 class="wt-page-title justify-content-start"><?= $tab_page_title_ancestors ?></h3>
+        <div class="justify-content-end">
+            <button class="jc-fancy-treeview-toggle-button btn btn-primary" type="button">
+                <?= I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants')) ?>
+            </button>
+        </div>
+    </div>
+    <ol class="jc-fancy-treeview-page-body"><?= $tab_content_ancestors ?></ol>
 </div>
 
 <?php View::push('javascript') ?>
 <script>
-    $('#jc-fancy-treeview-btn-ancestors').on('click', function() {
-        $(this).removeClass('show');
-        $(' #jc-fancy-treeview-title-descendants, #jc-fancy-treeview-descendants').removeClass('show');
-        $('#jc-fancy-treeview-btn-descendants, #jc-fancy-treeview-title-ancestors, #jc-fancy-treeview-ancestors').addClass('show');
+    $('.jc-fancy-treeview-toggle-button').on('click', function() {
+        $('#jc-fancy-treeview-tab-ancestors, #jc-fancy-treeview-tab-descendants').toggleClass('show');
     });
-
-    $('#jc-fancy-treeview-btn-descendants').on('click', function() {
-        $(this).removeClass('show');
-        $('#jc-fancy-treeview-title-ancestors, #jc-fancy-treeview-ancestors').removeClass('show');
-        $('#jc-fancy-treeview-btn-ancestors, #jc-fancy-treeview-title-descendants, #jc-fancy-treeview-descendants').addClass('show');
-    });
-
 </script>
 <?php View::endpush() ?>
