@@ -317,7 +317,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Set the default options.
      * This is php-8 code. We should have an alternative for php 7.4 users.
-     * TODO ADD DEFAULT TYPE (DESCENDANTS OR ANCESTORS)
      *
      * @param string $option
      *
