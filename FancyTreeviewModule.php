@@ -249,8 +249,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $this->viewResponse($this->name() . '::page', [
             'tree'              => $this->tree,
             'title'             => $this->title(),
-            'module'            => $this->name(),
-            'is_admin'          => Auth::isAdmin(),
             'page_title'        => $page_title,
             'page_body'         => $page_body,
             'button_url'        => $button_url,
