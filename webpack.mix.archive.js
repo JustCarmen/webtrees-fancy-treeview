@@ -6,8 +6,6 @@
  *
  */
 
-const version = "2.0.13";
-
 let mix = require('laravel-mix');
 let config = require('./webpack.mix.config');
 
@@ -21,7 +19,7 @@ mix.webpackConfig({
                 onEnd: {
                     archive: [{
                         source: './dist',
-                        destination: 'dist/jc-fancy-imagebar-' + config.version + '.zip'
+                        destination: 'dist/jc-fancy-treeview-' + config.version + '.zip'
                     }]
                 }
             }
