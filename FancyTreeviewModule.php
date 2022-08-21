@@ -329,12 +329,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function options(string $option): string
     {
         $default = match ($option) {
-            'use-fullname'          => '0',
-            'numblocks'             => '0',
-            'check-relationship'    => '0',
+            'check-relationship'    => '1',
             'show-singles'          => '1',
             'show-places'           => '1',
-            'use-gedcom-places'     => '0',
+            'use-gedcom-places'     => '1',
             'country'               => '',
             'show-occu'             => '1',
             'thumb-size'            => '80',
