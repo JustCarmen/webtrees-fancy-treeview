@@ -237,18 +237,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $page_title     = $this->printPageTitle($this->getPerson($pid), $this->type);
 
         if ($this->type === 'ancestors') {
-            $page_body  = $this->printAncestorsPage($pid, $generations);
+            $page_body   = $this->printAncestorsPage($pid, $generations);
+            $button_url  = $this->getUrl($this->tree, $pid, 'descendants');
+            $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
         } else {
-            $page_body  = $this->printDescendantsPage($pid, $generations);
+            $page_body   = $this->printDescendantsPage($pid, $generations);
+            $button_url  = $this->getUrl($this->tree, $pid, 'ancestors');
+            $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors'));
         }
 
         return $this->viewResponse($this->name() . '::page', [
-            'tree'          => $this->tree,
-            'title'         => $this->title(),
-            'module'        => $this->name(),
-            'is_admin'      => Auth::isAdmin(),
-            'page_title'    => $page_title,
-            'page_body'     => $page_body
+            'tree'              => $this->tree,
+            'title'             => $this->title(),
+            'module'            => $this->name(),
+            'is_admin'          => Auth::isAdmin(),
+            'page_title'        => $page_title,
+            'page_body'         => $page_body,
+            'button_url'        => $button_url,
+            'button_text'       => $button_text
         ]);
     }
 
