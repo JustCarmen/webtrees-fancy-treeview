@@ -328,7 +328,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $default = match ($option) {
             'check-relationship'    => '1',
             'show-singles'          => '1',
-            'show-occu'             => '1',
             'thumb-size'            => '80',
             'crop-thumbs'           => '0',
             'media-type-photo'      => '1', // new option (boolean)
@@ -522,9 +521,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             $html .= '<div class="jc-person-block-text"><p>' . $this->printNameUrl($person, $person->xref());
 
-            if ((bool) $this->options('show-occu')) {
-                $html .= $this->printOccupations($person);
-            }
+            $html .= $this->printOccupations($person);
 
             $html .= $this->printParents($person) . $this->printLifespan($person) . '.</p>';
 
