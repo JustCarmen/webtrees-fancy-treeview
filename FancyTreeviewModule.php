@@ -38,7 +38,6 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
-use Fisharebest\Webtrees\Statistics\Service\CountryService;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, RequestHandlerInterface
 {
@@ -72,7 +71,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public string $type; // 'descendants' or 'ancestors'
 
     private Tree $tree;
-    private CountryService $country_service;
     private RelationshipService $relationship_service;
     private TreeService $tree_service;
 
@@ -81,9 +79,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @param RelationshipService $relationship_service
      */
-    public function __construct(CountryService $country_service, RelationshipService $relationship_service, TreeService $tree_service)
+    public function __construct(RelationshipService $relationship_service, TreeService $tree_service)
     {
-        $this->country_service = $country_service;
         $this->relationship_service = $relationship_service;
         $this->tree_service = $tree_service;
     }
@@ -331,9 +328,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $default = match ($option) {
             'check-relationship'    => '1',
             'show-singles'          => '1',
-            'show-places'           => '1',
-            'use-gedcom-places'     => '1',
-            'country'               => '',
             'show-occu'             => '1',
             'thumb-size'            => '80',
             'crop-thumbs'           => '0',
@@ -1187,21 +1181,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printPlace(Fact $fact): ?string
     {
         $place = $fact->attribute('PLAC');
-        if ($place && (bool) $this->options('show-places')) {
-            $place     = new Place($place, $this->tree);
-            $html     = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
-            if ((bool) $this->options('use-gedcom-places')) {
-                $html .= $place->shortName();
-            } else {
-                $country     = $this->options('country');
-                $new_place     = array_reverse(explode(", ", $place->gedcomName()));
-                if (!empty($country) && $new_place[0] == $country) {
-                    unset($new_place[0]);
-                    $html .= '<span dir="auto">' . e(implode(', ', array_reverse($new_place))) . '</span>';
-                } else {
-                    $html .= $place->fullName();
-                }
-            }
+        if ($place) {
+            $place = new Place($place, $this->tree);
+            $html  = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
+            $html .= $place->fullName();
+
             return $html;
         }
 
@@ -1470,19 +1454,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
         }
         return $pedi;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCountryList(): array
-    {
-        $all_countries = $this->country_service->getAllCountries();
-        foreach ($all_countries as $country_name) {
-            $country_names[$country_name] = $country_name; // set the country name as key to display as option value
-        }
-
-        return $country_names;
     }
 
     /**
