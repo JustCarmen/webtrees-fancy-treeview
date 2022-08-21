@@ -254,6 +254,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
+     * The text that appears on the tab.
+     *
+     * @return string
+     */
+    public function tabTitle(): string
+    {
+        return I18N::translate('Descendants') . ' ' . I18N::translate('and') . ' ' . strtolower(I18N::translate('Ancestors'));
+    }
+
+    /**
      * Is this tab empty? If so, we don't always need to display it.
      *
      * @param Individual $individual
