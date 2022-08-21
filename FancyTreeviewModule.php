@@ -265,7 +265,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function hasTabContent(Individual $individual): bool
     {
-        return (bool) $this->options('fancy-treeview-tab');
+        return true;
     }
 
     /**
@@ -338,7 +338,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb-size'            => '80',
             'crop-thumbs'           => '0',
             'media-type-photo'      => '1', // new option (boolean)
-            'fancy-treeview-tab'    => '1'
         };
 
         return $this->getPreference($option, $default);
