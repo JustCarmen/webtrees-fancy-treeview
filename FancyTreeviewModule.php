@@ -523,7 +523,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $html .= '<div class="jc-person-block d-flex col">';
 
             $html .= '<div class="jc-person-block-image mt-1 mb-3">';
-            if ($person->findHighlightedMediaFile() !== null && (bool) $this->options('media-type-photo') ? $person->findHighlightedMediaFile()->type() === 'photo' : $person->findHighlightedMediaFile()) {
+            if ($person->findHighlightedMediaFile() !== null && (bool) $this->options('media-type-photo') ? strcasecmp($person->findHighlightedMediaFile()->type(), 'photo') === 0 : $person->findHighlightedMediaFile()) {
                 $html .= $person->displayImage((int) $this->options('thumb-size'), (int) $this->options('thumb-size'), (bool) $this->options('crop-thumbs') ? 'crop' : 'contain', ['class' => 'jc-ftv-thumbnail']);
             }
             $html .= '</div>';
