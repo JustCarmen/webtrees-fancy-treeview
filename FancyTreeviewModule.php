@@ -47,7 +47,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleConfigTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{pid}/{page}/{type}/{generations}';
+    protected const ROUTE_URL = '/tree/{tree}/{module}/{pid}/{name}/{type}/{generations}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -1475,7 +1475,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return route(static::class, [
             'tree'          => $tree->name(),
             'module'        => str_replace("_", "", $this->name()),
-            'page'          => $this->getslug(strip_tags($this->printName($this->getPerson($pid)))),
+            'name'          => $this->getslug(strip_tags($this->printName($this->getPerson($pid)))),
             'pid'           =>  $pid,
             'type'          => $type,
             'generations'   => self::MAXIMUM_GENERATIONS
