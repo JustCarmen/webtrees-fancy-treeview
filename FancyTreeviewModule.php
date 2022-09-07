@@ -24,7 +24,6 @@ use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
@@ -72,17 +71,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     private Tree $tree;
     private RelationshipService $relationship_service;
-    private TreeService $tree_service;
 
     /**
      * Fancy Treeview constructor.
      *
      * @param RelationshipService $relationship_service
      */
-    public function __construct(RelationshipService $relationship_service, TreeService $tree_service)
+    public function __construct(RelationshipService $relationship_service)
     {
         $this->relationship_service = $relationship_service;
-        $this->tree_service = $tree_service;
     }
 
     /**
