@@ -22,6 +22,14 @@ use Fisharebest\Webtrees\View;
     <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $pid, 'ancestors')]); ?>
 </div>
 
+<?php View::push('styles') ?>
+<style>
+    ol.jc-fancy-treeview-page-body {
+        counter-reset: first-level;
+    }
+</style>
+<?php View::endpush() ?>
+
 <?php View::push('javascript') ?>
 <script>
     $('.jc-fancy-treeview-toggle-button').on('click', function() {

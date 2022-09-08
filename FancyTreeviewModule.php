@@ -258,7 +258,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'button_text'       => $button_text,
             'current_page'      => $page,
             'total_pages'       => $total_pages,
-            'pid'               => $pid,
+            'limit'             => $limit,
             'module'            => $this
         ]);
     }

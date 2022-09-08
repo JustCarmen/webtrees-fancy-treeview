@@ -16,10 +16,6 @@
 }
 
 /* Fancy Treeview List */
-ol.jc-fancy-treeview-page-body {
-  counter-reset: first-level;
-}
-
 .jc-fancy-treeview-page li {
   position: relative;
   display: block;

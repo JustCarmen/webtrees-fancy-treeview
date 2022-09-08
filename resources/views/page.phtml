@@ -1,6 +1,6 @@
 <?php
 
-use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
 
 ?>
 
@@ -19,3 +19,11 @@ use Fisharebest\Webtrees\I18N;
             'total_pages'   => $total_pages
         ]) ?>
 </div>
+
+<?php View::push('styles') ?>
+<style>
+    ol.jc-fancy-treeview-page-body {
+        counter-set: first-level <?= (int) ($current_page - 1) * $limit ?>;
+    }
+</style>
+<?php View::endpush() ?>

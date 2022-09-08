@@ -1,10 +1,4 @@
 /* Fancy Treeview List */
-ol {
-    &.jc-fancy-treeview-page-body {
-        counter-reset: first-level;
-    }
-}
-
 li {
     .jc-fancy-treeview-page & {
         position: relative;
