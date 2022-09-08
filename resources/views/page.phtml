@@ -11,13 +11,16 @@ use Fisharebest\Webtrees\View;
     </div>
     <h2 class="wt-page-title"><?= $page_title ?></h2>
     <ol class="jc-fancy-treeview-page-body list-unstyled"><?= $page_body ?></ol>
-    <?= View($module->name() . '::pagination', [
-            'tree'          => $tree,
-            'module'        => $module,
-            'pid'           => $pid,
-            'current_page'  => $current_page,
-            'total_pages'   => $total_pages
-        ]) ?>
+
+    <?php if ($generations > $limit): ?>
+        <?= View($module->name() . '::pagination', [
+                'tree'          => $tree,
+                'module'        => $module,
+                'pid'           => $pid,
+                'current_page'  => $current_page,
+                'total_pages'   => $total_pages
+            ]) ?>
+    <?php endif ?>
 </div>
 
 <?php View::push('styles') ?>

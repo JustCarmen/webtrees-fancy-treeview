@@ -10,7 +10,9 @@ use Fisharebest\Webtrees\View;
         'tab_page_title' => $tab_page_title_descendants,
         'tab_content'    => $tab_content_descendants
     ]) ?>
-    <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $pid, 'descendants')]); ?>
+    <?php if ($descendant_generations > $limit): ?>
+        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $pid, 'descendants')]); ?>
+    <?php endif ?>
 </div>
 
 <div id="jc-fancy-treeview-tab-ancestors" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse">
@@ -19,7 +21,9 @@ use Fisharebest\Webtrees\View;
         'tab_page_title' => $tab_page_title_ancestors,
         'tab_content'    => $tab_content_ancestors
     ]) ?>
-    <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $pid, 'ancestors')]); ?>
+     <?php if ($ancestor_generations > $limit): ?>
+        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $pid, 'ancestors')]); ?>
+    <?php endif ?>
 </div>
 
 <?php View::push('styles') ?>

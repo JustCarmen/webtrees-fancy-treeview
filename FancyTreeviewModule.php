@@ -62,7 +62,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     // Module variables
     public array $pids;
     public int $generation;
-    public int $generations;
+    public int $ancestor_generations;
+    public int $descendant_generations;
     public int $index;
     public string $type; // 'descendants' or 'ancestors'
 
@@ -234,14 +235,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         if ($this->type === 'ancestors') {
             $page_body   = $this->printAncestorsPage($pid, $start, $limit);
             $button_url  = $this->getUrl($this->tree, $pid, 'descendants');
-            $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
+            $button_text = I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
+            $generations = $this->ancestor_generations;
         } else {
             $page_body   = $this->printDescendantsPage($pid, $start, $limit);
             $button_url  = $this->getUrl($this->tree, $pid, 'ancestors');
             $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors'));
+            $generations = $this->descendant_generations;
         }
 
-        $total_pages = (int) ceil($this->generations / $limit);
+        $total_pages = (int) ceil($generations / $limit);
 
         return $this->viewResponse($this->name() . '::page', [
             'tree'              => $this->tree,
@@ -251,6 +254,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'page_body'         => $page_body,
             'button_url'        => $button_url,
             'button_text'       => $button_text,
+            'generations'       => $generations,
             'current_page'      => $page,
             'total_pages'       => $total_pages,
             'limit'             => $limit,
@@ -327,7 +331,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
             'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
             'tab_content_descendants'       => $this->printDescendantsPage($xref, $start, $limit),
-            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $start, $limit)
+            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $start, $limit),
+            'descendant_generations'        => $this->descendant_generations,
+            'ancestor_generations'          => $this->ancestor_generations,
+            'limit'                         => $limit
         ]);
     }
 
@@ -403,7 +410,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 unset($next_gen, $descendants, $pids);
                 // Once we have fetched the page we need to know the total number of generations for this individual
                 if ($this->generation > $start + $limit) {
-                    $this->generations = $this->generation;
+                    $this->descendant_generations = $this->generation;
                 } else {
                     if ($this->generation < $start) {
                     continue;
@@ -418,7 +425,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
         }
 
-        $this->generations = $this->generation - 1;
+        $this->descendant_generations = $this->generation - 1;
 
         return $html;
     }
@@ -474,7 +481,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 unset($prev_gen, $ancestors, $pids);
                 // Once we have fetched the page we need to know the total number of generations for this individual
                 if ($this->generation > $start + $limit) {
-                    $this->generations = $this->generation;
+                    $this->ancestor_generations = $this->generation;
                 } else {
                     if ($this->generation < $start) {
                     continue;
@@ -489,7 +496,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
         }
 
-        $this->generations = $this->generation - 1;
+        $this->ancestor_generations = $this->generation - 1;
 
         return $html;
     }
