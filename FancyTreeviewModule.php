@@ -47,7 +47,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleConfigTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{pid}/{name}/{type}/{generations}';
+    protected const ROUTE_URL = '/tree/{tree}/{module}/{pid}/{name}/{type}/{generations}/{page}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -66,6 +66,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     // Module variables
     public array $pids;
     public int $generation;
+    public int $generations;
     public int $index;
     public string $type; // 'descendants' or 'ancestors'
 
@@ -227,26 +228,38 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $pid            = Validator::attributes($request)->string('pid');
         $generations    = Validator::attributes($request)->isBetween(self::MINIMUM_GENERATIONS, self::MAXIMUM_GENERATIONS)->integer('generations');
         $this->type     = Validator::attributes($request)->string('type');
+        $page           = Validator::attributes($request)->integer('page');
 
         $page_title     = $this->printPageTitle($this->getPerson($pid), $this->type);
 
+        // determine the generation to start with
+        $limit = (int) $this->options('page-limit');
+        $start = ($page - 1) * $limit + 1;
+
         if ($this->type === 'ancestors') {
-            $page_body   = $this->printAncestorsPage($pid, $generations);
+            $page_body   = $this->printAncestorsPage($pid, $generations, $start, $limit);
             $button_url  = $this->getUrl($this->tree, $pid, 'descendants');
             $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
         } else {
-            $page_body   = $this->printDescendantsPage($pid, $generations);
+            $page_body   = $this->printDescendantsPage($pid, $generations, $start, $limit);
             $button_url  = $this->getUrl($this->tree, $pid, 'ancestors');
             $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors'));
         }
+
+        $total_pages = (int) ceil($this->generations / $limit);
 
         return $this->viewResponse($this->name() . '::page', [
             'tree'              => $this->tree,
             'title'             => $this->title(),
             'page_title'        => $page_title,
+            'pid'               => $pid,
             'page_body'         => $page_body,
             'button_url'        => $button_url,
-            'button_text'       => $button_text
+            'button_text'       => $button_text,
+            'current_page'      => $page,
+            'total_pages'       => $total_pages,
+            'pid'               => $pid,
+            'module'            => $this
         ]);
     }
 
@@ -310,14 +323,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->tree  = Validator::attributes($request)->tree();
         $xref        = Validator::attributes($request)->isXref()->string('xref', '');
         $generations = self::MAXIMUM_GENERATIONS;
-        $limit       = 3;
+        $start       = 1; // always start with the current generation in tab view
+        $limit       = 3; // always limit the number of generations to 3 in tab view
 
         return view($this->name() . '::tab', [
             'module'                        => $this,
+            'tree'                          => $this->tree,
+            'pid'                           => $xref,
             'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
             'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
-            'tab_content_descendants'       => $this->printDescendantsPage($xref, $generations, $limit),
-            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $generations, $limit)
+            'tab_content_descendants'       => $this->printDescendantsPage($xref, $generations,$start, $limit),
+            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $generations, $start, $limit)
         ]);
     }
 
@@ -333,25 +349,27 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $default = match ($option) {
             'check-relationship'    => '1',
-            'show-singles'          => '1',
+            'show-singles'          => '0',
             'thumb-size'            => '80',
             'crop-thumbs'           => '0',
             'media-type-photo'      => '1', // new option (boolean)
+            'page-limit'            => '3' // new option (integer, number of generation blocks per page)
         };
 
         return $this->getPreference($option, $default);
     }
 
     /**
-     * Print the Fancy Treeview page without the paging option as in webtrees 1
-     * We will implement that later
+     * Print the Fancy Treeview descendants page
      *
      * @param string $pid
      * @param int $generations
+     * @param int $start
+     * @param int $limit
      *
      * @return string
      */
-    public function printDescendantsPage(string $pid, int $generations, int $limit = 0): string
+    public function printDescendantsPage(string $pid, int $generations, int $start, int $limit): string
     {
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
@@ -361,9 +379,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         // check root access
         $this->checkRootAccess($root_pid);
 
-        $html = $this->printGeneration();
+        if ($start === 1) {
+            $html = $this->printGeneration();
+        } else {
+            $html = '';
+        }
 
         while (count($this->pids) > 0 && $this->generation < $generations) {
+
+            $this->generation++;
+
             $pids = $this->pids;
             unset($this->pids); // empty the array (will be filled with the next generation)
 
@@ -382,32 +407,38 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
 
             if (!empty($this->pids)) {
-                if ($this->generation === $limit) {
-                    $html .= $this->printReadMoreLink($root_pid);
-                    return $html;
+                unset($next_gen, $descendants, $pids);
+                // Once we have fetched the page we need to know the total number of generations for this individual
+                if ($this->generation > $start + $limit) {
+                    $this->generations = $this->generation;
                 } else {
-                    $this->generation++;
-                    $html .= $this->printGeneration();
-                    unset($next_gen, $descendants, $pids);
+                    if ($this->generation < $start) {
+                    continue;
+                    } elseif ($this->generation === $start + $limit) {
+                        continue; // continue to get the total number of generations.
+                    } else {
+                        $html .= $this->printGeneration();
+                    }
                 }
             } else {
-                return $html;
+                break;
             }
         }
+
+        $this->generations = $this->generation - 1;
 
         return $html;
     }
 
      /**
-     * Print the Fancy Treeview page without the paging option as in webtrees 1
-     * We will implement that later
+     * Print the Fancy Treeview ancestors page
      *
      * @param string $pid
      * @param int $generations
      *
      * @return string
      */
-    public function printAncestorsPage(string $pid, int $generations, int $limit = 0): string
+    public function printAncestorsPage(string $pid, int $generations, int $start, int $limit): string
     {
         $this->generation = 1;
         $root_pid         = $pid; // save value for read more link
@@ -417,9 +448,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         // check root access
         $this->checkRootAccess($root_pid);
 
-        $html = $this->printGeneration();
+        if ($start === 1) {
+            $html = $this->printGeneration();
+        } else {
+            $html = '';
+        }
 
         while (count($this->pids) > 0 && $this->generation < $generations) {
+
+            $this->generation++;
+
             $pids = $this->pids;
             unset($this->pids); // empty the array (will be filled with the next generation)
 
@@ -439,18 +477,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
 
             if (!empty($this->pids)) {
-                if ($this->generation === $limit) {
-                    $html .= $this->printReadMoreLink($root_pid);
-                    return $html;
+                unset($prev_gen, $ancestors, $pids);
+                // Once we have fetched the page we need to know the total number of generations for this individual
+                if ($this->generation > $start + $limit) {
+                    $this->generations = $this->generation;
                 } else {
-                    $this->generation++;
-                    $html .= $this->printGeneration();
-                    unset($prev_gen, $ancestors, $pids);
+                    if ($this->generation < $start) {
+                    continue;
+                    } elseif ($this->generation === $start + $limit) {
+                        continue; // continue to get the total number of generations
+                    } else {
+                        $html .= $this->printGeneration();
+                    }
                 }
             } else {
-                return $html;
+                break;
             }
         }
+
+        $this->generations = $this->generation - 1;
 
         return $html;
     }
@@ -497,9 +542,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    protected function printReadMoreLink(string $root): string
+    public function printReadMoreLink(string $pid): string
     {
-        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($this->tree, $root)]);
+        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($this->tree, $pid)]);
     }
 
     /**
@@ -1488,11 +1533,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Get the url for the Fancy treeview page
      *
+     * @param Tree $tree
      * @param string $pid
+     * @param string $type
+     * @param int $page
      *
      * @return string
      */
-    private function getUrl(Tree $tree, string $pid, string $type = ''): string
+    public function getUrl(Tree $tree, string $pid, string $type = '', int $page = 1): string
     {
         if ($type === '') {
             $type = $this->type;
@@ -1502,9 +1550,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'tree'          => $tree->name(),
             'module'        => str_replace("_", "", $this->name()),
             'name'          => $this->getslug(strip_tags($this->printName($this->getPerson($pid)))),
-            'pid'           =>  $pid,
+            'pid'           => $pid,
             'type'          => $type,
-            'generations'   => self::MAXIMUM_GENERATIONS
+            'generations'   => self::MAXIMUM_GENERATIONS,
+            'page'          => $page
         ]);
     }
 
