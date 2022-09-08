@@ -809,19 +809,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                                 $html .= '<span class="lifespan"> (' . $child->lifespan() . ')</span>';
                             }
 
-                            $child_family = $this->getFamily($child);
+                            $html .= $this->printFollowLink($child);
 
-                            // TODO: do not load this part of the code in the fancy treeview tab on the individual page.
-                            // if (WT_SCRIPT_NAME !== 'individual.php') { // old code
-                            $text_follow = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
-                            if ($child_family) {
-                                $html .= ' - <a class="jc-scroll" href="#' . $child_family->xref() . '">' . $text_follow . '</a>';
-                                $this->index++;
-                            } elseif ((bool) $this->options('show-singles')) {
-                                $html .= ' - <a class="jc-scroll" href="#' . $child->xref() . '">' . $text_follow . '</a>';
-                                $this->index++;
-                            }
-                            // }
                             $html .= '</li>';
                         } else {
                             $html .= '<li class="jc-child-li jc-private">' . I18N::translate('Private') . '</li>';
@@ -1195,6 +1184,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return null;
     }
 
+    protected function printFollowLink(Individual $child): string
+    {
+        if ($this->isPage()) {
+
+            $child_family = $this->getFamily($child);
+            $text = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
+            if ($child_family) {
+                $this->index++;
+                return ' - <a class="jc-scroll" href="#' . $child_family->xref() . '">' . $text . '</a>';
+            } elseif ((bool) $this->options('show-singles')) {
+                $this->index++;
+                return ' - <a class="jc-scroll" href="#' . $child->xref() . '">' . $text . '</a>';
+            } else {
+                return '';
+            }
+        }
+        return '';
+    }
+
     /**
      * Get individual object from PID
      *
@@ -1457,6 +1465,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
         }
         return $pedi;
+    }
+
+    /**
+     * Determine if we are on the Fancy Treeview Page (and not on the individual page tab)
+     * @return bool
+     */
+    private function isPage(): bool
+    {
+        $request = app(ServerRequestInterface::class);
+        assert($request instanceof ServerRequestInterface);
+
+        $route = Validator::attributes($request)->route();
+
+        if ($route->name === static::class) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
