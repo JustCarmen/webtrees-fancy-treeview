@@ -29,7 +29,6 @@ use Fisharebest\Webtrees\I18N;
                 $class = $person->canShow() ? 'jc-family-block' : 'jc-family-block jc-private';
                 ?>
 
-                <span id="<?= $pid ?>" name="<?= $pid ?>"></span>
                 <li class="<?= $class ?> ps-5 mb-3"><?= $module->printIndividual($person) ?></li>
             <?php endif ?>
         <?php endforeach ?>

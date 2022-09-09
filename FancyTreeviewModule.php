@@ -560,8 +560,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function printIndividual(Individual $person): string
     {
+        $html = '<span id="' . $person->xref() . '" name="' . $person->xref() . '"></span>'; // scroll
         if ($person->canShow()) {
-            $html = '<div class="jc-parents-block">';
+            $html .= '<div class="jc-parents-block">';
 
             $html .= '<div class="jc-person-block d-flex col">';
 
@@ -1252,9 +1253,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $url  = $this->getUrl($this->tree, $pid, $this->type, $page);
 
             if ($child_family) {
-                $this->index++;
-                return ' - <a class="jc-scroll" href="' . $url . '#' . $child_family->xref() . '">' . $text . '</a>';
-            } elseif ((bool) $this->options('show-singles')) {
                 $this->index++;
                 return ' - <a class="jc-scroll" href="' . $url . '#' . $child->xref() . '">' . $text . '</a>';
             } else {
