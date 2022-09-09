@@ -26,9 +26,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
-use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Services\ModuleService;
-use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
@@ -42,9 +40,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 {
     use ModuleCustomTrait;
     use ModuleGlobalTrait;
-    use ModuleMenuTrait;
     use ModuleTabTrait;
-    use ModuleConfigTrait;
 
     // Route
     protected const ROUTE_URL = '/tree/{tree}/{module}/{xref}/{name}/{type}/{page}';
@@ -202,16 +198,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         } else {
             return [];
         }
-    }
-
-    /**
-     * The default position for this menu.  It can be changed in the control panel.
-     *
-     * @return int
-     */
-    public function defaultMenuOrder(): int
-    {
-        return 99;
     }
 
     /**
