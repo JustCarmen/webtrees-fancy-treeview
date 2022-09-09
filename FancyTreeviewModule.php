@@ -331,7 +331,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     /**
      * Set the default options.
-     * This is php-8 code. We should have an alternative for php 7.4 users.
      *
      * @param string $option
      *
@@ -339,16 +338,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function options(string $option): string
     {
-        $default = match ($option) {
-            'check-relationship'    => '1',
-            'show-singles'          => '0',
-            'thumb-size'            => '80',
-            'crop-thumbs'           => '0',
-            'media-type-photo'      => '1', // new option (boolean)
-            'page-limit'            => '3' // new option (integer, number of generation blocks per page)
-        };
+        $default = [
+            'check-relationship'    => '1', // boolean
+            'show-singles'          => '0', // boolean
+            'thumb-size'            => '80',// integer
+            'crop-thumbs'           => '0', // boolean
+            'media-type-photo'      => '1', // boolean
+            'page-limit'            => '3'  // integer, number of generation blocks per page
+        ];
 
-        return $this->getPreference($option, $default);
+        return $this->getPreference($option, $default[$option]);
     }
 
     /**
