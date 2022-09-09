@@ -16,7 +16,7 @@ use Fisharebest\Webtrees\View;
         <?= View($module->name() . '::pagination', [
                 'tree'          => $tree,
                 'module'        => $module,
-                'pid'           => $pid,
+                'xref'           => $xref,
                 'current_page'  => $current_page,
                 'total_pages'   => $total_pages
             ]) ?>

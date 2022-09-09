@@ -47,7 +47,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleConfigTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{pid}/{name}/{type}/{page}';
+    protected const ROUTE_URL = '/tree/{tree}/{module}/{xref}/{name}/{type}/{page}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -60,7 +60,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
 
     // Module variables
-    public array $pids;
+    public array $xrefs;
     public int $generation;
     public int $ancestor_generations;
     public int $descendant_generations;
@@ -222,24 +222,24 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $this->tree     = Validator::attributes($request)->tree();
-        $pid            = Validator::attributes($request)->string('pid');
+        $xref           = Validator::attributes($request)->string('xref');
         $this->type     = Validator::attributes($request)->string('type');
         $page           = Validator::attributes($request)->integer('page');
 
-        $page_title     = $this->printPageTitle($this->getPerson($pid), $this->type);
+        $page_title     = $this->printPageTitle($this->getPerson($xref), $this->type);
 
         // determine the generation to start with
         $limit = (int) $this->options('page-limit');
         $start = ($page - 1) * $limit + 1;
 
         if ($this->type === 'ancestors') {
-            $page_body   = $this->printAncestorsPage($pid, $start, $limit);
-            $button_url  = $this->getUrl($this->tree, $pid, 'descendants');
+            $page_body   = $this->printAncestorsPage($xref, $start, $limit);
+            $button_url  = $this->getUrl($this->tree, $xref, 'descendants');
             $button_text = I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
             $generations = $this->ancestor_generations;
         } else {
-            $page_body   = $this->printDescendantsPage($pid, $start, $limit);
-            $button_url  = $this->getUrl($this->tree, $pid, 'ancestors');
+            $page_body   = $this->printDescendantsPage($xref, $start, $limit);
+            $button_url  = $this->getUrl($this->tree, $xref, 'ancestors');
             $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors'));
             $generations = $this->descendant_generations;
         }
@@ -250,7 +250,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'tree'              => $this->tree,
             'title'             => $this->title(),
             'page_title'        => $page_title,
-            'pid'               => $pid,
+            'xref'              => $xref,
             'page_body'         => $page_body,
             'button_url'        => $button_url,
             'button_text'       => $button_text,
@@ -327,7 +327,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return view($this->name() . '::tab', [
             'module'                        => $this,
             'tree'                          => $this->tree,
-            'pid'                           => $xref,
+            'xref'                          => $xref,
             'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
             'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
             'tab_content_descendants'       => $this->printDescendantsPage($xref, $start, $limit),
@@ -363,21 +363,21 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Print the Fancy Treeview descendants page
      *
-     * @param string $pid
+     * @param string $xref
      * @param int $start
      * @param int $limit
      *
      * @return string
      */
-    public function printDescendantsPage(string $pid, int $start, int $limit): string
+    public function printDescendantsPage(string $xref, int $start, int $limit): string
     {
         $this->generation = 1;
-        $root_pid         = $pid; // save value for read more link
-        $this->pids       = [$pid];
+        $root_xref        = $xref; // save value for read more link
+        $this->xrefs      = [$xref];
         $this->type       = 'descendants';
 
         // check root access
-        $this->checkRootAccess($root_pid);
+        $this->checkRootAccess($root_xref);
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -385,29 +385,29 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $html = '';
         }
 
-        while (count($this->pids) > 0) {
+        while (count($this->xrefs) > 0) {
 
             $this->generation++;
 
-            $pids = $this->pids;
-            unset($this->pids); // empty the array (will be filled with the next generation)
+            $xrefs = $this->xrefs;
+            unset($this->xrefs); // empty the array (will be filled with the next generation)
 
-            foreach ($pids as $pid) {
-                $next_gen[] = $this->getNextGen($pid);
+            foreach ($xrefs as $xref) {
+                $next_gen[] = $this->getNextGen($xref);
             }
 
             foreach ($next_gen as $descendants) {
                 if (count($descendants) > 0) {
                     foreach ($descendants as $descendant) {
                         if ((bool) $this->options('show-singles') || (bool) $descendant['descendants']) {
-                            $this->pids[] = $descendant['pid'];
+                            $this->xrefs[] = $descendant['xref'];
                         }
                     }
                 }
             }
 
-            if (!empty($this->pids)) {
-                unset($next_gen, $descendants, $pids);
+            if (!empty($this->xrefs)) {
+                unset($next_gen, $descendants, $xrefs);
                 // Once we have fetched the page we need to know the total number of generations for this individual
                 if ($this->generation > $start + $limit) {
                     $this->descendant_generations = $this->generation;
@@ -433,21 +433,21 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      /**
      * Print the Fancy Treeview ancestors page
      *
-     * @param string $pid
+     * @param string $xref
      * @param int $start
      * @param int $limit
      *
      * @return string
      */
-    public function printAncestorsPage(string $pid, int $start, int $limit): string
+    public function printAncestorsPage(string $xref, int $start, int $limit): string
     {
         $this->generation = 1;
-        $root_pid         = $pid; // save value for read more link
-        $this->pids       = [$pid];
+        $root_xref        = $xref; // save value for read more link
+        $this->xrefs      = [$xref];
         $this->type       = 'ancestors';
 
         // check root access
-        $this->checkRootAccess($root_pid);
+        $this->checkRootAccess($root_xref);
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -455,30 +455,30 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $html = '';
         }
 
-        while (count($this->pids) > 0) {
+        while (count($this->xrefs) > 0) {
 
             $this->generation++;
 
-            $pids = $this->pids;
-            unset($this->pids); // empty the array (will be filled with the next generation)
+            $xrefs = $this->xrefs;
+            unset($this->xrefs); // empty the array (will be filled with the next generation)
 
-            foreach ($pids as $pid) {
-                $person  = $this->getPerson($pid);
+            foreach ($xrefs as $xref) {
+                $person  = $this->getPerson($xref);
                 $parents = $person->childFamilies()->first();;
                 if ($parents) {
                     $father     = $parents->husband();
                     $mother     = $parents->wife();
                     if ($father) {
-                        $this->pids[] = $father->xref();
+                        $this->xrefs[] = $father->xref();
                     }
                     if ($mother) {
-                        $this->pids[] = $mother->xref();
+                        $this->xrefs[] = $mother->xref();
                     }
                 }
             }
 
-            if (!empty($this->pids)) {
-                unset($prev_gen, $ancestors, $pids);
+            if (!empty($this->xrefs)) {
+                unset($prev_gen, $ancestors, $xrefs);
                 // Once we have fetched the page we need to know the total number of generations for this individual
                 if ($this->generation > $start + $limit) {
                     $this->ancestor_generations = $this->generation;
@@ -530,7 +530,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return View($this->name() . '::block', [
             'generation'    => $this->generation,
             'module'        => $this,
-            'pids'          => $this->pids,
+            'xrefs'         => $this->xrefs,
             'title'         => $this->title(),
             'tree'          => $this->tree,
         ]);
@@ -543,9 +543,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return string
      */
-    public function printReadMoreLink(string $pid): string
+    public function printReadMoreLink(string $xref): string
     {
-        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($this->tree, $pid)]);
+        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($this->tree, $xref)]);
     }
 
     /**
@@ -1238,7 +1238,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $request = app(ServerRequestInterface::class);
             assert($request instanceof ServerRequestInterface);
 
-            $pid   = Validator::attributes($request)->string('pid');
+            $xref  = Validator::attributes($request)->string('xref');
             $page  = Validator::attributes($request)->integer('page');
 
             $limit = $this->options('page-limit');
@@ -1250,7 +1250,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $child_family = $this->getFamily($child);
 
             $text = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
-            $url  = $this->getUrl($this->tree, $pid, $this->type, $page);
+            $url  = $this->getUrl($this->tree, $xref, $this->type, $page);
 
             if ($child_family) {
                 $this->index++;
@@ -1263,15 +1263,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
-     * Get individual object from PID
+     * Get individual object from xref
      *
-     * @param string $pid
+     * @param string $xref
      *
      * @return object
      */
-    public function getPerson(string $pid): ?object
+    public function getPerson(string $xref): ?object
     {
-        return Registry::individualFactory()->make($pid, $this->tree);
+        return Registry::individualFactory()->make($xref, $this->tree);
     }
 
     /**
@@ -1279,9 +1279,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return object
      */
-    protected function checkRootAccess($root_pid): object
+    protected function checkRootAccess($root_xref): object
     {
-        return Auth::checkIndividualAccess($this->getPerson($root_pid));
+        return Auth::checkIndividualAccess($this->getPerson($root_xref));
     }
 
     /**
@@ -1303,20 +1303,20 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Get an array of xrefs for the next descendant generation of this person
      *
-     * @param string $pid
+     * @param string $xref
      *
      * @return array
      */
-    private function getNextGen(string $pid): array
+    private function getNextGen(string $xref): array
     {
-        $person     = $this->getPerson($pid);
+        $person     = $this->getPerson($xref);
         $ng         = [];
         foreach ($person->spouseFamilies() as $family) {
             $children = $family->children();
             if ($children) {
                 foreach ($children as $key => $child) {
                     $key              = $family->xref() . '-' . $key; // be sure the index number is unique.
-                    $ng[$key]['pid']  = $child->xref();
+                    $ng[$key]['xref']  = $child->xref();
                     // does this child have descendants?
                     $ng[$key]['descendants'] = count($child->spouseFamilies(Auth::PRIV_HIDE)) > 0;
                 }
@@ -1345,7 +1345,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             if ($mother) {
                 $mother = $mother->xref();
             }
-            if (in_array($father, $this->pids) || in_array($mother, $this->pids)) {
+            if (in_array($father, $this->xrefs) || in_array($mother, $this->xrefs)) {
                 return true;
             }
         }
@@ -1459,7 +1459,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * Check if this is a private record
      * $records can be an array of xrefs or an array of objects
      *
-     * TODO: turn $this->pids ($records) into a Collection
+     * TODO: turn $this->xrefs ($records) into a Collection
      *
      * @param mixed $records
      * @param bool $xrefs
@@ -1548,13 +1548,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * Get the url for the Fancy treeview page
      *
      * @param Tree $tree
-     * @param string $pid
+     * @param string $xref
      * @param string $type
      * @param int $page
      *
      * @return string
      */
-    public function getUrl(Tree $tree, string $pid, string $type = '', int $page = 1): string
+    public function getUrl(Tree $tree, string $xref, string $type = '', int $page = 1): string
     {
         if ($type === '') {
             $type = $this->type;
@@ -1563,8 +1563,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return route(static::class, [
             'tree'          => $tree->name(),
             'module'        => str_replace("_", "", $this->name()),
-            'name'          => $this->getslug(strip_tags($this->printName($this->getPerson($pid)))),
-            'pid'           => $pid,
+            'name'          => $this->getslug(strip_tags($this->printName($this->getPerson($xref)))),
+            'xref'          => $xref,
             'type'          => $type,
             'page'          => $page
         ]);

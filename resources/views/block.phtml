@@ -4,7 +4,7 @@ use Fisharebest\Webtrees\View;
 
 ?>
 
-<li class="jc-generation-block mb-4" data-gen="<?= $generation ?>" data-pids="<?= implode('|', $pids) ?>">
+<li class="jc-generation-block mb-4" data-gen="<?= $generation ?>" data-xrefs="<?= implode('|', $xrefs) ?>">
     <?= View($module->name() . '::block-header', ['generation' => $generation]) ?>
-    <?= View($module->name() . '::block-content', ['module' => $module, 'pids' => $pids]) ?>
+    <?= View($module->name() . '::block-content', ['module' => $module, 'xrefs' => $xrefs]) ?>
 </li>
