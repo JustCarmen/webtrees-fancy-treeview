@@ -763,7 +763,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             } else {
                 $html .= I18N::translateContext('One parent/one child', 'had');
             }
-            $html .= ' ' . I18N::translate('none') . ' ' . I18N::translate('children') . '.</p></div>';
+            $html .= ' ' . I18N::translate('none') . ' ' . strtolower(I18N::translate('Children')) . '.</p></div>';
         } else {
             $children = $family->children();
             if ($children) {
@@ -784,7 +784,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                             $html .= I18N::translateContext('One parent/one child', 'had');
                         }
                     }
-                    $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
+                    if (count($children) > 0) {
+                        $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
+                    } else {
+                        $html .= ' ' . I18N::translate('none') . ' ' . strtolower(I18N::translate('Children')) . '.</p></div>';
+                    }
                 } else {
                     $html .= '<div class="jc-children-block mb-2"><p class="mb-1">' . I18N::translate('Children of ') . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
