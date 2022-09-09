@@ -363,12 +363,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function printDescendantsPage(string $xref, int $start, int $limit): string
     {
         $this->generation = 1;
-        $root_xref        = $xref; // save value for read more link
         $this->xrefs      = [$xref];
         $this->type       = 'descendants';
-
-        // check root access
-        $this->checkRootAccess($root_xref);
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -433,12 +429,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function printAncestorsPage(string $xref, int $start, int $limit): string
     {
         $this->generation = 1;
-        $root_xref        = $xref; // save value for read more link
         $this->xrefs      = [$xref];
         $this->type       = 'ancestors';
-
-        // check root access
-        $this->checkRootAccess($root_xref);
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -527,18 +519,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'page'          => $this->getPage(),
             'limit'         => $this->options('page-limit')
         ]);
-    }
-
-    /**
-     * Print read-more link
-     *
-     * @param string $root
-     *
-     * @return string
-     */
-    public function printReadMoreLink(string $xref): string
-    {
-        return View($this->name() . '::readmore-link', ['url' => $this->getUrl($this->tree, $xref)]);
     }
 
     /**
@@ -1265,16 +1245,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function getPerson(string $xref): ?object
     {
         return Registry::individualFactory()->make($xref, $this->tree);
-    }
-
-    /**
-     * Check if the rootperson is accessible
-     *
-     * @return object
-     */
-    protected function checkRootAccess($root_xref): object
-    {
-        return Auth::checkIndividualAccess($this->getPerson($root_xref));
     }
 
     /**
