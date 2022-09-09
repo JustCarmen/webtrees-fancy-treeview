@@ -25,10 +25,14 @@ const postcssRTLCSS = require('postcss-rtlcss')({
     safeBothPrefix: true
 });
 
-const dist_dir = 'dist/jc-fancy-imagebar';
+const dist_dir = 'dist/jc-fancy-treeview';
 
 //https://github.com/gregnb/filemanager-webpack-plugin
 const FileManagerPlugin = require('filemanager-webpack-plugin');
+
+// Disable mix-manifest.json (https://github.com/laravel-mix/laravel-mix/issues/580#issuecomment-919102692)
+// Prevent the distribution zip file containing an unwanted file
+mix.options({ manifest: false })
 
 if (process.env.NODE_ENV === 'production') {
     mix.styles(config.public_dir + '/css/style.css', config.build_dir + '/style.css')
