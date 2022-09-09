@@ -221,9 +221,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $this->tree  = Validator::attributes($request)->tree();
-        $xref        = Validator::attributes($request)->string('xref');
-        $this->type  = Validator::attributes($request)->string('type');
+        $tree = Validator::attributes($request)->tree();
+        $xref = Validator::attributes($request)->string('xref');
+        $type = Validator::attributes($request)->string('type');
+
+        $this->tree = $tree;
+        $this->type = $type;
 
         $page       = $this->getPage();
         $page_title = $this->printPageTitle($this->getPerson($xref), $this->type);
@@ -234,12 +237,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         if ($this->type === 'ancestors') {
             $page_body   = $this->printAncestorsPage($xref, $start, $limit);
-            $button_url  = $this->getUrl($this->tree, $xref, 'descendants');
+            $button_url  = $this->getUrl($tree, $xref, 'descendants');
             $button_text = I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
             $generations = $this->ancestor_generations;
         } else {
             $page_body   = $this->printDescendantsPage($xref, $start, $limit);
-            $button_url  = $this->getUrl($this->tree, $xref, 'ancestors');
+            $button_url  = $this->getUrl($tree, $xref, 'ancestors');
             $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors'));
             $generations = $this->descendant_generations;
         }
@@ -247,7 +250,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $total_pages = (int) ceil($generations / $limit);
 
         return $this->viewResponse($this->name() . '::page', [
-            'tree'              => $this->tree,
+            'tree'              => $tree,
             'title'             => $this->title(),
             'page_title'        => $page_title,
             'xref'              => $xref,
@@ -319,14 +322,16 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $request = app(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
-        $this->tree  = Validator::attributes($request)->tree();
-        $xref        = Validator::attributes($request)->isXref()->string('xref', '');
-        $start       = 1; // always start with the current generation in tab view
-        $limit       = 3; // always limit the number of generations to 3 in tab view
+        $tree   = Validator::attributes($request)->tree();
+        $xref   = Validator::attributes($request)->isXref()->string('xref', '');
+        $start  = 1; // always start with the current generation in tab view
+        $limit  = 3; // always limit the number of generations to 3 in tab view
+
+        $this->tree = $tree;
 
         return view($this->name() . '::tab', [
             'module'                        => $this,
-            'tree'                          => $this->tree,
+            'tree'                          => $tree,
             'xref'                          => $xref,
             'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
             'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
