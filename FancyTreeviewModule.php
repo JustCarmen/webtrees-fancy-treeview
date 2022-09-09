@@ -236,18 +236,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $total_pages = (int) ceil($generations / $limit);
 
         return $this->viewResponse($this->name() . '::page', [
+            'module'            => $this,
             'tree'              => $tree,
+            'xref'              => $xref,
             'title'             => $this->title(),
             'page_title'        => $page_title,
-            'xref'              => $xref,
             'page_body'         => $page_body,
             'button_url'        => $button_url,
             'button_text'       => $button_text,
             'generations'       => $generations,
             'current_page'      => $page,
             'total_pages'       => $total_pages,
-            'limit'             => $limit,
-            'module'            => $this
+            'limit'             => $limit
         ]);
     }
 
@@ -315,7 +315,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         $this->tree = $tree;
 
-        return view($this->name() . '::tab', [
+        return View($this->name() . '::tab', [
             'module'                        => $this,
             'tree'                          => $tree,
             'xref'                          => $xref,
@@ -511,11 +511,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->index = 1;
 
         return View($this->name() . '::block', [
-            'generation'    => $this->generation,
             'module'        => $this,
-            'xrefs'         => $this->xrefs,
-            'title'         => $this->title(),
             'tree'          => $this->tree,
+            'title'         => $this->title(),
+            'generation'    => $this->generation,
+            'xrefs'         => $this->xrefs,
             'page'          => $this->getPage(),
             'limit'         => $this->options('page-limit')
         ]);
