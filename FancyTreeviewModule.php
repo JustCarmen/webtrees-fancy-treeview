@@ -413,7 +413,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     $this->descendant_generations = $this->generation;
                 } else {
                     if ($this->generation < $start) {
-                    continue;
+                        continue;
                     } elseif ($this->generation === $start + $limit) {
                         continue; // continue to get the total number of generations.
                     } else {
@@ -430,7 +430,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $html;
     }
 
-     /**
+    /**
      * Print the Fancy Treeview ancestors page
      *
      * @param string $xref
@@ -484,7 +484,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     $this->ancestor_generations = $this->generation;
                 } else {
                     if ($this->generation < $start) {
-                    continue;
+                        continue;
                     } elseif ($this->generation === $start + $limit) {
                         continue; // continue to get the total number of generations
                     } else {
@@ -501,7 +501,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $html;
     }
 
-     /**
+    /**
      * Print page/tab title
      *
      * @param Individual $person
