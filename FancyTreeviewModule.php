@@ -524,6 +524,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     protected function printGeneration(): string
     {
+        $request = app(ServerRequestInterface::class);
+        assert($request instanceof ServerRequestInterface);
+
+        $page  = Validator::attributes($request)->integer('page');
+
         // reset the index
         $this->index = 1;
 
@@ -533,6 +538,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'xrefs'         => $this->xrefs,
             'title'         => $this->title(),
             'tree'          => $this->tree,
+            'page'          => $page,
+            'limit'         => $this->options('page-limit')
         ]);
     }
 

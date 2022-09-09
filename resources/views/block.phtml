@@ -5,6 +5,6 @@ use Fisharebest\Webtrees\View;
 ?>
 
 <li class="jc-generation-block mb-4" data-gen="<?= $generation ?>" data-xrefs="<?= implode('|', $xrefs) ?>">
-    <?= View($module->name() . '::block-header', ['generation' => $generation]) ?>
+    <?= View($module->name() . '::block-header', ['page' => $page, 'limit' => $limit, 'generation' => $generation]) ?>
     <?= View($module->name() . '::block-content', ['module' => $module, 'xrefs' => $xrefs]) ?>
 </li>
