@@ -1234,14 +1234,29 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         if ($this->isPage()) {
 
+            $request = app(ServerRequestInterface::class);
+            assert($request instanceof ServerRequestInterface);
+
+            $pid   = Validator::attributes($request)->string('pid');
+            $page  = Validator::attributes($request)->integer('page');
+
+            $limit = $this->options('page-limit');
+
+            if ($this->generation === $page * $limit) {
+                $page = $page + 1;
+            }
+
             $child_family = $this->getFamily($child);
+
             $text = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
+            $url  = $this->getUrl($this->tree, $pid, $this->type, $page);
+
             if ($child_family) {
                 $this->index++;
-                return ' - <a class="jc-scroll" href="#' . $child_family->xref() . '">' . $text . '</a>';
+                return ' - <a class="jc-scroll" href="' . $url . '#' . $child_family->xref() . '">' . $text . '</a>';
             } elseif ((bool) $this->options('show-singles')) {
                 $this->index++;
-                return ' - <a class="jc-scroll" href="#' . $child->xref() . '">' . $text . '</a>';
+                return ' - <a class="jc-scroll" href="' . $url . '#' . $child->xref() . '">' . $text . '</a>';
             } else {
                 return '';
             }
