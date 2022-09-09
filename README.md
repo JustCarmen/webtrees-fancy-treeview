@@ -1,34 +1,41 @@
-Fancy Treeview
-===============
+Fancy Treeview for webtrees
+===========================
 
-Fancy Treeview module for webtrees.
+[![Latest Release](https://img.shields.io/github/release/JustCarmen/webtrees-fancy-treeview.svg)][1]
+[![webtrees major version](https://img.shields.io/badge/webtrees-v2.1.x-green)][2]
+[![Downloads](https://img.shields.io/github/downloads/JustCarmen/webtrees-fancy-treeview/total.svg)]()
 
-This module requires [webtrees 1.7.11](https://github.com/fisharebest/webtrees). Download the latest stable release of this module [here](https://github.com/JustCarmen/fancy_treeview/releases/latest).
-The development version (master branch) only works with webtrees 1.8.0-dev.
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XPBC2W85M38AS&item_name=webtrees%20modules%20by%20JustCarmen&currency_code=EUR)
 
-Description
+Introduction
 -----------
-With this module it is possible to add multiple pages for several branches in your family tree. The branches will be listed from the first generation down to the last one in a narrative way. It gives your users a quick overview of your family tree. Of course privacy rules are respected.
+This module is a rewritten version of the Fancy treeview module for webtrees 1.
 
-On the Fancy Treeview configuration page you have some options. To start using the module enter a surname in the text field. The script will automatically search for the oldest person with this surname. It is also possible to manually enter the ID of the person you want to set as root person. After adding the root person you can set several other options. You can enter as much surnames as you like. There will be a menu-link and page created for each surname.
+This module adds an additional 'Descendants and ancestors' tab to the individual page.
 
-The package comes with a language file to translate the module into your own language. At the moment the module is already translated into 14 different languages. The module supports rtl-languages.
+This tab shows the details of the current individual and his descendants in the next two generations in a narrative way. With one click, you switch to the current individual and his ancestors in the next two generations.
 
-Stylesheets for all the core webtrees themes, the JustBlack and the JustLight theme and the Rural theme are added to the module package as well.
+If more generations are available, they can be accessed by clicking on the readmore link, which redirects to a separate page that displays all generations from the current individual to the last accessible generation (up or down) in a narrative way.
 
-Fancy Treeview PDF
-------------------
-Longtime users of Fancy Treeview are used to have the PDF-option inside the module by enabling it at the configuration page. This is changed now. From now on the Fancy Treeview PDF-option is offered as a separate download. Goto https://github.com/JustCarmen/fancy_treeview_pdf for more information.
+This way you give your users a quick overview of the family tree of the chosen individual. Of course, privacy rules are respected.
+
+Currently there is no configuration page and it is not possible to reach the Fancy Treeview page from the menu or download the Fancy Treeview page as a pdf as in the webtrees 1 version. Future versions may re-implement these features.
 
 Translations
 ------------
-You can help to translate this module. Updates to translations should be made at https://translate.webtrees.net/projects/justcarmen/. Changes made there will be pushed to the git repository periodically and will be available on the development version of the module. They will be included in the next release of this module.
+You can help to translate this module. The language files will become available at [POEditor][3] where you can update them. But you can also use a local editor, like poeditor or notepad++ to make the translations and send them back to me. You can do this via a pull request (if you know how) or by e-mail. Updated translations will be included in the next release of this module.
 
 Installation & upgrading
 ------------------------
-For more information about these subjects go to the JustCarmen help pages: http://www.justcarmen.nl/help
+Unpack the zip file and place the folder jc-fancy-treeview in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go to the control panel to set some options.
 
 Bugs and feature requests
 -------------------------
-If you experience any bugs or have a feature request for this module you can [create a new issue](https://github.com/JustCarmen/fancy_treeview/issues?state=open) or [use the webtrees subforum 'customising'](http://www.webtrees.net/index.php/en/forum/4-customising) to contact me.
+If you experience any bugs or have a feature request for this module you can [create a new issue on GitHub][4].
+
+ [1]: https://github.com/JustCarmen/webtrees-fancy-treeview/releases/latest
+ [2]: https://webtrees.github.io/download/
+ [3]: https://poeditor.com/join/project?hash=kH2euLO811
+ [4]: https://github.com/JustCarmen/webtrees-fancy-treeview/issues?state=open
+
 
