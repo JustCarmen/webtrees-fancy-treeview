@@ -221,12 +221,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $this->tree     = Validator::attributes($request)->tree();
-        $xref           = Validator::attributes($request)->string('xref');
-        $this->type     = Validator::attributes($request)->string('type');
-        $page           = Validator::attributes($request)->integer('page');
+        $this->tree  = Validator::attributes($request)->tree();
+        $xref        = Validator::attributes($request)->string('xref');
+        $this->type  = Validator::attributes($request)->string('type');
 
-        $page_title     = $this->printPageTitle($this->getPerson($xref), $this->type);
+        $page       = $this->getPage();
+        $page_title = $this->printPageTitle($this->getPerson($xref), $this->type);
 
         // determine the generation to start with
         $limit = (int) $this->options('page-limit');
@@ -524,11 +524,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     protected function printGeneration(): string
     {
-        $request = app(ServerRequestInterface::class);
-        assert($request instanceof ServerRequestInterface);
-
-        $page  = Validator::attributes($request)->integer('page');
-
         // reset the index
         $this->index = 1;
 
@@ -538,7 +533,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'xrefs'         => $this->xrefs,
             'title'         => $this->title(),
             'tree'          => $this->tree,
-            'page'          => $page,
+            'page'          => $this->getPage(),
             'limit'         => $this->options('page-limit')
         ]);
     }
@@ -1549,6 +1544,22 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
 
         return false;
+    }
+
+    /**
+     * @return int
+     */
+    private function getPage(): int
+    {
+        if ($this->isPage()) {
+            $request = app(ServerRequestInterface::class);
+            assert($request instanceof ServerRequestInterface);
+
+            $page  = Validator::attributes($request)->integer('page');
+        } else {
+            $page = 1;
+        }
+        return $page;
     }
 
     /**
