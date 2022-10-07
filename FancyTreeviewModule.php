@@ -790,7 +790,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                         $html .= ' ' . I18N::translate('none') . ' ' . strtolower(I18N::translate('Children')) . '.</p></div>';
                     }
                 } else {
-                    $html .= '<div class="jc-children-block mb-2"><p class="mb-1">' . I18N::translate('Children of ') . $this->printName($person);
+                    $html .= '<div class="jc-children-block mb-2"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of'). ' ' . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
                         $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
                     }
@@ -1198,7 +1198,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $place = $fact->attribute('PLAC');
         if ($place) {
             $place = new Place($place, $this->tree);
-            $html  = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before placesnames', 'in ');
+            $html  = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before place names', 'in ');
             $html .= $place->fullName();
 
             return $html;
