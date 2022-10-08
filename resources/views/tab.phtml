@@ -22,7 +22,7 @@ use Fisharebest\Webtrees\View;
         'tab_content'    => $tab_content_ancestors
     ]) ?>
      <?php if ($ancestor_generations > $limit): ?>
-        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $xref, 'ancestors')]); ?>
+        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $xref, 'ancestors', 2)]); ?>
     <?php endif ?>
 </div>
 
