@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2022-10-07 20:30+0200\n"
+"POT-Creation-Date: 2022-10-12 22:22+0200\n"
 "PO-Revision-Date: 2015-07-04 21:06+0200\n"
 "Last-Translator: Carmen <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -22,46 +22,54 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: src\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1173
+#: FancyTreeviewModule.php:1282
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr ""
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:99
+#: FancyTreeviewModule.php:104
 msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 msgstr ""
 
-#: FancyTreeviewModule.php:88
+#: resources/views/menu-item-add.phtml:10
+msgid "Add to menu"
+msgstr ""
+
+#: FancyTreeviewModule.php:435
+msgid "Family tree overview"
+msgstr ""
+
+#: FancyTreeviewModule.php:93
 msgid "Fancy Treeview"
 msgstr ""
 
-#: FancyTreeviewModule.php:721
+#: FancyTreeviewModule.php:830
 msgid "He had a relationship with"
 msgstr ""
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:641
+#: FancyTreeviewModule.php:750
 #, php-format
 msgid "He married %s times"
 msgstr ""
 
-#: FancyTreeviewModule.php:1075
+#: FancyTreeviewModule.php:1184
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1077
+#: FancyTreeviewModule.php:1186
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1057
+#: FancyTreeviewModule.php:1166
 msgctxt "PAST"
 msgid "He was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1168
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr ""
@@ -70,51 +78,54 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: FancyTreeviewModule.php:724
+#: resources/views/menu-item-remove.phtml:10
+msgid "Remove from menu"
+msgstr ""
+
+#: FancyTreeviewModule.php:833
 msgid "She had a relationship with"
 msgstr ""
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:647
+#: FancyTreeviewModule.php:756
 #, php-format
 msgid "She married %s times"
 msgstr ""
 
-#: FancyTreeviewModule.php:1075
+#: FancyTreeviewModule.php:1184
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1077
+#: FancyTreeviewModule.php:1186
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1057
+#: FancyTreeviewModule.php:1166
 msgctxt "PAST"
 msgid "She was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1168
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr ""
-
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:643
+#: FancyTreeviewModule.php:752
 #, php-format
 msgid "The %s time he married"
 msgstr ""
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:649
+#: FancyTreeviewModule.php:758
 #, php-format
 msgid "The %s time she married"
 msgstr ""
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:655
+#: FancyTreeviewModule.php:764
 #, php-format
 msgid "The %s time this individual married"
 msgstr ""
@@ -123,66 +134,66 @@ msgstr ""
 msgid "The details of this generation are private."
 msgstr ""
 
-#: FancyTreeviewModule.php:727
+#: FancyTreeviewModule.php:836
 msgid "This individual had a relationship with"
 msgstr ""
 
-#: FancyTreeviewModule.php:667
+#: FancyTreeviewModule.php:776
 msgid "This individual married"
 msgstr ""
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:653
+#: FancyTreeviewModule.php:762
 #, php-format
 msgid "This individual married %s times"
 msgstr ""
 
-#: FancyTreeviewModule.php:820
+#: FancyTreeviewModule.php:929
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr ""
 
-#: FancyTreeviewModule.php:823
+#: FancyTreeviewModule.php:932
 msgctxt "MALE"
 msgid "adopted child"
 msgstr ""
 
-#: FancyTreeviewModule.php:886
+#: FancyTreeviewModule.php:995
 msgid "adopted child of"
 msgstr ""
 
-#: FancyTreeviewModule.php:877
+#: FancyTreeviewModule.php:986
 msgid "adopted daughter of"
 msgstr ""
 
-#: FancyTreeviewModule.php:868
+#: FancyTreeviewModule.php:977
 msgid "adopted son of"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:696 FancyTreeviewModule.php:761
-#: FancyTreeviewModule.php:774 FancyTreeviewModule.php:795
-#: FancyTreeviewModule.php:899 FancyTreeviewModule.php:947
-#: FancyTreeviewModule.php:1107 FancyTreeviewModule.php:1115
-#: FancyTreeviewModule.php:1123
+#: FancyTreeviewModule.php:805 FancyTreeviewModule.php:870
+#: FancyTreeviewModule.php:883 FancyTreeviewModule.php:904
+#: FancyTreeviewModule.php:1008 FancyTreeviewModule.php:1056
+#: FancyTreeviewModule.php:1216 FancyTreeviewModule.php:1224
+#: FancyTreeviewModule.php:1232
 msgid "and "
 msgstr ""
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
-#: FancyTreeviewModule.php:1149
+#: FancyTreeviewModule.php:1258
 #, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr ""
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
-#: FancyTreeviewModule.php:1151
+#: FancyTreeviewModule.php:1260
 #, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr ""
 
-#: FancyTreeviewModule.php:888
+#: FancyTreeviewModule.php:997
 msgid "child of"
 msgstr ""
 
@@ -190,196 +201,196 @@ msgstr ""
 msgid "complete"
 msgstr ""
 
-#: FancyTreeviewModule.php:1108
+#: FancyTreeviewModule.php:1217
 msgctxt "FEMALE"
 msgid "died"
 msgstr ""
 
-#: FancyTreeviewModule.php:1108
+#: FancyTreeviewModule.php:1217
 msgctxt "MALE"
 msgid "died"
 msgstr ""
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:634
+#: FancyTreeviewModule.php:743
 msgid "eighth"
 msgstr ""
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:631
+#: FancyTreeviewModule.php:740
 msgid "fifth"
 msgstr ""
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:627
+#: FancyTreeviewModule.php:736
 msgid "first"
 msgstr ""
 
-#: FancyTreeviewModule.php:1228
+#: FancyTreeviewModule.php:1337
 msgid "follow"
 msgstr ""
 
-#: FancyTreeviewModule.php:810
+#: FancyTreeviewModule.php:919
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr ""
 
-#: FancyTreeviewModule.php:813
+#: FancyTreeviewModule.php:922
 msgctxt "MALE"
 msgid "foster child"
 msgstr ""
 
-#: FancyTreeviewModule.php:884
+#: FancyTreeviewModule.php:993
 msgid "foster child of"
 msgstr ""
 
-#: FancyTreeviewModule.php:875
+#: FancyTreeviewModule.php:984
 msgid "foster daughter of"
 msgstr ""
 
-#: FancyTreeviewModule.php:866
+#: FancyTreeviewModule.php:975
 msgid "foster son of"
 msgstr ""
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:630
+#: FancyTreeviewModule.php:739
 msgid "fourth"
 msgstr ""
 
-#: FancyTreeviewModule.php:782
+#: FancyTreeviewModule.php:891
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr ""
 
-#: FancyTreeviewModule.php:764 FancyTreeviewModule.php:784
+#: FancyTreeviewModule.php:873 FancyTreeviewModule.php:893
 msgctxt "One parent/one child"
 msgid "had"
 msgstr ""
 
-#: FancyTreeviewModule.php:776
+#: FancyTreeviewModule.php:885
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr ""
 
-#: FancyTreeviewModule.php:762 FancyTreeviewModule.php:778
+#: FancyTreeviewModule.php:871 FancyTreeviewModule.php:887
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1179
+#: FancyTreeviewModule.php:1288
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1182
+#: FancyTreeviewModule.php:1291
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1201
+#: FancyTreeviewModule.php:1310
 msgctxt "before place names"
 msgid "in "
 msgstr ""
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:635
+#: FancyTreeviewModule.php:744
 msgid "ninth"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1176
+#: FancyTreeviewModule.php:1285
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr ""
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:628
+#: FancyTreeviewModule.php:737
 msgid "second"
 msgstr ""
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:633
+#: FancyTreeviewModule.php:742
 msgid "seventh"
 msgstr ""
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:632
+#: FancyTreeviewModule.php:741
 msgid "sixth"
 msgstr ""
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:636
+#: FancyTreeviewModule.php:745
 msgid "tenth"
 msgstr ""
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:629
+#: FancyTreeviewModule.php:738
 msgid "third"
 msgstr ""
 
-#: FancyTreeviewModule.php:1084
+#: FancyTreeviewModule.php:1193
 msgctxt "PRESENT (MALE)"
 msgid "was bapitized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1082
+#: FancyTreeviewModule.php:1191
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1082
+#: FancyTreeviewModule.php:1191
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1084
+#: FancyTreeviewModule.php:1193
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr ""
 
-#: FancyTreeviewModule.php:1064
+#: FancyTreeviewModule.php:1173
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:1064
+#: FancyTreeviewModule.php:1173
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:1066
+#: FancyTreeviewModule.php:1175
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:1066
+#: FancyTreeviewModule.php:1175
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1225
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr ""
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1225
 msgctxt "MALE"
 msgid "was buried"
 msgstr ""
 
-#: FancyTreeviewModule.php:1124
+#: FancyTreeviewModule.php:1233
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr ""
 
-#: FancyTreeviewModule.php:1124
+#: FancyTreeviewModule.php:1233
 msgctxt "MALE"
 msgid "was cremated"
 msgstr ""
 
-#: FancyTreeviewModule.php:696
+#: FancyTreeviewModule.php:805
 msgid "were divorced"
 msgstr ""
