@@ -18,103 +18,9 @@ msgstr " "
 msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 msgstr "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 
-#: FancyTreeviewModule.php:93
-msgid "Fancy Treeview"
-msgstr "Vista de Árbol Elegante"
-
-#: FancyTreeviewModule.php:830
-msgid "He had a relationship with"
-msgstr "Él mantuvo una relación con"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:750
-msgid "He married %s times"
-msgstr "El casó %s veces"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "He was baptized"
-msgstr "Fue bautizado"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "He was baptized"
-msgstr "Se bautiza"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "He was born"
-msgstr "El nació"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "He was born"
-msgstr "El nace"
-
-#: resources/views/readmore-link.phtml:8
-msgid "Read more"
-msgstr "Leer más"
-
-#: FancyTreeviewModule.php:833
-msgid "She had a relationship with"
-msgstr "Mantuvo una relación con"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:756
-msgid "She married %s times"
-msgstr "Ella se casa %s veces"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "She was baptized"
-msgstr "Nació"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "Nace"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "She was born"
-msgstr "Ella nació"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "Ella nace"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:752
-msgid "The %s time he married"
-msgstr "La %s vez el casó con"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:758
-msgid "The %s time she married"
-msgstr "La %s vez ella casó con"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:764
-msgid "The %s time this individual married"
-msgstr "La %s vez este individuo casó"
-
-#: resources/views/block-content.phtml:9
-msgid "The details of this generation are private."
-msgstr "La información de esta generación son privados."
-
-#: FancyTreeviewModule.php:836
-msgid "This individual had a relationship with"
-msgstr "Este individuo mantuvo una relación con"
-
-#: FancyTreeviewModule.php:776
-msgid "This individual married"
-msgstr "Este individuo casó"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:762
-msgid "This individual married %s times"
-msgstr "Este individuo casó %s veces"
+#: resources/views/menu-item-add.phtml:10
+msgid "Add to menu"
+msgstr "Add to menu"
 
 #: FancyTreeviewModule.php:929
 msgctxt "FEMALE"
@@ -182,6 +88,14 @@ msgstr "falleció"
 msgid "eighth"
 msgstr "octavo"
 
+#: FancyTreeviewModule.php:435
+msgid "Family tree overview"
+msgstr "Family tree overview"
+
+#: FancyTreeviewModule.php:93
+msgid "Fancy Treeview"
+msgstr "Vista de Árbol Elegante"
+
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:740
 msgid "fifth"
@@ -243,6 +157,35 @@ msgctxt "Two parents/one child"
 msgid "had"
 msgstr "tuvieron"
 
+#: FancyTreeviewModule.php:830
+msgid "He had a relationship with"
+msgstr "Él mantuvo una relación con"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:750
+msgid "He married %s times"
+msgstr "El casó %s veces"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Fue bautizado"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Se bautiza"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "He was born"
+msgstr "El nació"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "El nace"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1288
 msgctxt "before dateformat mmm yyyy"
@@ -272,6 +215,14 @@ msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "el "
 
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "Leer más"
+
+#: resources/views/menu-item-remove.phtml:10
+msgid "Remove from menu"
+msgstr "Remove from menu"
+
 #. I18N: second marriage
 #: FancyTreeviewModule.php:737
 msgid "second"
@@ -281,6 +232,35 @@ msgstr "segunda"
 #: FancyTreeviewModule.php:742
 msgid "seventh"
 msgstr "séptimo"
+
+#: FancyTreeviewModule.php:833
+msgid "She had a relationship with"
+msgstr "Mantuvo una relación con"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:756
+msgid "She married %s times"
+msgstr "Ella se casa %s veces"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Nació"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Nace"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Ella nació"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Ella nace"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:741
@@ -292,10 +272,42 @@ msgstr "sexto"
 msgid "tenth"
 msgstr "décimo"
 
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:752
+msgid "The %s time he married"
+msgstr "La %s vez el casó con"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:758
+msgid "The %s time she married"
+msgstr "La %s vez ella casó con"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:764
+msgid "The %s time this individual married"
+msgstr "La %s vez este individuo casó"
+
+#: resources/views/block-content.phtml:9
+msgid "The details of this generation are private."
+msgstr "La información de esta generación son privados."
+
 #. I18N: third marriage
 #: FancyTreeviewModule.php:738
 msgid "third"
 msgstr "tercera"
+
+#: FancyTreeviewModule.php:836
+msgid "This individual had a relationship with"
+msgstr "Este individuo mantuvo una relación con"
+
+#: FancyTreeviewModule.php:776
+msgid "This individual married"
+msgstr "Este individuo casó"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:762
+msgid "This individual married %s times"
+msgstr "Este individuo casó %s veces"
 
 #: FancyTreeviewModule.php:1193
 msgctxt "PRESENT (MALE)"
@@ -360,16 +372,4 @@ msgstr "fue cremado"
 #: FancyTreeviewModule.php:805
 msgid "were divorced"
 msgstr "se divorciaron"
-
-#: resources/views/menu-item-add.phtml:10
-msgid "Add to menu"
-msgstr "Add to menu"
-
-#: FancyTreeviewModule.php:435
-msgid "Family tree overview"
-msgstr "Family tree overview"
-
-#: resources/views/menu-item-remove.phtml:10
-msgid "Remove from menu"
-msgstr "Remove from menu"
 
