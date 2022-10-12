@@ -18,103 +18,9 @@ msgstr " "
 msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 msgstr "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 
-#: FancyTreeviewModule.php:93
-msgid "Fancy Treeview"
-msgstr "תצוגת עץ מהודרת"
-
-#: FancyTreeviewModule.php:830
-msgid "He had a relationship with"
-msgstr "לו היה קשר עם"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:750
-msgid "He married %s times"
-msgstr "הוא נישא %s פעמים"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "He was baptized"
-msgstr "הוא הוטבל"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "He was baptized"
-msgstr "הוא הוטבל"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "He was born"
-msgstr "הוא נולד"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "He was born"
-msgstr "הוא נולד"
-
-#: resources/views/readmore-link.phtml:8
-msgid "Read more"
-msgstr "קרא עוד"
-
-#: FancyTreeviewModule.php:833
-msgid "She had a relationship with"
-msgstr "לה היה קשר עם"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:756
-msgid "She married %s times"
-msgstr "היא נישאה %s פעמים"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "She was baptized"
-msgstr "היא הוטבלה"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "היא הוטבלה"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "She was born"
-msgstr "היא נולדה"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "היא נולדה"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:752
-msgid "The %s time he married"
-msgstr "בפעם ה%s הוא התחתן עם"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:758
-msgid "The %s time she married"
-msgstr "בפעם ה%s היא התחתנה עם"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:764
-msgid "The %s time this individual married"
-msgstr "בפעם ה%s האדם התחתן עם"
-
-#: resources/views/block-content.phtml:9
-msgid "The details of this generation are private."
-msgstr "הפרטים של הדור הזה הם פרטיים."
-
-#: FancyTreeviewModule.php:836
-msgid "This individual had a relationship with"
-msgstr "לאדם הזה היה קשר עם"
-
-#: FancyTreeviewModule.php:776
-msgid "This individual married"
-msgstr "האדם הזה התחתן"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:762
-msgid "This individual married %s times"
-msgstr "האדם הזה התחתן %s פעמים"
+#: resources/views/menu-item-add.phtml:10
+msgid "Add to menu"
+msgstr "Add to menu"
 
 #: FancyTreeviewModule.php:929
 msgctxt "FEMALE"
@@ -182,6 +88,14 @@ msgstr "נפטר"
 msgid "eighth"
 msgstr "שמינית"
 
+#: FancyTreeviewModule.php:435
+msgid "Family tree overview"
+msgstr "Family tree overview"
+
+#: FancyTreeviewModule.php:93
+msgid "Fancy Treeview"
+msgstr "תצוגת עץ מהודרת"
+
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:740
 msgid "fifth"
@@ -243,6 +157,35 @@ msgctxt "Two parents/one child"
 msgid "had"
 msgstr "היה"
 
+#: FancyTreeviewModule.php:830
+msgid "He had a relationship with"
+msgstr "לו היה קשר עם"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:750
+msgid "He married %s times"
+msgstr "הוא נישא %s פעמים"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "הוא הוטבל"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "הוא הוטבל"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "He was born"
+msgstr "הוא נולד"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "הוא נולד"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1288
 msgctxt "before dateformat mmm yyyy"
@@ -272,6 +215,14 @@ msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "ב-"
 
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "קרא עוד"
+
+#: resources/views/menu-item-remove.phtml:10
+msgid "Remove from menu"
+msgstr "Remove from menu"
+
 #. I18N: second marriage
 #: FancyTreeviewModule.php:737
 msgid "second"
@@ -281,6 +232,35 @@ msgstr "שניה"
 #: FancyTreeviewModule.php:742
 msgid "seventh"
 msgstr "שביעית"
+
+#: FancyTreeviewModule.php:833
+msgid "She had a relationship with"
+msgstr "לה היה קשר עם"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:756
+msgid "She married %s times"
+msgstr "היא נישאה %s פעמים"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "היא הוטבלה"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "היא הוטבלה"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "She was born"
+msgstr "היא נולדה"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "היא נולדה"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:741
@@ -292,10 +272,42 @@ msgstr "שישית"
 msgid "tenth"
 msgstr "עשירית"
 
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:752
+msgid "The %s time he married"
+msgstr "בפעם ה%s הוא התחתן עם"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:758
+msgid "The %s time she married"
+msgstr "בפעם ה%s היא התחתנה עם"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:764
+msgid "The %s time this individual married"
+msgstr "בפעם ה%s האדם התחתן עם"
+
+#: resources/views/block-content.phtml:9
+msgid "The details of this generation are private."
+msgstr "הפרטים של הדור הזה הם פרטיים."
+
 #. I18N: third marriage
 #: FancyTreeviewModule.php:738
 msgid "third"
 msgstr "שלישית"
+
+#: FancyTreeviewModule.php:836
+msgid "This individual had a relationship with"
+msgstr "לאדם הזה היה קשר עם"
+
+#: FancyTreeviewModule.php:776
+msgid "This individual married"
+msgstr "האדם הזה התחתן"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:762
+msgid "This individual married %s times"
+msgstr "האדם הזה התחתן %s פעמים"
 
 #: FancyTreeviewModule.php:1193
 msgctxt "PRESENT (MALE)"
@@ -360,16 +372,4 @@ msgstr "נשרף"
 #: FancyTreeviewModule.php:805
 msgid "were divorced"
 msgstr "התגרשו"
-
-#: resources/views/menu-item-add.phtml:10
-msgid "Add to menu"
-msgstr "Add to menu"
-
-#: FancyTreeviewModule.php:435
-msgid "Family tree overview"
-msgstr "Family tree overview"
-
-#: resources/views/menu-item-remove.phtml:10
-msgid "Remove from menu"
-msgstr "Remove from menu"
 
