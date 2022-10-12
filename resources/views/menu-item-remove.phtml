@@ -1,0 +1,12 @@
+<?php
+
+use Fisharebest\Webtrees\I18N;
+
+?>
+
+<form method="post" action="<?= e(route('module', ['module' => '_jc-fancy-treeview_', 'action' => 'RemoveMenuItem', 'tree' => $tree->name(), 'xref' => $xref, 'type' => $type])) ?>" class="d-inline">
+    <?= csrf_field() ?>
+    <button type="submit" class="btn btn-danger">
+    <?= I18N::translate('Remove from menu') ?>
+    </button>
+</form>

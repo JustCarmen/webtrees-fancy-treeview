@@ -8,6 +8,7 @@ use Fisharebest\Webtrees\Age;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Place;
@@ -26,21 +27,25 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
+use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
+use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
     use ModuleGlobalTrait;
     use ModuleTabTrait;
+    use ModuleMenuTrait;
 
     // Route
     protected const ROUTE_URL = '/tree/{tree}/{module}/{xref}/{name}/{type}/{page}';
@@ -208,7 +213,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $tree = Validator::attributes($request)->tree();
-        $xref = Validator::attributes($request)->string('xref');
+        $xref = Validator::attributes($request)->isXref()->string('xref');
         $type = Validator::attributes($request)->string('type');
 
         $this->tree = $tree;
@@ -247,7 +252,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'generations'       => $generations,
             'current_page'      => $page,
             'total_pages'       => $total_pages,
-            'limit'             => $limit
+            'limit'             => $limit,
+            'is_admin'          => Auth::isAdmin(),
+            'is_menu_item'      => $this->isMenuItem($xref)
         ]);
     }
 
@@ -327,6 +334,108 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'ancestor_generations'          => $this->ancestor_generations,
             'limit'                         => $limit
         ]);
+    }
+
+   /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function postAddMenuItemAction(ServerRequestInterface $request): ResponseInterface
+    {
+        $tree = Validator::attributes($request)->tree();
+
+        $xref = $request->getQueryParams()['xref'];
+        $type = $request->getQueryParams()['type'];
+
+        $this->tree = $tree;
+        $this->type = $type;
+
+        if ($type === 'ancestors') {
+            $old_list = $this->getPreference('menu-ancestors', '');
+            $new_list = $old_list === '' ? $xref : $old_list . ', ' . $xref;
+
+            $this->setPreference('menu-ancestors', $new_list);
+        } else {
+            $old_list = $this->getPreference('menu-descendants', '');
+            $new_list = $old_list === '' ? $xref : $old_list . ', ' . $xref;
+
+            $this->setPreference('menu-descendants', $new_list);
+        }
+
+        $url  = $this->getUrl($tree, $xref, $type);
+
+        return redirect($url);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function postRemoveMenuItemAction(ServerRequestInterface $request): ResponseInterface
+    {
+        $tree = Validator::attributes($request)->tree();
+
+        $xref = $request->getQueryParams()['xref'];
+        $type = $request->getQueryParams()['type'];
+
+        $this->tree = $tree;
+        $this->type = $type;
+
+        if ($this->type === 'ancestors') {
+            $items = explode(', ', $this->getPreference('menu-ancestors', ''));
+            if (($key = array_search($xref, $items)) !== false) {
+                unset($items[$key]);
+            }
+            $this->setPreference('menu-ancestors', implode(', ', $items));
+        } else {
+            $items = explode(', ', $this->getPreference('menu-descendants', ''));
+            if (($key = array_search($xref, $items)) !== false) {
+                unset($items[$key]);
+            }
+            $this->setPreference('menu-descendants', implode(', ', $items));
+        }
+
+        $url  = $this->getUrl($tree, $xref, $type);
+
+        return redirect($url);
+    }
+
+    /**
+     * A menu, to be added to the main application menu.
+     *
+     * @param Tree $tree
+     *
+     * @return Menu|null
+     */
+    public function getMenu(Tree $tree): ?Menu
+    {
+        $ancestors   = array_filter(explode(', ', $this->getPreference('menu-ancestors')));
+        $descendants = array_filter(explode(', ', $this->getPreference('menu-descendants')));
+
+        $this->tree = $tree;
+
+        $submenu = [];
+        foreach ($ancestors as $xref) {
+            $person = $this->getPerson($xref);
+            if ($person->canShow()) {
+                $submenu[] = new Menu(I18N::translate('Ancestors of %s', $person->fullName()), $this->getUrl($tree, $xref, 'ancestors'), 'menu-fancy-treeview-' . $xref, ['rel' => 'nofollow']);
+            }
+        }
+
+        foreach ($descendants as $xref) {
+            $person = $this->getPerson($xref);
+            if ($person->canShow()) {
+                $submenu[] = new Menu(I18N::translate('Descendants of %s', $person->fullName()), $this->getUrl($tree, $xref, 'descendants'), 'menu-fancy-treeview-' . $xref, ['rel' => 'nofollow']);
+            }
+        }
+
+        if (count($submenu) > 0) {
+            return new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy-treeview', ['rel' => 'nofollow'], $submenu);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -1524,6 +1633,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $page = 1;
         }
         return $page;
+    }
+
+    private function isMenuItem(string $xref): bool
+    {
+        if ($this->type === 'ancestors') {
+            $items = explode(', ', $this->getPreference('menu-ancestors', ''));
+        } else {
+            $items = explode(', ', $this->getPreference('menu-descendants', ''));
+        }
+
+        return in_array($xref, $items) ? true : false;
     }
 
     /**

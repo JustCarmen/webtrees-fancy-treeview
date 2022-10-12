@@ -5,10 +5,21 @@ use Fisharebest\Webtrees\View;
 ?>
 
 <div id="jc-fancy-treeview-page" class="jc-fancy-treeview-page col-lg-9 mx-auto">
-    <span id="top" name="top"></span>
-    <div class="d-flex justify-content-end mb-3">
-        <a class="btn btn-primary" href="<?= e($button_url) ?>"><?= $button_text ?></a>
+    <div class="row mb-3">
+        <?php if ($is_admin): ?>
+            <div class="col">
+            <?php if ($is_menu_item): ?>
+                <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type]); ?>
+            <?php else: ?>
+                <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type]); ?>
+            <?php endif ?>
+            </div>
+        <?php endif ?>
+        <div class="col">
+            <a class="btn btn-primary d-inline float-end" href="<?= e($button_url) ?>"><?= $button_text ?></a>
+        </div>
     </div>
+    <span id="top" name="top"></span>
     <h2 class="wt-page-title"><?= $page_title ?></h2>
     <ol class="jc-fancy-treeview-page-body list-unstyled"><?= $page_body ?></ol>
 
