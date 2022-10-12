@@ -18,103 +18,9 @@ msgstr " "
 msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 msgstr "Een verhalend overzicht van de afstammelingen of voorouders van één familie(tak)."
 
-#: FancyTreeviewModule.php:93
-msgid "Fancy Treeview"
-msgstr "Fancy Treeview"
-
-#: FancyTreeviewModule.php:830
-msgid "He had a relationship with"
-msgstr "Hij had een relatie met"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:750
-msgid "He married %s times"
-msgstr "Hij trouwde %s keer"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "He was baptized"
-msgstr "Hij is gedoopt"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "He was baptized"
-msgstr "Hij is gedoopt"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "He was born"
-msgstr "Hij werd geboren"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "He was born"
-msgstr "Hij is geboren"
-
-#: resources/views/readmore-link.phtml:8
-msgid "Read more"
-msgstr "Lees meer"
-
-#: FancyTreeviewModule.php:833
-msgid "She had a relationship with"
-msgstr "Zij had een relatie met"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:756
-msgid "She married %s times"
-msgstr "Zij trouwde %s keer"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "She was baptized"
-msgstr "Zij is gedoopt"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "Zij is gedoopt"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "She was born"
-msgstr "Zij werd geboren"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "Zij is geboren"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:752
-msgid "The %s time he married"
-msgstr "De %s keer trouwde hij met"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:758
-msgid "The %s time she married"
-msgstr "De %s keer trouwde zij met"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:764
-msgid "The %s time this individual married"
-msgstr "De %s keer trouwde deze persoon met"
-
-#: resources/views/block-content.phtml:9
-msgid "The details of this generation are private."
-msgstr "De details van deze generatie zijn privé."
-
-#: FancyTreeviewModule.php:836
-msgid "This individual had a relationship with"
-msgstr "Deze persoon had een relatie met"
-
-#: FancyTreeviewModule.php:776
-msgid "This individual married"
-msgstr "Deze persoon trouwde met"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:762
-msgid "This individual married %s times"
-msgstr "Deze persoon trouwde %s keer"
+#: resources/views/menu-item-add.phtml:10
+msgid "Add to menu"
+msgstr "Toevoegen aan menu"
 
 #: FancyTreeviewModule.php:929
 msgctxt "FEMALE"
@@ -182,6 +88,14 @@ msgstr "overleed"
 msgid "eighth"
 msgstr "achtste"
 
+#: FancyTreeviewModule.php:435
+msgid "Family tree overview"
+msgstr "Stamboom overzicht"
+
+#: FancyTreeviewModule.php:93
+msgid "Fancy Treeview"
+msgstr "Fancy Treeview"
+
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:740
 msgid "fifth"
@@ -243,6 +157,35 @@ msgctxt "Two parents/one child"
 msgid "had"
 msgstr "hadden"
 
+#: FancyTreeviewModule.php:830
+msgid "He had a relationship with"
+msgstr "Hij had een relatie met"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:750
+msgid "He married %s times"
+msgstr "Hij trouwde %s keer"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Hij is gedoopt"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Hij is gedoopt"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Hij werd geboren"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Hij is geboren"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1288
 msgctxt "before dateformat mmm yyyy"
@@ -272,6 +215,14 @@ msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "op "
 
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "Lees meer"
+
+#: resources/views/menu-item-remove.phtml:10
+msgid "Remove from menu"
+msgstr "Verwijderen uit menu"
+
 #. I18N: second marriage
 #: FancyTreeviewModule.php:737
 msgid "second"
@@ -281,6 +232,35 @@ msgstr "tweede"
 #: FancyTreeviewModule.php:742
 msgid "seventh"
 msgstr "zevende"
+
+#: FancyTreeviewModule.php:833
+msgid "She had a relationship with"
+msgstr "Zij had een relatie met"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:756
+msgid "She married %s times"
+msgstr "Zij trouwde %s keer"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Zij is gedoopt"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Zij is gedoopt"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Zij werd geboren"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Zij is geboren"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:741
@@ -292,10 +272,42 @@ msgstr "zesde"
 msgid "tenth"
 msgstr "tiende"
 
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:752
+msgid "The %s time he married"
+msgstr "De %s keer trouwde hij met"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:758
+msgid "The %s time she married"
+msgstr "De %s keer trouwde zij met"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:764
+msgid "The %s time this individual married"
+msgstr "De %s keer trouwde deze persoon met"
+
+#: resources/views/block-content.phtml:9
+msgid "The details of this generation are private."
+msgstr "De details van deze generatie zijn privé."
+
 #. I18N: third marriage
 #: FancyTreeviewModule.php:738
 msgid "third"
 msgstr "derde"
+
+#: FancyTreeviewModule.php:836
+msgid "This individual had a relationship with"
+msgstr "Deze persoon had een relatie met"
+
+#: FancyTreeviewModule.php:776
+msgid "This individual married"
+msgstr "Deze persoon trouwde met"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:762
+msgid "This individual married %s times"
+msgstr "Deze persoon trouwde %s keer"
 
 #: FancyTreeviewModule.php:1193
 msgctxt "PRESENT (MALE)"
@@ -360,16 +372,4 @@ msgstr "is gecremeerd"
 #: FancyTreeviewModule.php:805
 msgid "were divorced"
 msgstr "zijn gescheiden"
-
-#: resources/views/menu-item-add.phtml:10
-msgid "Add to menu"
-msgstr "Toevoegen aan menu"
-
-#: FancyTreeviewModule.php:435
-msgid "Family tree overview"
-msgstr "Stamboom overzicht"
-
-#: resources/views/menu-item-remove.phtml:10
-msgid "Remove from menu"
-msgstr "Verwijderen uit menu"
 
