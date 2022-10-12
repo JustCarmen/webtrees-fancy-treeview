@@ -18,103 +18,9 @@ msgstr " "
 msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 msgstr "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
 
-#: FancyTreeviewModule.php:93
-msgid "Fancy Treeview"
-msgstr "Efektný stromový pohľad"
-
-#: FancyTreeviewModule.php:830
-msgid "He had a relationship with"
-msgstr "Mal s ním vzťah"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:750
-msgid "He married %s times"
-msgstr "Oženil sa s %s"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "He was baptized"
-msgstr "Bol pokrstený"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "He was baptized"
-msgstr "Bol pokrstený"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "He was born"
-msgstr "Narodil(la) sa"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "He was born"
-msgstr "Narodil(la) sa"
-
-#: resources/views/readmore-link.phtml:8
-msgid "Read more"
-msgstr "Čítaj ďalej"
-
-#: FancyTreeviewModule.php:833
-msgid "She had a relationship with"
-msgstr "Mala vzťah s"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:756
-msgid "She married %s times"
-msgstr "Ona si vzala %s obdobie"
-
-#: FancyTreeviewModule.php:1184
-msgctxt "PAST"
-msgid "She was baptized"
-msgstr "Bola pokrstená"
-
-#: FancyTreeviewModule.php:1186
-msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "Bola pokrstená"
-
-#: FancyTreeviewModule.php:1166
-msgctxt "PAST"
-msgid "She was born"
-msgstr "Sa narodila"
-
-#: FancyTreeviewModule.php:1168
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "Sa narodila"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:752
-msgid "The %s time he married"
-msgstr "%s  si vzal"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:758
-msgid "The %s time she married"
-msgstr "%s sa vydala"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:764
-msgid "The %s time this individual married"
-msgstr "%s sa tento človek oženil"
-
-#: resources/views/block-content.phtml:9
-msgid "The details of this generation are private."
-msgstr "Podrobnosti tejto generácie sú súkromné."
-
-#: FancyTreeviewModule.php:836
-msgid "This individual had a relationship with"
-msgstr "Tento človek mal vzťah"
-
-#: FancyTreeviewModule.php:776
-msgid "This individual married"
-msgstr "Tento človek sa oženil"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:762
-msgid "This individual married %s times"
-msgstr "Tento človek sa oženil %s"
+#: resources/views/menu-item-add.phtml:10
+msgid "Add to menu"
+msgstr "Add to menu"
 
 #: FancyTreeviewModule.php:929
 msgctxt "FEMALE"
@@ -182,6 +88,14 @@ msgstr "zomrel"
 msgid "eighth"
 msgstr "ôsmy"
 
+#: FancyTreeviewModule.php:435
+msgid "Family tree overview"
+msgstr "Family tree overview"
+
+#: FancyTreeviewModule.php:93
+msgid "Fancy Treeview"
+msgstr "Efektný stromový pohľad"
+
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:740
 msgid "fifth"
@@ -243,6 +157,35 @@ msgctxt "Two parents/one child"
 msgid "had"
 msgstr "mal"
 
+#: FancyTreeviewModule.php:830
+msgid "He had a relationship with"
+msgstr "Mal s ním vzťah"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:750
+msgid "He married %s times"
+msgstr "Oženil sa s %s"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Bol pokrstený"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Bol pokrstený"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Narodil(la) sa"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Narodil(la) sa"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1288
 msgctxt "before dateformat mmm yyyy"
@@ -272,6 +215,14 @@ msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr " "
 
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "Čítaj ďalej"
+
+#: resources/views/menu-item-remove.phtml:10
+msgid "Remove from menu"
+msgstr "Remove from menu"
+
 #. I18N: second marriage
 #: FancyTreeviewModule.php:737
 msgid "second"
@@ -281,6 +232,35 @@ msgstr "sekund"
 #: FancyTreeviewModule.php:742
 msgid "seventh"
 msgstr "siedmy"
+
+#: FancyTreeviewModule.php:833
+msgid "She had a relationship with"
+msgstr "Mala vzťah s"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:756
+msgid "She married %s times"
+msgstr "Ona si vzala %s obdobie"
+
+#: FancyTreeviewModule.php:1184
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Bola pokrstená"
+
+#: FancyTreeviewModule.php:1186
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Bola pokrstená"
+
+#: FancyTreeviewModule.php:1166
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Sa narodila"
+
+#: FancyTreeviewModule.php:1168
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Sa narodila"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:741
@@ -292,10 +272,42 @@ msgstr "šiesty"
 msgid "tenth"
 msgstr "desiaty"
 
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:752
+msgid "The %s time he married"
+msgstr "%s  si vzal"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:758
+msgid "The %s time she married"
+msgstr "%s sa vydala"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:764
+msgid "The %s time this individual married"
+msgstr "%s sa tento človek oženil"
+
+#: resources/views/block-content.phtml:9
+msgid "The details of this generation are private."
+msgstr "Podrobnosti tejto generácie sú súkromné."
+
 #. I18N: third marriage
 #: FancyTreeviewModule.php:738
 msgid "third"
 msgstr "tretí"
+
+#: FancyTreeviewModule.php:836
+msgid "This individual had a relationship with"
+msgstr "Tento človek mal vzťah"
+
+#: FancyTreeviewModule.php:776
+msgid "This individual married"
+msgstr "Tento človek sa oženil"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:762
+msgid "This individual married %s times"
+msgstr "Tento človek sa oženil %s"
 
 #: FancyTreeviewModule.php:1193
 msgctxt "PRESENT (MALE)"
@@ -360,16 +372,4 @@ msgstr "bol spopolnený"
 #: FancyTreeviewModule.php:805
 msgid "were divorced"
 msgstr "boli rozvedení"
-
-#: resources/views/menu-item-add.phtml:10
-msgid "Add to menu"
-msgstr "Add to menu"
-
-#: FancyTreeviewModule.php:435
-msgid "Family tree overview"
-msgstr "Family tree overview"
-
-#: resources/views/menu-item-remove.phtml:10
-msgid "Remove from menu"
-msgstr "Remove from menu"
 
