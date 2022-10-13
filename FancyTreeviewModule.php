@@ -1532,9 +1532,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Check if this is a private record
      * $records can be an array of xrefs or an array of objects
-     *
-     * TODO: turn $this->xrefs ($records) into a Collection
-     *
+     *      *
      * @param mixed $records
      * @param bool $xrefs
      *
