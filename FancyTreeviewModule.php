@@ -430,6 +430,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
 
         if (count($submenu) > 0) {
+            sort($submenu);
             return new Menu(I18N::translate('Family tree overview'), '#', 'menu-fancy-treeview', ['rel' => 'nofollow'], $submenu);
         } else {
             return null;
