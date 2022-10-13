@@ -252,9 +252,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'generations'       => $generations,
             'current_page'      => $page,
             'total_pages'       => $total_pages,
-            'limit'             => $limit,
-            'is_admin'          => Auth::isAdmin(),
-            'is_menu_item'      => $this->isMenuItem($xref)
+            'limit'             => $limit
         ]);
     }
 
@@ -1635,7 +1633,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $page;
     }
 
-    private function isMenuItem(string $xref): bool
+    public function isMenuItem(string $xref): bool
     {
         if ($this->type === 'ancestors') {
             $items = explode(', ', $this->getPreference('menu-ancestors', ''));
