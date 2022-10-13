@@ -1531,7 +1531,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     /**
      * Check if this is a private record
      * $records can be an array of xrefs or an array of objects
-     *      *
+     *
      * @param mixed $records
      * @param bool $xrefs
      *
