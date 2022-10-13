@@ -38,7 +38,6 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
 {
