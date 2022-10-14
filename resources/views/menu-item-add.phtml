@@ -6,7 +6,7 @@ use Fisharebest\Webtrees\I18N;
 
 <form method="post" action="<?= e(route('module', ['module' => '_jc-fancy-treeview_', 'action' => 'AddMenuItem', 'tree' => $tree->name(), 'xref' => $xref, 'type' => $type])) ?>" class="d-inline">
     <?= csrf_field() ?>
-    <button type="submit" class="btn btn-success">
+    <button type="submit" class="<?= $class ?>">
     <?= I18N::translate('Add to menu') ?>
     </button>
 </form>

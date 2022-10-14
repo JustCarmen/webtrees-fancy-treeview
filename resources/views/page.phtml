@@ -10,9 +10,9 @@ use Fisharebest\Webtrees\View;
         <?php if (Auth::isAdmin()): ?>
             <div class="col">
             <?php if ($module->isMenuItem($xref, $module->type)): ?>
-                <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type]); ?>
+                <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type, 'class' => 'btn btn-danger']); ?>
             <?php else: ?>
-                <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type]); ?>
+                <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type, 'class' => 'btn btn-success']); ?>
             <?php endif ?>
             </div>
         <?php endif ?>
