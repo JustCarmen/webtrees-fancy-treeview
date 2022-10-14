@@ -7,25 +7,29 @@ Fancy Treeview for webtrees
 
 Introduction
 -----------
-This module is a rewritten version of the Fancy treeview module for webtrees 1.
+This module is a rewritten version of the Fancy treeview module.
 
-This module adds an additional 'Descendants and ancestors' tab to the individual page.
+This new version of the module adds an additional tab "Descendants and Ancestors" to the individual page.
 
-This tab shows the details of the current individual and his descendants in the next two generations in a narrative way. With one click, you switch to the current individual and his ancestors in the next two generations.
+This tab shows in a narrative fashion the details of the current person and his/her descendants in the next two generations. What's new is that you can also get an overview of ancestors! With one click you switch to a person's ancestors in the next two generations.
 
-If more generations are available, they can be accessed by clicking on the readmore link, which redirects to a separate page that displays all generations from the current individual to the last accessible generation (up or down) in a narrative way.
+If more generations are available, they are accessible by clicking the readmore link, which redirects to a separate page that displays all generations from the current person to the last accessible generation (up or down) in a narrative manner.
 
-This way you give your users a quick overview of the family tree of the chosen individual. Of course, privacy rules are respected.
+This gives your users a quick overview of the chosen person's family tree. Of course, privacy rules are respected.
 
-Currently there is no configuration page and it is not possible to reach the Fancy Treeview page from the menu or download the Fancy Treeview page as a pdf as in the webtrees 1 version. Future versions may re-implement these features.
+In addition to the usual information, the ancestor overview also shows a percentage indicating the extent to which the generation is complete.  The 1st generation consists of 1 person, the 2nd generation consists of the parents of that person (up to 2 persons), the next generation consists of the grandparents of the starting person (up to 4 persons) and so on. So the 10th generation is complete if it consists of 512 people (2^(10-1)).
+
+The administrator can add or remove pages from the menu by clicking on the button at the top of the Fancy Treeview page.
+
+Currently there is no configuration page and it is not possible to download the Fancy Treeview page as a pdf as in the webtrees 1 version of this module. It is possible that these features will be re-implemented in a later version.
 
 Translations
 ------------
-You can help to translate this module. The language files will become available at [POEditor][3] where you can update them. But you can also use a local editor, like poeditor or notepad++ to make the translations and send them back to me. You can do this via a pull request (if you know how) or by e-mail. Updated translations will be included in the next release of this module.
+You can help to translate this module. The language files are available at [POEditor][3] where you can update them. But you can also use a local editor, like poeditor or notepad++ to make the translations and send them back to me. You can do this via a pull request (if you know how) or by e-mail. Updated translations will be included in the next release of this module.
 
 Installation & upgrading
 ------------------------
-Unpack the zip file and place the folder jc-fancy-treeview in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go to the control panel to set some options.
+Unpack the zip file and place the folder jc-fancy-treeview in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go the an individual page and click on the tab 'Descendants and Ancestors'.
 
 Bugs and feature requests
 -------------------------
@@ -33,7 +37,7 @@ If you experience any bugs or have a feature request for this module you can [cr
 
  [1]: https://github.com/JustCarmen/webtrees-fancy-treeview/releases/latest
  [2]: https://webtrees.github.io/download/
- [3]: https://poeditor.com/join/project?hash=kH2euLO811
+ [3]: https://poeditor.com/join/project/9HqYANIknp
  [4]: https://github.com/JustCarmen/webtrees-fancy-treeview/issues?state=open
 
 
