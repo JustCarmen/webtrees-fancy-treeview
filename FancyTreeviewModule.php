@@ -380,7 +380,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->tree = $tree;
         $this->type = $type;
 
-        if ($this->type === 'ancestors') {
+        if ($type === 'ancestors') {
             $items = explode(', ', $this->getPreference('menu-ancestors', ''));
             if (($key = array_search($xref, $items)) !== false) {
                 unset($items[$key]);
@@ -1631,9 +1631,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $page;
     }
 
-    public function isMenuItem(string $xref): bool
+    public function isMenuItem(string $xref, string $type): bool
     {
-        if ($this->type === 'ancestors') {
+        if ($type === 'ancestors') {
             $items = explode(', ', $this->getPreference('menu-ancestors', ''));
         } else {
             $items = explode(', ', $this->getPreference('menu-descendants', ''));
