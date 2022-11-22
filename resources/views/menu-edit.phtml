@@ -20,10 +20,11 @@ use Fisharebest\Webtrees\View;
             <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $individual->xref(), 'type' => 'descendants', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Add descendants to menu')]); ?>
         <?php endif ?>
     </div>
-<?php endif ?>
 
-<?php View::push('javascript') ?>
-<script>
-    $('.wt-page-menu-items .dropdown-item:last-child').after($('.jc-fancy-treeview-menu-edit').addClass('show'));
-</script>
-<?php View::endpush() ?>
+    <?php View::push('javascript') ?>
+    <script>
+        $('.wt-page-menu-items .dropdown-item:last-child').after($('.jc-fancy-treeview-menu-edit').addClass('show'));
+    </script>
+    <?php View::endpush() ?>
+
+<?php endif ?>
