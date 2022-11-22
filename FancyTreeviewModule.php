@@ -322,7 +322,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return View($this->name() . '::tab', [
             'module'                        => $this,
             'tree'                          => $tree,
-            'xref'                          => $xref,
+            'individual'                    => $individual,
             'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
             'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
             'tab_content_descendants'       => $this->printDescendantsPage($xref, $start, $limit),
@@ -344,6 +344,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         $xref = $request->getQueryParams()['xref'];
         $type = $request->getQueryParams()['type'];
+        $url  = $request->getQueryParams()['url'];
 
         $this->tree = $tree;
         $this->type = $type;
@@ -360,8 +361,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $this->setPreference('menu-descendants', $new_list);
         }
 
-        $url  = $this->getUrl($tree, $xref, $type);
-
         return redirect($url);
     }
 
@@ -376,6 +375,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         $xref = $request->getQueryParams()['xref'];
         $type = $request->getQueryParams()['type'];
+        $url  = $request->getQueryParams()['url'];
 
         $this->tree = $tree;
         $this->type = $type;
@@ -393,8 +393,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
             $this->setPreference('menu-descendants', implode(', ', $items));
         }
-
-        $url  = $this->getUrl($tree, $xref, $type);
 
         return redirect($url);
     }

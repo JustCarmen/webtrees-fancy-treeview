@@ -1,6 +1,7 @@
 <?php
 
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 
 ?>
@@ -10,9 +11,23 @@ use Fisharebest\Webtrees\View;
         <?php if (Auth::isAdmin()): ?>
             <div class="col">
             <?php if ($module->isMenuItem($xref, $module->type)): ?>
-                <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type, 'class' => 'btn btn-danger']); ?>
+                <?= View($module->name() . '::menu-item-remove', [
+                    'tree'  => $tree,
+                    'xref'  => $xref,
+                    'type'  => $module->type,
+                    'class' => 'btn btn-danger',
+                    'text'  => I18N::translate('Remove from menu'),
+                    'url'   => $module->getUrl($tree, $xref, $module->type)
+                    ]) ?>
             <?php else: ?>
-                <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $xref, 'type' => $module->type, 'class' => 'btn btn-success']); ?>
+                <?= View($module->name() . '::menu-item-add', [
+                    'tree'  => $tree,
+                    'xref'  => $xref,
+                    'type'  => $module->type,
+                    'class' => 'btn btn-success',
+                    'text'  => I18N::translate('Add to menu'),
+                    'url'   => $module->getUrl($tree, $xref, $module->type)
+                    ]) ?>
             <?php endif ?>
             </div>
         <?php endif ?>
