@@ -11,7 +11,6 @@
  *        module.php
  *        LICENSE.md
  *        README.md
- *
  */
 
 let mix = require('laravel-mix');
@@ -24,11 +23,6 @@ const postcssAutoprefixer = require("autoprefixer")();
 const postcssRTLCSS = require('postcss-rtlcss')({
     safeBothPrefix: true
 });
-
-const dist_dir = 'dist/jc-fancy-treeview';
-
-//https://github.com/gregnb/filemanager-webpack-plugin
-const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 if (process.env.NODE_ENV === 'production') {
     mix.styles(config.public_dir + '/css/style.css', config.build_dir + '/style.css')

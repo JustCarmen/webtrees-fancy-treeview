@@ -2,7 +2,7 @@
  * Laravel mix - Fancy Imagebar
  *
  * Output:
- * 		- jc-fancy-imagebar-x.zip
+ * 		- jc-fancy-treeview-x.zip
  *
  */
 

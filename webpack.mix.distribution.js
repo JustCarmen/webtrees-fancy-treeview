@@ -1,5 +1,5 @@
 /**
- * Laravel mix - Fancy Imagebar
+ * Laravel mix - Fancy Treeview
  *
  * Output:
  * 		- dist
