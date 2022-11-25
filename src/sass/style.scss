@@ -2,3 +2,10 @@
 @import "tab";
 @import "list";
 @import "menu";
+
+// general code (used on page and tab)
+.jc-fancy-treeview-page-body {
+    a.gallery {
+        padding-right: 0.5rem;
+    }
+}
