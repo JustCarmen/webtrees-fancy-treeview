@@ -415,14 +415,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         foreach ($ancestors as $xref) {
             $person = $this->getPerson($xref);
             if ($person->canShow()) {
-                $submenu[] = new Menu(I18N::translate('Ancestors of %s', $person->fullName()), $this->getUrl($tree, $xref, 'ancestors'), 'menu-fancy-treeview-' . $xref, ['rel' => 'nofollow']);
+                $submenu[] = new Menu(I18N::translate('Ancestors of %s', $person->fullName()), $this->getUrl($tree, $xref, 'ancestors'), 'menu-fancy-treeview-ancestors', ['rel' => 'nofollow']);
             }
         }
 
         foreach ($descendants as $xref) {
             $person = $this->getPerson($xref);
             if ($person->canShow()) {
-                $submenu[] = new Menu(I18N::translate('Descendants of %s', $person->fullName()), $this->getUrl($tree, $xref, 'descendants'), 'menu-fancy-treeview-' . $xref, ['rel' => 'nofollow']);
+                $submenu[] = new Menu(I18N::translate('Descendants of %s', $person->fullName()), $this->getUrl($tree, $xref, 'descendants'), 'menu-fancy-treeview-descendants', ['rel' => 'nofollow']);
             }
         }
 

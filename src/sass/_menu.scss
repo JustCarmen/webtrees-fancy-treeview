@@ -1,0 +1,25 @@
+/* Fancy Treeview Menu */
+@mixin jc-menu-icon($theme, $class: $theme) {
+    .wt-theme-#{$class} {
+        .menu-fancy-treeview {
+            .nav-link:before {
+                content: url($theme + '/menu-ftv-large.png');
+            }
+            .menu-fancy-treeview-ancestors:before {
+                content: url($theme + '/menu-ftv-small-anc.png');
+            }
+            .menu-fancy-treeview-descendants:before {
+                content: url($theme + '/menu-ftv-small-des.png');
+            }
+        }
+    }
+}
+
+// webtrees default themes
+@include jc-menu-icon ('clouds');
+@include jc-menu-icon ('colors');
+@include jc-menu-icon ('webtrees');
+@include jc-menu-icon ('xenea');
+
+// custom theme
+@include jc-menu-icon ('_rural_', '_myartjaub_ruraltheme_');

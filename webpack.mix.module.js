@@ -24,6 +24,12 @@ const postcssRTLCSS = require('postcss-rtlcss')({
     safeBothPrefix: true
 });
 
+//https://github.com/bezoerb/postcss-image-inliner
+const postcssImageInliner = require('postcss-image-inliner')({
+    assetPaths: [config.images_dir],
+    maxFileSize: 0,
+});
+
 if (process.env.NODE_ENV === 'production') {
     mix.styles(config.public_dir + '/css/style.css', config.build_dir + '/style.css')
 } else {
@@ -34,7 +40,8 @@ if (process.env.NODE_ENV === 'production') {
             processCssUrls: false,
             postCss: [
                 postcssRTLCSS,
-                postcssAutoprefixer
+                postcssAutoprefixer,
+                postcssImageInliner
             ]
         });
 }
