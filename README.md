@@ -19,7 +19,7 @@ This gives your users a quick overview of the chosen person's family tree. Of co
 
 In addition to the usual information, the ancestor overview also shows a percentage indicating the extent to which the generation is complete.  The 1st generation consists of 1 person, the 2nd generation consists of the parents of that person (up to 2 persons), the next generation consists of the grandparents of the starting person (up to 4 persons) and so on. So the 10th generation is complete if it consists of 512 people (2^(10-1)).
 
-The administrator can add or remove pages from the menu by clicking on the button at the top of the Fancy Treeview page.
+The administrator can add or remove pages from the menu by clicking on the button at the top of the Fancy Treeview page or by using the links in the edit menu on the individual page.
 
 Currently there is no configuration page and it is not possible to download the Fancy Treeview page as a pdf as in the webtrees 1 version of this module. It is possible that these features will be re-implemented in a later version.
 
@@ -29,7 +29,7 @@ You can help to translate this module. The language files are available at [POEd
 
 Installation & upgrading
 ------------------------
-Unpack the zip file and place the folder jc-fancy-treeview in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go the an individual page and click on the tab 'Descendants and Ancestors'.
+Unpack the zip file and place the folder jc-fancy-treeview in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go to any individual page and click on the tab 'Descendants and Ancestors'.
 
 Bugs and feature requests
 -------------------------
