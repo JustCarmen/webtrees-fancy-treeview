@@ -4,4 +4,15 @@
     &-body {
         line-height: 1.5rem;
     }
+
+    // custom theme
+    .jc-theme-justlight & {
+
+        &:target {
+            display: block;
+            position: relative;
+            top: -200px;
+            visibility: hidden;
+        }
+    }
 }
