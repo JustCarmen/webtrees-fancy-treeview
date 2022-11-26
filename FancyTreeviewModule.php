@@ -1535,7 +1535,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return bool
      */
-    public function checkPrivacy(mixed $records, bool $xrefs = false): bool
+    public function checkPrivacy($records, bool $xrefs = false): bool
     {
         $count = 0;
         foreach ($records as $person) {
