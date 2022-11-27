@@ -228,12 +228,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         if ($this->type === 'ancestors') {
             $page_body   = $this->printAncestorsPage($xref, $start, $limit);
             $button_url  = $this->getUrl($tree, $xref, 'descendants');
-            $button_text = I18N::translate('Show') . ' ' . strtolower(I18N::translate('Descendants'));
+            $button_text = I18N::translate('Show descendants');
             $generations = $this->ancestor_generations;
         } else {
             $page_body   = $this->printDescendantsPage($xref, $start, $limit);
             $button_url  = $this->getUrl($tree, $xref, 'ancestors');
-            $button_text =  I18N::translate('Show') . ' ' . strtolower(I18N::translate('Ancestors'));
+            $button_text =  I18N::translate('Show ancestors');
             $generations = $this->descendant_generations;
         }
 
@@ -262,7 +262,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function tabTitle(): string
     {
-        return I18N::translate('Descendants') . ' ' . I18N::translate('and') . ' ' . strtolower(I18N::translate('Ancestors'));
+        return I18N::translate('Descendants and ancestors');
     }
 
     /**
@@ -868,7 +868,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             } else {
                 $html .= I18N::translateContext('One parent/one child', 'had');
             }
-            $html .= ' ' . I18N::translate('none') . ' ' . strtolower(I18N::translate('Children')) . '.</p></div>';
+            $html .= ' ' . I18N::translate('no children') . '.</p></div>';
         } else {
             $children = $family->children();
             if ($children) {
@@ -892,7 +892,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     if (count($children) > 0) {
                         $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                     } else {
-                        $html .= ' ' . I18N::translate('none') . ' ' . strtolower(I18N::translate('Children')) . '.</p></div>';
+                        $html .= ' ' . I18N::translate('no children') . '.</p></div>';
                     }
                 } else {
                     $html .= '<div class="jc-children-block mb-2"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of'). ' ' . $this->printName($person);
