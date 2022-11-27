@@ -100,7 +100,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function description(): string
     {
         /* I18N: Description of the “Fancy Treeview” module */
-        return I18N::translate('A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way.');
+        return I18N::translate('A narrative overview of the descendants or ancestors of one family (branch).');
     }
 
     /**
