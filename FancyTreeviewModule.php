@@ -414,14 +414,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $submenu = [];
         foreach ($ancestors as $xref) {
             $person = $this->getPerson($xref);
-            if ($person->canShow()) {
+            if ($person && $person->canShow()) {
                 $submenu[] = new Menu(I18N::translate('Ancestors of %s', $person->fullName()), $this->getUrl($tree, $xref, 'ancestors'), 'menu-fancy-treeview-ancestors', ['rel' => 'nofollow']);
             }
         }
 
         foreach ($descendants as $xref) {
             $person = $this->getPerson($xref);
-            if ($person->canShow()) {
+            if ($person && $person->canShow()) {
                 $submenu[] = new Menu(I18N::translate('Descendants of %s', $person->fullName()), $this->getUrl($tree, $xref, 'descendants'), 'menu-fancy-treeview-descendants', ['rel' => 'nofollow']);
             }
         }
@@ -1128,7 +1128,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * @param Individual $person
      * @param Individual $spouse
      *
-     * @return string
+     * @return stringg
      */
     protected function printRelationship(Individual $person, Individual $spouse): string
     {
