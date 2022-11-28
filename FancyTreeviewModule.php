@@ -1128,7 +1128,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      * @param Individual $person
      * @param Individual $spouse
      *
-     * @return stringg
+     * @return string
      */
     protected function printRelationship(Individual $person, Individual $spouse): string
     {
