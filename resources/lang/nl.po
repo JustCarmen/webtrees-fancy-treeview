@@ -98,7 +98,7 @@ msgstr "achtste"
 
 #: FancyTreeviewModule.php:431
 msgid "Family tree overview"
-msgstr "Stamboom overzicht"
+msgstr "Stamboomoverzicht"
 
 #: FancyTreeviewModule.php:92
 msgid "Fancy Treeview"
@@ -106,7 +106,7 @@ msgstr "Fancy Treeview"
 
 #: resources/views/menu-edit.phtml:11
 msgid "Fancy Treeview Menu"
-msgstr "Fancy Treeview menu"
+msgstr "Fancy Treeview-menu"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:736
