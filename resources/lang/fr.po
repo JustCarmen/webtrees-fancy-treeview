@@ -16,19 +16,19 @@ msgstr " "
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:103
 msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
-msgstr "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
+msgstr "Une vue d'ensemble des descendants ou des ancêtres d'une famille (branche) de manière narrative"
 
 #: resources/views/menu-edit.phtml:15
 msgid "Add ancestors to menu"
-msgstr "Add ancestors to menu"
+msgstr "Ajouter des ancêtres au menu"
 
 #: resources/views/menu-edit.phtml:20
 msgid "Add descendants to menu"
-msgstr "Add descendants to menu"
+msgstr "Ajouter des ancêtres au menu"
 
 #: resources/views/page.phtml:28
 msgid "Add to menu"
-msgstr "Add to menu"
+msgstr "Ajouter au menu"
 
 #: FancyTreeviewModule.php:925
 msgctxt "FEMALE"
@@ -79,7 +79,7 @@ msgstr "enfant de"
 
 #: resources/views/block-content.phtml:17
 msgid "complete"
-msgstr "complete"
+msgstr "complet"
 
 #: FancyTreeviewModule.php:1213
 msgctxt "FEMALE"
@@ -98,7 +98,7 @@ msgstr "huitième"
 
 #: FancyTreeviewModule.php:431
 msgid "Family tree overview"
-msgstr "Family tree overview"
+msgstr "Aperçu de l'arbre généalogique"
 
 #: FancyTreeviewModule.php:92
 msgid "Fancy Treeview"
@@ -106,7 +106,7 @@ msgstr "Fancy Treeview"
 
 #: resources/views/menu-edit.phtml:11
 msgid "Fancy Treeview Menu"
-msgstr "Fancy Treeview Menu"
+msgstr "Menu Fancy Treeview"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:736
@@ -214,7 +214,7 @@ msgstr "en "
 #: FancyTreeviewModule.php:1306
 msgctxt "before place names"
 msgid "in "
-msgstr "in "
+msgstr "en "
 
 #. I18N: ninth marriage
 #: FancyTreeviewModule.php:740
@@ -233,15 +233,15 @@ msgstr "En savoir plus"
 
 #: resources/views/menu-edit.phtml:13
 msgid "Remove ancestors from menu"
-msgstr "Remove ancestors from menu"
+msgstr "Supprimer les ancêtres du menu"
 
 #: resources/views/menu-edit.phtml:18
 msgid "Remove descendants from menu"
-msgstr "Remove descendants from menu"
+msgstr "Supprimer les descendants du menu"
 
 #: resources/views/page.phtml:19
 msgid "Remove from menu"
-msgstr "Remove from menu"
+msgstr "Supprimer du menu"
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:733
