@@ -15,8 +15,8 @@ msgstr " "
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:103
-msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
-msgstr "Une vue d'ensemble des descendants ou des ancêtres d'une famille (branche) de manière narrative"
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr ""
 
 #: resources/views/menu-edit.phtml:15
 msgid "Add ancestors to menu"
@@ -24,7 +24,7 @@ msgstr "Ajouter des ancêtres au menu"
 
 #: resources/views/menu-edit.phtml:20
 msgid "Add descendants to menu"
-msgstr "Ajouter des ancêtres au menu"
+msgstr "Ajouter des descendants au menu"
 
 #: resources/views/page.phtml:28
 msgid "Add to menu"
@@ -98,7 +98,7 @@ msgstr "huitième"
 
 #: FancyTreeviewModule.php:431
 msgid "Family tree overview"
-msgstr "Aperçu de l'arbre généalogique"
+msgstr "Aperçu d'arbre généalogique"
 
 #: FancyTreeviewModule.php:92
 msgid "Fancy Treeview"
@@ -221,6 +221,10 @@ msgstr "en "
 msgid "ninth"
 msgstr "neuvième"
 
+#: FancyTreeviewModule.php:871 FancyTreeviewModule.php:895
+msgid "no children"
+msgstr ""
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1281
 msgctxt "before dateformat dd-mm-yyyy"
@@ -282,6 +286,14 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Elle est née"
 
+#: FancyTreeviewModule.php:236
+msgid "Show ancestors"
+msgstr ""
+
+#: FancyTreeviewModule.php:231
+msgid "Show descendants"
+msgstr ""
+
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:737
 msgid "sixth"
@@ -329,11 +341,6 @@ msgstr "Cet individu est marié"
 msgid "This individual married %s times"
 msgstr "Cet individu s'est marié %s fois"
 
-#: FancyTreeviewModule.php:1189
-msgctxt "PRESENT (MALE)"
-msgid "was bapitized"
-msgstr "a été baptisé"
-
 #: FancyTreeviewModule.php:1187
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
@@ -348,6 +355,11 @@ msgstr "a été baptisé"
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "a été baptisée"
+
+#: FancyTreeviewModule.php:1189
+msgctxt "PRESENT (MALE)"
+msgid "was baptized"
+msgstr ""
 
 #: FancyTreeviewModule.php:1169
 msgctxt "PAST (FEMALE)"

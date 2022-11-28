@@ -15,7 +15,7 @@ msgstr " "
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:103
-msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "Een verhalend overzicht van de afstammelingen of voorouders van één familie(tak)."
 
 #: resources/views/menu-edit.phtml:15
@@ -221,6 +221,10 @@ msgstr "in "
 msgid "ninth"
 msgstr "negende"
 
+#: FancyTreeviewModule.php:871 FancyTreeviewModule.php:895
+msgid "no children"
+msgstr "geen kinderen"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1281
 msgctxt "before dateformat dd-mm-yyyy"
@@ -282,6 +286,14 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Zij is geboren"
 
+#: FancyTreeviewModule.php:236
+msgid "Show ancestors"
+msgstr "Toon voorouders"
+
+#: FancyTreeviewModule.php:231
+msgid "Show descendants"
+msgstr "Toon afstammelingen"
+
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:737
 msgid "sixth"
@@ -329,11 +341,6 @@ msgstr "Deze persoon trouwde met"
 msgid "This individual married %s times"
 msgstr "Deze persoon trouwde %s keer"
 
-#: FancyTreeviewModule.php:1189
-msgctxt "PRESENT (MALE)"
-msgid "was bapitized"
-msgstr "is gedoopt"
-
 #: FancyTreeviewModule.php:1187
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
@@ -346,6 +353,11 @@ msgstr "is gedoopt"
 
 #: FancyTreeviewModule.php:1189
 msgctxt "PRESENT (FEMALE)"
+msgid "was baptized"
+msgstr "is gedoopt"
+
+#: FancyTreeviewModule.php:1189
+msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "is gedoopt"
 

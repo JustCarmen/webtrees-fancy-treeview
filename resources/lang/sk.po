@@ -15,8 +15,8 @@ msgstr " "
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:103
-msgid "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
-msgstr "A Fancy overview of the descendants or ancestors of one family (branch) in a narrative way."
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr ""
 
 #: resources/views/menu-edit.phtml:15
 msgid "Add ancestors to menu"
@@ -221,6 +221,10 @@ msgstr "in "
 msgid "ninth"
 msgstr "deviaty"
 
+#: FancyTreeviewModule.php:871 FancyTreeviewModule.php:895
+msgid "no children"
+msgstr ""
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1281
 msgctxt "before dateformat dd-mm-yyyy"
@@ -282,6 +286,14 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Sa narodila"
 
+#: FancyTreeviewModule.php:236
+msgid "Show ancestors"
+msgstr ""
+
+#: FancyTreeviewModule.php:231
+msgid "Show descendants"
+msgstr ""
+
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:737
 msgid "sixth"
@@ -329,11 +341,6 @@ msgstr "Tento človek sa oženil"
 msgid "This individual married %s times"
 msgstr "Tento človek sa oženil %s"
 
-#: FancyTreeviewModule.php:1189
-msgctxt "PRESENT (MALE)"
-msgid "was bapitized"
-msgstr "bol pokrstený"
-
 #: FancyTreeviewModule.php:1187
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
@@ -348,6 +355,11 @@ msgstr "bol pokrstený"
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "bol pokrstený"
+
+#: FancyTreeviewModule.php:1189
+msgctxt "PRESENT (MALE)"
+msgid "was baptized"
+msgstr ""
 
 #: FancyTreeviewModule.php:1169
 msgctxt "PAST (FEMALE)"
