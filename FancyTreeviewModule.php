@@ -1186,7 +1186,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     if ($person->isDead()) {
                         $person->sex() == 'F' ? $html     .= I18N::translateContext('PAST (FEMALE)', 'was baptized') : $html     .= I18N::translateContext('PAST (MALE)', 'was baptized');
                     } else {
-                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html     .= I18N::translateContext('PRESENT (MALE)', 'was bapitized');
+                        $person->sex() == 'F' ? $html     .= I18N::translateContext('PRESENT (FEMALE)', 'was baptized') : $html     .= I18N::translateContext('PRESENT (MALE)', 'was baptized');
                     }
                 }
                 break;
