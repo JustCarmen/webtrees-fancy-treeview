@@ -27,7 +27,7 @@ Currently there is no configuration page and it is not possible to download the 
 
 Translations
 ------------
-You can help to translate this module. The language files are available at [POEditor][3] where you can update them. But you can also use a local editor, like poeditor or notepad++ to make the translations and send them back to me. You can do this via a pull request (if you know how) or by e-mail. Updated translations will be included in the next release of this module.
+You can help to translate this module. The language files are available at [POEditor][3] where you can update them. But you can also use a local editor, like Poedit or Notepad++ to make the translations and send them back to me. You can do this via a pull request (if you know how) or by e-mail. Updated translations will be included in the next release of this module.
 
 Installation & upgrading
 ------------------------
