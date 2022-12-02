@@ -1329,7 +1329,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $text = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
             $url  = $this->getUrl($this->tree, $xref, $this->type, $page);
 
-            if ($child_family) {
+            if ($this->options('show-singles') === '1' || $child_family) {
                 $this->index++;
                 return ' - <a class="jc-scroll" href="' . $url . '#' . $child->xref() . '">' . $text . '</a>';
             } else {
