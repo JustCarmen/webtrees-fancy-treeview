@@ -25,6 +25,7 @@ use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Illuminate\Database\Capsule\Manager as DB;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
@@ -33,12 +34,12 @@ use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
+use Fisharebest\Webtrees\Elements\PedigreeLinkageType;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
-use Illuminate\Database\Capsule\Manager as DB;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
 {
@@ -904,13 +905,13 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
                     foreach ($children as $child) {
                         if ($child->canShow()) {
-                            $html     .= '<li class="jc-child-li">' . $this->printNameUrl($child);
-                            $pedi     = $this->checkPedi($child, $family);
+                            $html .= '<li class="jc-child-li">' . $this->printNameUrl($child);
+                            $pedi = $this->checkPedi($child, $family);
 
                             if ($pedi) {
-                                $html .= ' <span class="pedi">';
+                                $html .= ' <span class="pedi fst-italic">';
                                 switch ($pedi) {
-                                    case 'foster':
+                                    case 'FOSTER':
                                         switch ($child->sex()) {
                                             case 'F':
                                                 $html     .= I18N::translateContext('FEMALE', 'foster child');
@@ -920,7 +921,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                                                 break;
                                         }
                                         break;
-                                    case 'adopted':
+                                    case 'ADOPTED':
                                         switch ($child->sex()) {
                                             case 'F':
                                                 $html     .= I18N::translateContext('FEMALE', 'adopted child');
@@ -968,27 +969,27 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $html = '';
             switch ($person->sex()) {
                 case 'M':
-                    if ($pedi === 'foster') {
+                    if ($pedi === 'FOSTER') {
                         $html .= ', ' . I18N::translate('foster son of') . ' ';
-                    } elseif ($pedi === 'adopted') {
+                    } elseif ($pedi === 'ADOPTED') {
                         $html .= ', ' . I18N::translate('adopted son of') . ' ';
                     } else {
                         $html .= ', ' . I18N::translate('son of') . ' ';
                     }
                     break;
                 case 'F':
-                    if ($pedi === 'foster') {
+                    if ($pedi === 'FOSTER') {
                         $html .= ', ' . I18N::translate('foster daughter of') . ' ';
-                    } elseif ($pedi === 'adopted') {
+                    } elseif ($pedi === 'ADOPTED') {
                         $html .= ', ' . I18N::translate('adopted daughter of') . ' ';
                     } else {
                         $html .= ', ' . I18N::translate('daughter of') . ' ';
                     }
                     break;
                 default:
-                    if ($pedi === 'foster') {
+                    if ($pedi === 'FOSTER') {
                         $html .= ', ' . I18N::translate('foster child of') . ' ';
-                    } elseif ($pedi === 'adopted') {
+                    } elseif ($pedi === 'ADOPTED') {
                         $html .= ', ' . I18N::translate('adopted child of') . ' ';
                     } else {
                         $html .= ', ' . I18N::translate('child of') . ' ';
@@ -1588,7 +1589,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $pedi = "";
         foreach ($person->facts(['FAMC']) as $fact) {
-            if ($fact->target() === $parents) {
+            if ($fact instanceof Fact && $fact->target() === $parents) {
                 $pedi = $fact->attribute('PEDI');
                 break;
             }
