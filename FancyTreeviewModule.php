@@ -38,6 +38,7 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
 {
@@ -163,6 +164,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         // Register a namespace for our views.
         View::registerNamespace($this->name(), $this->resourcesFolder() . 'views/');
+
+        // Temporary code. Remove the old database entries (upgrade from beta 1 to beta 2).
+        DB::table('module_setting')->where('setting_name', '=', 'menu-ancestors')->delete();
+        DB::table('module_setting')->where('setting_name', '=', 'menu-descendants')->delete();
     }
 
     /**
@@ -350,15 +355,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->type = $type;
 
         if ($type === 'ancestors') {
-            $old_list = $this->getPreference('menu-ancestors', '');
+            $old_list = $this->getPreference($tree->id() . '-menu-ancestors', '');
             $new_list = $old_list === '' ? $xref : $old_list . ', ' . $xref;
 
-            $this->setPreference('menu-ancestors', $new_list);
+            $this->setPreference($tree->id() . '-menu-ancestors', $new_list);
         } else {
-            $old_list = $this->getPreference('menu-descendants', '');
+            $old_list = $this->getPreference($tree->id() . '-menu-descendants', '');
             $new_list = $old_list === '' ? $xref : $old_list . ', ' . $xref;
 
-            $this->setPreference('menu-descendants', $new_list);
+            $this->setPreference($tree->id() . '-menu-descendants', $new_list);
         }
 
         return redirect($url);
@@ -381,17 +386,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $this->type = $type;
 
         if ($type === 'ancestors') {
-            $items = explode(', ', $this->getPreference('menu-ancestors', ''));
+            $items = explode(', ', $this->getPreference($tree->id() . '-menu-ancestors', ''));
             if (($key = array_search($xref, $items)) !== false) {
                 unset($items[$key]);
             }
-            $this->setPreference('menu-ancestors', implode(', ', $items));
+            $this->setPreference($tree->id() . '-menu-ancestors', implode(', ', $items));
         } else {
-            $items = explode(', ', $this->getPreference('menu-descendants', ''));
+            $items = explode(', ', $this->getPreference($tree->id() . '-menu-descendants', ''));
             if (($key = array_search($xref, $items)) !== false) {
                 unset($items[$key]);
             }
-            $this->setPreference('menu-descendants', implode(', ', $items));
+            $this->setPreference($tree->id() . '-menu-descendants', implode(', ', $items));
         }
 
         return redirect($url);
@@ -406,8 +411,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function getMenu(Tree $tree): ?Menu
     {
-        $ancestors   = array_filter(explode(', ', $this->getPreference('menu-ancestors')));
-        $descendants = array_filter(explode(', ', $this->getPreference('menu-descendants')));
+        $ancestors   = array_filter(explode(', ', $this->getPreference($tree->id() . '-menu-ancestors')));
+        $descendants = array_filter(explode(', ', $this->getPreference($tree->id() . '-menu-descendants')));
 
         $this->tree = $tree;
 
@@ -1625,12 +1630,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return $page;
     }
 
-    public function isMenuItem(string $xref, string $type): bool
+    public function isMenuItem(Tree $tree, string $xref, string $type): bool
     {
         if ($type === 'ancestors') {
-            $items = explode(', ', $this->getPreference('menu-ancestors', ''));
+            $items = explode(', ', $this->getPreference($tree->id() . '-menu-ancestors', ''));
         } else {
-            $items = explode(', ', $this->getPreference('menu-descendants', ''));
+            $items = explode(', ', $this->getPreference($tree->id() . '-menu-descendants', ''));
         }
 
         return in_array($xref, $items) ? true : false;
