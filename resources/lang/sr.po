@@ -1,12 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Fancy Treeview for webtrees 2\n"
-"POT-Creation-Date: 2022-12-01 11:46+0100\n"
-"Language: sr-Latn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"Project-Id-Version: Fancy Treeview for webtrees 2\n"
+"Language: sr\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
 #: FancyTreeviewModule.php:1274
@@ -14,38 +13,9 @@ msgctxt "prefix before dates with date qualifications, followed right after the 
 msgid " "
 msgstr "   "
 
-#. I18N: Description of the module
-#: FancyTreeviewModule.php:103
-msgid "A narrative overview of the descendants or ancestors of one family (branch)."
-msgstr "A narrative overview of the descendants or ancestors of one family (branch)."
-
-#: resources/views/menu-edit.phtml:15
-msgid "Add ancestors to menu"
-msgstr "Add ancestors to menu"
-
-#: resources/views/menu-edit.phtml:20
-msgid "Add descendants to menu"
-msgstr "Add descendants to menu"
-
-#: resources/views/page.phtml:28
-msgid "Add to menu"
-msgstr "Add to menu"
-
-#: FancyTreeviewModule.php:265
-msgid "Descendants and ancestors"
-msgstr "Descendants and ancestors"
-
-#: FancyTreeviewModule.php:431
-msgid "Family tree overview"
-msgstr "Family tree overview"
-
 #: FancyTreeviewModule.php:92
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
-
-#: resources/views/menu-edit.phtml:11
-msgid "Fancy Treeview menu"
-msgstr "Fancy Treeview Menu"
 
 #: FancyTreeviewModule.php:826
 msgid "He had a relationship with"
@@ -53,7 +23,6 @@ msgstr "On je u srodstvu sa"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:746
-#, php-format
 msgid "He married %s times"
 msgstr "Ženio se %s puta"
 
@@ -81,25 +50,12 @@ msgstr "Rodio se"
 msgid "Read more"
 msgstr "Pročitaj još"
 
-#: resources/views/menu-edit.phtml:13
-msgid "Remove ancestors from menu"
-msgstr "Remove ancestors from menu"
-
-#: resources/views/menu-edit.phtml:18
-msgid "Remove descendants from menu"
-msgstr "Remove descendants from menu"
-
-#: resources/views/page.phtml:19
-msgid "Remove from menu"
-msgstr "Remove from menu"
-
 #: FancyTreeviewModule.php:829
 msgid "She had a relationship with"
 msgstr "Imala je vezu sa"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:752
-#, php-format
 msgid "She married %s times"
 msgstr "Udavala se %s puta"
 
@@ -123,35 +79,20 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Rođena je"
 
-#: FancyTreeviewModule.php:236
-msgid "Show ancestors"
-msgstr "Show ancestors"
-
-#: FancyTreeviewModule.php:231
-msgid "Show descendants"
-msgstr "Show descendants"
-
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:748
-#, php-format
 msgid "The %s time he married"
 msgstr "%s put se oženio sa"
 
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:754
-#, php-format
 msgid "The %s time she married"
 msgstr "%s put se udala za"
 
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:760
-#, php-format
 msgid "The %s time this individual married"
 msgstr "Ova osoba se %s puta ženila"
-
-#: FancyTreeviewModule.php:707
-msgid "The details of this family are private."
-msgstr "The details of this family are private."
 
 #: resources/views/block-content.phtml:9
 msgid "The details of this generation are private."
@@ -167,7 +108,6 @@ msgstr "Osoba se venčala"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:758
-#, php-format
 msgid "This individual married %s times"
 msgstr "Ova osoba se venčavala %s puta"
 
@@ -204,14 +144,12 @@ msgstr "i "
 
 #. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
 #: FancyTreeviewModule.php:1254
-#, php-format
 msgctxt "age in days/months"
 msgid "at the age of %s"
 msgstr "starosti od %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
 #: FancyTreeviewModule.php:1256
-#, php-format
 msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "u %s. godini"
@@ -323,10 +261,6 @@ msgstr "in "
 msgid "ninth"
 msgstr "Deveti"
 
-#: FancyTreeviewModule.php:871
-msgid "no children"
-msgstr "no children"
-
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1277
 msgctxt "before dateformat dd-mm-yyyy"
@@ -373,11 +307,6 @@ msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "je krštena"
 
-#: FancyTreeviewModule.php:1185
-msgctxt "PRESENT (MALE)"
-msgid "was baptized"
-msgstr "was baptized"
-
 #: FancyTreeviewModule.php:1165
 msgctxt "PAST (FEMALE)"
 msgid "was born"
@@ -421,3 +350,66 @@ msgstr "je kremiran"
 #: FancyTreeviewModule.php:801
 msgid "were divorced"
 msgstr "su se razveli"
+
+#: resources/views/page.phtml:28
+msgid "Add to menu"
+msgstr "Add to menu"
+
+#: FancyTreeviewModule.php:431
+msgid "Family tree overview"
+msgstr "Family tree overview"
+
+#: resources/views/page.phtml:19
+msgid "Remove from menu"
+msgstr "Remove from menu"
+
+#: resources/views/menu-edit.phtml:15
+msgid "Add ancestors to menu"
+msgstr "Add ancestors to menu"
+
+#: resources/views/menu-edit.phtml:20
+msgid "Add descendants to menu"
+msgstr "Add descendants to menu"
+
+#: resources/views/menu-edit.phtml:11
+msgid "Fancy Treeview menu"
+msgstr "Fancy Treeview Menu"
+
+#: resources/views/menu-edit.phtml:13
+msgid "Remove ancestors from menu"
+msgstr "Remove ancestors from menu"
+
+#: resources/views/menu-edit.phtml:18
+msgid "Remove descendants from menu"
+msgstr "Remove descendants from menu"
+
+#. I18N: Description of the module
+#: FancyTreeviewModule.php:103
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr "A narrative overview of the descendants or ancestors of one family (branch)."
+
+#: FancyTreeviewModule.php:236
+msgid "Show ancestors"
+msgstr "Show ancestors"
+
+#: FancyTreeviewModule.php:231
+msgid "Show descendants"
+msgstr "Show descendants"
+
+#: FancyTreeviewModule.php:871
+msgid "no children"
+msgstr "no children"
+
+#: FancyTreeviewModule.php:1185
+msgctxt "PRESENT (MALE)"
+msgid "was baptized"
+msgstr "was baptized"
+
+#: FancyTreeviewModule.php:265
+msgid "Descendants and ancestors"
+msgstr "Descendants and ancestors"
+
+#: FancyTreeviewModule.php:707
+msgid "The details of this family are private."
+msgstr "The details of this family are private."
+
