@@ -13,103 +13,22 @@ msgctxt "prefix before dates with date qualifications, followed right after the 
 msgid " "
 msgstr " "
 
-#: FancyTreeviewModule.php:92
-msgid "Fancy Treeview"
-msgstr "Fancy Treeview"
+#. I18N: Description of the module
+#: FancyTreeviewModule.php:103
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr "Popisný přehled potomků a předků rodinné větve."
 
-#: FancyTreeviewModule.php:826
-msgid "He had a relationship with"
-msgstr "Byl spřízněn s"
+#: resources/views/menu-edit.phtml:15
+msgid "Add ancestors to menu"
+msgstr "Přidat předky do menu"
 
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:746
-msgid "He married %s times"
-msgstr "Oženil se %skrát"
+#: resources/views/menu-edit.phtml:20
+msgid "Add descendants to menu"
+msgstr "Přidat potomky do menu"
 
-#: FancyTreeviewModule.php:1176
-msgctxt "PAST"
-msgid "He was baptized"
-msgstr "Byl pokřtěn"
-
-#: FancyTreeviewModule.php:1178
-msgctxt "PRESENT"
-msgid "He was baptized"
-msgstr "Byl pokřtěn"
-
-#: FancyTreeviewModule.php:1158
-msgctxt "PAST"
-msgid "He was born"
-msgstr "Narodil se"
-
-#: FancyTreeviewModule.php:1160
-msgctxt "PRESENT"
-msgid "He was born"
-msgstr "Narodil se"
-
-#: resources/views/readmore-link.phtml:8
-msgid "Read more"
-msgstr "Zobrazit více"
-
-#: FancyTreeviewModule.php:829
-msgid "She had a relationship with"
-msgstr "Byla spřízněna s"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:752
-msgid "She married %s times"
-msgstr "Vdala se %skrát"
-
-#: FancyTreeviewModule.php:1176
-msgctxt "PAST"
-msgid "She was baptized"
-msgstr "Byla pokřtěna"
-
-#: FancyTreeviewModule.php:1178
-msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "Byla pokřtěna"
-
-#: FancyTreeviewModule.php:1158
-msgctxt "PAST"
-msgid "She was born"
-msgstr "Narodila se"
-
-#: FancyTreeviewModule.php:1160
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "Narodila se"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:748
-msgid "The %s time he married"
-msgstr "Po%s si vzal"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:754
-msgid "The %s time she married"
-msgstr "Po%s si vzala"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:760
-msgid "The %s time this individual married"
-msgstr "Po%s si tato osoba vzala"
-
-#: resources/views/block-content.phtml:9
-msgid "The details of this generation are private."
-msgstr "Podrobnosti o této generaci jsou soukromé."
-
-#: FancyTreeviewModule.php:832
-msgid "This individual had a relationship with"
-msgstr "Tato osoba je spřízněna s"
-
-#: FancyTreeviewModule.php:772
-msgid "This individual married"
-msgstr "Tato osoba si vzala"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:758
-msgid "This individual married %s times"
-msgstr "Tato osoba uzavřela sňatek %s krát"
+#: resources/views/page.phtml:28
+msgid "Add to menu"
+msgstr "Přidat do menu"
 
 #: FancyTreeviewModule.php:921
 msgctxt "FEMALE"
@@ -162,6 +81,10 @@ msgstr "dítě (čí)"
 msgid "complete"
 msgstr "úplnost"
 
+#: FancyTreeviewModule.php:265
+msgid "Descendants and ancestors"
+msgstr "Potomci a předci"
+
 #: FancyTreeviewModule.php:1209
 msgctxt "FEMALE"
 msgid "died"
@@ -176,6 +99,19 @@ msgstr "zemřel"
 #: FancyTreeviewModule.php:739
 msgid "eighth"
 msgstr "osmý"
+
+#: FancyTreeviewModule.php:431
+msgid "Family tree overview"
+msgstr "Popis stromu"
+
+#: FancyTreeviewModule.php:92
+msgid "Fancy Treeview"
+msgstr "Fancy Treeview"
+
+#: resources/views/menu-edit.phtml:11
+#, fuzzy
+msgid "Fancy Treeview menu"
+msgstr "Popis stromu"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:736
@@ -238,6 +174,35 @@ msgctxt "Two parents/one child"
 msgid "had"
 msgstr "měli"
 
+#: FancyTreeviewModule.php:826
+msgid "He had a relationship with"
+msgstr "Byl spřízněn s"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:746
+msgid "He married %s times"
+msgstr "Oženil se %skrát"
+
+#: FancyTreeviewModule.php:1176
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Byl pokřtěn"
+
+#: FancyTreeviewModule.php:1178
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Byl pokřtěn"
+
+#: FancyTreeviewModule.php:1158
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Narodil se"
+
+#: FancyTreeviewModule.php:1160
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Narodil se"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1280
 msgctxt "before dateformat mmm yyyy"
@@ -261,11 +226,31 @@ msgstr "v "
 msgid "ninth"
 msgstr "devátý"
 
+#: FancyTreeviewModule.php:871
+msgid "no children"
+msgstr "bezdětní"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1277
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "dne "
+
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "Zobrazit více"
+
+#: resources/views/menu-edit.phtml:13
+msgid "Remove ancestors from menu"
+msgstr "Odebrat předky z menu"
+
+#: resources/views/menu-edit.phtml:18
+msgid "Remove descendants from menu"
+msgstr "Odebrat potomky z menu"
+
+#: resources/views/page.phtml:19
+msgid "Remove from menu"
+msgstr "Odebrat z menu"
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:733
@@ -277,6 +262,43 @@ msgstr "druhé"
 msgid "seventh"
 msgstr "sedmé"
 
+#: FancyTreeviewModule.php:829
+msgid "She had a relationship with"
+msgstr "Byla spřízněna s"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:752
+msgid "She married %s times"
+msgstr "Vdala se %skrát"
+
+#: FancyTreeviewModule.php:1176
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Byla pokřtěna"
+
+#: FancyTreeviewModule.php:1178
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Byla pokřtěna"
+
+#: FancyTreeviewModule.php:1158
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Narodila se"
+
+#: FancyTreeviewModule.php:1160
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Narodila se"
+
+#: FancyTreeviewModule.php:236
+msgid "Show ancestors"
+msgstr "Zobrazit předky"
+
+#: FancyTreeviewModule.php:231
+msgid "Show descendants"
+msgstr "Zobrazit potomky"
+
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:737
 msgid "sixth"
@@ -287,10 +309,46 @@ msgstr "šesté"
 msgid "tenth"
 msgstr "desáté"
 
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:748
+msgid "The %s time he married"
+msgstr "Po%s si vzal"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:754
+msgid "The %s time she married"
+msgstr "Po%s si vzala"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:760
+msgid "The %s time this individual married"
+msgstr "Po%s si tato osoba vzala"
+
+#: FancyTreeviewModule.php:707
+msgid "The details of this family are private."
+msgstr "Podrobnosti o této rodině jsou soukromé."
+
+#: resources/views/block-content.phtml:9
+msgid "The details of this generation are private."
+msgstr "Podrobnosti o této generaci jsou soukromé."
+
 #. I18N: third marriage
 #: FancyTreeviewModule.php:734
 msgid "third"
 msgstr "třetí"
+
+#: FancyTreeviewModule.php:832
+msgid "This individual had a relationship with"
+msgstr "Tato osoba je spřízněna s"
+
+#: FancyTreeviewModule.php:772
+msgid "This individual married"
+msgstr "Tato osoba si vzala"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:758
+msgid "This individual married %s times"
+msgstr "Tato osoba uzavřela sňatek %s krát"
 
 #: FancyTreeviewModule.php:1183
 msgctxt "PAST (FEMALE)"
@@ -306,6 +364,11 @@ msgstr "byl pokřtěn"
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "byla pokřtěna"
+
+#: FancyTreeviewModule.php:1185
+msgctxt "PRESENT (MALE)"
+msgid "was baptized"
+msgstr "byl pokřtěn"
 
 #: FancyTreeviewModule.php:1165
 msgctxt "PAST (FEMALE)"
@@ -351,67 +414,4 @@ msgstr "byl zpopelněn"
 #: FancyTreeviewModule.php:801
 msgid "were divorced"
 msgstr "rozvedeni"
-
-#: resources/views/page.phtml:28
-msgid "Add to menu"
-msgstr "Přidat do menu"
-
-#: FancyTreeviewModule.php:431
-msgid "Family tree overview"
-msgstr "Popis stromu"
-
-#: resources/views/page.phtml:19
-msgid "Remove from menu"
-msgstr "Odebrat z menu"
-
-#: resources/views/menu-edit.phtml:15
-msgid "Add ancestors to menu"
-msgstr "Přidat předky do menu"
-
-#: resources/views/menu-edit.phtml:20
-msgid "Add descendants to menu"
-msgstr "Přidat potomky do menu"
-
-#: resources/views/menu-edit.phtml:11
-#, fuzzy
-msgid "Fancy Treeview menu"
-msgstr "Popis stromu"
-
-#: resources/views/menu-edit.phtml:13
-msgid "Remove ancestors from menu"
-msgstr "Odebrat předky z menu"
-
-#: resources/views/menu-edit.phtml:18
-msgid "Remove descendants from menu"
-msgstr "Odebrat potomky z menu"
-
-#. I18N: Description of the module
-#: FancyTreeviewModule.php:103
-msgid "A narrative overview of the descendants or ancestors of one family (branch)."
-msgstr "Popisný přehled potomků a předků rodinné větve."
-
-#: FancyTreeviewModule.php:236
-msgid "Show ancestors"
-msgstr "Zobrazit předky"
-
-#: FancyTreeviewModule.php:231
-msgid "Show descendants"
-msgstr "Zobrazit potomky"
-
-#: FancyTreeviewModule.php:871
-msgid "no children"
-msgstr "bezdětní"
-
-#: FancyTreeviewModule.php:1185
-msgctxt "PRESENT (MALE)"
-msgid "was baptized"
-msgstr "byl pokřtěn"
-
-#: FancyTreeviewModule.php:265
-msgid "Descendants and ancestors"
-msgstr "Potomci a předci"
-
-#: FancyTreeviewModule.php:707
-msgid "The details of this family are private."
-msgstr "Podrobnosti o této rodině jsou soukromé."
 
