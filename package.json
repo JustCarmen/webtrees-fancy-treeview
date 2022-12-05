@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "format-pot": "format-pot.bat",
     "po-files": "poeditor pull",
     "mo-files": "compile-mo.bat",
     "development": "cross-env process.env.section=module NODE_ENV=development node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js",
