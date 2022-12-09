@@ -210,136 +210,28 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
     }
 
-    /**
-     * @param ServerRequestInterface $request
+     /**
+     * Set the default options.
      *
-     * @return ResponseInterface
-     */
-    public function handle(ServerRequestInterface $request): ResponseInterface
-    {
-        $tree = Validator::attributes($request)->tree();
-        $xref = Validator::attributes($request)->isXref()->string('xref');
-        $type = Validator::attributes($request)->string('type');
-
-        $this->tree = $tree;
-        $this->type = $type;
-
-        $page       = $this->getPage();
-        $page_title = $this->printPageTitle($this->getPerson($xref), $this->type);
-
-        // determine the generation to start with
-        $limit = (int) $this->options('page-limit');
-        $start = ($page - 1) * $limit + 1;
-
-        if ($this->type === 'ancestors') {
-            $page_body   = $this->printAncestorsPage($xref, $start, $limit);
-            $button_url  = $this->getUrl($tree, $xref, 'descendants');
-            $button_text = I18N::translate('Show descendants');
-            $generations = $this->ancestor_generations;
-        } else {
-            $page_body   = $this->printDescendantsPage($xref, $start, $limit);
-            $button_url  = $this->getUrl($tree, $xref, 'ancestors');
-            $button_text =  I18N::translate('Show ancestors');
-            $generations = $this->descendant_generations;
-        }
-
-        $total_pages = (int) ceil($generations / $limit);
-
-        return $this->viewResponse($this->name() . '::page', [
-            'module'            => $this,
-            'tree'              => $tree,
-            'xref'              => $xref,
-            'title'             => $this->title(),
-            'page_title'        => $page_title,
-            'page_body'         => $page_body,
-            'button_url'        => $button_url,
-            'button_text'       => $button_text,
-            'generations'       => $generations,
-            'current_page'      => $page,
-            'total_pages'       => $total_pages,
-            'limit'             => $limit
-        ]);
-    }
-
-    /**
-     * The text that appears on the tab.
+     * @param string $option
      *
      * @return string
      */
-    public function tabTitle(): string
+    public function options(string $option): string
     {
-        return I18N::translate('Descendants and ancestors');
+        $default = [
+            'check-relationship'    => '1', // boolean
+            'show-singles'          => '0', // boolean
+            'thumb-size'            => '80',// integer
+            'crop-thumbs'           => '0', // boolean
+            'media-type-photo'      => '1', // boolean
+            'page-limit'            => '3'  // integer, number of generation blocks per page
+        ];
+
+        return $this->getPreference($option, $default[$option]);
     }
 
     /**
-     * Is this tab empty? If so, we don't always need to display it.
-     *
-     * @param Individual $individual
-     *
-     * @return bool
-     */
-    public function hasTabContent(Individual $individual): bool
-    {
-        return true;
-    }
-
-    /**
-     * Can this tab load asynchronously?
-     *
-     * @return bool
-     */
-    public function canLoadAjax(): bool
-    {
-        return false;
-    }
-
-    /**
-     * A greyed out tab has no actual content, but may perhaps have
-     * options to create content.
-     *
-     * @param Individual $individual
-     *
-     * @return bool
-     */
-    public function isGrayedOut(Individual $individual): bool
-    {
-        return false;
-    }
-
-    /**
-     * Generate the HTML content of this tab.
-     *
-     * @param Individual $individual
-     *
-     * @return string
-     */
-    public function getTabContent(Individual $individual): string
-    {
-        $request = app(ServerRequestInterface::class);
-        assert($request instanceof ServerRequestInterface);
-
-        $tree   = Validator::attributes($request)->tree();
-        $xref   = Validator::attributes($request)->isXref()->string('xref', '');
-        $start  = 1; // always start with the current generation in tab view
-        $limit  = 3; // always limit the number of generations to 3 in tab view
-
-        $this->tree = $tree;
-
-        return View($this->name() . '::tab', [
-            'module'                        => $this,
-            'tree'                          => $tree,
-            'individual'                    => $individual,
-            'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
-            'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
-            'tab_content_descendants'       => $this->printDescendantsPage($xref, $start, $limit),
-            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $start, $limit),
-            'descendant_generations'        => $this->descendant_generations,
-            'ancestor_generations'          => $this->ancestor_generations,
-            'limit'                         => $limit
-        ]);
-    }
-
-   /**
      * @param ServerRequestInterface $request
      *
      * @return ResponseInterface
@@ -441,25 +333,134 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
-     * Set the default options.
-     *
-     * @param string $option
+     * The text that appears on the tab.
      *
      * @return string
      */
-    public function options(string $option): string
+    public function tabTitle(): string
     {
-        $default = [
-            'check-relationship'    => '1', // boolean
-            'show-singles'          => '0', // boolean
-            'thumb-size'            => '80',// integer
-            'crop-thumbs'           => '0', // boolean
-            'media-type-photo'      => '1', // boolean
-            'page-limit'            => '3'  // integer, number of generation blocks per page
-        ];
-
-        return $this->getPreference($option, $default[$option]);
+        return I18N::translate('Descendants and ancestors');
     }
+
+    /**
+     * Is this tab empty? If so, we don't always need to display it.
+     *
+     * @param Individual $individual
+     *
+     * @return bool
+     */
+    public function hasTabContent(Individual $individual): bool
+    {
+        return true;
+    }
+
+    /**
+     * Can this tab load asynchronously?
+     *
+     * @return bool
+     */
+    public function canLoadAjax(): bool
+    {
+        return false;
+    }
+
+    /**
+     * A greyed out tab has no actual content, but may perhaps have
+     * options to create content.
+     *
+     * @param Individual $individual
+     *
+     * @return bool
+     */
+    public function isGrayedOut(Individual $individual): bool
+    {
+        return false;
+    }
+
+    /**
+     * Generate the HTML content of this tab.
+     *
+     * @param Individual $individual
+     *
+     * @return string
+     */
+    public function getTabContent(Individual $individual): string
+    {
+        $request = app(ServerRequestInterface::class);
+        assert($request instanceof ServerRequestInterface);
+
+        $tree   = Validator::attributes($request)->tree();
+        $xref   = Validator::attributes($request)->isXref()->string('xref', '');
+        $start  = 1; // always start with the current generation in tab view
+        $limit  = 3; // always limit the number of generations to 3 in tab view
+
+        $this->tree = $tree;
+
+        return View($this->name() . '::tab', [
+            'module'                        => $this,
+            'tree'                          => $tree,
+            'individual'                    => $individual,
+            'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
+            'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
+            'tab_content_descendants'       => $this->printDescendantsPage($xref, $start, $limit),
+            'tab_content_ancestors'         => $this->printAncestorsPage($xref, $start, $limit),
+            'descendant_generations'        => $this->descendant_generations,
+            'ancestor_generations'          => $this->ancestor_generations,
+            'limit'                         => $limit
+        ]);
+    }
+
+     /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $tree = Validator::attributes($request)->tree();
+        $xref = Validator::attributes($request)->isXref()->string('xref');
+        $type = Validator::attributes($request)->string('type');
+
+        $this->tree = $tree;
+        $this->type = $type;
+
+        $page       = $this->getPage();
+        $page_title = $this->printPageTitle($this->getPerson($xref), $this->type);
+
+        // determine the generation to start with
+        $limit = (int) $this->options('page-limit');
+        $start = ($page - 1) * $limit + 1;
+
+        if ($this->type === 'ancestors') {
+            $page_body   = $this->printAncestorsPage($xref, $start, $limit);
+            $button_url  = $this->getUrl($tree, $xref, 'descendants');
+            $button_text = I18N::translate('Show descendants');
+            $generations = $this->ancestor_generations;
+        } else {
+            $page_body   = $this->printDescendantsPage($xref, $start, $limit);
+            $button_url  = $this->getUrl($tree, $xref, 'ancestors');
+            $button_text =  I18N::translate('Show ancestors');
+            $generations = $this->descendant_generations;
+        }
+
+        $total_pages = (int) ceil($generations / $limit);
+
+        return $this->viewResponse($this->name() . '::page', [
+            'module'            => $this,
+            'tree'              => $tree,
+            'xref'              => $xref,
+            'title'             => $this->title(),
+            'page_title'        => $page_title,
+            'page_body'         => $page_body,
+            'button_url'        => $button_url,
+            'button_text'       => $button_text,
+            'generations'       => $generations,
+            'current_page'      => $page,
+            'total_pages'       => $total_pages,
+            'limit'             => $limit
+        ]);
+    }
+
 
     /**
      * Print the Fancy Treeview descendants page
