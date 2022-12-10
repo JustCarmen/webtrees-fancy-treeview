@@ -21,6 +21,7 @@ use Illuminate\Support\Collection;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Individual;
 use Fisharebest\Webtrees\GedcomRecord;
+use Fisharebest\Webtrees\FlashMessages;
 use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
@@ -35,15 +36,18 @@ use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Elements\PedigreeLinkageType;
+use Fisharebest\Webtrees\Module\ModuleConfigInterface;
+use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
+    use ModuleConfigTrait;
     use ModuleGlobalTrait;
     use ModuleTabTrait;
     use ModuleMenuTrait;
@@ -220,15 +224,61 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function options(string $option): string
     {
         $default = [
-            'check-relationship'    => '1', // boolean
+            'page-limit'            => '3', // integer, number of generation blocks per page
             'show-singles'          => '0', // boolean
+            'check-relationship'    => '0', // boolean
             'thumb-size'            => '80',// integer
             'crop-thumbs'           => '0', // boolean
-            'media-type-photo'      => '1', // boolean
-            'page-limit'            => '3'  // integer, number of generation blocks per page
+            'media-type-photo'      => '0'  // boolean
         ];
 
         return $this->getPreference($option, $default[$option]);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function getAdminAction(ServerRequestInterface $request): ResponseInterface
+    {
+        $this->layout = 'layouts/administration';
+
+        return $this->viewResponse($this->name() . '::settings', [
+            'title'                 => $this->title(),
+            'page_limit'            => $this->options('page-limit'),
+            'show_singles'          => $this->options('show-singles'),
+            'check_relationship'    => $this->options('check-relationship'),
+            'thumb_size'            => $this->options('thumb-size'),
+            'crop_thumbs'           => $this->options('crop-thumbs'),
+            'media_type_photo'      => $this->options('media-type-photo')
+        ]);
+    }
+
+    /**
+     * Save the user preference.
+     *
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function postAdminAction(ServerRequestInterface $request): ResponseInterface
+    {
+        $params = (array) $request->getParsedBody();
+
+        if ($params['save'] === '1') {
+            $this->setPreference('page-limit', $params['page-limit']);
+            $this->setPreference('show-singles',  $params['show-singles']);
+            $this->setPreference('check-relationship',  $params['check-relationship']);
+            $this->setPreference('thumb-size',  $params['thumb-size']);
+            $this->setPreference('crop-thumbs', $params['crop-thumbs']);
+            $this->setPreference('media-type-photo', $params['media-type-photo']);
+
+            $message = I18N::translate('The preferences for the module “%s” have been updated.', $this->title());
+            FlashMessages::addMessage($message, 'success');
+        }
+
+        return redirect($this->getConfigLink());
     }
 
     /**
