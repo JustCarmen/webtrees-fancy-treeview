@@ -35,7 +35,6 @@ use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
-use Fisharebest\Webtrees\Elements\PedigreeLinkageType;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
