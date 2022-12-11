@@ -23,9 +23,25 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
                 <?= /* I18N: Help text for the “Maximum number of generations per page” configuration setting */
-                    I18N::translate('This setting only affects the Fancy Treeview page. The content of the individual tab always lists 3 generations' .
-                    ' if available. Longer pages require more memory.')
+                    I18N::translate('Select the maximum number of generations to show on the Fancy Treeview page.');
                 ?>
+                <?= I18N::translate('More generations require more memory and it takes longer for the page to fully load.'); ?>
+            </div>
+
+        </div>
+        <!-- TAB LIMIT -->
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Maximum number of generations per tab') ?>
+            </label>
+            <div class="col-sm-1">
+                <?= view('components/select', ['name' => 'tab-limit', 'selected' => $tab_limit, 'options' => [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]]) ?>
+            </div>
+            <div class="form-text col-sm-9 offset-sm-3">
+                <?= /* I18N: Help text for the “Maximum number of generations per page” configuration setting */
+                    I18N::translate('Select the maximum number of generations to show on the individual page tab.');
+                ?>
+                <?= I18N::translate('More generations require more memory and it takes longer for the page to fully load.'); ?>
             </div>
         </div>
         <!-- SHOW SINGLES -->
@@ -64,8 +80,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 						<?= /* I18N: Warning when using the “Check relationship between partners” configuration setting */
                             I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees.' .
                             ' It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior,' .
-                            ' reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options).' .
-                            ' If you still experience any problems, don’t use this option at all.')
+                            ' reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option ’show singles’.' .
+                            ' If you still have problems, leave the answer at ’no’.')
                         ?>
                     </div>
                 </div>
@@ -104,7 +120,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 					    <?= /* I18N: Help text for the “Show only media from the type 'photo'” configuration setting */
                             I18N::translate('Turn this option on if you want to display images from the type photo only.' .
                             ' Other highlighted images like certificates, documents or tombstones will not be used.' .
-                            ' If you did not differentiate by media type in your gedcom leave the answer at \'no\'.')
+                            ' If you did not differentiate by media type in your gedcom leave the answer at ’no’.')
                         ?>
                     </div>
                 </div>

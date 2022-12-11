@@ -224,6 +224,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $default = [
             'page-limit'            => '3', // integer, number of generation blocks per page
+            'tab-limit'             => '3',  // integer, number of generation blocks per tab
             'show-singles'          => '0', // boolean
             'check-relationship'    => '0', // boolean
             'thumb-size'            => '80',// integer
@@ -239,13 +240,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      *
      * @return ResponseInterface
      */
-    public function getAdminAction(ServerRequestInterface $request): ResponseInterface
+    public function getAdminAction(): ResponseInterface
     {
         $this->layout = 'layouts/administration';
 
         return $this->viewResponse($this->name() . '::settings', [
             'title'                 => $this->title(),
             'page_limit'            => $this->options('page-limit'),
+            'tab_limit'             => $this->options('tab-limit'),
             'show_singles'          => $this->options('show-singles'),
             'check_relationship'    => $this->options('check-relationship'),
             'thumb_size'            => $this->options('thumb-size'),
@@ -267,6 +269,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         if ($params['save'] === '1') {
             $this->setPreference('page-limit', $params['page-limit']);
+            $this->setPreference('tab-limit', $params['tab-limit']);
             $this->setPreference('show-singles',  $params['show-singles']);
             $this->setPreference('check-relationship',  $params['check-relationship']);
             $this->setPreference('thumb-size',  $params['thumb-size']);
@@ -441,7 +444,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $tree   = Validator::attributes($request)->tree();
         $xref   = Validator::attributes($request)->isXref()->string('xref', '');
         $start  = 1; // always start with the current generation in tab view
-        $limit  = 3; // always limit the number of generations to 3 in tab view
+        $limit  = (int) $this->options('tab-limit');
 
         $this->tree = $tree;
 
@@ -456,7 +459,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'descendant_generations'        => $this->descendant_generations,
             'ancestor_generations'          => $this->ancestor_generations,
             'limit'                         => $limit,
-            'start_page_readmore'           => ceil(($limit + 1) / $this->options('page-limit'))
+            'start_page_readmore'           => ceil(($limit + 1) / (int) $this->options('page-limit'))
         ]);
     }
 
