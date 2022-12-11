@@ -1370,12 +1370,14 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     protected function printFollowLink(Individual $child): string
     {
+        $request = app(ServerRequestInterface::class);
+        assert($request instanceof ServerRequestInterface);
+
+        $xref  = Validator::attributes($request)->string('xref');
+
+        $text = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
+
         if ($this->isPage()) {
-
-            $request = app(ServerRequestInterface::class);
-            assert($request instanceof ServerRequestInterface);
-
-            $xref  = Validator::attributes($request)->string('xref');
             $page  = Validator::attributes($request)->integer('page');
 
             $limit = $this->options('page-limit');
@@ -1383,19 +1385,25 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             if ($this->generation === $page * $limit) {
                 $page = $page + 1;
             }
-
-            $child_family = $this->getFamily($child);
-
-            $text = I18N::translate('follow') . ' ' . ($this->generation + 1) . '.' . $this->index;
             $url  = $this->getUrl($this->tree, $xref, $this->type, $page);
-
-            if ($this->options('show-singles') === '1' || $child_family) {
-                $this->index++;
-                return ' - <a class="jc-scroll" href="' . $url . '#' . $child->xref() . '">' . $text . '</a>';
+        } else {
+            $limit = $this->options('tab-limit');
+            if ($this->generation === (int) $limit) {
+                $page = (int) ceil(($limit + 1) / $this->options('page-limit'));
+                $url  = $this->getUrl($this->tree, $xref, $this->type, $page);
             } else {
-                return '';
+                $url = $this->getPerson($xref)->url();
             }
         }
+
+        $child_family = $this->getFamily($child);
+        if ($this->options('show-singles') === '1' || $child_family) {
+            $this->index++;
+            return ' - <a class="jc-scroll" href="' . $url . '#' . $child->xref() . '">' . $text . '</a>';
+        } else {
+            return '';
+        }
+
         return '';
     }
 
