@@ -11,7 +11,7 @@ use Fisharebest\Webtrees\View;
         'tab_content'    => $tab_content_descendants
     ]) ?>
     <?php if ($descendant_generations > $limit): ?>
-        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $individual->xref(), 'descendants', 2)]); ?>
+        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $individual->xref(), 'descendants', $start_page_readmore), 'anchor' => $limit + 1]); ?>
     <?php endif ?>
 </div>
 
@@ -22,7 +22,7 @@ use Fisharebest\Webtrees\View;
         'tab_content'    => $tab_content_ancestors
     ]) ?>
      <?php if ($ancestor_generations > $limit): ?>
-        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $individual->xref(), 'ancestors', 2)]); ?>
+        <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $individual->xref(), 'ancestors', $start_page_readmore), 'anchor' => $limit + 1]); ?>
     <?php endif ?>
 </div>
 

@@ -455,7 +455,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'tab_content_ancestors'         => $this->printAncestorsPage($xref, $start, $limit),
             'descendant_generations'        => $this->descendant_generations,
             'ancestor_generations'          => $this->ancestor_generations,
-            'limit'                         => $limit
+            'limit'                         => $limit,
+            'start_page_readmore'           => ceil(($limit + 1) / $this->options('page-limit'))
         ]);
     }
 
