@@ -23,8 +23,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
                 <?= /* I18N: Help text for the “Maximum number of generations per page” configuration setting */
-                    I18N::translate('This setting only affects the Fancy Treeview page. The content of individual tab always lists 3 generations, if available.
-                    Longer pages require more memory.')
+                    I18N::translate('This setting only affects the Fancy Treeview page. The content of individual tab always lists 3 generations,' .
+                    ' if available. Longer pages require more memory.')
                 ?>
             </div>
         </div>
@@ -38,9 +38,9 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'show-singles', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$show_singles]) ?>
                     <div class="form-text">
 					    <?= /* I18N: Help text for the “Show singles” configuration setting */
-                            I18N::translate('Turn this option on if you want to display singles in the next generation.
-                            Singles are individuals without partner and children. With this option turned on, each child of a family will be displayed
-                            in a detailed manner in the next generation. This setting only affects the page or tab containing the descendants.')
+                            I18N::translate('Turn this option on if you want to display singles in the next generation.' .
+                            ' Singles are individuals without partner and children. With this option turned on, each child of a family will be displayed' .
+                            ' in a detailed manner in the next generation. This setting only affects the page or tab containing the descendants.')
                         ?>
                     </div>
                 </div>
@@ -56,16 +56,16 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'check-relationship', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$check_relationship]) ?>
                     <div class="form-text">
 					    <?= /* I18N: Help text for the “Check relationship between partners” configuration setting */
-                            I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors.
-                            If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.')
+                            I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors.' .
+                            ' If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.')
                         ?>
                     </div>
                     <div class="form-text">
 						<?= /* I18N: Warning when using the “Check relationship between partners” configuration setting */
-                            I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees.
-                            It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior,
-                            reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options).
-                            If you still experience any problems, don’t use this option at all.')
+                            I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees.' .
+                            ' It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior,' .
+                            ' reduce the number of generation blocks to load at once or don’t use it in combination with the option to show singles (see the previous options).' .
+                            ' If you still experience any problems, don’t use this option at all.')
                         ?>
                     </div>
                 </div>
@@ -102,8 +102,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'media-type-photo', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int)$media_type_photo]) ?>
                     <div class="form-text">
 					    <?= /* I18N: Help text for the “Show only media from the type 'photo'” configuration setting */
-                            I18N::translate('Turn this option on if you want to display images from the type photo only.
-                            Other highlighted images, like certificates, documents or tombstones will not be used.')
+                            I18N::translate('Turn this option on if you want to display images from the type photo only.' .
+                            ' Other highlighted images like certificates, documents or tombstones will not be used.')
                         ?>
                     </div>
                 </div>
