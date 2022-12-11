@@ -3,13 +3,6 @@
   line-height: 1.5rem;
 }
 
-.jc-theme-justlight .jc-fancy-treeview-page:target {
-  display: block;
-  position: relative;
-  top: -200px;
-  visibility: hidden;
-}
-
 [dir="ltr"] .jc-fancy-treeview-tab ol {
   padding-left: 0;
 }
