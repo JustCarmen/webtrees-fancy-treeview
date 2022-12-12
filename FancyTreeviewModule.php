@@ -230,7 +230,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'check-relationship'    => '0', // boolean
             'thumb-size'            => '80',// integer
             'crop-thumbs'           => '0', // boolean
-            'media-type-photo'      => '0'  // boolean
+            'media-type-photo'      => '0',  // boolean
+            'gedcom-occupation'     => '0'
         ];
 
         return $this->getPreference($option, $default[$option]);
@@ -254,7 +255,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'check_relationship'    => $this->options('check-relationship'),
             'thumb_size'            => $this->options('thumb-size'),
             'crop_thumbs'           => $this->options('crop-thumbs'),
-            'media_type_photo'      => $this->options('media-type-photo')
+            'media_type_photo'      => $this->options('media-type-photo'),
+            'gedcom_occupation'     => $this->options('gedcom-occupation')
         ]);
     }
 
@@ -278,6 +280,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $this->setPreference('thumb-size',  $params['thumb-size']);
             $this->setPreference('crop-thumbs', $params['crop-thumbs']);
             $this->setPreference('media-type-photo', $params['media-type-photo']);
+            $this->setPreference('gedcom-occupation', $params['gedcom-occupation']);
 
             $message = I18N::translate('The preferences for the module “%s” have been updated.', $this->title());
             FlashMessages::addMessage($message, 'success');
@@ -1118,16 +1121,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 $html .= ', ';
             }
 
-            // In the Gedcom file most occupations are probably written with a capital (as a single word)
-            // but use lcase/ucase to be sure the occupation is spelled correctly since we are using
-            // it in the middle of a sentence.
-            // In German all occupations are written with a capital.
-            // Are there any other languages where this is the case?
-            if (I18N::languageTag() === 'de') {
-                $html .= rtrim(ucfirst($fact->value()), ".");
-            } else {
-                $html .= rtrim(lcfirst($fact->value()), ".");
-            }
+            $html .= rtrim($this->options('gedcom-occupation') ? $fact->value() : lcfirst($fact->value()), ".");
 
             $date = $this->printDate($fact);
             if ($date) {
