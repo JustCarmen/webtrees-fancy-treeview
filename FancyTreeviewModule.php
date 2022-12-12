@@ -223,6 +223,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function options(string $option): string
     {
         $default = [
+            'list-type'             => 'descendants', // Type 'Descendants' or 'Ancestors'
             'page-limit'            => '3', // integer, number of generation blocks per page
             'tab-limit'             => '3',  // integer, number of generation blocks per tab
             'show-singles'          => '0', // boolean
@@ -246,6 +247,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         return $this->viewResponse($this->name() . '::settings', [
             'title'                 => $this->title(),
+            'list_type'             => $this->options('list-type'),
             'page_limit'            => $this->options('page-limit'),
             'tab_limit'             => $this->options('tab-limit'),
             'show_singles'          => $this->options('show-singles'),
@@ -268,6 +270,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $params = (array) $request->getParsedBody();
 
         if ($params['save'] === '1') {
+            $this->setPreference('list-type', $params['list-type']);
             $this->setPreference('page-limit', $params['page-limit']);
             $this->setPreference('tab-limit', $params['tab-limit']);
             $this->setPreference('show-singles',  $params['show-singles']);
@@ -391,7 +394,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function tabTitle(): string
     {
-        return I18N::translate('Descendants and ancestors');
+        if ($this->options('list-type') === 'ancestors') {
+            return I18N::translate('Ancestors and descendants');
+        } else {
+            return I18N::translate('Descendants and ancestors');
+        }
     }
 
     /**
@@ -452,6 +459,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'module'                        => $this,
             'tree'                          => $tree,
             'individual'                    => $individual,
+            'list_type'                     => $this->options('list-type'),
             'tab_page_title_descendants'    => $this->printPageTitle($individual, 'descendants'),
             'tab_page_title_ancestors'      => $this->printPageTitle($individual, 'ancestors'),
             'tab_content_descendants'       => $this->printDescendantsPage($xref, $start, $limit),

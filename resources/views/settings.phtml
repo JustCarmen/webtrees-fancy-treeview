@@ -13,6 +13,21 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
     <form method="post">
         <?= csrf_field() ?>
         <input type="hidden" name="save" id="save" value="1">
+          <!-- DEFAULT PAGE TYPE-->
+          <div class="row mb-3">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Default list type') ?>
+            </label>
+            <div class="col-sm-3">
+                <?= view('components/select', ['name' => 'list-type', 'selected' => $list_type, 'options' => ['descendants' => I18N::translate('Descendants'), 'ancestors' => I18N::translate('Ancestors')]]) ?>
+            </div>
+            <div class="form-text col-sm-9 offset-sm-3">
+                <?= /* I18N: Help text for the “Default list type” configuration setting */
+                    I18N::translate('Select ’descendants’ or ’ancestors’ as default list type. When on the individual page tab, this list type will be shown first.');
+                ?>
+            </div>
+
+        </div>
          <!-- PAGE LIMIT -->
          <div class="row mb-3">
             <label class="col-form-label col-sm-3">
@@ -38,7 +53,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <?= view('components/select', ['name' => 'tab-limit', 'selected' => $tab_limit, 'options' => [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]]) ?>
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
-                <?= /* I18N: Help text for the “Maximum number of generations per page” configuration setting */
+                <?= /* I18N: Help text for the “Maximum number of generations per tab” configuration setting */
                     I18N::translate('Select the maximum number of generations to show on the individual page tab.');
                 ?>
                 <?= I18N::translate('More generations require more memory and it takes longer for the page to fully load.'); ?>
