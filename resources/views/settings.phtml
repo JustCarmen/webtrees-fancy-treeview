@@ -23,7 +23,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
                 <?= /* I18N: Help text for the “Default list type” configuration setting */
-                    I18N::translate('Select ’descendants’ or ’ancestors’ as default list type. When on the individual page tab, this list type will be shown first.');
+                    I18N::translate('Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first.');
                 ?>
             </div>
 
@@ -40,7 +40,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <?= /* I18N: Help text for the “Maximum number of generations per page” configuration setting */
                     I18N::translate('Select the maximum number of generations to show on the Fancy Treeview page.');
                 ?>
-                <?= I18N::translate('More generations require more memory and it takes longer for the page to fully load.'); ?>
+                <?= I18N::translate('More generations require more memory so the page takes longer to fully load.'); ?>
             </div>
 
         </div>
@@ -56,7 +56,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <?= /* I18N: Help text for the “Maximum number of generations per tab” configuration setting */
                     I18N::translate('Select the maximum number of generations to show on the individual page tab.');
                 ?>
-                <?= I18N::translate('More generations require more memory and it takes longer for the page to fully load.'); ?>
+                <?= I18N::translate('More generations require more memory so the page takes longer to fully load.'); ?>
             </div>
         </div>
         <!-- SHOW SINGLES -->
@@ -69,8 +69,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'show-singles', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_singles]) ?>
                     <div class="form-text">
 					    <?= /* I18N: Help text for the “Show singles” configuration setting */
-                            I18N::translate('Turn this option on if you want to display singles in the next generation.' .
-                            ' Singles are individuals without partner and children. With this option turned on, each child of a family will be displayed' .
+                            I18N::translate('Respond “yes” if you want to display singles in the next generation.' .
+                            ' Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed' .
                             ' in a detailed manner in the next generation. This setting only affects the page or tab containing the descendants.')
                         ?>
                     </div>
@@ -87,16 +87,16 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'check-relationship', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $check_relationship]) ?>
                     <div class="form-text">
 					    <?= /* I18N: Help text for the “Check relationship between partners” configuration setting */
-                            I18N::translate('With this option turned on, the script checks if a (married) couple has the same ancestors.' .
+                            I18N::translate('If the answer is “yes”, the script checks if a (married) couple has the same ancestors.' .
                             ' If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.')
                         ?>
                     </div>
                     <div class="form-text">
 						<?= /* I18N: Warning when using the “Check relationship between partners” configuration setting */
                             I18N::translate('<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees.' .
-                            ' It can cause very slow page loading or an ’execution time out error’ on your server. If you notice such a behavior,' .
-                            ' reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option ’show singles’.' .
-                            ' If you still have problems, leave the answer at ’no’.')
+                            ' It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior,' .
+                            ' reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’.' .
+                            ' If you still have problems, leave the answer at “no”.')
                         ?>
                     </div>
                 </div>
@@ -133,9 +133,9 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'media-type-photo', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $media_type_photo]) ?>
                     <div class="form-text">
 					    <?= /* I18N: Help text for the “Show only media from the type 'photo'” configuration setting */
-                            I18N::translate('Turn this option on if you want to display images from the type photo only.' .
+                            I18N::translate('Respond “yes” if you want to display images from the type “photo” only.' .
                             ' Other highlighted images like certificates, documents or tombstones will not be used.' .
-                            ' If you did not differentiate by media type in your gedcom leave the answer at ’no’.')
+                            ' If you did not differentiate by media type in your Gedcom leave the answer at “no”.')
                         ?>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                             I18N::translate('In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word)' .
                             ' but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages' .
                             ' require that an occupation be written in lower case in that situation.' .
-                            ' If you do not want the module to change the spelling, change the answer to ’yes’.')
+                            ' If you do not want the module to change the spelling, change the answer to “yes”.')
                         ?>
                     </div>
                 </div>
