@@ -13,7 +13,7 @@ use Fisharebest\Webtrees\I18N;
         <?php if ($module->type === 'ancestors' && $module->generation > 1): ?>
             <div class="mb-3 small fst-italic">
                 <?= count($xrefs) . ' ' . I18N::translate('of') . ' ' .
-                    I18N::number(pow(2, $module->generation - 1)) . ' ' . strtolower(I18N::translate('Individuals')) .
+                    I18N::number(pow(2, $module->generation - 1)) . ' ' . I18N::translate('persons') .
                     ' (' . I18N::percentage(count($xrefs) / pow(2, $module->generation - 1), 2) . ' ' . I18N::translate('complete') . ').'
                 ?>
             </div>
