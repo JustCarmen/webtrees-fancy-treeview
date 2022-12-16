@@ -23,7 +23,9 @@ In addition to the usual information, the ancestor overview also shows a percent
 
 The administrator can add or remove pages from the menu by clicking on the button at the top of the Fancy Treeview page or by using the links in the edit menu on the individual page.
 
-Currently there is no configuration page and it is not possible to download the Fancy Treeview page as a pdf as in the webtrees 1 version of this module. It is possible that these features will be re-implemented in a later version.
+There is a configuration page where you can set a few options to customize the Fancy Treeview page and/or tab to your needs.
+
+At the moment it is not possible to download the Fancy Treeview page as a pdf as in the webtrees 1 version of this module. It is possible that this will be re-implemented in a later version.
 
 Translations
 ------------
