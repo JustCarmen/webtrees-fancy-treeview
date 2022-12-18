@@ -1032,6 +1032,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
                             $html .= '</li>';
                         } else {
+                            $this->index++;
                             $html .= '<li class="jc-child-li jc-private">' . I18N::translate('Private') . '</li>';
                         }
                     }
