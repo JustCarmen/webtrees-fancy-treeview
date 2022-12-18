@@ -309,12 +309,12 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $old_list = $this->getPreference($tree->id() . '-menu-ancestors', '');
             $new_list = $old_list === '' ? $xref : $old_list . ', ' . $xref;
 
-            $this->setPreference($tree->id() . '-menu-ancestors', $new_list);
+            $this->setPreference($tree->id() . '-menu-ancestors',  implode(', ', array_unique(explode(', ', $new_list))));
         } else {
             $old_list = $this->getPreference($tree->id() . '-menu-descendants', '');
             $new_list = $old_list === '' ? $xref : $old_list . ', ' . $xref;
 
-            $this->setPreference($tree->id() . '-menu-descendants', $new_list);
+            $this->setPreference($tree->id() . '-menu-descendants', implode(', ', array_unique(explode(', ', $new_list))));
         }
 
         return redirect($url);
