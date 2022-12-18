@@ -1,0 +1,528 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Fancy Treeview for webtrees 2\n"
+"Language: is\n"
+
+#. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
+#: FancyTreeviewModule.php:1369
+msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
+msgid " "
+msgstr " "
+
+#. I18N: Warning when using the “Check relationship between partners” configuration setting
+#: resources/views/settings.phtml:98
+msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
+msgstr "<strong>Athugið</strong>: Þessi valkostur getur verið tíma- og/eða minnisfrekur, sérstaklega fyrir stórar ættartölur. Það getur valdið mjög hægri hleðslu á síðu eða „keyrslutímavillu“ á netþjóninum þínum. Ef þú tekur eftir slíkri hegðun skaltu minnka hámarksfjölda kynslóða á síðu eða flipa og/eða ekki nota það ásamt valkostinum „sýna einhleypa“. Ef þú átt enn í vandræðum skaltu velja svarið „nei“."
+
+#. I18N: Description of the module
+#: FancyTreeviewModule.php:108
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr "Frásagnaryfirlit yfir afkomendur eða forfeður einnar fjölskyldu (grein)."
+
+#: resources/views/menu-edit.phtml:15
+msgid "Add ancestors to menu"
+msgstr "Bæta forfeðrum við valmynd"
+
+#: resources/views/menu-edit.phtml:20
+msgid "Add descendants to menu"
+msgstr "Bæta afkomendum við valmynd"
+
+#: resources/views/page.phtml:28
+msgid "Add to menu"
+msgstr "Bæta við valmynd"
+
+#: FancyTreeviewModule.php:1024
+msgctxt "FEMALE"
+msgid "adopted child"
+msgstr "kjörbarn"
+
+#: FancyTreeviewModule.php:1027
+msgctxt "MALE"
+msgid "adopted child"
+msgstr "kjörbarn"
+
+#: FancyTreeviewModule.php:1091
+msgid "adopted child of"
+msgstr "kjörbarn"
+
+#: FancyTreeviewModule.php:1082
+msgid "adopted daughter of"
+msgstr "kjördóttir"
+
+#: FancyTreeviewModule.php:1073
+msgid "adopted son of"
+msgstr "kjörsonur"
+
+#: resources/views/settings.phtml:150
+msgid "Always write the occupation exactly as it appears in the Gedcom"
+msgstr "Skrifaðu alltaf starfsheitið nákvæmlega eins og það birtist í Gedcom"
+
+#: FancyTreeviewModule.php:401
+msgid "Ancestors and descendants"
+msgstr "Forfeður og afkomendur"
+
+#. I18N: Note the space at the end of the string
+#: FancyTreeviewModule.php:880 FancyTreeviewModule.php:945
+#: FancyTreeviewModule.php:966 FancyTreeviewModule.php:999
+#: FancyTreeviewModule.php:1104 FancyTreeviewModule.php:1152
+#: FancyTreeviewModule.php:1303 FancyTreeviewModule.php:1311
+#: FancyTreeviewModule.php:1319
+msgid "and "
+msgstr "og "
+
+#. I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months
+#: FancyTreeviewModule.php:1345
+msgctxt "age in days/months"
+msgid "at the age of %s"
+msgstr "á aldrinum %s"
+
+#. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
+#: FancyTreeviewModule.php:1347
+msgctxt "age in years"
+msgid "at the age of %s"
+msgstr "á aldrinum %s"
+
+#: resources/views/settings.phtml:85
+msgid "Check relationship between partners"
+msgstr "Athuga samband milli maka"
+
+#: FancyTreeviewModule.php:1093
+msgid "child of"
+msgstr "barn"
+
+#: resources/views/block-content.phtml:17
+msgid "complete"
+msgstr "lokið"
+
+#: resources/views/settings.phtml:121
+msgid "Crop thumbnails to square"
+msgstr "Kroppa smámynd í ferning"
+
+#: resources/views/settings.phtml:19
+msgid "Default list type"
+msgstr "Sjálfgefin tegund lista"
+
+#: FancyTreeviewModule.php:403
+msgid "Descendants and ancestors"
+msgstr "Afkomendur og forfeður"
+
+#: FancyTreeviewModule.php:1304
+msgctxt "FEMALE"
+msgid "died"
+msgstr "dó"
+
+#: FancyTreeviewModule.php:1304
+msgctxt "MALE"
+msgid "died"
+msgstr "dó"
+
+#. I18N: eighth marriage
+#: FancyTreeviewModule.php:818
+msgid "eighth"
+msgstr "áttundi"
+
+#: FancyTreeviewModule.php:387
+msgid "Family tree overview"
+msgstr "Ættartölu yfirlit"
+
+#. I18N: Name of a module
+#: FancyTreeviewModule.php:97
+msgid "Fancy Treeview"
+msgstr "Flott ættaryfirlit"
+
+#: resources/views/menu-edit.phtml:11
+msgid "Fancy Treeview menu"
+msgstr "Valmynd fyrir Flott ættaryfirlit"
+
+#. I18N: fifth marriage
+#: FancyTreeviewModule.php:815
+msgid "fifth"
+msgstr "fimmti"
+
+#. I18N: first marriage
+#: FancyTreeviewModule.php:811
+msgid "first"
+msgstr "fyrsti"
+
+#: FancyTreeviewModule.php:1413
+msgid "follow"
+msgstr "fylgja"
+
+#: FancyTreeviewModule.php:1014
+msgctxt "FEMALE"
+msgid "foster child"
+msgstr "fósturbarn"
+
+#: FancyTreeviewModule.php:1017
+msgctxt "MALE"
+msgid "foster child"
+msgstr "fósturbarn"
+
+#: FancyTreeviewModule.php:1089
+msgid "foster child of"
+msgstr "fósturbarn"
+
+#: FancyTreeviewModule.php:1080
+msgid "foster daughter of"
+msgstr "fósturdóttir"
+
+#: FancyTreeviewModule.php:1071
+msgid "foster son of"
+msgstr "fóstursonur"
+
+#. I18N: fourth marriage
+#: FancyTreeviewModule.php:814
+msgid "fourth"
+msgstr "fjórði"
+
+#: FancyTreeviewModule.php:983
+msgctxt "One parent/multiple children"
+msgid "had"
+msgstr "átti"
+
+#: FancyTreeviewModule.php:953 FancyTreeviewModule.php:989
+msgctxt "One parent/one child"
+msgid "had"
+msgstr "átti"
+
+#: FancyTreeviewModule.php:969
+msgctxt "Two parents/multiple children"
+msgid "had"
+msgstr "áttu"
+
+#: FancyTreeviewModule.php:947 FancyTreeviewModule.php:975
+msgctxt "Two parents/one child"
+msgid "had"
+msgstr "áttu"
+
+#: FancyTreeviewModule.php:985
+msgctxt "One parent/multiple children"
+msgid "has"
+msgstr "has"
+
+#: FancyTreeviewModule.php:955 FancyTreeviewModule.php:991
+msgctxt "One parent/one child"
+msgid "has"
+msgstr "has"
+
+#: FancyTreeviewModule.php:971
+msgctxt "Two parents/multiple children"
+msgid "have"
+msgstr "have"
+
+#: FancyTreeviewModule.php:949 FancyTreeviewModule.php:977
+msgctxt "Two parents/one child"
+msgid "have"
+msgstr "have"
+
+#: FancyTreeviewModule.php:905
+msgid "He had a relationship with"
+msgstr "Hann var í sambandi með"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:825
+msgid "He married %s times"
+msgstr "Hann giftist %s sinnum"
+
+#: FancyTreeviewModule.php:1271
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Hann var skírður"
+
+#: FancyTreeviewModule.php:1273
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Hann er skírður"
+
+#: FancyTreeviewModule.php:1253
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Hann var fæddur"
+
+#: FancyTreeviewModule.php:1255
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Hann er fæddur"
+
+#. I18N: Help text for the “Check relationship between partners” configuration setting
+#: resources/views/settings.phtml:92
+msgid "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
+msgstr "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
+
+#. I18N: Note the space at the end of the string
+#: FancyTreeviewModule.php:1375
+msgctxt "before dateformat mmm yyyy"
+msgid "in "
+msgstr "þann "
+
+#. I18N: Note the space at the end of the string
+#: FancyTreeviewModule.php:1378
+msgctxt "before dateformat yyyy"
+msgid "in "
+msgstr " "
+
+#. I18N: Note the space at the end of the string
+#: FancyTreeviewModule.php:1397
+msgctxt "before place names"
+msgid "in "
+msgstr "í "
+
+#. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
+#: resources/views/settings.phtml:156
+msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
+msgstr "Í Gedcom skránni er fyrsti stafurinn stór fyrir flest starfsheiti (sem sjálfstætt orð) en í þessari einingu notum við starfsheitið í miðri setningu. Stafsetningarreglur í flestum tungumálum krefjast þess að starfsheiti sé ritað með litlum staf í því tilviki. Ef þú vilt ekki að einingin breyti stafsetningu skaltu breyta svarinu í „já“."
+
+#: resources/views/settings.phtml:34
+msgid "Maximum number of generations per page"
+msgstr "Hámarksfjöldi kynslóða á einni síðu"
+
+#: resources/views/settings.phtml:50
+msgid "Maximum number of generations per tab"
+msgstr "Hámarksfjöldi kynslóða í einum flipa"
+
+#: resources/views/settings.phtml:43 resources/views/settings.phtml:59
+msgid "More generations require more memory so the page takes longer to fully load."
+msgstr "Fleiri kynslóðir kalla á meira minni þannig að síður taka lengri tíma að hlaðast inn að fullu."
+
+#. I18N: ninth marriage
+#: FancyTreeviewModule.php:819
+msgid "ninth"
+msgstr "níundi"
+
+#: FancyTreeviewModule.php:958
+msgid "no children"
+msgstr "engin börn"
+
+#. I18N: Note the space at the end of the string
+#: FancyTreeviewModule.php:1372
+msgctxt "before dateformat dd-mm-yyyy"
+msgid "on "
+msgstr "þann "
+
+#: resources/views/block-content.phtml:16
+msgid "persons"
+msgstr "persons"
+
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "Lesa meira"
+
+#: resources/views/menu-edit.phtml:13
+msgid "Remove ancestors from menu"
+msgstr "Fjarlægja forfeður frá valmynd"
+
+#: resources/views/menu-edit.phtml:18
+msgid "Remove descendants from menu"
+msgstr "Fjarlægja afkomendur frá valmynd"
+
+#: resources/views/page.phtml:19
+msgid "Remove from menu"
+msgstr "Fjarlægja úr valmynd"
+
+#. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
+#: resources/views/settings.phtml:138
+msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
+msgstr "Svaraðu „já“ ef þú vilt aðeins birta myndir af gerðinni „ljósmynd“. Aðrar auðkenndar myndir eins og vottorð, skjöl eða legsteinar verða ekki notaðar. Ef þú gerðir ekki greinarmun á gagnategundum í þínu Gedcom skaltu velja svarið „nei“."
+
+#. I18N: Help text for the “Show singles” configuration setting
+#: resources/views/settings.phtml:73
+msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+
+#. I18N: second marriage
+#: FancyTreeviewModule.php:812
+msgid "second"
+msgstr "annar"
+
+#. I18N: Help text for the “Default list type” configuration setting
+#: resources/views/settings.phtml:26
+msgid "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
+msgstr "Veldu „afkomendur“ eða „forfeður“ sem sjálfgefna listategund. Þegar þú ert á einstaklings síðuflipa verður þessi listategund sýnd fyrst."
+
+#. I18N: Help text for the “Maximum number of generations per page” configuration setting
+#: resources/views/settings.phtml:41
+msgid "Select the maximum number of generations to show on the Fancy Treeview page."
+msgstr "Veljið hámarksfjölda kynslóða til að sýna á síðunni fyrir Flott ættaryfirlit"
+
+#. I18N: Help text for the “Maximum number of generations per tab” configuration setting
+#: resources/views/settings.phtml:57
+msgid "Select the maximum number of generations to show on the individual page tab."
+msgstr "Veljið hámarksfjölda kynslóða til að sýna í síðuflipa einstaklings."
+
+#. I18N: seventh marriage
+#: FancyTreeviewModule.php:817
+msgid "seventh"
+msgstr "sjöundi"
+
+#: FancyTreeviewModule.php:908
+msgid "She had a relationship with"
+msgstr "Hún var í sambandi með"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:831
+msgid "She married %s times"
+msgstr "Hún giftist %s sinnum"
+
+#: FancyTreeviewModule.php:1271
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Hún var skírð"
+
+#: FancyTreeviewModule.php:1273
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Hún er skírð"
+
+#: FancyTreeviewModule.php:1253
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Hún var fædd"
+
+#: FancyTreeviewModule.php:1255
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Hún er fædd"
+
+#: FancyTreeviewModule.php:506 resources/views/tab.phtml:10
+msgid "Show ancestors"
+msgstr "Sýna afkomendur"
+
+#: FancyTreeviewModule.php:501 resources/views/tab.phtml:21
+msgid "Show descendants"
+msgstr "Sýna afkomendur"
+
+#: resources/views/settings.phtml:132
+msgid "Show only media from the type 'photo'"
+msgstr "Sýnið eingöngu gögn af tegundinni 'ljósmynd'"
+
+#: resources/views/settings.phtml:66
+msgid "Show singles"
+msgstr "Sýna einhleypa"
+
+#. I18N: sixth marriage
+#: FancyTreeviewModule.php:816
+msgid "sixth"
+msgstr "sjötti"
+
+#. I18N: tenth marriage
+#: FancyTreeviewModule.php:820
+msgid "tenth"
+msgstr "tíundi"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:827
+msgid "The %s time he married"
+msgstr "%s skiptið sem hann giftist"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:833
+msgid "The %s time she married"
+msgstr "%s skiptið sem hún giftist"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:839
+msgid "The %s time this individual married"
+msgstr "%s skiptið sem þessi einstaklingur giftist"
+
+#: FancyTreeviewModule.php:786
+msgid "The details of this family are private."
+msgstr "Nánari upplýsingar um þessa fjölskyldu eru einkamál."
+
+#: resources/views/block-content.phtml:9
+msgid "The details of this generation are private."
+msgstr "Nánari upplýsingar um þessa kynslóð eru einkamál."
+
+#. I18N: third marriage
+#: FancyTreeviewModule.php:813
+msgid "third"
+msgstr "þriðji"
+
+#: FancyTreeviewModule.php:911
+msgid "This individual had a relationship with"
+msgstr "Þessi einstaklingur var í sambandi með"
+
+#: FancyTreeviewModule.php:851
+msgid "This individual married"
+msgstr "Þessi einstaklingur gifti sig"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:837
+msgid "This individual married %s times"
+msgstr "Þessi einstaklingur gifti sig %s sinnum"
+
+#: resources/views/settings.phtml:71 resources/views/settings.phtml:90
+msgid "This setting only applies to the page or tab containing the descendants."
+msgstr "This setting only applies to the page or tab containing the descendants."
+
+#: resources/views/settings.phtml:110
+msgid "Thumbnail size"
+msgstr "Smámynda stærð"
+
+#: FancyTreeviewModule.php:1278
+msgctxt "PAST (FEMALE)"
+msgid "was baptized"
+msgstr "var skírð"
+
+#: FancyTreeviewModule.php:1278
+msgctxt "PAST (MALE)"
+msgid "was baptized"
+msgstr "var skírður"
+
+#: FancyTreeviewModule.php:1280
+msgctxt "PRESENT (FEMALE)"
+msgid "was baptized"
+msgstr "er skírð"
+
+#: FancyTreeviewModule.php:1280
+msgctxt "PRESENT (MALE)"
+msgid "was baptized"
+msgstr "er skírður"
+
+#: FancyTreeviewModule.php:1260
+msgctxt "PAST (FEMALE)"
+msgid "was born"
+msgstr "var fædd"
+
+#: FancyTreeviewModule.php:1260
+msgctxt "PAST (MALE)"
+msgid "was born"
+msgstr "var fæddur"
+
+#: FancyTreeviewModule.php:1262
+msgctxt "PRESENT (FEMALE)"
+msgid "was born"
+msgstr "er fædd"
+
+#: FancyTreeviewModule.php:1262
+msgctxt "PRESENT (MALE)"
+msgid "was born"
+msgstr "er fæddur"
+
+#: FancyTreeviewModule.php:1312
+msgctxt "FEMALE"
+msgid "was buried"
+msgstr "var jarðsett"
+
+#: FancyTreeviewModule.php:1312
+msgctxt "MALE"
+msgid "was buried"
+msgstr "var jarðsettur"
+
+#: FancyTreeviewModule.php:1320
+msgctxt "FEMALE"
+msgid "was cremated"
+msgstr "var líkbrennd"
+
+#: FancyTreeviewModule.php:1320
+msgctxt "MALE"
+msgid "was cremated"
+msgstr "var líkbrenndur"
+
+#: FancyTreeviewModule.php:880
+msgid "were divorced"
+msgstr "skildu"
+
