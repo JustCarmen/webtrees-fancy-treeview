@@ -68,10 +68,11 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <div class="col-sm-9">
                     <?= view('components/radios-inline', ['name' => 'show-singles', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_singles]) ?>
                     <div class="form-text">
+                        <?= I18N::translate('This setting only applies to the page or tab containing the descendants.') ?>
 					    <?= /* I18N: Help text for the “Show singles” configuration setting */
                             I18N::translate('Respond “yes” if you want to display singles in the next generation.' .
                             ' Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed' .
-                            ' in a detailed manner in the next generation. This setting only affects the page or tab containing the descendants.')
+                            ' in a detailed manner in the next generation.')
                         ?>
                     </div>
                 </div>
@@ -86,9 +87,10 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <div class="col-sm-9">
                     <?= view('components/radios-inline', ['name' => 'check-relationship', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $check_relationship]) ?>
                     <div class="form-text">
+                        <?= I18N::translate('This setting only applies to the page or tab containing the descendants.') ?>
 					    <?= /* I18N: Help text for the “Check relationship between partners” configuration setting */
                             I18N::translate('If the answer is “yes”, the script checks if a (married) couple has the same ancestors.' .
-                            ' If a relationship between the partners is found, a text will appear between brackets after the spouses’ name to indicate the blood relationship.')
+                            ' If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship.')
                         ?>
                     </div>
                     <div class="form-text">
