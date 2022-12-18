@@ -669,9 +669,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printPageTitle(Individual $person, string $type): string
     {
         if ($type === 'ancestors') {
-            return I18N::translate('Ancestors of %s', $person->fullName());
+            if ($this->isPage()) {
+                return I18N::translate('Ancestors of %s', '<a href="' . e($person->url() . '#tab-' . $this->name()) . '">' . $person->fullName() . '</a>');
+            } else {
+                return I18N::translate('Ancestors of %s', $person->fullName());
+            }
         } else {
-            return I18N::translate('Descendants of %s', $person->fullName());
+            if ($this->isPage()) {
+                return I18N::translate('Descendants of %s', '<a href="' . e($person->url() . '#tab-' . $this->name()) . '">' . $person->fullName() . '</a>');
+            } else {
+                return I18N::translate('Descendants of %s', $person->fullName());
+            }
         }
     }
 
