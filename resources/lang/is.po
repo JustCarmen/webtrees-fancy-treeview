@@ -202,22 +202,22 @@ msgstr "áttu"
 #: FancyTreeviewModule.php:985
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "á"
 
 #: FancyTreeviewModule.php:955 FancyTreeviewModule.php:991
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "á"
 
 #: FancyTreeviewModule.php:971
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "eiga"
 
 #: FancyTreeviewModule.php:949 FancyTreeviewModule.php:977
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "eiga"
 
 #: FancyTreeviewModule.php:905
 msgid "He had a relationship with"
@@ -251,7 +251,7 @@ msgstr "Hann er fæddur"
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:92
 msgid "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
-msgstr "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
+msgstr "Ef svarið er „já“, athugar forritið hvort (gift) hjón eigi sömu forfeður. Ef samband milli maka finnst birtist texti á milli sviga á eftir nafni maka í sambandsupplýsingunum til að gefa til kynna blóðtengslin."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1375
@@ -305,7 +305,7 @@ msgstr "þann "
 
 #: resources/views/block-content.phtml:16
 msgid "persons"
-msgstr "persons"
+msgstr "einstaklingar"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -331,7 +331,7 @@ msgstr "Svaraðu „já“ ef þú vilt aðeins birta myndir af gerðinni „lj�
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:73
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Svaraðu „já“ ef þú vilt birta einhleypa í næstu kynslóð. Einhleypir eru einstaklingar án maka og barna. Ef þú velur „já“ mun hvert barn fjölskyldunnar birtast á nákvæman hátt í næstu kynslóð."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:812
@@ -456,7 +456,7 @@ msgstr "Þessi einstaklingur gifti sig %s sinnum"
 
 #: resources/views/settings.phtml:71 resources/views/settings.phtml:90
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "Þessi stilling á aðeins við um síðuna eða flipann sem inniheldur afkomendur."
 
 #: resources/views/settings.phtml:110
 msgid "Thumbnail size"

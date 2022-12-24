@@ -203,22 +203,22 @@ msgstr "avaient"
 #: FancyTreeviewModule.php:985
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "a"
 
 #: FancyTreeviewModule.php:955 FancyTreeviewModule.php:991
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "a"
 
 #: FancyTreeviewModule.php:971
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "ont"
 
 #: FancyTreeviewModule.php:949 FancyTreeviewModule.php:977
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "ont"
 
 #: FancyTreeviewModule.php:905
 msgid "He had a relationship with"
@@ -252,7 +252,7 @@ msgstr "Il est né"
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:92
 msgid "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
-msgstr "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
+msgstr "Si la réponse est \"oui\", le script vérifie si un couple (marié) a les mêmes ancêtres. Si une relation entre les partenaires est trouvée, un texte apparaîtra entre parenthèses après le nom des conjoints dans les détails de la relation pour indiquer le lien de parenté."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1375
@@ -306,7 +306,7 @@ msgstr "le "
 
 #: resources/views/block-content.phtml:16
 msgid "persons"
-msgstr "persons"
+msgstr "personnes"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -332,7 +332,7 @@ msgstr "Répondez \"oui\" si vous souhaitez afficher uniquement les images du ty
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:73
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Répondez \"oui\" si vous voulez afficher les célibataires dans la prochaine génération. Les célibataires sont des personnes sans partenaire et sans enfant. Si vous choisissez \"oui\", chaque enfant d'une famille sera affiché de manière détaillée dans la génération suivante."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:812
@@ -457,7 +457,7 @@ msgstr "Cet individu s'est marié %s fois"
 
 #: resources/views/settings.phtml:71 resources/views/settings.phtml:90
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "Ce paramètre s'applique uniquement à la page ou à l'onglet contenant les descendants."
 
 #: resources/views/settings.phtml:110
 msgid "Thumbnail size"

@@ -59,11 +59,11 @@ msgstr "adotovaný syn (čí)"
 
 #: resources/views/settings.phtml:150
 msgid "Always write the occupation exactly as it appears in the Gedcom"
-msgstr "Always write the occupation exactly as it appears in the Gedcom"
+msgstr "Psát povolání přesně tak, jak vypadá v GEDCOMu"
 
 #: FancyTreeviewModule.php:401
 msgid "Ancestors and descendants"
-msgstr "Ancestors and descendants"
+msgstr "Předci a potomci"
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:880 FancyTreeviewModule.php:945
@@ -88,7 +88,7 @@ msgstr "ve věku %s let"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
-msgstr "Check relationship between partners"
+msgstr "Kontrolovat příbutnost mezi partnery"
 
 #: FancyTreeviewModule.php:1093
 msgid "child of"
@@ -100,11 +100,11 @@ msgstr "úplnost"
 
 #: resources/views/settings.phtml:121
 msgid "Crop thumbnails to square"
-msgstr "Crop thumbnails to square"
+msgstr "Ořezat náhledové obrázky do čtverce"
 
 #: resources/views/settings.phtml:19
 msgid "Default list type"
-msgstr "Default list type"
+msgstr "Přednastavený typ seznamu"
 
 #: FancyTreeviewModule.php:403
 msgid "Descendants and ancestors"
@@ -279,11 +279,11 @@ msgstr "In the Gedcom file, the first letter of most occupations is capitalized 
 
 #: resources/views/settings.phtml:34
 msgid "Maximum number of generations per page"
-msgstr "Maximum number of generations per page"
+msgstr "Maximální počet generací na stránce"
 
 #: resources/views/settings.phtml:50
 msgid "Maximum number of generations per tab"
-msgstr "Maximum number of generations per tab"
+msgstr "Maximální počet generací na panelu"
 
 #: resources/views/settings.phtml:43 resources/views/settings.phtml:59
 msgid "More generations require more memory so the page takes longer to fully load."
@@ -347,12 +347,12 @@ msgstr "Select “descendants” or “ancestors” as default list type. When o
 #. I18N: Help text for the “Maximum number of generations per page” configuration setting
 #: resources/views/settings.phtml:41
 msgid "Select the maximum number of generations to show on the Fancy Treeview page."
-msgstr "Select the maximum number of generations to show on the Fancy Treeview page."
+msgstr "Zvolit maximální počet generací na stránce Popis stromu."
 
 #. I18N: Help text for the “Maximum number of generations per tab” configuration setting
 #: resources/views/settings.phtml:57
 msgid "Select the maximum number of generations to show on the individual page tab."
-msgstr "Select the maximum number of generations to show on the individual page tab."
+msgstr "Zvolit maximální počet generací na panelu na strýánce osoby."
 
 #. I18N: seventh marriage
 #: FancyTreeviewModule.php:817
@@ -398,11 +398,11 @@ msgstr "Zobrazit potomky"
 
 #: resources/views/settings.phtml:132
 msgid "Show only media from the type 'photo'"
-msgstr "Show only media from the type 'photo'"
+msgstr "Zobrazit je média typu 'fotografie'"
 
 #: resources/views/settings.phtml:66
 msgid "Show singles"
-msgstr "Show singles"
+msgstr "Zobrazit svobodné"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:816
@@ -461,7 +461,7 @@ msgstr "This setting only applies to the page or tab containing the descendants.
 
 #: resources/views/settings.phtml:110
 msgid "Thumbnail size"
-msgstr "Thumbnail size"
+msgstr "Velikost náhledového obrázku"
 
 #: FancyTreeviewModule.php:1278
 msgctxt "PAST (FEMALE)"

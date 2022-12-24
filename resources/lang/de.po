@@ -16,7 +16,7 @@ msgstr " "
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:98
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Hinweis</strong>: Diese Option kann zeit- und/oder speicheraufwändig sein, besonders bei großen Bäumen. Sie kann dazu führen, dass die Seite sehr langsam geladen wird oder dass auf dem Server ein \"Ausführungszeitfehler\" auftritt. Wenn Sie ein solches Verhalten bemerken, reduzieren Sie die maximale Anzahl der Generationen pro Seite oder Reiter und/oder verwenden Sie sie nicht in Kombination mit der Option \"Singles anzeigen\". Wenn Sie weiterhin Probleme haben, lassen Sie die Antwort auf \"nein\"."
+msgstr "<strong>Hinweis</strong>: Diese Option kann zeit- und/oder speicheraufwändig sein, besonders bei großen Bäumen. Sie kann dazu führen, dass die Seite sehr langsam geladen wird oder dass auf dem Server ein \"Laufzeitfehler\" auftritt. Wenn Sie ein solches Verhalten bemerken, reduzieren Sie die maximale Anzahl der Generationen pro Seite oder Reiter und/oder verwenden Sie sie nicht in Kombination mit der Option \"Alleinstehende anzeigen\". Wenn Sie weiterhin Probleme haben, lassen Sie die Antwort auf \"nein\"."
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:108
@@ -202,22 +202,22 @@ msgstr "hatten"
 #: FancyTreeviewModule.php:985
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "hat"
 
 #: FancyTreeviewModule.php:955 FancyTreeviewModule.php:991
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "hat"
 
 #: FancyTreeviewModule.php:971
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "haben"
 
 #: FancyTreeviewModule.php:949 FancyTreeviewModule.php:977
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "haben"
 
 #: FancyTreeviewModule.php:905
 msgid "He had a relationship with"
@@ -251,7 +251,7 @@ msgstr "Er wurde geboren"
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:92
 msgid "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
-msgstr "If the answer is “yes”, the script checks if a (married) couple has the same ancestors. If a relationship between the partners is found, a text will appear between brackets after the spouses’ name in the relationship details to indicate the blood relationship."
+msgstr "Wenn die Antwort \"ja\" lautet, prüft das Skript, ob ein (verheiratetes) Paar die gleichen Vorfahren hat. Wenn eine Verwandtschaft zwischen den Partnern gefunden wird, erscheint in den Beziehungsdetails ein Text in Klammern nach dem Namen des Ehepartners, um die Blutsverwandtschaft anzugeben."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1375
@@ -305,7 +305,7 @@ msgstr "am "
 
 #: resources/views/block-content.phtml:16
 msgid "persons"
-msgstr "persons"
+msgstr "Personen"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -331,7 +331,7 @@ msgstr "Antworten Sie mit \"ja\", wenn Sie nur Bilder vom Typ \"Foto\" anzeigen 
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:73
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Antworten Sie mit \"Ja\", wenn Sie Alleinstehende in der nächsten Generation anzeigen möchten. Alleinstehende sind Personen ohne Partner und Kinder. Wenn Sie \"ja\" wählen, wird jedes Kind einer Familie in der nächsten Generation detailliert angezeigt."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:812
@@ -401,7 +401,7 @@ msgstr "Nur Medien vom Typ \"Foto\" anzeigen"
 
 #: resources/views/settings.phtml:66
 msgid "Show singles"
-msgstr "Singles anzeigen"
+msgstr "Alleinstehende anzeigen"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:816
@@ -456,7 +456,7 @@ msgstr "Diese Person heiratete %s Mal"
 
 #: resources/views/settings.phtml:71 resources/views/settings.phtml:90
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "Diese Einstellung gilt nur für die Seite oder Registerkarte, die die Nachkommen enthält."
 
 #: resources/views/settings.phtml:110
 msgid "Thumbnail size"
