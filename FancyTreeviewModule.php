@@ -31,12 +31,12 @@ use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
-use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
@@ -71,6 +71,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public int $descendant_generations;
     public int $index;
     public string $type; // 'descendants' or 'ancestors'
+    public array $pedigree_collapse;
 
     private Tree $tree;
     private RelationshipService $relationship_service;
@@ -83,6 +84,9 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function __construct(RelationshipService $relationship_service)
     {
         $this->relationship_service = $relationship_service;
+
+        $this->generation = 1;
+        $this->pedigree_collapse = [];
     }
 
     /**
@@ -193,6 +197,27 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function headContent(): string
     {
         return '<link rel="stylesheet" href="' . e($this->assetUrl('css/style.css')) . '">';
+    }
+
+    /**
+     * Raw content, to be added at the end of the <body> element.
+     * Typically, this will be <script> elements.
+     *
+     * https://getbootstrap.com/docs/5.2/components/tooltips/#enable-tooltips
+     *
+     * @return string
+     */
+    public function bodyContent(): string
+    {
+        return '
+            <script>
+                const tooltipTriggerList = document.querySelectorAll(\'[data-bs-toggle="tooltip"]\')
+                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+                $(\'[data-bs-toggle="tooltip"]\').on(\'click\', function (e) {
+                    e.preventDefault();
+                });
+            </script>';
     }
 
     /**
@@ -537,9 +562,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function printDescendantsPage(string $xref, int $start, int $limit): string
     {
-        $this->generation = 1;
-        $this->xrefs      = [$xref];
-        $this->type       = 'descendants';
+        $this->xrefs = [$xref];
+        $this->type  = 'descendants';
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -603,9 +627,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function printAncestorsPage(string $xref, int $start, int $limit): string
     {
-        $this->generation = 1;
-        $this->xrefs      = [$xref];
-        $this->type       = 'ancestors';
+        $this->xrefs = [$xref];
+        $this->type  = 'ancestors';
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -622,7 +645,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             foreach ($xrefs as $xref) {
                 $person  = $this->getPerson($xref);
-                $parents = $person->childFamilies()->first();;
+                $parents = $person->childFamilies()->first();
                 if ($parents) {
                     $father     = $parents->husband();
                     $mother     = $parents->wife();
@@ -631,6 +654,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     }
                     if ($mother) {
                         $this->xrefs[] = $mother->xref();
+                    }
+                    // check relationship and put the generation where a possible pedigree collapse occurs first into the collection
+                    if ($this->options('check-relationship') && $father && $mother) {
+                        $this->setPedigreeCollapse($this->generation + 1, $father, $mother);
                     }
                 }
             }
@@ -1582,6 +1609,49 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
 
         return '';
+    }
+
+    /**
+     * Check if there is a relationship between partners through there joint ancestors, if any.
+     * If found, add the generation number where a pedigree collapse first occurs to the collection
+     *
+     * See: app\Module\RelationshipsChartModule.php
+     *
+     * @param Individual $person
+     * @param Individual $spouse
+     *
+     * @return void
+     */
+    private function setPedigreeCollapse(int $generation, Individual $person, Individual $spouse): void
+    {
+        $tree = $person->tree();
+        $paths = $this->calculateRelationships($person, $spouse);
+
+        foreach ($paths as $path) {
+            $nodes = Collection::make($path)
+                ->map(static function (string $xref, int $key) use ($tree): GedcomRecord {
+                    if ($key % 2 === 0) {
+                        return Registry::individualFactory()->make($xref, $tree);
+                    }
+                    return  Registry::familyFactory()->make($xref, $tree);
+                });
+
+            $pattern = function ($nodes) {
+                return app(RelationshipService::class)->components($nodes);
+            };
+
+            $pattern = $pattern->call(app(RelationshipService::class), $nodes->toArray());
+
+            if ($pattern) {
+                $occurences = array_count_values($pattern);
+
+                $fat = array_key_exists('fat', $occurences) ? $occurences['fat'] : 0;
+                $mot = array_key_exists('mot', $occurences) ? $occurences['mot'] : 0;
+
+                $generations_up = $generation + $fat + $mot;
+                $this->pedigree_collapse[] = $generations_up;
+            }
+        }
     }
 
     /**

@@ -130,3 +130,11 @@ li.jc-child-li::before {
 [dir="rtl"] .jc-fancy-treeview-page-body a.gallery img {
   padding-left: 0.5rem;
 }
+
+[dir="ltr"] .tooltip-inner {
+  text-align: left;
+}
+
+[dir="rtl"] .tooltip-inner {
+  text-align: right;
+}

@@ -2,6 +2,25 @@
 
 use Fisharebest\Webtrees\I18N;
 
+// Generation counts
+$ancestors_count = count($xrefs);
+$ancestors_count_unique = count(array_unique($xrefs));
+
+$generation = $module->generation;
+$pedigree_collapse = $module->pedigree_collapse;
+
+$maximum = pow(2, $generation - 1);
+$reduce = 0;
+foreach($pedigree_collapse as $value) {
+    if ($generation >= $value) {
+        $reduce = $reduce + pow(2, $generation - $value + 1);
+    }
+}
+
+$maximum_pedigree_collapse = $maximum - $reduce;
+
+$tooltip =  I18N::translate('The number of possible ancestors in this generation has been reduced due to pedigree collapse. ' .
+            'Without reduction the maximum number of ancestors in this generation would have been %s.', I18N::number($maximum));
 ?>
 
 <?php if ($module->checkPrivacy($xrefs, true)) : ?>
@@ -10,12 +29,19 @@ use Fisharebest\Webtrees\I18N;
     </div>
 <?php else : ?>
     <ol class="jc-generation-block-content list-unstyled">
-        <?php if ($module->type === 'ancestors' && $module->generation > 1): ?>
+        <?php if ($module->options('check-relationship') && $module->type === 'ancestors' && $module->generation > 1): ?>
             <div class="mb-3 small fst-italic">
-                <?= count($xrefs) . ' ' . I18N::translate('of') . ' ' .
-                    I18N::number(pow(2, $module->generation - 1)) . ' ' . I18N::translate('persons') .
-                    ' (' . I18N::percentage(count($xrefs) / pow(2, $module->generation - 1), 2) . ' ' . I18N::translate('complete') . ').'
-                ?>
+                <?php if ($reduce > 0): ?>
+                    <?=
+                        I18N::translate('%s of %s possible ancestors', I18N::number($ancestors_count_unique),  '<a href="#" data-bs-toggle="tooltip" data-bs-title="' . $tooltip . '">' . I18N::number($maximum_pedigree_collapse) . '</a>') .
+                        ' (' . I18N::translate('%s complete', I18N::percentage($ancestors_count_unique / $maximum_pedigree_collapse, 2)) . ').';
+                    ?>
+                <?php else: ?>
+                    <?=
+                        I18N::translate('%s of %s possible ancestors', I18N::number($ancestors_count_unique),  I18N::number($maximum)) .
+                        ' (' . I18N::translate('%s complete', I18N::percentage($ancestors_count_unique / $maximum, 2)) . ').';
+                     ?>
+                <?php endif ?>
             </div>
         <?php endif ?>
         <?php foreach (array_unique($xrefs) as $xref) : ?>
@@ -28,7 +54,6 @@ use Fisharebest\Webtrees\I18N;
                 }
                 $class = $person->canShow() ? 'jc-family-block' : 'jc-family-block jc-private';
                 ?>
-
                 <li class="<?= $class ?> ps-5 mb-3"><?= $module->printIndividual($person) ?></li>
             <?php endif ?>
         <?php endforeach ?>
