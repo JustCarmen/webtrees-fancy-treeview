@@ -256,9 +256,9 @@ msgstr "Narodil(la) sa"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
+#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type.\n"
-""
+msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1402
