@@ -84,8 +84,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public function __construct(RelationshipService $relationship_service)
     {
         $this->relationship_service = $relationship_service;
-
-        $this->generation = 1;
         $this->pedigree_collapse = [];
     }
 
@@ -562,6 +560,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function printDescendantsPage(string $xref, int $start, int $limit): string
     {
+        $this->generation = 1;
         $this->xrefs = [$xref];
         $this->type  = 'descendants';
 
@@ -627,6 +626,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     public function printAncestorsPage(string $xref, int $start, int $limit): string
     {
+        $this->generation = 1;
         $this->xrefs = [$xref];
         $this->type  = 'ancestors';
 
