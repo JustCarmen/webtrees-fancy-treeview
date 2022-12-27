@@ -19,11 +19,11 @@ If more generations are available, they are accessible by clicking the readmore 
 
 This gives your users a quick overview of the chosen person's family tree. Of course, privacy rules are respected.
 
-In addition to the usual information, the ancestor overview also shows a percentage indicating the extent to which the generation is complete.  The 1st generation consists of 1 person, the 2nd generation consists of the parents of that person (up to 2 persons), the next generation consists of the grandparents of the starting person (up to 4 persons) and so on. So the 10th generation is complete if it consists of 512 people (2^(10-1)).
-
 The administrator can add or remove pages from the menu by clicking on the button at the top of the Fancy Treeview page or by using the links in the edit menu on the individual page.
 
 There is a configuration page where you can set a few options to customize the Fancy Treeview page and/or tab to your needs.
+
+In addition to the usual information, the ancestor overview also shows a percentage indicating the extent to which the generation is complete.  The 1st generation consists of 1 person, the 2nd generation consists of the parents of that person (up to 2 persons), the next generation consists of the grandparents of the starting person (up to 4 persons) and so on. It also takes into account pedigree collapse. In genealogy, pedigree collapse describes how reproduction between two individuals who share an ancestor causes the number of distinct ancestors in the family tree of their offspring to be smaller than it could otherwise be. Without pedigree collapse, the 10th generation is complete if it consists of 512 people (2^(10-1)). To use this feature you need to set the option 'Check relationship between partners'.
 
 At the moment it is not possible to download the Fancy Treeview page as a pdf as in the webtrees 1 version of this module. It is possible that this will be re-implemented in a later version.
 
