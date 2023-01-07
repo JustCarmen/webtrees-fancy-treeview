@@ -29,7 +29,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr "<strong>Let op</strong>: deze optie kan veel tijd en/of geheugen in beslag nemen, vooral bij grote stambomen. Het kan leiden tot het zeer traag laden van pagina's of een “execution time out error” op uw server. Als u een dergelijk gedrag opmerkt, verminder dan het maximum aantal generaties per pagina of tabblad en/of gebruik het niet in combinatie met de optie “toon alleenstaanden”. Als u nog steeds problemen ondervindt, laat het antwoord dan op ”nee” staan."
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:112
+#: FancyTreeviewModule.php:110
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "Een verhalend overzicht van de afstammelingen of voorouders van één familie(tak)."
 
@@ -71,7 +71,7 @@ msgstr "geadopteerde zoon van"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Schrijf het beroep altijd precies zoals het in de Gedcom staat"
 
-#: FancyTreeviewModule.php:401
+#: FancyTreeviewModule.php:424
 msgid "Ancestors and descendants"
 msgstr "Voorouders en afstammelingen"
 
@@ -112,7 +112,7 @@ msgstr "Miniaturen in het vierkant bijsnijden"
 msgid "Default list type"
 msgstr "Standaard lijsttype"
 
-#: FancyTreeviewModule.php:428
+#: FancyTreeviewModule.php:426
 msgid "Descendants and ancestors"
 msgstr "Afstammelingen en voorouders"
 
@@ -131,12 +131,12 @@ msgstr "overleed"
 msgid "eighth"
 msgstr "achtste"
 
-#: FancyTreeviewModule.php:412
+#: FancyTreeviewModule.php:410
 msgid "Family tree overview"
 msgstr "Stamboomoverzicht"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:101
+#: FancyTreeviewModule.php:99
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
@@ -398,11 +398,11 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Zij is geboren"
 
-#: FancyTreeviewModule.php:531 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:529 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "Toon voorouders"
 
-#: FancyTreeviewModule.php:526 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:524 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "Toon afstammelingen"
 

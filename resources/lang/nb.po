@@ -29,7 +29,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr "<strong>Merk</strong>: dette valget kan være tid og/eller resurskrevende, spesielt på komplekse trær. Det kan medføre at siden lastes sakte, eller en “execution time out error” på din server. Om du opplever dette, reduser maks antall generasjoner per side og fane, eller ikke bruk dette i kombinasjon med \"vis enslige\". Om du fortsatt har problemer, velg \"nei\"."
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:112
+#: FancyTreeviewModule.php:110
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "En oversikt over etterkommere og forfedre til en familie (gren) i fortellende form."
 
@@ -71,7 +71,7 @@ msgstr "adoptert sønn av"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Skriv alltid yrke slik det er skrevet i GEDCOM"
 
-#: FancyTreeviewModule.php:401
+#: FancyTreeviewModule.php:424
 msgid "Ancestors and descendants"
 msgstr "Aner og etterkommere"
 
@@ -112,7 +112,7 @@ msgstr "Beskjær miniatyrbilder til kvadrat"
 msgid "Default list type"
 msgstr "Valgt listetype"
 
-#: FancyTreeviewModule.php:428
+#: FancyTreeviewModule.php:426
 msgid "Descendants and ancestors"
 msgstr "Etterkommere og aner"
 
@@ -131,12 +131,12 @@ msgstr "døde"
 msgid "eighth"
 msgstr "åttende"
 
-#: FancyTreeviewModule.php:412
+#: FancyTreeviewModule.php:410
 msgid "Family tree overview"
 msgstr "Familietre oversikt"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:101
+#: FancyTreeviewModule.php:99
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
@@ -399,11 +399,11 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Hun er født"
 
-#: FancyTreeviewModule.php:531 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:529 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "Vis aner"
 
-#: FancyTreeviewModule.php:526 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:524 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "Vis etterkommere"
 
