@@ -52,7 +52,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     use ModuleMenuTrait;
 
     // Route
-    protected const ROUTE_URL = '/tree/{tree}/{module}/{xref}/{name}/{type}/{page}';
+    protected const ROUTE_URL = '/tree/{tree}/jc-fancy-treeview/{xref}/{name}/{type}/{page}';
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -1827,7 +1827,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         return route(static::class, [
             'tree'          => $tree->name(),
-            'module'        => str_replace("_", "", $this->name()),
             'name'          => $this->getslug(strip_tags($this->printName($this->getPerson($xref)))),
             'xref'          => $xref,
             'type'          => $type,
