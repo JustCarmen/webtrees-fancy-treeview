@@ -9,6 +9,7 @@ use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Menu;
+use Fisharebest\Webtrees\Note;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Place;
@@ -254,7 +255,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb-size'            => '80',// integer
             'crop-thumbs'           => '0', // boolean
             'media-type-photo'      => '0',  // boolean
-            'gedcom-occupation'     => '0'
+            'gedcom-occupation'     => '0', // boolean
+            'level1-notes'          => '0' // boolean
         ];
 
         return $this->getPreference($option, $default[$option]);
@@ -279,7 +281,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb_size'            => $this->options('thumb-size'),
             'crop_thumbs'           => $this->options('crop-thumbs'),
             'media_type_photo'      => $this->options('media-type-photo'),
-            'gedcom_occupation'     => $this->options('gedcom-occupation')
+            'gedcom_occupation'     => $this->options('gedcom-occupation'),
+            'level1_notes'          => $this->options('level1-notes')
         ]);
     }
 
@@ -304,6 +307,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $this->setPreference('crop-thumbs', $params['crop-thumbs']);
             $this->setPreference('media-type-photo', $params['media-type-photo']);
             $this->setPreference('gedcom-occupation', $params['gedcom-occupation']);
+            $this->setPreference('level1-notes', $params['level1-notes']);
 
             $message = I18N::translate('The preferences for the module “%s” have been updated.', $this->title());
             FlashMessages::addMessage($message, 'success');
@@ -807,6 +811,21 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     $html .= $this->printChildren($family, $person, $spouse);
                 }
             }
+
+            if ($this->options('level1-notes')) {
+                $html .= '<div class="jc-notes-block small">';
+                    foreach ($person->facts(['NOTE']) as $fact) {
+                        $html .= '<div class="jc-note">';
+                        if ($this->tree->getPreference('FORMAT_TEXT') === 'markdown') {
+                            $html .= Registry::markdownFactory()->markdown($this->printNote($fact));
+                        } else {
+                            $html .= Registry::markdownFactory()->autolink($this->printNote($fact));
+                        }
+                        $html .= '</div>';
+                    }
+                $html .= '</div>';
+            }
+
             return $html;
         } else {
             if ($person->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
@@ -1021,7 +1040,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     }
                     $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                 } else {
-                    $html .= '<div class="jc-children-block mb-2"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of'). ' ' . $this->printName($person);
+                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of'). ' ' . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
                         $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
                     }
@@ -1424,6 +1443,27 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
 
         return null;
+    }
+
+    /**
+     * @param Individual $individual
+     *
+     * @return string
+     */
+    protected function printNote(Fact $fact): string
+    {
+        if ($fact instanceof Fact) {
+            // Link to note object
+            $note = $fact->target();
+            if ($note instanceof Note) {
+                return $note->getNote();
+            }
+
+            // Inline note
+            return $fact->value();
+        }
+
+        return '';
     }
 
     protected function printFollowLink(Individual $child): string

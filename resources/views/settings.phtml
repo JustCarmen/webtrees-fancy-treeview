@@ -165,6 +165,17 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
+        <!-- SHOW LEVEL 1 NOTES -->
+        <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Show level 1 notes') ?>
+                </legend>
+                <div class="col-sm-9">
+                    <?= view('components/radios-inline', ['name' => 'level1-notes', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $level1_notes]) ?>
+                </div>
+            </div>
+        </fieldset>
         <!-- SAVE BUTTON -->
         <hr/>
         <button type="submit" class="btn btn-primary">
