@@ -1367,12 +1367,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $ddate     = $dfact->date();
         $html     = '';
         if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
-            $ageAtDeath = (string) new Age($bdate, $ddate);
-            if ($ageAtDeath < 2) {
-                $html .= ' ' . /* I18N: %s is the age of death in days/months; %s is a string, e.g. at the age of 2 months */ I18N::translateContext('age in days/months', 'at the age of %s', $ageAtDeath);
-            } else {
-                $html .= ' ' . /* I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string */ I18N::translateContext('age in years', 'at the age of %s', filter_var($ageAtDeath, FILTER_SANITIZE_NUMBER_INT));
-            }
+            $ageAtDeath = new Age($bdate, $ddate);
+            $html .= ' ' . /* I18N: %s is a string e.g. 2 days/months/years */ I18N::translate('at the age of %s', $ageAtDeath);
         }
         return $html;
     }
