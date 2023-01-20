@@ -98,7 +98,7 @@ msgstr "ve věku %s let"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
-msgstr "Kontrolovat příbutnost mezi partnery"
+msgstr "Kontrolovat příbuznost mezi partnery"
 
 #: FancyTreeviewModule.php:1120
 msgid "child of"
@@ -141,7 +141,6 @@ msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
 #: resources/views/menu-edit.phtml:11
-#, fuzzy
 msgid "Fancy Treeview menu"
 msgstr "Popis stromu"
 
@@ -257,7 +256,6 @@ msgstr "Narodil se"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 
@@ -409,7 +407,7 @@ msgstr "Zobrazit potomky"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"
-msgstr "Zobrazit je média typu 'fotografie'"
+msgstr "Zobrazit jen média typu 'fotografie'"
 
 #: resources/views/settings.phtml:66
 msgid "Show singles"
@@ -504,7 +502,6 @@ msgid "was born"
 msgstr "narodila se"
 
 #: FancyTreeviewModule.php:1287
-#, fuzzy
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "narodil se"

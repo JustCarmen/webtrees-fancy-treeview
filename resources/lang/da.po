@@ -11,7 +11,7 @@ msgstr ""
 #: FancyTreeviewModule.php:1396
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
-msgstr " - "
+msgstr " "
 
 #: resources/views/block-content.phtml:37
 #: resources/views/block-content.phtml:42
@@ -88,7 +88,7 @@ msgstr "og "
 #: FancyTreeviewModule.php:1372
 msgctxt "age in days/months"
 msgid "at the age of %s"
-msgstr "i alderen af %s"
+msgstr "i en alder af %s"
 
 #. I18N: %s is the age of death in years; %s is a number, e.g. at the age of 40. If necessary add the term 'years' (always plural) to the string
 #: FancyTreeviewModule.php:1374
@@ -275,7 +275,7 @@ msgstr "den "
 #: FancyTreeviewModule.php:1424
 msgctxt "before place names"
 msgid "in "
-msgstr "i"
+msgstr "i "
 
 #: resources/views/settings.phtml:95
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."

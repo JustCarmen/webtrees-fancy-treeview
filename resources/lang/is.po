@@ -156,7 +156,7 @@ msgstr "Fyrsta"
 
 #: FancyTreeviewModule.php:1440
 msgid "follow"
-msgstr "fylgja"
+msgstr "skoða"
 
 #: FancyTreeviewModule.php:1041
 msgctxt "FEMALE"
@@ -400,7 +400,7 @@ msgstr "Hún er fædd"
 
 #: FancyTreeviewModule.php:529 resources/views/tab.phtml:10
 msgid "Show ancestors"
-msgstr "Sýna afkomendur"
+msgstr "Sýna forfeður"
 
 #: FancyTreeviewModule.php:524 resources/views/tab.phtml:21
 msgid "Show descendants"
