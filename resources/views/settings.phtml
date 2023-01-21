@@ -34,7 +34,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <?= I18N::translate('Maximum number of generations per page') ?>
             </label>
             <div class="col-sm-1">
-                <?= view('components/select', ['name' => 'page-limit', 'selected' => $page_limit, 'options' => [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]]) ?>
+                <?= view('components/select', ['name' => 'page-limit', 'selected' => $page_limit, 'options' => range(1, 20)]) ?>
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
                 <?= /* I18N: Help text for the “Maximum number of generations per page” configuration setting */
@@ -50,7 +50,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <?= I18N::translate('Maximum number of generations per tab') ?>
             </label>
             <div class="col-sm-1">
-                <?= view('components/select', ['name' => 'tab-limit', 'selected' => $tab_limit, 'options' => [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5]]) ?>
+                <?= view('components/select', ['name' => 'tab-limit', 'selected' => $tab_limit, 'options' => range(1, 20)]) ?>
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
                 <?= /* I18N: Help text for the “Maximum number of generations per tab” configuration setting */
