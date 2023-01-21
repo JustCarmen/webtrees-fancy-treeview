@@ -8,27 +8,27 @@ use Fisharebest\Webtrees\View;
 
 <div id="jc-fancy-treeview-page" class="jc-fancy-treeview-page col-lg-9 mx-auto">
     <div class="row mb-3">
-        <?php if (Auth::isAdmin()): ?>
+        <?php if (Auth::isAdmin()) : ?>
             <div class="col">
-            <?php if ($module->isMenuItem($tree, $xref, $module->type)): ?>
-                <?= View($module->name() . '::menu-item-remove', [
-                    'tree'  => $tree,
-                    'xref'  => $xref,
-                    'type'  => $module->type,
-                    'class' => 'btn btn-danger',
-                    'text'  => I18N::translate('Remove from menu'),
-                    'url'   => $module->getUrl($tree, $xref, $module->type)
+                <?php if ($module->isMenuItem($tree, $xref, $module->type)) : ?>
+                    <?= View($module->name() . '::menu-item-remove', [
+                        'tree'  => $tree,
+                        'xref'  => $xref,
+                        'type'  => $module->type,
+                        'class' => 'btn btn-danger',
+                        'text'  => I18N::translate('Remove from menu'),
+                        'url'   => $module->getUrl($tree, $xref, $module->type)
                     ]) ?>
-            <?php else: ?>
-                <?= View($module->name() . '::menu-item-add', [
-                    'tree'  => $tree,
-                    'xref'  => $xref,
-                    'type'  => $module->type,
-                    'class' => 'btn btn-success',
-                    'text'  => I18N::translate('Add to menu'),
-                    'url'   => $module->getUrl($tree, $xref, $module->type)
+                <?php else : ?>
+                    <?= View($module->name() . '::menu-item-add', [
+                        'tree'  => $tree,
+                        'xref'  => $xref,
+                        'type'  => $module->type,
+                        'class' => 'btn btn-success',
+                        'text'  => I18N::translate('Add to menu'),
+                        'url'   => $module->getUrl($tree, $xref, $module->type)
                     ]) ?>
-            <?php endif ?>
+                <?php endif ?>
             </div>
         <?php endif ?>
         <div class="col">
@@ -39,14 +39,14 @@ use Fisharebest\Webtrees\View;
     <h2 class="wt-page-title"><?= $page_title ?></h2>
     <ol class="jc-fancy-treeview-page-body list-unstyled"><?= $page_body ?></ol>
 
-    <?php if ($generations > $limit): ?>
+    <?php if ($generations > $limit) : ?>
         <?= View($module->name() . '::pagination', [
-                'tree'          => $tree,
-                'module'        => $module,
-                'xref'           => $xref,
-                'current_page'  => $current_page,
-                'total_pages'   => $total_pages
-            ]) ?>
+            'tree'          => $tree,
+            'module'        => $module,
+            'xref'          => $xref,
+            'current_page'  => $current_page,
+            'total_pages'   => $total_pages
+        ]) ?>
     <?php endif ?>
 </div>
 

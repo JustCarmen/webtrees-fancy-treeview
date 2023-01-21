@@ -7,22 +7,22 @@ use Fisharebest\Webtrees\View;
 
 <div id="jc-fancy-treeview-tab-descendants" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse<?= $list_type === 'descendants' ? ' show' : '' ?>">
     <?= View($module->name() . '::tab-content', [
-        'tab_button_text'=> I18N::translate('Show ancestors'),
-        'tab_page_title' => $tab_page_title_descendants,
-        'tab_content'    => $tab_content_descendants
+        'tab_button_text' => I18N::translate('Show ancestors'),
+        'tab_page_title'  => $tab_page_title_descendants,
+        'tab_content'     => $tab_content_descendants
     ]) ?>
-    <?php if ($descendant_generations > $limit): ?>
+    <?php if ($descendant_generations > $limit) : ?>
         <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $individual->xref(), 'descendants', $start_page_readmore), 'anchor' => $limit + 1]); ?>
     <?php endif ?>
 </div>
 
 <div id="jc-fancy-treeview-tab-ancestors" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse<?= $list_type === 'ancestors' ? ' show' : '' ?>">
     <?= View($module->name() . '::tab-content', [
-        'tab_button_text'=> I18N::translate('Show descendants'),
-        'tab_page_title' => $tab_page_title_ancestors,
-        'tab_content'    => $tab_content_ancestors
+        'tab_button_text' => I18N::translate('Show descendants'),
+        'tab_page_title'  => $tab_page_title_ancestors,
+        'tab_content'     => $tab_content_ancestors
     ]) ?>
-     <?php if ($ancestor_generations > $limit): ?>
+    <?php if ($ancestor_generations > $limit) : ?>
         <?= View($module->name() . '::readmore-link', ['url' => $module->getUrl($tree, $individual->xref(), 'ancestors', $start_page_readmore), 'anchor' => $limit + 1]); ?>
     <?php endif ?>
 </div>

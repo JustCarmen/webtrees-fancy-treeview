@@ -237,7 +237,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         }
     }
 
-     /**
+    /**
      * Set the default options.
      *
      * @param string $option
@@ -252,7 +252,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'tab-limit'             => '3',  // integer, number of generation blocks per tab
             'show-singles'          => '0', // boolean
             'check-relationship'    => '0', // boolean
-            'thumb-size'            => '80',// integer
+            'thumb-size'            => '80', // integer
             'crop-thumbs'           => '0', // boolean
             'media-type-photo'      => '0',  // boolean
             'gedcom-occupation'     => '0', // boolean
@@ -501,7 +501,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         ]);
     }
 
-     /**
+    /**
      * @param ServerRequestInterface $request
      *
      * @return ResponseInterface
@@ -814,15 +814,15 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
             if ($this->options('level1-notes')) {
                 $html .= '<div class="jc-notes-block small">';
-                    foreach ($person->facts(['NOTE']) as $fact) {
-                        $html .= '<div class="jc-note">';
-                        if ($this->tree->getPreference('FORMAT_TEXT') === 'markdown') {
-                            $html .= Registry::markdownFactory()->markdown($this->printNote($fact));
-                        } else {
-                            $html .= Registry::markdownFactory()->autolink($this->printNote($fact));
-                        }
-                        $html .= '</div>';
+                foreach ($person->facts(['NOTE']) as $fact) {
+                    $html .= '<div class="jc-note">';
+                    if ($this->tree->getPreference('FORMAT_TEXT') === 'markdown') {
+                        $html .= Registry::markdownFactory()->markdown($this->printNote($fact));
+                    } else {
+                        $html .= Registry::markdownFactory()->autolink($this->printNote($fact));
                     }
+                    $html .= '</div>';
+                }
                 $html .= '</div>';
             }
 
@@ -847,7 +847,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
      */
     protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count): string
     {
-
         $html = '<p>';
 
         if ($count > 1) {
@@ -1040,7 +1039,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     }
                     $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                 } else {
-                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of'). ' ' . $this->printName($person);
+                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of') . ' ' . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
                         $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
                     }
@@ -1466,6 +1465,11 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         return '';
     }
 
+    /**
+     * @param Individual $child
+     *
+     * @return string
+     */
     protected function printFollowLink(Individual $child): string
     {
         $request = app(ServerRequestInterface::class);

@@ -5,9 +5,11 @@
             .nav-link:before {
                 content: url($theme + '/menu-ftv-large.png');
             }
+
             .menu-fancy-treeview-ancestors:before {
                 content: url($theme + '/menu-ftv-small-anc.png');
             }
+
             .menu-fancy-treeview-descendants:before {
                 content: url($theme + '/menu-ftv-small-des.png');
             }

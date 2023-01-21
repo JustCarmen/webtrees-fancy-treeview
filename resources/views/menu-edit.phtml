@@ -5,18 +5,18 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 ?>
 
-<?php if (Auth::isAdmin()): ?>
+<?php if (Auth::isAdmin()) : ?>
     <div class="jc-fancy-treeview-menu-edit collapse">
         <div class="dropdown-divider"></div>
         <span class="dropdown-item-text fw-bold"><?= I18N::translate('Fancy Treeview menu') ?></span>
-        <?php if ($module->isMenuItem($tree, $individual->xref(), 'ancestors')): ?>
+        <?php if ($module->isMenuItem($tree, $individual->xref(), 'ancestors')) : ?>
             <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $individual->xref(), 'type' => 'ancestors', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Remove ancestors from menu')]); ?>
-        <?php else: ?>
+        <?php else : ?>
             <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $individual->xref(), 'type' => 'ancestors', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Add ancestors to menu')]); ?>
         <?php endif ?>
-        <?php if ($module->isMenuItem($tree, $individual->xref(), 'descendants')): ?>
-            <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' =>$individual->xref(), 'type' => 'descendants', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Remove descendants from menu')]); ?>
-        <?php else: ?>
+        <?php if ($module->isMenuItem($tree, $individual->xref(), 'descendants')) : ?>
+            <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $individual->xref(), 'type' => 'descendants', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Remove descendants from menu')]); ?>
+        <?php else : ?>
             <?= View($module->name() . '::menu-item-add', ['tree' => $tree, 'xref' => $individual->xref(), 'type' => 'descendants', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Add descendants to menu')]); ?>
         <?php endif ?>
     </div>

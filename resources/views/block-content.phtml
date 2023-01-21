@@ -11,7 +11,7 @@ $pedigree_collapse = $module->pedigree_collapse;
 
 $maximum = pow(2, $generation - 1);
 $reduce = 0;
-foreach($pedigree_collapse as $value) {
+foreach ($pedigree_collapse as $value) {
     if ($generation >= $value) {
         $reduce = $reduce + pow(2, $generation - $value + 1);
     }
@@ -20,7 +20,7 @@ foreach($pedigree_collapse as $value) {
 $maximum_pedigree_collapse = $maximum - $reduce;
 
 $tooltip =  I18N::translate('The number of possible ancestors in this generation has been reduced due to pedigree collapse. ' .
-            'Without reduction the maximum number of ancestors in this generation would have been %s.', I18N::number($maximum));
+    'Without reduction the maximum number of ancestors in this generation would have been %s.', I18N::number($maximum));
 ?>
 
 <?php if ($module->checkPrivacy($xrefs, true)) : ?>
@@ -29,18 +29,18 @@ $tooltip =  I18N::translate('The number of possible ancestors in this generation
     </div>
 <?php else : ?>
     <ol class="jc-generation-block-content list-unstyled">
-        <?php if ($module->options('check-relationship') && $module->type === 'ancestors' && $module->generation > 1): ?>
+        <?php if ($module->options('check-relationship') && $module->type === 'ancestors' && $module->generation > 1) : ?>
             <div class="mb-3 small fst-italic">
-                <?php if ($reduce > 0): ?>
+                <?php if ($reduce > 0) : ?>
                     <?=
-                        I18N::translate('%s of %s possible ancestors', I18N::number($ancestors_count_unique),  '<a href="#" data-bs-toggle="tooltip" data-bs-title="' . $tooltip . '">' . I18N::number($maximum_pedigree_collapse) . '</a>') .
+                    I18N::translate('%s of %s possible ancestors', I18N::number($ancestors_count_unique),  '<a href="#" data-bs-toggle="tooltip" data-bs-title="' . $tooltip . '">' . I18N::number($maximum_pedigree_collapse) . '</a>') .
                         ' (' . I18N::translate('%s complete', I18N::percentage($ancestors_count_unique / $maximum_pedigree_collapse, 2)) . ').';
                     ?>
-                <?php else: ?>
+                <?php else : ?>
                     <?=
-                        I18N::translate('%s of %s possible ancestors', I18N::number($ancestors_count_unique),  I18N::number($maximum)) .
+                    I18N::translate('%s of %s possible ancestors', I18N::number($ancestors_count_unique),  I18N::number($maximum)) .
                         ' (' . I18N::translate('%s complete', I18N::percentage($ancestors_count_unique / $maximum, 2)) . ').';
-                     ?>
+                    ?>
                 <?php endif ?>
             </div>
         <?php endif ?>
