@@ -1445,7 +1445,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     }
 
     /**
-     * @param Individual $individual
+     * @param Fact $fact
      *
      * @return string
      */
