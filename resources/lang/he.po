@@ -8,7 +8,7 @@ msgstr ""
 "Language: he\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1396
+#: FancyTreeviewModule.php:1410
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -29,7 +29,7 @@ msgid "<strong>Note</strong>: this option can be time and/or memory consuming, e
 msgstr "<strong>הערה</strong>: אפשרות זו עלולה להשתמש בזמן ו-/או זיכרון רב, במיוחד בעצים גדולים. היא יכולה לגרום לטעינת דף איטית מאוד או ’לשגיאת זמן עיבוד’ בשרת שלך. אם אתה מבחין בהתנהגות כזו, יש לצמצם את מספר בלוקי הדור שנטענים בבת אחת (ראה האפשרות הקודמת). אם אתה עדיין נתקל בבעיות כלשהן, אל תשתמש באפשרות זו בכלל."
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:110
+#: FancyTreeviewModule.php:111
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "סקירה נרטיבית של צאצאים או אב-אבות של משפחה אחת (ענף)."
 
@@ -45,25 +45,25 @@ msgstr "הוסף צאצאים לתפריט"
 msgid "Add to menu"
 msgstr "הוסף לתפריט"
 
-#: FancyTreeviewModule.php:1051
+#: FancyTreeviewModule.php:1069
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr "בת מאומצת"
 
-#: FancyTreeviewModule.php:1054
+#: FancyTreeviewModule.php:1072
 msgctxt "MALE"
 msgid "adopted child"
 msgstr "בן מאומץ"
 
-#: FancyTreeviewModule.php:1118
+#: FancyTreeviewModule.php:1136
 msgid "adopted child of"
 msgstr "ילד מאומץ ע״י"
 
-#: FancyTreeviewModule.php:1109
+#: FancyTreeviewModule.php:1127
 msgid "adopted daughter of"
 msgstr "בת מאומצת ע״י"
 
-#: FancyTreeviewModule.php:1100
+#: FancyTreeviewModule.php:1118
 msgid "adopted son of"
 msgstr "בן מאומץ ע״י"
 
@@ -71,16 +71,16 @@ msgstr "בן מאומץ ע״י"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "כתוב תמיד את העיסוק בדיוק כפי שהוא מופיע בגדקום"
 
-#: FancyTreeviewModule.php:424
+#: FancyTreeviewModule.php:428
 msgid "Ancestors and descendants"
 msgstr "אב-אבות וצאצאים"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:907 FancyTreeviewModule.php:972
-#: FancyTreeviewModule.php:993 FancyTreeviewModule.php:1026
-#: FancyTreeviewModule.php:1131 FancyTreeviewModule.php:1179
-#: FancyTreeviewModule.php:1330 FancyTreeviewModule.php:1338
-#: FancyTreeviewModule.php:1346
+#: FancyTreeviewModule.php:925 FancyTreeviewModule.php:990
+#: FancyTreeviewModule.php:1011 FancyTreeviewModule.php:1044
+#: FancyTreeviewModule.php:1149 FancyTreeviewModule.php:1197
+#: FancyTreeviewModule.php:1348 FancyTreeviewModule.php:1356
+#: FancyTreeviewModule.php:1364
 msgid "and "
 msgstr "ו"
 
@@ -96,11 +96,16 @@ msgctxt "age in years"
 msgid "at the age of %s"
 msgstr "בגיל %s שנים"
 
+#. I18N: %s is a string e.g. 2 days/months/years
+#: FancyTreeviewModule.php:1389
+msgid "at the age of %s"
+msgstr "at the age of %s"
+
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
 msgstr "בדוק מערכת יחסים בין בני זוג"
 
-#: FancyTreeviewModule.php:1120
+#: FancyTreeviewModule.php:1138
 msgid "child of"
 msgstr "ילד/ה של"
 
@@ -112,31 +117,31 @@ msgstr "חתוך תמונות ממוזערות לריבוע"
 msgid "Default list type"
 msgstr "ברירת מחדל של סוג רשימה"
 
-#: FancyTreeviewModule.php:426
+#: FancyTreeviewModule.php:430
 msgid "Descendants and ancestors"
 msgstr "צאצאים ואב-אבות"
 
-#: FancyTreeviewModule.php:1331
+#: FancyTreeviewModule.php:1349
 msgctxt "FEMALE"
 msgid "died"
 msgstr "נפטרה"
 
-#: FancyTreeviewModule.php:1331
+#: FancyTreeviewModule.php:1349
 msgctxt "MALE"
 msgid "died"
 msgstr "נפטר"
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:845
+#: FancyTreeviewModule.php:863
 msgid "eighth"
 msgstr "שמינית"
 
-#: FancyTreeviewModule.php:410
+#: FancyTreeviewModule.php:414
 msgid "Family tree overview"
 msgstr "סקירת עץ משפחה"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:99
+#: FancyTreeviewModule.php:100
 msgid "Fancy Treeview"
 msgstr "תצוגת עץ מהודרת"
 
@@ -145,111 +150,111 @@ msgid "Fancy Treeview menu"
 msgstr "תפריט של תצוגת עץ מהודרת"
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:842
+#: FancyTreeviewModule.php:860
 msgid "fifth"
 msgstr "חמישית"
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:838
+#: FancyTreeviewModule.php:856
 msgid "first"
 msgstr "ראשונה"
 
-#: FancyTreeviewModule.php:1440
+#: FancyTreeviewModule.php:1480
 msgid "follow"
 msgstr "עקוב"
 
-#: FancyTreeviewModule.php:1041
+#: FancyTreeviewModule.php:1059
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr "אומנה"
 
-#: FancyTreeviewModule.php:1044
+#: FancyTreeviewModule.php:1062
 msgctxt "MALE"
 msgid "foster child"
 msgstr "אומנה"
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1134
 msgid "foster child of"
 msgstr "ילד אומנה של"
 
-#: FancyTreeviewModule.php:1107
+#: FancyTreeviewModule.php:1125
 msgid "foster daughter of"
 msgstr "בת אומנה של"
 
-#: FancyTreeviewModule.php:1098
+#: FancyTreeviewModule.php:1116
 msgid "foster son of"
 msgstr "בן אומנה של"
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:841
+#: FancyTreeviewModule.php:859
 msgid "fourth"
 msgstr "רביעית"
 
-#: FancyTreeviewModule.php:1010
+#: FancyTreeviewModule.php:1028
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "היו"
 
-#: FancyTreeviewModule.php:980 FancyTreeviewModule.php:1016
+#: FancyTreeviewModule.php:998 FancyTreeviewModule.php:1034
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "היה"
 
-#: FancyTreeviewModule.php:996
+#: FancyTreeviewModule.php:1014
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "היו"
 
-#: FancyTreeviewModule.php:974 FancyTreeviewModule.php:1002
+#: FancyTreeviewModule.php:992 FancyTreeviewModule.php:1020
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "היה"
 
-#: FancyTreeviewModule.php:1012
+#: FancyTreeviewModule.php:1030
 msgctxt "One parent/multiple children"
 msgid "has"
 msgstr "יש"
 
-#: FancyTreeviewModule.php:982 FancyTreeviewModule.php:1018
+#: FancyTreeviewModule.php:1000 FancyTreeviewModule.php:1036
 msgctxt "One parent/one child"
 msgid "has"
 msgstr "יש"
 
-#: FancyTreeviewModule.php:998
+#: FancyTreeviewModule.php:1016
 msgctxt "Two parents/multiple children"
 msgid "have"
 msgstr "have"
 
-#: FancyTreeviewModule.php:976 FancyTreeviewModule.php:1004
+#: FancyTreeviewModule.php:994 FancyTreeviewModule.php:1022
 msgctxt "Two parents/one child"
 msgid "have"
 msgstr "יש"
 
-#: FancyTreeviewModule.php:932
+#: FancyTreeviewModule.php:950
 msgid "He had a relationship with"
 msgstr "לו היה קשר עם"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:852
+#: FancyTreeviewModule.php:870
 msgid "He married %s times"
 msgstr "הוא נישא %s פעמים"
 
-#: FancyTreeviewModule.php:1298
+#: FancyTreeviewModule.php:1316
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr "הוא הוטבל"
 
-#: FancyTreeviewModule.php:1300
+#: FancyTreeviewModule.php:1318
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr "הוא הוטבל"
 
-#: FancyTreeviewModule.php:1280
+#: FancyTreeviewModule.php:1298
 msgctxt "PAST"
 msgid "He was born"
 msgstr "הוא נולד"
 
-#: FancyTreeviewModule.php:1282
+#: FancyTreeviewModule.php:1300
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "הוא נולד"
@@ -260,19 +265,19 @@ msgid "If the answer is “yes”, the script checks whether a (married) couple 
 msgstr "אם התשובה היא \"כן\", התסריט בודק האם לזוג (נשוי) יש את אותם אבות. אם נמצא קשר בין השותפים, התצוגה תלויה בסוג התצוגה."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1402
+#: FancyTreeviewModule.php:1416
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "ב"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1405
+#: FancyTreeviewModule.php:1419
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "ב-"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1424
+#: FancyTreeviewModule.php:1438
 msgctxt "before place names"
 msgid "in "
 msgstr "ב-"
@@ -303,16 +308,16 @@ msgid "More generations require more memory so the page takes longer to fully lo
 msgstr "דורות נוספים דורשים יותר זיכרון כך שלעמוד לוקח יותר זמן להיטען במלואו."
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:846
+#: FancyTreeviewModule.php:864
 msgid "ninth"
 msgstr "תשיעית"
 
-#: FancyTreeviewModule.php:985
+#: FancyTreeviewModule.php:1003
 msgid "no children"
 msgstr "אין ילדים"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1399
+#: FancyTreeviewModule.php:1413
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "ב-"
@@ -344,7 +349,7 @@ msgid "Respond “yes” if you want to display singles in the next generation. 
 msgstr "השב \"כן\" אם אתה רוצה להציג רווקים בדור הבא. רווקים הם יחידים ללא בן זוג וילדים. אם תבחר \"כן\", כל ילד במשפחה יוצג בצורה מפורטת בדור הבא."
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:839
+#: FancyTreeviewModule.php:857
 msgid "second"
 msgstr "שניה"
 
@@ -364,46 +369,50 @@ msgid "Select the maximum number of generations to show on the individual page t
 msgstr "בחר את המספר המרבי של דורות להצגה בלשונית בדף האישי."
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:844
+#: FancyTreeviewModule.php:862
 msgid "seventh"
 msgstr "שביעית"
 
-#: FancyTreeviewModule.php:935
+#: FancyTreeviewModule.php:953
 msgid "She had a relationship with"
 msgstr "היה לה קשר עם"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:858
+#: FancyTreeviewModule.php:876
 msgid "She married %s times"
 msgstr "היא נישאה %s פעמים"
 
-#: FancyTreeviewModule.php:1298
+#: FancyTreeviewModule.php:1316
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr "היא הוטבלה"
+
+#: FancyTreeviewModule.php:1318
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "היא הוטבלה"
+
+#: FancyTreeviewModule.php:1298
+msgctxt "PAST"
+msgid "She was born"
+msgstr "היא נולדה"
 
 #: FancyTreeviewModule.php:1300
 msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "היא הוטבלה"
-
-#: FancyTreeviewModule.php:1280
-msgctxt "PAST"
 msgid "She was born"
 msgstr "היא נולדה"
 
-#: FancyTreeviewModule.php:1282
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "היא נולדה"
-
-#: FancyTreeviewModule.php:529 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:533 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "הראה אב-אבות"
 
-#: FancyTreeviewModule.php:524 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:528 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "הראה צאצאים"
+
+#: resources/views/settings.phtml:172
+msgid "Show level 1 notes"
+msgstr "Show level 1 notes"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"
@@ -414,31 +423,31 @@ msgid "Show singles"
 msgstr "הראה בודדים"
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:843
+#: FancyTreeviewModule.php:861
 msgid "sixth"
 msgstr "שישית"
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:847
+#: FancyTreeviewModule.php:865
 msgid "tenth"
 msgstr "עשירית"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:854
+#: FancyTreeviewModule.php:872
 msgid "The %s time he married"
 msgstr "בפעם ה%s הוא התחתן עם"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:860
+#: FancyTreeviewModule.php:878
 msgid "The %s time she married"
 msgstr "בפעם ה%s היא התחתנה עם"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:866
+#: FancyTreeviewModule.php:884
 msgid "The %s time this individual married"
 msgstr "בפעם ה%s האדם התחתן עם"
 
-#: FancyTreeviewModule.php:813
+#: FancyTreeviewModule.php:832
 msgid "The details of this family are private."
 msgstr "הפרטים של המשפחה הזו הם פרטיים."
 
@@ -451,20 +460,20 @@ msgid "The number of possible ancestors in this generation has been reduced due 
 msgstr "מספר האב-אבות האפשריים בדור זה הצטמצם עקב קריסת אילן היוחסין. ללא הפחתה המספר המרבי של אב-אבות בדור זה היה %s."
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:840
+#: FancyTreeviewModule.php:858
 msgid "third"
 msgstr "שלישית"
 
-#: FancyTreeviewModule.php:938
+#: FancyTreeviewModule.php:956
 msgid "This individual had a relationship with"
 msgstr "לאדם הזה היה קשר עם"
 
-#: FancyTreeviewModule.php:878
+#: FancyTreeviewModule.php:896
 msgid "This individual married"
 msgstr "האדם הזה התחתן"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:864
+#: FancyTreeviewModule.php:882
 msgid "This individual married %s times"
 msgstr "האדם הזה התחתן %s פעמים"
 
@@ -476,67 +485,67 @@ msgstr "הגדרה זו חלה רק על הדף או הכרטיסייה המכי
 msgid "Thumbnail size"
 msgstr "גודל תמונה ממוזערת"
 
-#: FancyTreeviewModule.php:1305
+#: FancyTreeviewModule.php:1323
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr "הוטבלה"
 
-#: FancyTreeviewModule.php:1305
+#: FancyTreeviewModule.php:1323
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr "הוטבל"
 
-#: FancyTreeviewModule.php:1307
+#: FancyTreeviewModule.php:1325
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "הוטבלה"
 
-#: FancyTreeviewModule.php:1307
+#: FancyTreeviewModule.php:1325
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "הוטבל"
 
-#: FancyTreeviewModule.php:1287
+#: FancyTreeviewModule.php:1305
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "נולדה"
 
-#: FancyTreeviewModule.php:1287
+#: FancyTreeviewModule.php:1305
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "נולד"
 
-#: FancyTreeviewModule.php:1289
+#: FancyTreeviewModule.php:1307
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "נולדה"
 
-#: FancyTreeviewModule.php:1289
+#: FancyTreeviewModule.php:1307
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "נולד"
 
-#: FancyTreeviewModule.php:1339
+#: FancyTreeviewModule.php:1357
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "נקברה"
 
-#: FancyTreeviewModule.php:1339
+#: FancyTreeviewModule.php:1357
 msgctxt "MALE"
 msgid "was buried"
 msgstr "נקבר"
 
-#: FancyTreeviewModule.php:1347
+#: FancyTreeviewModule.php:1365
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr "נשרפה"
 
-#: FancyTreeviewModule.php:1347
+#: FancyTreeviewModule.php:1365
 msgctxt "MALE"
 msgid "was cremated"
 msgstr "נשרף"
 
-#: FancyTreeviewModule.php:907
+#: FancyTreeviewModule.php:925
 msgid "were divorced"
 msgstr "התגרשו"
 
