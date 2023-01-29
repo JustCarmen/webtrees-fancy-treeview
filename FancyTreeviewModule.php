@@ -248,15 +248,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $default = [
             'list-type'             => 'descendants', // Type 'Descendants' or 'Ancestors'
-            'page-limit'            => '3', // integer, number of generation blocks per page
+            'page-limit'            => '3',  // integer, number of generation blocks per page
             'tab-limit'             => '3',  // integer, number of generation blocks per tab
-            'show-singles'          => '0', // boolean
-            'check-relationship'    => '0', // boolean
+            'show-singles'          => '0',  // boolean
+            'check-relationship'    => '0',  // boolean
             'thumb-size'            => '80', // integer
-            'crop-thumbs'           => '0', // boolean
+            'crop-thumbs'           => '0',  // boolean
             'media-type-photo'      => '0',  // boolean
-            'gedcom-occupation'     => '0', // boolean
-            'level1-notes'          => '0' // boolean
+            'show-occupations'      => '1',  // boolean
+            'show-agencies'         => '1',  // boolean
+            'gedcom-occupation'     => '0',  // boolean
+            'level1-notes'          => '0'   // boolean
         ];
 
         return $this->getPreference($option, $default[$option]);
@@ -281,6 +283,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb_size'            => $this->options('thumb-size'),
             'crop_thumbs'           => $this->options('crop-thumbs'),
             'media_type_photo'      => $this->options('media-type-photo'),
+            'show_occupations'      => $this->options('show-occupations'),
+            'show_agencies'         => $this->options('show-agencies'),
             'gedcom_occupation'     => $this->options('gedcom-occupation'),
             'level1_notes'          => $this->options('level1-notes')
         ]);
@@ -306,6 +310,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $this->setPreference('thumb-size',  $params['thumb-size']);
             $this->setPreference('crop-thumbs', $params['crop-thumbs']);
             $this->setPreference('media-type-photo', $params['media-type-photo']);
+            $this->setPreference('show-occupations', $params['show-occupations']);
+            $this->setPreference('show-agencies', $params['show-agencies']);
             $this->setPreference('gedcom-occupation', $params['gedcom-occupation']);
             $this->setPreference('level1-notes', $params['level1-notes']);
 
@@ -1190,22 +1196,30 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printOccupations(Individual $person): string
     {
         $html        = '';
-        $occupations = $person->facts(['OCCU'], true);
-        $count       = count($occupations);
-        foreach ($occupations as $key => $fact) {
-            if ($key > 0 && $key === $count - 1) {
-                $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
-            } else {
-                $html .= ', ';
-            }
 
-            $html .= rtrim($this->options('gedcom-occupation') ? $fact->value() : lcfirst($fact->value()), ".");
+        if ($this->options('show-occupations')) {
+            $occupations = $person->facts(['OCCU'], true);
+            $count       = count($occupations);
+            foreach ($occupations as $key => $fact) {
+                if ($key > 0 && $key === $count - 1) {
+                    $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
+                } else {
+                    $html .= ', ';
+                }
 
-            $date = $this->printDate($fact);
-            if ($date) {
-                $html .= ' (' . trim($date) . ')';
+                $html .= rtrim($this->options('gedcom-occupation') ? $fact->value() : lcfirst($fact->value()), ".");
+
+                if ($this->options('show-agencies') && $fact->attribute('AGNC') !== '') {
+                    $html .= ' ' . I18N::translate('at') . ' ' . $fact->attribute('AGNC');
+                }
+
+                $date = $this->printDate($fact);
+                if ($date) {
+                    $html .= ' (' . trim($date) . ')';
+                }
             }
         }
+
         return $html;
     }
 

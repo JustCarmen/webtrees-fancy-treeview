@@ -146,6 +146,33 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
+         <!-- SHOW OCCUPATIONS -->
+         <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Show occupations') ?>
+                </legend>
+                <div class="col-sm-9">
+                    <?= view('components/radios-inline', ['name' => 'show-occupations', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_occupations]) ?>
+                </div>
+            </div>
+        </fieldset>
+         <!-- SHOW LEVEL 1 NOTES -->
+         <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Show agencies') ?>
+                </legend>
+                <div class="col-sm-9">
+                    <?= view('components/radios-inline', ['name' => 'show-agencies', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_agencies]) ?>
+                    <div class="form-text">
+                        <?= /* I18N: Help text for the “Show agencies” configuration setting */
+                        I18N::translate('Answer "yes" if you want to display the name of the company/employer (gedcom tag "AGNC") with the occupation. The text is displayed only in conjunction with the occupation.');
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
         <!-- SPELLING OF OCCUPATION -->
         <fieldset class="mb-3">
             <div class="row">
