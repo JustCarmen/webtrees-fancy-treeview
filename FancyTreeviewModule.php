@@ -1045,7 +1045,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                     }
                     $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                 } else {
-                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children') . ' ' . I18N::translate('of') . ' ' . $this->printName($person);
+                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children of ') . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
                         $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
                     }
