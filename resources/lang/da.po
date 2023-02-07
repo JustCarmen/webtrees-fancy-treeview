@@ -268,13 +268,13 @@ msgstr "Hvis valget er “ja”, tjekker scriptet om et (gift) par har anesammen
 #: FancyTreeviewModule.php:1416
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "den "
+msgstr "i "
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1419
 msgctxt "before dateformat yyyy"
 msgid "in "
-msgstr "den "
+msgstr "i "
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1438

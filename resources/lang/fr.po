@@ -99,7 +99,7 @@ msgstr "à l’âge de %s ans"
 #. I18N: %s is a string e.g. 2 days/months/years
 #: FancyTreeviewModule.php:1389
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "à l'âge de %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -414,7 +414,7 @@ msgstr "Afficher les descendants"
 
 #: resources/views/settings.phtml:172
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "Afficher les notes du niveau 1"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"

@@ -26,7 +26,7 @@ msgstr "%s av %s mulige aner"
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:101
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Merk</strong>: dette valget kan være tid og/eller resurskrevende, spesielt på komplekse trær. Det kan medføre at siden lastes sakte, eller en “execution time out error” på din server. Om du opplever dette, reduser maks antall generasjoner per side og fane, eller ikke bruk dette i kombinasjon med \"vis enslige\". Om du fortsatt har problemer, velg \"nei\"."
+msgstr "<strong>Merk</strong>: dette valget kan være tid- og/eller ressurskrevende, spesielt på komplekse trær. Det kan medføre at siden lastes sakte, eller en “execution time out error” på din server. Om du opplever dette, reduser maks antall generasjoner per side og fane, eller ikke bruk dette i kombinasjon med \"vis enslige\". Om du fortsatt har problemer, velg \"nei\"."
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:111
@@ -69,7 +69,7 @@ msgstr "adoptert sønn av"
 
 #: resources/views/settings.phtml:153
 msgid "Always write the occupation exactly as it appears in the Gedcom"
-msgstr "Skriv alltid yrke slik det er skrevet i GEDCOM"
+msgstr "Skriv alltid yrke nøyaktig slik det er skrevet i GEDCOM"
 
 #: FancyTreeviewModule.php:428
 msgid "Ancestors and descendants"
@@ -99,7 +99,7 @@ msgstr "i en alder av %s år"
 #. I18N: %s is a string e.g. 2 days/months/years
 #: FancyTreeviewModule.php:1389
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "ved %s års alder"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -138,7 +138,7 @@ msgstr "åttende"
 
 #: FancyTreeviewModule.php:414
 msgid "Family tree overview"
-msgstr "Familietre oversikt"
+msgstr "Familietre-oversikt"
 
 #. I18N: Name of a module
 #: FancyTreeviewModule.php:100
@@ -146,7 +146,6 @@ msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
 #: resources/views/menu-edit.phtml:11
-#, fuzzy
 msgid "Fancy Treeview menu"
 msgstr "Fancy Treeview meny"
 
@@ -176,7 +175,7 @@ msgstr "fostersønn"
 
 #: FancyTreeviewModule.php:1134
 msgid "foster child of"
-msgstr "fosterbarn"
+msgstr "fosterbarn av"
 
 #: FancyTreeviewModule.php:1125
 msgid "foster daughter of"
@@ -262,7 +261,6 @@ msgstr "Han er født"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 msgstr "Hvis svaret er “ja” vil det bli undersøkt om et (gift) par har samme aner. Hvis et slektskap mellom ektefellene blir funnet, vil visningen avhenge av visningstypen.\n"
 ""
@@ -364,12 +362,12 @@ msgstr "Velg \"etterkommere\" eller \"aner\" som ønsket listetype. På personsi
 #. I18N: Help text for the “Maximum number of generations per page” configuration setting
 #: resources/views/settings.phtml:41
 msgid "Select the maximum number of generations to show on the Fancy Treeview page."
-msgstr "Velg maks antall generasjoner som skal vises på siden."
+msgstr "Angi maks antall generasjoner som skal vises på siden."
 
 #. I18N: Help text for the “Maximum number of generations per tab” configuration setting
 #: resources/views/settings.phtml:57
 msgid "Select the maximum number of generations to show on the individual page tab."
-msgstr "Velg maks antall generasjoner som skal vises på personsidens fane."
+msgstr "Angi maks antall generasjoner som skal vises på personsidens fane."
 
 #. I18N: seventh marriage
 #: FancyTreeviewModule.php:862
@@ -378,7 +376,7 @@ msgstr "syvende"
 
 #: FancyTreeviewModule.php:953
 msgid "She had a relationship with"
-msgstr "Hun hadde et forhold med"
+msgstr "Hun var i et forhold med"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:876
@@ -415,7 +413,7 @@ msgstr "Vis etterkommere"
 
 #: resources/views/settings.phtml:172
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "Vis notater på nivå 1"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"

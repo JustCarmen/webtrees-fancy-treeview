@@ -261,7 +261,6 @@ msgstr "He was born"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type.\n"
 ""
