@@ -1210,7 +1210,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
                 $html .= rtrim($this->options('gedcom-occupation') ? $fact->value() : lcfirst($fact->value()), ".");
 
                 if ($this->options('show-agencies') && $fact->attribute('AGNC') !== '') {
-                    $html .= ' ' . I18N::translate('at') . ' ' . $fact->attribute('AGNC');
+                    $html .= ' ' . /* I18N: %s is the Gedcom tag AGNC (Agency) */ I18N::translate('at %s', $fact->attribute('AGNC'));
                 }
 
                 $date = $this->printDate($fact);
