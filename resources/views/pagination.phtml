@@ -5,7 +5,7 @@ use Fisharebest\Webtrees\I18N;
 ?>
 
 <nav aria-label="jc-page-navigation">
-    <ul class="pagination justify-content-center pt-3">
+    <ul class="pagination justify-content-center pt-3 d-print-none">
         <li class="page-item<?= $current_page === 1 ? ' disabled' : '' ?>">
             <a class="page-link" href="<?= $module->getUrl($tree, $xref, '', $current_page - 1) ?>" tabindex="-1" aria-disabled="<?= $current_page === 1 ? 'true' : 'false' ?>">
                 <?= I18N::translate('previous') ?>
