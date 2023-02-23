@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2023-02-22 21:45+0100\n"
+"POT-Creation-Date: 2023-02-23 21:03+0100\n"
 "PO-Revision-Date: 2015-07-04 21:06+0200\n"
 "Last-Translator: Carmen <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -27,7 +27,7 @@ msgstr ""
 #. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end
 #. of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US)
 #. does not need this string.
-#: FancyTreeviewModule.php:1424
+#: FancyTreeviewModule.php:1425
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr ""
@@ -349,11 +349,13 @@ msgstr ""
 msgid "at %s"
 msgstr ""
 
-#. I18N: %s is a string e.g. 2 days/months/years
-#: FancyTreeviewModule.php:1403
+#. I18N: %s is a string e.g. 1 day/month/year (singular) or 2 days/months/years (plural)
+#: FancyTreeviewModule.php:1404
 #, php-format
 msgid "at the age of %s"
-msgstr ""
+msgid_plural "at the age of %s"
+msgstr[0] ""
+msgstr[1] ""
 
 #: FancyTreeviewModule.php:1144
 msgid "child of"
@@ -384,7 +386,7 @@ msgstr ""
 msgid "first"
 msgstr ""
 
-#: FancyTreeviewModule.php:1494
+#: FancyTreeviewModule.php:1495
 msgid "follow"
 msgstr ""
 
@@ -456,19 +458,19 @@ msgid "have"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1430
+#: FancyTreeviewModule.php:1431
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1433
+#: FancyTreeviewModule.php:1434
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1452
+#: FancyTreeviewModule.php:1453
 msgctxt "before place names"
 msgid "in "
 msgstr ""
@@ -491,7 +493,7 @@ msgid "no children"
 msgstr ""
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1427
+#: FancyTreeviewModule.php:1428
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr ""
