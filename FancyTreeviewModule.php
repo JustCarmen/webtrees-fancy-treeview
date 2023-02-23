@@ -1400,7 +1400,8 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $html     = '';
         if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
             $ageAtDeath = new Age($bdate, $ddate);
-            $html .= ' ' . /* I18N: %s is a string e.g. 2 days/months/years */ I18N::translate('at the age of %s', $ageAtDeath);
+            $html .= ' ' . /* I18N: %s is a string e.g. 1 day/month/year (singular) or 2 days/months/years (plural) */
+                              I18N::plural('at the age of %s', 'at the age of %s', $ageAtDeath, $ageAtDeath);
         }
         return $html;
     }
