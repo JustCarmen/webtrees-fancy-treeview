@@ -6,10 +6,9 @@ msgstr ""
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Fancy Treeview for webtrees 2\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1425
+#: FancyTreeviewModule.php:1424
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -95,15 +94,10 @@ msgstr "Answer \"yes\" if you want to display the name of the company/employer (
 msgid "at %s"
 msgstr "at %s"
 
-#. %s is a string e.g. 1 day/month/year (singular) or 2 days/months/years (plural)
-#: FancyTreeviewModule.php:1404
-#, fuzzy
+#. I18N: %s is a string e.g. 2 days/months/years
+#: FancyTreeviewModule.php:1403
 msgid "at the age of %s"
-msgid_plural "at the age of %s"
-msgstr[0] "в возрасте %s"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr "в возрасте %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -163,7 +157,7 @@ msgstr "пятый"
 msgid "first"
 msgstr "первый"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1494
 msgid "follow"
 msgstr "перейти к"
 
@@ -269,19 +263,19 @@ msgid "If the answer is “yes”, the script checks whether a (married) couple 
 msgstr "Если ответ «да», скрипт проверяет, есть ли у (супружеской) пары одни и те же предки. Если отношения между партнерами обнаружены, отображение зависит от типа отображения."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1431
+#: FancyTreeviewModule.php:1430
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "в "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1434
+#: FancyTreeviewModule.php:1433
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "в "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1453
+#: FancyTreeviewModule.php:1452
 msgctxt "before place names"
 msgid "in "
 msgstr "в "
@@ -321,7 +315,7 @@ msgid "no children"
 msgstr "нет детей"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1428
+#: FancyTreeviewModule.php:1427
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "на "
