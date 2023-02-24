@@ -8,7 +8,7 @@ msgstr ""
 "Language: de\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1424
+#: FancyTreeviewModule.php:1431
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -26,7 +26,7 @@ msgstr "%s von %s möglichen Vorfahren"
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:101
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Hinweis</strong>: Diese Option kann zeit- und/oder speicheraufwändig sein, besonders bei großen Bäumen. Sie kann dazu führen, dass die Seite sehr langsam geladen wird oder dass auf dem Server ein \"Laufzeitfehler\" auftritt. Wenn Sie ein solches Verhalten bemerken, reduzieren Sie die maximale Anzahl der Generationen pro Seite oder Reiter und/oder verwenden Sie sie nicht in Kombination mit der Option \"Alleinstehende anzeigen\". Wenn Sie weiterhin Probleme haben, lassen Sie die Antwort auf \"nein\"."
+msgstr "<strong>Hinweis</strong>: Diese Option kann zeit- und/oder speicheraufwändig sein, besonders bei großen Bäumen. Sie kann dazu führen, dass die Seite sehr langsam geladen wird oder dass auf dem Server ein \"Laufzeitfehler\" auftritt. Wenn Sie ein solches Verhalten bemerken, reduzieren Sie die maximale Anzahl der Generationen pro Seite oder Reiter und verwenden Sie sie nicht in Kombination mit der Option \"Alleinstehende anzeigen\". Wenn Sie weiterhin Probleme haben, lassen Sie die Antwort auf \"nein\"."
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:111
@@ -87,17 +87,22 @@ msgstr "und "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:170
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Antworten Sie mit \"ja\", wenn Sie den Firmennamen bzw. den Namen des Arbeitgebers (GEDCOM-Kennzeichen \"AGNC\") zusammen mit dem Beruf angezeigt bekommen möchten. Der Text wird nur in Verbindung mit dem Beruf angezeigt."
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1213
 msgid "at %s"
-msgstr "at %s"
+msgstr "bei %s"
 
-#. I18N: %s is a string e.g. 2 days/months/years
-#: FancyTreeviewModule.php:1403
+#. I18N: %s a string with a number e.g. 10 days/months/years
+#: FancyTreeviewModule.php:1409
 msgid "at the age of %s"
 msgstr "im Alter von %s"
+
+#. I18N: %s is a string without a number e.g. day/month/year
+#: FancyTreeviewModule.php:1407
+msgid "at the age of 1 %s"
+msgstr "at the age of 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -158,7 +163,7 @@ msgstr "fünfte"
 msgid "first"
 msgstr "erste"
 
-#: FancyTreeviewModule.php:1494
+#: FancyTreeviewModule.php:1501
 msgid "follow"
 msgstr "siehe"
 
@@ -260,35 +265,34 @@ msgstr "Er wurde geboren"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "Wenn die Antwort \"ja\" lautet, prüft das Skript, ob ein (verheiratetes) Paar die gleichen Vorfahren hat. Wenn eine Verwandtschaft zwischen den Partnern gefunden wird, erscheint in den Beziehungsdetails ein Text in Klammern nach dem Namen des Ehepartners, um die Blutsverwandtschaft anzugeben."
+msgstr "Wenn die Antwort \"ja\" lautet, prüft das Skript, ob ein (verheiratetes) Paar die gleichen Vorfahren hat. Wenn eine Verwandtschaft zwischen den Partnern gefunden wird, hängt die Art der Anzeige von der gewählten Anzeigeart ab."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1430
+#: FancyTreeviewModule.php:1437
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "im "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1433
+#: FancyTreeviewModule.php:1440
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "im Jahr "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1452
+#: FancyTreeviewModule.php:1459
 msgctxt "before place names"
 msgid "in "
 msgstr "in "
 
 #: resources/views/settings.phtml:95
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "n die Ansicht der Vorfahren: Jede Generation zeigt die Anzahl der Personen und die maximale Anzahl der möglichen Vorfahren in dieser Generation an. Die Anzahl der möglichen Vorfahren in den nachfolgenden Generationen wird neu berechnet, wenn der Stammbaum kollabiert."
+msgstr "bei der Ansicht der Vorfahren: Jede Generation zeigt die Anzahl der Personen und die maximale Anzahl der möglichen Vorfahren in dieser Generation an. Die Anzahl der möglichen Vorfahren in den nachfolgenden Generationen wird neu berechnet, wenn es einen Ahnenschwund gibt."
 
 #: resources/views/settings.phtml:94
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "in der Ansicht \"Nachkommen\": Nach dem Namen des Ehepartners erscheint ein Text in Klammern, um die Blutsverwandtschaft anzuzeigen."
+msgstr "bei der Ansicht der Nachkommen: Nach dem Namen des Ehepartners erscheint ein Text in Klammern, um die Blutsverwandtschaft anzuzeigen."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:186
@@ -317,7 +321,7 @@ msgid "no children"
 msgstr "keine Kinder"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1427
+#: FancyTreeviewModule.php:1434
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "am "
@@ -341,12 +345,12 @@ msgstr "Vom Menü entfernen"
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:141
 msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
-msgstr "Antworten Sie mit \"ja\", wenn Sie nur Bilder vom Typ \"Foto\" anzeigen möchten. Andere hervorgehobene Bilder wie Urkunden, Dokumente oder Grabsteine werden nicht verwendet. Wenn Sie in Ihrer Gedcom nicht nach Medientyp unterschieden haben, lassen Sie die Antwort bei \"nein\"."
+msgstr "Antworten Sie mit \"ja\", wenn Sie nur Bilder vom Typ \"Foto\" anzeigen möchten. Andere hervorgehobene Bilder wie Urkunden, Dokumente oder Grabsteine werden dann nicht verwendet. Wenn Sie in Ihrer GEDCOM-Datei nicht nach Medientyp unterschieden haben, lassen Sie die Antwort bei \"nein\"."
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:73
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Antworten Sie mit \"Ja\", wenn Sie Alleinstehende in der nächsten Generation anzeigen möchten. Alleinstehende sind Personen ohne Partner und Kinder. Wenn Sie \"ja\" wählen, wird jedes Kind einer Familie in der nächsten Generation detailliert angezeigt."
+msgstr "Antworten Sie mit \"ja\", wenn Sie Alleinstehende in der nächsten Generation anzeigen möchten. Alleinstehende sind Personen ohne Partner und Kinder. Wenn Sie \"ja\" wählen, wird jedes Kind einer Familie in der nächsten Generation detailliert angezeigt."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:863
@@ -412,11 +416,11 @@ msgstr "Nachkommen anzeigen"
 
 #: resources/views/settings.phtml:199
 msgid "Show level 1 notes"
-msgstr "Level-1-Notizen anzeigen"
+msgstr "Notizen (NOTE) auf Ebene 1 anzeigen"
 
 #: resources/views/settings.phtml:153
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Berufe anzeigen"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"
@@ -428,7 +432,7 @@ msgstr "Alleinstehende anzeigen"
 
 #: resources/views/settings.phtml:164
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Name der Firma bzw. des Arbeitgebers anzeigen"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:867
@@ -465,7 +469,7 @@ msgstr "Die Einzelheiten zu dieser Generation sind vertraulich."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
-msgstr "Die Anzahl der möglichen Vorfahren in dieser Generation wurde aufgrund eines Stammbaumkollapses reduziert. Ohne die Reduzierung wäre die maximale Anzahl der Vorfahren in dieser Generation %s gewesen."
+msgstr "Die Anzahl der möglichen Vorfahren in dieser Generation wurde aufgrund von Ahnenschwund reduziert. Ohne diese Reduzierung hätte es in dieser Generation maximal %s Vorfahren gegeben."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:864

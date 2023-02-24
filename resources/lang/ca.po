@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1424
+#: FancyTreeviewModule.php:1431
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -89,17 +89,22 @@ msgstr "\n"
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:170
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Respon \"sí\" si vols mostrar el nom de l'empresa/empresari (Gedcom-tag \"AGNC\") amb l'ocupació. El text només es mostra conjuntament amb l'ocupació."
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1213
 msgid "at %s"
-msgstr "at %s"
+msgstr "a %s"
 
-#. I18N: %s is a string e.g. 2 days/months/years
-#: FancyTreeviewModule.php:1403
+#. I18N: %s a string with a number e.g. 10 days/months/years
+#: FancyTreeviewModule.php:1409
 msgid "at the age of %s"
 msgstr "a l'edat de %s"
+
+#. I18N: %s is a string without a number e.g. day/month/year
+#: FancyTreeviewModule.php:1407
+msgid "at the age of 1 %s"
+msgstr "at the age of 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -160,7 +165,7 @@ msgstr "cinquè"
 msgid "first"
 msgstr "Primer"
 
-#: FancyTreeviewModule.php:1494
+#: FancyTreeviewModule.php:1501
 msgid "follow"
 msgstr "seguir"
 
@@ -263,23 +268,22 @@ msgstr "Nascuda"
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type.\n"
-""
+msgstr "Si la resposta és \"sí\", el guió comprova si una parella (casada) té els mateixos avantpassats. Si es troba una relació entre els socis, la visualització depèn del tipus de visualització. "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1430
+#: FancyTreeviewModule.php:1437
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "a"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1433
+#: FancyTreeviewModule.php:1440
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "a"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1452
+#: FancyTreeviewModule.php:1459
 msgctxt "before place names"
 msgid "in "
 msgstr "en"
@@ -319,7 +323,7 @@ msgid "no children"
 msgstr "No hi ha nens"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1427
+#: FancyTreeviewModule.php:1434
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "al"
@@ -418,7 +422,7 @@ msgstr "Mostrar notes de nivell 1"
 
 #: resources/views/settings.phtml:153
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Mostrar ocupacions"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"
@@ -430,7 +434,7 @@ msgstr "Mostra persones sense parella"
 
 #: resources/views/settings.phtml:164
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Mostra el nom de l'empresa/ocupador"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:867

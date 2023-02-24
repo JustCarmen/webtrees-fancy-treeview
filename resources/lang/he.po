@@ -8,7 +8,7 @@ msgstr ""
 "Language: he\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1424
+#: FancyTreeviewModule.php:1431
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -94,10 +94,15 @@ msgstr "Answer \"yes\" if you want to display the name of the company/employer (
 msgid "at %s"
 msgstr "at %s"
 
-#. I18N: %s is a string e.g. 2 days/months/years
-#: FancyTreeviewModule.php:1403
+#. I18N: %s a string with a number e.g. 10 days/months/years
+#: FancyTreeviewModule.php:1409
 msgid "at the age of %s"
 msgstr "at the age of %s"
+
+#. I18N: %s is a string without a number e.g. day/month/year
+#: FancyTreeviewModule.php:1407
+msgid "at the age of 1 %s"
+msgstr "at the age of 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -157,7 +162,7 @@ msgstr "חמישית"
 msgid "first"
 msgstr "ראשונה"
 
-#: FancyTreeviewModule.php:1494
+#: FancyTreeviewModule.php:1501
 msgid "follow"
 msgstr "עקוב"
 
@@ -263,19 +268,19 @@ msgid "If the answer is “yes”, the script checks whether a (married) couple 
 msgstr "אם התשובה היא \"כן\", התסריט בודק האם לזוג (נשוי) יש את אותם אבות. אם נמצא קשר בין השותפים, התצוגה תלויה בסוג התצוגה."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1430
+#: FancyTreeviewModule.php:1437
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "ב"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1433
+#: FancyTreeviewModule.php:1440
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "ב-"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1452
+#: FancyTreeviewModule.php:1459
 msgctxt "before place names"
 msgid "in "
 msgstr "ב-"
@@ -315,7 +320,7 @@ msgid "no children"
 msgstr "אין ילדים"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1427
+#: FancyTreeviewModule.php:1434
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "ב-"
