@@ -147,6 +147,53 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
+        <!-- PLACE NAMES FORMAT-->
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Preference for displaying place names') ?>
+            </label>
+            <div class="col-sm-3">
+                <?= view('components/select', ['name' => 'places-format', 'selected' => $places_format, 'options' => [
+                    'full'          => I18N::translate('Full place name'),
+                    'webtrees'      => I18N::translate('As defined in webtrees'),
+                    'highlow'       => I18N::translate(('Highest and lowest level')),
+                    'none'          => I18N::translate('Don\'t show place names')
+                ]]) ?>
+            </div>
+        </div>
+        <!-- COUNTRY FORMAT-->
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Preference for displaying countries') ?>
+            </label>
+            <div class="col-sm-3">
+                <?= view('components/select', ['name' => 'countries-format', 'selected' => $countries_format, 'options' => [
+                    'full'          => I18N::translate('Full country name'),
+                    'iso3'          => I18N::translate('3 letter country code'),
+                    'iso2'          => I18N::translate('2 letter country code')
+                ]]) ?>
+            </div>
+        </div>
+        <!-- HOME COUNTRY FORMAT-->
+        <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Display home country name') ?>
+                </legend>
+                <div class="col-sm-9">
+                    <?= view('components/radios-inline', ['name' => 'show-home-country', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_home_country]) ?>
+                </div>
+            </div>
+        </fieldset>
+        <!-- HOME COUNTRY-->
+        <div class="row mb-3">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Home country') ?>
+            </label>
+            <div class="col-sm-3">
+                <?= view('components/select', ['name' => 'home-country', 'selected' => $home_country, 'options' => $country_list]) ?>
+            </div>
+        </div>
          <!-- SHOW OCCUPATIONS -->
          <fieldset class="mb-3">
             <div class="row">

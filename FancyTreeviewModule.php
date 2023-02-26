@@ -43,6 +43,7 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
+use Fisharebest\Webtrees\Statistics\Service\CountryService;
 
 class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
 {
@@ -75,15 +76,18 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     public array $pedigree_collapse;
 
     private Tree $tree;
+    private CountryService $country_service;
     private RelationshipService $relationship_service;
 
     /**
      * Fancy Treeview constructor.
      *
+     * @param CountryService $countryService
      * @param RelationshipService $relationship_service
      */
-    public function __construct(RelationshipService $relationship_service)
+    public function __construct(CountryService $country_service, RelationshipService $relationship_service)
     {
+        $this->country_service = $country_service;
         $this->relationship_service = $relationship_service;
         $this->pedigree_collapse = [];
     }
@@ -255,6 +259,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb-size'            => '80', // integer
             'crop-thumbs'           => '0',  // boolean
             'media-type-photo'      => '0',  // boolean
+            'places-format'         => 'full', // string
+            'countries-format'      => 'full', // string
+            'show-home-country'     => '1', // boolean
+            'home-country'          => '', // string
             'show-occupations'      => '1',  // boolean
             'show-agencies'         => '1',  // boolean
             'gedcom-occupation'     => '0',  // boolean
@@ -275,6 +283,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         return $this->viewResponse($this->name() . '::settings', [
             'title'                 => $this->title(),
+            'country_list'          => $this->getCountryList(),
             'list_type'             => $this->options('list-type'),
             'page_limit'            => $this->options('page-limit'),
             'tab_limit'             => $this->options('tab-limit'),
@@ -283,6 +292,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             'thumb_size'            => $this->options('thumb-size'),
             'crop_thumbs'           => $this->options('crop-thumbs'),
             'media_type_photo'      => $this->options('media-type-photo'),
+            'places_format'         => $this->options('places-format'),
+            'countries_format'      => $this->options('countries-format'),
+            'show_home_country'     => $this->options('show-home-country'),
+            'home_country'          => $this->options('home-country'),
             'show_occupations'      => $this->options('show-occupations'),
             'show_agencies'         => $this->options('show-agencies'),
             'gedcom_occupation'     => $this->options('gedcom-occupation'),
@@ -310,6 +323,10 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             $this->setPreference('thumb-size',  $params['thumb-size']);
             $this->setPreference('crop-thumbs', $params['crop-thumbs']);
             $this->setPreference('media-type-photo', $params['media-type-photo']);
+            $this->setPreference('places-format', $params['places-format']);
+            $this->setPreference('countries-format', $params['countries-format']);
+            $this->setPreference('show-home-country', $params['show-home-country']);
+            $this->setPreference('home-country', $params['home-country']);
             $this->setPreference('show-occupations', $params['show-occupations']);
             $this->setPreference('show-agencies', $params['show-agencies']);
             $this->setPreference('gedcom-occupation', $params['gedcom-occupation']);
@@ -1453,10 +1470,21 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     protected function printPlace(Fact $fact): ?string
     {
         $place = $fact->attribute('PLAC');
+
         if ($place) {
-            $place = new Place($place, $this->tree);
-            $html  = ' ' . /* I18N: Note the space at the end of the string */ I18N::translateContext('before place names', 'in ');
-            $html .= $place->fullName();
+            if ($this->options('places-format') === 'none') {
+                return null;
+            }
+
+            $place = new Place($this->formatPlaceNames($place), $this->tree);
+
+            if ($this->options('places-format') === 'webtrees') {
+                $place = $place->shortName();
+            } else {
+                $place = $place->fullName();
+            }
+
+            $html = $place ? ' ' . I18N::translate('in %s', $place) : '';
 
             return $html;
         }
@@ -1580,6 +1608,55 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
             }
         }
         return $ng;
+    }
+
+    /**
+     * Countrylist used on the Fancy Treeview configuration page
+     *
+     * @return array
+     */
+    private function getCountryList(): array
+    {
+        $countries = $this->country_service->getAllCountries();
+        $countries['???'] = '';
+        asort($countries);
+
+        return $countries;
+    }
+
+     /**
+     * Format the placenames as configured.
+     *
+     * @param string $place
+     *
+     * @return string
+     */
+    private function formatPlaceNames(string $place): string
+    {
+        $parts = collect(explode(', ', $place));
+
+        if($parts->count() === '1') return $parts->first();
+
+        $country = $parts->last();
+
+        $iso3 = array_search ($country, $this->getCountryList()) ?: $country;
+        $iso2 = $this->country_service->iso3166()[$iso3] ?: $iso3;
+
+        if ($this->options('places-format') === 'highlow') {
+            $parts = collect([$parts->first(), $parts->last()]);
+        }
+
+        if ($this->options('show-home-country') === '0' && $iso3 === $this->options('home-country')) {
+            $new_place = $parts->slice(0, -1);
+        } elseif ($this->options('countries-format') === 'iso2') {
+            $new_place = $parts->slice(0, -1)->push($iso2);
+        } elseif ($this->options('countries-format') === 'iso3') {
+            $new_place = $parts->slice(0, -1)->push($iso3);
+        } else {
+            $new_place = $parts;
+        }
+
+        return $new_place->implode(', ');
     }
 
     /**
