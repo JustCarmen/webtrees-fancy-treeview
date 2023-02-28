@@ -1640,7 +1640,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         $country = $parts->last();
 
         $iso3 = array_search ($country, $this->getCountryList()) ?: $country;
-        $iso2 = $this->country_service->iso3166()[$iso3] ?: $iso3;
+        $iso2 = $this->country_service->iso3166()[$iso3] ?? $iso3;
 
         if ($this->options('places-format') === 'highlow') {
             $parts = collect([$parts->first(), $parts->last()]);
