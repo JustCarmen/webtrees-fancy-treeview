@@ -81,6 +81,7 @@ msgstr "Avantpassats i descendents"
 #: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1205
 #: FancyTreeviewModule.php:1362 FancyTreeviewModule.php:1370
 #: FancyTreeviewModule.php:1378
+#, fuzzy
 msgid "and "
 msgstr "\n"
 "\n"
@@ -104,7 +105,7 @@ msgstr "a l'edat de %s"
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1407
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "a l'edat d'1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"

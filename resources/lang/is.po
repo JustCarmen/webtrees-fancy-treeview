@@ -87,12 +87,12 @@ msgstr "og "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:170
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Svaraðu \"já\" ef þú vilt birta nafn fyrirtækis/vinnuveitanda (Gedcom-tag \"AGNC\") með starfinu. Textinn birtist aðeins í tengslum við starfið."
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1213
 msgid "at %s"
-msgstr "at %s"
+msgstr "kl. %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1409
@@ -102,7 +102,7 @@ msgstr "á aldrinum %s"
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1407
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "við 1 %s aldur"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -264,9 +264,8 @@ msgstr "Hann er fæddur"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "Ef svarið er „já“, athugar forritið hvort (gift) hjón eigi sömu forfeður. Ef samband milli maka finnst birtist texti á milli sviga á eftir nafni maka í sambandsupplýsingunum til að gefa til kynna blóðtengslin."
+msgstr "Ef svarið er „já“, athugar forritið hvort (gift) hjón eigi sömu forfeður. Ef tengsl milli maka finnast fer birtingin eftir skjágerðinni."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1437
@@ -420,7 +419,7 @@ msgstr "Sýna 1. stigs glósur"
 
 #: resources/views/settings.phtml:153
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Sýna störf"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"
@@ -432,7 +431,7 @@ msgstr "Sýna einhleypa"
 
 #: resources/views/settings.phtml:164
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Sýndu nafn fyrirtækis/vinnuveitanda"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:867

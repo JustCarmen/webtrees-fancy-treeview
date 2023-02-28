@@ -87,12 +87,12 @@ msgstr "и "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:170
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Ответьте «да», если вы хотите отобразить название компании/работодателя (тег Gedcom «AGNC») вместе с родом занятий. Текст отображается только вместе с занятием."
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1213
 msgid "at %s"
-msgstr "at %s"
+msgstr "в %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1409
@@ -102,7 +102,7 @@ msgstr "в возрасте %s"
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1407
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "в возрасте 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -419,7 +419,7 @@ msgstr "Показать заметки уровня 1"
 
 #: resources/views/settings.phtml:153
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Показать занятия"
 
 #: resources/views/settings.phtml:135
 msgid "Show only media from the type 'photo'"
@@ -431,7 +431,7 @@ msgstr "Показать синглы"
 
 #: resources/views/settings.phtml:164
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Показать название компании/работодателя"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:867

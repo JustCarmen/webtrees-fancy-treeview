@@ -102,7 +102,7 @@ msgstr "à l'âge de %s"
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1407
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "à l'âge de 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
