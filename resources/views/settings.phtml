@@ -88,7 +88,8 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= view('components/radios-inline', ['name' => 'check-relationship', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $check_relationship]) ?>
                     <div class="form-text">
                         <?= /* I18N: Help text for the “Check relationship between partners” configuration setting */
-                        I18N::translate('If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type.');
+                        I18N::translate('If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. ' .
+                            'If a relationship between the partners is found, the display depends on the display type.');
                         ?>
                         <ul>
                             <li><?= I18N::translate('in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship.') ?></li>
