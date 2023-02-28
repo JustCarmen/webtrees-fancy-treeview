@@ -175,10 +175,6 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
         // Register a namespace for our views.
         View::registerNamespace($this->name(), $this->resourcesFolder() . 'views/');
-
-        // Temporary code. Remove the old database entries (upgrade from beta 1 to beta 2).
-        DB::table('module_setting')->where('setting_name', '=', 'menu-ancestors')->delete();
-        DB::table('module_setting')->where('setting_name', '=', 'menu-descendants')->delete();
     }
 
     /**
