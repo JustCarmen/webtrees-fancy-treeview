@@ -1635,7 +1635,7 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $parts = collect(explode(', ', $place));
 
-        if($parts->count() === '1') return $parts->first();
+        if($parts->count() === 1) return $parts->first();
 
         $country = $parts->last();
 
