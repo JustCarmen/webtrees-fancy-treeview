@@ -709,6 +709,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $html = '';
         }
 
+        $collection = new Collection;
+
         while (count($this->xrefs) > 0) {
 
             $this->generation++;
@@ -731,7 +733,6 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             }
 
             if (!empty($this->xrefs)) {
-                unset($next_gen, $descendants, $xrefs);
                 // Once we have fetched the page we need to know the total number of generations for this individual
                 if ($this->generation > $start + $limit) {
                     $this->descendant_generations = $this->generation;
@@ -747,6 +748,15 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             } else {
                 break;
             }
+
+            // prevent an infinite loop
+            $collection->push($xrefs);
+            $new_collection = $collection->flatten()->duplicates();
+            if ($new_collection->count() > 1) {
+                break;
+            }
+
+            unset($next_gen, $descendants, $xrefs);
         }
 
         $this->descendant_generations = $this->generation - 1;
@@ -775,6 +785,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $html = '';
         }
 
+        $collection = new Collection;
+
         while (count($this->xrefs) > 0) {
 
             $this->generation++;
@@ -802,7 +814,6 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             }
 
             if (!empty($this->xrefs)) {
-                unset($prev_gen, $ancestors, $xrefs);
                 // Once we have fetched the page we need to know the total number of generations for this individual
                 if ($this->generation > $start + $limit) {
                     $this->ancestor_generations = $this->generation;
@@ -818,6 +829,15 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             } else {
                 break;
             }
+
+            // prevent an infinite loop
+            $collection->push($xrefs);
+            $new_collection = $collection->flatten()->duplicates();
+            if ($new_collection->count() > 1) {
+                break;
+            }
+
+            unset($prev_gen, $ancestors, $xrefs);
         }
 
         $this->ancestor_generations = $this->generation - 1;
