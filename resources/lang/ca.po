@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1447
+#: FancyTreeviewModule.php:1442
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -37,7 +37,7 @@ msgid "3 letter country code"
 msgstr "3 letter country code"
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:115
+#: FancyTreeviewModule.php:114
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "Una visió general narrativa dels descendents o avantpassats de una família (branca)"
 
@@ -53,25 +53,25 @@ msgstr "Afegir descendents al menú"
 msgid "Add to menu"
 msgstr "Afegir al menú"
 
-#: FancyTreeviewModule.php:1092
+#: FancyTreeviewModule.php:1087
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr "Xiqueta adoptada"
 
-#: FancyTreeviewModule.php:1095
+#: FancyTreeviewModule.php:1090
 msgctxt "MALE"
 msgid "adopted child"
 msgstr "Xiquet adoptat"
 
-#: FancyTreeviewModule.php:1159
+#: FancyTreeviewModule.php:1154
 msgid "adopted child of"
 msgstr "Fill adoptiu de"
 
-#: FancyTreeviewModule.php:1150
+#: FancyTreeviewModule.php:1145
 msgid "adopted daughter of"
 msgstr "filla adoptiva de"
 
-#: FancyTreeviewModule.php:1141
+#: FancyTreeviewModule.php:1136
 msgid "adopted son of"
 msgstr "fill adoptiu de"
 
@@ -79,16 +79,16 @@ msgstr "fill adoptiu de"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Escriviu sempre l'ocupació tal com apareix al Gedcom"
 
-#: FancyTreeviewModule.php:451
+#: FancyTreeviewModule.php:446
 msgid "Ancestors and descendants"
 msgstr "Avantpassats i descendents"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:948 FancyTreeviewModule.php:1013
-#: FancyTreeviewModule.php:1034 FancyTreeviewModule.php:1067
-#: FancyTreeviewModule.php:1172 FancyTreeviewModule.php:1222
-#: FancyTreeviewModule.php:1379 FancyTreeviewModule.php:1387
-#: FancyTreeviewModule.php:1395
+#: FancyTreeviewModule.php:943 FancyTreeviewModule.php:1008
+#: FancyTreeviewModule.php:1029 FancyTreeviewModule.php:1062
+#: FancyTreeviewModule.php:1167 FancyTreeviewModule.php:1217
+#: FancyTreeviewModule.php:1374 FancyTreeviewModule.php:1382
+#: FancyTreeviewModule.php:1390
 msgid "and "
 msgstr "and "
 
@@ -102,17 +102,17 @@ msgid "As defined in webtrees"
 msgstr "As defined in webtrees"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
-#: FancyTreeviewModule.php:1230
+#: FancyTreeviewModule.php:1225
 msgid "at %s"
 msgstr "a %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
-#: FancyTreeviewModule.php:1425
+#: FancyTreeviewModule.php:1420
 msgid "at the age of %s"
 msgstr "a l'edat de %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
-#: FancyTreeviewModule.php:1423
+#: FancyTreeviewModule.php:1418
 msgid "at the age of 1 %s"
 msgstr "a l'edat d'1 %s"
 
@@ -121,7 +121,7 @@ msgid "Check relationship between partners"
 msgstr "Comprovar la relació entre socis"
 
 #. hijo de = "fill de" (en lengua catalana)
-#: FancyTreeviewModule.php:1161
+#: FancyTreeviewModule.php:1156
 msgid "child of"
 msgstr "fill de"
 
@@ -133,16 +133,16 @@ msgstr "Retalla miniatures a quadrat"
 msgid "Default list type"
 msgstr "Tipus de llista per defecte"
 
-#: FancyTreeviewModule.php:453
+#: FancyTreeviewModule.php:448
 msgid "Descendants and ancestors"
 msgstr "Descendents i avantpassats"
 
-#: FancyTreeviewModule.php:1380
+#: FancyTreeviewModule.php:1375
 msgctxt "FEMALE"
 msgid "died"
 msgstr "Va morir"
 
-#: FancyTreeviewModule.php:1380
+#: FancyTreeviewModule.php:1375
 msgctxt "MALE"
 msgid "died"
 msgstr "Va morir"
@@ -156,16 +156,16 @@ msgid "Don't show place names"
 msgstr "Don't show place names"
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:886
+#: FancyTreeviewModule.php:881
 msgid "eighth"
 msgstr "vuitè"
 
-#: FancyTreeviewModule.php:437
+#: FancyTreeviewModule.php:432
 msgid "Family tree overview"
 msgstr "Descripció general de l'arbre genealògic"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:104
+#: FancyTreeviewModule.php:103
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
@@ -174,43 +174,43 @@ msgid "Fancy Treeview menu"
 msgstr "Menú Treeview"
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:883
+#: FancyTreeviewModule.php:878
 msgid "fifth"
 msgstr "cinquè"
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:879
+#: FancyTreeviewModule.php:874
 msgid "first"
 msgstr "Primer"
 
-#: FancyTreeviewModule.php:1528
+#: FancyTreeviewModule.php:1523
 msgid "follow"
 msgstr "seguir"
 
-#: FancyTreeviewModule.php:1082
+#: FancyTreeviewModule.php:1077
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr "Xiqueta adoptada"
 
-#: FancyTreeviewModule.php:1085
+#: FancyTreeviewModule.php:1080
 msgctxt "MALE"
 msgid "foster child"
 msgstr "Xiquet adoptat"
 
-#: FancyTreeviewModule.php:1157
+#: FancyTreeviewModule.php:1152
 msgid "foster child of"
 msgstr "fill adoptiu de"
 
-#: FancyTreeviewModule.php:1148
+#: FancyTreeviewModule.php:1143
 msgid "foster daughter of"
 msgstr "filla adoptiva de"
 
-#: FancyTreeviewModule.php:1139
+#: FancyTreeviewModule.php:1134
 msgid "foster son of"
 msgstr "fill adoptiu de"
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:882
+#: FancyTreeviewModule.php:877
 msgid "fourth"
 msgstr "quart"
 
@@ -222,74 +222,78 @@ msgstr "Full country name"
 msgid "Full place name"
 msgstr "Full place name"
 
-#: FancyTreeviewModule.php:1051
+#: FancyTreeviewModule.php:1046
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "Tenia"
 
-#: FancyTreeviewModule.php:1021 FancyTreeviewModule.php:1057
+#: FancyTreeviewModule.php:1016 FancyTreeviewModule.php:1052
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "Tenia"
 
-#: FancyTreeviewModule.php:1037
+#: FancyTreeviewModule.php:1032
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "Tenia"
 
-#: FancyTreeviewModule.php:1015 FancyTreeviewModule.php:1043
+#: FancyTreeviewModule.php:1010 FancyTreeviewModule.php:1038
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "Tenia"
 
-#: FancyTreeviewModule.php:1053
+#: FancyTreeviewModule.php:1048
 msgctxt "One parent/multiple children"
 msgid "has"
 msgstr "té"
 
-#: FancyTreeviewModule.php:1023 FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1018 FancyTreeviewModule.php:1054
 msgctxt "One parent/one child"
 msgid "has"
 msgstr "té"
 
-#: FancyTreeviewModule.php:1039
+#: FancyTreeviewModule.php:1034
 msgctxt "Two parents/multiple children"
 msgid "have"
 msgstr "tindre"
 
-#: FancyTreeviewModule.php:1017 FancyTreeviewModule.php:1045
+#: FancyTreeviewModule.php:1012 FancyTreeviewModule.php:1040
 msgctxt "Two parents/one child"
 msgid "have"
 msgstr "tindre"
 
-#: FancyTreeviewModule.php:973
+#: FancyTreeviewModule.php:968
 msgid "He had a relationship with"
 msgstr "Va tenir una relació amb"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:893
+#: FancyTreeviewModule.php:888
 msgid "He married %s times"
 msgstr "Es va casar %svegades"
 
-#: FancyTreeviewModule.php:1347
+#: FancyTreeviewModule.php:1342
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr "Va ser batejat"
 
-#: FancyTreeviewModule.php:1349
+#: FancyTreeviewModule.php:1344
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr "batejada"
 
-#: FancyTreeviewModule.php:1329
+#: FancyTreeviewModule.php:1324
 msgctxt "PAST"
 msgid "He was born"
 msgstr "Va néixer"
 
-#: FancyTreeviewModule.php:1331
+#: FancyTreeviewModule.php:1326
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "Nascuda"
+
+#: resources/views/settings.phtml:159
+msgid "Highest and lowest level"
+msgstr "Highest and lowest level"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
@@ -301,18 +305,18 @@ msgid "If the answer is “yes”, the script checks whether a (married) couple 
 msgstr "Si la resposta és \"sí\", el guió comprova si una parella (casada) té els mateixos avantpassats. Si es troba una relació entre els socis, la visualització depèn del tipus de visualització. "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1453
+#: FancyTreeviewModule.php:1448
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "a"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1456
+#: FancyTreeviewModule.php:1451
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "a"
 
-#: FancyTreeviewModule.php:1487
+#: FancyTreeviewModule.php:1482
 msgid "in %s"
 msgstr "in %s"
 
@@ -342,16 +346,16 @@ msgid "More generations require more memory so the page takes longer to fully lo
 msgstr "Més generacions requereixen més memòria, de manera que la pàgina triga més a carregar-se completament."
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:887
+#: FancyTreeviewModule.php:882
 msgid "ninth"
 msgstr "novè"
 
-#: FancyTreeviewModule.php:1026
+#: FancyTreeviewModule.php:1021
 msgid "no children"
 msgstr "No hi ha nens"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1450
+#: FancyTreeviewModule.php:1445
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "al"
@@ -391,7 +395,7 @@ msgid "Respond “yes” if you want to display singles in the next generation. 
 msgstr "Respon \"sí\" si vols mostrar persones sense parella en la següent generació. Els solters són persones sense parella i fills. Si trieu \"sí\", cada fill d'una família es mostrarà de manera detallada a la següent generació."
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:880
+#: FancyTreeviewModule.php:875
 msgid "second"
 msgstr "segon"
 
@@ -411,44 +415,44 @@ msgid "Select the maximum number of generations to show on the individual page t
 msgstr "Seleccioneu el nombre màxim de generacions que voleu mostrar a la pestanya pàgina individual."
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:885
+#: FancyTreeviewModule.php:880
 msgid "seventh"
 msgstr "sèptim"
 
-#: FancyTreeviewModule.php:976
+#: FancyTreeviewModule.php:971
 msgid "She had a relationship with"
 msgstr "Ella tenia una relació amb"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:899
+#: FancyTreeviewModule.php:894
 msgid "She married %s times"
 msgstr "Es va casar %svegades"
 
-#: FancyTreeviewModule.php:1347
+#: FancyTreeviewModule.php:1342
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr "Ella va ser batejada"
 
-#: FancyTreeviewModule.php:1349
+#: FancyTreeviewModule.php:1344
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr "Ella és batejada"
 
-#: FancyTreeviewModule.php:1329
+#: FancyTreeviewModule.php:1324
 msgctxt "PAST"
 msgid "She was born"
 msgstr "ella va néixer"
 
-#: FancyTreeviewModule.php:1331
+#: FancyTreeviewModule.php:1326
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Ella neix"
 
-#: FancyTreeviewModule.php:556 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:551 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "Mostrar ancestres"
 
-#: FancyTreeviewModule.php:551 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:546 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "Mostrar descendents"
 
@@ -473,31 +477,31 @@ msgid "Show the name of the company/employer"
 msgstr "Mostra el nom de l'empresa/ocupador"
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:884
+#: FancyTreeviewModule.php:879
 msgid "sixth"
 msgstr "sisè"
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:888
+#: FancyTreeviewModule.php:883
 msgid "tenth"
 msgstr "desè"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:895
+#: FancyTreeviewModule.php:890
 msgid "The %s time he married"
 msgstr "La %s vegada que es va casar"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:901
+#: FancyTreeviewModule.php:896
 msgid "The %s time she married"
 msgstr "La %s vegada que es casa"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:907
+#: FancyTreeviewModule.php:902
 msgid "The %s time this individual married"
 msgstr "El %s que aquest individu es va casar"
 
-#: FancyTreeviewModule.php:855
+#: FancyTreeviewModule.php:850
 msgid "The details of this family are private."
 msgstr "Els detalls d'aquesta família són privats."
 
@@ -510,20 +514,20 @@ msgid "The number of possible ancestors in this generation has been reduced due 
 msgstr "El nombre de possibles avantpassats d'aquesta generació s'ha reduït a causa del col·lapse del pedigrí. Sense reducció el nombre màxim d'avantpassats d'aquesta generació hauria estat %s."
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:881
+#: FancyTreeviewModule.php:876
 msgid "third"
 msgstr "Tercer"
 
-#: FancyTreeviewModule.php:979
+#: FancyTreeviewModule.php:974
 msgid "This individual had a relationship with"
 msgstr "Aquest individu tenia una relació amb"
 
-#: FancyTreeviewModule.php:919
+#: FancyTreeviewModule.php:914
 msgid "This individual married"
 msgstr "Aquest individu està casat"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:905
+#: FancyTreeviewModule.php:900
 msgid "This individual married %s times"
 msgstr "Aquest individu s'ha casat %s vegades"
 
@@ -535,67 +539,67 @@ msgstr "Aquesta configuració només s'aplica a la pàgina o pestanya que conté
 msgid "Thumbnail size"
 msgstr "Mida de les miniatures"
 
-#: FancyTreeviewModule.php:1354
+#: FancyTreeviewModule.php:1349
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr "va ser batejada"
 
-#: FancyTreeviewModule.php:1354
+#: FancyTreeviewModule.php:1349
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr "va ser batejat"
 
-#: FancyTreeviewModule.php:1356
+#: FancyTreeviewModule.php:1351
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "va ser batejada"
 
-#: FancyTreeviewModule.php:1356
+#: FancyTreeviewModule.php:1351
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "batejat"
 
-#: FancyTreeviewModule.php:1336
+#: FancyTreeviewModule.php:1331
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "Va néixer"
 
-#: FancyTreeviewModule.php:1336
+#: FancyTreeviewModule.php:1331
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "Va néixer"
 
-#: FancyTreeviewModule.php:1338
+#: FancyTreeviewModule.php:1333
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "Va néixer"
 
-#: FancyTreeviewModule.php:1338
+#: FancyTreeviewModule.php:1333
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "Va néixer"
 
-#: FancyTreeviewModule.php:1388
+#: FancyTreeviewModule.php:1383
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "va ser soterrada"
 
-#: FancyTreeviewModule.php:1388
+#: FancyTreeviewModule.php:1383
 msgctxt "MALE"
 msgid "was buried"
 msgstr "va ser soterrat"
 
-#: FancyTreeviewModule.php:1396
+#: FancyTreeviewModule.php:1391
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr "va ser incinerada"
 
-#: FancyTreeviewModule.php:1396
+#: FancyTreeviewModule.php:1391
 msgctxt "MALE"
 msgid "was cremated"
 msgstr "va ser incinerat"
 
-#: FancyTreeviewModule.php:948
+#: FancyTreeviewModule.php:943
 msgid "were divorced"
 msgstr "es van divorciar"
 
