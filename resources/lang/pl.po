@@ -81,7 +81,7 @@ msgstr "Always write the occupation exactly as it appears in the Gedcom"
 
 #: FancyTreeviewModule.php:451
 msgid "Ancestors and descendants"
-msgstr "Ancestors and descendants"
+msgstr "Przodkowie i potomkowie"
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:948 FancyTreeviewModule.php:1013
@@ -109,7 +109,7 @@ msgstr "at %s"
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1425
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "w wieku %s lat"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1423
@@ -134,7 +134,7 @@ msgstr "Default list type"
 
 #: FancyTreeviewModule.php:453
 msgid "Descendants and ancestors"
-msgstr "Descendants and ancestors"
+msgstr "Potomkowie i przodkowie"
 
 #: FancyTreeviewModule.php:1380
 msgctxt "FEMALE"
@@ -444,11 +444,11 @@ msgstr "Urodziła się"
 
 #: FancyTreeviewModule.php:556 resources/views/tab.phtml:10
 msgid "Show ancestors"
-msgstr "Show ancestors"
+msgstr "Pokaż przodków"
 
 #: FancyTreeviewModule.php:551 resources/views/tab.phtml:21
 msgid "Show descendants"
-msgstr "Show descendants"
+msgstr "Pokaż potomków"
 
 #: resources/views/settings.phtml:247
 msgid "Show level 1 notes"
@@ -497,7 +497,7 @@ msgstr "%s razem ta osoba wzięła ślub z"
 
 #: FancyTreeviewModule.php:855
 msgid "The details of this family are private."
-msgstr "The details of this family are private."
+msgstr "Dane tej rodziny są prywatne."
 
 #: resources/views/block-content.phtml:28
 msgid "The details of this generation are private."

@@ -26,7 +26,7 @@ msgstr "%s of %s possible ancestors"
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:102
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Let wel</strong>: hierdie opsie kan baie tyd en/of geheue verg, veral met groot bome. Dit kan of baie stadige laai van bladsye of 'n \"uitvoer-tyd-fout\" op jou bediener tot gevolg hê. As jy sulke gedrag opmerk, verminder die maksimum aantal geslagte per bladsy of oortjie en/of moenie dit in kombinasie met die opsie \"wys enkelinge\" gebruik nie. As jy steeds probleme het, laat die antwoord by \"nee\"."
+msgstr "<strong>Let wel</strong>: hierdie opsie kan baie tyd en/of geheue verg, veral met groot bome. Dit kan of baie stadige laai van bladsye of 'n “uitvoer-tyd-fout” op jou bediener tot gevolg hê. As jy sulke gedrag opmerk, verminder die maksimum aantal geslagte per bladsy of oortjie en/of moenie dit in kombinasie met die opsie “wys enkelinge” gebruik nie. As jy steeds probleme het, laat die antwoord by “nee”."
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
@@ -382,7 +382,7 @@ msgstr "Verwyder van kieslys"
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:142
 msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
-msgstr "Antwoord \"ja\" as jy beelde slegs van die tipe \"foto\" wil vertoon. Ander gemerkte beelde soos sertifikate, dokumente of grafstene sal nie gebruik word nie. As jy nie volgens mediatipe onderskei het in jou Gedcom nie, laat die antwoord by “nee”."
+msgstr "Antwoord “ja” as jy beelde slegs van die tipe “foto” wil vertoon. Ander gemerkte beelde soos sertifikate, dokumente of grafstene sal nie gebruik word nie. As jy nie volgens mediatipe onderskei het in jou Gedcom nie, laat die antwoord by “nee”."
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:73

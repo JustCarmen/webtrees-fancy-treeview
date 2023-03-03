@@ -89,11 +89,8 @@ msgstr "Avantpassats i descendents"
 #: FancyTreeviewModule.php:1172 FancyTreeviewModule.php:1222
 #: FancyTreeviewModule.php:1379 FancyTreeviewModule.php:1387
 #: FancyTreeviewModule.php:1395
-#, fuzzy
 msgid "and "
-msgstr "\n"
-"\n"
-""
+msgstr "and "
 
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:218

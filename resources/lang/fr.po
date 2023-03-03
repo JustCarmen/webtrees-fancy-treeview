@@ -30,11 +30,11 @@ msgstr "<strong>Note</strong>: cette option peut être gourmande en temps et/ou 
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "Code pays à 2 chiffres"
 
 #: resources/views/settings.phtml:172
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "Code pays à 3 chiffres"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:115
@@ -99,7 +99,7 @@ msgstr "Répondez \"oui\" si vous souhaitez afficher le nom de l'entreprise/empl
 
 #: resources/views/settings.phtml:158
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "Comme défini dans webtrees"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1230
@@ -148,11 +148,11 @@ msgstr "décédé"
 
 #: resources/views/settings.phtml:181
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Afficher le nom du pays d'origine"
 
 #: resources/views/settings.phtml:160
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "Ne pas montrer les noms de lieux"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:886
@@ -216,11 +216,11 @@ msgstr "quatrième"
 
 #: resources/views/settings.phtml:171
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Nom complet du pays"
 
 #: resources/views/settings.phtml:157
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Nom de lieu complet"
 
 #: FancyTreeviewModule.php:1051
 msgctxt "One parent/multiple children"
@@ -293,7 +293,7 @@ msgstr "Il est né"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
-msgstr "Home country"
+msgstr "Pays d'origine"
 
 #: resources/views/settings.phtml:91
 #, fuzzy
@@ -314,7 +314,7 @@ msgstr "en "
 
 #: FancyTreeviewModule.php:1487
 msgid "in %s"
-msgstr "in %s"
+msgstr "dans %s"
 
 #: resources/views/settings.phtml:96
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
@@ -358,11 +358,11 @@ msgstr "le "
 
 #: resources/views/settings.phtml:167
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Préférence d'affichage des pays"
 
 #: resources/views/settings.phtml:153
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Préférence d'affichage des noms de lieux"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
