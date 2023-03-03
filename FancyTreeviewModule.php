@@ -27,7 +27,6 @@ use Psr\Http\Message\ResponseInterface;
 use Fisharebest\Localization\Translation;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Illuminate\Database\Capsule\Manager as DB;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
