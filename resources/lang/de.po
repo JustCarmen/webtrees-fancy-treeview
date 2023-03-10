@@ -30,11 +30,11 @@ msgstr "<strong>Hinweis</strong>: Diese Option kann zeit- und/oder speicheraufw�
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "Länderkennzeichen 2 Buchstaben"
 
 #: resources/views/settings.phtml:172
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "Länderkennzeichen 3 Buchstaben"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:114
@@ -99,7 +99,7 @@ msgstr "Antworten Sie mit \"ja\", wenn Sie den Firmennamen bzw. den Namen des Ar
 
 #: resources/views/settings.phtml:158
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "wie in webtrees festgelegt"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1225
@@ -148,11 +148,11 @@ msgstr "starb"
 
 #: resources/views/settings.phtml:181
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Name des Heimatlandes anzeigen"
 
 #: resources/views/settings.phtml:160
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "Ortsnamen nicht anzeigen"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:881
@@ -216,11 +216,11 @@ msgstr "vierte"
 
 #: resources/views/settings.phtml:171
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Vollständiger Landesname"
 
 #: resources/views/settings.phtml:157
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Vollständiger Ortsname"
 
 #: FancyTreeviewModule.php:1046
 msgctxt "One parent/multiple children"
@@ -293,16 +293,15 @@ msgstr "Er wurde geboren"
 
 #: resources/views/settings.phtml:159
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Höchste und niedrigste Ebene"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
-msgstr "Home country"
+msgstr "Heimatland"
 
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "Wenn die Antwort \"ja\" lautet, prüft das Skript, ob ein (verheiratetes) Paar die gleichen Vorfahren hat. Wenn eine Verwandtschaft zwischen den Partnern gefunden wird, hängt die Art der Anzeige von der gewählten Anzeigeart ab."
+msgstr "Wenn die Antwort \"ja\" lautet, prüft das Skript, ob ein (verheiratetes) Paar die gleichen Vorfahren hat. Wenn eine Verwandtschaft zwischen den Partnern gefunden wird, hängt die Darstellung von der gewählten Anzeigeart ab."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1448
@@ -362,11 +361,11 @@ msgstr "am "
 
 #: resources/views/settings.phtml:167
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Einstellung zur Anzeige von Ländern"
 
 #: resources/views/settings.phtml:153
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Einstellung zur Anzeige von Orten"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"

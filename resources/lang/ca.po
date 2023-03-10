@@ -30,11 +30,11 @@ msgstr "<strong>Nota</strong>: aquesta opció pot consumir temps i/o memòria, e
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "Codi de país de 2 lletres"
 
 #: resources/views/settings.phtml:172
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "Codi de país de 3 lletres"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:114
@@ -90,7 +90,7 @@ msgstr "Avantpassats i descendents"
 #: FancyTreeviewModule.php:1374 FancyTreeviewModule.php:1382
 #: FancyTreeviewModule.php:1390
 msgid "and "
-msgstr "and "
+msgstr "i␣"
 
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:218
@@ -99,7 +99,7 @@ msgstr "Respon \"sí\" si vols mostrar el nom de l'empresa/empresari (Gedcom-tag
 
 #: resources/views/settings.phtml:158
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "Tal com es defineix a webtrees"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1225
@@ -149,11 +149,11 @@ msgstr "Va morir"
 
 #: resources/views/settings.phtml:181
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Mostra el nom del país d'origen"
 
 #: resources/views/settings.phtml:160
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "No mostris topònims"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:881
@@ -216,11 +216,11 @@ msgstr "quart"
 
 #: resources/views/settings.phtml:171
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Nom complet del país"
 
 #: resources/views/settings.phtml:157
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Topònim complet"
 
 #: FancyTreeviewModule.php:1046
 msgctxt "One parent/multiple children"
@@ -293,11 +293,11 @@ msgstr "Nascuda"
 
 #: resources/views/settings.phtml:159
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Nivell més alt i més baix"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
-msgstr "Home country"
+msgstr "País d'origen"
 
 #: resources/views/settings.phtml:91
 #, fuzzy
@@ -318,7 +318,7 @@ msgstr "a"
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"
-msgstr "in %s"
+msgstr "en %s"
 
 #: resources/views/settings.phtml:96
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
@@ -362,11 +362,11 @@ msgstr "al"
 
 #: resources/views/settings.phtml:167
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Preferència pels països de visualització"
 
 #: resources/views/settings.phtml:153
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Preferència per mostrar topònims"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"

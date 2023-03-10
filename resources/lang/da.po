@@ -30,11 +30,11 @@ msgstr "<strong>Note</strong>: Dette tilvalg kan øge tids- og hukommelsesforbru
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "2-bogstavs landekode"
 
 #: resources/views/settings.phtml:172
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "3-bogstavs landekode"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:114
@@ -95,26 +95,26 @@ msgstr "og "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:218
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Svar \"ja\" hvis du ønsker at vise navnet på virksomheden/arbejdsgiveren (Gedcom-kode \"AGNC\") sammen med beskæftigelsen. Vises kun i forbindelse med beskæftigelse."
 
 #: resources/views/settings.phtml:158
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "Som defineret i webtrees"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1225
 msgid "at %s"
-msgstr "at %s"
+msgstr "ved %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1420
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "i en alder af %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1418
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "i en alder af 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -148,11 +148,11 @@ msgstr "døde"
 
 #: resources/views/settings.phtml:181
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Vis ikke "
 
 #: resources/views/settings.phtml:160
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "Vis ikke stednavne"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:881
@@ -215,11 +215,11 @@ msgstr "fjerde"
 
 #: resources/views/settings.phtml:171
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Fuldt navn på hjemland"
 
 #: resources/views/settings.phtml:157
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Fuldt stednavn"
 
 #: FancyTreeviewModule.php:1046
 msgctxt "One parent/multiple children"
@@ -283,20 +283,20 @@ msgstr "Han blev døbt"
 #: FancyTreeviewModule.php:1324
 msgctxt "PAST"
 msgid "He was born"
-msgstr "Han blev født"
+msgstr "Han var født"
 
 #: FancyTreeviewModule.php:1326
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Han var født"
+msgstr "Han blev født"
 
 #: resources/views/settings.phtml:159
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Højeste og laveste niveau"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
-msgstr "Home country"
+msgstr "Hjemland"
 
 #: resources/views/settings.phtml:91
 #, fuzzy
@@ -317,7 +317,7 @@ msgstr "i "
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"
-msgstr "in %s"
+msgstr "i %s"
 
 #: resources/views/settings.phtml:96
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
@@ -361,11 +361,11 @@ msgstr "den "
 
 #: resources/views/settings.phtml:167
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Indstilling af landevisning"
 
 #: resources/views/settings.phtml:153
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Indstilling af visning af stednavne"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -457,11 +457,11 @@ msgstr "Vis efterkommere"
 
 #: resources/views/settings.phtml:247
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "Vis niveau 1 bemærkninger"
 
 #: resources/views/settings.phtml:201
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Vis beskæftigelser"
 
 #: resources/views/settings.phtml:136
 msgid "Show only media from the type 'photo'"
@@ -473,7 +473,7 @@ msgstr "Vis ugifte"
 
 #: resources/views/settings.phtml:212
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Vis navnet på virksomheden/arbejdsgiveren"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:879
@@ -515,7 +515,7 @@ msgstr "Antallet af mulige aner i denne generation er formindsket på grund af a
 #. I18N: third marriage
 #: FancyTreeviewModule.php:876
 msgid "third"
-msgstr "tredie"
+msgstr "tredje"
 
 #: FancyTreeviewModule.php:974
 msgid "This individual had a relationship with"

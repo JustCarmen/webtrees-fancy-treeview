@@ -293,7 +293,7 @@ msgstr "Il est né"
 
 #: resources/views/settings.phtml:159
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Niveau le plus élevé et le plus bas"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
