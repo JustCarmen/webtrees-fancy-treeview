@@ -104,7 +104,7 @@ msgstr "Comme défini dans webtrees"
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1225
 msgid "at %s"
-msgstr "sur %s"
+msgstr "%s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1420
@@ -318,7 +318,7 @@ msgstr "en "
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"
-msgstr "dans %s"
+msgstr "à %s"
 
 #: resources/views/settings.phtml:96
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."

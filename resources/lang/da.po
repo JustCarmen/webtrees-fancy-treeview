@@ -26,7 +26,7 @@ msgstr "%s af %s mulige aner"
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:102
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Note</strong>: Dette tilvalg kan øge tids- og hukommelsesforbruget – særligt for store databaser. Det kan afstedkomme meget lange svartider eller en “execution time out error” på din server. Hvis du oplever fejl af den type, så reducér antallet af generationer pr. side eller fane og/eller brug det i kombination med tilvalget “vis ugifte”. Hvis fejl fortsat forekommer, så vælg “Nej”."
+msgstr "<strong>Bemærk</strong>: Dette tilvalg kan øge tids- og hukommelsesforbruget – særligt for store databaser. Det kan afstedkomme meget lange svartider eller en “execution time out error” på din server. Hvis du oplever fejl af den type, så reducér antallet af generationer pr. side eller fane og/eller brug det i kombination med tilvalget “vis ugifte”. Hvis fejl fortsat forekommer, så vælg “nej”."
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
@@ -299,7 +299,6 @@ msgid "Home country"
 msgstr "Hjemland"
 
 #: resources/views/settings.phtml:91
-#, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 msgstr "Hvis valget er “ja”, tjekker scriptet om et (gift) par har anesammenfald. Hvis parret har fælles aner, vises blodslægtskabet i parentes efter personnavnet."
 

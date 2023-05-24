@@ -307,13 +307,13 @@ msgstr "Ef svarið er „já“, athugar forritið hvort (gift) hjón eigi sömu
 #: FancyTreeviewModule.php:1448
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "þann "
+msgstr "í "
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1451
 msgctxt "before dateformat yyyy"
 msgid "in "
-msgstr " "
+msgstr "árið "
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"

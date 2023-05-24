@@ -16,12 +16,12 @@ msgstr " "
 #: resources/views/block-content.phtml:37
 #: resources/views/block-content.phtml:42
 msgid "%s complete"
-msgstr "%s complete"
+msgstr "%s wszystkich"
 
 #: resources/views/block-content.phtml:36
 #: resources/views/block-content.phtml:41
 msgid "%s of %s possible ancestors"
-msgstr "%s of %s possible ancestors"
+msgstr "%s z %s wszystkich przodków"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:102
@@ -109,12 +109,12 @@ msgstr "at %s"
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1420
 msgid "at the age of %s"
-msgstr "w wieku %s lat"
+msgstr "mając %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1418
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "mając jeden %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -316,7 +316,7 @@ msgstr "w roku "
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"
-msgstr "in %s"
+msgstr "w %s"
 
 #: resources/views/settings.phtml:96
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
