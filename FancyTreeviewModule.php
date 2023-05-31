@@ -1409,12 +1409,17 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
     {
         $bdate     = $bfact->date();
         $ddate     = $dfact->date();
-        $html     = '';
+        $html      = '';
         if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
             $ageAtDeath = new Age($bdate, $ddate);
+
+            $days   = $ageAtDeath->ageDays();
+            $months = (int)($ageAtDeath->ageDays()/30);
+            $years  = $ageAtDeath->ageYears();
+
             // We need to separate the singular form (1) for a correct German translation. The default webtrees form is not applicable here.
             // Put the number 1 in the translatable part of the string to give translators the choice to use text in stead of a number.
-            if ((int)substr($ageAtDeath->__toString(), 0, 1) === 1) {
+            if ($days === 1 || $months === 1 || $years === 1) {
                 $html .= ' ' . /* I18N: %s is a string without a number e.g. day/month/year */ I18N::translate('at the age of 1 %s', substr($ageAtDeath->__toString(), 2));
             } else {
                 $html .= ' ' . /* I18N: %s a string with a number e.g. 10 days/months/years */ I18N::translate('at the age of %s', $ageAtDeath);
