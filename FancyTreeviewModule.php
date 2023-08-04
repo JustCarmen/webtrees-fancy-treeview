@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JustCarmen\Webtrees\Module\FancyTreeview;
 
+use Illuminate\Support\Str;
 use Fisharebest\Webtrees\Age;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Fact;
@@ -31,11 +32,13 @@ use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleTabTrait;
 use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Module\ModuleBlockTrait;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
+use Fisharebest\Webtrees\Module\ModuleBlockInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
@@ -44,13 +47,16 @@ use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Statistics\Service\CountryService;
 
-class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface, ModuleMenuInterface, RequestHandlerInterface
+class FancyTreeviewModule extends AbstractModule
+implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface,
+ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
 {
     use ModuleCustomTrait;
     use ModuleConfigTrait;
     use ModuleGlobalTrait;
     use ModuleTabTrait;
     use ModuleMenuTrait;
+    use ModuleBlockTrait;
 
     // Route
     protected const ROUTE_URL = '/tree/{tree}/jc-fancy-treeview/{xref}/{name}/{type}/{page}';
@@ -76,17 +82,20 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
 
     private Tree $tree;
     private CountryService $country_service;
+    private ModuleService $module_service;
     private RelationshipService $relationship_service;
 
     /**
      * Fancy Treeview constructor.
      *
      * @param CountryService $countryService
+     * @param ModuleService $module_service
      * @param RelationshipService $relationship_service
      */
-    public function __construct(CountryService $country_service, RelationshipService $relationship_service)
+    public function __construct(CountryService $country_service, ModuleService $module_service, RelationshipService $relationship_service)
     {
         $this->country_service = $country_service;
+        $this->module_service = $module_service;
         $this->relationship_service = $relationship_service;
         $this->pedigree_collapse = [];
     }
@@ -433,6 +442,98 @@ class FancyTreeviewModule extends AbstractModule implements ModuleCustomInterfac
         } else {
             return null;
         }
+    }
+
+    /**
+     * Generate the HTML content of this block.
+     *
+     * @param Tree                 $tree
+     * @param int                  $block_id
+     * @param string               $context
+     * @param array<string,string> $config
+     *
+     * @return string
+     */
+    public function getBlock(Tree $tree, int $block_id, string $context, array $config = []): string
+    {
+        $ancestors   = array_filter(explode(', ', $this->getPreference($tree->id() . '-menu-ancestors')));
+        $descendants = array_filter(explode(', ', $this->getPreference($tree->id() . '-menu-descendants')));
+
+        $this->tree = $tree;
+
+        $links = [];
+        foreach ($ancestors as $xref) {
+            $person = $this->getPerson($xref);
+            if ($person && $person->canShow()) {
+                $links[] = [
+                    'url'   => $this->getUrl($tree, $xref, 'ancestors'),
+                    'title' => I18N::translate('Ancestors of %s', $person->fullName()),
+                    'image' => $person->displayImage(30, 40, 'crop', ['class' => 'rounded-circle']),
+                    'sort'  => $person->getAllNames()[0]['surn']
+                ];
+            }
+        }
+
+        foreach ($descendants as $xref) {
+            $person = $this->getPerson($xref);
+            if ($person && $person->canShow()) {
+                $links[] = [
+                    'url'   => $this->getUrl($tree, $xref, 'descendants'),
+                    'title' => I18N::translate('Descendants of %s', $person->fullName()),
+                    'image' => $person->displayImage(30, 40, 'crop', ['class' => 'rounded-circle']),
+                    'sort'  => $person->getAllNames()[0]['surn']
+                ];
+            }
+        }
+
+        $key_values = array_column($links, 'sort');
+        array_multisort($key_values, SORT_ASC, $links);
+
+        $content = view($this->name() . '::blockmodule', ['links' => $links]);
+
+        if ($context !== self::CONTEXT_EMBED) {
+            return view('modules/block-template', [
+                'block'      => Str::kebab($this->name()),
+                'id'         => $block_id,
+                'config_url' => '',
+                'title'      => e(I18N::translate('Family tree overview')),
+                'content'    => $content,
+            ]);
+        }
+
+        return $content;
+    }
+
+    /**
+     * Should this block load asynchronously using AJAX?
+     *
+     * Simple blocks are faster in-line, more complex ones can be loaded later.
+     *
+     * @return bool
+     */
+    public function loadAjax(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Can this block be shown on the user’s home page?
+     *
+     * @return bool
+     */
+    public function isUserBlock(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Can this block be shown on the tree’s home page?
+     *
+     * @return bool
+     */
+    public function isTreeBlock(): bool
+    {
+        return true;
     }
 
     /**

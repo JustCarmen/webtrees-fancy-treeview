@@ -1,0 +1,10 @@
+<ul class="list-group">
+    <?php foreach ($links as $link) : ?>
+        <li class="list-group-item border-0  d-flex align-items-center">
+            <?= $link['image'] ?>
+            <a href="<?= e($link['url']) ?>">
+                <?= $link['title'] ?>
+            </a>
+        </li>
+    <?php endforeach ?>
+</ul>

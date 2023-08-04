@@ -16,7 +16,7 @@ use Fisharebest\Webtrees\View;
                         'xref'  => $xref,
                         'type'  => $module->type,
                         'class' => 'btn btn-danger',
-                        'text'  => I18N::translate('Remove from menu'),
+                        'text'  => I18N::translate('Remove link from menu/block'),
                         'url'   => $module->getUrl($tree, $xref, $module->type)
                     ]) ?>
                 <?php else : ?>
@@ -25,7 +25,7 @@ use Fisharebest\Webtrees\View;
                         'xref'  => $xref,
                         'type'  => $module->type,
                         'class' => 'btn btn-success',
-                        'text'  => I18N::translate('Add to menu'),
+                        'text'  => I18N::translate('Add link to menu/block'),
                         'url'   => $module->getUrl($tree, $xref, $module->type)
                     ]) ?>
                 <?php endif ?>
