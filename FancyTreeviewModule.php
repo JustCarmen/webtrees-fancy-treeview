@@ -408,6 +408,21 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     }
 
     /**
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function getHelpTextAction(): ResponseInterface
+    {
+        $html = view('modals/help', [
+            'title' => I18N::translate('Fancy Treeview Help'),
+            'text'  => View($this->name() . '::helptext')
+        ]);
+
+        return response($html);
+    }
+
+    /**
      * A menu, to be added to the main application menu.
      *
      * @param Tree $tree

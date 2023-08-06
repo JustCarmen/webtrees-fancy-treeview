@@ -8,7 +8,11 @@ use Fisharebest\Webtrees\View;
 <?php if (Auth::isAdmin()) : ?>
     <div class="jc-fancy-treeview-menu-edit collapse">
         <div class="dropdown-divider"></div>
-        <span class="dropdown-item-text fw-bold"><?= I18N::translate('Link to Fancy Treeview page') ?></span>
+        <span class="dropdown-item-text fw-bold"><?= I18N::translate('Link to Fancy Treeview page') ?>
+            <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route('module', ['module' => $module->name(), 'action' => 'HelpText'])) ?>">
+                <?= view('icons/help') ?>
+            </a>
+        </span>
         <?php if ($module->isMenuItem($tree, $individual->xref(), 'ancestors')) : ?>
             <?= View($module->name() . '::menu-item-remove', ['tree' => $tree, 'xref' => $individual->xref(), 'type' => 'ancestors', 'url' => $individual->url() . '#tab-_jc-fancy-treeview_', 'text' => I18N::translate('Remove link to ancestors page')]); ?>
         <?php else : ?>
