@@ -357,8 +357,7 @@ msgstr "每个选项卡最大生成数"
 
 #: resources/views/settings.phtml:44 resources/views/settings.phtml:60
 msgid "More generations require more memory so the page takes longer to fully load."
-msgstr "更多的代需电脑内存更高，因此页面需要更长的时间才能完全加载。\n"
-""
+msgstr "更多的代需电脑内存更高，因此页面需要更长的时间才能完全加载。"
 
 #. I18N: ninth marriage
 #: FancyTreeviewModule.php:998
