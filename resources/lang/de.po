@@ -279,7 +279,7 @@ msgstr "Er wurde getauft"
 #: FancyTreeviewModule.php:1344
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "Er wurde getauft"
+msgstr "Er ist getauft worden"
 
 #: FancyTreeviewModule.php:1324
 msgctxt "PAST"
@@ -289,7 +289,7 @@ msgstr "Er wurde geboren"
 #: FancyTreeviewModule.php:1326
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Er wurde geboren"
+msgstr "Er ist geboren"
 
 #: resources/views/settings.phtml:159
 msgid "Highest and lowest level"
@@ -578,15 +578,17 @@ msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "wurde geboren"
 
+#. Should be consistent with webtrees, where burial is translated with "Bestattung"
 #: FancyTreeviewModule.php:1383
 msgctxt "FEMALE"
 msgid "was buried"
-msgstr "wurde begraben"
+msgstr "wurde bestattet"
 
+#. Should be consistent with webtrees, where burial is translated with "Bestattung"
 #: FancyTreeviewModule.php:1383
 msgctxt "MALE"
 msgid "was buried"
-msgstr "wurde begraben"
+msgstr "wurde bestattet"
 
 #: FancyTreeviewModule.php:1391
 msgctxt "FEMALE"

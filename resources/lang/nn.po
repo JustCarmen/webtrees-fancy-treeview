@@ -16,12 +16,12 @@ msgstr " "
 #: resources/views/block-content.phtml:37
 #: resources/views/block-content.phtml:42
 msgid "%s complete"
-msgstr "%s complete"
+msgstr "%s fullstendig"
 
 #: resources/views/block-content.phtml:36
 #: resources/views/block-content.phtml:41
 msgid "%s of %s possible ancestors"
-msgstr "%s of %s possible ancestors"
+msgstr "%s av %s mogelege anar"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:102
@@ -30,11 +30,11 @@ msgstr "<strong>Merk</strong>: dette valet kan vere tid og/eller resurskrevande,
 
 #: resources/views/settings.phtml:173
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "Landkode, 2 bokstavar"
 
 #: resources/views/settings.phtml:172
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "Landkode, 3 bokstavar"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:114
@@ -95,26 +95,26 @@ msgstr "og "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:218
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Vel \"ja\" om du ynskjer å syne namn på selskap/arbeidsgjevar (Gedcom-kode \"AGNC\") saman med yrke. Teksten synast kun i samband med yrke."
 
 #: resources/views/settings.phtml:158
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "Som definert i webtrees"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1225
 msgid "at %s"
-msgstr "at %s"
+msgstr "ved %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1420
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "i alder av %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1418
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "i ein alder av 1 %s"
 
 #: resources/views/settings.phtml:85
 msgid "Check relationship between partners"
@@ -148,11 +148,11 @@ msgstr "døydde"
 
 #: resources/views/settings.phtml:181
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Syn namn på heimland"
 
 #: resources/views/settings.phtml:160
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "Ikkje syn stadnamn"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:881
@@ -215,11 +215,11 @@ msgstr "fjerde"
 
 #: resources/views/settings.phtml:171
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Fullt namn på land"
 
 #: resources/views/settings.phtml:157
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Fullt stadnamn"
 
 #: FancyTreeviewModule.php:1046
 msgctxt "One parent/multiple children"
@@ -244,22 +244,22 @@ msgstr "fekk"
 #: FancyTreeviewModule.php:1048
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "har"
 
 #: FancyTreeviewModule.php:1018 FancyTreeviewModule.php:1054
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "har"
 
 #: FancyTreeviewModule.php:1034
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "har"
 
 #: FancyTreeviewModule.php:1012 FancyTreeviewModule.php:1040
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "har"
 
 #: FancyTreeviewModule.php:968
 msgid "He had a relationship with"
@@ -292,15 +292,15 @@ msgstr "Han er fødd"
 
 #: resources/views/settings.phtml:159
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Høgaste og lavaste nivå"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
-msgstr "Home country"
+msgstr "Heimland"
 
 #: resources/views/settings.phtml:91
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
+msgstr "Om \"ja\", vil det sjekkast om ektepar (gifte) har felles anar. Om det finnast slekskap mellom ektefellane, vil dette synast avhengig av visningstype."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1448
@@ -316,15 +316,15 @@ msgstr "i "
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"
-msgstr "in %s"
+msgstr "i %s"
 
 #: resources/views/settings.phtml:96
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
+msgstr "ved syning av anar: for kvar generasjon synast tal på personar og det størst mogelege tal på anar i den generasjonen. I tilfelle samanfallande anar,  vil tal på mogelege anar i følgjande generasjonar verte berekna deretter."
 
 #: resources/views/settings.phtml:95
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
+msgstr "ved syning av etterkomarar: etter ektefellane sitt namn vil slektskap synast i parentes."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:234
@@ -360,11 +360,11 @@ msgstr "den "
 
 #: resources/views/settings.phtml:167
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Innstilling for syning av land"
 
 #: resources/views/settings.phtml:153
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Innstilling for syning av stadnamn"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -390,7 +390,7 @@ msgstr "Vel \"ja\" om du kun ynskjer å syne bileter av typen \"fotografi\". And
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:73
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Vel \"ja\" om du ynskjer å syne einslege i neste generasjon. Einslege er personar utan partner og born. Om du vel \"ja\", vil kvart barn i ein familie verte synt detaljert form i neste generasjon."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:875
@@ -456,11 +456,11 @@ msgstr "Syn etterkomarar"
 
 #: resources/views/settings.phtml:247
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "Syn notat i nivå 1"
 
 #: resources/views/settings.phtml:201
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Syn yrke"
 
 #: resources/views/settings.phtml:136
 msgid "Show only media from the type 'photo'"
@@ -472,7 +472,7 @@ msgstr "Syn einslege"
 
 #: resources/views/settings.phtml:212
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Syn namn på selskap/arbeidsgjevar"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:879
@@ -509,7 +509,7 @@ msgstr "Detaljane om denne generasjonen er private."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
-msgstr "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
+msgstr "Tal på mogelege anar i denne generasjonen har blitt redusert grunna felles anar. Utan reduksjon ville det maksimale talet på anar i denne generasjonen vere %s."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:876
@@ -531,7 +531,7 @@ msgstr "Denne personen gifta seg %s gongar"
 
 #: resources/views/settings.phtml:71
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "Denne innstillinga gjeld kun side eller fane for etterkomarar."
 
 #: resources/views/settings.phtml:114
 msgid "Thumbnail size"

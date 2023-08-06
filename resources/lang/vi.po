@@ -21,7 +21,7 @@ msgstr "tất cả"
 #: resources/views/block-content.phtml:36
 #: resources/views/block-content.phtml:41
 msgid "%s of %s possible ancestors"
-msgstr "% của% có thể là tổ tiên"
+msgstr "%s của %s có thể là tổ tiên"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:102
@@ -47,7 +47,7 @@ msgstr "Thêm tổ tiên vào danh sách"
 
 #: resources/views/menu-edit.phtml:20
 msgid "Add descendants to menu"
-msgstr "Thêm hậu duệ"
+msgstr "Thêm hậu duệ vào danh sách"
 
 #: resources/views/page.phtml:28
 msgid "Add to menu"
@@ -56,12 +56,12 @@ msgstr "Thêm vào danh mục"
 #: FancyTreeviewModule.php:1087
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr "con nuôi"
+msgstr "con gái nuôi"
 
 #: FancyTreeviewModule.php:1090
 msgctxt "MALE"
 msgid "adopted child"
-msgstr "con nuôi"
+msgstr "con trai nuôi"
 
 #: FancyTreeviewModule.php:1154
 msgid "adopted child of"
@@ -77,7 +77,7 @@ msgstr "con trai nuôi của"
 
 #: resources/views/settings.phtml:228
 msgid "Always write the occupation exactly as it appears in the Gedcom"
-msgstr "Luôn viết nghề nghiệp chính xác như trong Gedcom"
+msgstr "Luôn viết nghề nghiệp chính xác như nó hiển thị trong Gedcom"
 
 #: FancyTreeviewModule.php:446
 msgid "Ancestors and descendants"
@@ -90,7 +90,7 @@ msgstr "Tổ tiên và con cháu"
 #: FancyTreeviewModule.php:1374 FancyTreeviewModule.php:1382
 #: FancyTreeviewModule.php:1390
 msgid "and "
-msgstr "và"
+msgstr "và "
 
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:218
@@ -109,7 +109,7 @@ msgstr "ở %s"
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1420
 msgid "at the age of %s"
-msgstr "ở tuổi %s"
+msgstr "hưởng thọ %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1418
@@ -130,7 +130,7 @@ msgstr "Cắt hình thu nhỏ thành hình vuông"
 
 #: resources/views/settings.phtml:19
 msgid "Default list type"
-msgstr "Danh sách mặc định"
+msgstr "Kiểu danh sách mặc định"
 
 #: FancyTreeviewModule.php:448
 msgid "Descendants and ancestors"
@@ -148,7 +148,7 @@ msgstr "mất"
 
 #: resources/views/settings.phtml:181
 msgid "Display home country name"
-msgstr "Hiển thị tên quốc gia"
+msgstr "Hiển thị tên quốc gia nơi sinh"
 
 #: resources/views/settings.phtml:160
 msgid "Don't show place names"
@@ -254,7 +254,7 @@ msgstr "đã có"
 #: FancyTreeviewModule.php:1034
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "đac có"
+msgstr "đã có"
 
 #: FancyTreeviewModule.php:1012 FancyTreeviewModule.php:1040
 msgctxt "Two parents/one child"
@@ -296,7 +296,7 @@ msgstr "Cấp cao nhất và thấp nhất"
 
 #: resources/views/settings.phtml:191
 msgid "Home country"
-msgstr "Nước gốc"
+msgstr "Nước sinh ra"
 
 #: resources/views/settings.phtml:91
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
@@ -306,13 +306,13 @@ msgstr "Nếu câu trả lời là “có”, tập lệnh sẽ kiểm tra xem m
 #: FancyTreeviewModule.php:1448
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
-msgstr "tại"
+msgstr "vào "
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1451
 msgctxt "before dateformat yyyy"
 msgid "in "
-msgstr "tại"
+msgstr "năm "
 
 #: FancyTreeviewModule.php:1482
 msgid "in %s"
@@ -350,13 +350,13 @@ msgstr "thứ chín"
 
 #: FancyTreeviewModule.php:1021
 msgid "no children"
-msgstr "Không con cái"
+msgstr "Không có con cái"
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1445
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
-msgstr "ở"
+msgstr "vào "
 
 #: resources/views/settings.phtml:167
 msgid "Preference for displaying countries"
@@ -419,12 +419,12 @@ msgstr "thứ bảy"
 
 #: FancyTreeviewModule.php:971
 msgid "She had a relationship with"
-msgstr "Bà có quan hệ với"
+msgstr "Bà có mối quan hệ với"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:894
 msgid "She married %s times"
-msgstr "Bà cưới vào năm"
+msgstr "Bà cưới %s lần"
 
 #: FancyTreeviewModule.php:1342
 msgctxt "PAST"
@@ -464,7 +464,7 @@ msgstr "Hiển thị nghề nghiệp"
 
 #: resources/views/settings.phtml:136
 msgid "Show only media from the type 'photo'"
-msgstr "Chỉ hiển thị phương tiện từ loại ảnh"
+msgstr "Chỉ hiển thị hình ảnh"
 
 #: resources/views/settings.phtml:66
 msgid "Show singles"
@@ -518,16 +518,16 @@ msgstr "thứ ba"
 
 #: FancyTreeviewModule.php:974
 msgid "This individual had a relationship with"
-msgstr "Người này từng có quan hệ với"
+msgstr "Người này từng có mối quan hệ với"
 
 #: FancyTreeviewModule.php:914
 msgid "This individual married"
-msgstr "Người này kết hôn"
+msgstr "Người này đã kết hôn"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:900
 msgid "This individual married %s times"
-msgstr "Người này kết hôn năm"
+msgstr "Người này kết hôn %s lần"
 
 #: resources/views/settings.phtml:71
 msgid "This setting only applies to the page or tab containing the descendants."
