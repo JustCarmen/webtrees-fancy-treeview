@@ -63,7 +63,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
 
     // Module constants
     public const CUSTOM_AUTHOR = 'JustCarmen';
-    public const CUSTOM_VERSION = '2.0.1';
+    public const CUSTOM_VERSION = '2.0.2';
     public const GITHUB_REPO = 'webtrees-fancy-treeview';
     public const AUTHOR_WEBSITE = 'https://justcarmen.nl';
     public const CUSTOM_SUPPORT_URL = self::AUTHOR_WEBSITE . '/modules-webtrees-2/fancy-treeview/';
