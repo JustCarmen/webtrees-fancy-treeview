@@ -114,7 +114,7 @@ msgstr "barn av"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Klikk her for å opprette en link til siden Fancy Treeview."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
@@ -174,7 +174,7 @@ msgstr "Fancy Treeview"
 
 #: FancyTreeviewModule.php:418
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Hjelp for Fancy Treeview"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:994
@@ -227,7 +227,7 @@ msgstr "Fullt stedsnavn"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Gå til kontrollpanel for å sette tilgangsnivå. her kan du også velge å skjule menyen."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
@@ -304,7 +304,7 @@ msgstr "Han er født"
 
 #: resources/views/settings.phtml:162
 msgid "Highest and lowest level"
-msgstr "Høyeste og laveste verdi"
+msgstr "Høyeste og laveste nivå"
 
 #: resources/views/settings.phtml:194
 msgid "Home country"

@@ -114,19 +114,19 @@ msgstr "barn af"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Klik her for at tilføje eller fjerne et link til Fancy-Treeview-siden."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "Tilføj link til anesiden"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "Tilføj link til efterkommersiden"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "Tilføj link til denne side"
 
 #: resources/views/settings.phtml:127
 msgid "Crop thumbnails to square"
@@ -174,7 +174,7 @@ msgstr "Fancy Treeview"
 
 #: FancyTreeviewModule.php:418
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Hjælp til Fancy Treeview"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:994
@@ -227,11 +227,11 @@ msgstr "Fuldt stednavn"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "I kontrolpanelet fastsætter du adgangsniveauet til menuen. Du kan vælge at skjule menuen."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Vælg menupunktet 'Tilpas denne side' i forsidens menu 'Mine sider' for at tilføje blokken Fancy Treeview med de valgte links."
 
 #: FancyTreeviewModule.php:1162
 msgctxt "One parent/multiple children"
@@ -345,7 +345,7 @@ msgstr "De fleste beskæftigelser i GEDCOM får stort begyndelsesbogstav i solit
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "Link til Fancy-Treeview-side"
 
 #: resources/views/settings.phtml:35
 msgid "Maximum number of generations per page"
@@ -388,15 +388,15 @@ msgstr "Læs mere"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "Fjern link til anesiden"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "Fjern link til efterkommersiden"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "Fjern link til denne side"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:144
@@ -525,11 +525,11 @@ msgstr "Detaljerne for denne generation er private."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "De tilføjede links bliver indeholdt i Fancy-Treeview-menuen og Fancy-Treeview-blokken på forsiden."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "Menuen og forsideblokken indeholder de samme links. Dog er forsideblokkens fremtoning gjort ekstra "
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
@@ -537,7 +537,7 @@ msgstr "Antallet af mulige aner i denne generation er formindsket på grund af a
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "Titlen på menuen og forsideblokken er Oversigt"
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:992
@@ -631,9 +631,9 @@ msgstr "blev skilt"
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "Du kan oprette links fra Fancy-Treeview-siden eller fra redigermenuen på individsiden."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "Du kan bruge både menuen og forsideblokken eller kun én af  dem."
 

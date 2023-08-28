@@ -114,19 +114,19 @@ msgstr "ребенок от"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Нажмите здесь, чтобы создать или удалить ссылку на страницу Причудливый древовидный вид."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "Создать ссылку на страницу предков"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "Создать ссылку на страницу потомков"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "Создать ссылку на эту страницу"
 
 #: resources/views/settings.phtml:127
 msgid "Crop thumbnails to square"
@@ -174,7 +174,7 @@ msgstr "Родословная роспись"
 
 #: FancyTreeviewModule.php:418
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Справка по необычному древовидному представлению"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:994
@@ -227,11 +227,11 @@ msgstr "Полное название места"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Зайдите в панель управления, чтобы установить уровень доступа к меню. Там же вы можете скрыть меню."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Перейдите на домашнюю страницу, нажмите «Мои страницы»/настройте эту страницу, чтобы добавить блок домашней страницы Причудливый древовидный вид с созданными ссылками."
 
 #: FancyTreeviewModule.php:1162
 msgctxt "One parent/multiple children"
@@ -346,7 +346,7 @@ msgstr "В файле Gedcom первая буква большинства пр
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "Ссылка на страницу Причудливый древовидный вид"
 
 #: resources/views/settings.phtml:35
 msgid "Maximum number of generations per page"
@@ -389,15 +389,15 @@ msgstr "Подробнее"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "Удалить ссылку на страницу предков"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "Удалить ссылку на страницу потомков"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "Удалить ссылку на эту страницу"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:144
@@ -526,11 +526,11 @@ msgstr "Сведения об этой семье являются частны�
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "Созданные ссылки будут включены в меню Причудливый древовидный вид и в блок домашней страницы Причудливый древовидный вид."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "Блок меню и главной страницы содержат одинаковые ссылки. Однако внешний вид блока главной страницы стал более привлекательным за счет добавления изображений для ссылок."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
@@ -538,7 +538,7 @@ msgstr "Количество возможных предков в этом по�
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "Название блока меню и домашней страницы — «Обзор семейного древа»."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:992
@@ -632,9 +632,9 @@ msgstr "были разведены"
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "Вы можете создавать ссылки на странице Причудливый древовидный вид или в меню редактирования на отдельной странице."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "Вы можете использовать как блок меню, так и блок домашней страницы или выбрать любой из них."
 

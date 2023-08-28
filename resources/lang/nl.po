@@ -114,7 +114,7 @@ msgstr "kind van"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Klik hier om een link naar de Fancy Treeviewpagina te maken of the verwijderen."
+msgstr "Klik hier om een link naar de Fancy Treeviewpagina te maken of te verwijderen."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"

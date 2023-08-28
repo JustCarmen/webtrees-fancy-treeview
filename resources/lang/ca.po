@@ -115,19 +115,19 @@ msgstr "fill de"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Feu clic aquí per crear o eliminar un enllaç a la pàgina Fancy Treeview."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "Crea un enllaç a la pàgina dels avantpassats"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "Crear enllaç a la pàgina de descendents"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "Crear un enllaç aquesta pàgina"
 
 #: resources/views/settings.phtml:127
 msgid "Crop thumbnails to square"
@@ -175,7 +175,7 @@ msgstr "Fancy Treeview"
 
 #: FancyTreeviewModule.php:418
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Ajuda de Fancy Treeview"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:994
@@ -228,11 +228,11 @@ msgstr "Topònim complet"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Aneu al tauler de control per definir el nivell d'accés al menú. Allà també podeu optar per amagar el menú."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Aneu a la pàgina d'inici, feu clic a les meves pàgines / personalitzeu aquesta pàgina per afegir el bloc de la pàgina d'inici de Fancy Treeview amb els enllaços creats."
 
 #: FancyTreeviewModule.php:1162
 msgctxt "One parent/multiple children"
@@ -347,7 +347,8 @@ msgstr "En el fitxer Gedcom, la primera lletra de la majoria d'ocupacions està 
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "Enllaç a la pàgina de Fancy Treeview\n"
+""
 
 #: resources/views/settings.phtml:35
 msgid "Maximum number of generations per page"
@@ -390,15 +391,15 @@ msgstr "Llegir més"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "Suprimeix l'enllaç a la pàgina dels avantpassats"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "Suprimeix l'enllaç a la pàgina descendents"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "Suprimeix l'enllaç a aquesta pàgina"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:144
@@ -527,11 +528,11 @@ msgstr "Els detalls d'aquesta generació són privats."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "Els enllaços creats s'inclouran al menú Fancy Treeview i al bloc Fancy Treeview homepage."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "El menú i el bloc de la pàgina d'inici contenen els mateixos enllaços. No obstant això, l'aparença del bloc de la pàgina d'inici s'ha fet més atractiva afegint imatges per als enllaços."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
@@ -539,7 +540,7 @@ msgstr "El nombre de possibles avantpassats d'aquesta generació s'ha reduït a 
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "El títol del menú i del bloc de la pàgina d'inici és \"Visió general de l'arbre genealògic\"."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:992
@@ -633,9 +634,9 @@ msgstr "es van divorciar"
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "Podeu crear enllaços des de la pàgina Fancy Treeview o des del menú d'edició de la pàgina individual."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "Podeu utilitzar tant el menú com el bloc de la pàgina d'inici o optar per utilitzar-los."
 

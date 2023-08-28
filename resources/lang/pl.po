@@ -174,7 +174,7 @@ msgstr "Ozdobny widok drzewa"
 
 #: FancyTreeviewModule.php:418
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Pomoc do Fancy Treeview"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:994
@@ -256,22 +256,22 @@ msgstr "ma"
 #: FancyTreeviewModule.php:1164
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "ma"
 
 #: FancyTreeviewModule.php:1134 FancyTreeviewModule.php:1170
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "ma"
 
 #: FancyTreeviewModule.php:1150
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "mają"
 
 #: FancyTreeviewModule.php:1128 FancyTreeviewModule.php:1156
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "mają"
 
 #: FancyTreeviewModule.php:1084
 msgid "He had a relationship with"
@@ -583,7 +583,7 @@ msgstr "została ochrzczona"
 #: FancyTreeviewModule.php:1467
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "został ochrzczony"
 
 #: FancyTreeviewModule.php:1447
 msgctxt "PAST (FEMALE)"
