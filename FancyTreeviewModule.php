@@ -152,16 +152,6 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     }
 
     /**
-     * Fetch the latest version of this module.
-     *
-     * @return string
-     */
-    public function customModuleLatestVersion(): string
-    {
-        return 'https://github.com/' . self::CUSTOM_AUTHOR . '/' . self::GITHUB_REPO . '/releases/latest';
-    }
-
-    /**
      * {@inheritDoc}
      * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleSupportUrl()
      */
