@@ -16,25 +16,25 @@ msgstr " "
 #: resources/views/block-content.phtml:37
 #: resources/views/block-content.phtml:42
 msgid "%s complete"
-msgstr "%s complete"
+msgstr "%s kompletní"
 
 #: resources/views/block-content.phtml:36
 #: resources/views/block-content.phtml:41
 msgid "%s of %s possible ancestors"
-msgstr "%s of %s possible ancestors"
+msgstr "%s z %s možných předků"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:103
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
+msgstr "<strong>Poznámka</strong>: tato možnost může být časově a/nebo paměťově náročná, zejména u velkých stromů. Může způsobit velmi pomalé načítání stránky nebo chybu \"execution time out\" na serveru. Pokud takové chování zpozorujete, snižte maximální počet generací na stránku nebo panel a/nebo ji nepoužívejte v kombinaci s možností \"zobrazit svobodné\". Pokud se problémy přesto vyskytnou, ponechte odpověď \"ne\"."
 
 #: resources/views/settings.phtml:176
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "Dvoupísmenný kód země"
 
 #: resources/views/settings.phtml:175
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "Třípísmenný kód země"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:123
@@ -83,26 +83,26 @@ msgstr "a "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:222
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Odpovězte \"ano\", pokud chcete s povoláním zobrazit název společnosti/zaměstnavatele (Gedcom-tag \"AGNC\") . Text se zobrazí pouze ve spojení s povoláním."
 
 #: resources/views/settings.phtml:161
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "Jak je definováno ve webtrees"
 
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1341
 msgid "at %s"
-msgstr "at %s"
+msgstr "v %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1541
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "ve věku %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1539
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "ve věku 1 %s"
 
 #: resources/views/settings.phtml:86
 msgid "Check relationship between partners"
@@ -114,19 +114,19 @@ msgstr "dítě (čí)"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Kliknutím sem vytvoříte nebo odstraníte odkaz na stránku Fancy Treeview."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "Vytvořit odkaz na stránku předků"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "Vytvořit odkaz na stránku potomů"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "Vytvořit odkaz na tuto stránku"
 
 #: resources/views/settings.phtml:127
 msgid "Crop thumbnails to square"
@@ -152,11 +152,11 @@ msgstr "zemřel"
 
 #: resources/views/settings.phtml:184
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Zobrazit název domovské země"
 
 #: resources/views/settings.phtml:163
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "Nezobrazovat názvy míst"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:997
@@ -174,7 +174,7 @@ msgstr "Fancy Treeview"
 
 #: FancyTreeviewModule.php:418
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Nápověda k Fancy Treeview"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:994
@@ -219,19 +219,19 @@ msgstr "čtvrtý"
 
 #: resources/views/settings.phtml:174
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Úplný název země"
 
 #: resources/views/settings.phtml:160
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Úplný název místa"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Přejděte na panel správy a nastavte úroveň přístupu do nabídky. Tam můžete také zvolit skrytí nabídky."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Přejděte na domovskou stránku, klikněte na moje stránky/přizpůsobit tuto stránku a přidejte blok domovské stránky Fancy Treeview s vytvořenými odkazy."
 
 #: FancyTreeviewModule.php:1162
 msgctxt "One parent/multiple children"
@@ -256,22 +256,22 @@ msgstr "měli"
 #: FancyTreeviewModule.php:1164
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "má"
 
 #: FancyTreeviewModule.php:1134 FancyTreeviewModule.php:1170
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "má"
 
 #: FancyTreeviewModule.php:1150
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "mají"
 
 #: FancyTreeviewModule.php:1128 FancyTreeviewModule.php:1156
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "mají"
 
 #: FancyTreeviewModule.php:1084
 msgid "He had a relationship with"
@@ -304,11 +304,11 @@ msgstr "Narodil se"
 
 #: resources/views/settings.phtml:162
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Nejvyšší a nejnižší úroveň"
 
 #: resources/views/settings.phtml:194
 msgid "Home country"
-msgstr "Home country"
+msgstr "Domovská země"
 
 #: resources/views/settings.phtml:92
 #, fuzzy
@@ -329,24 +329,24 @@ msgstr "v roce "
 
 #: FancyTreeviewModule.php:1603
 msgid "in %s"
-msgstr "in %s"
+msgstr "v %s"
 
 #: resources/views/settings.phtml:97
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
+msgstr "v zobrazení předků: u každé generace je uveden počet osob a maximální počet možných předků v dané generaci. Počet možných předků v následujících generacích se přepočítává v případě kolapsu rodokmenu."
 
 #: resources/views/settings.phtml:96
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
+msgstr "v zobrazení potomků: za jmény manželů se objeví text v závorce, který označuje pokrevní příbuznost."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:238
 msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
-msgstr "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
+msgstr "V souboru gedcom se první písmeno většiny povolání píše s velkým písmenem (jako samostatné slovo), ale v tomto modulu používáme povolání uprostřed věty. Pravidla pravopisu ve většině jazyků vyžadují, aby se povolání v této situaci psalo s malým písmenem. Pokud nechcete, aby modul změnil pravopis, změňte odpověď na \"ano\"."
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "Odkaz na stránku Fancy Treeview"
 
 #: resources/views/settings.phtml:35
 msgid "Maximum number of generations per page"
@@ -358,7 +358,7 @@ msgstr "Maximální počet generací na panelu"
 
 #: resources/views/settings.phtml:44 resources/views/settings.phtml:60
 msgid "More generations require more memory so the page takes longer to fully load."
-msgstr "More generations require more memory so the page takes longer to fully load."
+msgstr "Čím více generací, tím větší požadavky na paměť, takže se stránka déle načítá."
 
 #. I18N: ninth marriage
 #: FancyTreeviewModule.php:998
@@ -377,11 +377,11 @@ msgstr "dne "
 
 #: resources/views/settings.phtml:170
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Předvolba pro zobrazování zemí"
 
 #: resources/views/settings.phtml:156
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Předvolba pro zobrazování míst"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -389,25 +389,25 @@ msgstr "Zobrazit více"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "Odstranit odkaz na stránku předků"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "Odstranit odkaz na stránku potomků"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "Odstranit odkaz na tuto stránku"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:144
 msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
-msgstr "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
+msgstr "Pokud chcete zobrazit pouze obrázky typu \"fotografie\", odpovězte \"ano\". Ostatní zvýrazněné obrázky, jako jsou certifikáty, dokumenty nebo náhrobky, nebudou použity. Pokud jste ve svém gedcomu nerozlišovali podle typu média, ponechte odpověď \"ne\"."
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:74
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Pokud chcete zobrazit svobodné v další generaci, odpovězte \"ano\". Svobodní jsou jednotlivci bez partnera a dětí. Pokud zvolíte \"ano\", zobrazí se v další generaci podrobně každé dítě z rodiny."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:991
@@ -417,7 +417,7 @@ msgstr "druhé"
 #. I18N: Help text for the “Default list type” configuration setting
 #: resources/views/settings.phtml:27
 msgid "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
-msgstr "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
+msgstr "Jako výchozí typ seznamu vyberte \"potomci\" nebo \"předci\". Na panelu osoby se tento typ seznamu zobrazí jako první."
 
 #. I18N: Help text for the “Maximum number of generations per page” configuration setting
 #: resources/views/settings.phtml:42
@@ -427,7 +427,7 @@ msgstr "Zvolit maximální počet generací na stránce Popis stromu."
 #. I18N: Help text for the “Maximum number of generations per tab” configuration setting
 #: resources/views/settings.phtml:58
 msgid "Select the maximum number of generations to show on the individual page tab."
-msgstr "Zvolit maximální počet generací na panelu na strýánce osoby."
+msgstr "Zvolit maximální počet generací na panelu na stránce osoby."
 
 #. I18N: seventh marriage
 #: FancyTreeviewModule.php:996
@@ -473,11 +473,11 @@ msgstr "Zobrazit potomky"
 
 #: resources/views/settings.phtml:252
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "Zobrazit poznámky úrovně 1"
 
 #: resources/views/settings.phtml:205
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Zobrazit povolání"
 
 #: resources/views/settings.phtml:138
 msgid "Show only media from the type 'photo'"
@@ -489,7 +489,7 @@ msgstr "Zobrazit svobodné"
 
 #: resources/views/settings.phtml:216
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Zobrazit název společnosti/zaměstnavatele"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:995
@@ -526,19 +526,19 @@ msgstr "Podrobnosti o této generaci jsou soukromé."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "Vytvořené odkazy budou zahrnuty do nabídky Fancy Treeview a do bloku domovské stránky Fancy Treeview."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "Menu a blok domovské stránky obsahují stejné odkazy. Vzhled bloku domovské stránky byl však zatraktivněn přidáním obrázků pro odkazy."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
-msgstr "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
+msgstr "Počet možných předků v této generaci byl snížen z důvodu kolapsu rodokmenu. Bez snížení by maximální počet předků v této generaci byl %s."
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "Název nabídky a bloku domovské stránky je \"Potomci a předci\"."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:992
@@ -560,7 +560,7 @@ msgstr "Tato osoba uzavřela sňatek %s krát"
 
 #: resources/views/settings.phtml:72
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "Toto nastavení se vztahuje pouze na stránku nebo panel obsahující potomky."
 
 #: resources/views/settings.phtml:116
 msgid "Thumbnail size"
@@ -632,9 +632,9 @@ msgstr "rozvedeni"
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "Odkazy můžete vytvářet na stránce Fancy Treeview nebo v nabídce úprav na stránce osoby."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "Můžete použít jak blok menu, tak blok domovské stránky, nebo se rozhodnout pro jeden z nich."
 

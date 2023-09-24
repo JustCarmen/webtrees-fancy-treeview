@@ -97,12 +97,12 @@ msgstr "Ved %s"
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1541
 msgid "at the age of %s"
-msgstr "ved %s års alder"
+msgstr "i en alder av %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1539
 msgid "at the age of 1 %s"
-msgstr "Ved 1 %s års alder"
+msgstr "i en alder av 1 %s"
 
 #: resources/views/settings.phtml:86
 msgid "Check relationship between partners"
@@ -152,7 +152,7 @@ msgstr "døde"
 
 #: resources/views/settings.phtml:184
 msgid "Display home country name"
-msgstr "Vis hjemlandet"
+msgstr "Vis hjemland"
 
 #: resources/views/settings.phtml:163
 msgid "Don't show place names"

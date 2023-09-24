@@ -92,7 +92,7 @@ msgstr "Eins og skilgreint í webtrees"
 #. I18N: %s is the Gedcom tag AGNC (Agency)
 #: FancyTreeviewModule.php:1341
 msgid "at %s"
-msgstr "kl. %s"
+msgstr "hjá %s"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1541
@@ -165,7 +165,7 @@ msgstr "Áttunda"
 
 #: FancyTreeviewModule.php:456 FancyTreeviewModule.php:514
 msgid "Family tree overview"
-msgstr "Ættartölu yfirlit"
+msgstr "Ættartöluyfirlit"
 
 #. I18N: Name of a module
 #: FancyTreeviewModule.php:112
@@ -537,7 +537,7 @@ msgstr "Mögulegum forfeðrum í þessari kynslóð hefur fækkað vegna ættart
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "Titill valmyndar og heimasíðublokkar er  “Ættartölu yfirlit”."
+msgstr "Titill valmyndar og heimasíðublokkar er  “Ættartöluyfirlit”."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:992
