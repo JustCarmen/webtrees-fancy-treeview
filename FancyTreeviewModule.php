@@ -173,6 +173,11 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
 
         // Register a namespace for our views.
         View::registerNamespace($this->name(), $this->resourcesFolder() . 'views/');
+
+         // Temporary code. Due to changes in this version of the module we need to reset the option place format
+         if (!in_array($this->getPreference('places-format'), ['custom', 'webtrees', 'none'])) {
+            $this->setPreference('places-format', 'custom');
+        }
     }
 
     /**
