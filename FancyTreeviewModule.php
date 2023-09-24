@@ -253,7 +253,9 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             'thumb-size'            => '80', // integer
             'crop-thumbs'           => '0',  // boolean
             'media-type-photo'      => '0',  // boolean
-            'places-format'         => 'full', // string
+            'places-format'         => 'custom', // string
+            'places-format-hc'      => 'full', // string
+            'places-format-oc'      => 'full', // string
             'countries-format'      => 'full', // string
             'show-home-country'     => '1', // boolean
             'home-country'          => '', // string
@@ -287,6 +289,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             'crop_thumbs'           => $this->options('crop-thumbs'),
             'media_type_photo'      => $this->options('media-type-photo'),
             'places_format'         => $this->options('places-format'),
+            'places_format_hc'      => $this->options('places-format-hc'),
+            'places_format_oc'      => $this->options('places-format-oc'),
             'countries_format'      => $this->options('countries-format'),
             'show_home_country'     => $this->options('show-home-country'),
             'home_country'          => $this->options('home-country'),
@@ -318,6 +322,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $this->setPreference('crop-thumbs', $params['crop-thumbs']);
             $this->setPreference('media-type-photo', $params['media-type-photo']);
             $this->setPreference('places-format', $params['places-format']);
+            $this->setPreference('places-format-hc', $params['places-format-hc']);
+            $this->setPreference('places-format-oc', $params['places-format-oc']);
             $this->setPreference('countries-format', $params['countries-format']);
             $this->setPreference('show-home-country', $params['show-home-country']);
             $this->setPreference('home-country', $params['home-country']);
@@ -1748,21 +1754,33 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $iso3 = array_search ($country, $this->getCountryList()) ?: $country;
         $iso2 = $this->country_service->iso3166()[$iso3] ?? $iso3;
 
-        if ($this->options('places-format') === 'highlow') {
-            $parts = collect([$parts->first(), $parts->last()]);
+        if ($this->options('countries-format') === 'iso2') {
+            $parts = $parts->slice(0, -1)->push($iso2);
         }
 
-        if ($this->options('show-home-country') === '0' && $iso3 === $this->options('home-country')) {
-            $new_place = $parts->slice(0, -1);
-        } elseif ($this->options('countries-format') === 'iso2') {
-            $new_place = $parts->slice(0, -1)->push($iso2);
-        } elseif ($this->options('countries-format') === 'iso3') {
-            $new_place = $parts->slice(0, -1)->push($iso3);
+        if ($this->options('countries-format') === 'iso3') {
+            $parts = $parts->slice(0, -1)->push($iso3);
+        }
+
+        if ($this->options('home-country') === $iso3) {
+            if ($this->options('show-home-country') === '0') {
+                $parts = $parts->slice(0, -1);
+            }
+
+            if ($this->options('places-format-hc') === 'highlow') {
+                $parts = collect([$parts->first(), $parts->last()]);
+            }
+
+            if ($this->options('places-format-hc') === 'low') {
+                $parts = collect([$parts->first()]);
+            }
         } else {
-            $new_place = $parts;
+            if ($this->options('places-format-oc') === 'highlow') {
+                $parts = collect([$parts->first(), $parts->last()]);
+            }
         }
 
-        return $new_place->implode(', ');
+        return $parts->implode(', ');
     }
 
     /**

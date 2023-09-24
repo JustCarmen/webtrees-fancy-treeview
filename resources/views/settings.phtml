@@ -1,6 +1,7 @@
 <?php
 
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 
 ?>
@@ -157,15 +158,39 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </label>
             <div class="col-sm-3">
                 <?= view('components/select', ['name' => 'places-format', 'selected' => $places_format, 'options' => [
-                    'full'          => I18N::translate('Full place name'),
+                    'custom'        => I18N::translate('Customized'),
                     'webtrees'      => I18N::translate('As defined in webtrees'),
-                    'highlow'       => I18N::translate('Highest and lowest level'),
                     'none'          => I18N::translate('Don\'t show place names')
                 ]]) ?>
             </div>
         </div>
+        <!-- HOME COUNTRY FORMAT-->
+        <div class="row mb-3 jc-group1 collapse <?= $places_format === 'custom' ? 'show' : '' ?>">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Preference for displaying place names in home country') ?>
+            </label>
+            <div class="col-sm-3">
+                <?= view('components/select', ['name' => 'places-format-hc', 'selected' => $places_format_hc, 'options' => [
+                    'full'     => I18N::translate('Full place name'),
+                    'highlow'  => I18N::translate('Highest and lowest level'),
+                    'low'      => I18N::translate('Lowest level')
+                ]]) ?>
+            </div>
+        </div>
+        <!-- OTHER COUNTRIES FORMAT-->
+        <div class="row mb-3 jc-group1 collapse <?= $places_format === 'custom' ? 'show' : '' ?>">
+            <label class="col-form-label col-sm-3">
+                <?= I18N::translate('Preference for displaying place names in other countries') ?>
+            </label>
+            <div class="col-sm-3">
+                <?= view('components/select', ['name' => 'places-format-oc', 'selected' => $places_format_oc, 'options' => [
+                    'full'     => I18N::translate('Full place name'),
+                    'highlow'  => I18N::translate('Highest and lowest level')
+                ]]) ?>
+            </div>
+        </div>
         <!-- COUNTRY FORMAT-->
-        <div class="row mb-3">
+        <div class="row mb-3 jc-group2 collapse <?= $places_format === 'none' ? '' : 'show' ?>">
             <label class="col-form-label col-sm-3">
                 <?= I18N::translate('Preference for displaying countries') ?>
             </label>
@@ -178,7 +203,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </div>
         </div>
         <!-- HOME COUNTRY FORMAT-->
-        <fieldset class="mb-3">
+        <fieldset class="mb-3 jc-group2 collapse <?= $places_format === 'none' ? '' : 'show' ?>">
             <div class="row">
                 <legend class="col-form-label col-sm-3">
                     <?= I18N::translate('Display home country name') ?>
@@ -189,7 +214,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </div>
         </fieldset>
         <!-- HOME COUNTRY-->
-        <div class="row mb-3">
+        <div class="row mb-3 jc-group2 collapse <?= $places_format === 'none' ? '' : 'show' ?>">
             <label class="col-form-label col-sm-3">
                 <?= I18N::translate('Home country') ?>
             </label>
@@ -264,3 +289,20 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
         </button>
     </form>
 </div>
+
+<?php View::push('javascript') ?>
+<script>
+    $('#places-format').on('change', function() {
+        if ($(this).find(":selected").val() == 'custom') {
+            $('.jc-group1.collapse').collapse('show');
+        } else {
+            $('.jc-group1.collapse').collapse('hide');
+        }
+        if ($(this).find(":selected").val() == 'none') {
+            $('.jc-group2.collapse').collapse('hide');
+        } else {
+            $('.jc-group2.collapse').collapse('show');
+        }
+    });
+</script>
+<?php View::endpush() ?>
