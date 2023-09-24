@@ -1547,11 +1547,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $bdate     = $bfact->date();
         $ddate     = $dfact->date();
         $html      = '';
-        if ($bdate->isOK() && $ddate->isOK()) {
+        if ($bdate->isOK() && $ddate->isOK() && $this->isDateDMY($bfact) && $this->isDateDMY($dfact)) {
             $ageAtDeath = new Age($bdate, $ddate);
-
-            // Add the text 'approximately' to calculated ages from a date qualifier.
-            $html .= !$this->isDateDMY($bfact) || !$this->isDateDMY($dfact) ? ' ' . I18N::translate('approximately') . ' ' : '';
 
             $days   = $ageAtDeath->ageDays();
             $months = (int)($ageAtDeath->ageDays()/30);
