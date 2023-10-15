@@ -30,11 +30,11 @@ msgstr "<strong>Hinweis</strong>: Diese Option kann zeit- und/oder speicheraufw�
 
 #: resources/views/settings.phtml:201
 msgid "2 letter country code"
-msgstr "Länderkennzeichen 2 Buchstaben"
+msgstr "Länderkennzeichen mit 2 Buchstaben"
 
 #: resources/views/settings.phtml:200
 msgid "3 letter country code"
-msgstr "Länderkennzeichen 3 Buchstaben"
+msgstr "Länderkennzeichen mit 3 Buchstaben"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:123
@@ -87,7 +87,7 @@ msgstr "Antworten Sie mit \"ja\", wenn Sie den Firmennamen bzw. den Namen des Ar
 
 #: FancyTreeviewModule.php:1554
 msgid "approximately"
-msgstr "approximately"
+msgstr "ungefähr"
 
 #: resources/views/settings.phtml:162
 msgid "As defined in webtrees"
@@ -118,19 +118,19 @@ msgstr "Kind von"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Klicken Sie hier, um einen Link zur Fancy-Treeview-Seite zu erstellen oder zu entfernen."
+msgstr "Klicken Sie hier, um einen Verweis zur Fancy-Treeview-Seite zu erstellen oder zu entfernen."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Link zur Seite der Vorfahren erstellen"
+msgstr "Verweis zur Seite der Vorfahren erstellen"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Link zur Nachkommenseite erstellen"
+msgstr "Verweis zur Seite der Nachkommen erstellen"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Link zu dieser Seite erstellen"
+msgstr "Verweis zu dieser Seite erstellen"
 
 #: resources/views/settings.phtml:128
 msgid "Crop thumbnails to square"
@@ -138,7 +138,7 @@ msgstr "Miniaturbilder auf ein Quadrat zuschneiden"
 
 #: resources/views/settings.phtml:161
 msgid "Customized"
-msgstr "Customized"
+msgstr "Angepasst"
 
 #: resources/views/settings.phtml:21
 msgid "Default list type"
@@ -240,7 +240,7 @@ msgstr "In der Systemsteuerung können Sie die Zugriffsebene für das Menü fest
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Gehen Sie zur Homepage, klicken Sie auf Meine Seiten/Anpassen dieser Seite, um den Fancy Treeview Homepage-Block mit den erstellten Links hinzuzufügen."
+msgstr "Gehen Sie zur Homepage, klicken Sie auf Meine Seiten/Anpassen dieser Seite, um den Fancy Treeview Homepage-Block mit den erstellten Verweisen hinzuzufügen."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -313,7 +313,7 @@ msgstr "Er ist geboren"
 
 #: resources/views/settings.phtml:175 resources/views/settings.phtml:188
 msgid "Highest and lowest level"
-msgstr "Höchste und niedrigste Ebene"
+msgstr "Oberste und unterste Ebene"
 
 #: resources/views/settings.phtml:219
 msgid "Home country"
@@ -341,7 +341,7 @@ msgstr "in %s"
 
 #: resources/views/settings.phtml:98
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "bei der Ansicht der Vorfahren: Jede Generation zeigt die Anzahl der Personen und die maximale Anzahl der möglichen Vorfahren in dieser Generation an. Die Anzahl der möglichen Vorfahren in den nachfolgenden Generationen wird neu berechnet, wenn es einen Ahnenschwund gibt."
+msgstr "bei der Ansicht der Vorfahren: jede Generation zeigt die Anzahl der Personen und die maximale Anzahl der möglichen Vorfahren in dieser Generation an. Die Anzahl der möglichen Vorfahren in den nachfolgenden Generationen wird neu berechnet, wenn es einen Ahnenschwund gibt."
 
 #: resources/views/settings.phtml:97
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
@@ -354,11 +354,11 @@ msgstr "In der GEDCOM-Datei wird der erste Buchstabe der meisten Berufe großges
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link zur Fancy-Treeview-Seite"
+msgstr "Verweis zur Fancy-Treeview-Seite"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
-msgstr "Lowest level"
+msgstr "Unterste Ebene"
 
 #: resources/views/settings.phtml:36
 msgid "Maximum number of generations per page"
@@ -397,11 +397,11 @@ msgstr "Einstellung zur Anzeige von Orten"
 
 #: resources/views/settings.phtml:170
 msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
+msgstr "Bevorzugte Anzeige von Ortsnamen im Heimatland"
 
 #: resources/views/settings.phtml:183
 msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
+msgstr "Bevorzugte Anzeige von Ortsnamen in anderen Ländern"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -409,15 +409,15 @@ msgstr "Mehr anzeigen"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Link zur Seite der Vorfahren entfernen"
+msgstr "Verweis zur Seite der Vorfahren entfernen"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Link zur Nachkommenseite entfernen"
+msgstr "Verweis zur Seite der Nachkommen entfernen"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Link zu dieser Seite entfernen"
+msgstr "Verweis zu dieser Seite entfernen"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:145
@@ -546,11 +546,11 @@ msgstr "Die Einzelheiten zu dieser Generation sind vertraulich."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "Die erstellten Links werden in das Fancy-Treeview-Menü und in den Fancy-Treeview-Homepage-Block aufgenommen."
+msgstr "Die erstellten Verweise werden in das Fancy-Treeview-Menü und in den Fancy-Treeview-Homepage-Block aufgenommen."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "Das Menü und der Homepage-Block enthalten die gleichen Links. Allerdings wurde das Erscheinungsbild des Homepage-Blocks durch das Hinzufügen von Bildern für die Links attraktiver gestaltet."
+msgstr "Das Menü und der Homepage-Block enthalten die gleichen Verweise. Allerdings wurde das Erscheinungsbild des Homepage-Blocks durch das Hinzufügen von Bildern für die Verweise attraktiver gestaltet."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
@@ -654,7 +654,7 @@ msgstr "wurden geschieden"
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "Sie können Links von der Fancy-Treeview-Seite oder vom Bearbeitungsmenü der einzelnen Seite aus erstellen."
+msgstr "Sie können Verweise von der Fancy-Treeview-Seite oder vom Bearbeitungsmenü der Personen-Seite aus erstellen."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."

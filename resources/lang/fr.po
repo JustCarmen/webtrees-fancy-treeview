@@ -87,7 +87,7 @@ msgstr "Répondez \"oui\" si vous souhaitez afficher le nom de l'entreprise/empl
 
 #: FancyTreeviewModule.php:1554
 msgid "approximately"
-msgstr "approximately"
+msgstr "environ"
 
 #: resources/views/settings.phtml:162
 msgid "As defined in webtrees"
@@ -138,7 +138,7 @@ msgstr "Recadrer les vignettes au carré"
 
 #: resources/views/settings.phtml:161
 msgid "Customized"
-msgstr "Customized"
+msgstr "Personnalisé"
 
 #: resources/views/settings.phtml:21
 msgid "Default list type"
@@ -358,7 +358,7 @@ msgstr "Lien vers la page Fancy Treeview"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
-msgstr "Lowest level"
+msgstr "Niveau le plus bas"
 
 #: resources/views/settings.phtml:36
 msgid "Maximum number of generations per page"
@@ -397,11 +397,11 @@ msgstr "Préférence d'affichage des noms de lieux"
 
 #: resources/views/settings.phtml:170
 msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
+msgstr "Préférence pour l'affichage des noms de lieux dans le pays d'origine"
 
 #: resources/views/settings.phtml:183
 msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
+msgstr "Préférence pour l'affichage des noms de lieux dans d'autres pays"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"

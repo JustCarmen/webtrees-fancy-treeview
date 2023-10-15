@@ -87,7 +87,7 @@ msgstr "Respon \"sí\" si vols mostrar el nom de l'empresa/empresari (Gedcom-tag
 
 #: FancyTreeviewModule.php:1554
 msgid "approximately"
-msgstr "approximately"
+msgstr "aproximadament"
 
 #: resources/views/settings.phtml:162
 msgid "As defined in webtrees"
@@ -139,7 +139,7 @@ msgstr "Retalla miniatures a quadrat"
 
 #: resources/views/settings.phtml:161
 msgid "Customized"
-msgstr "Customized"
+msgstr "Personalitzat"
 
 #: resources/views/settings.phtml:21
 msgid "Default list type"
@@ -360,7 +360,7 @@ msgstr "Enllaç a la pàgina de Fancy Treeview\n"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
-msgstr "Lowest level"
+msgstr "Nivell més baix"
 
 #: resources/views/settings.phtml:36
 msgid "Maximum number of generations per page"
@@ -399,11 +399,11 @@ msgstr "Preferència per mostrar topònims"
 
 #: resources/views/settings.phtml:170
 msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
+msgstr "Preferència per mostrar topònims al país d'origen"
 
 #: resources/views/settings.phtml:183
 msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
+msgstr "Preferència per mostrar topònims d'altres països"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"

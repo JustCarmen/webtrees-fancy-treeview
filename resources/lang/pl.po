@@ -336,7 +336,7 @@ msgstr "w roku "
 
 #: FancyTreeviewModule.php:1627
 msgid "in %s"
-msgstr "w %s"
+msgstr "w miejsc. %s"
 
 #: resources/views/settings.phtml:98
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
