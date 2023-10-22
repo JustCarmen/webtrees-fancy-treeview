@@ -13,104 +13,33 @@ msgctxt "prefix before dates with date qualifications, followed right after the 
 msgid " "
 msgstr " "
 
-#. I18N: Name of a module
-#: FancyTreeviewModule.php:112
-msgid "Fancy Treeview"
-msgstr "Con cháu"
+#: resources/views/block-content.phtml:37
+#: resources/views/block-content.phtml:42
+msgid "%s complete"
+msgstr "tất cả"
 
-#: FancyTreeviewModule.php:1105
-msgid "He had a relationship with"
-msgstr "Ông có mối quan hệ với"
+#: resources/views/block-content.phtml:36
+#: resources/views/block-content.phtml:41
+msgid "%s of %s possible ancestors"
+msgstr "%s của %s có thể là tổ tiên"
 
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:1025
-msgid "He married %s times"
-msgstr "Ông cưới vào năm"
+#. I18N: Warning when using the “Check relationship between partners” configuration setting
+#: resources/views/settings.phtml:104
+msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
+msgstr "<strong>Lưu ý</strong>: tùy chọn này có thể tốn thời gian và/hoặc bộ nhớ, đặc biệt là trên những cây gia đình lớn. Nó có thể gây ra tải trang rất chậm hoặc \"lỗi hết thời gian thực thi\" trên máy chủ của bạn. Nếu bạn nhận thấy hành vi như vậy, hãy giảm số lượng thế hệ tối đa trên mỗi trang hoặc tab và/hoặc không sử dụng nó kết hợp với tùy chọn “hiển thị đơn lẻ”. Nếu bạn vẫn gặp sự cố, hãy để lại câu trả lời là “không”."
 
-#: FancyTreeviewModule.php:1479
-msgctxt "PAST"
-msgid "He was baptized"
-msgstr "Ông đã được rửa tội"
+#: resources/views/settings.phtml:201
+msgid "2 letter country code"
+msgstr "mã quốc gia 2 chữ cái"
 
-#: FancyTreeviewModule.php:1481
-msgctxt "PRESENT"
-msgid "He was baptized"
-msgstr "Ông đã được rửa tội"
+#: resources/views/settings.phtml:200
+msgid "3 letter country code"
+msgstr "mã quốc gia 3 chữ cái"
 
-#: FancyTreeviewModule.php:1461
-msgctxt "PAST"
-msgid "He was born"
-msgstr "Ông sinh ra tại"
-
-#: FancyTreeviewModule.php:1463
-msgctxt "PRESENT"
-msgid "He was born"
-msgstr "Ông sinh ra tại"
-
-#: resources/views/readmore-link.phtml:8
-msgid "Read more"
-msgstr "Xem thêm"
-
-#: FancyTreeviewModule.php:1108
-msgid "She had a relationship with"
-msgstr "Bà có mối quan hệ với"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:1031
-msgid "She married %s times"
-msgstr "Bà cưới %s lần"
-
-#: FancyTreeviewModule.php:1479
-msgctxt "PAST"
-msgid "She was baptized"
-msgstr "Bà đã được rửa tội"
-
-#: FancyTreeviewModule.php:1481
-msgctxt "PRESENT"
-msgid "She was baptized"
-msgstr "Bà đã được rửa tội"
-
-#: FancyTreeviewModule.php:1461
-msgctxt "PAST"
-msgid "She was born"
-msgstr "Bà sinh ra tại"
-
-#: FancyTreeviewModule.php:1463
-msgctxt "PRESENT"
-msgid "She was born"
-msgstr "Bà sinh ra tại"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1027
-msgid "The %s time he married"
-msgstr "Ông cưới năm"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1033
-msgid "The %s time she married"
-msgstr "Bà cưới năm"
-
-#. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1039
-msgid "The %s time this individual married"
-msgstr "Thời gian kết hôn"
-
-#: resources/views/block-content.phtml:28
-msgid "The details of this generation are private."
-msgstr "Các chi tiết của thế hệ này là riêng tư."
-
-#: FancyTreeviewModule.php:1111
-msgid "This individual had a relationship with"
-msgstr "Người này từng có mối quan hệ với"
-
-#: FancyTreeviewModule.php:1051
-msgid "This individual married"
-msgstr "Người này đã kết hôn"
-
-#. I18N: %s is a number
-#: FancyTreeviewModule.php:1037
-msgid "This individual married %s times"
-msgstr "Người này kết hôn %s lần"
+#. I18N: Description of the module
+#: FancyTreeviewModule.php:123
+msgid "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr "Tường thuật tổng quan về con cháu hoặc tổ tiên của một gia đình (nhánh)."
 
 #: FancyTreeviewModule.php:1224
 msgctxt "FEMALE"
@@ -134,6 +63,14 @@ msgstr "con gái nuôi của"
 msgid "adopted son of"
 msgstr "con trai nuôi của"
 
+#: resources/views/settings.phtml:257
+msgid "Always write the occupation exactly as it appears in the Gedcom"
+msgstr "Luôn viết nghề nghiệp chính xác như nó hiển thị trong Gedcom"
+
+#: FancyTreeviewModule.php:563
+msgid "Ancestors and descendants"
+msgstr "Tổ tiên và con cháu"
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1080 FancyTreeviewModule.php:1145
 #: FancyTreeviewModule.php:1166 FancyTreeviewModule.php:1199
@@ -143,9 +80,73 @@ msgstr "con trai nuôi của"
 msgid "and "
 msgstr "và "
 
+#. I18N: Help text for the “Show company/employer” configuration setting
+#: resources/views/settings.phtml:247
+msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Trả lời \"có\" nếu bạn muốn hiển thị tên của công ty/người sử dụng lao động (Gedcom-tag \"AGNC\") cùng với nghề nghiệp. Văn bản chỉ được hiển thị cùng với nghề nghiệp."
+
+#: FancyTreeviewModule.php:1554
+msgid "approximately"
+msgstr "approximately"
+
+#: resources/views/settings.phtml:162
+msgid "As defined in webtrees"
+msgstr "Theo định nghĩa trong webtrees"
+
+#. I18N: %s is the Gedcom tag AGNC (Agency)
+#: FancyTreeviewModule.php:1362
+msgid "at %s"
+msgstr "ở %s"
+
+#. I18N: %s a string with a number e.g. 10 days/months/years
+#: FancyTreeviewModule.php:1565
+msgid "at the age of %s"
+msgstr "hưởng thọ %s"
+
+#. I18N: %s is a string without a number e.g. day/month/year
+#: FancyTreeviewModule.php:1563
+msgid "at the age of 1 %s"
+msgstr "ở tuổi 1 %s"
+
+#: resources/views/settings.phtml:87
+msgid "Check relationship between partners"
+msgstr "Kiểm tra mối quan hệ giữa các thành viên"
+
 #: FancyTreeviewModule.php:1293
 msgid "child of"
 msgstr "con của"
+
+#: resources/views/helptext.phtml:8
+msgid "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Click here to create or remove a link to the Fancy Treeview page."
+
+#: resources/views/menu-edit.phtml:19
+msgid "Create link to ancestors page"
+msgstr "Create link to ancestors page"
+
+#: resources/views/menu-edit.phtml:24
+msgid "Create link to descendants page"
+msgstr "Create link to descendants page"
+
+#: resources/views/page.phtml:28
+msgid "Create link to this page"
+msgstr "Create link to this page"
+
+#: resources/views/settings.phtml:128
+msgid "Crop thumbnails to square"
+msgstr "Cắt hình thu nhỏ thành hình vuông"
+
+#: resources/views/settings.phtml:161
+msgid "Customized"
+msgstr "Customized"
+
+#: resources/views/settings.phtml:21
+msgid "Default list type"
+msgstr "Kiểu danh sách mặc định"
+
+#: FancyTreeviewModule.php:565
+msgid "Descendants and ancestors"
+msgstr "Con cháu và tổ tiên"
 
 #: FancyTreeviewModule.php:1512
 msgctxt "FEMALE"
@@ -157,10 +158,31 @@ msgctxt "MALE"
 msgid "died"
 msgstr "mất"
 
+#: resources/views/settings.phtml:209
+msgid "Display home country name"
+msgstr "Hiển thị tên quốc gia nơi sinh"
+
+#: resources/views/settings.phtml:163
+msgid "Don't show place names"
+msgstr "Không hiển thị tên địa điểm"
+
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:1018
 msgid "eighth"
 msgstr "thứ 8"
+
+#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:515
+msgid "Family tree overview"
+msgstr "Tổng quan cây gia đình"
+
+#. I18N: Name of a module
+#: FancyTreeviewModule.php:112
+msgid "Fancy Treeview"
+msgstr "Con cháu"
+
+#: FancyTreeviewModule.php:419
+msgid "Fancy Treeview Help"
+msgstr "Fancy Treeview Help"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:1015
@@ -203,6 +225,22 @@ msgstr "con trai nuôi của"
 msgid "fourth"
 msgstr "thứ tư"
 
+#: resources/views/settings.phtml:199
+msgid "Full country name"
+msgstr "Tên quốc gia đầy đủ"
+
+#: resources/views/settings.phtml:174 resources/views/settings.phtml:187
+msgid "Full place name"
+msgstr "Tên địa điểm đầy đủ"
+
+#: resources/views/helptext.phtml:18
+msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+
+#: resources/views/helptext.phtml:21
+msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
 msgid "had"
@@ -223,6 +261,67 @@ msgctxt "Two parents/one child"
 msgid "had"
 msgstr "đã"
 
+#: FancyTreeviewModule.php:1185
+msgctxt "One parent/multiple children"
+msgid "has"
+msgstr "đã có"
+
+#: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1191
+msgctxt "One parent/one child"
+msgid "has"
+msgstr "đã có"
+
+#: FancyTreeviewModule.php:1171
+msgctxt "Two parents/multiple children"
+msgid "have"
+msgstr "đã có"
+
+#: FancyTreeviewModule.php:1149 FancyTreeviewModule.php:1177
+msgctxt "Two parents/one child"
+msgid "have"
+msgstr "có"
+
+#: FancyTreeviewModule.php:1105
+msgid "He had a relationship with"
+msgstr "Ông có mối quan hệ với"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:1025
+msgid "He married %s times"
+msgstr "Ông cưới vào năm"
+
+#: FancyTreeviewModule.php:1479
+msgctxt "PAST"
+msgid "He was baptized"
+msgstr "Ông đã được rửa tội"
+
+#: FancyTreeviewModule.php:1481
+msgctxt "PRESENT"
+msgid "He was baptized"
+msgstr "Ông đã được rửa tội"
+
+#: FancyTreeviewModule.php:1461
+msgctxt "PAST"
+msgid "He was born"
+msgstr "Ông sinh ra tại"
+
+#: FancyTreeviewModule.php:1463
+msgctxt "PRESENT"
+msgid "He was born"
+msgstr "Ông sinh ra tại"
+
+#: resources/views/settings.phtml:175 resources/views/settings.phtml:188
+msgid "Highest and lowest level"
+msgstr "Cấp cao nhất và thấp nhất"
+
+#: resources/views/settings.phtml:219
+msgid "Home country"
+msgstr "Nước sinh ra"
+
+#: resources/views/settings.phtml:93
+msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
+msgstr "Nếu câu trả lời là “có”, tập lệnh sẽ kiểm tra xem một cặp vợ chồng (đã kết hôn) có cùng tổ tiên hay không. Nếu tìm thấy mối quan hệ giữa các đối tác, màn hình sẽ phụ thuộc vào loại màn hình."
+
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1593
 msgctxt "before dateformat mmm yyyy"
@@ -235,10 +334,51 @@ msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "năm "
 
+#: FancyTreeviewModule.php:1627
+msgid "in %s"
+msgstr "ở %s"
+
+#: resources/views/settings.phtml:98
+msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
+msgstr "trong chế độ xem tổ tiên: mỗi thế hệ hiển thị số lượng người và số lượng tổ tiên tối đa có thể có trong thế hệ đó. Số lượng tổ tiên có thể có trong các thế hệ tiếp theo được tính toán lại trong trường hợp sụp đổ phả hệ."
+
+#: resources/views/settings.phtml:97
+msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
+msgstr "trong chế độ xem con cháu: một văn bản sẽ xuất hiện giữa các dấu ngoặc sau tên của vợ hoặc chồng để biểu thị mối quan hệ huyết thống."
+
+#. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
+#: resources/views/settings.phtml:263
+msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
+msgstr "Trong tệp Gedcom, chữ cái đầu tiên của hầu hết các nghề nghiệp được viết hoa (như một từ độc lập) nhưng trong mô-đun này, chúng tôi sử dụng nghề nghiệp ở giữa câu. Các quy tắc chính tả trong hầu hết các ngôn ngữ yêu cầu nghề nghiệp phải được viết bằng chữ thường trong tình huống đó. Nếu bạn không muốn mô-đun thay đổi chính tả, hãy thay đổi câu trả lời thành “có”."
+
+#: resources/views/menu-edit.phtml:11
+msgid "Link to Fancy Treeview page"
+msgstr "Link to Fancy Treeview page"
+
+#: resources/views/settings.phtml:176
+msgid "Lowest level"
+msgstr "Lowest level"
+
+#: resources/views/settings.phtml:36
+msgid "Maximum number of generations per page"
+msgstr "Số thế hệ tối đa trên mỗi trang"
+
+#: resources/views/settings.phtml:52
+msgid "Maximum number of generations per tab"
+msgstr "Số thế hệ tối đa trên mỗi khung"
+
+#: resources/views/settings.phtml:45 resources/views/settings.phtml:61
+msgid "More generations require more memory so the page takes longer to fully load."
+msgstr "Nhiều thế hệ hơn yêu cầu nhiều bộ nhớ nhiều hơn nên trang mất nhiều thời gian hơn để tải đầy đủ."
+
 #. I18N: ninth marriage
 #: FancyTreeviewModule.php:1019
 msgid "ninth"
 msgstr "thứ chín"
+
+#: FancyTreeviewModule.php:1158
+msgid "no children"
+msgstr "Không có con cái"
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1590
@@ -246,15 +386,129 @@ msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "vào "
 
+#: resources/views/settings.phtml:195
+msgid "Preference for displaying countries"
+msgstr "Ưu tiên hiển thị các quốc gia"
+
+#: resources/views/settings.phtml:157
+msgid "Preference for displaying place names"
+msgstr "Tùy chọn hiển thị địa danh"
+
+#: resources/views/settings.phtml:170
+msgid "Preference for displaying place names in home country"
+msgstr "Preference for displaying place names in home country"
+
+#: resources/views/settings.phtml:183
+msgid "Preference for displaying place names in other countries"
+msgstr "Preference for displaying place names in other countries"
+
+#: resources/views/readmore-link.phtml:8
+msgid "Read more"
+msgstr "Xem thêm"
+
+#: resources/views/menu-edit.phtml:17
+msgid "Remove link to ancestors page"
+msgstr "Remove link to ancestors page"
+
+#: resources/views/menu-edit.phtml:22
+msgid "Remove link to descendants page"
+msgstr "Remove link to descendants page"
+
+#: resources/views/page.phtml:19
+msgid "Remove link to this page"
+msgstr "Remove link to this page"
+
+#. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
+#: resources/views/settings.phtml:145
+msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
+msgstr "Trả lời “có” nếu bạn chỉ muốn hiển thị hình ảnh từ loại “ảnh”. Các hình ảnh nổi bật khác như chứng chỉ, tài liệu hoặc bia mộ sẽ không được sử dụng. Nếu bạn không phân biệt theo loại phương tiện trong Gedcom của mình, hãy để lại câu trả lời là “không”."
+
+#. I18N: Help text for the “Show singles” configuration setting
+#: resources/views/settings.phtml:75
+msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Trả lời “có” nếu bạn muốn hiển thị từng người trong thế hệ tiếp theo. Người độc thân là những cá nhân không có bạn đời và con cái. Nếu bạn chọn “có”, từng đứa con trong gia đình sẽ được hiển thị chi tiết ở thế hệ tiếp theo."
+
 #. I18N: second marriage
 #: FancyTreeviewModule.php:1012
 msgid "second"
 msgstr "thứ hai"
 
+#. I18N: Help text for the “Default list type” configuration setting
+#: resources/views/settings.phtml:28
+msgid "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
+msgstr "Chọn \"hậu duệ\" hoặc \"tổ tiên\" làm loại danh sách mặc định. Khi ở trên tab trang riêng lẻ, loại danh sách này sẽ được hiển thị đầu tiên."
+
+#. I18N: Help text for the “Maximum number of generations per page” configuration setting
+#: resources/views/settings.phtml:43
+msgid "Select the maximum number of generations to show on the Fancy Treeview page."
+msgstr "Chọn số thế hệ tối đa để hiển thị trên trang Con cháu"
+
+#. I18N: Help text for the “Maximum number of generations per tab” configuration setting
+#: resources/views/settings.phtml:59
+msgid "Select the maximum number of generations to show on the individual page tab."
+msgstr "Chọn số thế hệ tối đa để hiển thị trên khung trang riêng lẻ."
+
 #. I18N: seventh marriage
 #: FancyTreeviewModule.php:1017
 msgid "seventh"
 msgstr "thứ bảy"
+
+#: FancyTreeviewModule.php:1108
+msgid "She had a relationship with"
+msgstr "Bà có mối quan hệ với"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:1031
+msgid "She married %s times"
+msgstr "Bà cưới %s lần"
+
+#: FancyTreeviewModule.php:1479
+msgctxt "PAST"
+msgid "She was baptized"
+msgstr "Bà đã được rửa tội"
+
+#: FancyTreeviewModule.php:1481
+msgctxt "PRESENT"
+msgid "She was baptized"
+msgstr "Bà đã được rửa tội"
+
+#: FancyTreeviewModule.php:1461
+msgctxt "PAST"
+msgid "She was born"
+msgstr "Bà sinh ra tại"
+
+#: FancyTreeviewModule.php:1463
+msgctxt "PRESENT"
+msgid "She was born"
+msgstr "Bà sinh ra tại"
+
+#: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
+msgid "Show ancestors"
+msgstr "Hiển thị tổ tiên"
+
+#: FancyTreeviewModule.php:663 resources/views/tab.phtml:21
+msgid "Show descendants"
+msgstr "Hiển thị hậu duệ"
+
+#: resources/views/settings.phtml:277
+msgid "Show level 1 notes"
+msgstr "Hiển thị ghi chú cấp 1"
+
+#: resources/views/settings.phtml:230
+msgid "Show occupations"
+msgstr "Hiển thị nghề nghiệp"
+
+#: resources/views/settings.phtml:139
+msgid "Show only media from the type 'photo'"
+msgstr "Chỉ hiển thị hình ảnh"
+
+#: resources/views/settings.phtml:68
+msgid "Show singles"
+msgstr "Hiển thị riêng lẽ"
+
+#: resources/views/settings.phtml:241
+msgid "Show the name of the company/employer"
+msgstr "Hiển thị tên công ty/nhà tuyển dụng"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:1016
@@ -266,10 +520,70 @@ msgstr "thứ sáu"
 msgid "tenth"
 msgstr "thứ mười"
 
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:1027
+msgid "The %s time he married"
+msgstr "Ông cưới năm"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:1033
+msgid "The %s time she married"
+msgstr "Bà cưới năm"
+
+#. I18N: %s is an ordinal
+#: FancyTreeviewModule.php:1039
+msgid "The %s time this individual married"
+msgstr "Thời gian kết hôn"
+
+#: FancyTreeviewModule.php:987
+msgid "The details of this family are private."
+msgstr "Các chi tiết của gia đình này là riêng tư"
+
+#: resources/views/block-content.phtml:28
+msgid "The details of this generation are private."
+msgstr "Các chi tiết của thế hệ này là riêng tư."
+
+#: resources/views/helptext.phtml:11
+msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+
+#: resources/views/helptext.phtml:24
+msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+
+#: resources/views/block-content.phtml:22
+msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
+msgstr "Số lượng tổ tiên có thể có trong thế hệ này đã giảm đi do sự mất gia phả. Nếu không giảm số lượng tổ tiên tối đa trong thế hệ này sẽ là %s."
+
+#: resources/views/helptext.phtml:12
+msgid "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+
 #. I18N: third marriage
 #: FancyTreeviewModule.php:1013
 msgid "third"
 msgstr "thứ ba"
+
+#: FancyTreeviewModule.php:1111
+msgid "This individual had a relationship with"
+msgstr "Người này từng có mối quan hệ với"
+
+#: FancyTreeviewModule.php:1051
+msgid "This individual married"
+msgstr "Người này đã kết hôn"
+
+#. I18N: %s is a number
+#: FancyTreeviewModule.php:1037
+msgid "This individual married %s times"
+msgstr "Người này kết hôn %s lần"
+
+#: resources/views/settings.phtml:73
+msgid "This setting only applies to the page or tab containing the descendants."
+msgstr "Cài đặt này chỉ áp dụng cho trang hoặc khung chứa phần con cháu."
+
+#: resources/views/settings.phtml:117
+msgid "Thumbnail size"
+msgstr "Kích thước ảnh thu nhỏ"
 
 #: FancyTreeviewModule.php:1486
 msgctxt "PAST (FEMALE)"
@@ -283,6 +597,11 @@ msgstr "đã được rửa tội"
 
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (FEMALE)"
+msgid "was baptized"
+msgstr "đã được rửa tội"
+
+#: FancyTreeviewModule.php:1488
+msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "đã được rửa tội"
 
@@ -330,293 +649,6 @@ msgstr "được hỏa táng"
 msgid "were divorced"
 msgstr "đã ly hôn"
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:515
-msgid "Family tree overview"
-msgstr "Tổng quan cây gia đình"
-
-#. I18N: Description of the module
-#: FancyTreeviewModule.php:123
-msgid "A narrative overview of the descendants or ancestors of one family (branch)."
-msgstr "Tường thuật tổng quan về con cháu hoặc tổ tiên của một gia đình (nhánh)."
-
-#: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
-msgid "Show ancestors"
-msgstr "Hiển thị tổ tiên"
-
-#: FancyTreeviewModule.php:663 resources/views/tab.phtml:21
-msgid "Show descendants"
-msgstr "Hiển thị hậu duệ"
-
-#: FancyTreeviewModule.php:1158
-msgid "no children"
-msgstr "Không có con cái"
-
-#: FancyTreeviewModule.php:1488
-msgctxt "PRESENT (MALE)"
-msgid "was baptized"
-msgstr "đã được rửa tội"
-
-#: FancyTreeviewModule.php:565
-msgid "Descendants and ancestors"
-msgstr "Con cháu và tổ tiên"
-
-#: FancyTreeviewModule.php:987
-msgid "The details of this family are private."
-msgstr "Các chi tiết của gia đình này là riêng tư"
-
-#: resources/views/settings.phtml:257
-msgid "Always write the occupation exactly as it appears in the Gedcom"
-msgstr "Luôn viết nghề nghiệp chính xác như nó hiển thị trong Gedcom"
-
-#: FancyTreeviewModule.php:563
-msgid "Ancestors and descendants"
-msgstr "Tổ tiên và con cháu"
-
-#: resources/views/settings.phtml:87
-msgid "Check relationship between partners"
-msgstr "Kiểm tra mối quan hệ giữa các thành viên"
-
-#: resources/views/settings.phtml:128
-msgid "Crop thumbnails to square"
-msgstr "Cắt hình thu nhỏ thành hình vuông"
-
-#: resources/views/settings.phtml:21
-msgid "Default list type"
-msgstr "Kiểu danh sách mặc định"
-
-#: resources/views/settings.phtml:36
-msgid "Maximum number of generations per page"
-msgstr "Số thế hệ tối đa trên mỗi trang"
-
-#: resources/views/settings.phtml:52
-msgid "Maximum number of generations per tab"
-msgstr "Số thế hệ tối đa trên mỗi khung"
-
-#. I18N: Help text for the “Maximum number of generations per page” configuration setting
-#: resources/views/settings.phtml:43
-msgid "Select the maximum number of generations to show on the Fancy Treeview page."
-msgstr "Chọn số thế hệ tối đa để hiển thị trên trang Con cháu"
-
-#. I18N: Help text for the “Maximum number of generations per tab” configuration setting
-#: resources/views/settings.phtml:59
-msgid "Select the maximum number of generations to show on the individual page tab."
-msgstr "Chọn số thế hệ tối đa để hiển thị trên khung trang riêng lẻ."
-
-#: resources/views/settings.phtml:139
-msgid "Show only media from the type 'photo'"
-msgstr "Chỉ hiển thị hình ảnh"
-
-#: resources/views/settings.phtml:68
-msgid "Show singles"
-msgstr "Hiển thị riêng lẽ"
-
-#: resources/views/settings.phtml:117
-msgid "Thumbnail size"
-msgstr "Kích thước ảnh thu nhỏ"
-
-#: resources/views/settings.phtml:45 resources/views/settings.phtml:61
-msgid "More generations require more memory so the page takes longer to fully load."
-msgstr "Nhiều thế hệ hơn yêu cầu nhiều bộ nhớ nhiều hơn nên trang mất nhiều thời gian hơn để tải đầy đủ."
-
-#. I18N: Warning when using the “Check relationship between partners” configuration setting
-#: resources/views/settings.phtml:104
-msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Lưu ý</strong>: tùy chọn này có thể tốn thời gian và/hoặc bộ nhớ, đặc biệt là trên những cây gia đình lớn. Nó có thể gây ra tải trang rất chậm hoặc \"lỗi hết thời gian thực thi\" trên máy chủ của bạn. Nếu bạn nhận thấy hành vi như vậy, hãy giảm số lượng thế hệ tối đa trên mỗi trang hoặc tab và/hoặc không sử dụng nó kết hợp với tùy chọn “hiển thị đơn lẻ”. Nếu bạn vẫn gặp sự cố, hãy để lại câu trả lời là “không”."
-
-#. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
-#: resources/views/settings.phtml:263
-msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
-msgstr "Trong tệp Gedcom, chữ cái đầu tiên của hầu hết các nghề nghiệp được viết hoa (như một từ độc lập) nhưng trong mô-đun này, chúng tôi sử dụng nghề nghiệp ở giữa câu. Các quy tắc chính tả trong hầu hết các ngôn ngữ yêu cầu nghề nghiệp phải được viết bằng chữ thường trong tình huống đó. Nếu bạn không muốn mô-đun thay đổi chính tả, hãy thay đổi câu trả lời thành “có”."
-
-#. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
-#: resources/views/settings.phtml:145
-msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
-msgstr "Trả lời “có” nếu bạn chỉ muốn hiển thị hình ảnh từ loại “ảnh”. Các hình ảnh nổi bật khác như chứng chỉ, tài liệu hoặc bia mộ sẽ không được sử dụng. Nếu bạn không phân biệt theo loại phương tiện trong Gedcom của mình, hãy để lại câu trả lời là “không”."
-
-#. I18N: Help text for the “Default list type” configuration setting
-#: resources/views/settings.phtml:28
-msgid "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
-msgstr "Chọn \"hậu duệ\" hoặc \"tổ tiên\" làm loại danh sách mặc định. Khi ở trên tab trang riêng lẻ, loại danh sách này sẽ được hiển thị đầu tiên."
-
-#: resources/views/settings.phtml:93
-msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "Nếu câu trả lời là “có”, tập lệnh sẽ kiểm tra xem một cặp vợ chồng (đã kết hôn) có cùng tổ tiên hay không. Nếu tìm thấy mối quan hệ giữa các đối tác, màn hình sẽ phụ thuộc vào loại màn hình."
-
-#. I18N: Help text for the “Show singles” configuration setting
-#: resources/views/settings.phtml:75
-msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Trả lời “có” nếu bạn muốn hiển thị từng người trong thế hệ tiếp theo. Người độc thân là những cá nhân không có bạn đời và con cái. Nếu bạn chọn “có”, từng đứa con trong gia đình sẽ được hiển thị chi tiết ở thế hệ tiếp theo."
-
-#: resources/views/settings.phtml:73
-msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "Cài đặt này chỉ áp dụng cho trang hoặc khung chứa phần con cháu."
-
-#: FancyTreeviewModule.php:1185
-msgctxt "One parent/multiple children"
-msgid "has"
-msgstr "đã có"
-
-#: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1191
-msgctxt "One parent/one child"
-msgid "has"
-msgstr "đã có"
-
-#: FancyTreeviewModule.php:1171
-msgctxt "Two parents/multiple children"
-msgid "have"
-msgstr "đã có"
-
-#: FancyTreeviewModule.php:1149 FancyTreeviewModule.php:1177
-msgctxt "Two parents/one child"
-msgid "have"
-msgstr "có"
-
-#: resources/views/block-content.phtml:37
-#: resources/views/block-content.phtml:42
-msgid "%s complete"
-msgstr "tất cả"
-
-#: resources/views/block-content.phtml:36
-#: resources/views/block-content.phtml:41
-msgid "%s of %s possible ancestors"
-msgstr "%s của %s có thể là tổ tiên"
-
-#: resources/views/block-content.phtml:22
-msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
-msgstr "Số lượng tổ tiên có thể có trong thế hệ này đã giảm đi do sự mất gia phả. Nếu không giảm số lượng tổ tiên tối đa trong thế hệ này sẽ là %s."
-
-#: resources/views/settings.phtml:98
-msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "trong chế độ xem tổ tiên: mỗi thế hệ hiển thị số lượng người và số lượng tổ tiên tối đa có thể có trong thế hệ đó. Số lượng tổ tiên có thể có trong các thế hệ tiếp theo được tính toán lại trong trường hợp sụp đổ phả hệ."
-
-#: resources/views/settings.phtml:97
-msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "trong chế độ xem con cháu: một văn bản sẽ xuất hiện giữa các dấu ngoặc sau tên của vợ hoặc chồng để biểu thị mối quan hệ huyết thống."
-
-#: resources/views/settings.phtml:277
-msgid "Show level 1 notes"
-msgstr "Hiển thị ghi chú cấp 1"
-
-#. I18N: %s a string with a number e.g. 10 days/months/years
-#: FancyTreeviewModule.php:1565
-msgid "at the age of %s"
-msgstr "hưởng thọ %s"
-
-#: resources/views/settings.phtml:230
-msgid "Show occupations"
-msgstr "Hiển thị nghề nghiệp"
-
-#. I18N: %s is the Gedcom tag AGNC (Agency)
-#: FancyTreeviewModule.php:1362
-msgid "at %s"
-msgstr "ở %s"
-
-#. I18N: Help text for the “Show company/employer” configuration setting
-#: resources/views/settings.phtml:247
-msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Trả lời \"có\" nếu bạn muốn hiển thị tên của công ty/người sử dụng lao động (Gedcom-tag \"AGNC\") cùng với nghề nghiệp. Văn bản chỉ được hiển thị cùng với nghề nghiệp."
-
-#: resources/views/settings.phtml:241
-msgid "Show the name of the company/employer"
-msgstr "Hiển thị tên công ty/nhà tuyển dụng"
-
-#. I18N: %s is a string without a number e.g. day/month/year
-#: FancyTreeviewModule.php:1563
-msgid "at the age of 1 %s"
-msgstr "ở tuổi 1 %s"
-
-#: resources/views/settings.phtml:201
-msgid "2 letter country code"
-msgstr "mã quốc gia 2 chữ cái"
-
-#: resources/views/settings.phtml:200
-msgid "3 letter country code"
-msgstr "mã quốc gia 3 chữ cái"
-
-#: resources/views/settings.phtml:162
-msgid "As defined in webtrees"
-msgstr "Theo định nghĩa trong webtrees"
-
-#: resources/views/settings.phtml:209
-msgid "Display home country name"
-msgstr "Hiển thị tên quốc gia nơi sinh"
-
-#: resources/views/settings.phtml:163
-msgid "Don't show place names"
-msgstr "Không hiển thị tên địa điểm"
-
-#: resources/views/settings.phtml:199
-msgid "Full country name"
-msgstr "Tên quốc gia đầy đủ"
-
-#: resources/views/settings.phtml:174 resources/views/settings.phtml:187
-msgid "Full place name"
-msgstr "Tên địa điểm đầy đủ"
-
-#: resources/views/settings.phtml:219
-msgid "Home country"
-msgstr "Nước sinh ra"
-
-#: resources/views/settings.phtml:195
-msgid "Preference for displaying countries"
-msgstr "Ưu tiên hiển thị các quốc gia"
-
-#: resources/views/settings.phtml:157
-msgid "Preference for displaying place names"
-msgstr "Tùy chọn hiển thị địa danh"
-
-#: FancyTreeviewModule.php:1627
-msgid "in %s"
-msgstr "ở %s"
-
-#: resources/views/settings.phtml:175 resources/views/settings.phtml:188
-msgid "Highest and lowest level"
-msgstr "Cấp cao nhất và thấp nhất"
-
-#: resources/views/helptext.phtml:8
-msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
-
-#: FancyTreeviewModule.php:419
-msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
-
-#: resources/views/helptext.phtml:18
-msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-
-#: resources/views/helptext.phtml:21
-msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-
-#: resources/views/menu-edit.phtml:11
-msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
-
-#: resources/views/menu-edit.phtml:17
-msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
-
-#: resources/views/menu-edit.phtml:22
-msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
-
-#: resources/views/page.phtml:19
-msgid "Remove link to this page"
-msgstr "Remove link to this page"
-
-#: resources/views/helptext.phtml:11
-msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-
-#: resources/views/helptext.phtml:24
-msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-
-#: resources/views/helptext.phtml:12
-msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
-
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
 msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
@@ -624,36 +656,4 @@ msgstr "You can create links from the Fancy Treeview page or from the edit menu 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
 msgstr "You can use both the menu and homepage block or choose to use either."
-
-#: resources/views/menu-edit.phtml:19
-msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
-
-#: resources/views/menu-edit.phtml:24
-msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
-
-#: resources/views/page.phtml:28
-msgid "Create link to this page"
-msgstr "Create link to this page"
-
-#: resources/views/settings.phtml:161
-msgid "Customized"
-msgstr "Customized"
-
-#: resources/views/settings.phtml:176
-msgid "Lowest level"
-msgstr "Lowest level"
-
-#: resources/views/settings.phtml:170
-msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
-
-#: resources/views/settings.phtml:183
-msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
-
-#: FancyTreeviewModule.php:1554
-msgid "approximately"
-msgstr "approximately"
 
