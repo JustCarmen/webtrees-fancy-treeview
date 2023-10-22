@@ -702,6 +702,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $this->generation = 1;
         $this->xrefs = [$xref];
         $this->type  = 'descendants';
+        $collection  = new Collection();
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -710,6 +711,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         }
 
         while (count($this->xrefs) > 0) {
+
+            // Put all xrefs of a generation in this collection.
+            // If a combination of xrefs is repeated in another generation, we know we are dealing with an infinite loop.
+            $collection->put($this->generation, $this->xrefs);
 
             $this->generation++;
 
@@ -732,7 +737,11 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
 
             if (!empty($this->xrefs)) {
                 unset($next_gen, $descendants, $xrefs);
-                // Once we have fetched the page we need to know the total number of generations for this individual
+                // Once we have fetched the page we need to know the total number of generations for this individual,
+                // but beware of infinite loops
+                if ($collection->duplicates()->count() > 0) {
+                    break;
+                }
                 if ($this->generation > $start + $limit) {
                     $this->descendant_generations = $this->generation;
                 } else {
@@ -768,6 +777,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $this->generation = 1;
         $this->xrefs = [$xref];
         $this->type  = 'ancestors';
+        $collection  = new Collection();
 
         if ($start === 1) {
             $html = $this->printGeneration();
@@ -776,6 +786,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         }
 
         while (count($this->xrefs) > 0) {
+
+            // Put all xrefs of a generation in this collection.
+            // If a combination of xrefs is repeated in another generation, we know we are dealing with an infinite loop
+            $collection->put($this->generation, $this->xrefs);
 
             $this->generation++;
 
@@ -803,7 +817,11 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
 
             if (!empty($this->xrefs)) {
                 unset($prev_gen, $ancestors, $xrefs);
-                // Once we have fetched the page we need to know the total number of generations for this individual
+                // Once we have fetched the page we need to know the total number of generations for this individual,
+                // but beware of infinite loops
+                if ($collection->duplicates()->count() > 0) {
+                    break;
+                }
                 if ($this->generation > $start + $limit) {
                     $this->ancestor_generations = $this->generation;
                 } else {
