@@ -1,0 +1,22 @@
+@page
+{
+    size: A4 portrait;
+    margin: 2cm 1cm;
+}
+
+.jc-fancy-treeview-page {
+
+    .jc-generation-block-header {
+        break-after: avoid;
+    }
+
+    .jc-person-block {
+        break-before: avoid;
+    }
+
+    .jc-person-block,
+    .jc-spouse-block,
+    .jc-children-block {
+        break-inside: avoid;
+    }
+}
