@@ -940,17 +940,15 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 * as not all families have a spouse
                 * $spousecount is passed rather than doing each time inside function get_spouse
                 */
-                if ($spousecount > 0) {
-                    $spouseindex = 0;
-                    foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
-                        $spouse = $family->spouse($person);
-                        if ($spouse && $spouse->canShow()) {
-                            if ($this->getMarriage($family)) {
-                                $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
-                                $spouseindex++;
-                            } else {
-                                $html .= $this->printPartner($family, $person, $spouse);
-                            }
+                $spouseindex = 0;
+                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
+                    $spouse = $family->spouse($person);
+                    if ($spouse && $spouse->canShow()) {
+                        if ($this->getMarriage($family)) {
+                            $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
+                            $spouseindex++;
+                        } else {
+                            $html .= $this->printPartner($family, $person, $spouse);
                         }
                     }
                 }
@@ -1114,7 +1112,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $html .= $this->printRelationship($person, $spouse);
         $html .= $this->printParents($spouse);
 
-        if ($family->facts(['_NMR'])->first() && $this->printLifespan($spouse, true)) {
+        if ($this->printLifespan($spouse, true)) {
             $html .= $this->printLifespan($spouse, true);
         }
 
