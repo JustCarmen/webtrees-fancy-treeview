@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Treeview\n"
-"POT-Creation-Date: 2023-09-24 10:50+0200\n"
+"POT-Creation-Date: 2024-01-27 22:23+0100\n"
 "PO-Revision-Date: 2015-07-04 21:06+0200\n"
 "Last-Translator: Carmen <carmen@justcarmen.nl>\n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr ""
 
-#: FancyTreeviewModule.php:563
+#: FancyTreeviewModule.php:567
 msgid "Ancestors and descendants"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Default list type"
 msgstr ""
 
-#: FancyTreeviewModule.php:565
+#: FancyTreeviewModule.php:569
 msgid "Descendants and ancestors"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Don't show place names"
 msgstr ""
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:515
+#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
 msgstr ""
 
@@ -150,6 +150,10 @@ msgstr ""
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr ""
+
+#: resources/views/blockmodulehelptext.phtml:11
+msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 msgstr ""
 
 #: FancyTreeviewModule.php:1105
@@ -307,11 +311,11 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr ""
 
-#: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr ""
 
-#: FancyTreeviewModule.php:663 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:667 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr ""
 
@@ -365,6 +369,10 @@ msgstr ""
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
 msgstr ""
 
+#: resources/views/blockmodulehelptext.phtml:16
+msgid "The links created will be shown in this block."
+msgstr ""
+
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
 msgstr ""
@@ -400,12 +408,20 @@ msgstr ""
 msgid "Thumbnail size"
 msgstr ""
 
+#: resources/views/blockmodulehelptext.phtml:13
+msgid "You can also create links from the Fancy Treeview page itself."
+msgstr ""
+
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
 msgstr ""
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
+msgstr ""
+
+#: resources/views/blockmodulehelptext.phtml:8
+msgid "You have not created a link yet."
 msgstr ""
 
 #: FancyTreeviewModule.php:1224
