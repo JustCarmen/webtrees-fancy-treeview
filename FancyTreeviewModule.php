@@ -505,7 +505,11 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $key_values = array_column($links, 'sort');
         array_multisort($key_values, SORT_ASC, $links);
 
-        $content = view($this->name() . '::blockmodule', ['links' => $links]);
+        if (count($links) > 0) {
+            $content = view($this->name() . '::blockmodule', ['links' => $links]);
+        } else {
+            $content = view($this->name() . '::blockmodulehelptext');
+        }
 
         if ($context !== self::CONTEXT_EMBED) {
             return view('modules/block-template', [
