@@ -87,7 +87,7 @@ msgstr "如果您想显示职业公司/老板的名称 ，请回答“是”。�
 
 #: FancyTreeviewModule.php:1554
 msgid "approximately"
-msgstr "approximately"
+msgstr "大约"
 
 #: resources/views/settings.phtml:162
 msgid "As defined in webtrees"
@@ -118,19 +118,19 @@ msgstr "的孩子"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "单击此处添加或删除 花式树视图 页面的链接。"
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "创建该祖先页面链接"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "添加该后代页面链接"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "添加此页面的链接"
 
 #: resources/views/settings.phtml:128
 msgid "Crop thumbnails to square"
@@ -138,7 +138,7 @@ msgstr "将缩略图裁剪为正方形"
 
 #: resources/views/settings.phtml:161
 msgid "Customized"
-msgstr "Customized"
+msgstr "个性化"
 
 #: resources/views/settings.phtml:21
 msgid "Default list type"
@@ -182,7 +182,7 @@ msgstr "花式树景"
 
 #: FancyTreeviewModule.php:419
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "模块帮助"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:1015
@@ -235,11 +235,11 @@ msgstr "全地名"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "到控制面板设置菜单访问级别。您也可以在此处设置隐藏菜单。"
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "跳到主页，单击我的页面/自定义此页面添加带有创建的链接的花样树视图主页块。"
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -288,7 +288,7 @@ msgstr "他和"
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1025
 msgid "He married %s times"
-msgstr "他有%s次婚姻"
+msgstr "他结过%s次婚"
 
 #: FancyTreeviewModule.php:1479
 msgctxt "PAST"
@@ -353,11 +353,11 @@ msgstr "在Gedcom文件中，大多数职业的第一个字母都是大写的（
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "转到 花样树视图 页面"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
-msgstr "Lowest level"
+msgstr "最低级别"
 
 #: resources/views/settings.phtml:36
 msgid "Maximum number of generations per page"
@@ -369,7 +369,7 @@ msgstr "每个选项卡最大生成数"
 
 #: resources/views/settings.phtml:45 resources/views/settings.phtml:61
 msgid "More generations require more memory so the page takes longer to fully load."
-msgstr "更多的代需电脑内存更高，因此页面需要更长的时间才能完全加载。"
+msgstr "代数越多需电脑配置更高，而且页面需要更长的时间才能完全加载。"
 
 #. I18N: ninth marriage
 #: FancyTreeviewModule.php:1019
@@ -396,11 +396,11 @@ msgstr "显示地名的首选项"
 
 #: resources/views/settings.phtml:170
 msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
+msgstr "优先显示本国地名"
 
 #: resources/views/settings.phtml:183
 msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
+msgstr "优先显示他国地名"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
@@ -408,20 +408,20 @@ msgstr "查看更多信息"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "删除添加在该页的祖先链接"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "删除添加在该页的后代链接"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "删除添加在该页的链接"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:145
 msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
-msgstr "您希望仅显示“照片”类型中的图像，请回答“是”。不会使用其他突出显示的图像，如证书、文件或墓碑。如果您在家谱数据中没有按媒体类型区分，请将答案保留为“否”。"
+msgstr "您如果仅显示“照片”类型中的图像，请选择“是”。不会使用其他的图像，如证书、文件或墓碑。如果您在家谱数据中没有按媒体类型区分图像，请选择“否”。"
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:75
@@ -545,11 +545,11 @@ msgstr "这一代人的细节是私密的"
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "添加的链接将会在 花样树 导航条和 花样树 版块中。"
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "菜单和主页块包含相同的链接。 不过，通过添加链接图像，主页块的外观可以更有吸引力。"
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
@@ -557,7 +557,7 @@ msgstr "可能未入谱，这一代的祖先数量减少了。如果不减少，
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "导航条和主页块的标题是“家谱概览”。"
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:1013
@@ -588,22 +588,22 @@ msgstr "缩略图大小"
 #: FancyTreeviewModule.php:1486
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "受洗了"
 
 #: FancyTreeviewModule.php:1486
 msgctxt "PAST (MALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "受洗了"
 
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "受洗了"
 
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "受洗了"
 
 #: FancyTreeviewModule.php:1468
 msgctxt "PAST (FEMALE)"
@@ -651,9 +651,9 @@ msgstr "离婚了"
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "您可以同时使用导航条和主页块，也可以选择使用其中之一。"
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "创建指向祖先页面的链接"
 

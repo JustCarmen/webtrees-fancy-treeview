@@ -284,12 +284,12 @@ msgstr "haben"
 
 #: FancyTreeviewModule.php:1105
 msgid "He had a relationship with"
-msgstr "Er hatte eine Beziehung mit"
+msgstr "Er war in einer Beziehung mit"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1025
 msgid "He married %s times"
-msgstr "Er heiratete %s mal"
+msgstr "Er hat %s mal geheiratet"
 
 #: FancyTreeviewModule.php:1479
 msgctxt "PAST"
@@ -299,7 +299,7 @@ msgstr "Er wurde getauft"
 #: FancyTreeviewModule.php:1481
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "Er ist getauft worden"
+msgstr "Er wurde getauft"
 
 #: FancyTreeviewModule.php:1461
 msgctxt "PAST"
@@ -456,12 +456,12 @@ msgstr "siebte"
 
 #: FancyTreeviewModule.php:1108
 msgid "She had a relationship with"
-msgstr "Sie hatte eine Beziehung mit"
+msgstr "Sie war in einer Beziehung mit"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1031
 msgid "She married %s times"
-msgstr "Sie heiratete %s mal"
+msgstr "Sie hat %s mal geheiratet"
 
 #: FancyTreeviewModule.php:1479
 msgctxt "PAST"
@@ -481,7 +481,7 @@ msgstr "Sie wurde geboren"
 #: FancyTreeviewModule.php:1463
 msgctxt "PRESENT"
 msgid "She was born"
-msgstr "Sie wurde geboren"
+msgstr "Sie ist geboren"
 
 #: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
 msgid "Show ancestors"
@@ -524,17 +524,17 @@ msgstr "zehnte"
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:1027
 msgid "The %s time he married"
-msgstr "Er heiratete das %s Mal"
+msgstr "Das %s Mal, als er geheiratet hat"
 
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:1033
 msgid "The %s time she married"
-msgstr "Sie heiratete das %s Mal"
+msgstr "Das %s Mal, als sie geheiratet hat"
 
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:1039
 msgid "The %s time this individual married"
-msgstr "Diese Person heiratete das %s Mal"
+msgstr "Das %s Mal, als diese Person geheiratet hat"
 
 #: FancyTreeviewModule.php:987
 msgid "The details of this family are private."
@@ -599,7 +599,7 @@ msgstr "wurde getauft"
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
-msgstr "wurde getauft"
+msgstr "ist getauft"
 
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (MALE)"
@@ -619,7 +619,7 @@ msgstr "wurde geboren"
 #: FancyTreeviewModule.php:1470
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
-msgstr "wurde geboren"
+msgstr "wird geboren"
 
 #: FancyTreeviewModule.php:1470
 msgctxt "PRESENT (MALE)"

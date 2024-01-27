@@ -549,7 +549,7 @@ msgstr "De tilføjede links bliver indeholdt i Fancy-Treeview-menuen og Fancy-Tr
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "Menuen og forsideblokken indeholder de samme links. Dog er forsideblokkens fremtoning gjort ekstra "
+msgstr "Menuen og forsideblokken indeholder de samme links. Dog er forsideblokkens fremtoning gjort ekstra indbydende med figurer til linkene."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
