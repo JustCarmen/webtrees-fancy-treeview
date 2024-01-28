@@ -67,7 +67,7 @@ msgstr "fill adoptiu de"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Escriviu sempre l'ocupació tal com apareix al Gedcom"
 
-#: FancyTreeviewModule.php:563
+#: FancyTreeviewModule.php:567
 msgid "Ancestors and descendants"
 msgstr "Avantpassats i descendents"
 
@@ -145,7 +145,7 @@ msgstr "Personalitzat"
 msgid "Default list type"
 msgstr "Tipus de llista per defecte"
 
-#: FancyTreeviewModule.php:565
+#: FancyTreeviewModule.php:569
 msgid "Descendants and ancestors"
 msgstr "Descendents i avantpassats"
 
@@ -172,7 +172,7 @@ msgstr "No mostris topònims"
 msgid "eighth"
 msgstr "vuitè"
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:515
+#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
 msgstr "Descripció general de l'arbre genealògic"
 
@@ -241,6 +241,10 @@ msgstr "Aneu al tauler de control per definir el nivell d'accés al menú. Allà
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
 msgstr "Aneu a la pàgina d'inici, feu clic a les meves pàgines / personalitzeu aquesta pàgina per afegir el bloc de la pàgina d'inici de Fancy Treeview amb els enllaços creats."
+
+#: resources/views/blockmodulehelptext.phtml:11
+msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -485,11 +489,11 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Ella neix"
 
-#: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "Mostrar ancestres"
 
-#: FancyTreeviewModule.php:663 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:667 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "Mostrar descendents"
 
@@ -549,6 +553,10 @@ msgstr "Els detalls d'aquesta generació són privats."
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
 msgstr "Els enllaços creats s'inclouran al menú Fancy Treeview i al bloc Fancy Treeview homepage."
+
+#: resources/views/blockmodulehelptext.phtml:16
+msgid "The links created will be shown in this block."
+msgstr "The links created will be shown in this block."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
@@ -652,6 +660,10 @@ msgstr "va ser incinerat"
 msgid "were divorced"
 msgstr "es van divorciar"
 
+#: resources/views/blockmodulehelptext.phtml:13
+msgid "You can also create links from the Fancy Treeview page itself."
+msgstr "You can also create links from the Fancy Treeview page itself."
+
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
 msgstr "Podeu crear enllaços des de la pàgina Fancy Treeview o des del menú d'edició de la pàgina individual."
@@ -659,4 +671,8 @@ msgstr "Podeu crear enllaços des de la pàgina Fancy Treeview o des del menú d
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
 msgstr "Podeu utilitzar tant el menú com el bloc de la pàgina d'inici o optar per utilitzar-los."
+
+#: resources/views/blockmodulehelptext.phtml:8
+msgid "You have not created a link yet."
+msgstr "You have not created a link yet."
 

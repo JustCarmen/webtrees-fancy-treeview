@@ -67,7 +67,7 @@ msgstr "kjörsonur"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Skrifaðu alltaf starfsheitið nákvæmlega eins og það birtist í Gedcom"
 
-#: FancyTreeviewModule.php:563
+#: FancyTreeviewModule.php:567
 msgid "Ancestors and descendants"
 msgstr "Forfeður og afkomendur"
 
@@ -144,7 +144,7 @@ msgstr "Sérsniðin"
 msgid "Default list type"
 msgstr "Sjálfgefin tegund lista"
 
-#: FancyTreeviewModule.php:565
+#: FancyTreeviewModule.php:569
 msgid "Descendants and ancestors"
 msgstr "Afkomendur og forfeður"
 
@@ -171,7 +171,7 @@ msgstr "Ekki sýna staðarheiti"
 msgid "eighth"
 msgstr "Áttunda"
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:515
+#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
 msgstr "Ættartöluyfirlit"
 
@@ -240,6 +240,10 @@ msgstr "Farðu á stjórnborðið til að stilla aðgangsstig valmyndarinnar. Þ
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
 msgstr "Farðu á heimasíðuna, smelltu á mínar síður/sérsníddu þessa síðu til að bæta við heimasíðublokk fyrir Flott ættaryfirlit með stofnuðum tenglum."
+
+#: resources/views/blockmodulehelptext.phtml:11
+msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -482,11 +486,11 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Hún er fædd"
 
-#: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "Sýna forfeður"
 
-#: FancyTreeviewModule.php:663 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:667 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "Sýna afkomendur"
 
@@ -546,6 +550,10 @@ msgstr "Nánari upplýsingar um þessa kynslóð eru einkamál."
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
 msgstr "Tenglar sem búnir eru til verða hluti af valmyndinni í Flotta ættaryfirlitinu og í heimasíðublokkinni fyrir Flotta ættaryfirlitið."
+
+#: resources/views/blockmodulehelptext.phtml:16
+msgid "The links created will be shown in this block."
+msgstr "The links created will be shown in this block."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
@@ -649,6 +657,10 @@ msgstr "var líkbrenndur"
 msgid "were divorced"
 msgstr "skildu"
 
+#: resources/views/blockmodulehelptext.phtml:13
+msgid "You can also create links from the Fancy Treeview page itself."
+msgstr "You can also create links from the Fancy Treeview page itself."
+
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
 msgstr "Þú getur búið til tengla frá síðu Flotta ættaryfirlitsins eða úr breytingavalmyndinni á einstökum síðu."
@@ -656,4 +668,8 @@ msgstr "Þú getur búið til tengla frá síðu Flotta ættaryfirlitsins eða �
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
 msgstr "Þú getur notað bæði valmyndina og heimasíðublokkina eða valið að nota annað hvort."
+
+#: resources/views/blockmodulehelptext.phtml:8
+msgid "You have not created a link yet."
+msgstr "You have not created a link yet."
 

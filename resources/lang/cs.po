@@ -67,7 +67,7 @@ msgstr "adotovaný syn (čí)"
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Psát povolání přesně tak, jak vypadá v GEDCOMu"
 
-#: FancyTreeviewModule.php:563
+#: FancyTreeviewModule.php:567
 msgid "Ancestors and descendants"
 msgstr "Předci a potomci"
 
@@ -144,7 +144,7 @@ msgstr "Customized"
 msgid "Default list type"
 msgstr "Přednastavený typ seznamu"
 
-#: FancyTreeviewModule.php:565
+#: FancyTreeviewModule.php:569
 msgid "Descendants and ancestors"
 msgstr "Potomci a předci"
 
@@ -171,7 +171,7 @@ msgstr "Nezobrazovat názvy míst"
 msgid "eighth"
 msgstr "osmý"
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:515
+#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
 msgstr "Popis stromu"
 
@@ -240,6 +240,10 @@ msgstr "Přejděte na panel správy a nastavte úroveň přístupu do nabídky. 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
 msgstr "Přejděte na domovskou stránku, klikněte na moje stránky/přizpůsobit tuto stránku a přidejte blok domovské stránky Fancy Treeview s vytvořenými odkazy."
+
+#: resources/views/blockmodulehelptext.phtml:11
+msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -483,11 +487,11 @@ msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Narodila se"
 
-#: FancyTreeviewModule.php:668 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
 msgid "Show ancestors"
 msgstr "Zobrazit předky"
 
-#: FancyTreeviewModule.php:663 resources/views/tab.phtml:21
+#: FancyTreeviewModule.php:667 resources/views/tab.phtml:21
 msgid "Show descendants"
 msgstr "Zobrazit potomky"
 
@@ -547,6 +551,10 @@ msgstr "Podrobnosti o této generaci jsou soukromé."
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
 msgstr "Vytvořené odkazy budou zahrnuty do nabídky Fancy Treeview a do bloku domovské stránky Fancy Treeview."
+
+#: resources/views/blockmodulehelptext.phtml:16
+msgid "The links created will be shown in this block."
+msgstr "The links created will be shown in this block."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
@@ -650,6 +658,10 @@ msgstr "byl zpopelněn"
 msgid "were divorced"
 msgstr "rozvedeni"
 
+#: resources/views/blockmodulehelptext.phtml:13
+msgid "You can also create links from the Fancy Treeview page itself."
+msgstr "You can also create links from the Fancy Treeview page itself."
+
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
 msgstr "Odkazy můžete vytvářet na stránce Fancy Treeview nebo v nabídce úprav na stránce osoby."
@@ -657,4 +669,8 @@ msgstr "Odkazy můžete vytvářet na stránce Fancy Treeview nebo v nabídce ú
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
 msgstr "Můžete použít jak blok menu, tak blok domovské stránky, nebo se rozhodnout pro jeden z nich."
+
+#: resources/views/blockmodulehelptext.phtml:8
+msgid "You have not created a link yet."
+msgstr "You have not created a link yet."
 
