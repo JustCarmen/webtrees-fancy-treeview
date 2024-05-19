@@ -254,6 +254,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             'list-type'             => 'descendants', // Type 'Descendants' or 'Ancestors'
             'page-limit'            => '3',  // integer, number of generation blocks per page
             'tab-limit'             => '3',  // integer, number of generation blocks per tab
+            'show-all-link'         => '0',  // integer, access level
             'show-singles'          => '0',  // boolean
             'check-relationship'    => '0',  // boolean
             'thumb-size'            => '80', // integer
@@ -290,6 +291,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             'list_type'             => $this->options('list-type'),
             'page_limit'            => $this->options('page-limit'),
             'tab_limit'             => $this->options('tab-limit'),
+            'show_all_link'         => $this->options('show-all-link'),
             'show_singles'          => $this->options('show-singles'),
             'check_relationship'    => $this->options('check-relationship'),
             'thumb_size'            => $this->options('thumb-size'),
@@ -324,6 +326,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $this->setPreference('list-type', $params['list-type']);
             $this->setPreference('page-limit', $params['page-limit']);
             $this->setPreference('tab-limit', $params['tab-limit']);
+            $this->setPreference('show-all-link',  $params['show-all-link']);
             $this->setPreference('show-singles',  $params['show-singles']);
             $this->setPreference('check-relationship',  $params['check-relationship']);
             $this->setPreference('thumb-size',  $params['thumb-size']);
@@ -664,8 +667,14 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $page_title = $this->printPageTitle($person, $this->type);
 
             // determine the generation to start with
-            $limit = (int) $this->options('page-limit');
-            $start = ($page - 1) * $limit + 1;
+            if ($page === 0) { // for printing a page with all generations
+                $page = 1;
+                $start = 1;
+                $limit = 99;
+            } else {
+                $limit = (int) $this->options('page-limit');
+                $start = ($page - 1) * $limit + 1;
+            }
 
             if ($this->type === 'ancestors') {
                 $page_body   = $this->printAncestorsPage($xref, $start, $limit);
@@ -693,14 +702,14 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 'generations'       => $generations,
                 'current_page'      => $page,
                 'total_pages'       => $total_pages,
-                'limit'             => $limit
+                'limit'             => $limit,
+                'show_all_link'     => (int) $this->options('show-all-link')
             ]);
         } else {
             $message = I18N::translate('This page does not exist or you do not have permission to view it.');
             throw new HttpNotFoundException($message);
         }
     }
-
 
     /**
      * Print the Fancy Treeview descendants page

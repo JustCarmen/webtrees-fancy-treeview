@@ -1,5 +1,6 @@
 <?php
 
+use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
@@ -61,6 +62,22 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 <?= I18N::translate('More generations require more memory so the page takes longer to fully load.'); ?>
             </div>
         </div>
+         <!-- SHOW LINK TO OPEN ALL GENERATIONS ON ONE PAGE -->
+        <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Show link to open all generations on one page') ?>
+                </legend>
+                <div class="col-sm-3">
+                    <?= view('components/select', ['name' => 'show-all-link', 'selected' => $show_all_link, 'options' => Auth::accessLevelNames()]) ?>
+                </div>
+                <div class="form-text col-sm-9 offset-sm-3">
+                    <?= /* I18N: Help text for the "Show link to open all generations on one page" configuration setting */
+                    I18N::translate('Show a link below the pagination to open all generations on one page. This is convenient for printing the page or saving as PDF. Select the minimum role required to view this link.');
+                    ?>
+                </div>
+            </div>
+        </fieldset>
         <!-- SHOW SINGLES -->
         <fieldset class="mb-3">
             <div class="row">
