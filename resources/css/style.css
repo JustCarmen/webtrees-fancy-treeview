@@ -129,20 +129,17 @@ li.jc-child-li::before {
 }
 
 .jc-fancy-treeview-page .jc-generation-block-header {
-  -webkit-column-break-after: avoid;
-          break-after: avoid;
+  break-after: avoid;
 }
 
 .jc-fancy-treeview-page .jc-person-block {
-  -webkit-column-break-before: avoid;
-          break-before: avoid;
+  break-before: avoid;
 }
 
 .jc-fancy-treeview-page .jc-person-block,
 .jc-fancy-treeview-page .jc-spouse-block,
 .jc-fancy-treeview-page .jc-children-block {
-  -webkit-column-break-inside: avoid;
-          break-inside: avoid;
+  break-inside: avoid;
 }
 
 [dir="ltr"] .jc-fancy-treeview-page-body a.gallery img {
