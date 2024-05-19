@@ -243,8 +243,9 @@ msgid "Go to the homepage, click on my pages/customize this page to add the Fanc
 msgstr "Gehen Sie zur Homepage, klicken Sie auf Meine Seiten/Anpassen dieser Seite, um den Fancy Treeview Homepage-Block mit den erstellten Verweisen hinzuzufügen."
 
 #: resources/views/blockmodulehelptext.phtml:11
+#, fuzzy
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
-msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Gehen Sie zur Seite einer beliebigen Person und öffnen Sie das Bearbeitungsmenü, um einen neuen Link zur Fancy Treeview-Seite zu erstellen."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -553,8 +554,9 @@ msgid "The links created will be included in the Fancy Treeview menu and in the 
 msgstr "Die erstellten Verweise werden in das Fancy-Treeview-Menü und in den Fancy-Treeview-Homepage-Block aufgenommen."
 
 #: resources/views/blockmodulehelptext.phtml:16
+#, fuzzy
 msgid "The links created will be shown in this block."
-msgstr "The links created will be shown in this block."
+msgstr "Die erstellten Links werden in diesem Block angezeigt."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
@@ -661,8 +663,9 @@ msgid "were divorced"
 msgstr "wurden geschieden"
 
 #: resources/views/blockmodulehelptext.phtml:13
+#, fuzzy
 msgid "You can also create links from the Fancy Treeview page itself."
-msgstr "You can also create links from the Fancy Treeview page itself."
+msgstr "Sie können Links auch von der Fancy Treeview-Seite selbst aus erstellen."
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
@@ -673,6 +676,7 @@ msgid "You can use both the menu and homepage block or choose to use either."
 msgstr "Sie können sowohl den Menü- als auch den Homepage-Block verwenden oder sich für einen der beiden entscheiden."
 
 #: resources/views/blockmodulehelptext.phtml:8
+#, fuzzy
 msgid "You have not created a link yet."
-msgstr "You have not created a link yet."
+msgstr "Sie haben noch keinen Link erstellt."
 

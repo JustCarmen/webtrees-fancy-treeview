@@ -87,7 +87,7 @@ msgstr "Answer \"yes\" if you want to display the name of the company/employer (
 
 #: FancyTreeviewModule.php:1554
 msgid "approximately"
-msgstr "approximately"
+msgstr "w przybliżeniu"
 
 #: resources/views/settings.phtml:162
 msgid "As defined in webtrees"
@@ -118,19 +118,19 @@ msgstr "dziecko"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Kliknij tutaj, aby utworzyć lub usunąć link do strony Fancy Treeview."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "Utwórz link do strony przodków"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "Utwórz link do strony potomków"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "Utwórz link do tej strony"
 
 #: resources/views/settings.phtml:128
 msgid "Crop thumbnails to square"
@@ -235,15 +235,15 @@ msgstr "Full place name"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Przejdź do panelu sterowania, aby ustawić poziom dostępu do menu. Tam możesz także ukryć menu."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Przejdź do strony głównej, kliknij moje strony/dostosuj tę stronę, aby dodać blok strony głównej Fancy Treeview z utworzonymi linkami."
 
 #: resources/views/blockmodulehelptext.phtml:11
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
-msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Przejdź do strony dowolnej osoby i otwórz menu edycji, aby utworzyć nowy link do strony Fancy Treeview."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -357,7 +357,7 @@ msgstr "In the Gedcom file, the first letter of most occupations is capitalized 
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "Link do strony Fancy Treeview"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
@@ -412,15 +412,15 @@ msgstr "Czytaj więcej"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "Usuń link do strony przodków"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "Usuń link do strony potomków"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "Usuń link do tej strony"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:145
@@ -549,15 +549,15 @@ msgstr "Szczegóły danego pokolenia są prywatne."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "Utworzone linki zostaną uwzględnione w menu Fancy Treeview i w bloku strony głównej Fancy Treeview."
 
 #: resources/views/blockmodulehelptext.phtml:16
 msgid "The links created will be shown in this block."
-msgstr "The links created will be shown in this block."
+msgstr "Utworzone linki zostaną pokazane w tym bloku."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "Menu i blok strony głównej zawierają te same linki. Jednakże wygląd bloku strony głównej został uatrakcyjniony poprzez dodanie obrazów dla linków."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
@@ -565,7 +565,7 @@ msgstr "The number of possible ancestors in this generation has been reduced due
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "Tytuł menu i bloku strony głównej to „Przegląd drzewa genealogicznego”."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:1013
@@ -659,17 +659,17 @@ msgstr "rozwiedli się"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
-msgstr "You can also create links from the Fancy Treeview page itself."
+msgstr "Możesz także tworzyć linki z samej strony Fancy Treeview."
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "Możesz tworzyć linki ze strony Fancy Treeview lub z menu edycji na pojedynczej stronie."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "Możesz użyć zarówno menu, jak i bloku strony głównej lub wybrać jedno z nich."
 
 #: resources/views/blockmodulehelptext.phtml:8
 msgid "You have not created a link yet."
-msgstr "You have not created a link yet."
+msgstr "Nie utworzyłeś jeszcze linku."
 

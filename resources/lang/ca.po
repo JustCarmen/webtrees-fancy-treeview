@@ -244,7 +244,7 @@ msgstr "Aneu a la pàgina d'inici, feu clic a les meves pàgines / personalitzeu
 
 #: resources/views/blockmodulehelptext.phtml:11
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
-msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Aneu a la pàgina de qualsevol persona i obriu el menú d'edició per crear un enllaç nou a la pàgina Fancy Treeview."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -556,7 +556,7 @@ msgstr "Els enllaços creats s'inclouran al menú Fancy Treeview i al bloc Fancy
 
 #: resources/views/blockmodulehelptext.phtml:16
 msgid "The links created will be shown in this block."
-msgstr "The links created will be shown in this block."
+msgstr "Els enllaços creats es mostraran en aquest bloc."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
@@ -662,7 +662,7 @@ msgstr "es van divorciar"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
-msgstr "You can also create links from the Fancy Treeview page itself."
+msgstr "També podeu crear enllaços des de la mateixa pàgina Fancy Treeview."
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
@@ -674,5 +674,5 @@ msgstr "Podeu utilitzar tant el menú com el bloc de la pàgina d'inici o optar 
 
 #: resources/views/blockmodulehelptext.phtml:8
 msgid "You have not created a link yet."
-msgstr "You have not created a link yet."
+msgstr "Encara no has creat cap enllaç."
 
