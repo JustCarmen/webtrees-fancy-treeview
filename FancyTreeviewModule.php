@@ -1359,7 +1359,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 $html .= rtrim($this->options('gedcom-occupation') ? $fact->value() : lcfirst($fact->value()), ".");
 
                 if ($this->options('show-agencies') && $fact->attribute('AGNC') !== '') {
-                    $html .= ' ' . /* I18N: %s is the Gedcom tag AGNC (Agency) */ I18N::translate('at %s', $fact->attribute('AGNC'));
+                    $fact->value() === '' ? $html .= I18N::translate('employed with') : $html .= ' ' . /* I18N: in the context 'employed with') */ I18N::translate('with');
+                    $html .= ' ' . $fact->attribute('AGNC');
                 }
 
                 $date = $this->printDate($fact);
