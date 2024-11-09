@@ -78,7 +78,7 @@ msgstr "Avantpassats i descendents"
 #: FancyTreeviewModule.php:1511 FancyTreeviewModule.php:1519
 #: FancyTreeviewModule.php:1527
 msgid "and "
-msgstr "i␣"
+msgstr "i "
 
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:247
@@ -152,12 +152,12 @@ msgstr "Descendents i avantpassats"
 #: FancyTreeviewModule.php:1512
 msgctxt "FEMALE"
 msgid "died"
-msgstr "Va morir"
+msgstr "Va morir "
 
 #: FancyTreeviewModule.php:1512
 msgctxt "MALE"
 msgid "died"
-msgstr "Va morir"
+msgstr "Va morir "
 
 #: resources/views/settings.phtml:209
 msgid "Display home country name"

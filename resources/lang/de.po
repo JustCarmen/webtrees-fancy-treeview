@@ -243,7 +243,6 @@ msgid "Go to the homepage, click on my pages/customize this page to add the Fanc
 msgstr "Gehen Sie zur Homepage, klicken Sie auf Meine Seiten/Anpassen dieser Seite, um den Fancy Treeview Homepage-Block mit den erstellten Verweisen hinzuzufügen."
 
 #: resources/views/blockmodulehelptext.phtml:11
-#, fuzzy
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 msgstr "Gehen Sie zur Seite einer beliebigen Person und öffnen Sie das Bearbeitungsmenü, um einen neuen Link zur Fancy Treeview-Seite zu erstellen."
 
@@ -314,7 +313,7 @@ msgstr "Er wurde geboren"
 #: FancyTreeviewModule.php:1463
 msgctxt "PRESENT"
 msgid "He was born"
-msgstr "Er ist geboren"
+msgstr "Er wurde geboren"
 
 #: resources/views/settings.phtml:175 resources/views/settings.phtml:188
 msgid "Highest and lowest level"
@@ -486,7 +485,7 @@ msgstr "Sie wurde geboren"
 #: FancyTreeviewModule.php:1463
 msgctxt "PRESENT"
 msgid "She was born"
-msgstr "Sie ist geboren"
+msgstr "Sie wurde geboren"
 
 #: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
 msgid "Show ancestors"
@@ -529,17 +528,17 @@ msgstr "zehnte"
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:1027
 msgid "The %s time he married"
-msgstr "Das %s Mal, als er geheiratet hat"
+msgstr "Das %s Mal heiratete er"
 
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:1033
 msgid "The %s time she married"
-msgstr "Das %s Mal, als sie geheiratet hat"
+msgstr "Das %s Mal heiratete sie"
 
 #. I18N: %s is an ordinal
 #: FancyTreeviewModule.php:1039
 msgid "The %s time this individual married"
-msgstr "Das %s Mal, als diese Person geheiratet hat"
+msgstr "Das %s Mal heiratete diese Person"
 
 #: FancyTreeviewModule.php:987
 msgid "The details of this family are private."
@@ -554,7 +553,6 @@ msgid "The links created will be included in the Fancy Treeview menu and in the 
 msgstr "Die erstellten Verweise werden in das Fancy-Treeview-Menü und in den Fancy-Treeview-Homepage-Block aufgenommen."
 
 #: resources/views/blockmodulehelptext.phtml:16
-#, fuzzy
 msgid "The links created will be shown in this block."
 msgstr "Die erstellten Links werden in diesem Block angezeigt."
 
@@ -609,7 +607,7 @@ msgstr "wurde getauft"
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
-msgstr "ist getauft"
+msgstr "wurde getauft"
 
 #: FancyTreeviewModule.php:1488
 msgctxt "PRESENT (MALE)"
@@ -629,7 +627,7 @@ msgstr "wurde geboren"
 #: FancyTreeviewModule.php:1470
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
-msgstr "wird geboren"
+msgstr "wurde geboren"
 
 #: FancyTreeviewModule.php:1470
 msgctxt "PRESENT (MALE)"
@@ -663,7 +661,6 @@ msgid "were divorced"
 msgstr "wurden geschieden"
 
 #: resources/views/blockmodulehelptext.phtml:13
-#, fuzzy
 msgid "You can also create links from the Fancy Treeview page itself."
 msgstr "Sie können Links auch von der Fancy Treeview-Seite selbst aus erstellen."
 
@@ -676,7 +673,6 @@ msgid "You can use both the menu and homepage block or choose to use either."
 msgstr "Sie können sowohl den Menü- als auch den Homepage-Block verwenden oder sich für einen der beiden entscheiden."
 
 #: resources/views/blockmodulehelptext.phtml:8
-#, fuzzy
 msgid "You have not created a link yet."
 msgstr "Sie haben noch keinen Link erstellt."
 

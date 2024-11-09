@@ -173,7 +173,7 @@ msgstr "Áttunda"
 
 #: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
-msgstr "Ættartöluyfirlit"
+msgstr "Ættaryfirlit"
 
 #. I18N: Name of a module
 #: FancyTreeviewModule.php:112
@@ -239,11 +239,11 @@ msgstr "Farðu á stjórnborðið til að stilla aðgangsstig valmyndarinnar. Þ
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Farðu á heimasíðuna, smelltu á mínar síður/sérsníddu þessa síðu til að bæta við heimasíðublokk fyrir Flott ættaryfirlit með stofnuðum tenglum."
+msgstr "Farðu á heimasíðuna, smelltu á mínar síður/sérsníddu þessa síðu til að bæta við heimasíðublokk fyrir flott ættaryfirlit með stofnuðum tenglum."
 
 #: resources/views/blockmodulehelptext.phtml:11
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
-msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Farðu á síðu einhvers einstaklings og opnaðu breytingavalmyndina til að útbúa nýjan hlekk á síðu flotta ættaryfirlitsins."
 
 #: FancyTreeviewModule.php:1183
 msgctxt "One parent/multiple children"
@@ -357,7 +357,7 @@ msgstr "Í Gedcom skránni er fyrsti stafurinn stór fyrir flest starfsheiti (se
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Tengill á Flotta ættaryfirlitssíðu"
+msgstr "Tengill á flotta ættaryfirlitssíðu"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
@@ -445,7 +445,7 @@ msgstr "Veldu „afkomendur“ eða „forfeður“ sem sjálfgefna listategund.
 #. I18N: Help text for the “Maximum number of generations per page” configuration setting
 #: resources/views/settings.phtml:43
 msgid "Select the maximum number of generations to show on the Fancy Treeview page."
-msgstr "Veljið hámarksfjölda kynslóða til að sýna á síðunni fyrir Flott ættaryfirlit"
+msgstr "Veljið hámarksfjölda kynslóða til að sýna á síðunni fyrir flott ættaryfirlit."
 
 #. I18N: Help text for the “Maximum number of generations per tab” configuration setting
 #: resources/views/settings.phtml:59
@@ -549,11 +549,11 @@ msgstr "Nánari upplýsingar um þessa kynslóð eru einkamál."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "Tenglar sem búnir eru til verða hluti af valmyndinni í Flotta ættaryfirlitinu og í heimasíðublokkinni fyrir Flotta ættaryfirlitið."
+msgstr "Tenglar sem búnir eru til verða hluti af valmyndinni í flotta ættaryfirlitinu og í heimasíðublokkinni fyrir flotta ættaryfirlitið."
 
 #: resources/views/blockmodulehelptext.phtml:16
 msgid "The links created will be shown in this block."
-msgstr "The links created will be shown in this block."
+msgstr "Tenglar sem eru útbúnir verða sýndir í þessum reit."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
@@ -565,7 +565,7 @@ msgstr "Mögulegum forfeðrum í þessari kynslóð hefur fækkað vegna ættart
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "Titill valmyndar og heimasíðublokkar er  “Ættartöluyfirlit”."
+msgstr "Titill valmyndar og heimasíðublokkar er  “Ættaryfirlit”."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:1013
@@ -659,11 +659,11 @@ msgstr "skildu"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
-msgstr "You can also create links from the Fancy Treeview page itself."
+msgstr "Þú getur líka búið til tengla frá sjálfri síðu flotta ættaryfirlitsins."
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "Þú getur búið til tengla frá síðu Flotta ættaryfirlitsins eða úr breytingavalmyndinni á einstökum síðu."
+msgstr "Þú getur búið til tengla frá síðu flotta ættaryfirlitsins eða úr breytingavalmyndinni á einstökum síðu."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
@@ -671,5 +671,5 @@ msgstr "Þú getur notað bæði valmyndina og heimasíðublokkina eða valið a
 
 #: resources/views/blockmodulehelptext.phtml:8
 msgid "You have not created a link yet."
-msgstr "You have not created a link yet."
+msgstr "Þú hefur ekki útbúið tengil ennþá."
 
