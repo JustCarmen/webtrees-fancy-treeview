@@ -930,12 +930,16 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 // get a list of all the spouses
                 /*
                 * First, determine the true number of spouses by checking the family gedcom
+                * The partnercount counts all the partners, married or not.
                 */
-                $spousecount = 0;
+                $spousecount = 0; $partnercount = 0;
                 foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
                     $spouse = $family->spouse($person);
-                    if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
-                        $spousecount++;
+                    if ($spouse && $spouse->canShow()) {
+                        $partnercount++;
+                        if ($this->getMarriage($family)) {
+                            $spousecount++;
+                        }
                     }
                 }
                 /*
@@ -944,17 +948,21 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 * as not all families have a spouse
                 * $spousecount is passed rather than doing each time inside function get_spouse
                 */
-                $spouseindex = 0;
+                $spouseindex = 0; $partnerindex = 0; $current = false;
                 foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
                     $spouse = $family->spouse($person);
                     if ($spouse && $spouse->canShow()) {
+                        if ($partnerindex === $partnercount - 1) {
+                            $current = $this->isCurrentRelation ($person, $spouse);
+                        }
                         if ($this->getMarriage($family)) {
-                            $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount);
+                            $html .= $this->printSpouse($family, $person, $spouse, $spouseindex, $spousecount, $current);
                             $spouseindex++;
                         } else {
-                            $html .= $this->printPartner($family, $person, $spouse);
+                            $html .= $this->printPartner($family, $person, $spouse, $current);
                         }
                     }
+                    $partnerindex++;
                 }
 
                 $html .= '</div></div>';
@@ -1000,7 +1008,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      *
      * @return string
      */
-    protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count): string
+    protected function printSpouse(Family $family, Individual $person, Individual $spouse, int $i, int $count, bool $current): string
     {
         $html = '<p>';
 
@@ -1042,13 +1050,13 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         } else {
             switch ($person->sex()) {
                 case 'M':
-                    $html     .= I18N::translate('He married');
+                    $html     .= $current ? I18N::translate('He is married to') : I18N::translate('He married');
                     break;
                 case 'F':
-                    $html     .= I18N::translate('She married');
+                    $html     .= $current ? I18N::translate('She is married to') : I18N::translate('She married');
                     break;
                 default:
-                    $html     .= I18N::translate('This individual married');
+                    $html     .= $current ? I18N::translate('This individual is married to') : I18N::translate('This individual married');
                     break;
             }
         }
@@ -1095,20 +1103,20 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      *
      * @return string
      */
-    protected function printPartner(Family $family, Individual $person, Individual $spouse): string
+    protected function printPartner(Family $family, Individual $person, Individual $spouse, bool $current): string
     {
 
         $html = '<p>';
 
         switch ($person->sex()) {
             case 'M':
-                $html     .= I18N::translate('He had a relationship with');
+                $html     .= $current ? I18N::translate('He has a relationship with') : I18N::translate('He had a relationship with');
                 break;
             case 'F':
-                $html     .= I18N::translate('She had a relationship with');
+                $html     .= $current ? I18N::translate('She has a relationship with') : I18N::translate('She had a relationship with');
                 break;
             default:
-                $html     .= I18N::translate('This individual had a relationship with');
+                $html     .= $current ? I18N::translate('This individual has a relationship with') : I18N::translate('This individual had a relationship with');
                 break;
         }
 
@@ -1851,6 +1859,46 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     {
         if ($fact && !preg_match('/^(FROM|BET|TO|AND|BEF|AFT|CAL|EST|INT|ABT) (.+)/', $fact->attribute('DATE'))) {
             return true;
+        }
+
+        return false;
+    }
+
+      /**
+     * Check if this relationship is the current relationship
+     * It should be the latest relationship of both living partners
+     */
+    /**
+     * @param mixed $person
+     * @param mixed $spouse
+     *
+     * @return bool
+     */
+    private function isCurrentRelation ($person, $spouse): bool
+    {
+        // first check if both persons are alive
+        if ($person->isDead() || $spouse->isDead()) {
+            return false;
+        }
+
+        // determine if the current spouse is also the latest partner of the person
+        $partnercount = 0;
+        foreach ($spouse->spouseFamilies(Auth::PRIV_HIDE) as $family) {
+            $partner = $family->spouse($spouse);
+            if ($partner && $partner->canShow()) {
+                $partnercount++;
+            }
+        }
+
+        $partnerindex = 0;
+        foreach ($spouse->spouseFamilies(Auth::PRIV_HIDE) as $family) {
+            $partner = $family->spouse($spouse);
+            if ($partner && $partner->canShow()) {
+                if ($partnerindex === $partnercount - 1 && $person === $partner) {
+                    return true;
+                }
+            }
+            $partnerindex++;
         }
 
         return false;
