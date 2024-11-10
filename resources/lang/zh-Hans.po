@@ -4,11 +4,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: translate;noop;plural:1,2;translateContext:2,1c\n"
+"X-Poedit-Flags-xgettext: --add-comments=I18N:\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: .git\n"
+"X-Poedit-SearchPathExcluded-1: build\n"
+"X-Poedit-SearchPathExcluded-2: dist\n"
+"X-Poedit-SearchPathExcluded-3: node_modules\n"
+"X-Poedit-SearchPathExcluded-4: src\n"
 "Project-Id-Version: Fancy Treeview for webtrees 2\n"
 "Language: zh-Hans\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1587
+#: FancyTreeviewModule.php:1596
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -41,25 +51,25 @@ msgstr "3个字母国家代码"
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "一个宗族支系的后代和祖先的概述"
 
-#: FancyTreeviewModule.php:1224
+#: FancyTreeviewModule.php:1232
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr "收养子女"
 
-#: FancyTreeviewModule.php:1227
+#: FancyTreeviewModule.php:1235
 msgctxt "MALE"
 msgid "adopted child"
 msgstr "收养子女"
 
-#: FancyTreeviewModule.php:1291
+#: FancyTreeviewModule.php:1299
 msgid "adopted child of"
 msgstr "的收养子女"
 
-#: FancyTreeviewModule.php:1282
+#: FancyTreeviewModule.php:1290
 msgid "adopted daughter of"
 msgstr "的继女"
 
-#: FancyTreeviewModule.php:1273
+#: FancyTreeviewModule.php:1281
 msgid "adopted son of"
 msgstr "的继子"
 
@@ -72,11 +82,11 @@ msgid "Ancestors and descendants"
 msgstr "祖先和后代"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1080 FancyTreeviewModule.php:1145
-#: FancyTreeviewModule.php:1166 FancyTreeviewModule.php:1199
-#: FancyTreeviewModule.php:1304 FancyTreeviewModule.php:1354
-#: FancyTreeviewModule.php:1511 FancyTreeviewModule.php:1519
-#: FancyTreeviewModule.php:1527
+#: FancyTreeviewModule.php:1088 FancyTreeviewModule.php:1153
+#: FancyTreeviewModule.php:1174 FancyTreeviewModule.php:1207
+#: FancyTreeviewModule.php:1312 FancyTreeviewModule.php:1362
+#: FancyTreeviewModule.php:1520 FancyTreeviewModule.php:1528
+#: FancyTreeviewModule.php:1536
 msgid "and "
 msgstr "和"
 
@@ -85,7 +95,7 @@ msgstr "和"
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
 msgstr "如果您想显示职业公司/老板的名称 ，请回答“是”。文本仅与职业一起显示。"
 
-#: FancyTreeviewModule.php:1554
+#: FancyTreeviewModule.php:1563
 msgid "approximately"
 msgstr "approximately"
 
@@ -93,18 +103,13 @@ msgstr "approximately"
 msgid "As defined in webtrees"
 msgstr "在网络树中定义的"
 
-#. I18N: %s is the Gedcom tag AGNC (Agency)
-#: FancyTreeviewModule.php:1362
-msgid "at %s"
-msgstr "在%s"
-
 #. I18N: %s a string with a number e.g. 10 days/months/years
-#: FancyTreeviewModule.php:1565
+#: FancyTreeviewModule.php:1574
 msgid "at the age of %s"
 msgstr "在%s岁时"
 
 #. I18N: %s is a string without a number e.g. day/month/year
-#: FancyTreeviewModule.php:1563
+#: FancyTreeviewModule.php:1572
 msgid "at the age of 1 %s"
 msgstr "在1%s岁时"
 
@@ -112,7 +117,7 @@ msgstr "在1%s岁时"
 msgid "Check relationship between partners"
 msgstr "检查合作伙伴之间的关系"
 
-#: FancyTreeviewModule.php:1293
+#: FancyTreeviewModule.php:1301
 msgid "child of"
 msgstr "的孩子"
 
@@ -148,12 +153,12 @@ msgstr "默认列表类型"
 msgid "Descendants and ancestors"
 msgstr "后代和祖先"
 
-#: FancyTreeviewModule.php:1512
+#: FancyTreeviewModule.php:1521
 msgctxt "FEMALE"
 msgid "died"
 msgstr "去世"
 
-#: FancyTreeviewModule.php:1512
+#: FancyTreeviewModule.php:1521
 msgctxt "MALE"
 msgid "died"
 msgstr "去世"
@@ -167,9 +172,13 @@ msgid "Don't show place names"
 msgstr "不显示地名"
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:1018
+#: FancyTreeviewModule.php:1026
 msgid "eighth"
 msgstr "第八"
+
+#: FancyTreeviewModule.php:1370
+msgid "employed with"
+msgstr "employed with"
 
 #: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
@@ -185,43 +194,43 @@ msgid "Fancy Treeview Help"
 msgstr "Fancy Treeview Help"
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:1015
+#: FancyTreeviewModule.php:1023
 msgid "fifth"
 msgstr "第五"
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:1011
+#: FancyTreeviewModule.php:1019
 msgid "first"
 msgstr "第一"
 
-#: FancyTreeviewModule.php:1668
+#: FancyTreeviewModule.php:1677
 msgid "follow"
 msgstr "跟随"
 
-#: FancyTreeviewModule.php:1214
+#: FancyTreeviewModule.php:1222
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr "继养儿童"
 
-#: FancyTreeviewModule.php:1217
+#: FancyTreeviewModule.php:1225
 msgctxt "MALE"
 msgid "foster child"
 msgstr "继养儿童"
 
-#: FancyTreeviewModule.php:1289
+#: FancyTreeviewModule.php:1297
 msgid "foster child of"
 msgstr "的继养子女"
 
-#: FancyTreeviewModule.php:1280
+#: FancyTreeviewModule.php:1288
 msgid "foster daughter of"
 msgstr "的继女"
 
-#: FancyTreeviewModule.php:1271
+#: FancyTreeviewModule.php:1279
 msgid "foster son of"
 msgstr "的继女"
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:1014
+#: FancyTreeviewModule.php:1022
 msgid "fourth"
 msgstr "第四"
 
@@ -245,71 +254,79 @@ msgstr "Go to the homepage, click on my pages/customize this page to add the Fan
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 
-#: FancyTreeviewModule.php:1183
+#: FancyTreeviewModule.php:1191
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1153 FancyTreeviewModule.php:1189
+#: FancyTreeviewModule.php:1161 FancyTreeviewModule.php:1197
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1169
+#: FancyTreeviewModule.php:1177
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1147 FancyTreeviewModule.php:1175
+#: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1183
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1185
+#: FancyTreeviewModule.php:1193
 msgctxt "One parent/multiple children"
 msgid "has"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1191
+#: FancyTreeviewModule.php:1163 FancyTreeviewModule.php:1199
 msgctxt "One parent/one child"
 msgid "has"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1171
+#: FancyTreeviewModule.php:1179
 msgctxt "Two parents/multiple children"
 msgid "have"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1149 FancyTreeviewModule.php:1177
+#: FancyTreeviewModule.php:1157 FancyTreeviewModule.php:1185
 msgctxt "Two parents/one child"
 msgid "have"
 msgstr "有"
 
-#: FancyTreeviewModule.php:1105
+#: FancyTreeviewModule.php:1113
 msgid "He had a relationship with"
 msgstr "他和"
 
+#: FancyTreeviewModule.php:1113
+msgid "He has a relationship with"
+msgstr "He has a relationship with"
+
+#: FancyTreeviewModule.php:1053
+msgid "He is married to"
+msgstr "He is married to"
+
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1025
+#: FancyTreeviewModule.php:1033
 msgid "He married %s times"
 msgstr "他有过%s婚姻"
 
-#: FancyTreeviewModule.php:1479
+#: FancyTreeviewModule.php:1488
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr "他接受了洗礼"
 
-#: FancyTreeviewModule.php:1481
+#: FancyTreeviewModule.php:1490
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr "他接受了洗礼"
 
-#: FancyTreeviewModule.php:1461
+#: FancyTreeviewModule.php:1470
 msgctxt "PAST"
 msgid "He was born"
 msgstr "他出生了"
 
-#: FancyTreeviewModule.php:1463
+#: FancyTreeviewModule.php:1472
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "他出生了"
@@ -327,18 +344,18 @@ msgid "If the answer is “yes”, the script checks whether a (married) couple 
 msgstr "如果答案是“是”，脚本会检查一对（已婚）夫妇是否有相同的祖先。如果找到合作伙伴之间的关系，则显示取决于显示类型。"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1593
+#: FancyTreeviewModule.php:1602
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "在"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1596
+#: FancyTreeviewModule.php:1605
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "在"
 
-#: FancyTreeviewModule.php:1627
+#: FancyTreeviewModule.php:1636
 msgid "in %s"
 msgstr "在%s中"
 
@@ -376,16 +393,16 @@ msgid "More generations require more memory so the page takes longer to fully lo
 msgstr "更多的代需电脑内存更高，因此页面需要更长的时间才能完全加载。"
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:1019
+#: FancyTreeviewModule.php:1027
 msgid "ninth"
 msgstr "第九"
 
-#: FancyTreeviewModule.php:1158
+#: FancyTreeviewModule.php:1166
 msgid "no children"
 msgstr "没有孩子"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1590
+#: FancyTreeviewModule.php:1599
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "上"
@@ -433,7 +450,7 @@ msgid "Respond “yes” if you want to display singles in the next generation. 
 msgstr "如果您想在下一代中显示单曲，请回答“是”。单身者是没有伴侣和孩子的个人。如果选择“是”，一个家庭的每个孩子都会在下一代中详细展示。"
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:1012
+#: FancyTreeviewModule.php:1020
 msgid "second"
 msgstr "第二种"
 
@@ -453,35 +470,43 @@ msgid "Select the maximum number of generations to show on the individual page t
 msgstr "选择要在单个页面选项卡上显示的最大代数"
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:1017
+#: FancyTreeviewModule.php:1025
 msgid "seventh"
 msgstr "第七"
 
-#: FancyTreeviewModule.php:1108
+#: FancyTreeviewModule.php:1116
 msgid "She had a relationship with"
 msgstr "她和"
 
+#: FancyTreeviewModule.php:1116
+msgid "She has a relationship with"
+msgstr "She has a relationship with"
+
+#: FancyTreeviewModule.php:1056
+msgid "She is married to"
+msgstr "She is married to"
+
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1031
+#: FancyTreeviewModule.php:1039
 msgid "She married %s times"
 msgstr "她有过%s次婚姻"
 
-#: FancyTreeviewModule.php:1479
+#: FancyTreeviewModule.php:1488
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr "她受洗了"
 
-#: FancyTreeviewModule.php:1481
+#: FancyTreeviewModule.php:1490
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr "她受洗了"
 
-#: FancyTreeviewModule.php:1461
+#: FancyTreeviewModule.php:1470
 msgctxt "PAST"
 msgid "She was born"
 msgstr "她出生了"
 
-#: FancyTreeviewModule.php:1463
+#: FancyTreeviewModule.php:1472
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "她出生了"
@@ -515,31 +540,31 @@ msgid "Show the name of the company/employer"
 msgstr "显示公司/老板的名称"
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:1016
+#: FancyTreeviewModule.php:1024
 msgid "sixth"
 msgstr "第六"
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:1020
+#: FancyTreeviewModule.php:1028
 msgid "tenth"
 msgstr "第十个"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1027
+#: FancyTreeviewModule.php:1035
 msgid "The %s time he married"
 msgstr "他结婚的时候"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1033
+#: FancyTreeviewModule.php:1041
 msgid "The %s time she married"
 msgstr "有过%s次婚姻"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1039
+#: FancyTreeviewModule.php:1047
 msgid "The %s time this individual married"
 msgstr "次人于%s结婚"
 
-#: FancyTreeviewModule.php:987
+#: FancyTreeviewModule.php:995
 msgid "The details of this family are private."
 msgstr "这个家庭的细节是私密的"
 
@@ -568,20 +593,28 @@ msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:1013
+#: FancyTreeviewModule.php:1021
 msgid "third"
 msgstr "第三"
 
-#: FancyTreeviewModule.php:1111
+#: FancyTreeviewModule.php:1119
 msgid "This individual had a relationship with"
 msgstr "这个人与"
 
-#: FancyTreeviewModule.php:1051
+#: FancyTreeviewModule.php:1119
+msgid "This individual has a relationship with"
+msgstr "This individual has a relationship with"
+
+#: FancyTreeviewModule.php:1059
+msgid "This individual is married to"
+msgstr "This individual is married to"
+
+#: FancyTreeviewModule.php:1059
 msgid "This individual married"
 msgstr "这个人结婚了"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1037
+#: FancyTreeviewModule.php:1045
 msgid "This individual married %s times"
 msgstr "此人有%s次婚姻"
 
@@ -593,69 +626,74 @@ msgstr "此设置仅适用于包含后代的页面或选项卡。"
 msgid "Thumbnail size"
 msgstr "缩略图大小"
 
-#: FancyTreeviewModule.php:1486
+#: FancyTreeviewModule.php:1495
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr "was baptized"
 
-#: FancyTreeviewModule.php:1486
+#: FancyTreeviewModule.php:1495
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr "was baptized"
 
-#: FancyTreeviewModule.php:1488
+#: FancyTreeviewModule.php:1497
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "was baptized"
 
-#: FancyTreeviewModule.php:1488
+#: FancyTreeviewModule.php:1497
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "was baptized"
 
-#: FancyTreeviewModule.php:1468
+#: FancyTreeviewModule.php:1477
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "出生了"
 
-#: FancyTreeviewModule.php:1468
+#: FancyTreeviewModule.php:1477
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "出生了"
 
-#: FancyTreeviewModule.php:1470
+#: FancyTreeviewModule.php:1479
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "出生了"
 
-#: FancyTreeviewModule.php:1470
+#: FancyTreeviewModule.php:1479
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "出生了"
 
-#: FancyTreeviewModule.php:1520
+#: FancyTreeviewModule.php:1529
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "埋葬"
 
-#: FancyTreeviewModule.php:1520
+#: FancyTreeviewModule.php:1529
 msgctxt "MALE"
 msgid "was buried"
 msgstr "埋葬"
 
-#: FancyTreeviewModule.php:1528
+#: FancyTreeviewModule.php:1537
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr "火化"
 
-#: FancyTreeviewModule.php:1528
+#: FancyTreeviewModule.php:1537
 msgctxt "MALE"
 msgid "was cremated"
 msgstr "火化"
 
-#: FancyTreeviewModule.php:1080
+#: FancyTreeviewModule.php:1088
 msgid "were divorced"
 msgstr "离婚了"
+
+#. I18N: in the context 'employed with'
+#: FancyTreeviewModule.php:1370
+msgid "with"
+msgstr "with"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
