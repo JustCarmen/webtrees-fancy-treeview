@@ -932,7 +932,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 * First, determine the true number of spouses by checking the family gedcom
                 */
                 $spousecount = 0;
-                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
+                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
                     $spouse = $family->spouse($person);
                     if ($spouse && $spouse->canShow() && $this->getMarriage($family)) {
                         $spousecount++;
@@ -945,7 +945,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 * $spousecount is passed rather than doing each time inside function get_spouse
                 */
                 $spouseindex = 0;
-                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $i => $family) {
+                foreach ($person->spouseFamilies(Auth::PRIV_HIDE) as $family) {
                     $spouse = $family->spouse($person);
                     if ($spouse && $spouse->canShow()) {
                         if ($this->getMarriage($family)) {
