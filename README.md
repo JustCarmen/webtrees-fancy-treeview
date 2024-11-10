@@ -9,35 +9,40 @@ Fancy Treeview for webtrees
 
 Introduction
 -----------
-This module is a rewritten version of the Fancy treeview module.
+**Quick overview of a person's family tree**\
+This module gives your users a quick overview of a person's family tree. Of course, privacy rules are respected.
 
-This new version of the module adds an additional tab "Descendants and Ancestors" to the individual page.
+**Additonal tab “Descendants and Ancestors”**\
+This module adds an additional tab “Descendants and Ancestors” to the individual page.
 
-This tab shows in a narrative fashion the details of the current person and his/her descendants in the next two generations. What's new is that you can also get an overview of ancestors! With one click you switch to a person's ancestors in the next two generations.
+This tab shows in a narrative way the details of the current person and his/her descendants in the next two generations. You can also get an overview of ancestors. With one click you switch to the person's ancestors in the previous two generations.
 
-If more generations are available, they are accessible by clicking the readmore link, which redirects to a separate page that displays all generations from the current person to the last accessible generation (up or down) in a narrative manner.
+**Read more on the Fancy Treeview page**\
+If more generations are available, they can be accessed by clicking the read more button. This button redirects to a separate page, the Fancy Treeview page. This page displays all generations from the current person to the last accessible generation (up or down) in a narrative manner. You can use the page navigation at the bottom to browse through all the ancestors/descendants in the family tree.
 
-This gives your users a quick overview of the chosen person's family tree. Of course, privacy rules are respected.
+**Indication of completeness of ancestry**\
+In addition to the usual information, the ancestor summary also shows a percentage indicating how complete the generation is.  The 1st generation consists of 1 person (the starting person), the 2nd generation consists of the parents of the starting person (up to 2 people), the next generation consists of the grandparents of the starting person (up to 4 people), and so on. Family tree collapse is also taken into account. In genealogy, pedigree collapse describes how procreation between two individuals who share an ancestor causes the number of different ancestors in the pedigree of their descendants to be smaller than it would otherwise be. Without collapse of the pedigree, the 10th generation is complete if it consists of 512 individuals (2^(10-1)). To use this feature, you must set the “Check kinship between partners” option.
 
-The administrator can add or remove pages from the menu by clicking on the button at the top of the Fancy Treeview page or by using the links in the edit menu on the individual page.
+**Menu or home page block**\
+A fancy treeview menu or home page block is also available. The administrator can add or remove pages from the menu and/or home page block. To do so, use the button at the top of the Fancy Treeview page or the links in the edit menu on the individual page.
 
-There is a configuration page where you can set a few options to customize the Fancy Treeview page and/or tab to your needs.
+**Configuration page**\
+On the configuration page, you can set a number of options to customize the Fancy Treeview page and/or tab.
 
-In addition to the usual information, the ancestor overview also shows a percentage indicating the extent to which the generation is complete.  The 1st generation consists of 1 person, the 2nd generation consists of the parents of that person (up to 2 persons), the next generation consists of the grandparents of the starting person (up to 4 persons) and so on. It also takes into account pedigree collapse. In genealogy, pedigree collapse describes how reproduction between two individuals who share an ancestor causes the number of distinct ancestors in the family tree of their offspring to be smaller than it could otherwise be. Without pedigree collapse, the 10th generation is complete if it consists of 512 people (2^(10-1)). To use this feature you need to set the option 'Check relationship between partners'.
-
-At the moment it is not possible to download the Fancy Treeview page as a pdf as in the webtrees 1 version of this module. It is possible that this will be re-implemented in a later version.
+**Print the Fancy Treeview page as pdf**\
+It is possible to download the Fancy Treeview page as a pdf. For this you can use your browser's native print function. Use ctrl. P to open the print dialog. You can then choose to print the page as a pdf. The module includes print styles that strip the printout of clutter. The print styles work best with Chrome or Microsoft Edge. The disadvantage of this method is that you can only print the current page. To print the entire tree, you need to increase the number of generations per page in the settings. Only administrators can change settings.
 
 Translations
 ------------
-You can help to translate this module. The language files are available at [POEditor][3] where you can update them. But you can also use a local editor, like Poedit or Notepad++ to make the translations and send them back to me. You can do this via a pull request (if you know how) or by e-mail. Updated translations will be included in the next release of this module.
+You can help translate this module. The language files are available on [POEditor][3] where you can update them. But you can also use a local editor such as Poedit or Notepad++ to create the translations. Then send them to me by e-mail or make a pull request (if you know how). Updated translations will be included in the next release of this module.
 
 Installation & upgrading
 ------------------------
-Unpack the zip file and place the folder jc-fancy-treeview in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go to any individual page and click on the tab 'Descendants and Ancestors'.
+Unzip the zip file and place the jc-fancy-treeview folder in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go to an individual page and click on the Descendants and Ancestry tab.
 
 Bugs and feature requests
 -------------------------
-If you experience any bugs or have a feature request for this module you can [create a new issue on GitHub][4].
+If you encounter bugs or have a feature request for this module, you can [create a new issue on GitHub][4].
 
  [1]: https://github.com/JustCarmen/webtrees-fancy-treeview/releases/latest
  [2]: https://webtrees.github.io/download/
