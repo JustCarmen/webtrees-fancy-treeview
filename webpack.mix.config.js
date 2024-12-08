@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-    version: '2.0.5',
+    version: '2.0.6',
     build_dir: 'build',
     public_dir: 'resources',
     images_dir: 'src/images',
