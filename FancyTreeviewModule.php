@@ -165,7 +165,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     public function boot(): void
     {
-        $router_container = app(RouterContainer::class);
+        $router_container = Registry::container()->get(RouterContainer::class);
         assert($router_container instanceof RouterContainer);
 
         $router_container->getMap()
@@ -614,7 +614,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     public function getTabContent(Individual $individual): string
     {
-        $request = app(ServerRequestInterface::class);
+        $request = Registry::container()->get(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $tree   = Validator::attributes($request)->tree();
@@ -1669,7 +1669,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     protected function printFollowLink(Individual $child): string
     {
-        $request = app(ServerRequestInterface::class);
+        $request = Registry::container()->get(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $xref  = Validator::attributes($request)->string('xref');
@@ -1918,7 +1918,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $tree = $person->tree();
         $paths = $this->calculateRelationships($person, $spouse);
 
-        $language = app(ModuleService::class)
+        $language = Registry::container()->get(ModuleService::class)
             ->findByInterface(ModuleLanguageInterface::class, true)
             ->first(fn (ModuleLanguageInterface $language): bool => $language->locale()->languageTag() === I18N::languageTag());
 
@@ -1975,10 +1975,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 });
 
             $pattern = function ($nodes) {
-                return app(RelationshipService::class)->components($nodes);
+                return Registry::container()->get(RelationshipService::class)->components($nodes);
             };
 
-            $pattern = $pattern->call(app(RelationshipService::class), $nodes->toArray());
+            $pattern = $pattern->call(Registry::container()->get(RelationshipService::class), $nodes->toArray());
 
             if ($pattern) {
                 $occurences = array_count_values($pattern);
@@ -2006,10 +2006,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     private function calculateRelationships(Individual $individual1, Individual $individual2): array
     {
         $calculateRelationships = function ($individual1, $individual2) {
-            return app(RelationshipsChartModule::class)->calculateRelationships($individual1, $individual2, 0, true);
+            return Registry::container()->get(RelationshipsChartModule::class)->calculateRelationships($individual1, $individual2, 0, true);
         };
 
-        return $calculateRelationships->call(app(RelationshipsChartModule::class), $individual1, $individual2);
+        return $calculateRelationships->call(Registry::container()->get(RelationshipsChartModule::class), $individual1, $individual2);
     }
 
     /**
@@ -2027,10 +2027,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     private function oldStyleRelationshipPath(Tree $tree, array $path): array
     {
         $oldStyleRelationshipPath = function ($tree, $path) {
-            return app(RelationshipsChartModule::class)->oldStyleRelationshipPath($tree, $path);
+            return Registry::container()->get(RelationshipsChartModule::class)->oldStyleRelationshipPath($tree, $path);
         };
 
-        return $oldStyleRelationshipPath->call(app(RelationshipsChartModule::class), $tree, $path);
+        return $oldStyleRelationshipPath->call(Registry::container()->get(RelationshipsChartModule::class), $tree, $path);
     }
 
     /**
@@ -2108,7 +2108,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     private function isPage(): bool
     {
-        $request = app(ServerRequestInterface::class);
+        $request = Registry::container()->get(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $route = Validator::attributes($request)->route();
@@ -2126,7 +2126,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     private function getPage(): int
     {
         if ($this->isPage()) {
-            $request = app(ServerRequestInterface::class);
+            $request = Registry::container()->get(ServerRequestInterface::class);
             assert($request instanceof ServerRequestInterface);
 
             $page  = Validator::attributes($request)->integer('page');
