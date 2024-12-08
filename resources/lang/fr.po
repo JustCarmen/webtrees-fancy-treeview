@@ -178,7 +178,7 @@ msgstr "huitième"
 
 #: FancyTreeviewModule.php:1370
 msgid "employed with"
-msgstr "employed with"
+msgstr "employé avec"
 
 #: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
@@ -300,11 +300,11 @@ msgstr "Il avait une relation avec"
 
 #: FancyTreeviewModule.php:1113
 msgid "He has a relationship with"
-msgstr "He has a relationship with"
+msgstr "Il a une relation avec"
 
 #: FancyTreeviewModule.php:1053
 msgid "He is married to"
-msgstr "He is married to"
+msgstr "Il est marié à"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1033
@@ -481,11 +481,11 @@ msgstr "Elle avait une relation avec"
 
 #: FancyTreeviewModule.php:1116
 msgid "She has a relationship with"
-msgstr "She has a relationship with"
+msgstr "Elle a une relation avec"
 
 #: FancyTreeviewModule.php:1056
 msgid "She is married to"
-msgstr "She is married to"
+msgstr "Elle est mariée à"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1039
@@ -604,11 +604,11 @@ msgstr "Cet individu a une relation avec"
 
 #: FancyTreeviewModule.php:1119
 msgid "This individual has a relationship with"
-msgstr "This individual has a relationship with"
+msgstr "Cet individu a une relation avec"
 
 #: FancyTreeviewModule.php:1059
 msgid "This individual is married to"
-msgstr "This individual is married to"
+msgstr "Cet individu est marié à"
 
 #: FancyTreeviewModule.php:1059
 msgid "This individual married"
@@ -693,8 +693,9 @@ msgstr "ont divorcé"
 
 #. I18N: in the context 'employed with'
 #: FancyTreeviewModule.php:1370
+#, fuzzy
 msgid "with"
-msgstr "with"
+msgstr "avec"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."

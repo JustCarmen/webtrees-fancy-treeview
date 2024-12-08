@@ -694,7 +694,7 @@ msgstr "is geskei"
 #. I18N: in the context 'employed with'
 #: FancyTreeviewModule.php:1370
 msgid "with"
-msgstr "with"
+msgstr "by"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."

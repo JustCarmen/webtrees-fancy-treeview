@@ -178,7 +178,7 @@ msgstr "Áttunda"
 
 #: FancyTreeviewModule.php:1370
 msgid "employed with"
-msgstr "employed with"
+msgstr "starfandi hjá"
 
 #: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
 msgid "Family tree overview"
@@ -300,11 +300,11 @@ msgstr "Hann var í sambandi með"
 
 #: FancyTreeviewModule.php:1113
 msgid "He has a relationship with"
-msgstr "He has a relationship with"
+msgstr "Hann er í sambandi með"
 
 #: FancyTreeviewModule.php:1053
 msgid "He is married to"
-msgstr "He is married to"
+msgstr "Hann er giftur"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1033
@@ -480,11 +480,11 @@ msgstr "Hún var í sambandi með"
 
 #: FancyTreeviewModule.php:1116
 msgid "She has a relationship with"
-msgstr "She has a relationship with"
+msgstr "Hún er í sambandi með"
 
 #: FancyTreeviewModule.php:1056
 msgid "She is married to"
-msgstr "She is married to"
+msgstr "Hún er gift"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1039
@@ -603,11 +603,11 @@ msgstr "Þessi einstaklingur var í sambandi með"
 
 #: FancyTreeviewModule.php:1119
 msgid "This individual has a relationship with"
-msgstr "This individual has a relationship with"
+msgstr "Þessi einstaklingur er í sambandi með"
 
 #: FancyTreeviewModule.php:1059
 msgid "This individual is married to"
-msgstr "This individual is married to"
+msgstr "Þessi einstaklingur er gift/-ur"
 
 #: FancyTreeviewModule.php:1059
 msgid "This individual married"
@@ -693,7 +693,7 @@ msgstr "skildu"
 #. I18N: in the context 'employed with'
 #: FancyTreeviewModule.php:1370
 msgid "with"
-msgstr "with"
+msgstr "hjá"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
