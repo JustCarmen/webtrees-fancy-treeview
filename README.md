@@ -2,7 +2,7 @@ Fancy Treeview for webtrees
 ===========================
 
 [![Latest Release](https://img.shields.io/github/release/JustCarmen/webtrees-fancy-treeview.svg)][1]
-[![webtrees major version](https://img.shields.io/badge/webtrees-v2.1.x-green)][2]
+[![webtrees major version](https://img.shields.io/badge/webtrees-v2.2.x-green)][2]
 [![Downloads](https://img.shields.io/github/downloads/JustCarmen/webtrees-fancy-treeview/total.svg)]()
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XPBC2W85M38AS&item_name=webtrees%20modules%20by%20JustCarmen&currency_code=EUR)
