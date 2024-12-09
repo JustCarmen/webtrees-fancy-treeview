@@ -5,7 +5,7 @@ use Fisharebest\Webtrees\View;
 
 ?>
 
-<div id="jc-fancy-treeview-tab-descendants" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse<?= $list_type === 'descendants' ? ' show' : '' ?>">
+<div id="jc-fancy-treeview-tab-descendants" class="jc-fancy-treeview-page jc-fancy-treeview-tab collapse<?= $list_type === 'descendants' ? ' show' : '' ?>">
     <?= View($module->name() . '::tab-content', [
         'tab_button_text' => I18N::translate('Show ancestors'),
         'tab_page_title'  => $tab_page_title_descendants,
@@ -16,7 +16,7 @@ use Fisharebest\Webtrees\View;
     <?php endif ?>
 </div>
 
-<div id="jc-fancy-treeview-tab-ancestors" class="jc-fancy-treeview-page jc-fancy-treeview-tab py-4 px-1 collapse<?= $list_type === 'ancestors' ? ' show' : '' ?>">
+<div id="jc-fancy-treeview-tab-ancestors" class="jc-fancy-treeview-page jc-fancy-treeview-tab collapse<?= $list_type === 'ancestors' ? ' show' : '' ?>">
     <?= View($module->name() . '::tab-content', [
         'tab_button_text' => I18N::translate('Show descendants'),
         'tab_page_title'  => $tab_page_title_ancestors,
