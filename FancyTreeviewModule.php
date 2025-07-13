@@ -430,7 +430,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      *
      * @return Menu|null
      */
-    public function getMenu(Tree $tree): ?Menu
+    public function getMenu(Tree $tree): Menu|null
     {
         $ancestors   = array_filter(explode(', ', $this->getPreference($tree->id() . '-menu-ancestors')));
         $descendants = array_filter(explode(', ', $this->getPreference($tree->id() . '-menu-descendants')));
