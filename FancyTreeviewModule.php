@@ -1141,7 +1141,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      *
      * @return string
      */
-    protected function printChildren(Family $family, Individual $person, Individual $spouse = null): string
+    protected function printChildren(Family $family, Individual $person, ?Individual $spouse = null): string
     {
         $html = '';
 
