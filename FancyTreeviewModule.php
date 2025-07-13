@@ -988,13 +988,12 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 }
                 $html .= '</div>';
             }
-
-            return $html;
         } else {
             if ($person->tree()->getPreference('SHOW_PRIVATE_RELATIONSHIPS')) {
-                return I18N::translate('The details of this family are private.');
+                $html = I18N::translate('The details of this family are private.');
             }
         }
+        return $html;
     }
 
     /**
