@@ -1267,11 +1267,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     protected function printParents(Individual $person): ?string
     {
-        $parents = $person->childFamilies()->first();
-        if ($parents) {
+        $html = '';
+        foreach ($person->childFamilies() as $parents) {
             $pedi = $this->checkPedi($person, $parents);
 
-            $html = '';
             switch ($person->sex()) {
                 case 'M':
                     if ($pedi === 'FOSTER') {
@@ -1313,11 +1312,9 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             if ($mother) {
                 $html .= $this->printName($mother);
             }
-
-            return $html;
         }
 
-        return null;
+        return $html;
     }
 
     /**
