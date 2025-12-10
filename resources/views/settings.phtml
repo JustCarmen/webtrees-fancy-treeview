@@ -269,6 +269,18 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
+        <h2><?= I18N::translate('Cause of death') ?></h2>
+        <!-- SHOW CAUSE OF DEATH -->
+        <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Show cause of death') ?>
+                </legend>
+                <div class="col-sm-9">
+                    <?= view('components/radios-inline', ['name' => 'show-death-cause', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_death_cause]) ?>
+                </div>
+            </div>
+        </fieldset>
         <h2><?= I18N::translate('Notes') ?></h2>
         <!-- SHOW LEVEL 1 NOTES -->
         <fieldset class="mb-3">

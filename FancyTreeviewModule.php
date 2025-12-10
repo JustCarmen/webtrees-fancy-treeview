@@ -265,6 +265,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             'show-home-country'     => '1', // boolean
             'home-country'          => '', // string
             'show-occupations'      => '1',  // boolean
+            'show-death-cause'      => '0',  // boolean
             'show-agencies'         => '1',  // boolean
             'gedcom-occupation'     => '0',  // boolean
             'level1-notes'          => '0'   // boolean
@@ -300,6 +301,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             'show_home_country'     => $this->options('show-home-country'),
             'home_country'          => $this->options('home-country'),
             'show_occupations'      => $this->options('show-occupations'),
+            'show_death_cause'      => $this->options('show-death-cause'),
             'show_agencies'         => $this->options('show-agencies'),
             'gedcom_occupation'     => $this->options('gedcom-occupation'),
             'level1_notes'          => $this->options('level1-notes')
@@ -333,6 +335,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $this->setPreference('show-home-country', $params['show-home-country']);
             $this->setPreference('home-country', $params['home-country']);
             $this->setPreference('show-occupations', $params['show-occupations']);
+            $this->setPreference('show-death-cause', $params['show-death-cause']);
             $this->setPreference('show-agencies', $params['show-agencies']);
             $this->setPreference('gedcom-occupation', $params['gedcom-occupation']);
             $this->setPreference('level1-notes', $params['level1-notes']);
@@ -1412,11 +1415,18 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $dfact = $person->facts([$event])->first();
             if ($dfact) {
                 $ddate     = $this->printDate($dfact);
-                $dplace     = $this->printPlace($dfact);
+                $dplace    = $this->printPlace($dfact);
 
                 if ($ddate || $dplace) {
                     $is_dfact     = true;
-                    $html         .= $this->printDeathText($person, $event, $is_bfact) . $ddate . $dplace;
+                    $html .= $this->printDeathText($person, $event, $is_bfact);
+                    if ($this->options('show-death-cause')) {
+                        $cause = $dfact->attribute('CAUS');
+                        if ($cause) {
+                            $html .= ' (' . $cause . ')';
+                        }
+                    }
+                    $html .= $ddate . $dplace;
                     break;
                 }
             }
