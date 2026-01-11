@@ -46,6 +46,7 @@ use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Statistics\Service\CountryService;
+use Fisharebest\Webtrees\Http\Exceptions\HttpNotFoundException;
 
 class FancyTreeviewModule extends AbstractModule
 implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface,
@@ -657,41 +658,47 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $this->tree = $tree;
         $this->type = $type;
 
-        $page       = $this->getPage();
-        $page_title = $this->printPageTitle($this->getPerson($xref), $this->type);
+        $person = $this->getPerson($xref);
+        if ($person && $person->canShow()) {
+            $page       = $this->getPage();
+            $page_title = $this->printPageTitle($person, $xref, $this->type);
 
-        // determine the generation to start with
-        $limit = (int) $this->options('page-limit');
-        $start = ($page - 1) * $limit + 1;
+            // determine the generation to start with
+            $limit = (int) $this->options('page-limit');
+            $start = ($page - 1) * $limit + 1;
 
-        if ($this->type === 'ancestors') {
-            $page_body   = $this->printAncestorsPage($xref, $start, $limit);
-            $button_url  = $this->getUrl($tree, $xref, 'descendants');
-            $button_text = I18N::translate('Show descendants');
-            $generations = $this->ancestor_generations;
+            if ($this->type === 'ancestors') {
+                $page_body   = $this->printAncestorsPage($xref, $start, $limit);
+                $button_url  = $this->getUrl($tree, $xref, 'descendants');
+                $button_text = I18N::translate('Show descendants');
+                $generations = $this->ancestor_generations;
+            } else {
+                $page_body   = $this->printDescendantsPage($xref, $start, $limit);
+                $button_url  = $this->getUrl($tree, $xref, 'ancestors');
+                $button_text =  I18N::translate('Show ancestors');
+                $generations = $this->descendant_generations;
+            }
+
+            $total_pages    = (int) ceil($generations / $limit);
+
+            return $this->viewResponse($this->name() . '::page', [
+                'module'            => $this,
+                'tree'              => $tree,
+                'xref'              => $xref,
+                'title'             => $this->title(),
+                'page_title'        => $page_title,
+                'page_body'         => $page_body,
+                'button_url'        => $button_url,
+                'button_text'       => $button_text,
+                'generations'       => $generations,
+                'current_page'      => $page,
+                'total_pages'       => $total_pages,
+                'limit'             => $limit
+            ]);
         } else {
-            $page_body   = $this->printDescendantsPage($xref, $start, $limit);
-            $button_url  = $this->getUrl($tree, $xref, 'ancestors');
-            $button_text =  I18N::translate('Show ancestors');
-            $generations = $this->descendant_generations;
+            $message = I18N::translate('This page does not exist or you do not have permission to view it.');
+            throw new HttpNotFoundException($message);
         }
-
-        $total_pages = (int) ceil($generations / $limit);
-
-        return $this->viewResponse($this->name() . '::page', [
-            'module'            => $this,
-            'tree'              => $tree,
-            'xref'              => $xref,
-            'title'             => $this->title(),
-            'page_title'        => $page_title,
-            'page_body'         => $page_body,
-            'button_url'        => $button_url,
-            'button_text'       => $button_text,
-            'generations'       => $generations,
-            'current_page'      => $page,
-            'total_pages'       => $total_pages,
-            'limit'             => $limit
-        ]);
     }
 
 
