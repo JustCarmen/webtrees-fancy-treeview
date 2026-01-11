@@ -1901,7 +1901,13 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $partner = $family->spouse($spouse);
             if ($partner && $partner->canShow()) {
                 if ($partnerindex === $partnercount - 1 && $person === $partner) {
-                    return true;
+                    // check if the partners are divorced
+                    if ($family->facts(['DIV'])->first()) {
+                        return false;
+                    // Not divorced, so this is the latest partner
+                    } else {
+                        return true;
+                    }
                 }
             }
             $partnerindex++;
