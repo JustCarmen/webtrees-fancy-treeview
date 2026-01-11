@@ -214,14 +214,16 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
             </div>
         </fieldset>
         <!-- HOME COUNTRY-->
-        <div class="row mb-3 jc-group2 collapse <?= $places_format === 'none' ? '' : 'show' ?>">
-            <label class="col-form-label col-sm-3">
-                <?= I18N::translate('Home country') ?>
-            </label>
-            <div class="col-sm-3">
-                <?= view('components/select', ['name' => 'home-country', 'selected' => $home_country, 'options' => $country_list]) ?>
+        <fieldset class="mb-3 jc-group2 collapse <?= $places_format === 'none' ? '' : 'show' ?>">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Home country') ?>
+                </legend>
+                <div class="col-sm-3">
+                    <?= view('components/select', ['name' => 'home-country', 'selected' => $home_country, 'options' => $country_list]) ?>
+                </div>
             </div>
-        </div>
+        </fieldset>
         <h2><?= I18N::translate('Occupations') ?></h2>
          <!-- SHOW OCCUPATIONS -->
          <fieldset class="mb-3">
