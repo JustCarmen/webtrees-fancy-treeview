@@ -18,7 +18,7 @@ msgstr ""
 "Language: ar\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1596
+#: FancyTreeviewModule.php:1609
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -26,140 +26,140 @@ msgstr " "
 #: resources/views/block-content.phtml:37
 #: resources/views/block-content.phtml:42
 msgid "%s complete"
-msgstr "%s complete"
+msgstr "%s مكتمل"
 
 #: resources/views/block-content.phtml:36
 #: resources/views/block-content.phtml:41
 msgid "%s of %s possible ancestors"
-msgstr "%s of %s possible ancestors"
+msgstr "%s من %s من الأسلاف المحتملين"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:104
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
-msgstr "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
+msgstr "<strong>ملاحظة</strong>: قد يكون هذا الخيار مستهلكًا للوقت و/أو الذاكرة، وخاصةً في الأشجار الكبيرة. وقد يتسبب في بطء تحميل الصفحة أو حدوث \"خطأ في مهلة التنفيذ\" على الخادم. إذا لاحظت مثل هذا السلوك، فقلل الحد الأقصى لعدد الأجيال لكل صفحة أو علامة تبويب و/أو لا تستخدمه مع خيار \"إظهار الأجيال الفردية\". إذا كنت لا تزال تواجه مشكلات، فاترك الإجابة \"لا\"."
 
 #: resources/views/settings.phtml:201
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "رمز الدولة المكون من حرفين"
 
 #: resources/views/settings.phtml:200
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "رمز الدولة المكون من 3 أحرف"
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:123
+#: FancyTreeviewModule.php:124
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
-msgstr "A narrative overview of the descendants or ancestors of one family (branch)."
+msgstr "نظرة عامة سردية عن أحفاد أو أسلاف عائلة واحدة (فرع)."
 
-#: FancyTreeviewModule.php:1232
+#: FancyTreeviewModule.php:1241
 msgctxt "FEMALE"
 msgid "adopted child"
-msgstr "adopted child"
+msgstr "الطفل المتبنى"
 
-#: FancyTreeviewModule.php:1235
+#: FancyTreeviewModule.php:1244
 msgctxt "MALE"
 msgid "adopted child"
-msgstr "adopted child"
+msgstr "الطفل المتبنى"
 
-#: FancyTreeviewModule.php:1299
+#: FancyTreeviewModule.php:1307
 msgid "adopted child of"
-msgstr "adopted child of"
+msgstr "طفل متبنى"
 
-#: FancyTreeviewModule.php:1290
+#: FancyTreeviewModule.php:1298
 msgid "adopted daughter of"
-msgstr "adopted daughter of"
+msgstr "ابنة بالتبني"
 
-#: FancyTreeviewModule.php:1281
+#: FancyTreeviewModule.php:1289
 msgid "adopted son of"
-msgstr "adopted son of"
+msgstr "الابن المتبنى"
 
-#: resources/views/settings.phtml:257
+#: resources/views/settings.phtml:259
 msgid "Always write the occupation exactly as it appears in the Gedcom"
-msgstr "Always write the occupation exactly as it appears in the Gedcom"
+msgstr "اكتب دائمًا المهنة تمامًا كما تظهر في Gedcom"
 
-#: FancyTreeviewModule.php:567
+#: FancyTreeviewModule.php:571
 msgid "Ancestors and descendants"
-msgstr "Ancestors and descendants"
+msgstr "الأسلاف والأحفاد"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1088 FancyTreeviewModule.php:1153
-#: FancyTreeviewModule.php:1174 FancyTreeviewModule.php:1207
-#: FancyTreeviewModule.php:1312 FancyTreeviewModule.php:1362
-#: FancyTreeviewModule.php:1520 FancyTreeviewModule.php:1528
-#: FancyTreeviewModule.php:1536
+#: FancyTreeviewModule.php:1097 FancyTreeviewModule.php:1162
+#: FancyTreeviewModule.php:1183 FancyTreeviewModule.php:1216
+#: FancyTreeviewModule.php:1320 FancyTreeviewModule.php:1368
+#: FancyTreeviewModule.php:1533 FancyTreeviewModule.php:1541
+#: FancyTreeviewModule.php:1549
 msgid "and "
-msgstr "and "
+msgstr "و "
 
 #. I18N: Help text for the “Show company/employer” configuration setting
-#: resources/views/settings.phtml:247
+#: resources/views/settings.phtml:249
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "أجب بـ \"نعم\" إذا كنت تريد عرض اسم الشركة/صاحب العمل (علامة Gedcom \"AGNC\") مع المهنة. يتم عرض النص فقط بالتزامن مع المهنة."
 
-#: FancyTreeviewModule.php:1563
+#: FancyTreeviewModule.php:1576
 msgid "approximately"
-msgstr "approximately"
+msgstr "تقريبًا"
 
 #: resources/views/settings.phtml:162
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "كما هو محدد في webtrees"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
-#: FancyTreeviewModule.php:1574
+#: FancyTreeviewModule.php:1587
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "في سن %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
-#: FancyTreeviewModule.php:1572
+#: FancyTreeviewModule.php:1585
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "في سن 1%"
 
 #: resources/views/settings.phtml:87
 msgid "Check relationship between partners"
-msgstr "Check relationship between partners"
+msgstr "التحقق من العلاقة بين الشركاء"
 
-#: FancyTreeviewModule.php:1301
+#: FancyTreeviewModule.php:1309
 msgid "child of"
-msgstr "child of"
+msgstr "طفل من"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "انقر هنا لإنشاء أو إزالة رابط إلى صفحة Fancy Treeview."
 
 #: resources/views/menu-edit.phtml:19
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "إنشاء رابط لصفحة الأجداد"
 
 #: resources/views/menu-edit.phtml:24
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "إنشاء رابط لصفحة الأحفاد"
 
 #: resources/views/page.phtml:28
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "إنشاء رابط لهذه الصفحة"
 
 #: resources/views/settings.phtml:128
 msgid "Crop thumbnails to square"
-msgstr "Crop thumbnails to square"
+msgstr "قص الصور المصغرة إلى مربع"
 
 #: resources/views/settings.phtml:161
 msgid "Customized"
-msgstr "Customized"
+msgstr "مخصص"
 
 #: resources/views/settings.phtml:21
 msgid "Default list type"
-msgstr "Default list type"
+msgstr "نوع القائمة الافتراضية"
 
-#: FancyTreeviewModule.php:569
+#: FancyTreeviewModule.php:573
 msgid "Descendants and ancestors"
-msgstr "Descendants and ancestors"
+msgstr "الأحفاد والأسلاف"
 
-#: FancyTreeviewModule.php:1521
+#: FancyTreeviewModule.php:1534
 #, fuzzy
 msgctxt "FEMALE"
 msgid "died"
 msgstr "أنفصلا "
 
-#: FancyTreeviewModule.php:1521
+#: FancyTreeviewModule.php:1534
 #, fuzzy
 msgctxt "MALE"
 msgid "died"
@@ -167,413 +167,418 @@ msgstr "أنفصلا "
 
 #: resources/views/settings.phtml:209
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "عرض اسم البلد الأصلي"
 
 #: resources/views/settings.phtml:163
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "لا تظهر أسماء الأماكن"
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:1026
+#: FancyTreeviewModule.php:1035
 msgid "eighth"
-msgstr "eighth"
+msgstr "ثامن"
 
-#: FancyTreeviewModule.php:1370
+#: FancyTreeviewModule.php:1376
 msgid "employed with"
-msgstr "employed with"
+msgstr "موظف مع"
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
+#: FancyTreeviewModule.php:461 FancyTreeviewModule.php:523
 msgid "Family tree overview"
-msgstr "Family tree overview"
+msgstr "نظرة عامة على شجرة العائلة"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:112
+#: FancyTreeviewModule.php:113
 #, fuzzy
 msgid "Fancy Treeview"
 msgstr "Fancy Treeview"
 
-#: FancyTreeviewModule.php:419
+#: FancyTreeviewModule.php:423
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "مساعدة في عرض الشجرة الرائع"
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:1023
+#: FancyTreeviewModule.php:1032
 msgid "fifth"
 msgstr "الخامس"
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:1019
+#: FancyTreeviewModule.php:1028
 msgid "first"
-msgstr "first"
+msgstr "أولاً"
 
-#: FancyTreeviewModule.php:1677
+#: FancyTreeviewModule.php:1690
 msgid "follow"
 msgstr "تعقب "
 
-#: FancyTreeviewModule.php:1222
+#: FancyTreeviewModule.php:1231
 msgctxt "FEMALE"
 msgid "foster child"
-msgstr "foster child"
+msgstr "طفل بالتبني"
 
-#: FancyTreeviewModule.php:1225
+#: FancyTreeviewModule.php:1234
 msgctxt "MALE"
 msgid "foster child"
-msgstr "foster child"
+msgstr "طفل بالتبني"
 
-#: FancyTreeviewModule.php:1297
+#: FancyTreeviewModule.php:1305
 msgid "foster child of"
-msgstr "foster child of"
+msgstr "طفل بالتبني"
 
-#: FancyTreeviewModule.php:1288
+#: FancyTreeviewModule.php:1296
 msgid "foster daughter of"
-msgstr "foster daughter of"
+msgstr "ابنة بالتبني"
 
-#: FancyTreeviewModule.php:1279
+#: FancyTreeviewModule.php:1287
 msgid "foster son of"
-msgstr "foster son of"
+msgstr "الابن بالتبني"
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:1022
+#: FancyTreeviewModule.php:1031
 msgid "fourth"
 msgstr "الرابع"
 
 #: resources/views/settings.phtml:199
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "الاسم الكامل للبلد"
 
 #: resources/views/settings.phtml:174 resources/views/settings.phtml:187
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "اسم المكان الكامل"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "انتقل إلى لوحة التحكم لتعيين مستوى الوصول إلى القائمة. هناك يمكنك أيضًا اختيار إخفاء القائمة."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "انتقل إلى الصفحة الرئيسية، وانقر على صفحاتي/تخصيص هذه الصفحة لإضافة كتلة الصفحة الرئيسية Fancy Treeview مع الروابط التي تم إنشاؤها."
 
 #: resources/views/blockmodulehelptext.phtml:11
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
-msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "انتقل إلى صفحة أي فرد وافتح قائمة التحرير لإنشاء رابط جديد إلى صفحة Fancy Treeview."
 
-#: FancyTreeviewModule.php:1191
+#: FancyTreeviewModule.php:1200
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "لديه"
 
-#: FancyTreeviewModule.php:1161 FancyTreeviewModule.php:1197
+#: FancyTreeviewModule.php:1170 FancyTreeviewModule.php:1206
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "لديه"
 
-#: FancyTreeviewModule.php:1177
+#: FancyTreeviewModule.php:1186
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "لديه"
 
-#: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1183
+#: FancyTreeviewModule.php:1164 FancyTreeviewModule.php:1192
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "لديه"
 
-#: FancyTreeviewModule.php:1193
+#: FancyTreeviewModule.php:1202
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "لديه"
 
-#: FancyTreeviewModule.php:1163 FancyTreeviewModule.php:1199
+#: FancyTreeviewModule.php:1172 FancyTreeviewModule.php:1208
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "لديه"
 
-#: FancyTreeviewModule.php:1179
+#: FancyTreeviewModule.php:1188
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "يملك"
 
-#: FancyTreeviewModule.php:1157 FancyTreeviewModule.php:1185
+#: FancyTreeviewModule.php:1166 FancyTreeviewModule.php:1194
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "يملك"
 
-#: FancyTreeviewModule.php:1113
+#: FancyTreeviewModule.php:1122
 msgid "He had a relationship with"
-msgstr "He had a relationship with"
+msgstr "كانت لديه علاقة مع"
 
-#: FancyTreeviewModule.php:1113
+#: FancyTreeviewModule.php:1122
 msgid "He has a relationship with"
-msgstr "He has a relationship with"
+msgstr "لديه علاقة مع"
 
-#: FancyTreeviewModule.php:1053
+#: FancyTreeviewModule.php:1062
 msgid "He is married to"
-msgstr "He is married to"
+msgstr "وهو متزوج من"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1033
+#: FancyTreeviewModule.php:1042
 msgid "He married %s times"
 msgstr "تزوج لي %s مرات"
 
-#: FancyTreeviewModule.php:1488
+#: FancyTreeviewModule.php:1501
 #, fuzzy
 msgctxt "PAST"
 msgid "He was baptized"
-msgstr "ولد"
+msgstr "تم تعميده"
 
-#: FancyTreeviewModule.php:1490
+#: FancyTreeviewModule.php:1503
 #, fuzzy
 msgctxt "PRESENT"
 msgid "He was baptized"
-msgstr "ولد"
+msgstr "تم تعميده"
 
-#: FancyTreeviewModule.php:1470
+#: FancyTreeviewModule.php:1483
 msgctxt "PAST"
 msgid "He was born"
 msgstr "ولد"
 
-#: FancyTreeviewModule.php:1472
+#: FancyTreeviewModule.php:1485
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "ولد"
 
 #: resources/views/settings.phtml:175 resources/views/settings.phtml:188
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "أعلى وأدنى مستوى"
 
-#: resources/views/settings.phtml:219
+#: resources/views/settings.phtml:220
 msgid "Home country"
-msgstr "Home country"
+msgstr "الوطن"
 
+#. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:93
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
-msgstr "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
+msgstr "إذا كانت الإجابة \"نعم\"، يتحقق البرنامج النصي مما إذا كان الزوجان (المتزوجان) لديهما نفس الأسلاف. إذا تم العثور على علاقة بين الشريكين، يعتمد العرض على نوع العرض."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1602
+#: FancyTreeviewModule.php:1615
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "في "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1605
+#: FancyTreeviewModule.php:1618
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "في "
 
-#: FancyTreeviewModule.php:1636
+#: FancyTreeviewModule.php:1649
 msgid "in %s"
-msgstr "in %s"
+msgstr "في %s"
 
 #: resources/views/settings.phtml:98
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
+msgstr "في عرض الأسلاف: يُظهر كل جيل عدد الأشخاص والحد الأقصى لعدد الأسلاف المحتملين في ذلك الجيل. يتم إعادة حساب عدد الأسلاف المحتملين في الأجيال اللاحقة في حالة انهيار شجرة النسب."
 
 #: resources/views/settings.phtml:97
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
+msgstr "في عرض الأحفاد: سيظهر نص بين قوسين بعد اسم الزوجين للإشارة إلى علاقة الدم."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
-#: resources/views/settings.phtml:263
+#: resources/views/settings.phtml:265
 msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
-msgstr "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
+msgstr "في ملف Gedcom، يتم كتابة الحرف الأول من معظم المهن بأحرف كبيرة (ككلمة مستقلة)، ولكن في هذه الوحدة نستخدم المهنة في منتصف الجملة. تتطلب قواعد الإملاء في معظم اللغات كتابة المهنة بأحرف صغيرة في هذه الحالة. إذا كنت لا تريد أن تقوم الوحدة بتغيير الإملاء، فغيّر الإجابة إلى \"نعم\"."
 
 #: resources/views/menu-edit.phtml:11
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "رابط لصفحة Fancy Treeview"
 
 #: resources/views/settings.phtml:176
 msgid "Lowest level"
-msgstr "Lowest level"
+msgstr "أدنى مستوى"
 
 #: resources/views/settings.phtml:36
 msgid "Maximum number of generations per page"
-msgstr "Maximum number of generations per page"
+msgstr "الحد الأقصى لعدد الأجيال في الصفحة الواحدة"
 
 #: resources/views/settings.phtml:52
 msgid "Maximum number of generations per tab"
-msgstr "Maximum number of generations per tab"
+msgstr "الحد الأقصى لعدد الأجيال لكل علامة تبويب"
 
 #: resources/views/settings.phtml:45 resources/views/settings.phtml:61
 msgid "More generations require more memory so the page takes longer to fully load."
-msgstr "More generations require more memory so the page takes longer to fully load."
+msgstr "تتطلب الأجيال الأكثر مزيدًا من الذاكرة، لذا تستغرق الصفحة وقتًا أطول للتحميل الكامل."
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:1027
+#: FancyTreeviewModule.php:1036
 msgid "ninth"
-msgstr "ninth"
+msgstr "التاسع"
 
-#: FancyTreeviewModule.php:1166
+#: FancyTreeviewModule.php:1175
 msgid "no children"
-msgstr "no children"
+msgstr "لا يوجد اطفال"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1599
+#: FancyTreeviewModule.php:1612
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "في "
 
 #: resources/views/settings.phtml:195
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "تفضيل عرض البلدان"
 
 #: resources/views/settings.phtml:157
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "تفضيل عرض أسماء الأماكن"
 
 #: resources/views/settings.phtml:170
 msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
+msgstr "تفضيل عرض أسماء الأماكن في البلد الأصلي"
 
 #: resources/views/settings.phtml:183
 msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
+msgstr "تفضيل عرض أسماء الأماكن في بلدان أخرى"
 
 #: resources/views/readmore-link.phtml:8
 msgid "Read more"
-msgstr "Read more"
+msgstr "اقرأ المزيد"
 
 #: resources/views/menu-edit.phtml:17
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "إزالة الرابط إلى صفحة الأجداد"
 
 #: resources/views/menu-edit.phtml:22
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "إزالة الرابط إلى صفحة الأحفاد"
 
 #: resources/views/page.phtml:19
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "إزالة الرابط لهذه الصفحة"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:145
 msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
-msgstr "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
+msgstr "أجب بـ \"نعم\" إذا كنت تريد عرض الصور من نوع \"الصورة\" فقط. لن يتم استخدام الصور المميزة الأخرى مثل الشهادات أو المستندات أو شواهد القبور. إذا لم تقم بالتمييز حسب نوع الوسائط في Gedcom الخاص بك، فاترك الإجابة \"لا\"."
 
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:75
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "أجب بـ \"نعم\" إذا كنت تريد عرض الأفراد غير المتزوجين في الجيل التالي. الأفراد غير المتزوجين هم أفراد ليس لديهم شريك أو أطفال. إذا اخترت \"نعم\"، فسيتم عرض كل طفل في العائلة بشكل تفصيلي في الجيل التالي."
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:1020
+#: FancyTreeviewModule.php:1029
 msgid "second"
 msgstr "الثاني"
 
 #. I18N: Help text for the “Default list type” configuration setting
 #: resources/views/settings.phtml:28
 msgid "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
-msgstr "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
+msgstr "حدد \"الأحفاد\" أو \"الأسلاف\" كنوع قائمة افتراضي. عند الانتقال إلى علامة تبويب الصفحة الفردية، سيتم عرض نوع القائمة هذا أولاً."
 
 #. I18N: Help text for the “Maximum number of generations per page” configuration setting
 #: resources/views/settings.phtml:43
 msgid "Select the maximum number of generations to show on the Fancy Treeview page."
-msgstr "Select the maximum number of generations to show on the Fancy Treeview page."
+msgstr "حدد الحد الأقصى لعدد الأجيال المراد عرضها في صفحة Fancy Treeview."
 
 #. I18N: Help text for the “Maximum number of generations per tab” configuration setting
 #: resources/views/settings.phtml:59
 msgid "Select the maximum number of generations to show on the individual page tab."
-msgstr "Select the maximum number of generations to show on the individual page tab."
+msgstr "حدد الحد الأقصى لعدد الأجيال المراد عرضها في علامة تبويب الصفحة الفردية."
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:1025
+#: FancyTreeviewModule.php:1034
 msgid "seventh"
-msgstr "seventh"
+msgstr "سابعاً"
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1125
 msgid "She had a relationship with"
-msgstr "She had a relationship with"
+msgstr "كانت لديها علاقة مع"
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1125
 msgid "She has a relationship with"
-msgstr "She has a relationship with"
+msgstr "لديها علاقة مع"
 
-#: FancyTreeviewModule.php:1056
+#: FancyTreeviewModule.php:1065
 msgid "She is married to"
-msgstr "She is married to"
+msgstr "وهي متزوجة من"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1039
+#: FancyTreeviewModule.php:1048
 msgid "She married %s times"
 msgstr "تزوجت لي %s مرات"
 
-#: FancyTreeviewModule.php:1488
+#: FancyTreeviewModule.php:1501
 #, fuzzy
 msgctxt "PAST"
 msgid "She was baptized"
-msgstr "ولدت"
+msgstr "تم تعميدها"
 
-#: FancyTreeviewModule.php:1490
+#: FancyTreeviewModule.php:1503
 #, fuzzy
 msgctxt "PRESENT"
 msgid "She was baptized"
-msgstr "ولدت"
+msgstr "تم تعميدها"
 
-#: FancyTreeviewModule.php:1470
+#: FancyTreeviewModule.php:1483
 msgctxt "PAST"
 msgid "She was born"
 msgstr "ولدت"
 
-#: FancyTreeviewModule.php:1472
+#: FancyTreeviewModule.php:1485
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "ولدت"
 
-#: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:678
 msgid "Show ancestors"
-msgstr "Show ancestors"
+msgstr "إظهار الأسلاف"
 
-#: FancyTreeviewModule.php:667 resources/views/tab.phtml:21
+#: resources/views/settings.phtml:279
+msgid "Show cause of death"
+msgstr "Show cause of death"
+
+#: FancyTreeviewModule.php:673
 msgid "Show descendants"
-msgstr "Show descendants"
+msgstr "إظهار الأحفاد"
 
-#: resources/views/settings.phtml:277
+#: resources/views/settings.phtml:290
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "عرض ملاحظات المستوى 1"
 
-#: resources/views/settings.phtml:230
+#: resources/views/settings.phtml:232
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "إظهار المهن"
 
 #: resources/views/settings.phtml:139
 msgid "Show only media from the type 'photo'"
-msgstr "Show only media from the type 'photo'"
+msgstr "إظهار الوسائط من نوع \"الصورة\" فقط"
 
 #: resources/views/settings.phtml:68
 msgid "Show singles"
-msgstr "Show singles"
+msgstr "عرض الفردي"
 
-#: resources/views/settings.phtml:241
+#: resources/views/settings.phtml:243
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "إظهار اسم الشركة/صاحب العمل"
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:1024
+#: FancyTreeviewModule.php:1033
 msgid "sixth"
-msgstr "sixth"
+msgstr "السادس"
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:1028
+#: FancyTreeviewModule.php:1037
 msgid "tenth"
-msgstr "tenth"
+msgstr "العاشر"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1035
+#: FancyTreeviewModule.php:1044
 msgid "The %s time he married"
 msgstr "في زواجه الـ %s"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1041
+#: FancyTreeviewModule.php:1050
 msgid "The %s time she married"
 msgstr "في زواجها الـ %s "
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1047
+#: FancyTreeviewModule.php:1056
 msgid "The %s time this individual married"
-msgstr "The %s time this individual married"
+msgstr "المرة الـ%s التي تزوج فيها هذا الشخص"
 
-#: FancyTreeviewModule.php:995
+#: FancyTreeviewModule.php:1003
 msgid "The details of this family are private."
-msgstr "The details of this family are private."
+msgstr "تفاصيل هذه العائلة خاصة."
 
 #: resources/views/block-content.phtml:28
 msgid "The details of this generation are private."
@@ -581,142 +586,146 @@ msgstr "تفاصيل هذا الجيل خاصة"
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "سيتم تضمين الروابط التي تم إنشاؤها في قائمة Fancy Treeview وفي كتلة الصفحة الرئيسية لـ Fancy Treeview."
 
 #: resources/views/blockmodulehelptext.phtml:16
 msgid "The links created will be shown in this block."
-msgstr "The links created will be shown in this block."
+msgstr "سيتم عرض الروابط التي تم إنشاؤها في هذا المربع."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "تحتوي القائمة وكتلة الصفحة الرئيسية على نفس الروابط. ومع ذلك، تم جعل مظهر كتلة الصفحة الرئيسية أكثر جاذبية من خلال إضافة صور للروابط."
 
 #: resources/views/block-content.phtml:22
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
-msgstr "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
+msgstr "تم تقليص عدد الأسلاف المحتملين في هذا الجيل بسبب انهيار شجرة النسب. بدون التخفيض، كان الحد الأقصى لعدد الأسلاف في هذا الجيل سيكون %s."
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "عنوان القائمة والصفحة الرئيسية هو \"نظرة عامة على شجرة العائلة\"."
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:1021
+#: FancyTreeviewModule.php:1030
 msgid "third"
 msgstr "الثالث"
 
-#: FancyTreeviewModule.php:1119
+#: FancyTreeviewModule.php:1128
 msgid "This individual had a relationship with"
-msgstr "This individual had a relationship with"
+msgstr "كان لهذا الفرد علاقة مع"
 
-#: FancyTreeviewModule.php:1119
+#: FancyTreeviewModule.php:1128
 msgid "This individual has a relationship with"
-msgstr "This individual has a relationship with"
+msgstr "هذا الفرد لديه علاقة مع"
 
-#: FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1068
 msgid "This individual is married to"
-msgstr "This individual is married to"
+msgstr "هذا الفرد متزوج من"
 
-#: FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1068
 msgid "This individual married"
-msgstr "This individual married"
+msgstr "هذا الفرد متزوج"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1045
+#: FancyTreeviewModule.php:1054
 msgid "This individual married %s times"
-msgstr "This individual married %s times"
+msgstr "هذا الفرد تزوج %s مرات"
+
+#: FancyTreeviewModule.php:699
+msgid "This page does not exist or you do not have permission to view it."
+msgstr "This page does not exist or you do not have permission to view it."
 
 #: resources/views/settings.phtml:73
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "ينطبق هذا الإعداد فقط على الصفحة أو علامة التبويب التي تحتوي على العناصر الفرعية."
 
 #: resources/views/settings.phtml:117
 msgid "Thumbnail size"
-msgstr "Thumbnail size"
+msgstr "حجم الصورة المصغرة"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1508
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "تم تعميده"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1508
 msgctxt "PAST (MALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "تم تعميده"
 
-#: FancyTreeviewModule.php:1497
+#: FancyTreeviewModule.php:1510
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "تم تعميده"
 
-#: FancyTreeviewModule.php:1497
+#: FancyTreeviewModule.php:1510
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
-msgstr "was baptized"
+msgstr "تم تعميده"
 
-#: FancyTreeviewModule.php:1477
+#: FancyTreeviewModule.php:1490
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "ولدت"
 
-#: FancyTreeviewModule.php:1477
+#: FancyTreeviewModule.php:1490
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "ولد"
 
-#: FancyTreeviewModule.php:1479
+#: FancyTreeviewModule.php:1492
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "ولدت"
 
-#: FancyTreeviewModule.php:1479
+#: FancyTreeviewModule.php:1492
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "ولد"
 
-#: FancyTreeviewModule.php:1529
+#: FancyTreeviewModule.php:1542
 #, fuzzy
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "ولدت"
 
-#: FancyTreeviewModule.php:1529
+#: FancyTreeviewModule.php:1542
 #, fuzzy
 msgctxt "MALE"
 msgid "was buried"
 msgstr "ولدت"
 
-#: FancyTreeviewModule.php:1537
+#: FancyTreeviewModule.php:1550
 msgctxt "FEMALE"
 msgid "was cremated"
-msgstr "was cremated"
+msgstr "تم حرقه"
 
-#: FancyTreeviewModule.php:1537
+#: FancyTreeviewModule.php:1550
 msgctxt "MALE"
 msgid "was cremated"
-msgstr "was cremated"
+msgstr "تم حرقه"
 
-#: FancyTreeviewModule.php:1088
+#: FancyTreeviewModule.php:1097
 msgid "were divorced"
 msgstr "أنفصلا "
 
 #. I18N: in the context 'employed with'
-#: FancyTreeviewModule.php:1370
+#: FancyTreeviewModule.php:1376
 msgid "with"
-msgstr "with"
+msgstr "مع"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
-msgstr "You can also create links from the Fancy Treeview page itself."
+msgstr "يمكنك أيضًا إنشاء روابط من صفحة Fancy Treeview نفسها."
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "يمكنك إنشاء روابط من صفحة Fancy Treeview أو من قائمة التحرير الموجودة في الصفحة الفردية."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "يمكنك استخدام كل من القائمة وكتلة الصفحة الرئيسية أو اختيار استخدام أحدهما."
 
 #: resources/views/blockmodulehelptext.phtml:8
 msgid "You have not created a link yet."
-msgstr "You have not created a link yet."
+msgstr "لم تقم بإنشاء رابط بعد."
 

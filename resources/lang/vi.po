@@ -18,7 +18,7 @@ msgstr ""
 "Language: vi\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1596
+#: FancyTreeviewModule.php:1609
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
@@ -47,55 +47,55 @@ msgid "3 letter country code"
 msgstr "mã quốc gia 3 chữ cái"
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:123
+#: FancyTreeviewModule.php:124
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "Tường thuật tổng quan về con cháu hoặc tổ tiên của một gia đình (nhánh)."
 
-#: FancyTreeviewModule.php:1232
+#: FancyTreeviewModule.php:1241
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr "con gái nuôi"
 
-#: FancyTreeviewModule.php:1235
+#: FancyTreeviewModule.php:1244
 msgctxt "MALE"
 msgid "adopted child"
 msgstr "con trai nuôi"
 
-#: FancyTreeviewModule.php:1299
+#: FancyTreeviewModule.php:1307
 msgid "adopted child of"
 msgstr "con nuôi của"
 
-#: FancyTreeviewModule.php:1290
+#: FancyTreeviewModule.php:1298
 msgid "adopted daughter of"
 msgstr "con gái nuôi của"
 
-#: FancyTreeviewModule.php:1281
+#: FancyTreeviewModule.php:1289
 msgid "adopted son of"
 msgstr "con trai nuôi của"
 
-#: resources/views/settings.phtml:257
+#: resources/views/settings.phtml:259
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Luôn viết nghề nghiệp chính xác như nó hiển thị trong Gedcom"
 
-#: FancyTreeviewModule.php:567
+#: FancyTreeviewModule.php:571
 msgid "Ancestors and descendants"
 msgstr "Tổ tiên và con cháu"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1088 FancyTreeviewModule.php:1153
-#: FancyTreeviewModule.php:1174 FancyTreeviewModule.php:1207
-#: FancyTreeviewModule.php:1312 FancyTreeviewModule.php:1362
-#: FancyTreeviewModule.php:1520 FancyTreeviewModule.php:1528
-#: FancyTreeviewModule.php:1536
+#: FancyTreeviewModule.php:1097 FancyTreeviewModule.php:1162
+#: FancyTreeviewModule.php:1183 FancyTreeviewModule.php:1216
+#: FancyTreeviewModule.php:1320 FancyTreeviewModule.php:1368
+#: FancyTreeviewModule.php:1533 FancyTreeviewModule.php:1541
+#: FancyTreeviewModule.php:1549
 msgid "and "
 msgstr "và "
 
 #. I18N: Help text for the “Show company/employer” configuration setting
-#: resources/views/settings.phtml:247
+#: resources/views/settings.phtml:249
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
 msgstr "Trả lời \"có\" nếu bạn muốn hiển thị tên của công ty/người sử dụng lao động (Gedcom-tag \"AGNC\") cùng với nghề nghiệp. Văn bản chỉ được hiển thị cùng với nghề nghiệp."
 
-#: FancyTreeviewModule.php:1563
+#: FancyTreeviewModule.php:1576
 msgid "approximately"
 msgstr "approximately"
 
@@ -104,12 +104,12 @@ msgid "As defined in webtrees"
 msgstr "Theo định nghĩa trong webtrees"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
-#: FancyTreeviewModule.php:1574
+#: FancyTreeviewModule.php:1587
 msgid "at the age of %s"
 msgstr "hưởng thọ %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
-#: FancyTreeviewModule.php:1572
+#: FancyTreeviewModule.php:1585
 msgid "at the age of 1 %s"
 msgstr "ở tuổi 1 %s"
 
@@ -117,7 +117,7 @@ msgstr "ở tuổi 1 %s"
 msgid "Check relationship between partners"
 msgstr "Kiểm tra mối quan hệ giữa các thành viên"
 
-#: FancyTreeviewModule.php:1301
+#: FancyTreeviewModule.php:1309
 msgid "child of"
 msgstr "con của"
 
@@ -149,16 +149,16 @@ msgstr "Customized"
 msgid "Default list type"
 msgstr "Kiểu danh sách mặc định"
 
-#: FancyTreeviewModule.php:569
+#: FancyTreeviewModule.php:573
 msgid "Descendants and ancestors"
 msgstr "Con cháu và tổ tiên"
 
-#: FancyTreeviewModule.php:1521
+#: FancyTreeviewModule.php:1534
 msgctxt "FEMALE"
 msgid "died"
 msgstr "mất"
 
-#: FancyTreeviewModule.php:1521
+#: FancyTreeviewModule.php:1534
 msgctxt "MALE"
 msgid "died"
 msgstr "mất"
@@ -172,65 +172,65 @@ msgid "Don't show place names"
 msgstr "Không hiển thị tên địa điểm"
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:1026
+#: FancyTreeviewModule.php:1035
 msgid "eighth"
 msgstr "thứ 8"
 
-#: FancyTreeviewModule.php:1370
+#: FancyTreeviewModule.php:1376
 msgid "employed with"
 msgstr "employed with"
 
-#: FancyTreeviewModule.php:457 FancyTreeviewModule.php:519
+#: FancyTreeviewModule.php:461 FancyTreeviewModule.php:523
 msgid "Family tree overview"
 msgstr "Tổng quan cây gia đình"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:112
+#: FancyTreeviewModule.php:113
 msgid "Fancy Treeview"
 msgstr "Con cháu"
 
-#: FancyTreeviewModule.php:419
+#: FancyTreeviewModule.php:423
 msgid "Fancy Treeview Help"
 msgstr "Fancy Treeview Help"
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:1023
+#: FancyTreeviewModule.php:1032
 msgid "fifth"
 msgstr "thứ năm"
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:1019
+#: FancyTreeviewModule.php:1028
 msgid "first"
 msgstr "thứ nhất"
 
-#: FancyTreeviewModule.php:1677
+#: FancyTreeviewModule.php:1690
 msgid "follow"
 msgstr "đời sau"
 
-#: FancyTreeviewModule.php:1222
+#: FancyTreeviewModule.php:1231
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr "con nuôi"
 
-#: FancyTreeviewModule.php:1225
+#: FancyTreeviewModule.php:1234
 msgctxt "MALE"
 msgid "foster child"
 msgstr "con nuôi"
 
-#: FancyTreeviewModule.php:1297
+#: FancyTreeviewModule.php:1305
 msgid "foster child of"
 msgstr "con nuôi của"
 
-#: FancyTreeviewModule.php:1288
+#: FancyTreeviewModule.php:1296
 msgid "foster daughter of"
 msgstr "con gái nuôi của"
 
-#: FancyTreeviewModule.php:1279
+#: FancyTreeviewModule.php:1287
 msgid "foster son of"
 msgstr "con trai nuôi của"
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:1022
+#: FancyTreeviewModule.php:1031
 msgid "fourth"
 msgstr "thứ tư"
 
@@ -254,79 +254,79 @@ msgstr "Go to the homepage, click on my pages/customize this page to add the Fan
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 
-#: FancyTreeviewModule.php:1191
+#: FancyTreeviewModule.php:1200
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "đã"
 
-#: FancyTreeviewModule.php:1161 FancyTreeviewModule.php:1197
+#: FancyTreeviewModule.php:1170 FancyTreeviewModule.php:1206
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "đã"
 
-#: FancyTreeviewModule.php:1177
+#: FancyTreeviewModule.php:1186
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "đã"
 
-#: FancyTreeviewModule.php:1155 FancyTreeviewModule.php:1183
+#: FancyTreeviewModule.php:1164 FancyTreeviewModule.php:1192
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "đã"
 
-#: FancyTreeviewModule.php:1193
+#: FancyTreeviewModule.php:1202
 msgctxt "One parent/multiple children"
 msgid "has"
 msgstr "đã có"
 
-#: FancyTreeviewModule.php:1163 FancyTreeviewModule.php:1199
+#: FancyTreeviewModule.php:1172 FancyTreeviewModule.php:1208
 msgctxt "One parent/one child"
 msgid "has"
 msgstr "đã có"
 
-#: FancyTreeviewModule.php:1179
+#: FancyTreeviewModule.php:1188
 msgctxt "Two parents/multiple children"
 msgid "have"
 msgstr "đã có"
 
-#: FancyTreeviewModule.php:1157 FancyTreeviewModule.php:1185
+#: FancyTreeviewModule.php:1166 FancyTreeviewModule.php:1194
 msgctxt "Two parents/one child"
 msgid "have"
 msgstr "có"
 
-#: FancyTreeviewModule.php:1113
+#: FancyTreeviewModule.php:1122
 msgid "He had a relationship with"
 msgstr "Ông có mối quan hệ với"
 
-#: FancyTreeviewModule.php:1113
+#: FancyTreeviewModule.php:1122
 msgid "He has a relationship with"
 msgstr "He has a relationship with"
 
-#: FancyTreeviewModule.php:1053
+#: FancyTreeviewModule.php:1062
 msgid "He is married to"
 msgstr "He is married to"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1033
+#: FancyTreeviewModule.php:1042
 msgid "He married %s times"
 msgstr "Ông cưới vào năm"
 
-#: FancyTreeviewModule.php:1488
+#: FancyTreeviewModule.php:1501
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr "Ông đã được rửa tội"
 
-#: FancyTreeviewModule.php:1490
+#: FancyTreeviewModule.php:1503
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr "Ông đã được rửa tội"
 
-#: FancyTreeviewModule.php:1470
+#: FancyTreeviewModule.php:1483
 msgctxt "PAST"
 msgid "He was born"
 msgstr "Ông sinh ra tại"
 
-#: FancyTreeviewModule.php:1472
+#: FancyTreeviewModule.php:1485
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "Ông sinh ra tại"
@@ -335,27 +335,28 @@ msgstr "Ông sinh ra tại"
 msgid "Highest and lowest level"
 msgstr "Cấp cao nhất và thấp nhất"
 
-#: resources/views/settings.phtml:219
+#: resources/views/settings.phtml:220
 msgid "Home country"
 msgstr "Nước sinh ra"
 
+#. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:93
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 msgstr "Nếu câu trả lời là “có”, tập lệnh sẽ kiểm tra xem một cặp vợ chồng (đã kết hôn) có cùng tổ tiên hay không. Nếu tìm thấy mối quan hệ giữa các đối tác, màn hình sẽ phụ thuộc vào loại màn hình."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1602
+#: FancyTreeviewModule.php:1615
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr "vào "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1605
+#: FancyTreeviewModule.php:1618
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "năm "
 
-#: FancyTreeviewModule.php:1636
+#: FancyTreeviewModule.php:1649
 msgid "in %s"
 msgstr "ở %s"
 
@@ -368,7 +369,7 @@ msgid "in the descendants view: a text will appear between brackets after the sp
 msgstr "trong chế độ xem con cháu: một văn bản sẽ xuất hiện giữa các dấu ngoặc sau tên của vợ hoặc chồng để biểu thị mối quan hệ huyết thống."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
-#: resources/views/settings.phtml:263
+#: resources/views/settings.phtml:265
 msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
 msgstr "Trong tệp Gedcom, chữ cái đầu tiên của hầu hết các nghề nghiệp được viết hoa (như một từ độc lập) nhưng trong mô-đun này, chúng tôi sử dụng nghề nghiệp ở giữa câu. Các quy tắc chính tả trong hầu hết các ngôn ngữ yêu cầu nghề nghiệp phải được viết bằng chữ thường trong tình huống đó. Nếu bạn không muốn mô-đun thay đổi chính tả, hãy thay đổi câu trả lời thành “có”."
 
@@ -393,16 +394,16 @@ msgid "More generations require more memory so the page takes longer to fully lo
 msgstr "Nhiều thế hệ hơn yêu cầu nhiều bộ nhớ nhiều hơn nên trang mất nhiều thời gian hơn để tải đầy đủ."
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:1027
+#: FancyTreeviewModule.php:1036
 msgid "ninth"
 msgstr "thứ chín"
 
-#: FancyTreeviewModule.php:1166
+#: FancyTreeviewModule.php:1175
 msgid "no children"
 msgstr "Không có con cái"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1599
+#: FancyTreeviewModule.php:1612
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr "vào "
@@ -450,7 +451,7 @@ msgid "Respond “yes” if you want to display singles in the next generation. 
 msgstr "Trả lời “có” nếu bạn muốn hiển thị từng người trong thế hệ tiếp theo. Người độc thân là những cá nhân không có bạn đời và con cái. Nếu bạn chọn “có”, từng đứa con trong gia đình sẽ được hiển thị chi tiết ở thế hệ tiếp theo."
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:1020
+#: FancyTreeviewModule.php:1029
 msgid "second"
 msgstr "thứ hai"
 
@@ -470,60 +471,64 @@ msgid "Select the maximum number of generations to show on the individual page t
 msgstr "Chọn số thế hệ tối đa để hiển thị trên khung trang riêng lẻ."
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:1025
+#: FancyTreeviewModule.php:1034
 msgid "seventh"
 msgstr "thứ bảy"
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1125
 msgid "She had a relationship with"
 msgstr "Bà có mối quan hệ với"
 
-#: FancyTreeviewModule.php:1116
+#: FancyTreeviewModule.php:1125
 msgid "She has a relationship with"
 msgstr "She has a relationship with"
 
-#: FancyTreeviewModule.php:1056
+#: FancyTreeviewModule.php:1065
 msgid "She is married to"
 msgstr "She is married to"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1039
+#: FancyTreeviewModule.php:1048
 msgid "She married %s times"
 msgstr "Bà cưới %s lần"
 
-#: FancyTreeviewModule.php:1488
+#: FancyTreeviewModule.php:1501
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr "Bà đã được rửa tội"
 
-#: FancyTreeviewModule.php:1490
+#: FancyTreeviewModule.php:1503
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr "Bà đã được rửa tội"
 
-#: FancyTreeviewModule.php:1470
+#: FancyTreeviewModule.php:1483
 msgctxt "PAST"
 msgid "She was born"
 msgstr "Bà sinh ra tại"
 
-#: FancyTreeviewModule.php:1472
+#: FancyTreeviewModule.php:1485
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Bà sinh ra tại"
 
-#: FancyTreeviewModule.php:672 resources/views/tab.phtml:10
+#: FancyTreeviewModule.php:678
 msgid "Show ancestors"
 msgstr "Hiển thị tổ tiên"
 
-#: FancyTreeviewModule.php:667 resources/views/tab.phtml:21
+#: resources/views/settings.phtml:279
+msgid "Show cause of death"
+msgstr "Show cause of death"
+
+#: FancyTreeviewModule.php:673
 msgid "Show descendants"
 msgstr "Hiển thị hậu duệ"
 
-#: resources/views/settings.phtml:277
+#: resources/views/settings.phtml:290
 msgid "Show level 1 notes"
 msgstr "Hiển thị ghi chú cấp 1"
 
-#: resources/views/settings.phtml:230
+#: resources/views/settings.phtml:232
 msgid "Show occupations"
 msgstr "Hiển thị nghề nghiệp"
 
@@ -535,36 +540,36 @@ msgstr "Chỉ hiển thị hình ảnh"
 msgid "Show singles"
 msgstr "Hiển thị riêng lẽ"
 
-#: resources/views/settings.phtml:241
+#: resources/views/settings.phtml:243
 msgid "Show the name of the company/employer"
 msgstr "Hiển thị tên công ty/nhà tuyển dụng"
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:1024
+#: FancyTreeviewModule.php:1033
 msgid "sixth"
 msgstr "thứ sáu"
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:1028
+#: FancyTreeviewModule.php:1037
 msgid "tenth"
 msgstr "thứ mười"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1035
+#: FancyTreeviewModule.php:1044
 msgid "The %s time he married"
 msgstr "Ông cưới năm"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1041
+#: FancyTreeviewModule.php:1050
 msgid "The %s time she married"
 msgstr "Bà cưới năm"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1047
+#: FancyTreeviewModule.php:1056
 msgid "The %s time this individual married"
 msgstr "Thời gian kết hôn"
 
-#: FancyTreeviewModule.php:995
+#: FancyTreeviewModule.php:1003
 msgid "The details of this family are private."
 msgstr "Các chi tiết của gia đình này là riêng tư"
 
@@ -593,30 +598,34 @@ msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:1021
+#: FancyTreeviewModule.php:1030
 msgid "third"
 msgstr "thứ ba"
 
-#: FancyTreeviewModule.php:1119
+#: FancyTreeviewModule.php:1128
 msgid "This individual had a relationship with"
 msgstr "Người này từng có mối quan hệ với"
 
-#: FancyTreeviewModule.php:1119
+#: FancyTreeviewModule.php:1128
 msgid "This individual has a relationship with"
 msgstr "This individual has a relationship with"
 
-#: FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1068
 msgid "This individual is married to"
 msgstr "This individual is married to"
 
-#: FancyTreeviewModule.php:1059
+#: FancyTreeviewModule.php:1068
 msgid "This individual married"
 msgstr "Người này đã kết hôn"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1045
+#: FancyTreeviewModule.php:1054
 msgid "This individual married %s times"
 msgstr "Người này kết hôn %s lần"
+
+#: FancyTreeviewModule.php:699
+msgid "This page does not exist or you do not have permission to view it."
+msgstr "This page does not exist or you do not have permission to view it."
 
 #: resources/views/settings.phtml:73
 msgid "This setting only applies to the page or tab containing the descendants."
@@ -626,72 +635,72 @@ msgstr "Cài đặt này chỉ áp dụng cho trang hoặc khung chứa phần c
 msgid "Thumbnail size"
 msgstr "Kích thước ảnh thu nhỏ"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1508
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr "đã được rửa tội"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1508
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr "đã được rửa tội"
 
-#: FancyTreeviewModule.php:1497
+#: FancyTreeviewModule.php:1510
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "đã được rửa tội"
 
-#: FancyTreeviewModule.php:1497
+#: FancyTreeviewModule.php:1510
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "đã được rửa tội"
 
-#: FancyTreeviewModule.php:1477
+#: FancyTreeviewModule.php:1490
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "sinh "
 
-#: FancyTreeviewModule.php:1477
+#: FancyTreeviewModule.php:1490
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "sinh"
 
-#: FancyTreeviewModule.php:1479
+#: FancyTreeviewModule.php:1492
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "sinh"
 
-#: FancyTreeviewModule.php:1479
+#: FancyTreeviewModule.php:1492
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "sinh"
 
-#: FancyTreeviewModule.php:1529
+#: FancyTreeviewModule.php:1542
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "được chôn cất"
 
-#: FancyTreeviewModule.php:1529
+#: FancyTreeviewModule.php:1542
 msgctxt "MALE"
 msgid "was buried"
 msgstr "được chôn cất"
 
-#: FancyTreeviewModule.php:1537
+#: FancyTreeviewModule.php:1550
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr "được hỏa táng"
 
-#: FancyTreeviewModule.php:1537
+#: FancyTreeviewModule.php:1550
 msgctxt "MALE"
 msgid "was cremated"
 msgstr "được hỏa táng"
 
-#: FancyTreeviewModule.php:1088
+#: FancyTreeviewModule.php:1097
 msgid "were divorced"
 msgstr "đã ly hôn"
 
 #. I18N: in the context 'employed with'
-#: FancyTreeviewModule.php:1370
+#: FancyTreeviewModule.php:1376
 msgid "with"
 msgstr "with"
 
