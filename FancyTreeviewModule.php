@@ -671,9 +671,11 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 $page = 1;
                 $start = 1;
                 $limit = 99;
+                $show_print_link = true; // add a link to print the current page with all generations
             } else {
                 $limit = (int) $this->options('page-limit');
                 $start = ($page - 1) * $limit + 1;
+                $show_print_link = false;
             }
 
             if ($this->type === 'ancestors') {
@@ -703,7 +705,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                 'current_page'      => $page,
                 'total_pages'       => $total_pages,
                 'limit'             => $limit,
-                'show_all_link'     => (int) $this->options('show-all-link')
+                'show_all_link'     => (int) $this->options('show-all-link'),
+                'show_print_link'   => $show_print_link
             ]);
         } else {
             $message = I18N::translate('This page does not exist or you do not have permission to view it.');

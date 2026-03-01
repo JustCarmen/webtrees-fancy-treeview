@@ -35,6 +35,9 @@ use Fisharebest\Webtrees\View;
             </div>
         <?php endif ?>
         <div class="col">
+            <?php if ($show_print_link) : ?>
+                <a class="d-inline" href="javascript:window.print();"><?= I18N::translate('Print this page') ?></a>
+            <?php endif ?>
             <a class="btn btn-primary d-inline float-end" href="<?= e($button_url) ?>"><?= $button_text ?></a>
         </div>
     </div>
