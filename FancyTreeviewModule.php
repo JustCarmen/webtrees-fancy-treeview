@@ -2025,7 +2025,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     private function calculateRelationships(Individual $individual1, Individual $individual2): array
     {
         $calculateRelationships = function ($individual1, $individual2) {
-            return self::getClass(RelationshipsChartModule::class)->calculateRelationships($individual1, $individual2, 0, true);
+            return $this->calculateRelationships($individual1, $individual2, 0, true);
         };
 
         return $calculateRelationships->call(self::getClass(RelationshipsChartModule::class), $individual1, $individual2);
@@ -2046,7 +2046,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     private function oldStyleRelationshipPath(Tree $tree, array $path): array
     {
         $oldStyleRelationshipPath = function ($tree, $path) {
-            return self::getClass(RelationshipsChartModule::class)->oldStyleRelationshipPath($tree, $path);
+            return $this->oldStyleRelationshipPath($tree, $path);
         };
 
         return $oldStyleRelationshipPath->call(self::getClass(RelationshipsChartModule::class), $tree, $path);
