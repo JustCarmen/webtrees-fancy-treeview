@@ -661,7 +661,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $person = $this->getPerson($xref);
         if ($person && $person->canShow()) {
             $page       = $this->getPage();
-            $page_title = $this->printPageTitle($person, $xref, $this->type);
+            $page_title = $this->printPageTitle($person, $this->type);
 
             // determine the generation to start with
             $limit = (int) $this->options('page-limit');
