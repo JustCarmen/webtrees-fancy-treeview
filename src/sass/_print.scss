@@ -4,19 +4,28 @@
     margin: 2cm 1cm;
 }
 
-.jc-fancy-treeview-page {
+@media print {
+    .jc-fancy-treeview-page {
 
-    .jc-generation-block-header {
-        break-after: avoid;
-    }
+        color: #000;
+        a {
+            color:  #bd470e;
+            font-weight: bold;
+        }
 
-    .jc-person-block {
-        break-before: avoid;
-    }
+        .jc-generation-block-header {
+            break-after: avoid;
+            border-bottom-color: #000 !important;
+        }
 
-    .jc-person-block,
-    .jc-spouse-block,
-    .jc-children-block {
-        break-inside: avoid;
+        .jc-person-block {
+            break-before: avoid;
+        }
+
+        .jc-person-block,
+        .jc-spouse-block,
+        .jc-children-block {
+            break-inside: avoid;
+        }
     }
 }

@@ -128,18 +128,33 @@ li.jc-child-li::before {
   margin: 2cm 1cm;
 }
 
-.jc-fancy-treeview-page .jc-generation-block-header {
-  break-after: avoid;
-}
+@media print {
+  .jc-fancy-treeview-page {
+    color: #000;
+  }
 
-.jc-fancy-treeview-page .jc-person-block {
-  break-before: avoid;
-}
+  .jc-fancy-treeview-page a {
+    color: #bd470e;
+    font-weight: bold;
+  }
 
-.jc-fancy-treeview-page .jc-person-block,
-.jc-fancy-treeview-page .jc-spouse-block,
-.jc-fancy-treeview-page .jc-children-block {
-  break-inside: avoid;
+  .jc-fancy-treeview-page .jc-generation-block-header {
+    break-after: avoid;
+  }
+
+  [dir] .jc-fancy-treeview-page .jc-generation-block-header {
+    border-bottom-color: #000 !important;
+  }
+
+  .jc-fancy-treeview-page .jc-person-block {
+    break-before: avoid;
+  }
+
+  .jc-fancy-treeview-page .jc-person-block,
+  .jc-fancy-treeview-page .jc-spouse-block,
+  .jc-fancy-treeview-page .jc-children-block {
+    break-inside: avoid;
+  }
 }
 
 [dir="ltr"] .jc-fancy-treeview-page-body a.gallery img {
