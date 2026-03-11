@@ -1981,7 +1981,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     }
 
     /**
-     * Check if there is a relationship between partners through there joint ancestors, if any.
+     * Check if there is a relationship between partners through their joint ancestors, if any.
      * If found, add the generation number where a pedigree collapse first occurs to the collection
      *
      * See: app\Module\RelationshipsChartModule.php
@@ -1996,6 +1996,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $tree = $person->tree();
         $paths = $this->calculateRelationships($person, $spouse);
 
+        $relationship_service_class = $this->getClass(RelationshipService::class);
         foreach ($paths as $path) {
             $nodes = Collection::make($path)
                 ->map(static function (string $xref, int $key) use ($tree): GedcomRecord {
@@ -2005,14 +2006,14 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     return  Registry::familyFactory()->make($xref, $tree);
                 });
 
-            $pattern = function ($nodes) {
-                return self::getClass(RelationshipService::class)->components($nodes);
+            $pattern = function ($nodes) use ($relationship_service_class) {
+                return $relationship_service_class->components($nodes);
             };
 
-            $pattern = $pattern->call($this->relationship_service, $nodes->toArray());
+            $pattern_array = $pattern->call($this->relationship_service, $nodes->toArray());
 
-            if ($pattern) {
-                $occurences = array_count_values($pattern);
+            if ($pattern_array) {
+                $occurences = array_count_values($pattern_array);
 
                 $fat = array_key_exists('fat', $occurences) ? $occurences['fat'] : 0;
                 $mot = array_key_exists('mot', $occurences) ? $occurences['mot'] : 0;
