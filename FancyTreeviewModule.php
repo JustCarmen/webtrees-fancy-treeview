@@ -45,8 +45,8 @@ use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
-use Fisharebest\Webtrees\Statistics\Service\CountryService;
 use Fisharebest\Webtrees\Http\Exceptions\HttpNotFoundException;
+use JustCarmen\Webtrees\Module\FancyTreeview\Service\CountryService;
 
 class FancyTreeviewModule extends AbstractModule
 implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface,
@@ -82,20 +82,17 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     public array $pedigree_collapse;
 
     private Tree $tree;
-    private CountryService $country_service;
     private ModuleService $module_service;
     private RelationshipService $relationship_service;
 
     /**
      * Fancy Treeview constructor.
      *
-     * @param CountryService $countryService
      * @param ModuleService $module_service
      * @param RelationshipService $relationship_service
      */
-    public function __construct(CountryService $country_service, ModuleService $module_service, RelationshipService $relationship_service)
+    public function __construct(ModuleService $module_service, RelationshipService $relationship_service)
     {
-        $this->country_service = $country_service;
         $this->module_service = $module_service;
         $this->relationship_service = $relationship_service;
         $this->pedigree_collapse = [];
@@ -1791,7 +1788,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     private function getCountryList(): array
     {
-        $countries = $this->country_service->getAllCountries();
+        $countries = $this->getClass(CountryService::class)->getAllCountries();
         $countries['???'] = '';
         asort($countries);
 
@@ -1814,7 +1811,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $country = $parts->last();
 
         $iso3 = array_search ($country, $this->getCountryList()) ?: $country;
-        $iso2 = $this->country_service->iso3166()[$iso3] ?? $iso3;
+        $iso2 = $this->getClass(CountryService::class)->iso3166()[$iso3] ?? $iso3;
 
         if ($this->options('countries-format') === 'iso2') {
             $parts = $parts->slice(0, -1)->push($iso2);

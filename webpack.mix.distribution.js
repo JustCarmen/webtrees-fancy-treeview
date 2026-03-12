@@ -21,6 +21,7 @@ require('laravel-mix-clean');
 mix
   .setPublicPath('./dist')
   .copyDirectory(config.public_dir + '/views', config.dist_dir + '/resources/views')
+  .copyDirectory(config.public_dir + '/Service', config.dist_dir + '/Service')
   .copy(config.public_dir + '/lang/*.mo', config.dist_dir + '/resources/lang')
   .copy(config.build_dir + '/style.css', config.dist_dir + '/resources/css/style.css')
   .copy('FancyTreeviewModule.php', config.dist_dir)
