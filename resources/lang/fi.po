@@ -14,115 +14,116 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: dist\n"
 "X-Poedit-SearchPathExcluded-3: node_modules\n"
 "X-Poedit-SearchPathExcluded-4: src\n"
+"X-Poedit-SearchPathExcluded-5: vendor\n"
 "Project-Id-Version: Fancy Treeview for webtrees 2\n"
 "Language: fi\n"
 
 #. I18N: Date prefix for date qualifications, like estimated, about, calculated, from, between etc. Leave the string empty if your language don't need such a prefix. If you do need this prefix, add an extra space at the end of the string to separate the prefix from the date. It is correct the source text is empty, because the source language (en-US) does not need this string.
-#: FancyTreeviewModule.php:1621
+#: FancyTreeviewModule.php:1622
 msgctxt "prefix before dates with date qualifications, followed right after the words birth, death, married, divorced etc. Read the comment for more details."
 msgid " "
 msgstr " "
 
-#: resources/views/block-content.phtml:37
-#: resources/views/block-content.phtml:42
+#: resources/views/block-content.phtml:43
+#: resources/views/block-content.phtml:48
 msgid "%s complete"
 msgstr "%s valmis"
 
-#: resources/views/block-content.phtml:36
-#: resources/views/block-content.phtml:41
+#: resources/views/block-content.phtml:42
+#: resources/views/block-content.phtml:47
 msgid "%s of %s possible ancestors"
 msgstr "%s mahdollisista %s esivanhemmasta"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
-#: resources/views/settings.phtml:121
+#: resources/views/settings.phtml:147
 msgid "<strong>Note</strong>: this option can be time and/or memory consuming, especially on large trees. It can cause very slow page loading or an “execution time out error” on your server. If you notice such a behavior, reduce the maximum number of generations per page or tab and/or don’t use it in combination with the option “show singles’. If you still have problems, leave the answer at “no”."
 msgstr "<strong>Huomaa</strong>: tämä vaihtoehto voi viedä aikaa ja/tai muistia, etenkin suurissa puissa. Se voi aiheuttaa erittäin hitaan sivun latautumisen tai \"suorituksen aikakatkaisuvirheen\" palvelimellasi. Jos huomaat tällaisen käyttäytymisen, vähennä sukupolvien enimmäismäärää sivua tai välilehteä kohden ja/tai älä käytä sitä yhdessä \"näytä sinkut\" -vaihtoehdon kanssa. Jos sinulla on edelleen ongelmia, jätä vastaukseksi \"ei\"."
 
-#: resources/views/settings.phtml:218
+#: resources/views/settings.phtml:244
 msgid "2 letter country code"
 msgstr "2 letter country code"
 
-#: resources/views/settings.phtml:217
+#: resources/views/settings.phtml:243
 msgid "3 letter country code"
 msgstr "3 letter country code"
 
 #. I18N: Description of the module
-#: FancyTreeviewModule.php:124
+#: FancyTreeviewModule.php:122
 msgid "A narrative overview of the descendants or ancestors of one family (branch)."
 msgstr "Kertomuskuva yhden suvun (haaran) jälkeläisistä tai esivanhemmista."
 
 #. I18N: Help text for the "Show link to open all generations on one page" configuration setting
-#: resources/views/settings.phtml:76
+#: resources/views/settings.phtml:102
 msgid "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
 msgstr "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
 
-#: FancyTreeviewModule.php:1253
+#: FancyTreeviewModule.php:1252
 msgctxt "FEMALE"
 msgid "adopted child"
 msgstr "adoptoitu lapsi"
 
-#: FancyTreeviewModule.php:1256
+#: FancyTreeviewModule.php:1255
 msgctxt "MALE"
 msgid "adopted child"
 msgstr "adoptoitu lapsi"
 
-#: FancyTreeviewModule.php:1319
+#: FancyTreeviewModule.php:1318
 msgid "adopted child of"
 msgstr "adoptiovanhemmat:"
 
-#: FancyTreeviewModule.php:1310
+#: FancyTreeviewModule.php:1309
 msgid "adopted daughter of"
 msgstr "adoptiovanhemmat:"
 
-#: FancyTreeviewModule.php:1301
+#: FancyTreeviewModule.php:1300
 msgid "adopted son of"
 msgstr "adoptiovanhemmat:"
 
-#: resources/views/settings.phtml:276
+#: resources/views/settings.phtml:302
 msgid "Always write the occupation exactly as it appears in the Gedcom"
 msgstr "Kirjoita ammatti aina täsmälleen sellaisena kuin se näkyy Gedcomissa"
 
-#: FancyTreeviewModule.php:574
+#: FancyTreeviewModule.php:572
 msgid "Ancestors and descendants"
 msgstr "Esivanhemmat ja jälkeläiset"
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1109 FancyTreeviewModule.php:1174
-#: FancyTreeviewModule.php:1195 FancyTreeviewModule.php:1228
-#: FancyTreeviewModule.php:1332 FancyTreeviewModule.php:1380
-#: FancyTreeviewModule.php:1545 FancyTreeviewModule.php:1553
-#: FancyTreeviewModule.php:1561
+#: FancyTreeviewModule.php:1108 FancyTreeviewModule.php:1173
+#: FancyTreeviewModule.php:1194 FancyTreeviewModule.php:1227
+#: FancyTreeviewModule.php:1331 FancyTreeviewModule.php:1379
+#: FancyTreeviewModule.php:1546 FancyTreeviewModule.php:1554
+#: FancyTreeviewModule.php:1562
 msgid "and "
 msgstr "ja "
 
 #. I18N: Help text for the “Show company/employer” configuration setting
-#: resources/views/settings.phtml:266
+#: resources/views/settings.phtml:292
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
 msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
 
-#: FancyTreeviewModule.php:1588
+#: FancyTreeviewModule.php:1589
 msgid "approximately"
 msgstr "approximately"
 
-#: resources/views/settings.phtml:179
+#: resources/views/settings.phtml:205
 msgid "As defined in webtrees"
 msgstr "As defined in webtrees"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
-#: FancyTreeviewModule.php:1599
+#: FancyTreeviewModule.php:1600
 msgid "at the age of %s"
 msgstr "at the age of %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
-#: FancyTreeviewModule.php:1597
+#: FancyTreeviewModule.php:1598
 msgid "at the age of 1 %s"
 msgstr "at the age of 1 %s"
 
-#: resources/views/settings.phtml:104
+#: resources/views/settings.phtml:130
 msgid "Check relationship between partners"
 msgstr "Tarkista kumppanien välinen suhde"
 
-#: FancyTreeviewModule.php:1321
+#: FancyTreeviewModule.php:1320
 msgid "child of"
 msgstr "vanhemmat"
 
@@ -130,120 +131,120 @@ msgstr "vanhemmat"
 msgid "Click here to create or remove a link to the Fancy Treeview page."
 msgstr "Click here to create or remove a link to the Fancy Treeview page."
 
-#: resources/views/menu-edit.phtml:19
+#: resources/views/menu-edit.phtml:25
 msgid "Create link to ancestors page"
 msgstr "Create link to ancestors page"
 
-#: resources/views/menu-edit.phtml:24
+#: resources/views/menu-edit.phtml:30
 msgid "Create link to descendants page"
 msgstr "Create link to descendants page"
 
-#: resources/views/page.phtml:28
+#: resources/views/page.phtml:44
 msgid "Create link to this page"
 msgstr "Create link to this page"
 
-#: resources/views/settings.phtml:145
+#: resources/views/settings.phtml:171
 msgid "Crop thumbnails to square"
 msgstr "Rajaa pikkukuvat neliöiksi"
 
-#: resources/views/settings.phtml:178
+#: resources/views/settings.phtml:204
 msgid "Customized"
 msgstr "Customized"
 
-#: resources/views/settings.phtml:22
+#: resources/views/settings.phtml:48
 msgid "Default list type"
 msgstr "Oletusluettelotyyppi"
 
-#: FancyTreeviewModule.php:576
+#: FancyTreeviewModule.php:574
 msgid "Descendants and ancestors"
 msgstr "Jälkeläiset ja esivanhemmat"
 
-#: FancyTreeviewModule.php:1546
+#: FancyTreeviewModule.php:1547
 msgctxt "FEMALE"
 msgid "died"
 msgstr "kuoli"
 
-#: FancyTreeviewModule.php:1546
+#: FancyTreeviewModule.php:1547
 msgctxt "MALE"
 msgid "died"
 msgstr "kuoli"
 
-#: resources/views/settings.phtml:226
+#: resources/views/settings.phtml:252
 msgid "Display home country name"
 msgstr "Display home country name"
 
-#: resources/views/settings.phtml:180
+#: resources/views/settings.phtml:206
 msgid "Don't show place names"
 msgstr "Don't show place names"
 
 #. I18N: eighth marriage
-#: FancyTreeviewModule.php:1047
+#: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "Kahdeksannella"
 
-#: FancyTreeviewModule.php:1388
+#: FancyTreeviewModule.php:1387
 msgid "employed with"
 msgstr "employed with"
 
-#: FancyTreeviewModule.php:464 FancyTreeviewModule.php:526
+#: FancyTreeviewModule.php:462 FancyTreeviewModule.php:524
 msgid "Family tree overview"
 msgstr "Sukupuun yleiskatsaus"
 
 #. I18N: Name of a module
-#: FancyTreeviewModule.php:113
+#: FancyTreeviewModule.php:111
 msgid "Fancy Treeview"
 msgstr "Hieno puunäkymä"
 
-#: FancyTreeviewModule.php:426
+#: FancyTreeviewModule.php:424
 msgid "Fancy Treeview Help"
 msgstr "Fancy Treeview Help"
 
 #. I18N: fifth marriage
-#: FancyTreeviewModule.php:1044
+#: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "Viidennellä"
 
 #. I18N: first marriage
-#: FancyTreeviewModule.php:1040
+#: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "Ensimmäisellä"
 
-#: FancyTreeviewModule.php:1702
+#: FancyTreeviewModule.php:1703
 msgid "follow"
 msgstr "seuraa"
 
-#: FancyTreeviewModule.php:1243
+#: FancyTreeviewModule.php:1242
 msgctxt "FEMALE"
 msgid "foster child"
 msgstr "kasvattilapsi"
 
-#: FancyTreeviewModule.php:1246
+#: FancyTreeviewModule.php:1245
 msgctxt "MALE"
 msgid "foster child"
 msgstr "kasvattilapsi"
 
-#: FancyTreeviewModule.php:1317
+#: FancyTreeviewModule.php:1316
 msgid "foster child of"
 msgstr "kasvattivanhemmat:"
 
-#: FancyTreeviewModule.php:1308
+#: FancyTreeviewModule.php:1307
 msgid "foster daughter of"
 msgstr "kasvattivanhemmat:"
 
-#: FancyTreeviewModule.php:1299
+#: FancyTreeviewModule.php:1298
 msgid "foster son of"
 msgstr "kasvattivanhemmat:"
 
 #. I18N: fourth marriage
-#: FancyTreeviewModule.php:1043
+#: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "Neljännellä"
 
-#: resources/views/settings.phtml:216
+#: resources/views/settings.phtml:242
 msgid "Full country name"
 msgstr "Full country name"
 
-#: resources/views/settings.phtml:191 resources/views/settings.phtml:204
+#: resources/views/settings.phtml:217 resources/views/settings.phtml:230
 msgid "Full place name"
 msgstr "Full place name"
 
@@ -259,343 +260,343 @@ msgstr "Go to the homepage, click on my pages/customize this page to add the Fan
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
 
-#: FancyTreeviewModule.php:1212
+#: FancyTreeviewModule.php:1211
 msgctxt "One parent/multiple children"
 msgid "had"
 msgstr "oli"
 
-#: FancyTreeviewModule.php:1182 FancyTreeviewModule.php:1218
+#: FancyTreeviewModule.php:1181 FancyTreeviewModule.php:1217
 msgctxt "One parent/one child"
 msgid "had"
 msgstr "oli"
 
-#: FancyTreeviewModule.php:1198
+#: FancyTreeviewModule.php:1197
 msgctxt "Two parents/multiple children"
 msgid "had"
 msgstr "oli"
 
-#: FancyTreeviewModule.php:1176 FancyTreeviewModule.php:1204
+#: FancyTreeviewModule.php:1175 FancyTreeviewModule.php:1203
 msgctxt "Two parents/one child"
 msgid "had"
 msgstr "oli"
 
-#: FancyTreeviewModule.php:1214
+#: FancyTreeviewModule.php:1213
 msgctxt "One parent/multiple children"
 msgid "has"
 msgstr "on"
 
-#: FancyTreeviewModule.php:1184 FancyTreeviewModule.php:1220
+#: FancyTreeviewModule.php:1183 FancyTreeviewModule.php:1219
 msgctxt "One parent/one child"
 msgid "has"
 msgstr "on"
 
-#: FancyTreeviewModule.php:1200
+#: FancyTreeviewModule.php:1199
 msgctxt "Two parents/multiple children"
 msgid "have"
 msgstr "on"
 
-#: FancyTreeviewModule.php:1178 FancyTreeviewModule.php:1206
+#: FancyTreeviewModule.php:1177 FancyTreeviewModule.php:1205
 msgctxt "Two parents/one child"
 msgid "have"
 msgstr "on"
 
-#: FancyTreeviewModule.php:1134
+#: FancyTreeviewModule.php:1133
 msgid "He had a relationship with"
 msgstr "Hänellä oli suhde henkilöön"
 
-#: FancyTreeviewModule.php:1134
+#: FancyTreeviewModule.php:1133
 msgid "He has a relationship with"
 msgstr "He has a relationship with"
 
-#: FancyTreeviewModule.php:1074
+#: FancyTreeviewModule.php:1073
 msgid "He is married to"
 msgstr "He is married to"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1054
+#: FancyTreeviewModule.php:1053
 msgid "He married %s times"
 msgstr "Hän avioitui %s kertaa"
 
-#: FancyTreeviewModule.php:1513
+#: FancyTreeviewModule.php:1514
 msgctxt "PAST"
 msgid "He was baptized"
 msgstr "Hänet kastettiin"
 
-#: FancyTreeviewModule.php:1515
+#: FancyTreeviewModule.php:1516
 msgctxt "PRESENT"
 msgid "He was baptized"
 msgstr "Hänet kastettiin"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1496
 msgctxt "PAST"
 msgid "He was born"
 msgstr "Puoliso syntyi"
 
-#: FancyTreeviewModule.php:1497
+#: FancyTreeviewModule.php:1498
 msgctxt "PRESENT"
 msgid "He was born"
 msgstr "Puoliso syntyi"
 
-#: resources/views/settings.phtml:192 resources/views/settings.phtml:205
+#: resources/views/settings.phtml:218 resources/views/settings.phtml:231
 msgid "Highest and lowest level"
 msgstr "Highest and lowest level"
 
-#: resources/views/settings.phtml:237
+#: resources/views/settings.phtml:263
 msgid "Home country"
 msgstr "Home country"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
-#: resources/views/settings.phtml:110
+#: resources/views/settings.phtml:136
 #, fuzzy
 msgid "If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. If a relationship between the partners is found, the display depends on the display type."
 msgstr "Jos vastaus on \"kyllä\", käsikirjoitus tarkistaa, onko (avio)parilla samat esi-isät. Jos kumppanien välillä löydetään suhde, näyttö riippuu näyttötyypistä."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1627
+#: FancyTreeviewModule.php:1628
 msgctxt "before dateformat mmm yyyy"
 msgid "in "
 msgstr " "
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1630
+#: FancyTreeviewModule.php:1631
 msgctxt "before dateformat yyyy"
 msgid "in "
 msgstr "vuonna "
 
-#: FancyTreeviewModule.php:1661
+#: FancyTreeviewModule.php:1662
 msgid "in %s"
 msgstr "in %s"
 
-#: resources/views/settings.phtml:115
+#: resources/views/settings.phtml:141
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
 msgstr "esivanhempien näkymässä: jokainen sukupolvi näyttää ihmisten lukumäärän ja mahdollisten esivanhempien enimmäismäärän kyseisessä sukupolvessa. Mahdollisten esivanhempien lukumäärä seuraavissa sukupolvissa lasketaan uudelleen, jos sukutaulu romahtaa."
 
-#: resources/views/settings.phtml:114
+#: resources/views/settings.phtml:140
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
 msgstr "jälkeläisten näkymässä: puolison nimen perään tulee hakasulkeisiin teksti, joka ilmaisee sukusuhteen."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
-#: resources/views/settings.phtml:282
+#: resources/views/settings.phtml:308
 msgid "In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word) but in this module we use the occupation in the middle of a sentence. The spelling rules in most languages require that an occupation be written in lower case in that situation. If you do not want the module to change the spelling, change the answer to “yes”."
 msgstr "Gedcom-tiedostossa useimpien ammattien ensimmäinen kirjain kirjoitetaan isolla alkukurjaimella (erillisenä sanana), mutta tässä moduulissa käytämme ammattia lauseen keskellä. Useimpien kielten oikeinkirjoitussäännöt edellyttävät, että ammatti kirjoitetaan kyseisessä tilanteessa pienillä kirjaimilla. Jos et halua moduulin muuttavan oikeinkirjoitusta, vaihda vastaukseksi \"kyllä\"."
 
-#: resources/views/menu-edit.phtml:11
+#: resources/views/menu-edit.phtml:17
 msgid "Link to Fancy Treeview page"
 msgstr "Link to Fancy Treeview page"
 
-#: resources/views/settings.phtml:193
+#: resources/views/settings.phtml:219
 msgid "Lowest level"
 msgstr "Lowest level"
 
-#: resources/views/settings.phtml:37
+#: resources/views/settings.phtml:63
 msgid "Maximum number of generations per page"
 msgstr "Sukupolvien enimmäismäärä sivulla"
 
-#: resources/views/settings.phtml:53
+#: resources/views/settings.phtml:79
 msgid "Maximum number of generations per tab"
 msgstr "Sukupolvien enimmäismäärä välilehdellä"
 
-#: resources/views/settings.phtml:46 resources/views/settings.phtml:62
+#: resources/views/settings.phtml:72 resources/views/settings.phtml:88
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "Useammat sukupolvet vaativat enemmän muistia, joten sivun lataaminen täyteen kestää kauemmin."
 
 #. I18N: ninth marriage
-#: FancyTreeviewModule.php:1048
+#: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "Yhdeksännellä"
 
-#: FancyTreeviewModule.php:1187
+#: FancyTreeviewModule.php:1186
 msgid "no children"
 msgstr "ei lapsia"
 
-#: resources/views/pagination.phtml:31
+#: resources/views/pagination.phtml:41
 msgid "Note: showing all generations at once can take a while."
 msgstr "Note: showing all generations at once can take a while."
 
 #. I18N: Note the space at the end of the string
-#: FancyTreeviewModule.php:1624
+#: FancyTreeviewModule.php:1625
 msgctxt "before dateformat dd-mm-yyyy"
 msgid "on "
 msgstr " "
 
-#: resources/views/settings.phtml:212
+#: resources/views/settings.phtml:238
 msgid "Preference for displaying countries"
 msgstr "Preference for displaying countries"
 
-#: resources/views/settings.phtml:174
+#: resources/views/settings.phtml:200
 msgid "Preference for displaying place names"
 msgstr "Preference for displaying place names"
 
-#: resources/views/settings.phtml:187
+#: resources/views/settings.phtml:213
 msgid "Preference for displaying place names in home country"
 msgstr "Preference for displaying place names in home country"
 
-#: resources/views/settings.phtml:200
+#: resources/views/settings.phtml:226
 msgid "Preference for displaying place names in other countries"
 msgstr "Preference for displaying place names in other countries"
 
-#: resources/views/page.phtml:39
+#: resources/views/page.phtml:55
 msgid "Print this page"
 msgstr "Print this page"
 
-#: resources/views/readmore-link.phtml:8
+#: resources/views/readmore-link.phtml:13
 msgid "Read more"
 msgstr "Lue lisää"
 
-#: resources/views/menu-edit.phtml:17
+#: resources/views/menu-edit.phtml:23
 msgid "Remove link to ancestors page"
 msgstr "Remove link to ancestors page"
 
-#: resources/views/menu-edit.phtml:22
+#: resources/views/menu-edit.phtml:28
 msgid "Remove link to descendants page"
 msgstr "Remove link to descendants page"
 
-#: resources/views/page.phtml:19
+#: resources/views/page.phtml:35
 msgid "Remove link to this page"
 msgstr "Remove link to this page"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
-#: resources/views/settings.phtml:162
+#: resources/views/settings.phtml:188
 msgid "Respond “yes” if you want to display images from the type “photo” only. Other highlighted images like certificates, documents or tombstones will not be used. If you did not differentiate by media type in your Gedcom leave the answer at “no”."
 msgstr "Vastaa \"kyllä\", jos haluat näyttää vain \"valokuva\" tyypistä kuvia. Muita korostettuja kuvia, kuten todistuksia, asiakirjoja tai hautakiviä, ei käytetä. Jos et ole erottanut Gedcomissa mediatyypin mukaan, jätä vastaukseksi \"ei\"."
 
 #. I18N: Help text for the “Show singles” configuration setting
-#: resources/views/settings.phtml:92
+#: resources/views/settings.phtml:118
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "Vastaa \"kyllä\", jos haluat näyttää sinkkuja seuraavalle sukupolvelle. Sinkut ovat henkilöitä ilman kumppania ja lapsia. Jos valitset \"kyllä\", jokainen perheen lapsi näytetään yksityiskohtaisesti seuraavassa sukupolvessa."
 
 #. I18N: second marriage
-#: FancyTreeviewModule.php:1041
+#: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "Toisella"
 
 #. I18N: Help text for the “Default list type” configuration setting
-#: resources/views/settings.phtml:29
+#: resources/views/settings.phtml:55
 msgid "Select “descendants” or “ancestors” as default list type. When on the individual page tab, this list type will be shown first."
 msgstr "Valitse oletusluettelotyypiksi \"jälkeläiset\" tai \"esivanhemmat\". Henkilösivun välilehdellä tämä luettelotyyppi näytetään ensimmäisenä."
 
 #. I18N: Help text for the “Maximum number of generations per page” configuration setting
-#: resources/views/settings.phtml:44
+#: resources/views/settings.phtml:70
 msgid "Select the maximum number of generations to show on the Fancy Treeview page."
 msgstr "Valitse Hieno puunäkymä-sivulla näytettävien sukupolvien enimmäismäärä."
 
 #. I18N: Help text for the “Maximum number of generations per tab” configuration setting
-#: resources/views/settings.phtml:60
+#: resources/views/settings.phtml:86
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "Valitse henkilö-sivuvälilehdellä näytettävien sukupolvien enimmäismäärä."
 
 #. I18N: seventh marriage
-#: FancyTreeviewModule.php:1046
+#: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "Seitsemännellä"
 
-#: FancyTreeviewModule.php:1137
+#: FancyTreeviewModule.php:1136
 msgid "She had a relationship with"
 msgstr "Hänellä oli suhde henkilöön"
 
-#: FancyTreeviewModule.php:1137
+#: FancyTreeviewModule.php:1136
 msgid "She has a relationship with"
 msgstr "She has a relationship with"
 
-#: FancyTreeviewModule.php:1077
+#: FancyTreeviewModule.php:1076
 msgid "She is married to"
 msgstr "She is married to"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1060
+#: FancyTreeviewModule.php:1059
 msgid "She married %s times"
 msgstr "Hän meni naimisiin %s kertaa"
 
-#: FancyTreeviewModule.php:1513
+#: FancyTreeviewModule.php:1514
 msgctxt "PAST"
 msgid "She was baptized"
 msgstr "Hänet kastettiin"
 
-#: FancyTreeviewModule.php:1515
+#: FancyTreeviewModule.php:1516
 msgctxt "PRESENT"
 msgid "She was baptized"
 msgstr "Hänet kastettiin"
 
-#: FancyTreeviewModule.php:1495
+#: FancyTreeviewModule.php:1496
 msgctxt "PAST"
 msgid "She was born"
 msgstr "Puoliso syntyi"
 
-#: FancyTreeviewModule.php:1497
+#: FancyTreeviewModule.php:1498
 msgctxt "PRESENT"
 msgid "She was born"
 msgstr "Puoliso syntyi"
 
-#: resources/views/pagination.phtml:32
+#: resources/views/pagination.phtml:42
 msgid "show all generations"
 msgstr "show all generations"
 
-#: FancyTreeviewModule.php:689
+#: FancyTreeviewModule.php:687
 msgid "Show ancestors"
 msgstr "Näytä esivanhemmat"
 
-#: resources/views/settings.phtml:296
+#: resources/views/settings.phtml:322
 msgid "Show cause of death"
 msgstr "Show cause of death"
 
-#: FancyTreeviewModule.php:684
+#: FancyTreeviewModule.php:682
 msgid "Show descendants"
 msgstr "Näytä jälkeläiset"
 
-#: resources/views/settings.phtml:307
+#: resources/views/settings.phtml:333
 msgid "Show level 1 notes"
 msgstr "Show level 1 notes"
 
-#: resources/views/settings.phtml:69
+#: resources/views/settings.phtml:95
 msgid "Show link to open all generations on one page"
 msgstr "Show link to open all generations on one page"
 
-#: resources/views/settings.phtml:249
+#: resources/views/settings.phtml:275
 msgid "Show occupations"
 msgstr "Show occupations"
 
-#: resources/views/settings.phtml:156
+#: resources/views/settings.phtml:182
 msgid "Show only media from the type 'photo'"
 msgstr "Näytä vain \"valokuva\" mediatyyppi"
 
-#: resources/views/settings.phtml:85
+#: resources/views/settings.phtml:111
 msgid "Show singles"
 msgstr "Näytä sinkut"
 
-#: resources/views/settings.phtml:260
+#: resources/views/settings.phtml:286
 msgid "Show the name of the company/employer"
 msgstr "Show the name of the company/employer"
 
 #. I18N: sixth marriage
-#: FancyTreeviewModule.php:1045
+#: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "Kuudennella"
 
 #. I18N: tenth marriage
-#: FancyTreeviewModule.php:1049
+#: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "Kymmenennellä"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1056
+#: FancyTreeviewModule.php:1055
 msgid "The %s time he married"
 msgstr "%s kerralla puoliso"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1062
+#: FancyTreeviewModule.php:1061
 msgid "The %s time she married"
 msgstr "%s kerralla puoliso:"
 
 #. I18N: %s is an ordinal
-#: FancyTreeviewModule.php:1068
+#: FancyTreeviewModule.php:1067
 msgid "The %s time this individual married"
 msgstr "%s kerralla tämän henkilön puoliso:"
 
-#: FancyTreeviewModule.php:1015
+#: FancyTreeviewModule.php:1014
 msgid "The details of this family are private."
 msgstr "Tämän perheen tiedot ovat yksityisiä."
 
-#: resources/views/block-content.phtml:28
+#: resources/views/block-content.phtml:34
 msgid "The details of this generation are private."
 msgstr "Tämän sukupolven tiedot ovat yksityissuojattuja."
 
@@ -611,7 +612,7 @@ msgstr "The links created will be shown in this block."
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
 msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
 
-#: resources/views/block-content.phtml:22
+#: resources/views/block-content.phtml:28
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
 msgstr "Tämän sukupolven mahdollisten esivanhempien määrä on vähentynyt sukutaulun romahtamisen vuoksi. Ilman vähennystä esivanhempien enimmäismäärä tässä sukupolvessa olisi ollut %s."
 
@@ -620,113 +621,113 @@ msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
 
 #. I18N: third marriage
-#: FancyTreeviewModule.php:1042
+#: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "Kolmannella"
 
-#: FancyTreeviewModule.php:1140
+#: FancyTreeviewModule.php:1139
 msgid "This individual had a relationship with"
 msgstr "Tällä henkilöllä on suhde henkilöön"
 
-#: FancyTreeviewModule.php:1140
+#: FancyTreeviewModule.php:1139
 msgid "This individual has a relationship with"
 msgstr "This individual has a relationship with"
 
-#: FancyTreeviewModule.php:1080
+#: FancyTreeviewModule.php:1079
 msgid "This individual is married to"
 msgstr "This individual is married to"
 
-#: FancyTreeviewModule.php:1080
+#: FancyTreeviewModule.php:1079
 msgid "This individual married"
 msgstr "Tämä henkilö meni naimisiin"
 
 #. I18N: %s is a number
-#: FancyTreeviewModule.php:1066
+#: FancyTreeviewModule.php:1065
 msgid "This individual married %s times"
 msgstr "Tämä henkilö meni naimisiin %s kertaa"
 
-#: FancyTreeviewModule.php:712
+#: FancyTreeviewModule.php:710
 msgid "This page does not exist or you do not have permission to view it."
 msgstr "This page does not exist or you do not have permission to view it."
 
-#: resources/views/settings.phtml:90
+#: resources/views/settings.phtml:116
 msgid "This setting only applies to the page or tab containing the descendants."
 msgstr "Tämä asetus koskee vain sivua tai välilehteä, joka sisältää jälkeläiset."
 
-#: resources/views/settings.phtml:134
+#: resources/views/settings.phtml:160
 msgid "Thumbnail size"
 msgstr "Pikkukuvan koko"
 
-#: resources/views/pagination.phtml:31
+#: resources/views/pagination.phtml:41
 msgid "Useful for printing the page or saving as a PDF."
 msgstr "Useful for printing the page or saving as a PDF."
 
-#: FancyTreeviewModule.php:1520
+#: FancyTreeviewModule.php:1521
 msgctxt "PAST (FEMALE)"
 msgid "was baptized"
 msgstr "kastettiin"
 
-#: FancyTreeviewModule.php:1520
+#: FancyTreeviewModule.php:1521
 msgctxt "PAST (MALE)"
 msgid "was baptized"
 msgstr "kastettiin"
 
-#: FancyTreeviewModule.php:1522
+#: FancyTreeviewModule.php:1523
 msgctxt "PRESENT (FEMALE)"
 msgid "was baptized"
 msgstr "kastettiin"
 
-#: FancyTreeviewModule.php:1522
+#: FancyTreeviewModule.php:1523
 msgctxt "PRESENT (MALE)"
 msgid "was baptized"
 msgstr "kastettiin"
 
-#: FancyTreeviewModule.php:1502
+#: FancyTreeviewModule.php:1503
 msgctxt "PAST (FEMALE)"
 msgid "was born"
 msgstr "syntyi"
 
-#: FancyTreeviewModule.php:1502
+#: FancyTreeviewModule.php:1503
 msgctxt "PAST (MALE)"
 msgid "was born"
 msgstr "syntyi"
 
-#: FancyTreeviewModule.php:1504
+#: FancyTreeviewModule.php:1505
 msgctxt "PRESENT (FEMALE)"
 msgid "was born"
 msgstr "syntyi"
 
-#: FancyTreeviewModule.php:1504
+#: FancyTreeviewModule.php:1505
 msgctxt "PRESENT (MALE)"
 msgid "was born"
 msgstr "syntyi"
 
-#: FancyTreeviewModule.php:1554
+#: FancyTreeviewModule.php:1555
 msgctxt "FEMALE"
 msgid "was buried"
 msgstr "haudattiin"
 
-#: FancyTreeviewModule.php:1554
+#: FancyTreeviewModule.php:1555
 msgctxt "MALE"
 msgid "was buried"
 msgstr "haudattiin"
 
-#: FancyTreeviewModule.php:1562
+#: FancyTreeviewModule.php:1563
 msgctxt "FEMALE"
 msgid "was cremated"
 msgstr "polttohaudattiin"
 
-#: FancyTreeviewModule.php:1562
+#: FancyTreeviewModule.php:1563
 msgctxt "MALE"
 msgid "was cremated"
 msgstr "polttohaudattiin"
 
-#: FancyTreeviewModule.php:1109
+#: FancyTreeviewModule.php:1108
 msgid "were divorced"
 msgstr "erosivat"
 
 #. I18N: in the context 'employed with'
-#: FancyTreeviewModule.php:1388
+#: FancyTreeviewModule.php:1387
 msgid "with"
 msgstr "with"
 
