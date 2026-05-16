@@ -9,7 +9,9 @@ use Fisharebest\Webtrees\Services\RelationshipService;
 use JustCarmen\Webtrees\Module\FancyTreeview\FancyTreeviewModule;
 
 require __DIR__ . '/FancyTreeviewModule.php';
-require __DIR__ . '/Service/CountryService.php';
+
+//Autoload the latest version of the common code library, which is shared between webtrees custom modules
+require_once __DIR__ . '/vendor/justcarmen/jc-common-code/autoload.php';
 
 $module_service = FancyTreeviewModule::getClass(ModuleService::class);
 $relationship_service = FancyTreeviewModule::getClass(RelationshipService::class);

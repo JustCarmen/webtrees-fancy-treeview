@@ -17,7 +17,7 @@
 
 declare(strict_types=1);
 
-namespace JustCarmen\Webtrees\Module\FancyTreeview\Service;
+namespace JustCarmen\Webtrees\Service;
 
 use Fisharebest\Webtrees\I18N;
 

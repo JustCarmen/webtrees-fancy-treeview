@@ -46,7 +46,8 @@ use Fisharebest\Webtrees\Services\RelationshipService;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Http\Exceptions\HttpNotFoundException;
-use JustCarmen\Webtrees\Module\FancyTreeview\Service\CountryService;
+use JustCarmen\Webtrees\Internationalization\MoreI18N;
+use JustCarmen\Webtrees\Service\CountryService;
 
 class FancyTreeviewModule extends AbstractModule
 implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface,
@@ -341,7 +342,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $this->setPreference('gedcom-occupation', $params['gedcom-occupation']);
             $this->setPreference('level1-notes', $params['level1-notes']);
 
-            $message = I18N::translate('The preferences for the module “%s” have been updated.', $this->title());
+            $message = MoreI18N::xlate('The preferences for the module “%s” have been updated.', $this->title());
             FlashMessages::addMessage($message, 'success');
         }
 

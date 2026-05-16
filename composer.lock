@@ -1,0 +1,52 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "fc46d4ba8dc64f1c7827f850ea45bc5c",
+    "packages": [
+        {
+            "name": "justcarmen/jc-common-code",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JustCarmen/jc-common-code.git",
+                "reference": "24bb9598bcc4c164c2e8d47047ce1533ac7f9d04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JustCarmen/jc-common-code/zipball/24bb9598bcc4c164c2e8d47047ce1533ac7f9d04",
+                "reference": "24bb9598bcc4c164c2e8d47047ce1533ac7f9d04",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "Library to share common code between webtrees custom modules from justcarmen",
+            "keywords": [
+                "custom-module",
+                "webtrees",
+                "webtrees-module"
+            ],
+            "support": {
+                "source": "https://github.com/JustCarmen/jc-common-code/tree/v1.0.2"
+            },
+            "time": "2026-05-16T15:30:10+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

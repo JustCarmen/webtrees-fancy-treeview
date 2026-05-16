@@ -1,0 +1,15 @@
+{
+	"name": "justcarmen/jc-fancy-treeview",
+	"description": "webtrees module to display a fancy treeview of the genealogy in a narrative way",
+	"type": "webtrees-module",
+	"license": "GPL-3.0+",
+	"keywords": [
+		"webtrees",
+		"genealogy",
+		"webtrees-module"
+	],
+    "require": {
+		"justcarmen/jc-common-code": "^1.0"
+	}
+}
+
