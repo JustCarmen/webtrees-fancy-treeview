@@ -53,7 +53,7 @@ class MoreI18N {
     //functionally same as I18N::plural,
     //different name prevents gettext from picking this up
     //(intention: use where already expected to be translated via main webtrees)
-    public static function plural(string $singular, string $plural, int $count, ...$args): string {
+    public static function xlatePlural(string $singular, string $plural, int $count, ...$args): string {
         return I18N::plural($singular, $plural, $count, ...$args);
     }
 
