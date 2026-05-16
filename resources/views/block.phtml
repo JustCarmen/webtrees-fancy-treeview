@@ -2,6 +2,14 @@
 
 use Fisharebest\Webtrees\View;
 
+/**
+ * @var \JustCarmen\Webtrees\Module\FancyTreeview\FancyTreeviewModule $module
+ * @var int $generation
+ * @var string[] $xrefs
+ * @var int $page
+ * @var int $limit
+ */
+
 ?>
 
 <li class="jc-generation-block mb-4" data-gen="<?= $generation ?>" data-xrefs="<?= implode('|', $xrefs) ?>">

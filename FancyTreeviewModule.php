@@ -1220,7 +1220,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                             }
                         }
                     }
-                    $html .= ' ' . /* I18N: %s is a number */ I18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
+                    $html .= ' ' . /* MoreI18N: %s is a number */ MoreI18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                 } else {
                     $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children of ') . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {

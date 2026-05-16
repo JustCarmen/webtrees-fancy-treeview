@@ -2,6 +2,14 @@
 
 use Fisharebest\Webtrees\I18N;
 
+/**
+ * @var \Fisharebest\Webtrees\Tree $tree
+ * @var string $xref
+ * @var string $type
+ * @var string $url
+ * @var string $text
+ */
+
 ?>
 
 <form method="post" action="<?= e(route('module', ['module' => '_jc-fancy-treeview_', 'action' => 'AddMenuItem', 'tree' => $tree->name(), 'xref' => $xref, 'type' => $type, 'url' => $url])) ?>">

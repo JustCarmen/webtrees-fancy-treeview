@@ -5,6 +5,31 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 
+/**
+ * @var string $title
+ * @var string $list_type
+ * @var int $page_limit
+ * @var int $tab_limit
+ * @var string $show_all_link
+ * @var bool|int $show_singles
+ * @var bool|int $check_relationship
+ * @var string $thumb_size
+ * @var bool|int $crop_thumbs
+ * @var bool|int $media_type_photo
+ * @var string $places_format
+ * @var string $places_format_hc
+ * @var string $places_format_oc
+ * @var string $countries_format
+ * @var bool|int $show_home_country
+ * @var string $home_country
+ * @var array $country_list
+ * @var bool|int $show_occupations
+ * @var bool|int $show_agencies
+ * @var bool|int $gedcom_occupation
+ * @var bool|int $show_death_cause
+ * @var bool|int $level1_notes
+ */
+
 ?>
 
 <?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
