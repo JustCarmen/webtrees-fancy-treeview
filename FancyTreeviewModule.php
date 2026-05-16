@@ -446,14 +446,14 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         foreach ($ancestors as $xref) {
             $person = $this->getPerson($xref);
             if ($person && $person->canShow()) {
-                $submenu[] = new Menu(I18N::translate('Ancestors of %s', $person->fullName()), $this->getUrl($tree, $xref, 'ancestors'), 'menu-fancy-treeview-ancestors', ['rel' => 'nofollow']);
+                $submenu[] = new Menu(MoreI18N::xlate('Ancestors of %s', $person->fullName()), $this->getUrl($tree, $xref, 'ancestors'), 'menu-fancy-treeview-ancestors', ['rel' => 'nofollow']);
             }
         }
 
         foreach ($descendants as $xref) {
             $person = $this->getPerson($xref);
             if ($person && $person->canShow()) {
-                $submenu[] = new Menu(I18N::translate('Descendants of %s', $person->fullName()), $this->getUrl($tree, $xref, 'descendants'), 'menu-fancy-treeview-descendants', ['rel' => 'nofollow']);
+                $submenu[] = new Menu(MoreI18N::xlate('Descendants of %s', $person->fullName()), $this->getUrl($tree, $xref, 'descendants'), 'menu-fancy-treeview-descendants', ['rel' => 'nofollow']);
             }
         }
 
@@ -488,7 +488,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             if ($person && $person->canShow()) {
                 $links[] = [
                     'url'   => $this->getUrl($tree, $xref, 'ancestors'),
-                    'title' => I18N::translate('Ancestors of %s', $person->fullName()),
+                    'title' => MoreI18N::xlate('Ancestors of %s', $person->fullName()),
                     'image' => $person->displayImage(30, 40, 'crop', ['class' => 'rounded-circle']),
                     'sort'  => $person->getAllNames()[0]['surn']
                 ];
@@ -500,7 +500,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             if ($person && $person->canShow()) {
                 $links[] = [
                     'url'   => $this->getUrl($tree, $xref, 'descendants'),
-                    'title' => I18N::translate('Descendants of %s', $person->fullName()),
+                    'title' => MoreI18N::xlate('Descendants of %s', $person->fullName()),
                     'image' => $person->displayImage(30, 40, 'crop', ['class' => 'rounded-circle']),
                     'sort'  => $person->getAllNames()[0]['surn']
                 ];
@@ -879,15 +879,15 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     {
         if ($type === 'ancestors') {
             if ($this->isPage()) {
-                return I18N::translate('Ancestors of %s', '<a href="' . e($person->url() . '#tab-' . $this->name()) . '">' . $person->fullName() . '</a>');
+                return MoreI18N::xlate('Ancestors of %s', '<a href="' . e($person->url() . '#tab-' . $this->name()) . '">' . $person->fullName() . '</a>');
             } else {
-                return I18N::translate('Ancestors of %s', $person->fullName());
+                return MoreI18N::xlate('Ancestors of %s', $person->fullName());
             }
         } else {
             if ($this->isPage()) {
-                return I18N::translate('Descendants of %s', '<a href="' . e($person->url() . '#tab-' . $this->name()) . '">' . $person->fullName() . '</a>');
+                return MoreI18N::xlate('Descendants of %s', '<a href="' . e($person->url() . '#tab-' . $this->name()) . '">' . $person->fullName() . '</a>');
             } else {
-                return I18N::translate('Descendants of %s', $person->fullName());
+                return MoreI18N::xlate('Descendants of %s', $person->fullName());
             }
         }
     }
@@ -1070,10 +1070,10 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         } else {
             switch ($person->sex()) {
                 case 'M':
-                    $html     .= $current ? I18N::translate('He is married to') : I18N::translate('He married');
+                    $html     .= $current ? I18N::translate('He is married to') : MoreI18N::xlate('He married');
                     break;
                 case 'F':
-                    $html     .= $current ? I18N::translate('She is married to') : I18N::translate('She married');
+                    $html     .= $current ? I18N::translate('She is married to') : MoreI18N::xlate('She married');
                     break;
                 default:
                     $html     .= $current ? I18N::translate('This individual is married to') : I18N::translate('This individual married');
@@ -1220,9 +1220,9 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                             }
                         }
                     }
-                    $html .= ' ' . /* MoreI18N: %s is a number */ MoreI18N::plural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
+                    $html .= ' ' . /* MoreI18N: %s is a number */ MoreI18N::xlatePlural('%s child', '%s children', count($children), count($children)) . '.</p></div>';
                 } else {
-                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . I18N::translate('Children of ') . $this->printName($person);
+                    $html .= '<div class="jc-children-block mb-3"><p class="mb-1">' . MoreI18N::xlate('Children of ') . $this->printName($person);
                     if ($spouse && $spouse->canShow()) {
                         $html .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ') . $this->printName($spouse);
                     }
@@ -1269,7 +1269,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                             $html .= '</li>';
                         } else {
                             $this->index++;
-                            $html .= '<li class="jc-child-li jc-private">' . I18N::translate('Private') . '</li>';
+                            $html .= '<li class="jc-child-li jc-private">' . MoreI18N::xlate('Private') . '</li>';
                         }
                     }
                     $html .= '</ol></div>';
@@ -1299,7 +1299,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     } elseif ($pedi === 'ADOPTED') {
                         $html .= ', ' . I18N::translate('adopted son of') . ' ';
                     } else {
-                        $html .= ', ' . I18N::translate('son of') . ' ';
+                        $html .= ', ' . MoreI18N::xlate('son of') . ' ';
                     }
                     break;
                 case 'F':
@@ -1308,7 +1308,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     } elseif ($pedi === 'ADOPTED') {
                         $html .= ', ' . I18N::translate('adopted daughter of') . ' ';
                     } else {
-                        $html .= ', ' . I18N::translate('daughter of') . ' ';
+                        $html .= ', ' . MoreI18N::xlate('daughter of') . ' ';
                     }
                     break;
                 default:
@@ -1546,7 +1546,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     $html     .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
                     $person->sex() == 'F' ? $html     .= I18N::translateContext('FEMALE', 'died') : $html     .= I18N::translateContext('MALE', 'died');
                 } else {
-                    $person->sex() == 'F' ? $html     .= '. ' . I18N::translate('She died') : $html     .= '. ' . I18N::translate('He died');
+                    $person->sex() == 'F' ? $html     .= '. ' . MoreI18N::xlate('She died') : $html     .= '. ' . MoreI18N::xlate('He died');
                 }
                 break;
             case 'BURI':
@@ -1554,7 +1554,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     $html     .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
                     $person->sex() == 'F' ? $html     .= I18N::translateContext('FEMALE', 'was buried') : $html     .= I18N::translateContext('MALE', 'was buried');
                 } else {
-                    $person->sex() == 'F' ? $html     .= '. ' . I18N::translate('She was buried') : $html     .= '. ' . I18N::translate('He was buried');
+                    $person->sex() == 'F' ? $html     .= '. ' . MoreI18N::xlate('She was buried') : $html     .= '. ' . MoreI18N::xlate('He was buried');
                 }
                 break;
             case 'CREM':
@@ -1562,7 +1562,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     $html     .= ' ' . /* I18N: Note the space at the end of the string */ I18N::translate('and ');
                     $person->sex() == 'F' ? $html     .= I18N::translateContext('FEMALE', 'was cremated') : $html     .= I18N::translateContext('MALE', 'was cremated');
                 } else {
-                    $person->sex() == 'F' ? $html     .= '. ' . I18N::translate('She was cremated') : $html     .= '. ' . I18N::translate('He was cremated');
+                    $person->sex() == 'F' ? $html     .= '. ' . MoreI18N::xlate('She was cremated') : $html     .= '. ' . MoreI18N::xlate('He was cremated');
                 }
                 break;
         }

@@ -1,9 +1,10 @@
 <?php
 
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
-use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use JustCarmen\Webtrees\Internationalization\MoreI18N;
 
 /**
  * @var string $title
@@ -32,7 +33,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 
 ?>
 
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
 
@@ -40,14 +41,14 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
     <form method="post">
         <?= csrf_field() ?>
         <input type="hidden" name="save" id="save" value="1">
-        <h2><?= I18N::translate('General') ?></h2>
+        <h2><?= MoreI18N::xlate('General') ?></h2>
         <!-- DEFAULT PAGE TYPE-->
         <div class="row mb-3">
             <label class="col-form-label col-sm-3">
                 <?= I18N::translate('Default list type') ?>
             </label>
             <div class="col-sm-3">
-                <?= view('components/select', ['name' => 'list-type', 'selected' => $list_type, 'options' => ['descendants' => I18N::translate('Descendants'), 'ancestors' => I18N::translate('Ancestors')]]) ?>
+                <?= view('components/select', ['name' => 'list-type', 'selected' => $list_type, 'options' => ['descendants' => MoreI18N::xlate('Descendants'), 'ancestors' => MoreI18N::xlate('Ancestors')]]) ?>
             </div>
             <div class="form-text col-sm-9 offset-sm-3">
                 <?= /* I18N: Help text for the “Default list type” configuration setting */
@@ -110,7 +111,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Show singles') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'show-singles', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_singles]) ?>
+                    <?= view('components/radios-inline', ['name' => 'show-singles', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $show_singles]) ?>
                     <div class="form-text">
                         <?= I18N::translate('This setting only applies to the page or tab containing the descendants.') ?>
                         <?= /* I18N: Help text for the “Show singles” configuration setting */
@@ -129,7 +130,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Check relationship between partners') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'check-relationship', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $check_relationship]) ?>
+                    <?= view('components/radios-inline', ['name' => 'check-relationship', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $check_relationship]) ?>
                     <div class="form-text">
                         <?= /* I18N: Help text for the “Check relationship between partners” configuration setting */
                         I18N::translate('If the answer is “yes”, the script checks whether a (married) couple has the same ancestors. ' .
@@ -152,7 +153,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
-        <h2><?= I18N::translate('Media') ?></h2>
+        <h2><?= MoreI18N::xlate('Media') ?></h2>
         <!-- THUMBNAIL SIZE -->
         <div class="row mb-3">
             <label class="col-form-label col-sm-3">
@@ -170,7 +171,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Crop thumbnails to square') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'crop-thumbs', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $crop_thumbs]) ?>
+                    <?= view('components/radios-inline', ['name' => 'crop-thumbs', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $crop_thumbs]) ?>
                 </div>
             </div>
         </fieldset>
@@ -181,7 +182,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Show only media from the type \'photo\'') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'media-type-photo', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $media_type_photo]) ?>
+                    <?= view('components/radios-inline', ['name' => 'media-type-photo', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $media_type_photo]) ?>
                     <div class="form-text">
                         <?= /* I18N: Help text for the “Show only media from the type 'photo'” configuration setting */
                         I18N::translate('Respond “yes” if you want to display images from the type “photo” only.' .
@@ -192,7 +193,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
-        <h2><?= I18N::translate('Places') ?></h2>
+        <h2><?= MoreI18N::xlate('Places') ?></h2>
         <!-- PLACE NAMES FORMAT-->
         <div class="row mb-3">
             <label class="col-form-label col-sm-3">
@@ -251,7 +252,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Display home country name') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'show-home-country', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_home_country]) ?>
+                    <?= view('components/radios-inline', ['name' => 'show-home-country', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $show_home_country]) ?>
                 </div>
             </div>
         </fieldset>
@@ -266,7 +267,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
-        <h2><?= I18N::translate('Occupations') ?></h2>
+        <h2><?= MoreI18N::xlate('Occupations') ?></h2>
          <!-- SHOW OCCUPATIONS -->
          <fieldset class="mb-3">
             <div class="row">
@@ -274,7 +275,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Show occupations') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'show-occupations', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_occupations]) ?>
+                    <?= view('components/radios-inline', ['name' => 'show-occupations', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $show_occupations]) ?>
                 </div>
             </div>
         </fieldset>
@@ -285,7 +286,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Show the name of the company/employer') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'show-agencies', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_agencies]) ?>
+                    <?= view('components/radios-inline', ['name' => 'show-agencies', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $show_agencies]) ?>
                     <div class="form-text">
                         <?= /* I18N: Help text for the “Show company/employer” configuration setting */
                         I18N::translate('Answer "yes" if you want to display the name of the company/employer (Gedcom-tag "AGNC") with the occupation. The text is displayed only in conjunction with the occupation.');
@@ -301,7 +302,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Always write the occupation exactly as it appears in the Gedcom') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'gedcom-occupation', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $gedcom_occupation]) ?>
+                    <?= view('components/radios-inline', ['name' => 'gedcom-occupation', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $gedcom_occupation]) ?>
                     <div class="form-text">
                         <?= /* I18N: Help text for the “Show only media from the type 'photo'” configuration setting */
                         I18N::translate('In the Gedcom file, the first letter of most occupations is capitalized (as stand-alone word)' .
@@ -313,7 +314,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                 </div>
             </div>
         </fieldset>
-        <h2><?= I18N::translate('Other') ?></h2>
+        <h2><?= MoreI18N::xlate('Other') ?></h2>
         <!-- SHOW CAUSE OF DEATH -->
         <fieldset class="mb-3">
             <div class="row">
@@ -321,7 +322,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Show cause of death') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'show-death-cause', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $show_death_cause]) ?>
+                    <?= view('components/radios-inline', ['name' => 'show-death-cause', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $show_death_cause]) ?>
                 </div>
             </div>
         </fieldset>
@@ -332,7 +333,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
                     <?= I18N::translate('Show level 1 notes') ?>
                 </legend>
                 <div class="col-sm-9">
-                    <?= view('components/radios-inline', ['name' => 'level1-notes', 'options' => [I18N::translate('no'), I18N::translate('yes')], 'selected' => (int) $level1_notes]) ?>
+                    <?= view('components/radios-inline', ['name' => 'level1-notes', 'options' => [MoreI18N::xlate('no'), MoreI18N::xlate('yes')], 'selected' => (int) $level1_notes]) ?>
                 </div>
             </div>
         </fieldset>
@@ -340,7 +341,7 @@ use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
         <hr />
         <button type="submit" class="btn btn-primary">
             <?= view('icons/save') ?>
-            <?= I18N::translate('save') ?>
+            <?= MoreI18N::xlate('save') ?>
         </button>
     </form>
 </div>

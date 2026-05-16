@@ -2,6 +2,7 @@
 
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\I18N;
+use JustCarmen\Webtrees\Internationalization\MoreI18N;
 
 /**
  * @var \JustCarmen\Webtrees\Module\FancyTreeview\FancyTreeviewModule $module
@@ -18,7 +19,7 @@ use Fisharebest\Webtrees\I18N;
     <ul class="pagination justify-content-center pt-3 d-print-none">
         <li class="page-item<?= $current_page === 1 ? ' disabled' : '' ?>">
             <a class="page-link" href="<?= $module->getUrl($tree, $xref, '', $current_page - 1) ?>" tabindex="-1" aria-disabled="<?= $current_page === 1 ? 'true' : 'false' ?>">
-                <?= I18N::translate('previous') ?>
+                <?= MoreI18N::xlate('previous') ?>
             </a>
         </li>
         <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
@@ -28,7 +29,7 @@ use Fisharebest\Webtrees\I18N;
         <?php endfor ?>
         <li class="page-item<?= $current_page === $total_pages ? ' disabled' : '' ?>">
             <a class="page-link" href="<?= $module->getUrl($tree, $xref, '', $current_page + 1) ?>" tabindex="-1" aria-disabled="<?= $current_page === $total_pages ? 'true' : 'false' ?>">
-                <?= I18N::translate('next') ?>
+                <?= MoreI18N::xlate('next') ?>
             </a>
         </li>
     </ul>
