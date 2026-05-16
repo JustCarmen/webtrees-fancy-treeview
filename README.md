@@ -30,7 +30,7 @@ A fancy treeview menu or home page block is also available. The administrator ca
 On the configuration page, you can set a number of options to customize the Fancy Treeview page and/or tab.
 
 **Print the Fancy Treeview page as pdf**\
-It is possible to download the Fancy Treeview page as a pdf. For this you can use your browser's native print function. Use ctrl. P to open the print dialog. You can then choose to print the page as a pdf. The module includes print styles that strip the printout of clutter. The print styles work best with Chrome or Microsoft Edge. The disadvantage of this method is that you can only print the current page. To print the entire tree, you need to increase the number of generations per page in the settings. Only administrators can change settings.
+You can download the Fancy TreeView page as a PDF. To do this, you need to display all generations on one page. This may use a lot of resources! However, you can control who has access to the option to view all generations on one page. Once all generations have loaded, a print link will appear at the top of the page. This will take you to your browser's native print function. In the print dialogue, you can choose to print the page as a PDF. The module includes print styles that remove unnecessary elements from the printout. Please note that the print styles work best with Chrome or Microsoft Edge.
 
 Translations
 ------------
