@@ -745,6 +745,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $xrefs = $this->xrefs;
             unset($this->xrefs); // empty the array (will be filled with the next generation)
 
+            $next_gen = [];
             foreach ($xrefs as $xref) {
                 $next_gen[] = $this->getNextGen($xref);
             }
@@ -1410,6 +1411,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $html = '';
 
         $is_bfact = false;
+        $bfact = null;
+        $dfact = null;
         foreach (Gedcom::BIRTH_EVENTS as $event) {
             $bfact = $person->facts([$event])->first();
             if ($bfact) {
