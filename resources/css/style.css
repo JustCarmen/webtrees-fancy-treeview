@@ -16,6 +16,14 @@
 }
 
 /* Fancy Treeview List */
+[dir="ltr"] li .ps-6 {
+  padding-left: 3.5rem !important;
+}
+
+[dir="rtl"] li .ps-6 {
+  padding-right: 3.5rem !important;
+}
+
 .jc-fancy-treeview-page li {
   position: relative;
   display: block;
@@ -40,12 +48,12 @@ li.jc-family-block::before {
 }
 
 [dir="ltr"] li.jc-family-block::before {
-  margin-left: -3rem;
+  margin-left: -3.5rem;
   float: left;
 }
 
 [dir="rtl"] li.jc-family-block::before {
-  margin-right: -3rem;
+  margin-right: -3.5rem;
   float: right;
 }
 

@@ -1,5 +1,8 @@
 /* Fancy Treeview List */
 li {
+    .ps-6 {
+        padding-left: 3.5rem !important;
+    }
     .jc-fancy-treeview-page & {
         position: relative;
         display: block;
@@ -20,7 +23,7 @@ li {
         &::before {
             counter-increment: second-level;
             content: counter(first-level) "."counter(second-level);
-            margin-left: -3rem;
+            margin-left: -3.5rem;
             float: left;
         }
     }
