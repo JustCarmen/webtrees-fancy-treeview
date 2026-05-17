@@ -48,6 +48,7 @@ use Fisharebest\Webtrees\Module\RelationshipsChartModule;
 use Fisharebest\Webtrees\Http\Exceptions\HttpNotFoundException;
 use JustCarmen\Webtrees\Internationalization\MoreI18N;
 use JustCarmen\Webtrees\Service\CountryService;
+use JustCarmen\Webtrees\Helpers\Functions;
 
 class FancyTreeviewModule extends AbstractModule
 implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface,
@@ -164,7 +165,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     public function boot(): void
     {
-        $router_container = self::getClass(RouterContainer::class);
+        $router_container = Functions::getClass(RouterContainer::class);
         assert($router_container instanceof RouterContainer);
 
         $router_container->getMap()
@@ -617,7 +618,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     public function getTabContent(Individual $individual): string
     {
-        $request = self::getClass(ServerRequestInterface::class);
+        $request = Functions::getClass(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $tree   = Validator::attributes($request)->tree();
@@ -1708,7 +1709,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     protected function printFollowLink(Individual $child): string
     {
-        $request = self::getClass(ServerRequestInterface::class);
+        $request = Functions::getClass(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $xref  = Validator::attributes($request)->string('xref');
@@ -1805,7 +1806,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     private function getCountryList(): array
     {
-        $countries = $this->getClass(CountryService::class)->getAllCountries();
+        $countries = Functions::getClass(CountryService::class)->getAllCountries();
         $countries['???'] = '';
         asort($countries);
 
@@ -1828,7 +1829,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $country = $parts->last();
 
         $iso3 = array_search ($country, $this->getCountryList()) ?: $country;
-        $iso2 = $this->getClass(CountryService::class)->iso3166()[$iso3] ?? $iso3;
+        $iso2 = Functions::getClass(CountryService::class)->iso3166()[$iso3] ?? $iso3;
 
         if ($this->options('countries-format') === 'iso2') {
             $parts = $parts->slice(0, -1)->push($iso2);
@@ -2010,7 +2011,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         $tree = $person->tree();
         $paths = $this->calculateRelationships($person, $spouse);
 
-        $relationship_service_class = $this->getClass(RelationshipService::class);
+        $relationship_service_class = Functions::getClass(RelationshipService::class);
         foreach ($paths as $path) {
             $nodes = Collection::make($path)
                 ->map(static function (string $xref, int $key) use ($tree): GedcomRecord {
@@ -2055,7 +2056,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             return $this->calculateRelationships($individual1, $individual2, $recursion, $ancestor);
         };
 
-        return $calculateRelationships->call(self::getClass(RelationshipsChartModule::class), $individual1, $individual2, $recursion, $ancestor);
+        return $calculateRelationships->call(Functions::getClass(RelationshipsChartModule::class), $individual1, $individual2, $recursion, $ancestor);
     }
 
     /**
@@ -2076,7 +2077,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             return $this->oldStyleRelationshipPath($tree, $path);
         };
 
-        return $oldStyleRelationshipPath->call(self::getClass(RelationshipsChartModule::class), $tree, $path);
+        return $oldStyleRelationshipPath->call(Functions::getClass(RelationshipsChartModule::class), $tree, $path);
     }
 
     /**
@@ -2154,7 +2155,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      */
     private function isPage(): bool
     {
-        $request = self::getClass(ServerRequestInterface::class);
+        $request = Functions::getClass(ServerRequestInterface::class);
         assert($request instanceof ServerRequestInterface);
 
         $route = Validator::attributes($request)->route();
@@ -2172,7 +2173,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     private function getPage(): int
     {
         if ($this->isPage()) {
-            $request = self::getClass(ServerRequestInterface::class);
+            $request = Functions::getClass(ServerRequestInterface::class);
             assert($request instanceof ServerRequestInterface);
 
             $page  = Validator::attributes($request)->integer('page');
@@ -2228,20 +2229,5 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     public function getSlug(string $string): string
     {
         return preg_replace('/\s+/', '-', strtolower(preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($string))));
-    }
-
-    /**
-     * A breaking change in webtrees 2.2.0 changes how the classes are retrieved.
-     * This function allows support for both 2.1.X and 2.2.X versions
-     * @param $class
-     * @return mixed
-     */
-    static function getClass($class)
-    {
-        if (version_compare(Webtrees::VERSION, '2.2.0', '>=')) {
-            return Registry::container()->get($class);
-        } else {
-            return app($class);
-        }
     }
 };
