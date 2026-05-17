@@ -275,8 +275,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     }
 
     /**
-     * @param ServerRequestInterface $request
-     *
+     * Display the configuration page.
      * @return ResponseInterface
      */
     public function getAdminAction(): ResponseInterface
@@ -414,8 +413,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     }
 
     /**
-     * @param ServerRequestInterface $request
-     *
+     * Display the help text at the top of the Fancy Treeview page
      * @return ResponseInterface
      */
     public function getHelpTextAction(): ResponseInterface
