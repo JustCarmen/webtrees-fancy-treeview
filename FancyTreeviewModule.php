@@ -34,7 +34,6 @@ use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Module\ModuleBlockTrait;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
-use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleTabInterface;
 use Fisharebest\Webtrees\Module\ModuleMenuInterface;
@@ -49,6 +48,7 @@ use Fisharebest\Webtrees\Http\Exceptions\HttpNotFoundException;
 use JustCarmen\Webtrees\Internationalization\MoreI18N;
 use JustCarmen\Webtrees\Service\CountryService;
 use JustCarmen\Webtrees\Helpers\Functions;
+use JustCarmen\Webtrees\Traits\ModuleCustomTrait;
 
 class FancyTreeviewModule extends AbstractModule
 implements ModuleCustomInterface, ModuleConfigInterface, ModuleGlobalInterface, ModuleTabInterface,
@@ -64,12 +64,35 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     // Route
     protected const ROUTE_URL = '/tree/{tree}/jc-fancy-treeview/{xref}/{name}/{type}/{page}';
 
-    // Module constants
+    /**
+     * @var string
+     */
+    private const GITHUB_REPO = 'justcarmen/webtrees-fancy-treeview';
+
+    /**
+     * @var string
+     */
     public const CUSTOM_AUTHOR = 'JustCarmen';
+
+    /**
+     * @var string
+     */
     public const CUSTOM_VERSION = '2.1.0';
-    public const GITHUB_REPO = 'webtrees-fancy-treeview';
+
+    /**
+     * @var string
+     */
     public const AUTHOR_WEBSITE = 'https://justcarmen.nl';
-    public const CUSTOM_SUPPORT_URL = self::AUTHOR_WEBSITE . '/modules-webtrees-2/fancy-treeview/';
+
+    /**
+     * @var string
+     */
+    public const CUSTOM_SUPPORT_URL = 'https://github.com/' . self::GITHUB_REPO . '/issues';
+
+    /**
+     * @var string
+     */
+    public const CUSTOM_LATEST_VERSION = 'https://api.github.com/repos/' . self::GITHUB_REPO . '/releases/latest';
 
     // Image cache dir
     private const CACHE_DIR = Webtrees::DATA_DIR . 'ftv-cache/';
@@ -121,43 +144,6 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     {
         /* I18N: Description of the “Fancy Treeview” module */
         return I18N::translate('A narrative overview of the descendants or ancestors of one family (branch).');
-    }
-
-    /**
-     * {@inheritDoc}
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleAuthorName()
-     */
-    public function customModuleAuthorName(): string
-    {
-        return self::CUSTOM_AUTHOR;
-    }
-
-    /**
-     * {@inheritDoc}
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleVersion()
-     */
-    public function customModuleVersion(): string
-    {
-        return self::CUSTOM_VERSION;
-    }
-
-    /**
-     * A URL that will provide the latest stable version of this module.
-     *
-     * @return string
-     */
-    public function customModuleLatestVersionUrl(): string
-    {
-        return 'https://raw.githubusercontent.com/' . self::CUSTOM_AUTHOR . '/' . self::GITHUB_REPO . '/main/latest-version.txt';
-    }
-
-    /**
-     * {@inheritDoc}
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleSupportUrl()
-     */
-    public function customModuleSupportUrl(): string
-    {
-        return self::CUSTOM_SUPPORT_URL;
     }
 
     /**
