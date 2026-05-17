@@ -3,7 +3,7 @@
         'name' => 'justcarmen/jc-fancy-treeview',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6c1ea450dd306f3c6e1777fb8164b816b10a3f12',
+        'reference' => '4bb5694ee68ebb5181fdce38a632fda31c5e62a8',
         'type' => 'webtrees-module',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'justcarmen/jc-common-code' => array(
-            'pretty_version' => 'v1.0.3',
-            'version' => '1.0.3.0',
-            'reference' => 'f2d7a70d142da2a037c66144705164db7225c611',
+            'pretty_version' => 'v1.0.7',
+            'version' => '1.0.7.0',
+            'reference' => 'b6d0f9f685dfb2ed09dc7419a2f0286f5692c52a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../justcarmen/jc-common-code',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'justcarmen/jc-fancy-treeview' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '6c1ea450dd306f3c6e1777fb8164b816b10a3f12',
+            'reference' => '4bb5694ee68ebb5181fdce38a632fda31c5e62a8',
             'type' => 'webtrees-module',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

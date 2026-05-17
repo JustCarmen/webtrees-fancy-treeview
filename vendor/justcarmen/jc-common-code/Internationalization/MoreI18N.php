@@ -1,31 +1,17 @@
 <?php
 
 /**
- * webtrees: online genealogy
- * Copyright (C) 2025 webtrees development team
- *                    <http://webtrees.net>
+ * MoreI18N class to reuse webtrees translations for custom modules
  *
- * vesta-webtrees-2-custom-modules/vesta_common
- * Copyright (C) 2019 – 2024 Richard Cissée
- *                    <https://github.com/vesta-webtrees-2-custom-modules/vesta_common>
+ * justcarmen/jc-common-code:
+ * Library to share common code between custom modules for webtrees by JustCarmen
  *
- * Copyright (C) 2025 Markus Hemprich
- *                    <http://www.familienforschung-hemprich.de>
+ * Use translations in custom modules where the translation is already expected to be done by main webtrees
+ * e.g. in module configuration, where the main webtrees already translates the field labels, so no need to
+ * translate again in the module
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
- *
- *
- * Reuse of webtrees translations for custom modules
- *
+ * Thanks to Richard Cissée (Vesta modules) and Markus Hemprich (Custom Module Manager) for the idea and
+ * initial code which I adapted and slightly modified for the jc-common-code library
  */
 
 declare(strict_types=1);
@@ -39,6 +25,10 @@ class MoreI18N {
     //functionally same as I18N::translate,
     //different name prevents gettext from picking this up
     //(intention: use where already expected to be translated via main webtrees)
+    /**
+     * @param string $message
+     * @param mixed  ...$args
+     */
     public static function xlate(string $message, ...$args): string {
         return I18N::translate($message, ...$args);
     }
@@ -46,6 +36,11 @@ class MoreI18N {
     //functionally same as I18N::translateContext,
     //different name prevents gettext from picking this up
     //(intention: use where already expected to be translated via main webtrees)
+    /**
+     * @param string $context
+     * @param string $message
+     * @param mixed  ...$args
+     */
     public static function xlateContext(string $context, string $message, ...$args): string {
         return I18N::translateContext($context, $message, ...$args);
     }
@@ -53,6 +48,12 @@ class MoreI18N {
     //functionally same as I18N::plural,
     //different name prevents gettext from picking this up
     //(intention: use where already expected to be translated via main webtrees)
+    /**
+     * @param string $singular
+     * @param string $plural
+     * @param int    $count
+     * @param mixed  ...$args
+     */
     public static function xlatePlural(string $singular, string $plural, int $count, ...$args): string {
         return I18N::plural($singular, $plural, $count, ...$args);
     }
