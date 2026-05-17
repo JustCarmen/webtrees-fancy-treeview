@@ -2,8 +2,8 @@
     "packages": [
         {
             "name": "justcarmen/jc-common-code",
-            "version": "v1.0.7",
-            "version_normalized": "1.0.7.0",
+            "version": "v1.0.0",
+            "version_normalized": "1.0.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JustCarmen/jc-common-code.git",
@@ -32,7 +32,7 @@
                 "webtrees-module"
             ],
             "support": {
-                "source": "https://github.com/JustCarmen/jc-common-code/tree/v1.0.7"
+                "source": "https://github.com/JustCarmen/jc-common-code/tree/v1.0.0"
             },
             "install-path": "../justcarmen/jc-common-code"
         }
