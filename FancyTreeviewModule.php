@@ -1381,10 +1381,25 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
                     $html .= ', ';
                 }
 
-                $html .= rtrim($this->options('gedcom-occupation') ? $fact->value() : lcfirst($fact->value()), ".");
+                $occupation = $fact->value();
+
+                if ($this->options('gedcom-occupation')) {
+                    $displayOccupation = $occupation;
+                } else {
+                    $letters = preg_replace('/[^\p{L}]+/u', '', $occupation);
+                    if ($letters !== '' && $letters === mb_strtoupper($letters, 'UTF-8')) {
+                        // all letters are uppercase — leave unchanged
+                        $displayOccupation = $occupation;
+                    } else {
+                        // not all letters are uppercase — lowercase only the first character
+                        $displayOccupation = lcfirst($occupation);
+                    }
+                }
+
+                $html .= rtrim($displayOccupation, ".");
 
                 if ($this->options('show-agencies') && $fact->attribute('AGNC') !== '') {
-                    $fact->value() === '' ? $html .= I18N::translate('employed with') : $html .= ' ' . /* I18N: in the context 'employed with' */ I18N::translate('with');
+                    $occupation === '' ? $html .= I18N::translate('employed with') : $html .= ' ' . /* I18N: in the context 'employed with' */ I18N::translate('with');
                     $html .= ' ' . $fact->attribute('AGNC');
                 }
 
