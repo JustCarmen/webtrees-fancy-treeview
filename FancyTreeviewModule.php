@@ -2041,7 +2041,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     /**
      * Calculate the shortest paths - or all paths - between two individuals.
      *
-     * Retrieve the private function from app/RelationshipsChartModule
+     * Retrieve the private function from app/Module/RelationshipsChartModule
      * https://stackoverflow.com/a/40441769
      *
      * @param Individual $individual1
@@ -2049,13 +2049,13 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
      *
      * @return string[][]
      */
-    private function calculateRelationships(Individual $individual1, Individual $individual2): array
+    private function calculateRelationships(Individual $individual1, Individual $individual2, int $recursion = 0, bool $ancestor = true): array
     {
-        $calculateRelationships = function ($individual1, $individual2) {
-            return $this->calculateRelationships($individual1, $individual2, 0, true);
+        $calculateRelationships = function ($individual1, $individual2, $recursion, $ancestor) {
+            return $this->calculateRelationships($individual1, $individual2, $recursion, $ancestor);
         };
 
-        return $calculateRelationships->call(self::getClass(RelationshipsChartModule::class), $individual1, $individual2);
+        return $calculateRelationships->call(self::getClass(RelationshipsChartModule::class), $individual1, $individual2, $recursion, $ancestor);
     }
 
     /**
