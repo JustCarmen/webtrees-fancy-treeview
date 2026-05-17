@@ -744,8 +744,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             unset($this->xrefs); // empty the array (will be filled with the next generation)
 
             $next_gen = [];
-            foreach ($xrefs as $xref) {
-                $next_gen[] = $this->getNextGen($xref);
+            foreach ($xrefs as $current_xref) {
+                $next_gen[] = $this->getNextGen($current_xref);
             }
 
             foreach ($next_gen as $descendants) {
@@ -819,8 +819,8 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
             $xrefs = $this->xrefs;
             unset($this->xrefs); // empty the array (will be filled with the next generation)
 
-            foreach ($xrefs as $xref) {
-                $person  = $this->getPerson($xref);
+            foreach ($xrefs as $current_xref) {
+                $person  = $this->getPerson($current_xref);
                 $parents = $person->childFamilies()->first();
                 if ($parents) {
                     $father     = $parents->husband();
