@@ -27,12 +27,12 @@ msgstr " "
 #: resources/views/block-content.phtml:43
 #: resources/views/block-content.phtml:48
 msgid "%s complete"
-msgstr "%s complete"
+msgstr "%s voltooi"
 
 #: resources/views/block-content.phtml:42
 #: resources/views/block-content.phtml:47
 msgid "%s of %s possible ancestors"
-msgstr "%s of %s possible ancestors"
+msgstr "%s van %s moontlike voorouers"
 
 #. I18N: Warning when using the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:147
@@ -41,11 +41,11 @@ msgstr "<strong>Let wel</strong>: hierdie opsie kan baie tyd en/of geheue verg, 
 
 #: resources/views/settings.phtml:244
 msgid "2 letter country code"
-msgstr "2 letter country code"
+msgstr "2-letter landkode"
 
 #: resources/views/settings.phtml:243
 msgid "3 letter country code"
-msgstr "3 letter country code"
+msgstr "s-letter landkode"
 
 #. I18N: Description of the module
 #: FancyTreeviewModule.php:122
@@ -55,7 +55,7 @@ msgstr "'n Verhalende oorsig van die voor- en nageslagte van 'n familie (tak)."
 #. I18N: Help text for the "Show link to open all generations on one page" configuration setting
 #: resources/views/settings.phtml:102
 msgid "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
-msgstr "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
+msgstr "Voeg 'n skakel onderaan die bladsy by wat alle geslagte op een bladsy oopmaak. Dit is nuttig om die bladsy as 'n PDF te druk of te stoor deur die blaaier se standaarddrukfunksie te gebruik. Kies die minimum vereiste rol om die skakel te vertoon."
 
 #: FancyTreeviewModule.php:1252
 msgctxt "FEMALE"
@@ -99,25 +99,25 @@ msgstr "en "
 #. I18N: Help text for the “Show company/employer” configuration setting
 #: resources/views/settings.phtml:292
 msgid "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
-msgstr "Answer \"yes\" if you want to display the name of the company/employer (Gedcom-tag \"AGNC\") with the occupation. The text is displayed only in conjunction with the occupation."
+msgstr "Antwoord \"ja\" as jy die naam van die maatskappy/werkgewer (Gedcom-etiket \"AGNC\") saam met die beroep wil vertoon. Die teks word slegs saam met die beroep vertoon."
 
 #: FancyTreeviewModule.php:1589
 msgid "approximately"
-msgstr "approximately"
+msgstr "ongeveer"
 
 #: resources/views/settings.phtml:205
 msgid "As defined in webtrees"
-msgstr "As defined in webtrees"
+msgstr "Soos gedefinieer in webtrees"
 
 #. I18N: %s a string with a number e.g. 10 days/months/years
 #: FancyTreeviewModule.php:1600
 msgid "at the age of %s"
-msgstr "at the age of %s"
+msgstr "op die ouderdom van %s"
 
 #. I18N: %s is a string without a number e.g. day/month/year
 #: FancyTreeviewModule.php:1598
 msgid "at the age of 1 %s"
-msgstr "at the age of 1 %s"
+msgstr "op die ouderdom van 1 %s"
 
 #: resources/views/settings.phtml:130
 msgid "Check relationship between partners"
@@ -129,19 +129,19 @@ msgstr "kind van"
 
 #: resources/views/helptext.phtml:8
 msgid "Click here to create or remove a link to the Fancy Treeview page."
-msgstr "Click here to create or remove a link to the Fancy Treeview page."
+msgstr "Klik hier om 'n skakel na die Fancy Treeview-bladsy te skep of te verwyder."
 
 #: resources/views/menu-edit.phtml:25
 msgid "Create link to ancestors page"
-msgstr "Create link to ancestors page"
+msgstr "Skep skakel na voorouersbladsy"
 
 #: resources/views/menu-edit.phtml:30
 msgid "Create link to descendants page"
-msgstr "Create link to descendants page"
+msgstr "Skep skakel na afstammelinge-bladsy"
 
 #: resources/views/page.phtml:44
 msgid "Create link to this page"
-msgstr "Create link to this page"
+msgstr "Skep skakel na hierdie bladsy"
 
 #: resources/views/settings.phtml:171
 msgid "Crop thumbnails to square"
@@ -171,11 +171,11 @@ msgstr "gesterf"
 
 #: resources/views/settings.phtml:252
 msgid "Display home country name"
-msgstr "Display home country name"
+msgstr "Vertoon die naam van die tuisland"
 
 #: resources/views/settings.phtml:206
 msgid "Don't show place names"
-msgstr "Don't show place names"
+msgstr "Moenie plekname vertoon nie"
 
 #. I18N: eighth marriage
 #: FancyTreeviewModule.php:1046
@@ -184,7 +184,7 @@ msgstr "agste"
 
 #: FancyTreeviewModule.php:1387
 msgid "employed with"
-msgstr "employed with"
+msgstr "werksaam met"
 
 #: FancyTreeviewModule.php:462 FancyTreeviewModule.php:524
 msgid "Family tree overview"
@@ -197,7 +197,7 @@ msgstr "Fancy Treeview"
 
 #: FancyTreeviewModule.php:424
 msgid "Fancy Treeview Help"
-msgstr "Fancy Treeview Help"
+msgstr "Fancy Treeview Hulp"
 
 #. I18N: fifth marriage
 #: FancyTreeviewModule.php:1043
@@ -242,23 +242,23 @@ msgstr "vierde"
 
 #: resources/views/settings.phtml:242
 msgid "Full country name"
-msgstr "Full country name"
+msgstr "Volle land se naam"
 
 #: resources/views/settings.phtml:217 resources/views/settings.phtml:230
 msgid "Full place name"
-msgstr "Full place name"
+msgstr "Volle pleknaam"
 
 #: resources/views/helptext.phtml:18
 msgid "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
-msgstr "Go to the control panel to set the menu access level. There you can also choose to hide the menu."
+msgstr "Gaan na die beheerpaneel om die toegangsvlak vir die kieslys in te stel. Daar kan jy ook kies om die kieslys te versteek."
 
 #: resources/views/helptext.phtml:21
 msgid "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
-msgstr "Go to the homepage, click on my pages/customize this page to add the Fancy Treeview homepage block with the created links."
+msgstr "Gaan na die tuisblad, klik op my bladsye/pas hierdie bladsy aan om die Fancy Treeview tuisbladblok met die geskepte skakels by te voeg."
 
 #: resources/views/blockmodulehelptext.phtml:11
 msgid "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
-msgstr "Go to the page of any individual and open the edit menu to create a new link to the Fancy Treeview Page."
+msgstr "Gaan na die bladsy van enige individu en maak die wysig-kieslys oop om 'n nuwe skakel na die Fancy Treeview-bladsy te skep."
 
 #: FancyTreeviewModule.php:1211
 msgctxt "One parent/multiple children"
@@ -283,22 +283,22 @@ msgstr "het"
 #: FancyTreeviewModule.php:1213
 msgctxt "One parent/multiple children"
 msgid "has"
-msgstr "has"
+msgstr "het"
 
 #: FancyTreeviewModule.php:1183 FancyTreeviewModule.php:1219
 msgctxt "One parent/one child"
 msgid "has"
-msgstr "has"
+msgstr "het"
 
 #: FancyTreeviewModule.php:1199
 msgctxt "Two parents/multiple children"
 msgid "have"
-msgstr "have"
+msgstr "het"
 
 #: FancyTreeviewModule.php:1177 FancyTreeviewModule.php:1205
 msgctxt "Two parents/one child"
 msgid "have"
-msgstr "have"
+msgstr "het"
 
 #: FancyTreeviewModule.php:1133
 msgid "He had a relationship with"
@@ -306,11 +306,11 @@ msgstr "Hy was in ’n verhouding met"
 
 #: FancyTreeviewModule.php:1133
 msgid "He has a relationship with"
-msgstr "He has a relationship with"
+msgstr "Hy het 'n verhouding met"
 
 #: FancyTreeviewModule.php:1073
 msgid "He is married to"
-msgstr "He is married to"
+msgstr "Hy is getroud met"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1053
@@ -339,11 +339,11 @@ msgstr "Hy is gebore"
 
 #: resources/views/settings.phtml:218 resources/views/settings.phtml:231
 msgid "Highest and lowest level"
-msgstr "Highest and lowest level"
+msgstr "Hoogste en laagste vlak"
 
 #: resources/views/settings.phtml:263
 msgid "Home country"
-msgstr "Home country"
+msgstr "Tuisland"
 
 #. I18N: Help text for the “Check relationship between partners” configuration setting
 #: resources/views/settings.phtml:136
@@ -369,11 +369,11 @@ msgstr "in %s"
 
 #: resources/views/settings.phtml:141
 msgid "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
-msgstr "in the ancestors view: each generation shows the number of people and the maximum number of possible ancestors in that generation. The number of possible ancestors in subsequent generations is recalculated in case of pedigree collapse."
+msgstr "In die voorouer-aansig: elke geslag toon die aantal mense en die maksimum aantal moontlike voorouers in daardie geslag. Die aantal moontlike voorouers in opvolgende geslagte word herbereken in die geval van stamboom-ineenstorting."
 
 #: resources/views/settings.phtml:140
 msgid "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
-msgstr "in the descendants view: a text will appear between brackets after the spouses’ name to indicate the blood relationship."
+msgstr "in die afstammelinge-aansig: teks sal tussen hakies na die eggenote se naam verskyn om die bloedverwantskap aan te dui."
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:308
@@ -382,11 +382,11 @@ msgstr "In die Gedcom-lêer word die eerste letter van die meeste beroepe met ho
 
 #: resources/views/menu-edit.phtml:17
 msgid "Link to Fancy Treeview page"
-msgstr "Link to Fancy Treeview page"
+msgstr "Skakel na Fancy Treeview bladsy"
 
 #: resources/views/settings.phtml:219
 msgid "Lowest level"
-msgstr "Lowest level"
+msgstr "Laagste vlak"
 
 #: resources/views/settings.phtml:63
 msgid "Maximum number of generations per page"
@@ -411,7 +411,7 @@ msgstr "geen kinders gehad nie"
 
 #: resources/views/pagination.phtml:41
 msgid "Note: showing all generations at once can take a while."
-msgstr "Note: showing all generations at once can take a while."
+msgstr "Let wel: dit kan 'n rukkie neem om al die geslagte gelyktydig te wys."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1625
@@ -421,23 +421,23 @@ msgstr "op "
 
 #: resources/views/settings.phtml:238
 msgid "Preference for displaying countries"
-msgstr "Preference for displaying countries"
+msgstr "Voorkeur vir die vertoon van lande"
 
 #: resources/views/settings.phtml:200
 msgid "Preference for displaying place names"
-msgstr "Preference for displaying place names"
+msgstr "Voorkeur vir die vertoon van plekname"
 
 #: resources/views/settings.phtml:213
 msgid "Preference for displaying place names in home country"
-msgstr "Preference for displaying place names in home country"
+msgstr "Voorkeur vir die vertoon van plekname in tuisland"
 
 #: resources/views/settings.phtml:226
 msgid "Preference for displaying place names in other countries"
-msgstr "Preference for displaying place names in other countries"
+msgstr "Voorkeur vir die vertoon van plekname in ander lande"
 
 #: resources/views/page.phtml:55
 msgid "Print this page"
-msgstr "Print this page"
+msgstr "Druk hierdie bladsy."
 
 #: resources/views/readmore-link.phtml:13
 msgid "Read more"
@@ -445,15 +445,15 @@ msgstr "Lees meer"
 
 #: resources/views/menu-edit.phtml:23
 msgid "Remove link to ancestors page"
-msgstr "Remove link to ancestors page"
+msgstr "Verwyder skakel na voorouerbladsy"
 
 #: resources/views/menu-edit.phtml:28
 msgid "Remove link to descendants page"
-msgstr "Remove link to descendants page"
+msgstr "Verwyder skakel na afstammelinge-bladsy"
 
 #: resources/views/page.phtml:35
 msgid "Remove link to this page"
-msgstr "Remove link to this page"
+msgstr "Verwyder skakel na hierdie bladsy"
 
 #. I18N: Help text for the “Show only media from the type 'photo'” configuration setting
 #: resources/views/settings.phtml:188
@@ -463,7 +463,7 @@ msgstr "Antwoord “ja” as jy beelde slegs van die tipe “foto” wil vertoon
 #. I18N: Help text for the “Show singles” configuration setting
 #: resources/views/settings.phtml:118
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
-msgstr "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
+msgstr "Antwoord \"ja\" as jy enkellopendes in die volgende geslag wil vertoon. Enkellopendes is individue sonder 'n lewensmaat en kinders. As jy \"ja\" kies, sal elke kind van 'n gesin op 'n volledige wyse in die volgende geslag vertoon word."
 
 #. I18N: second marriage
 #: FancyTreeviewModule.php:1040
@@ -496,11 +496,11 @@ msgstr "Sy was in ’n verhouding met"
 
 #: FancyTreeviewModule.php:1136
 msgid "She has a relationship with"
-msgstr "She has a relationship with"
+msgstr "Sy het 'verhouding met"
 
 #: FancyTreeviewModule.php:1076
 msgid "She is married to"
-msgstr "She is married to"
+msgstr "Sy is getroud met"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1059
@@ -529,7 +529,7 @@ msgstr "Sy is gebore"
 
 #: resources/views/pagination.phtml:42
 msgid "show all generations"
-msgstr "show all generations"
+msgstr "wys al die geslagte"
 
 #: FancyTreeviewModule.php:687
 msgid "Show ancestors"
@@ -537,7 +537,7 @@ msgstr "Vertoon voorgeslagte"
 
 #: resources/views/settings.phtml:322
 msgid "Show cause of death"
-msgstr "Show cause of death"
+msgstr "Toon oorsaak van dood"
 
 #: FancyTreeviewModule.php:682
 msgid "Show descendants"
@@ -545,15 +545,15 @@ msgstr "Vertoon nageslag"
 
 #: resources/views/settings.phtml:333
 msgid "Show level 1 notes"
-msgstr "Show level 1 notes"
+msgstr "Wys vlak 1 notas"
 
 #: resources/views/settings.phtml:95
 msgid "Show link to open all generations on one page"
-msgstr "Show link to open all generations on one page"
+msgstr "Wys skakel om alle geslagte op een bladsy oop te maak"
 
 #: resources/views/settings.phtml:275
 msgid "Show occupations"
-msgstr "Show occupations"
+msgstr "Wys beroepe"
 
 #: resources/views/settings.phtml:182
 msgid "Show only media from the type 'photo'"
@@ -565,7 +565,7 @@ msgstr "Wys enkelinge"
 
 #: resources/views/settings.phtml:286
 msgid "Show the name of the company/employer"
-msgstr "Show the name of the company/employer"
+msgstr "Wys die naam van die maatskappy/werkgewer"
 
 #. I18N: sixth marriage
 #: FancyTreeviewModule.php:1044
@@ -602,23 +602,23 @@ msgstr "Die besonderhede van hierdie geslag is privaat."
 
 #: resources/views/helptext.phtml:11
 msgid "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
-msgstr "The links created will be included in the Fancy Treeview menu and in the Fancy Treeview homepage block."
+msgstr "Die skakels wat geskep word, sal ingesluit word in die Fancy Treeview-kieslys en in die Fancy Treeview-tuisbladblok."
 
 #: resources/views/blockmodulehelptext.phtml:16
 msgid "The links created will be shown in this block."
-msgstr "The links created will be shown in this block."
+msgstr "Die skakels wat geskep word, sal in hierdie blok vertoon word."
 
 #: resources/views/helptext.phtml:24
 msgid "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
-msgstr "The menu and homepage block contain the same links. However, the appearance of the homepage block has been made more attractive by adding images for the links."
+msgstr "Die kieslys en tuisbladblok bevat dieselfde skakels. Die voorkoms van die tuisbladblok is egter aantrekliker gemaak deur beelde vir die skakels by te voeg."
 
 #: resources/views/block-content.phtml:28
 msgid "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
-msgstr "The number of possible ancestors in this generation has been reduced due to pedigree collapse. Without reduction the maximum number of ancestors in this generation would have been %s."
+msgstr "Die aantal moontlike voorouers in hierdie geslag is verminder as gevolg van die ineenstorting van die stamboom. Sonder die vermindering sou die maksimum aantal voorouers in hierdie geslag %s gewees het."
 
 #: resources/views/helptext.phtml:12
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
-msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
+msgstr "Die titel van die kieslys en tuisbladblok is 'Stamboom-oorsig'."
 
 #. I18N: third marriage
 #: FancyTreeviewModule.php:1041
@@ -631,11 +631,11 @@ msgstr "Hierdie persoon was in ’n verhouding met"
 
 #: FancyTreeviewModule.php:1139
 msgid "This individual has a relationship with"
-msgstr "This individual has a relationship with"
+msgstr "Hierdie persoon het 'n verhouding met"
 
 #: FancyTreeviewModule.php:1079
 msgid "This individual is married to"
-msgstr "This individual is married to"
+msgstr "Hierdie persoon is getroud met"
 
 #: FancyTreeviewModule.php:1079
 msgid "This individual married"
@@ -648,11 +648,11 @@ msgstr "Hierdie persoon het %s keer getrou"
 
 #: FancyTreeviewModule.php:710
 msgid "This page does not exist or you do not have permission to view it."
-msgstr "This page does not exist or you do not have permission to view it."
+msgstr "Hierdie bladsy bestaan ​​nie of jy het nie toestemming om daarna te kyk nie."
 
 #: resources/views/settings.phtml:116
 msgid "This setting only applies to the page or tab containing the descendants."
-msgstr "This setting only applies to the page or tab containing the descendants."
+msgstr "Hierdie instelling geld slegs vir die bladsy of oortjie wat die afstammelinge bevat."
 
 #: resources/views/settings.phtml:160
 msgid "Thumbnail size"
@@ -660,7 +660,7 @@ msgstr "Miniatuurbeeld grootte"
 
 #: resources/views/pagination.phtml:41
 msgid "Useful for printing the page or saving as a PDF."
-msgstr "Useful for printing the page or saving as a PDF."
+msgstr "Nuttig om die bladsy te druk of as 'n PDF te stoor."
 
 #: FancyTreeviewModule.php:1521
 msgctxt "PAST (FEMALE)"
@@ -733,17 +733,17 @@ msgstr "by"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."
-msgstr "You can also create links from the Fancy Treeview page itself."
+msgstr "Jy kan ook skakels vanaf die Fancy Treeview-bladsy self skep."
 
 #: resources/views/helptext.phtml:27
 msgid "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
-msgstr "You can create links from the Fancy Treeview page or from the edit menu on the individual page."
+msgstr "Jy kan skakels skep vanaf die Fancy Treeview-bladsy of vanaf die wysig-kieslys op die individuele bladsy."
 
 #: resources/views/helptext.phtml:15
 msgid "You can use both the menu and homepage block or choose to use either."
-msgstr "You can use both the menu and homepage block or choose to use either."
+msgstr "Jy kan beide die kieslys en die tuisbladblok gebruik of kies om enigeen te gebruik."
 
 #: resources/views/blockmodulehelptext.phtml:8
 msgid "You have not created a link yet."
-msgstr "You have not created a link yet."
+msgstr "Jy het nog nie 'n skakel geskep nie."
 

@@ -306,11 +306,11 @@ msgstr "Han hadde eit forhold med"
 
 #: FancyTreeviewModule.php:1133
 msgid "He has a relationship with"
-msgstr "He has a relationship with"
+msgstr "Han er i eit forhold med"
 
 #: FancyTreeviewModule.php:1073
 msgid "He is married to"
-msgstr "He is married to"
+msgstr "Han er gift med"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1053
@@ -436,7 +436,7 @@ msgstr "Preference for displaying place names in other countries"
 
 #: resources/views/page.phtml:55
 msgid "Print this page"
-msgstr "Print this page"
+msgstr "Skriv ut denne sida"
 
 #: resources/views/readmore-link.phtml:13
 msgid "Read more"
@@ -495,11 +495,11 @@ msgstr "Ho hadde eit forhold med"
 
 #: FancyTreeviewModule.php:1136
 msgid "She has a relationship with"
-msgstr "She has a relationship with"
+msgstr "Ho er i eit forhold med"
 
 #: FancyTreeviewModule.php:1076
 msgid "She is married to"
-msgstr "She is married to"
+msgstr "Ho er gift med"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1059
@@ -528,7 +528,7 @@ msgstr "Ho er fødd"
 
 #: resources/views/pagination.phtml:42
 msgid "show all generations"
-msgstr "show all generations"
+msgstr "syn alle generasjonar"
 
 #: FancyTreeviewModule.php:687
 msgid "Show ancestors"
@@ -536,7 +536,7 @@ msgstr "Syn anar"
 
 #: resources/views/settings.phtml:322
 msgid "Show cause of death"
-msgstr "Show cause of death"
+msgstr "Syn dødsårsak"
 
 #: FancyTreeviewModule.php:682
 msgid "Show descendants"
@@ -630,11 +630,11 @@ msgstr "Denne personen hadde eit forhold med"
 
 #: FancyTreeviewModule.php:1139
 msgid "This individual has a relationship with"
-msgstr "This individual has a relationship with"
+msgstr "Denne personen er i eit forhold med"
 
 #: FancyTreeviewModule.php:1079
 msgid "This individual is married to"
-msgstr "This individual is married to"
+msgstr "Denne personen er gift med"
 
 #: FancyTreeviewModule.php:1079
 msgid "This individual married"
@@ -659,7 +659,7 @@ msgstr "Størrelse på miniatyrbilete"
 
 #: resources/views/pagination.phtml:41
 msgid "Useful for printing the page or saving as a PDF."
-msgstr "Useful for printing the page or saving as a PDF."
+msgstr "Nyttig for utskrift eller lagring til PDF."
 
 #: FancyTreeviewModule.php:1521
 msgctxt "PAST (FEMALE)"
@@ -728,7 +728,7 @@ msgstr "vart skilde"
 #. I18N: in the context 'employed with'
 #: FancyTreeviewModule.php:1387
 msgid "with"
-msgstr "with"
+msgstr "med"
 
 #: resources/views/blockmodulehelptext.phtml:13
 msgid "You can also create links from the Fancy Treeview page itself."

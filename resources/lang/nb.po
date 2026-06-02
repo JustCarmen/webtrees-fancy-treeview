@@ -306,11 +306,11 @@ msgstr "Han var i et forhold med"
 
 #: FancyTreeviewModule.php:1133
 msgid "He has a relationship with"
-msgstr "He has a relationship with"
+msgstr "Han er i et forhold med"
 
 #: FancyTreeviewModule.php:1073
 msgid "He is married to"
-msgstr "He is married to"
+msgstr "Han er gift med"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1053
@@ -438,7 +438,7 @@ msgstr "Preference for displaying place names in other countries"
 
 #: resources/views/page.phtml:55
 msgid "Print this page"
-msgstr "Print this page"
+msgstr "Skriv ut denne siden"
 
 #: resources/views/readmore-link.phtml:13
 msgid "Read more"
@@ -497,11 +497,11 @@ msgstr "Hun var i et forhold med"
 
 #: FancyTreeviewModule.php:1136
 msgid "She has a relationship with"
-msgstr "She has a relationship with"
+msgstr "Hun er i et forhold med"
 
 #: FancyTreeviewModule.php:1076
 msgid "She is married to"
-msgstr "She is married to"
+msgstr "Hun er gift med"
 
 #. I18N: %s is a number
 #: FancyTreeviewModule.php:1059
@@ -538,7 +538,7 @@ msgstr "Vis aner"
 
 #: resources/views/settings.phtml:322
 msgid "Show cause of death"
-msgstr "Show cause of death"
+msgstr "Vis dødsårsak"
 
 #: FancyTreeviewModule.php:682
 msgid "Show descendants"
@@ -632,11 +632,11 @@ msgstr "Denne personen var i et forhold med"
 
 #: FancyTreeviewModule.php:1139
 msgid "This individual has a relationship with"
-msgstr "This individual has a relationship with"
+msgstr "Denne personen er i et forhold med"
 
 #: FancyTreeviewModule.php:1079
 msgid "This individual is married to"
-msgstr "This individual is married to"
+msgstr "Denne personen er gift med"
 
 #: FancyTreeviewModule.php:1079
 msgid "This individual married"

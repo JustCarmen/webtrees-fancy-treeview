@@ -55,7 +55,7 @@ msgstr "Una visió general narrativa dels descendents o avantpassats de una fam�
 #. I18N: Help text for the "Show link to open all generations on one page" configuration setting
 #: resources/views/settings.phtml:102
 msgid "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
-msgstr "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
+msgstr "Afegeix un enllaç a la part inferior de la pàgina que obri totes les generacions en una sola pàgina. Això és útil per imprimir o desar la pàgina com a PDF mitjançant la funció d'impressió predeterminada del navegador. Selecciona la funció mínima requerida per mostrar l'enllaç."
 
 #: FancyTreeviewModule.php:1252
 msgctxt "FEMALE"
@@ -412,7 +412,7 @@ msgstr "No hi ha nens"
 
 #: resources/views/pagination.phtml:41
 msgid "Note: showing all generations at once can take a while."
-msgstr "Note: showing all generations at once can take a while."
+msgstr "Nota: mostrar totes les generacions alhora pot trigar una estona."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1625
@@ -438,7 +438,7 @@ msgstr "Preferència per mostrar topònims d'altres països"
 
 #: resources/views/page.phtml:55
 msgid "Print this page"
-msgstr "Print this page"
+msgstr "Imprimeix aquesta pàgina"
 
 #: resources/views/readmore-link.phtml:13
 msgid "Read more"
@@ -530,7 +530,7 @@ msgstr "Ella neix"
 
 #: resources/views/pagination.phtml:42
 msgid "show all generations"
-msgstr "show all generations"
+msgstr "mostra totes les generacions"
 
 #: FancyTreeviewModule.php:687
 msgid "Show ancestors"
@@ -538,7 +538,7 @@ msgstr "Mostrar ancestres"
 
 #: resources/views/settings.phtml:322
 msgid "Show cause of death"
-msgstr "Show cause of death"
+msgstr "Mostra la causa de la mort"
 
 #: FancyTreeviewModule.php:682
 msgid "Show descendants"
@@ -550,7 +550,7 @@ msgstr "Mostrar notes de nivell 1"
 
 #: resources/views/settings.phtml:95
 msgid "Show link to open all generations on one page"
-msgstr "Show link to open all generations on one page"
+msgstr "Mostra l'enllaç per obrir totes les generacions en una sola pàgina"
 
 #: resources/views/settings.phtml:275
 msgid "Show occupations"
@@ -649,7 +649,7 @@ msgstr "Aquest individu s'ha casat %s vegades"
 
 #: FancyTreeviewModule.php:710
 msgid "This page does not exist or you do not have permission to view it."
-msgstr "This page does not exist or you do not have permission to view it."
+msgstr "Aquesta pàgina no existeix o no teniu permís per veure-la."
 
 #: resources/views/settings.phtml:116
 msgid "This setting only applies to the page or tab containing the descendants."
@@ -661,7 +661,7 @@ msgstr "Mida de les miniatures"
 
 #: resources/views/pagination.phtml:41
 msgid "Useful for printing the page or saving as a PDF."
-msgstr "Useful for printing the page or saving as a PDF."
+msgstr "Útil per imprimir la pàgina o desar-la com a PDF."
 
 #: FancyTreeviewModule.php:1521
 msgctxt "PAST (FEMALE)"

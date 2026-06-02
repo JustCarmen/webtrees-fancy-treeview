@@ -55,7 +55,7 @@ msgstr "Den oversigt over en slægtsgrens aner eller efterkommere i fortællende
 #. I18N: Help text for the "Show link to open all generations on one page" configuration setting
 #: resources/views/settings.phtml:102
 msgid "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
-msgstr "Add a link at the bottom of the page that opens all generations on one page. This is useful for printing or saving the page as a PDF using the browser's default print function. Select the minimum required role to display the link."
+msgstr "Tilføj et link i bunden af siden, der viser alle generationer på én side. Det er nyttigt til udskrifter og generering af pdf-filer med browserens udskriftsfunktion. Vælg minimumskravet til brugerrolle, der får vist linket."
 
 #: FancyTreeviewModule.php:1252
 msgctxt "FEMALE"
@@ -410,7 +410,7 @@ msgstr "ingen børn"
 
 #: resources/views/pagination.phtml:41
 msgid "Note: showing all generations at once can take a while."
-msgstr "Note: showing all generations at once can take a while."
+msgstr "Bemærk: Det kan tage nogen tid at vise alle generationer."
 
 #. I18N: Note the space at the end of the string
 #: FancyTreeviewModule.php:1625
@@ -436,7 +436,7 @@ msgstr "Valg for visning af stednavne i andre lande"
 
 #: resources/views/page.phtml:55
 msgid "Print this page"
-msgstr "Print this page"
+msgstr "Udskriv denne side"
 
 #: resources/views/readmore-link.phtml:13
 msgid "Read more"
@@ -528,7 +528,7 @@ msgstr "Hun blev født"
 
 #: resources/views/pagination.phtml:42
 msgid "show all generations"
-msgstr "show all generations"
+msgstr "vis alle generationer"
 
 #: FancyTreeviewModule.php:687
 msgid "Show ancestors"
@@ -536,7 +536,7 @@ msgstr "Vis aner"
 
 #: resources/views/settings.phtml:322
 msgid "Show cause of death"
-msgstr "Show cause of death"
+msgstr "Vis dødsårsag"
 
 #: FancyTreeviewModule.php:682
 msgid "Show descendants"
@@ -548,7 +548,7 @@ msgstr "Vis niveau 1 bemærkninger"
 
 #: resources/views/settings.phtml:95
 msgid "Show link to open all generations on one page"
-msgstr "Show link to open all generations on one page"
+msgstr "Vis link, der åbner alle generationer på én side"
 
 #: resources/views/settings.phtml:275
 msgid "Show occupations"
@@ -647,7 +647,7 @@ msgstr "Denne person blev gift %s gange"
 
 #: FancyTreeviewModule.php:710
 msgid "This page does not exist or you do not have permission to view it."
-msgstr "This page does not exist or you do not have permission to view it."
+msgstr "Siden eksisterer ikke, eller du mangler rettighederne til at se den."
 
 #: resources/views/settings.phtml:116
 msgid "This setting only applies to the page or tab containing the descendants."
@@ -659,7 +659,7 @@ msgstr "Miniaturestørrelse"
 
 #: resources/views/pagination.phtml:41
 msgid "Useful for printing the page or saving as a PDF."
-msgstr "Useful for printing the page or saving as a PDF."
+msgstr "Nyttig til udskrift eller generering af pdf."
 
 #: FancyTreeviewModule.php:1521
 msgctxt "PAST (FEMALE)"
