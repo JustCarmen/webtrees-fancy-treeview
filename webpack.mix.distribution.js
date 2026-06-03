@@ -20,6 +20,7 @@ require('laravel-mix-clean');
 
 mix
   .setPublicPath('./dist')
+  .copyDirectory('vendor', config.dist_dir + '/vendor')
   .copyDirectory(config.public_dir + '/views', config.dist_dir + '/resources/views')
   .copy(config.public_dir + '/lang/*.mo', config.dist_dir + '/resources/lang')
   .copy(config.build_dir + '/style.css', config.dist_dir + '/resources/css/style.css')
