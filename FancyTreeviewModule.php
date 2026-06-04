@@ -64,12 +64,12 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     // Route
     protected const ROUTE_URL = '/tree/{tree}/jc-fancy-treeview/{xref}/{name}/{type}/{page}';
 
-    /**
+     /**
      * @var string
      */
-    private const GITHUB_REPO = 'justcarmen/webtrees-fancy-treeview';
+    public const CUSTOM_VERSION = '2.2.0';
 
-    /**
+     /**
      * @var string
      */
     public const CUSTOM_AUTHOR = 'JustCarmen';
@@ -77,12 +77,7 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     /**
      * @var string
      */
-    public const CUSTOM_VERSION = '2.2.0';
-
-    /**
-     * @var string
-     */
-    public const AUTHOR_WEBSITE = 'https://justcarmen.nl';
+    private const GITHUB_REPO = self::CUSTOM_AUTHOR . '/webtrees-fancy-treeview';
 
     /**
      * @var string
