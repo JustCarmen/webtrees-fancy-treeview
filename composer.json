@@ -10,6 +10,9 @@
 	],
     "require": {
 		"justcarmen/jc-common-code": "^1.0"
-	}
+	},
+    "config": {
+        "prepend-autoloader": false
+    }
 }
 
