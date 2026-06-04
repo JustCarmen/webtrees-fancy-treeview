@@ -24,14 +24,14 @@ class ComposerAutoloaderInitfc46d4ba8dc64f1c7827f850ea45bc5c
 
         require __DIR__ . '/platform_check.php';
 
-        spl_autoload_register(array('ComposerAutoloaderInitfc46d4ba8dc64f1c7827f850ea45bc5c', 'loadClassLoader'), true, true);
+        spl_autoload_register(array('ComposerAutoloaderInitfc46d4ba8dc64f1c7827f850ea45bc5c', 'loadClassLoader'), true, false);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(__DIR__));
         spl_autoload_unregister(array('ComposerAutoloaderInitfc46d4ba8dc64f1c7827f850ea45bc5c', 'loadClassLoader'));
 
         require __DIR__ . '/autoload_static.php';
         call_user_func(\Composer\Autoload\ComposerStaticInitfc46d4ba8dc64f1c7827f850ea45bc5c::getInitializer($loader));
 
-        $loader->register(true);
+        $loader->register(false);
 
         return $loader;
     }

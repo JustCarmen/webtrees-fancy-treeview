@@ -3,7 +3,7 @@
         'name' => 'justcarmen/jc-fancy-treeview',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '116f6ea4351e197eef124ede4d46d953bd17db28',
+        'reference' => '2cba7b1b5d87bf277e187d5c922ec94f3f83c15e',
         'type' => 'webtrees-module',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'justcarmen/jc-fancy-treeview' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '116f6ea4351e197eef124ede4d46d953bd17db28',
+            'reference' => '2cba7b1b5d87bf277e187d5c922ec94f3f83c15e',
             'type' => 'webtrees-module',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
