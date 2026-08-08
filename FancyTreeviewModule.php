@@ -64,12 +64,12 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
     // Route
     protected const ROUTE_URL = '/tree/{tree}/jc-fancy-treeview/{xref}/{name}/{type}/{page}';
 
-     /**
+    /**
      * @var string
      */
     public const CUSTOM_VERSION = '2.2.0';
 
-     /**
+    /**
      * @var string
      */
     public const CUSTOM_AUTHOR = 'JustCarmen';
