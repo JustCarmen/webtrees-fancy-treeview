@@ -177,7 +177,7 @@ msgstr "Name des Heimatlandes anzeigen"
 msgid "Don't show place names"
 msgstr "Ortsnamen nicht anzeigen"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "achte"
@@ -199,12 +199,12 @@ msgstr "Fancy Treeview"
 msgid "Fancy Treeview Help"
 msgstr "Fancy Treeview Hilfe"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "fünfte"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "erste"
@@ -235,7 +235,7 @@ msgstr "Pflegetochter von"
 msgid "foster son of"
 msgstr "Pflegesohn von"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "vierte"
@@ -399,7 +399,7 @@ msgstr "Maximale Anzahl der Generationen pro Reiter"
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "Mehr Generationen benötigen mehr Speicherplatz, so dass es länger dauert, bis die Seite vollständig geladen ist."
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "neunte"
@@ -464,7 +464,7 @@ msgstr "Antworten Sie mit \"ja\", wenn Sie nur Bilder vom Typ \"Foto\" anzeigen 
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "Antworten Sie mit \"ja\", wenn Sie Alleinstehende in der nächsten Generation anzeigen möchten. Alleinstehende sind Personen ohne Partner und Kinder. Wenn Sie \"ja\" wählen, wird jedes Kind einer Familie in der nächsten Generation detailliert angezeigt."
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "zweite"
@@ -484,7 +484,7 @@ msgstr "Wählen Sie die maximale Anzahl der Generationen, die auf der Fancy-Tree
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "Wählen Sie die maximale Anzahl der Generationen, die im Reiter auf der Personenseite angezeigt werden sollen."
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "siebte"
@@ -566,12 +566,12 @@ msgstr "Alleinstehende anzeigen"
 msgid "Show the name of the company/employer"
 msgstr "Name der Firma bzw. des Arbeitgebers anzeigen"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "sechste"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "zehnte"
@@ -619,7 +619,7 @@ msgstr "Die Anzahl der möglichen Vorfahren in dieser Generation wurde aufgrund 
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "Der Titel des Menüs und des Homepage-Blocks lautet 'Familienbericht '."
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "dritte"

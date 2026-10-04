@@ -177,7 +177,7 @@ msgstr "Display home country name"
 msgid "Don't show place names"
 msgstr "Don't show place names"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "שמינית"
@@ -199,12 +199,12 @@ msgstr "תצוגת עץ מהודרת"
 msgid "Fancy Treeview Help"
 msgstr "Fancy Treeview Help"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "חמישית"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "ראשונה"
@@ -235,7 +235,7 @@ msgstr "בת אומנה של"
 msgid "foster son of"
 msgstr "בן אומנה של"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "רביעית"
@@ -400,7 +400,7 @@ msgstr "מספר מקסימלי של דורות בלשונית"
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "דורות נוספים דורשים יותר זיכרון כך שלעמוד לוקח יותר זמן להיטען במלואו."
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "תשיעית"
@@ -465,7 +465,7 @@ msgstr "השב \"כן\" אם ברצונך להציג תמונות מהסוג \"�
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "השב \"כן\" אם אתה רוצה להציג רווקים בדור הבא. רווקים הם יחידים ללא בן זוג וילדים. אם תבחר \"כן\", כל ילד במשפחה יוצג בצורה מפורטת בדור הבא."
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "שניה"
@@ -485,7 +485,7 @@ msgstr "בחר את המספר המרבי של דורות להצגה בדף תצ
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "בחר את המספר המרבי של דורות להצגה בלשונית בדף האישי."
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "שביעית"
@@ -567,12 +567,12 @@ msgstr "הראה בודדים"
 msgid "Show the name of the company/employer"
 msgstr "Show the name of the company/employer"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "שישית"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "עשירית"
@@ -620,7 +620,7 @@ msgstr "מספר האב-אבות האפשריים בדור זה הצטמצם ע�
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "שלישית"

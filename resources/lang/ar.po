@@ -179,7 +179,7 @@ msgstr "عرض اسم البلد الأصلي"
 msgid "Don't show place names"
 msgstr "لا تظهر أسماء الأماكن"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "ثامن"
@@ -202,12 +202,12 @@ msgstr "Fancy Treeview"
 msgid "Fancy Treeview Help"
 msgstr "مساعدة في عرض الشجرة الرائع"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "الخامس"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "أولاً"
@@ -238,7 +238,7 @@ msgstr "ابنة بالتبني"
 msgid "foster son of"
 msgstr "الابن بالتبني"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "الرابع"
@@ -404,7 +404,7 @@ msgstr "الحد الأقصى لعدد الأجيال لكل علامة تبوي
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "تتطلب الأجيال الأكثر مزيدًا من الذاكرة، لذا تستغرق الصفحة وقتًا أطول للتحميل الكامل."
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "التاسع"
@@ -469,7 +469,7 @@ msgstr "أجب بـ \"نعم\" إذا كنت تريد عرض الصور من ن�
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "أجب بـ \"نعم\" إذا كنت تريد عرض الأفراد غير المتزوجين في الجيل التالي. الأفراد غير المتزوجين هم أفراد ليس لديهم شريك أو أطفال. إذا اخترت \"نعم\"، فسيتم عرض كل طفل في العائلة بشكل تفصيلي في الجيل التالي."
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "الثاني"
@@ -489,7 +489,7 @@ msgstr "حدد الحد الأقصى لعدد الأجيال المراد عرض
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "حدد الحد الأقصى لعدد الأجيال المراد عرضها في علامة تبويب الصفحة الفردية."
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "سابعاً"
@@ -573,12 +573,12 @@ msgstr "عرض الفردي"
 msgid "Show the name of the company/employer"
 msgstr "إظهار اسم الشركة/صاحب العمل"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "السادس"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "العاشر"
@@ -626,7 +626,7 @@ msgstr "تم تقليص عدد الأسلاف المحتملين في هذا ا�
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "عنوان القائمة والصفحة الرئيسية هو \"نظرة عامة على شجرة العائلة\"."
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "الثالث"

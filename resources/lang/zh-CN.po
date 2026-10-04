@@ -177,7 +177,7 @@ msgstr "显示归属国家/地区名称"
 msgid "Don't show place names"
 msgstr "不显示地名"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "第八"
@@ -199,12 +199,12 @@ msgstr "花式树景"
 msgid "Fancy Treeview Help"
 msgstr "模块帮助"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "第五"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "第一"
@@ -235,7 +235,7 @@ msgstr "的继女"
 msgid "foster son of"
 msgstr "的继女"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "第四"
@@ -399,7 +399,7 @@ msgstr "每个选项卡最大生成数"
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "代数越多需电脑配置更高，而且页面需要更长的时间才能完全加载。"
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "第九"
@@ -464,7 +464,7 @@ msgstr "您如果仅显示“照片”类型中的图像，请选择“是”。
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "如果您想在下一代中显示单曲，请回答“是”。单身者是没有伴侣和孩子的个人。如果选择“是”，一个家庭的每个孩子都会在下一代中详细展示。"
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "第二种"
@@ -484,7 +484,7 @@ msgstr "选择要在花式树图页面上显示的最大代数"
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "选择要在单个页面选项卡上显示的最大代数"
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "第七"
@@ -566,12 +566,12 @@ msgstr "显示单曲"
 msgid "Show the name of the company/employer"
 msgstr "显示公司/老板的名称"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "第六"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "第十个"
@@ -619,7 +619,7 @@ msgstr "可能未入谱，这一代的祖先数量减少了。如果不减少，
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "导航条和主页块的标题是“家谱概览”。"
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "第三"

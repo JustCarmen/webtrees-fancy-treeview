@@ -177,7 +177,7 @@ msgstr "Vertoon die naam van die tuisland"
 msgid "Don't show place names"
 msgstr "Moenie plekname vertoon nie"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "agste"
@@ -199,12 +199,12 @@ msgstr "Fancy Treeview"
 msgid "Fancy Treeview Help"
 msgstr "Fancy Treeview Hulp"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "vyfde"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "eerste"
@@ -235,7 +235,7 @@ msgstr "pleegdogter van"
 msgid "foster son of"
 msgstr "pleegseun van"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "vierde"
@@ -400,7 +400,7 @@ msgstr "Maksimum aantal geslagte per oortjie"
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "Meer geslagte benodig meer geheue so bladsye sal langer neem om te laai."
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "negende"
@@ -465,7 +465,7 @@ msgstr "Antwoord “ja” as jy beelde slegs van die tipe “foto” wil vertoon
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "Antwoord \"ja\" as jy enkellopendes in die volgende geslag wil vertoon. Enkellopendes is individue sonder 'n lewensmaat en kinders. As jy \"ja\" kies, sal elke kind van 'n gesin op 'n volledige wyse in die volgende geslag vertoon word."
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "tweede"
@@ -485,7 +485,7 @@ msgstr "Kies die maksimum aantal geslagte om op die Fancy Treeview bladsy te wys
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "Kies die maksimum aantal geslagte om op die Fancy Treeview oortjie te wys."
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "sewende"
@@ -567,12 +567,12 @@ msgstr "Wys enkelinge"
 msgid "Show the name of the company/employer"
 msgstr "Wys die naam van die maatskappy/werkgewer"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "sesde"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "tiende"
@@ -620,7 +620,7 @@ msgstr "Die aantal moontlike voorouers in hierdie geslag is verminder as gevolg 
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "Die titel van die kieslys en tuisbladblok is 'Stamboom-oorsig'."
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "derde"

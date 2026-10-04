@@ -177,7 +177,7 @@ msgstr "Vis hjemland"
 msgid "Don't show place names"
 msgstr "Vis ikke stedsnavn"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "åttende"
@@ -199,12 +199,12 @@ msgstr "Fancy Treeview"
 msgid "Fancy Treeview Help"
 msgstr "Hjelp for Fancy Treeview"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "femte"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "første"
@@ -235,7 +235,7 @@ msgstr "fosterdatter av"
 msgid "foster son of"
 msgstr "fostersønn av"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "fjerde"
@@ -401,7 +401,7 @@ msgstr "Maks antall generasjoner per fane"
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "Flere generasjoner krever mer minne, og det vil ta mer tid å laste siden."
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "niende"
@@ -466,7 +466,7 @@ msgstr "Velg \"ja\" dersom du kun ønsker bilder av typen \"fotografi\". Andre b
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "Svar “ja” hvis du vil vise singler i neste generasjon. Singler er individer uten partner og barn. Hvis du velger “ja” vil alle barn i en familie vises detaljert i neste generasjon."
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "andre"
@@ -486,7 +486,7 @@ msgstr "Angi maks antall generasjoner som skal vises på siden."
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "Angi maks antall generasjoner som skal vises på personsidens fane."
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "syvende"
@@ -568,12 +568,12 @@ msgstr "Vis enslige"
 msgid "Show the name of the company/employer"
 msgstr "Vis selskap/arbeidsgiver"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "sjette"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "tiende"
@@ -621,7 +621,7 @@ msgstr "Antall mulige aner i denne generasjonen er lavere på grunn av sammenfal
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "The title of the menu and homepage block is 'Family Tree Overview'."
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "tredje"

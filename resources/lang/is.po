@@ -177,7 +177,7 @@ msgstr "Birta heiti heimalands"
 msgid "Don't show place names"
 msgstr "Ekki sýna staðarheiti"
 
-#. I18N: eighth marriage
+#. I18N: eighth time
 #: FancyTreeviewModule.php:1046
 msgid "eighth"
 msgstr "Áttunda"
@@ -199,12 +199,12 @@ msgstr "Flott ættaryfirlit"
 msgid "Fancy Treeview Help"
 msgstr "Hjálp fyrir Flott ættaryfirlit"
 
-#. I18N: fifth marriage
+#. I18N: fifth time
 #: FancyTreeviewModule.php:1043
 msgid "fifth"
 msgstr "Fimmta"
 
-#. I18N: first marriage
+#. I18N: first time
 #: FancyTreeviewModule.php:1039
 msgid "first"
 msgstr "Fyrsta"
@@ -235,7 +235,7 @@ msgstr "fósturdóttir"
 msgid "foster son of"
 msgstr "fóstursonur"
 
-#. I18N: fourth marriage
+#. I18N: fourth time
 #: FancyTreeviewModule.php:1042
 msgid "fourth"
 msgstr "Fjórða"
@@ -399,7 +399,7 @@ msgstr "Hámarksfjöldi kynslóða í einum flipa"
 msgid "More generations require more memory so the page takes longer to fully load."
 msgstr "Fleiri kynslóðir kalla á meira minni þannig að síður taka lengri tíma að hlaðast inn að fullu."
 
-#. I18N: ninth marriage
+#. I18N: ninth time
 #: FancyTreeviewModule.php:1047
 msgid "ninth"
 msgstr "Níunda"
@@ -464,7 +464,7 @@ msgstr "Svaraðu „já“ ef þú vilt aðeins birta myndir af gerðinni „lj�
 msgid "Respond “yes” if you want to display singles in the next generation. Singles are individuals without a partner and children. If you choose “yes”, each child of a family will be displayed in a detailed manner in the next generation."
 msgstr "Svaraðu „já“ ef þú vilt birta einhleypa í næstu kynslóð. Einhleypir eru einstaklingar án maka og barna. Ef þú velur „já“ mun hvert barn fjölskyldunnar birtast á nákvæman hátt í næstu kynslóð."
 
-#. I18N: second marriage
+#. I18N: second time
 #: FancyTreeviewModule.php:1040
 msgid "second"
 msgstr "Annað"
@@ -484,7 +484,7 @@ msgstr "Veljið hámarksfjölda kynslóða til að sýna á síðunni fyrir flot
 msgid "Select the maximum number of generations to show on the individual page tab."
 msgstr "Veljið hámarksfjölda kynslóða til að sýna í síðuflipa einstaklings."
 
-#. I18N: seventh marriage
+#. I18N: seventh time
 #: FancyTreeviewModule.php:1045
 msgid "seventh"
 msgstr "Sjöunda"
@@ -566,12 +566,12 @@ msgstr "Sýna einhleypa"
 msgid "Show the name of the company/employer"
 msgstr "Sýndu nafn fyrirtækis/vinnuveitanda"
 
-#. I18N: sixth marriage
+#. I18N: sixth time
 #: FancyTreeviewModule.php:1044
 msgid "sixth"
 msgstr "Sjötta"
 
-#. I18N: tenth marriage
+#. I18N: tenth time
 #: FancyTreeviewModule.php:1048
 msgid "tenth"
 msgstr "Tíunda"
@@ -619,7 +619,7 @@ msgstr "Mögulegum forfeðrum í þessari kynslóð hefur fækkað vegna ættart
 msgid "The title of the menu and homepage block is 'Family Tree Overview'."
 msgstr "Titill valmyndar og heimasíðublokkar er  “Ættaryfirlit”."
 
-#. I18N: third marriage
+#. I18N: third time
 #: FancyTreeviewModule.php:1041
 msgid "third"
 msgstr "Þriðja"
