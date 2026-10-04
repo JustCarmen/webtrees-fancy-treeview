@@ -1015,17 +1015,17 @@ ModuleMenuInterface, ModuleBlockInterface, RequestHandlerInterface
         if ($count > 1) {
             // we assume no one married more then ten times.
             $wordcount = [
-                /* I18N: first marriage  */
+                /* I18N:  first time  */
                 I18N::translate('first'),
-                /* I18N: second marriage  */ I18N::translate('second'),
-                /* I18N: third marriage  */ I18N::translate('third'),
-                /* I18N: fourth marriage  */ I18N::translate('fourth'),
-                /* I18N: fifth marriage  */ I18N::translate('fifth'),
-                /* I18N: sixth marriage  */ I18N::translate('sixth'),
-                /* I18N: seventh marriage  */ I18N::translate('seventh'),
-                /* I18N: eighth marriage  */ I18N::translate('eighth'),
-                /* I18N: ninth marriage  */ I18N::translate('ninth'),
-                /* I18N: tenth marriage  */ I18N::translate('tenth'),
+                /* I18N: second time  */ I18N::translate('second'),
+                /* I18N: third time  */ I18N::translate('third'),
+                /* I18N: fourth time  */ I18N::translate('fourth'),
+                /* I18N: fifth time  */ I18N::translate('fifth'),
+                /* I18N: sixth time  */ I18N::translate('sixth'),
+                /* I18N: seventh time  */ I18N::translate('seventh'),
+                /* I18N: eighth time  */ I18N::translate('eighth'),
+                /* I18N: ninth time  */ I18N::translate('ninth'),
+                /* I18N: tenth time  */ I18N::translate('tenth'),
             ];
             switch ($person->sex()) {
                 case 'M':
