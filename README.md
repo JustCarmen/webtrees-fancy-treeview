@@ -35,27 +35,42 @@ In addition to the usual information, the ancestor summary also shows a percenta
 **Menu or home page block**\
 A fancy treeview menu or home page block is also available. The administrator can add or remove pages from the menu and/or home page block. To do so, use the button at the top of the Fancy Treeview page or the links in the edit menu on the individual page.
 
-**Configuration page**\
-On the configuration page, you can set a number of options to customize the Fancy Treeview page and/or tab.
-
 **Print the Fancy Treeview page as pdf**\
 You can download the Fancy TreeView page as a PDF. To do this, you need to display all generations on one page. This may use a lot of resources! However, you can control who has access to the option to view all generations on one page. Once all generations have loaded, a print link will appear at the top of the page. This will take you to your browser's native print function. In the print dialogue, you can choose to print the page as a PDF. The module includes print styles that remove unnecessary elements from the printout. Please note that the print styles work best with Chrome or Microsoft Edge.
 
 Translations
 ------------
-You can help translate this module. The language files are available on [POEditor][3] where you can update them. But you can also use a local editor such as Poedit or Notepad++ to create the translations. Then send them to me by e-mail or make a pull request (if you know how). Updated translations will be included in the next release of this module.
+You can help translate this module. The language files are available on [POEditor][3] where you can contribute updates. Alternatively, use a local editor such as Poedit or Notepad++ to edit the translations, then send them back to me via pull request or [email][5]. Updated translations will be included in the next module release.
 
-Installation & upgrading
-------------------------
-Unzip the zip file and place the jc-fancy-treeview folder in the modules_v4 folder of webtrees. Upload the newly added folder to your server. It is activated by default. Go to an individual page and click on the Descendants and Ancestry tab.
+Installation
+------------
+Install using [Custom Module Manager][6] for an easy and convenient way to install webtrees custom modules.
+Open the Custom Module Manager in webtrees, scroll to “Fancy Treeview”, and click “Install Module”.
+
+### Manual installation
+Download the [latest release][1] of the module. Unpack the ZIP file and place the folder `jc-fancy-treeview-links` in the `modules_v4` folder of webtrees. Upload the new folder to your server. The module is enabled by default. Go to the control panel to adjust the options. You can find the Fancy Treeview configuration page in the Menu, Tab and Block section and on the module page.
+
+### Install using Composer
+If you are using the webtrees source code, you can install this module with Composer:
+
+```bash
+composer require justcarmen/jc-fancy-treeview
+```
+After installation you should run composer update to install the neccessary vendor files.
+
+Configuration
+-------------
+On the configuration page, you can set a number of options to customize the Fancy Treeview page and/or tab.
 
 Bugs and feature requests
 -------------------------
-If you encounter bugs or have a feature request for this module, you can [create a new issue on GitHub][4].
+If you are experiencing bugs or have a feature request for this module, please [create a new issue][4].
 
  [1]: https://github.com/JustCarmen/webtrees-fancy-treeview/releases/latest
  [2]: https://webtrees.github.io/download/
  [3]: https://poeditor.com/join/project/9HqYANIknp
  [4]: https://github.com/JustCarmen/webtrees-fancy-treeview/issues?state=open
+ [5]: mailto:carmen@justcarmen.nl
+ [6]: https://github.com/Jefferson49/CustomModuleManager
 
 
